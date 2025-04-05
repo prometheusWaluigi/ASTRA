@@ -373,90 +373,46 @@ function validateCity() {
     return isValid;
 }
 
-// Setup city autocomplete
+// Setup city autocomplete - now handled by Google Places API
 function setupCityAutocomplete() {
-    const cityInput = document.getElementById('birth-city');
+    console.log('City autocomplete now handled by Google Places API');
+    // This function is kept for backward compatibility
+    // The actual implementation is in google-places-integration.js
+    
+    // We'll still set up the country select to update the Google Places session token
     const countrySelect = document.getElementById('birth-country');
-    const datalist = document.getElementById('city-suggestions') || createDatalist();
-
-    let timeoutId;
-    const updateHandler = () => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            updateCitySuggestions(countrySelect.value, cityInput.value);
-        }, 300);
-    };
-
-    countrySelect.addEventListener('change', updateHandler, { passive: true });
-    cityInput.addEventListener('input', updateHandler, { passive: true });
+    if (countrySelect) {
+        countrySelect.addEventListener('change', function() {
+            // Dispatch an event that the Google Places integration can listen for
+            const event = new CustomEvent('countryChanged', {
+                detail: { country: this.value }
+            });
+            document.dispatchEvent(event);
+        }, { passive: true });
+    }
 }
 
-// Update city suggestions in datalist
+// Update city suggestions in datalist - now handled by Google Places API
 function updateCitySuggestions(country, filter = '') {
-    const datalist = document.getElementById('city-suggestions');
-    if (!datalist) {
-        console.error('City suggestions datalist not found');
-        return;
-    }
-    
-    const cities = getCitiesForCountry(country);
-    if (!cities || cities.length === 0) {
-        console.log(`No cities found for country: ${country}`);
-        return;
-    }
-    
-    const fragment = document.createDocumentFragment();
-    
-    cities.filter(city => city.toLowerCase().includes(filter.toLowerCase()))
-        .slice(0, 10)
-        .forEach(city => {
-            const option = document.createElement('option');
-            option.value = city;
-            fragment.appendChild(option);
-        });
-
-    requestAnimationFrame(() => {
-        datalist.innerHTML = '';
-        datalist.appendChild(fragment);
-        console.log(`Updated city suggestions for ${country}: ${cities.slice(0, 3).join(', ')}...`);
-    });
+    // This function is kept for backward compatibility
+    // The actual implementation is in google-places-integration.js
+    console.log('City suggestions now handled by Google Places API');
+    return;
 }
 
-// Check if a city exists in the selected country
+// Check if a city exists in the selected country - now handled by Google Places API
 function isCityInCountry(city, country) {
-    if (!city || !country) return false;
-    
-    const cities = getCitiesForCountry(country);
-    return cities.some(c => c.toLowerCase() === city.toLowerCase());
+    // This function is kept for backward compatibility
+    // With Google Places API, validation is handled automatically
+    return true;
 }
 
-// Get cities for a country
+// Get cities for a country - now handled by Google Places API
 function getCitiesForCountry(country) {
-    // Major cities database
-    const cityDatabase = {
-        'US': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose', 'Austin', 'Jacksonville', 'Fort Worth', 'Columbus', 'Indianapolis', 'Charlotte', 'San Francisco', 'Seattle', 'Denver', 'Washington'],
-        'CA': ['Toronto', 'Montreal', 'Vancouver', 'Calgary', 'Edmonton', 'Ottawa', 'Winnipeg', 'Quebec City', 'Hamilton', 'Kitchener'],
-        'UK': ['London', 'Birmingham', 'Manchester', 'Glasgow', 'Liverpool', 'Bristol', 'Edinburgh', 'Leeds', 'Sheffield', 'Cardiff'],
-        'AU': ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Gold Coast', 'Canberra', 'Newcastle', 'Wollongong', 'Hobart'],
-        'DE': ['Berlin', 'Hamburg', 'Munich', 'Cologne', 'Frankfurt', 'Stuttgart', 'Düsseldorf', 'Leipzig', 'Dortmund', 'Essen'],
-        'FR': ['Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 'Strasbourg', 'Montpellier', 'Bordeaux', 'Lille'],
-        'IN': ['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Pune', 'Ahmedabad', 'Jaipur', 'Surat', 'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane', 'Bhopal', 'Visakhapatnam', 'Patna', 'Vadodara', 'Ghaziabad'],
-        'JP': ['Tokyo', 'Yokohama', 'Osaka', 'Nagoya', 'Sapporo', 'Kobe', 'Kyoto', 'Fukuoka', 'Kawasaki', 'Saitama'],
-        'CN': ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen', 'Chongqing', 'Tianjin', 'Wuhan', 'Chengdu', 'Hangzhou', 'Nanjing'],
-        'BR': ['São Paulo', 'Rio de Janeiro', 'Brasília', 'Salvador', 'Fortaleza', 'Belo Horizonte', 'Manaus', 'Curitiba', 'Recife', 'Porto Alegre'],
-        'RU': ['Moscow', 'Saint Petersburg', 'Novosibirsk', 'Yekaterinburg', 'Kazan', 'Chelyabinsk', 'Omsk', 'Samara', 'Rostov-on-Don', 'Ufa'],
-        'ZA': ['Johannesburg', 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth', 'Bloemfontein', 'Pietermaritzburg', 'East London', 'Nelspruit', 'Kimberley'],
-        'ES': ['Madrid', 'Barcelona', 'Valencia', 'Seville', 'Zaragoza', 'Málaga', 'Murcia', 'Palma', 'Las Palmas', 'Bilbao'],
-        'IT': ['Rome', 'Milan', 'Naples', 'Turin', 'Palermo', 'Genoa', 'Bologna', 'Florence', 'Catania', 'Bari'],
-        'MX': ['Mexico City', 'Ecatepec', 'Guadalajara', 'Puebla', 'Juárez', 'Tijuana', 'León', 'Zapopan', 'Monterrey', 'Nezahualcóyotl']
-    };
-    
-    // Return default cities for countries not in the database
-    if (!cityDatabase[country]) {
-        return ['Please enter a valid city'];
-    }
-    
-    return cityDatabase[country];
+    // This function is kept for backward compatibility
+    // The actual implementation is in google-places-integration.js
+    console.log('City data now provided by Google Places API');
+    return [];
 }
 
 // ======== COSMIC ANIMATIONS ========
@@ -1086,26 +1042,12 @@ function generateRandomEvents() {
     return events;
 }
 
-// Create datalist element for city suggestions
+// Create datalist element for city suggestions - now handled by Google Places API
 function createDatalist() {
-    // Check if datalist already exists
-    if (document.getElementById('city-suggestions')) {
-        return document.getElementById('city-suggestions');
-    }
-    
-    const datalist = document.createElement('datalist');
-    datalist.id = 'city-suggestions';
-    document.body.appendChild(datalist);
-    
-    const cityInput = document.getElementById('birth-city');
-    if (cityInput) {
-        cityInput.setAttribute('list', 'city-suggestions');
-        console.log('City datalist initialized');
-    } else {
-        console.error('City input field not found');
-    }
-    
-    return datalist;
+    // This function is kept for backward compatibility
+    // The actual implementation is in google-places-integration.js
+    console.log('City datalist now handled by Google Places API');
+    return null;
 }
 
 // Cleanup function for canvas elements

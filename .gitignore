@@ -172,3 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# API Keys and Configuration
+docs/config.js
+
+# Keep the template file
+!docs/config.template.js

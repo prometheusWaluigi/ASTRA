@@ -1865,6 +1865,87 @@ footer a {
     }
 }
 
+/* Google Places Autocomplete Styles */
+.autocomplete-results {
+    position: absolute;
+    background-color: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--box-shadow);
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: var(--z-modal);
+    margin-top: 5px;
+    backdrop-filter: blur(10px);
+    display: none;
+}
+
+.autocomplete-results.active {
+    display: block;
+}
+
+.autocomplete-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: var(--text-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover {
+    background-color: var(--card-bg-hover);
+}
+
+.autocomplete-item .city-name {
+    font-weight: 500;
+}
+
+.autocomplete-item .city-details {
+    font-size: 0.85em;
+    color: var(--text-color-muted);
+    margin-top: 3px;
+}
+
+.pac-container {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--border-radius-sm) !important;
+    box-shadow: var(--box-shadow) !important;
+    backdrop-filter: blur(10px) !important;
+    z-index: var(--z-modal) !important;
+}
+
+.pac-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 8px 10px !important;
+    cursor: pointer !important;
+    color: var(--text-color) !important;
+    font-family: var(--font-primary) !important;
+}
+
+.pac-item:hover {
+    background-color: var(--card-bg-hover) !important;
+}
+
+.pac-item-query {
+    color: var(--primary-color) !important;
+    font-weight: 500 !important;
+}
+
+.pac-icon {
+    filter: brightness(1.5) !important;
+}
+
+.pac-matched {
+    color: var(--accent-color) !important;
+    font-weight: bold !important;
+}
+
 /* Print styles */
 @media print {
     body {

@@ -124,6 +124,20 @@ ASTRA includes a web interface built with HTML, CSS, and JavaScript that can be 
 
 The ASTRA web interface is deployed at: https://prometheuswaluigi.github.io/ASTRA/
 
+### Setting Up Google Places API
+
+ASTRA uses the Google Places API for city autocomplete functionality. To set this up:
+
+1. Obtain a Google Places API key from the [Google Cloud Console](https://console.cloud.google.com/)
+2. Add the API key as a GitHub Secret named `GOOGLE_API_KEY` in your repository settings:
+   - Go to your GitHub repository
+   - Click on "Settings" > "Secrets and variables" > "Actions"
+   - Click "New repository secret"
+   - Name: `GOOGLE_API_KEY`
+   - Value: Your Google Places API key
+   - Click "Add secret"
+3. The GitHub Action workflow will automatically inject this key when deploying to GitHub Pages
+
 ### Local Development
 
 To run the web interface locally:

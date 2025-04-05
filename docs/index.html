@@ -18,6 +18,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <!-- Force Graph for topology visualization -->
     <script src="https://unpkg.com/3d-force-graph@1.43.0/dist/3d-force-graph.min.js"></script>
+    <!-- Config file with API keys -->
+    <script src="config.js"></script>
+    
+    <!-- Google Places API for city autocomplete - dynamically loaded with API key from config -->
+    <script>
+        // Dynamically create the Google Maps script tag with API key from config
+        document.addEventListener('DOMContentLoaded', function() {
+            // If config is not available (e.g., during development), use a default placeholder
+            const apiKey = (typeof config !== 'undefined' && config.GOOGLE_API_KEY) ? 
+                           config.GOOGLE_API_KEY : 'YOUR_API_KEY';
+                           
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initGooglePlaces`;
+            script.defer = true;
+            script.async = true;
+            document.head.appendChild(script);
+        });
+    </script>
     <!-- Custom stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -104,7 +122,10 @@
                     
                     <div class="form-group">
                         <label for="birth-city">Birth City:</label>
-                        <input type="text" id="birth-city" name="birth-city" placeholder="City" required>
+                        <input type="text" id="birth-city" name="birth-city" placeholder="Start typing any city in the world" required>
+                        <div id="city-autocomplete-results" class="autocomplete-results"></div>
+                        <input type="hidden" id="birth-city-lat" name="birth-city-lat">
+                        <input type="hidden" id="birth-city-lng" name="birth-city-lng">
                     </div>
                     
                     <div class="form-group">
@@ -705,6 +726,8 @@
     <script src="https://unpkg.com/force-graph@1.43.0/dist/force-graph.min.js"></script>
     <!-- Fix script -->
     <script src="astra-fix.js"></script>
+    <!-- Google Places Integration -->
+    <script src="google-places-integration.js"></script>
     <!-- Debug script -->
     <script src="debug.js"></script>
     <!-- Main script -->
