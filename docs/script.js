@@ -390,108 +390,81 @@ function createTopologyGraph() {
     const graphContainer = document.getElementById('topology-3d-graph');
     if (!graphContainer) return;
     
-    // Create canvas
-    const canvas = document.createElement('canvas');
-    canvas.width = graphContainer.clientWidth;
-    canvas.height = graphContainer.clientHeight;
-    graphContainer.appendChild(canvas);
-    
-    const ctx = canvas.getContext('2d');
-    
-    // Generate graph nodes and edges
-    const nodes = [];
-    const edges = [];
+    // Generate nodes and links data for 3D-force-graph
+    const nodesData = [];
+    const linksData = [];
     
     // Create nodes
     for (let i = 0; i < 30; i++) {
-        nodes.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 5 + 3,
-            color: getRandomColor(),
-            vx: (Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) * 0.5
+        nodesData.push({
+            id: i,
+            value: Math.random(),
+            betti: Math.floor(Math.random() * 3), // 0, 1, or 2
+            curvature: Math.random() * 2 - 1, // -1 to 1
+            color: getRandomColor()
         });
     }
     
-    // Create edges between nodes that are close
-    for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-            const dx = nodes[i].x - nodes[j].x;
-            const dy = nodes[i].y - nodes[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            
-            if (distance < 100) {
-                edges.push({
-                    from: i,
-                    to: j,
-                    width: 1 - distance / 100, // Thicker lines for closer nodes
-                    color: 'rgba(138, 43, 226, 0.2)'
+    // Create links between nodes that are close
+    for (let i = 0; i < nodesData.length; i++) {
+        // Connect each node to 2-4 others
+        const numLinks = Math.floor(Math.random() * 3) + 2;
+        
+        for (let j = 0; j < numLinks; j++) {
+            const target = Math.floor(Math.random() * nodesData.length);
+            if (target !== i) {
+                linksData.push({
+                    source: i,
+                    target: target,
+                    weight: Math.random() * 0.8 + 0.2 // 0.2 to 1.0
                 });
             }
         }
     }
     
-    // Animation loop
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Draw edges
-        ctx.lineWidth = 1;
-        edges.forEach(edge => {
-            const fromNode = nodes[edge.from];
-            const toNode = nodes[edge.to];
-            
-            ctx.beginPath();
-            ctx.moveTo(fromNode.x, fromNode.y);
-            ctx.lineTo(toNode.x, toNode.y);
-            ctx.strokeStyle = edge.color;
-            ctx.lineWidth = edge.width * 2;
-            ctx.stroke();
-        });
-        
-        // Draw nodes
-        nodes.forEach(node => {
-            ctx.beginPath();
-            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-            ctx.fillStyle = node.color;
-            ctx.fill();
-            
-            // Move node
-            node.x += node.vx;
-            node.y += node.vy;
-            
-            // Bounce off edges
-            if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-            if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
-        });
-        
-        requestAnimationFrame(animate);
-    }
+    // Create the graph data
+    const graphData = {
+        nodes: nodesData,
+        links: linksData
+    };
     
-    animate();
+    // Create 3D force graph
+    const Graph = ForceGraph3D()
+        (graphContainer)
+        .backgroundColor('rgba(0,0,0,0)')
+        .nodeColor(node => node.color)
+        .nodeLabel(node => `Node ${node.id}: Value ${node.value.toFixed(2)}`)
+        .linkWidth(link => link.weight * 2)
+        .linkColor(() => 'rgba(138, 43, 226, 0.2)')
+        .graphData(graphData);
+    
+    // Store graph reference for visualization toggling
+    window.topologyGraph = Graph;
     
     // Visualization toggle
     document.querySelectorAll('.viz-toggle').forEach(btn => {
         btn.addEventListener('click', function() {
+            // Update active state
             document.querySelectorAll('.viz-toggle').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
+            // Get visualization type
             const vizType = this.dataset.viz;
             
-            // Update node colors based on visualization type
-            nodes.forEach(node => {
-                if (vizType === 'graph') {
-                    node.color = getRandomColor();
-                } else if (vizType === 'betti') {
-                    const bettiType = Math.floor(Math.random() * 3); // 0, 1, or 2
-                    node.color = bettiType === 0 ? '#8a2be2' : bettiType === 1 ? '#0096ff' : '#ff3e9d';
-                } else if (vizType === 'curvature') {
-                    const curvature = Math.random() * 2 - 1; // -1 to 1
-                    node.color = curvature < 0 ? '#ff3e9d' : 
-                                curvature === 0 ? '#ffffff' : '#0096ff';
-                }
-            });
+            // Update graph colors based on visualization type
+            if (vizType === 'graph') {
+                Graph.nodeColor(node => node.color);
+            } else if (vizType === 'betti') {
+                Graph.nodeColor(node => {
+                    return node.betti === 0 ? '#8a2be2' : 
+                           node.betti === 1 ? '#0096ff' : '#ff3e9d';
+                });
+            } else if (vizType === 'curvature') {
+                Graph.nodeColor(node => {
+                    return node.curvature < 0 ? '#ff3e9d' : 
+                           node.curvature === 0 ? '#ffffff' : '#0096ff';
+                });
+            }
         });
     });
 }
