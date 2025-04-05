@@ -920,6 +920,7 @@ option {
 
 .timeline-slider input[type="range"] {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 6px;
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
@@ -1319,6 +1320,453 @@ footer a {
         padding: 0.85rem 1.25rem;
         font-size: 1rem;
     }
+}
+
+/* Advanced Quantum Consciousness Features */
+
+/* Echo Viewer Styles */
+.echo-container {
+    position: relative;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius);
+    margin-top: 1.5rem;
+    overflow: hidden;
+}
+
+.echo-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 150, 255, 0.1));
+    z-index: -1;
+}
+
+.echo-canvas {
+    width: 100%;
+    height: 200px;
+    border-radius: var(--border-radius-sm);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.echo-controls {
+    margin-top: 1rem;
+}
+
+.echo-controls input[type="range"] {
+    width: 100%;
+    height: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.echo-controls input[type="range"]:hover {
+    opacity: 1;
+}
+
+.echo-controls input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+    transition: all 0.3s;
+}
+
+.echo-controls input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.echo-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    color: var(--text-color-muted);
+    font-size: 0.9rem;
+}
+
+.echo-symbolism {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-sm);
+}
+
+.echo-symbolism h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.symbolism-content {
+    color: var(--text-color-muted);
+    line-height: 1.6;
+}
+
+/* Narrative Inertia Tensor */
+.inertia-tensor {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.inertia-tensor::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.15), rgba(0, 0, 0, 0));
+    z-index: -1;
+}
+
+.inertia-tensor h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.tensor-visualization {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#inertia-tensor-canvas {
+    width: 100%;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius-sm);
+}
+
+.tensor-controls {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.tensor-slider {
+    flex: 1;
+    min-width: 200px;
+}
+
+.tensor-slider label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color-muted);
+    font-size: 0.9rem;
+}
+
+.tensor-slider input[type="range"] {
+    width: 100%;
+    height: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, #ff3e9d, #36e278);
+    border-radius: 4px;
+    outline: none;
+}
+
+.tensor-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.tensor-readout {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tensor-value {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-sm);
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tensor-value .label {
+    color: var(--text-color-muted);
+    font-size: 0.9rem;
+}
+
+.tensor-value .value {
+    color: var(--accent-color);
+    font-family: 'Space Mono', monospace;
+    font-weight: 500;
+}
+
+/* Retrodictive Attractor Collapse */
+.attractor-collapse {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-sm);
+    position: relative;
+}
+
+.attractor-collapse::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 150, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: -1;
+}
+
+.collapse-visualization {
+    position: relative;
+    height: 300px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+
+.collapse-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.collapse-control-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.collapse-btn {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-sm);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.collapse-btn:hover {
+    background-color: rgba(138, 43, 226, 0.2);
+    border-color: rgba(138, 43, 226, 0.4);
+}
+
+.collapse-btn.active {
+    background-color: rgba(138, 43, 226, 0.3);
+    border-color: rgba(138, 43, 226, 0.6);
+    color: var(--primary-color);
+}
+
+.collapse-timeline {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius-sm);
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.collapse-markers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+.collapse-marker {
+    width: 2px;
+    height: 70%;
+    background-color: var(--primary-color);
+    margin-right: 1rem;
+    position: relative;
+}
+
+.collapse-marker::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+.collapse-cursor {
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background-color: var(--accent-color);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Entangled Chart Arrays */
+.entangled-charts {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-sm);
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.chart-cell {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-sm);
+    padding: 1rem;
+    position: relative;
+    min-height: 180px;
+}
+
+.chart-cell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(var(--accent-color-rgb), 0.1), transparent);
+    z-index: 0;
+    border-radius: var(--border-radius-sm);
+}
+
+.chart-title {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-entanglement {
+    font-size: 0.7rem;
+    color: var(--accent-color);
+}
+
+.chart-canvas {
+    width: 100%;
+    height: 120px;
+    position: relative;
+    z-index: 1;
+}
+
+.entanglement-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.entanglement-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.entanglement-btn {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--text-color-muted);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.entanglement-btn:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: var(--text-color);
+}
+
+.connected-node {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    z-index: 2;
+}
+
+/* Terminal UI styles for web-based preview */
+.terminal-preview {
+    font-family: 'Space Mono', monospace;
+    padding: 1.5rem;
+    background-color: #1a1a1a;
+    border-radius: var(--border-radius-sm);
+    color: #00ff00;
+    border: 1px solid #333;
+    margin-top: 1.5rem;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    overflow: hidden;
+}
+
+.terminal-preview pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background-color: #00ff00;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
 }
 
 /* Print styles */
