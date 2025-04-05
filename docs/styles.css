@@ -256,6 +256,24 @@ header {
     50% { transform: scale(1.15); opacity: 0.8; }
 }
 
+/* Cosmic Particles */
+.cosmic-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: var(--z-background);
+    animation: twinkle 20s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.5); }
+}
+
+/* Fix the font-awesome chart-network icon */
+.fa-chart-network:before {
+    content: "\f78a";
+}
 /* Glitch text animation */
 h1.glitch-text {
     color: var(--primary-color);
