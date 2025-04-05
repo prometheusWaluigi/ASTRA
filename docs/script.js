@@ -1,39 +1,84 @@
 // ASTRA Web Interface - Advanced JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialization sequence - each wrapped individually to prevent one failure from stopping others
     try {
         // Initialize cosmic background
         initCosmicBackground();
-        
-        // Configure particle.js
-        initializeParticles();
-        
+        console.log('Cosmic background initialized');
+    } catch (error) {
+        console.error('Error initializing cosmic background:', error);
+    }
+    
+    try {
+        // Configure particle.js (if available)
+        if (window.particlesJS) {
+            initializeParticles();
+            console.log('Particles initialized');
+        } else {
+            console.warn('Particles.js not available, skipping initialization');
+        }
+    } catch (error) {
+        console.error('Error initializing particles:', error);
+    }
+    
+    try {
         // Tab functionality
         initTabs();
-        
+        console.log('Tabs initialized');
+    } catch (error) {
+        console.error('Error initializing tabs:', error);
+    }
+    
+    try {    
         // Form submission
         initForm();
-        
+        console.log('Form initialized');
+    } catch (error) {
+        console.error('Error initializing form:', error);
+    }
+    
+    try {
         // Add cosmic animations
         addCosmicAnimations();
-        
+        console.log('Animations initialized');
+    } catch (error) {
+        console.error('Error initializing animations:', error);
+    }
+    
+    try {
         // Initialize echo viewer
         initEchoViewer();
-        
+        console.log('Echo viewer initialized');
+    } catch (error) {
+        console.error('Error initializing echo viewer:', error);
+    }
+    
+    try {
         // Initialize city datalist
         createDatalist();
         setupCityAutocomplete();
-        
+        console.log('City autocomplete initialized');
+    } catch (error) {
+        console.error('Error initializing city autocomplete:', error);
+    }
+    
+    try {
         // Fix date field with current date
         fixDateField();
-        
+        console.log('Date field initialized');
+    } catch (error) {
+        console.error('Error initializing date field:', error);
+    }
+    
+    try {
         // Add responsive handlers
         addResponsiveHandlers();
-        
-        console.log('ASTRA interface successfully initialized');
+        console.log('Responsive handlers initialized');
     } catch (error) {
-        console.error('Error during initialization:', error);
-        showErrorMessage('Failed to initialize ASTRA interface. Please refresh the page.');
+        console.error('Error initializing responsive handlers:', error);
     }
+    
+    console.log('ASTRA interface initialization complete');
 });
 
 // ======== COSMIC BACKGROUND EFFECT ========
@@ -791,7 +836,7 @@ function getRandomColor() {
 function initializeParticles() {
     const particlesJS = window.particlesJS;
     if (!particlesJS) {
-        console.error('particles.js library not loaded');
+        console.warn('particles.js library not loaded');
         return;
     }
     
@@ -919,7 +964,8 @@ function addResponsiveHandlers() {
         resizeCanvases();
         
         // Redraw any active visualizations
-        if (document.getElementById('visualization').classList.contains('active')) {
+        const visualizationTab = document.getElementById('visualization');
+        if (visualizationTab && visualizationTab.classList.contains('active')) {
             updateVisualizations();
         }
     }, 250));
