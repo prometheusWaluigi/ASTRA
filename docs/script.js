@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add cosmic animations
     addCosmicAnimations();
+    
+    // Initialize echo viewer
+    initEchoViewer();
 });
 
 // ======== COSMIC BACKGROUND EFFECT ========
@@ -89,20 +92,19 @@ function createCosmicParticles() {
 
 // ======== TAB NAVIGATION ========
 function initTabs() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-    
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons and panes
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabPanes.forEach(pane => pane.classList.remove('active'));
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('.tab-btn')) {
+            const tabId = e.target.dataset.tab;
+            const tabPanes = document.querySelectorAll('.tab-pane');
             
-            // Add active class to clicked button and corresponding pane
-            button.classList.add('active');
-            const tabId = button.dataset.tab;
-            document.getElementById(tabId).classList.add('active');
-        });
+            // Single DOM update for all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => 
+                btn.classList.toggle('active', btn === e.target));
+            
+            // Single DOM update for tab panes
+            tabPanes.forEach(pane => 
+                pane.classList.toggle('active', pane.id === tabId));
+        }
     });
 }
 
@@ -231,53 +233,37 @@ function validateCity() {
 function setupCityAutocomplete() {
     const cityInput = document.getElementById('birth-city');
     const countrySelect = document.getElementById('birth-country');
-    
-    // Create datalist element for city suggestions
-    let datalist = document.getElementById('city-suggestions');
-    if (!datalist) {
-        datalist = document.createElement('datalist');
-        datalist.id = 'city-suggestions';
-        document.body.appendChild(datalist);
-        cityInput.setAttribute('list', 'city-suggestions');
-    }
-    
-    // Update city suggestions when country changes
-    countrySelect.addEventListener('change', function() {
-        updateCitySuggestions(countrySelect.value);
-    });
-    
-    // Update city suggestions when typing
-    cityInput.addEventListener('input', function() {
-        const country = countrySelect.value;
-        if (country) {
-            updateCitySuggestions(country, cityInput.value);
-        }
-    });
+    const datalist = document.getElementById('city-suggestions') || createDatalist();
+
+    let timeoutId;
+    const updateHandler = () => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            updateCitySuggestions(countrySelect.value, cityInput.value);
+        }, 300);
+    };
+
+    countrySelect.addEventListener('change', updateHandler, { passive: true });
+    cityInput.addEventListener('input', updateHandler, { passive: true });
 }
 
 // Update city suggestions in datalist
 function updateCitySuggestions(country, filter = '') {
     const datalist = document.getElementById('city-suggestions');
-    datalist.innerHTML = ''; // Clear previous suggestions
-    
-    if (!country) return;
-    
-    // Get cities for the selected country
     const cities = getCitiesForCountry(country);
+    const fragment = document.createDocumentFragment();
     
-    // Filter cities based on input
-    const filteredCities = filter ? 
-        cities.filter(city => city.toLowerCase().includes(filter.toLowerCase())) : 
-        cities;
-    
-    // Limit to top 10 suggestions
-    const topCities = filteredCities.slice(0, 10);
-    
-    // Add city options to datalist
-    topCities.forEach(city => {
-        const option = document.createElement('option');
-        option.value = city;
-        datalist.appendChild(option);
+    cities.filter(city => city.toLowerCase().includes(filter.toLowerCase()))
+        .slice(0, 10)
+        .forEach(city => {
+            const option = document.createElement('option');
+            option.value = city;
+            fragment.appendChild(option);
+        });
+
+    requestAnimationFrame(() => {
+        datalist.innerHTML = '';
+        datalist.appendChild(fragment);
     });
 }
 
@@ -344,6 +330,7 @@ function addCosmicAnimations() {
         }, 3000);
     }
 }
+
 // ======== GENERATE RESULTS ========
 function generateResults(formData) {
     // Parse date components
@@ -469,6 +456,22 @@ function updateVisualizations() {
 
 // ======== CANVAS VISUALIZATIONS ========
 function initializeCanvasVisualizations() {
+    const domCache = {
+        natalReport: document.querySelector('#natal-report .report-content'),
+        visualizationCanvases: new Map(),
+        topologyGraph: null
+    };
+
+    ['initial-field-canvas', 'evolved-field-canvas'].forEach(id => {
+        const canvas = document.getElementById(id);
+        if (canvas && !domCache.visualizationCanvases.has(id)) {
+            domCache.visualizationCanvases.set(id, {
+                element: canvas,
+                ctx: canvas.getContext('2d')
+            });
+        }
+    });
+    
     // Initial field visualization
     const initialCanvas = document.getElementById('initial-field-canvas');
     if (initialCanvas) {
@@ -496,6 +499,7 @@ function initializeCanvasVisualizations() {
     // Topology visualization
     createTopologyGraph();
 }
+
 // ======== VISUALIZATION FUNCTIONS ========
 function drawFieldVisualization(ctx, width, height, type, timeValue = 0) {
     // Clear canvas
@@ -617,7 +621,11 @@ function createTopologyGraph() {
         .graphData(graphData);
     
     // Store graph reference for visualization toggling
-    window.topologyGraph = Graph;
+    const domCache = {
+        natalReport: document.querySelector('#natal-report .report-content'),
+        visualizationCanvases: new Map(),
+        topologyGraph: Graph
+    };
     
     // Visualization toggle
     document.querySelectorAll('.viz-toggle').forEach(btn => {
@@ -737,4 +745,836 @@ function generateRandomEvents() {
     }
     
     return events;
+}
+
+// Create datalist element for city suggestions
+function createDatalist() {
+    const datalist = document.createElement('datalist');
+    datalist.id = 'city-suggestions';
+    document.body.appendChild(datalist);
+    document.getElementById('birth-city').setAttribute('list', 'city-suggestions');
+    return datalist;
+}
+
+// Cleanup previous instance
+const cleanupRegistry = new FinalizationRegistry(canvasId => {
+    const canvas = domCache.visualizationCanvases.get(canvasId);
+    if (canvas) {
+        canvas.ctx = null;
+        domCache.visualizationCanvases.delete(canvasId);
+    }
+});
+
+// ======== NARRATIVE INERTIA TENSOR ========
+function initNarrativeInertiaTensor() {
+    const canvas = document.getElementById('inertia-tensor-canvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const perturbationInput = document.getElementById('perturbation-amplitude');
+    const inertiaInput = document.getElementById('inertia-coefficient');
+    const stabilityIndex = document.getElementById('stability-index');
+    const eigenvalueSpectrum = document.getElementById('eigenvalue-spectrum');
+    
+    // Initial values
+    let perturbation = parseFloat(perturbationInput.value) || 0.3;
+    let inertia = parseFloat(inertiaInput.value) || 0.6;
+    
+    // Inertia field data
+    const fieldPoints = generateInertiaField();
+    
+    // Update the tensor visualization
+    function updateInertiaTensor() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw background grid
+        drawInertiaGrid(ctx, canvas.width, canvas.height);
+        
+        // Calculate tensor properties based on inputs
+        const stability = calculateStabilityIndex(inertia, perturbation);
+        const eigenvalues = calculateEigenvalues(inertia, perturbation);
+        
+        // Draw tensor field visualization
+        drawTensorField(ctx, fieldPoints, inertia, perturbation);
+        
+        // Update readouts
+        stabilityIndex.textContent = stability.toFixed(2);
+        eigenvalueSpectrum.textContent = `[${eigenvalues.map(v => v.toFixed(2)).join(', ')}]`;
+    }
+    
+    // Generate points for inertia field
+    function generateInertiaField() {
+        const points = [];
+        const density = 15;
+        
+        for (let x = 0; x < density; x++) {
+            for (let y = 0; y < density/2; y++) {
+                points.push({
+                    x: (x / density) * canvas.width,
+                    y: (y / (density/2)) * canvas.height,
+                    strength: Math.random(), // Random initial strength
+                    phase: Math.random() * Math.PI * 2 // Random phase
+                });
+            }
+        }
+        
+        return points;
+    }
+    
+    // Draw background grid
+    function drawInertiaGrid(ctx, width, height) {
+        ctx.strokeStyle = 'rgba(138, 43, 226, 0.1)';
+        ctx.lineWidth = 1;
+        
+        // Draw vertical lines
+        for (let x = 0; x <= width; x += 50) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, height);
+            ctx.stroke();
+        }
+        
+        // Draw horizontal lines
+        for (let y = 0; y <= height; y += 50) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(width, y);
+            ctx.stroke();
+        }
+    }
+    
+    // Draw tensor field visualization
+    function drawTensorField(ctx, points, inertia, perturbation) {
+        // Set styles
+        ctx.lineWidth = 2;
+        
+        // For each point in the field
+        points.forEach(point => {
+            // Calculate vector direction and magnitude based on inertia and perturbation
+            const angle = point.phase + (Math.sin(point.x / 50) * perturbation * Math.PI);
+            const length = 20 + (point.strength * 20 * inertia);
+            
+            // Calculate vector endpoints
+            const startX = point.x - (Math.cos(angle) * length / 2);
+            const startY = point.y - (Math.sin(angle) * length / 2);
+            const endX = point.x + (Math.cos(angle) * length / 2);
+            const endY = point.y + (Math.sin(angle) * length / 2);
+            
+            // Draw tensor line
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            
+            // Create gradient for the line
+            const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
+            gradient.addColorStop(0, `rgba(255, 62, 157, ${inertia})`);
+            gradient.addColorStop(1, `rgba(54, 226, 120, ${perturbation})`);
+            ctx.strokeStyle = gradient;
+            ctx.stroke();
+            
+            // Draw tensor endpoints
+            ctx.beginPath();
+            ctx.arc(endX, endY, 2, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(54, 226, 120, 0.8)';
+            ctx.fill();
+        });
+    }
+    
+    // Calculate stability index based on inertia and perturbation
+    function calculateStabilityIndex(inertia, perturbation) {
+        return inertia / (perturbation + 0.1) * (1 - Math.abs(inertia - 0.5));
+    }
+    
+    // Calculate eigenvalues
+    function calculateEigenvalues(inertia, perturbation) {
+        // Simplified eigenvalue calculation for visualization
+        const base = [3.14, 2.71, 1.62]; // Pi, e, golden ratio as base values
+        
+        return base.map((value, i) => {
+            // Modify base values based on inertia and perturbation
+            if (i === 0) return value * (1 + (inertia - 0.5) * 0.5);
+            if (i === 1) return value * (1 - (perturbation - 0.5) * 0.5);
+            return value * (1 + (inertia * perturbation - 0.25) * 0.5);
+        });
+    }
+    
+    // Event listeners for controls
+    perturbationInput.addEventListener('input', function() {
+        perturbation = parseFloat(this.value);
+        updateInertiaTensor();
+    });
+    
+    inertiaInput.addEventListener('input', function() {
+        inertia = parseFloat(this.value);
+        updateInertiaTensor();
+    });
+    
+    // Initial render
+    updateInertiaTensor();
+}
+
+// ======== RETRODICTIVE ATTRACTOR COLLAPSE ========
+function initRetrodictiveAttractorCollapse() {
+    const container = document.getElementById('attractor-collapse-container');
+    const markers = document.getElementById('collapse-markers');
+    const cursor = document.getElementById('collapse-cursor');
+    const trigger = document.getElementById('collapse-trigger');
+    const modeBtns = document.querySelectorAll('.collapse-btn[data-mode]');
+    
+    if (!container || !markers || !cursor || !trigger) return;
+    
+    // Init Three.js scene
+    const width = container.clientWidth;
+    const height = container.clientHeight || 300;
+    
+    // Create canvas if it doesn't exist
+    let canvas = container.querySelector('canvas');
+    if (!canvas) {
+        canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        container.appendChild(canvas);
+    }
+    
+    const ctx = canvas.getContext('2d');
+    let collapseMode = 'retro'; // Default mode
+    let particles = [];
+    let attractors = [];
+    let isCollapsing = false;
+    let collapseProgress = 0;
+    let animationId = null;
+    
+    // Generate random particles
+    function generateParticles(count = 200) {
+        particles = [];
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 2 + 1,
+                color: getRandomColor(),
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                collapsed: false,
+                originalX: 0,
+                originalY: 0
+            });
+        }
+    }
+    
+    // Generate timeline markers
+    function generateTimelineMarkers() {
+        markers.innerHTML = '';
+        const count = 8;
+        
+        for (let i = 0; i < count; i++) {
+            const marker = document.createElement('div');
+            marker.className = 'collapse-marker';
+            markers.appendChild(marker);
+        }
+    }
+    
+    // Generate attractors
+    function generateAttractors(count = 3) {
+        attractors = [];
+        
+        for (let i = 0; i < count; i++) {
+            attractors.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                strength: Math.random() * 0.5 + 0.5,
+                radius: Math.random() * 20 + 10,
+                color: getRandomColor()
+            });
+        }
+    }
+    
+    // Draw an attractor
+    function drawAttractor(ctx, attractor) {
+        // Glow effect
+        const gradient = ctx.createRadialGradient(
+            attractor.x, attractor.y, 0,
+            attractor.x, attractor.y, attractor.radius * 2
+        );
+        gradient.addColorStop(0, attractor.color + 'AA');
+        gradient.addColorStop(0.7, attractor.color + '33');
+        gradient.addColorStop(1, 'transparent');
+        
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(attractor.x, attractor.y, attractor.radius * 2, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Core
+        ctx.fillStyle = attractor.color;
+        ctx.beginPath();
+        ctx.arc(attractor.x, attractor.y, attractor.radius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    
+    // Draw a particle
+    function drawParticle(ctx, particle) {
+        ctx.fillStyle = particle.color;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    
+    // Start the collapse animation
+    function triggerCollapse() {
+        if (isCollapsing) return;
+        
+        isCollapsing = true;
+        collapseProgress = 0;
+        
+        // Save original positions for particles
+        particles.forEach(particle => {
+            particle.originalX = particle.x;
+            particle.originalY = particle.y;
+            particle.collapsed = false;
+        });
+        
+        // Move cursor to beginning
+        cursor.style.left = '10%';
+        
+        // Animate collapse
+        collapseAnimation();
+    }
+    
+    // Animation loop for collapse
+    function collapseAnimation() {
+        // Increment progress
+        collapseProgress += 0.01;
+        if (collapseProgress >= 1) {
+            isCollapsing = false;
+            cursor.style.left = '90%';
+            return;
+        }
+        
+        // Update cursor position during animation
+        let cursorPos;
+        if (collapseMode === 'retro') {
+            cursorPos = 90 - collapseProgress * 80;
+        } else if (collapseMode === 'forward') {
+            cursorPos = 10 + collapseProgress * 80;
+        } else { // bidirectional
+            cursorPos = 50;
+        }
+        cursor.style.left = `${cursorPos}%`;
+        
+        requestAnimationFrame(collapseAnimation);
+    }
+    
+    // Update particles based on attractors
+    function updateParticles() {
+        particles.forEach(particle => {
+            // Apply attractor forces only during collapse or if bidirectional
+            if (isCollapsing || collapseMode === 'bidirectional') {
+                attractors.forEach(attractor => {
+                    // Calculate direction to attractor
+                    const dx = attractor.x - particle.x;
+                    const dy = attractor.y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Skip if too close (already collapsed to this attractor)
+                    if (distance < attractor.radius) {
+                        particle.collapsed = true;
+                        return;
+                    }
+                    
+                    // Apply force based on mode
+                    let forceFactor = 0;
+                    if (collapseMode === 'retro') {
+                        forceFactor = 0.01 * attractor.strength * (1 - collapseProgress);
+                    } else if (collapseMode === 'forward') {
+                        forceFactor = 0.01 * attractor.strength * collapseProgress;
+                    } else { // bidirectional
+                        forceFactor = 0.005 * attractor.strength;
+                    }
+                    
+                    // Inverse square law
+                    const force = forceFactor / (distance * distance);
+                    
+                    // Apply force
+                    particle.vx += dx * force;
+                    particle.vy += dy * force;
+                });
+            }
+            
+            // Apply velocity
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+            
+            // Add slight dampening
+            particle.vx *= 0.98;
+            particle.vy *= 0.98;
+            
+            // Boundary conditions
+            if (particle.x < 0 || particle.x > width) particle.vx *= -1;
+            if (particle.y < 0 || particle.y > height) particle.vy *= -1;
+        });
+    }
+    
+    // Main render loop
+    function render() {
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw particles
+        particles.forEach(particle => {
+            drawParticle(ctx, particle);
+        });
+        
+        // Draw attractors
+        attractors.forEach(attractor => {
+            drawAttractor(ctx, attractor);
+        });
+        
+        // Update particle positions
+        updateParticles();
+        
+        // Continue animation
+        animationId = requestAnimationFrame(render);
+    }
+    
+    // Event listeners
+    trigger.addEventListener('click', triggerCollapse);
+    
+    // Mode buttons
+    modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all mode buttons
+            modeBtns.forEach(b => b.classList.remove('active'));
+            
+            // Set active class on clicked button
+            btn.classList.add('active');
+            
+            // Update mode
+            collapseMode = btn.dataset.mode;
+            
+            // Reset animation if ongoing
+            if (isCollapsing) {
+                isCollapsing = false;
+                collapseProgress = 0;
+                cursor.style.left = '50%';
+            }
+        });
+    });
+    
+    // Initialize
+    generateParticles();
+    generateAttractors();
+    generateTimelineMarkers();
+    render();
+    
+    // Cleanup function for when component is destroyed
+    return function cleanup() {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+    };
+}
+
+// ======== ENTANGLED CHART ARRAYS ========
+function initEntangledChartArrays() {
+    const chartCanvases = {
+        alpha: document.getElementById('chart-alpha'),
+        beta: document.getElementById('chart-beta'),
+        gamma: document.getElementById('chart-gamma'),
+        delta: document.getElementById('chart-delta')
+    };
+    
+    const synchronizeBtn = document.getElementById('synchronize-charts');
+    const resetBtn = document.getElementById('reset-charts');
+    const entanglementLines = document.getElementById('entanglement-lines');
+    
+    // Ensure all elements exist
+    if (!chartCanvases.alpha || !synchronizeBtn || !resetBtn || !entanglementLines) return;
+    
+    // Chart contexts
+    const contexts = {};
+    const chartData = {};
+    const entanglementData = {};
+    
+    // Initialize chart data
+    Object.keys(chartCanvases).forEach(key => {
+        const canvas = chartCanvases[key];
+        contexts[key] = canvas.getContext('2d');
+        
+        // Generate random data points for each chart
+        chartData[key] = {
+            points: generateDataPoints(30),
+            color: getRandomColor(),
+            entangled: false,
+            phase: Math.random() * Math.PI * 2,
+            frequency: 0.5 + Math.random() * 2
+        };
+    });
+    
+    // Generate random data points
+    function generateDataPoints(count) {
+        const points = [];
+        for (let i = 0; i < count; i++) {
+            points.push({
+                x: i,
+                y: Math.random() * 100
+            });
+        }
+        return points;
+    }
+    
+    // Generate entanglement lines
+    function generateEntanglementLines() {
+        entanglementLines.innerHTML = '';
+        
+        // Get all chart cells
+        const chartCells = document.querySelectorAll('.chart-cell');
+        
+        // Create connections between charts based on entanglement
+        Object.keys(chartData).forEach(sourceKey => {
+            if (!chartData[sourceKey].entangled) return;
+            
+            // Find connected charts
+            Object.keys(chartData).forEach(targetKey => {
+                if (sourceKey === targetKey || !chartData[targetKey].entangled) return;
+                
+                // Create connection line
+                if (entanglementData[`${sourceKey}-${targetKey}`] || 
+                    entanglementData[`${targetKey}-${sourceKey}`]) {
+                    // Connection already exists
+                    return;
+                }
+                
+                // Store entanglement connection
+                entanglementData[`${sourceKey}-${targetKey}`] = {
+                    source: sourceKey,
+                    target: targetKey,
+                    strength: Math.random() * 0.5 + 0.5 // Random strength between 0.5 and 1
+                };
+            });
+        });
+    }
+    
+    // Draw a chart
+    function drawChart(ctx, data, width, height, time) {
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw background
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+        ctx.fillRect(0, 0, width, height);
+        
+        // Draw grid lines
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.lineWidth = 1;
+        
+        // Vertical grid lines
+        for (let x = 0; x <= width; x += 20) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, height);
+            ctx.stroke();
+        }
+        
+        // Horizontal grid lines
+        for (let y = 0; y <= height; y += 20) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(width, y);
+            ctx.stroke();
+        }
+        
+        // Prepare to draw data points
+        ctx.strokeStyle = data.entangled ? '#00ffff' : data.color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        
+        // Draw line connecting points
+        const points = data.points;
+        const xScale = width / (points.length - 1);
+        const yScale = height / 120;
+        
+        // Apply time-based oscillation if entangled
+        points.forEach((point, i) => {
+            let y;
+            
+            if (data.entangled) {
+                // Apply quantum oscillation for entangled charts
+                const oscillation = 20 * Math.sin(data.phase + time * data.frequency + i * 0.2);
+                y = height - ((point.y + oscillation) * yScale);
+            } else {
+                y = height - (point.y * yScale);
+            }
+            
+            const x = i * xScale;
+            
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+        
+        // Stroke the line
+        ctx.stroke();
+        
+        // Add glow effect for entangled charts
+        if (data.entangled) {
+            ctx.save();
+            ctx.strokeStyle = 'rgba(0, 255, 255, 0.5)';
+            ctx.lineWidth = 6;
+            ctx.shadowColor = '#00ffff';
+            ctx.shadowBlur = 15;
+            ctx.beginPath();
+            
+            points.forEach((point, i) => {
+                const oscillation = 20 * Math.sin(data.phase + time * data.frequency + i * 0.2);
+                const y = height - ((point.y + oscillation) * yScale);
+                const x = i * xScale;
+                
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
+    
+    // Reset all charts to non-entangled state
+    function resetCharts() {
+        Object.keys(chartData).forEach(key => {
+            chartData[key].entangled = false;
+            chartData[key].points = generateDataPoints(30);
+        });
+        
+        // Clear entanglement data
+        Object.keys(entanglementData).forEach(key => delete entanglementData[key]);
+        
+        // Update entanglement correlation display
+        updateCorrelationDisplay();
+    }
+    
+    // Synchronize selected charts
+    function synchronizeCharts() {
+        // Randomly select charts to entangle
+        const chartKeys = Object.keys(chartData);
+        const entangledCount = Math.floor(Math.random() * 2) + 2; // 2-3 entangled charts
+        
+        // Reset entanglement state
+        chartKeys.forEach(key => {
+            chartData[key].entangled = false;
+        });
+        
+        // Clear existing entanglement data
+        Object.keys(entanglementData).forEach(key => delete entanglementData[key]);
+        
+        // Shuffle and select random charts to entangle
+        const shuffled = [...chartKeys].sort(() => 0.5 - Math.random());
+        shuffled.slice(0, entangledCount).forEach(key => {
+            chartData[key].entangled = true;
+        });
+        
+        // Generate new entanglement connections
+        generateEntanglementLines();
+        
+        // Update entanglement correlation display
+        updateCorrelationDisplay();
+    }
+    
+    // Update the correlation display in the chart titles
+    function updateCorrelationDisplay() {
+        Object.keys(chartData).forEach(key => {
+            const correlationElement = document.querySelector(`#chart-${key}`).parentNode.querySelector('.chart-entanglement');
+            if (correlationElement) {
+                if (chartData[key].entangled) {
+                    const correlation = (0.7 + Math.random() * 0.3).toFixed(2);
+                    correlationElement.textContent = `ψ-correlation: ${correlation}`;
+                    correlationElement.style.color = '#00ffff';
+                } else {
+                    correlationElement.textContent = `ψ-correlation: ${(Math.random() * 0.5).toFixed(2)}`;
+                    correlationElement.style.color = '';
+                }
+            }
+        });
+    }
+    
+    // Animation loop
+    let startTime = null;
+    let animationId = null;
+    
+    function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = (timestamp - startTime) / 1000; // Convert to seconds
+        
+        // Draw each chart
+        Object.keys(chartCanvases).forEach(key => {
+            const canvas = chartCanvases[key];
+            drawChart(contexts[key], chartData[key], canvas.width, canvas.height, elapsed);
+        });
+        
+        // Continue animation
+        animationId = requestAnimationFrame(animate);
+    }
+    
+    // Event listeners
+    synchronizeBtn.addEventListener('click', synchronizeCharts);
+    resetBtn.addEventListener('click', resetCharts);
+    
+    // Initialize charts
+    Object.keys(chartCanvases).forEach(key => {
+        const canvas = chartCanvases[key];
+        // Set canvas dimensions if needed
+        if (!canvas.width || !canvas.height) {
+            canvas.width = canvas.clientWidth || 220;
+            canvas.height = canvas.clientHeight || 120;
+        }
+    });
+    
+    // Start animation
+    animationId = requestAnimationFrame(animate);
+    
+    // Return cleanup function
+    return function cleanup() {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+    };
+}
+
+// ======== NARRATIVE ECHO VIEWER ========
+function initEchoViewer() {
+    const echoCanvas = document.querySelector('.echo-canvas');
+    const timeline = document.getElementById('echo-timeline');
+    const symbolismContent = document.querySelector('.symbolism-content');
+    
+    if (!echoCanvas || !timeline || !symbolismContent) return;
+    
+    // Initialize advanced quantum features
+    initNarrativeInertiaTensor();
+    initRetrodictiveAttractorCollapse();
+    initEntangledChartArrays();
+    
+    // Generate quantum states for visualization
+    const events = generateRandomEvents();
+    const pastEvents = generateRandomEvents();
+    const futureEvents = generateRandomEvents();
+    
+    // Setup SVG filter for glow effects
+    const svg = d3.select('.echo-canvas');
+    
+    // Add glow filter definition if it doesn't exist
+    if (!document.querySelector('#glow-filter')) {
+        const filter = svg.append('defs').append('filter')
+            .attr('id', 'glow-filter')
+            .attr('x', '-50%')
+            .attr('y', '-50%')
+            .attr('width', '200%')
+            .attr('height', '200%');
+            
+        filter.append('feGaussianBlur')
+            .attr('stdDeviation', '2.5')
+            .attr('result', 'coloredBlur');
+            
+        const feMerge = filter.append('feMerge');
+        feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+        feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+    }
+    
+    // Draw the echo visualization
+    function drawEchoVisualization(timeValue) {
+        svg.selectAll('*:not(defs)').remove();
+        
+        // Center line representing the present
+        svg.append('line')
+            .attr('x1', 500)
+            .attr('y1', 20)
+            .attr('x2', 500)
+            .attr('y2', 180)
+            .attr('stroke', 'rgba(255, 255, 255, 0.2)')
+            .attr('stroke-width', 1)
+            .attr('stroke-dasharray', '4,4');
+        
+        // Draw past-future quantum connections
+        for (let i = 0; i < events.length; i++) {
+            const pastX = 200 - (i * 40);
+            const futureX = 800 + (i * 40);
+            const y = 40 + (i * 40);
+            
+            // Modulation by timeline value creates the temporal symmetry effect
+            const modulation = Math.sin(timeValue * Math.PI * 2) * 50;
+            const controlY = 100 + modulation;
+            
+            // Path between past and future
+            const path = svg.append('path')
+                .attr('d', `M${pastX},${y} C${350},${controlY} ${650},${controlY} ${futureX},${y}`)
+                .attr('fill', 'none')
+                .attr('stroke', getRandomColor())
+                .attr('stroke-width', 2)
+                .attr('opacity', 0.7)
+                .attr('filter', 'url(#glow-filter)');
+            
+            // Animation effect
+            const totalLength = path.node().getTotalLength();
+            path.attr('stroke-dasharray', totalLength)
+                .attr('stroke-dashoffset', totalLength)
+                .transition()
+                .duration(1000)
+                .attr('stroke-dashoffset', 0);
+            
+            // Add dots for events
+            svg.append('circle')
+                .attr('cx', pastX)
+                .attr('cy', y)
+                .attr('r', 5)
+                .attr('fill', getRandomColor())
+                .attr('filter', 'url(#glow-filter)');
+                
+            svg.append('circle')
+                .attr('cx', futureX)
+                .attr('cy', y)
+                .attr('r', 5)
+                .attr('fill', getRandomColor())
+                .attr('filter', 'url(#glow-filter)');
+        }
+    }
+    
+    // Update the symbolic interpretation
+    function updateSymbolicInterpretation(timeValue) {
+        // Generate symmetry pairs based on the timeline value
+        const normalized = timeValue.toFixed(2);
+        const pastSymbols = pastEvents.map(e => e.type);
+        const futureSymbols = futureEvents.map(e => e.type);
+        
+        let html = `<p>Temporal Symmetry Value: ${normalized}</p><div class="echo-pairs">`;
+        
+        // Create symbolic pairs between past and future
+        for (let i = 0; i < Math.min(pastSymbols.length, futureSymbols.length); i++) {
+            const resonance = ((1 - Math.abs(timeValue - 0.5) * 2) * 100).toFixed(0);
+            html += `
+                <div class="echo-pair">
+                    <span class="past-symbol">${pastSymbols[i]}</span>
+                    <span class="resonance-value">${resonance}% Resonance</span>
+                    <span class="future-symbol">${futureSymbols[i]}</span>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        symbolismContent.innerHTML = html;
+    }
+    
+    // Initial draw
+    drawEchoVisualization(0.5);
+    updateSymbolicInterpretation(0.5);
+    
+    // Update on timeline change
+    timeline.addEventListener('input', function() {
+        const timeValue = parseFloat(this.value);
+        drawEchoVisualization(timeValue);
+        updateSymbolicInterpretation(timeValue);
+    });
 }

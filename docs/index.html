@@ -62,11 +62,16 @@
                 <span class="tab-icon"><i class="fas fa-brain"></i></span>
                 <span class="tab-text">Analysis Results</span>
             </button>
+            <button class="tab-btn" data-tab="echo-viewer">
+                <span class="tab-icon"><i class="fas fa-sync-alt"></i></span>
+                <span class="tab-text">Echo Viewer</span>
+            </button>
         </nav>
 
         <div class="tab-content">
             <div id="input" class="tab-pane active">
                 <h2>Enter Your Birth Information</h2>
+                <p class="introduction-text">ASTRA transforms your birth data into a quantum consciousness topology map. <span class="info-tooltip" data-tooltip="Your birth information serves as initial conditions for the field equations that generate your unique consciousness topology.">How does it work?</span></p>
                 <form id="birth-data-form">
                     <div class="form-group">
                         <label for="name">Name:</label>
@@ -226,7 +231,21 @@
             
             <div id="visualization" class="tab-pane">
                 <h2>QualiaField Visualization</h2>
-                <p>Your QualiaField represents the topological structure of your conscious experience as modeled by ASTRA.</p>
+                <p>Your QualiaField represents the topological structure of your conscious experience as modeled by ASTRA. <span class="info-tooltip" data-tooltip="ASTRA visualizes your consciousness as an evolving field with unique topological features that shape your experience of reality.">What is a QualiaField?</span></p>
+                <div class="explanation-card">
+                    <div class="card-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h3>Understanding Your Visualizations</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>ASTRA creates multiple visualizations of your consciousness topology:</p>
+                        <ol>
+                            <li><strong>Initial QualiaField</strong>: The starting field generated from your birth data</li>
+                            <li><strong>Evolved QualiaField</strong>: How your consciousness field develops over time</li>
+                            <li><strong>Topological Analysis</strong>: The mathematical structure of your consciousness</li>
+                        </ol>
+                    </div>
+                </div>
                 
                 <div class="visualization-container">
                     <div id="initial-field" class="field-vis">
@@ -269,7 +288,36 @@
                 </div>
                 
                 <div id="topology-vis" class="topology-container">
-                    <h3>Topological Analysis</h3>
+                    <h3>Topological Analysis <span class="info-tooltip" data-tooltip="Topology studies the properties of space that are preserved under continuous deformations. ASTRA uses topology to analyze the structure of your consciousness.">?</span></h3>
+                    <div class="explanation-panel">
+                        <p>The topological analysis reveals the underlying structure of your consciousness field through mathematical analysis of connections, loops, and voids.</p>
+                        <div class="animated-explanation">
+                            <div class="step-indicator">
+                                <span class="step active" data-step="1">Components</span>
+                                <span class="step" data-step="2">Cycles</span>
+                                <span class="step" data-step="3">Voids</span>
+                                <span class="step" data-step="4">Curvature</span>
+                            </div>
+                            <div class="explanation-content">
+                                <div class="explanation-step active" data-step="1">
+                                    <h4>Connected Components (β₀)</h4>
+                                    <p>Represents distinct regions of your consciousness that function independently. More components indicate a compartmentalized mental structure.</p>
+                                </div>
+                                <div class="explanation-step" data-step="2">
+                                    <h4>Loops/Cycles (β₁)</h4>
+                                    <p>Represents feedback loops and circular patterns in your cognitive processes. Higher values indicate complex recursive thinking.</p>
+                                </div>
+                                <div class="explanation-step" data-step="3">
+                                    <h4>Voids/Cavities (β₂)</h4>
+                                    <p>Represents spaces enclosed by your thought patterns. These indicate potential for emerging phenomena in your consciousness.</p>
+                                </div>
+                                <div class="explanation-step" data-step="4">
+                                    <h4>Ricci Curvature</h4>
+                                    <p>Measures how your conscious space is shaped. Positive values indicate convergent thinking, negative values show divergent thinking.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="placeholder-img">
                         <div class="placeholder-glow"></div>
                         <i class="fas fa-network-wired"></i>
@@ -305,6 +353,119 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div id="echo-viewer" class="tab-pane">
+                <h2>Narrative Echo Viewer</h2>
+                <p class="introduction-text">Visualize the symmetrical resonance patterns between past and future consciousness states. <span class="info-tooltip" data-tooltip="The Narrative Echo Viewer reveals hidden temporal symmetries in your consciousness field through quantum entanglement visualization.">How does it work?</span></p>
+                
+                <div class="echo-container">
+                    <svg class="echo-canvas" viewBox="0 0 1000 200"></svg>
+                    <div class="echo-controls">
+                        <input type="range" id="echo-timeline" min="0" max="1" step="0.01" value="0.5">
+                        <div class="echo-labels">
+                            <span>Past</span>
+                            <span>Present</span>
+                            <span>Future</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="echo-symbolism">
+                    <h3>Symbolic Symmetry Analysis</h3>
+                    <div class="symbolism-content">
+                        <p>Move the timeline slider to reveal symbolic echoes between past and future states.</p>
+                    </div>
+                </div>
+                
+                <div class="inertia-tensor">
+                    <h3>Narrative Inertia Tensor <span class="info-tooltip" data-tooltip="Quantifies resistance to timeline perturbation; high-inertia narratives resist rewrites.">ⓘ</span></h3>
+                    <div class="tensor-visualization">
+                        <canvas id="inertia-tensor-canvas" width="800" height="200"></canvas>
+                        <div class="tensor-controls">
+                            <div class="tensor-slider">
+                                <label>Perturbation Amplitude:</label>
+                                <input type="range" id="perturbation-amplitude" min="0" max="1" step="0.01" value="0.3">
+                            </div>
+                            <div class="tensor-slider">
+                                <label>Inertia Coefficient:</label>
+                                <input type="range" id="inertia-coefficient" min="0" max="1" step="0.01" value="0.6">
+                            </div>
+                        </div>
+                        <div class="tensor-readout">
+                            <div class="tensor-value">
+                                <span class="label">Narrative Stability Index:</span>
+                                <span class="value" id="stability-index">0.78</span>
+                            </div>
+                            <div class="tensor-value">
+                                <span class="label">Eigenvalue Spectrum:</span>
+                                <span class="value" id="eigenvalue-spectrum">[3.14, 2.71, 1.62]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="attractor-collapse">
+                    <h3>Retrodictive Attractor Collapse <span class="info-tooltip" data-tooltip="When future boundary constraints crystallize a specific archetypal pattern in the past field—ψ collapses backward.">ⓘ</span></h3>
+                    <div class="collapse-visualization" id="attractor-collapse-container">
+                        <!-- Canvas will be created dynamically -->
+                    </div>
+                    <div class="collapse-controls">
+                        <div class="collapse-control-group">
+                            <button class="collapse-btn active" data-mode="retro">Retrodictive</button>
+                            <button class="collapse-btn" data-mode="forward">Forward</button>
+                            <button class="collapse-btn" data-mode="bidirectional">Bidirectional</button>
+                        </div>
+                        <div class="collapse-control-group">
+                            <button class="collapse-btn" id="collapse-trigger">Trigger Collapse</button>
+                        </div>
+                    </div>
+                    <div class="collapse-timeline">
+                        <div class="collapse-markers" id="collapse-markers">
+                            <!-- Markers will be generated dynamically -->
+                        </div>
+                        <div class="collapse-cursor" id="collapse-cursor"></div>
+                    </div>
+                </div>
+                
+                <div class="entangled-charts">
+                    <h3>Entangled Chart Arrays <span class="info-tooltip" data-tooltip="Map synchronous narratives across multiple subjects with correlated boundary conditions.">ⓘ</span></h3>
+                    <div class="chart-grid">
+                        <div class="chart-cell">
+                            <div class="chart-title">
+                                Subject Alpha
+                                <span class="chart-entanglement">ψ-correlation: 0.89</span>
+                            </div>
+                            <canvas class="chart-canvas" id="chart-alpha"></canvas>
+                        </div>
+                        <div class="chart-cell">
+                            <div class="chart-title">
+                                Subject Beta
+                                <span class="chart-entanglement">ψ-correlation: 0.72</span>
+                            </div>
+                            <canvas class="chart-canvas" id="chart-beta"></canvas>
+                        </div>
+                        <div class="chart-cell">
+                            <div class="chart-title">
+                                Subject Gamma
+                                <span class="chart-entanglement">ψ-correlation: 0.63</span>
+                            </div>
+                            <canvas class="chart-canvas" id="chart-gamma"></canvas>
+                        </div>
+                        <div class="chart-cell">
+                            <div class="chart-title">
+                                Subject Delta
+                                <span class="chart-entanglement">ψ-correlation: 0.91</span>
+                            </div>
+                            <canvas class="chart-canvas" id="chart-delta"></canvas>
+                        </div>
+                    </div>
+                    <div class="entanglement-controls">
+                        <button class="entanglement-btn" id="synchronize-charts">Synchronize Entanglement</button>
+                        <button class="entanglement-btn" id="reset-charts">Reset Coherence</button>
+                    </div>
+                    <svg class="entanglement-lines" id="entanglement-lines"></svg>
                 </div>
             </div>
             
