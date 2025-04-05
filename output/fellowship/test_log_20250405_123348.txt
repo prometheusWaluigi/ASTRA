@@ -1,0 +1,93 @@
+ASTRA FELLOWSHIP TEST LOG
+Date: 2025-04-05 12:33:48
+Python version: 3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]
+
+
+============================================================
+                 THE FELLOWSHIP OF THE RING                 
+============================================================
+
+Running tests at 2025-04-05 12:33:48
+
+============================================================
+                        Core Module                         
+============================================================
+
+Testing core functionality...
+Core module imported successfully
+Created QualiaField successfully
+Field state is accessible with shape: (32, 32)
+Status: PASSED
+Duration: 0.64 seconds
+------------------------------------------------------------
+
+============================================================
+                    Evolution Functions                     
+============================================================
+
+Testing evolution functionality...
+Evolution functions available: evolve=False, evolve_step=True, evolve_chart=True
+Successfully imported astra.core.evolution
+Available evolution functions: evolve_chart, evolve_step
+Error testing evolution: evolve_step() got an unexpected keyword argument 'alpha'
+Error details: TypeError: evolve_step() got an unexpected keyword argument 'alpha'
+Traceback (most recent call last):
+  File "C:\Projects\ASTRA\fellowship.py", line 59, in run_test
+    result = test_function()
+             ^^^^^^^^^^^^^^^
+  File "C:\Projects\ASTRA\fellowship.py", line 180, in test_evolution
+    new_field, _ = core_module.evolve_step(test_field, **params)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: evolve_step() got an unexpected keyword argument 'alpha'
+
+Status: FAILED
+Duration: 0.00 seconds
+------------------------------------------------------------
+
+============================================================
+                     Topology Analysis                      
+============================================================
+
+Testing topology functionality...
+Available topology functions: classify_attractor_type, compute_betti_numbers, compute_forman_ricci_curvature, compute_ollivier_ricci_curvature, compute_persistence_diagram, detect_topological_motifs, persistence_landscape, plot_attractor_landscape, plot_persistence_diagram, plot_ricci_curvature
+Status: PASSED
+Duration: 0.65 seconds
+------------------------------------------------------------
+
+============================================================
+                    Narrative Generation                    
+============================================================
+
+Testing narrative functionality...
+Available symbol functions: EventType, NarrativeEvent, ThresholdEvent, ThresholdType, create_event_log, detect_threshold_crossings, generate_narrative, interpret_motifs
+Successfully imported astra.symbols.narrative
+Available narrative functions: Any, Callable, Dict, Enum, EventType, List, NarrativeEvent, Optional, Tuple, Union, auto, create_event_log, datetime, generate_narrative, interpret_motifs
+Status: PASSED
+Duration: 0.00 seconds
+------------------------------------------------------------
+
+============================================================
+                        TEST SUMMARY                        
+============================================================
+
+Total tests: 4
+Passed tests: 3
+Failed tests: 1
+Total duration: 1.30 seconds
+
+Detailed results:
+1. Core Module: PASSED (0.64s)
+2. Evolution Functions: FAILED (0.00s)
+   Error: TypeError: evolve_step() got an unexpected keyword argument 'alpha'
+3. Topology Analysis: PASSED (0.65s)
+4. Narrative Generation: PASSED (0.00s)
+
+============================================================
+                       JOURNEY'S END                        
+============================================================
+
+1 test(s) have failed.
+
+"Even the smallest person can change the course of the future."
+
+Full log saved to: output\fellowship\test_log_20250405_123348.txt

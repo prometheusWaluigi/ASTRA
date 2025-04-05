@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTRA: Archetypal Spacetime Tensor Resonance Architecture</title>
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icon Font -->  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Three.js for 3D visualizations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- D3.js for data visualizations -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Dynamic cosmic background -->
+    <div id="cosmic-canvas"></div>
+    <div class="cosmic-overlay"></div>
+    
+    <!-- Particle system -->
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <div class="noise-overlay"></div>
+        <header>
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <div class="logo">ASTRA</div>
+            </div>
+            <h1 class="glitch-text" data-text="ASTRA">ASTRA <span class="subtitle">Archetypal Spacetime Tensor Resonance Architecture</span></h1>
+            <p class="tagline">Chart the shape of your psyche. <span class="highlight">Not as fate—but as resonance.</span> <span class="sparkle">✨</span></p>
+            <div class="header-divider">
+                <svg viewBox="0 0 1200 30" preserveAspectRatio="none">
+                    <path d="M0,0 Q300,30 600,0 T1200,0" fill="none" stroke="var(--primary-color)" stroke-width="2"/>
+                </svg>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="input">
+                <span class="tab-icon"><i class="fas fa-user-circle"></i></span>
+                <span class="tab-text">Input Your Data</span>
+            </button>
+            <button class="tab-btn" data-tab="about">
+                <span class="tab-icon"><i class="fas fa-info-circle"></i></span>
+                <span class="tab-text">About ASTRA</span>
+            </button>
+            <button class="tab-btn" data-tab="visualization">
+                <span class="tab-icon"><i class="fas fa-chart-network"></i></span>
+                <span class="tab-text">Visualizations</span>
+            </button>
+            <button class="tab-btn" data-tab="results">
+                <span class="tab-icon"><i class="fas fa-brain"></i></span>
+                <span class="tab-text">Analysis Results</span>
+            </button>
+        </nav>
+
+        <div class="tab-content">
+            <div id="input" class="tab-pane active">
+                <h2>Enter Your Birth Information</h2>
+                <form id="birth-data-form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birth-date">Birth Date:</label>
+                            <input type="date" id="birth-date" name="birth-date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birth-time">Birth Time:</label>
+                            <input type="time" id="birth-time" name="birth-time" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birth-city">Birth City:</label>
+                        <input type="text" id="birth-city" name="birth-city" placeholder="City" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birth-country">Birth Country:</label>
+                        <select id="birth-country" name="birth-country" required>
+                            <option value="">Select a country</option>
+                            <option value="US">United States</option>
+                            <option value="CA">Canada</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="AU">Australia</option>
+                            <option value="DE">Germany</option>
+                            <option value="FR">France</option>
+                            <!-- More countries can be added -->
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Generate ASTRA Analysis</button>
+                </form>
+                
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Generating your QualiaField and analyzing the psyche topology...</p>
+                </div>
+            </div>
+            
+            <div id="about" class="tab-pane">
+                <h2>About ASTRA</h2>
+                <p>ASTRA is not astrology. It is <strong>consciousness cartography</strong> — a simulator for the evolving topological field of the psyche.</p>
+                
+                <p>ASTRA reinterprets planetary motion and symbolic archetypes as tensor perturbations on a nonlinear qualia surface.</p>
+                
+                <h3>Given natal data, ASTRA:</h3>
+                <ol>
+                    <li>Initializes a qualia field χ(x,0) from birth chart data</li>
+                    <li>Evolves the field via fKPZχ PDEs with fractal noise</li>
+                    <li>Models ego formation through symmetry breaking</li>
+                    <li>Analyzes field topology (Betti numbers, Ricci curvature)</li>
+                    <li>Generates symbolic narratives and archetypal event logs</li>
+                </ol>
+                
+                <h3>Architecture</h3>
+                <p>ASTRA is organized in recursive layers:</p>
+                
+                <div class="architecture">
+                    <div class="arch-layer">
+                        <h4>χ-Layer: Field Evolution 🌊</h4>
+                        <ul>
+                            <li>fKPZχ core PDE engine</li>
+                            <li>Fractional Laplacian (FFT accelerated)</li>
+                            <li>Moon = fractal noise generator η_f</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="arch-layer">
+                        <h4>𝒸-Layer: Archetypal Operators 🌍</h4>
+                        <ul>
+                            <li>Planets as tensor fields modulating χ</li>
+                            <li>Aspect matrix μ_ij (cross-modal coupling)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="arch-layer">
+                        <h4>𝓈-Layer: Topological Signature 🔍</h4>
+                        <ul>
+                            <li>Persistent homology (Betti loops)</li>
+                            <li>Ollivier-Ricci curvature</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="arch-layer">
+                        <h4>𝓂-Layer: Symbolic Narrative 📖</h4>
+                        <ul>
+                            <li>Event log generator</li>
+                            <li>Archetypal pattern recognition</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="visualization" class="tab-pane">
+                <h2>QualiaField Visualization</h2>
+                <p>Your QualiaField represents the topological structure of your conscious experience as modeled by ASTRA.</p>
+                
+                <div class="visualization-container">
+                    <div id="initial-field" class="field-vis">
+                        <h3>Initial QualiaField χ(x,0)</h3>
+                        <div class="placeholder-img">
+                            <div class="placeholder-glow"></div>
+                            <i class="fas fa-brain"></i>
+                            <p>Generate your analysis to see your initial QualiaField</p>
+                        </div>
+                        <div class="field-container">
+                            <canvas id="initial-field-canvas" width="500" height="500"></canvas>
+                            <div class="field-controls">
+                                <button class="control-btn" id="initial-rotate"><i class="fas fa-sync"></i> Rotate</button>
+                                <button class="control-btn" id="initial-zoom"><i class="fas fa-search-plus"></i> Zoom</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="evolved-field" class="field-vis">
+                        <h3>Evolved QualiaField χ(x,t)</h3>
+                        <div class="placeholder-img">
+                            <div class="placeholder-glow"></div>
+                            <i class="fas fa-project-diagram"></i>
+                            <p>Generate your analysis to see your evolved QualiaField</p>
+                        </div>
+                        <div class="field-container">
+                            <canvas id="evolved-field-canvas" width="500" height="500"></canvas>
+                            <div class="timeline-slider">
+                                <input type="range" min="0" max="100" value="0" id="evolution-timeline">
+                                <div class="timeline-labels">
+                                    <span>t = 0</span>
+                                    <span>t = 0.5</span>
+                                    <span>t = 1.0</span>
+                                    <span>t = 1.5</span>
+                                    <span>t = 2.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="topology-vis" class="topology-container">
+                    <h3>Topological Analysis</h3>
+                    <div class="placeholder-img">
+                        <div class="placeholder-glow"></div>
+                        <i class="fas fa-network-wired"></i>
+                        <p>Generate your analysis to see topological features</p>
+                    </div>
+                    <div class="topology-viz-container">
+                        <div id="topology-3d-graph"></div>
+                        <div class="topology-controls">
+                            <button class="viz-toggle active" data-viz="graph">Network Graph</button>
+                            <button class="viz-toggle" data-viz="betti">Betti Numbers</button>
+                            <button class="viz-toggle" data-viz="curvature">Ricci Curvature</button>
+                        </div>
+                        <div class="topology-stats">
+                            <div class="stat">
+                                <span class="stat-label">β₀</span>
+                                <span class="stat-value" id="betti0">-</span>
+                                <span class="stat-desc">Connected Components</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">β₁</span>
+                                <span class="stat-value" id="betti1">-</span>
+                                <span class="stat-desc">Loops/Cycles</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">β₂</span>
+                                <span class="stat-value" id="betti2">-</span>
+                                <span class="stat-desc">Voids/Cavities</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">RC</span>
+                                <span class="stat-value" id="ricci-curvature">-</span>
+                                <span class="stat-desc">Avg. Ricci Curvature</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="results" class="tab-pane">
+                <h2>ASTRA Analysis Results</h2>
+                <div id="results-container">
+                    <p>Submit your birth information to receive your ASTRA analysis.</p>
+                    
+                    <div id="natal-report" class="result-section hidden">
+                        <h3>Natal Configuration</h3>
+                        <div class="report-content"></div>
+                    </div>
+                    
+                    <div id="field-analysis" class="result-section hidden">
+                        <h3>QualiaField Analysis</h3>
+                        <div class="report-content"></div>
+                    </div>
+                    
+                    <div id="topology-analysis" class="result-section hidden">
+                        <h3>Topological Signature</h3>
+                        <div class="report-content"></div>
+                    </div>
+                    
+                    <div id="narrative-events" class="result-section hidden">
+                        <h3>Symbolic Narrative</h3>
+                        <div class="report-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 ASTRA | <a href="https://github.com/prometheusWaluigi/ASTRA" target="_blank">GitHub</a></p>
+            <p class="disclaimer">ASTRA is for anyone debugging reality and mapping their inner resonance field.</p>
+        </footer>
+    </div>
+
+    <!-- Particle.js for particle effects -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- ForceGraph for network visualizations -->
+    <script src="https://unpkg.com/force-graph@1.43.0/dist/force-graph.min.js"></script>
+    <!-- Main script -->
+    <script src="script.js"></script>
+    <!-- Analytics scripts (optional) -->
+    <script async defer>
+        console.log('ASTRA Web Interface Loaded Successfully');
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+ASTRA TEST LOG: Core Module
+Date: 2025-04-05 12:44:43
+Duration: 0.73 seconds
+Status: FAILED
+
+OUTPUT:
+Running core tests at 2025-04-05 12:44:43
+Creating mock natal data...
+Creating QualiaField...
+Added sun influence at (38,8)
+Added moon influence at (56,25)
+Added mercury influence at (32,7)
+Added venus influence at (30,7)
+Added mars influence at (56,27)
+Added jupiter influence at (32,7)
+Added saturn influence at (17,12)
+Added uranus influence at (26,8)
+Added neptune influence at (32,7)
+Added pluto influence at (11,18)
+Error in core tests: 'charmap' codec can't encode character '\u03c7' in position 25: character maps to <undefined>
+
+STDERR:
+Traceback (most recent call last):
+  File "C:\Projects\ASTRA\tests\test_core.py", line 91, in <module>
+    success = test_qualia_field()
+              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\ASTRA\tests\test_core.py", line 50, in test_qualia_field
+    field = QualiaField(mock_natal, grid_size=(64, 64))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\ASTRA\astra\core\field.py", line 59, in __init__
+    print(f"Initialized QualiaField (\u03c7-Layer) with size {grid_size}")
+  File "C:\Users\ketan\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u03c7' in position 25: character maps to <undefined>

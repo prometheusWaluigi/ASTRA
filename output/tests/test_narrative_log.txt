@@ -1,0 +1,43 @@
+ASTRA TEST LOG: Narrative
+Date: 2025-04-05 12:45:05
+Duration: 19.77 seconds
+Status: FAILED
+
+OUTPUT:
+Running narrative tests at 2025-04-05 12:44:46
+Testing basic narrative functionality...
+Successfully imported EventType
+Successfully imported generate_narrative function
+Creating test field...
+Using actual generate_narrative function
+Error in narrative basic test: only 8 and 16 unsigned inputs are supported
+Testing narrative sequence generation...
+Required modules not available, using simplified test
+Simple event detection:
+Frame 0: 2 events
+Frame 1: 2 events
+Frame 2: 2 events
+Frame 3: 2 events
+NARRATIVE TESTS FAILED
+
+STDERR:
+C:\Projects\ASTRA\astra\topology\persistence.py:29: UserWarning: Ripser not found. Using simplified persistence computation. For full TDA capabilities, install: pip install ripser
+  warnings.warn("Ripser not found. Using simplified persistence computation. For full TDA capabilities, install: pip install ripser")
+C:\Projects\ASTRA\astra\topology\ricci.py:36: UserWarning: GraphRicciCurvature not found. Using simplified Ricci computation. For full capabilities, install: pip install graphriccicurvature
+  warnings.warn("GraphRicciCurvature not found. Using simplified Ricci computation. For full capabilities, install: pip install graphriccicurvature")
+Traceback (most recent call last):
+  File "C:\Projects\ASTRA\tests\test_narrative.py", line 164, in test_narrative_basic
+    events = generate_narrative(test_field)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\ASTRA\astra\symbols\narrative.py", line 444, in generate_narrative
+    motifs = detect_fn(field)
+             ^^^^^^^^^^^^^^^^
+  File "C:\Projects\ASTRA\astra\topology\motifs.py", line 219, in detect_topological_motifs
+    basins = detect_basins(smoothed, critical_points, sigma=0)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\ASTRA\astra\topology\motifs.py", line 181, in detect_basins
+    basins = watershed_ift(-smoothed, markers, structure=structure)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\ASTRA\.venv\Lib\site-packages\scipy\ndimage\_measurements.py", line 1652, in watershed_ift
+    raise TypeError('only 8 and 16 unsigned inputs are supported')
+TypeError: only 8 and 16 unsigned inputs are supported

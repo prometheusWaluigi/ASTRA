@@ -1,0 +1,363 @@
+{
+  "version": "0.1",
+  "generated_at": "2025-04-05T11:53:15.422800",
+  "event_count": 24,
+  "time_range": {
+    "start": 0.2,
+    "end": 2.0000000000000004
+  },
+  "events": [
+    {
+      "timestamp": 0.2,
+      "event_type": "INTEGRATION",
+      "description": "Elevated field values suggest integration of consciousness",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.416803"
+    },
+    {
+      "timestamp": 0.2,
+      "event_type": "EMERGENCE",
+      "description": "A significant increase in field intensity suggests emergence",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.416803"
+    },
+    {
+      "timestamp": 0.2,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.417799"
+    },
+    {
+      "timestamp": 0.2,
+      "event_type": "TRANSFORMATION",
+      "description": "Field gradient exceeds threshold (1.00 > 0.30)",
+      "intensity": 1.0,
+      "location": [
+        9,
+        31
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "GRADIENT",
+        "threshold_value": 0.3,
+        "field_value": 1.0,
+        "crossed_upward": "True"
+      },
+      "real_time": "2025-04-05T11:53:15.417799"
+    },
+    {
+      "timestamp": 0.4,
+      "event_type": "INTEGRATION",
+      "description": "Elevated field values suggest integration of consciousness",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.417799"
+    },
+    {
+      "timestamp": 0.4,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.418299"
+    },
+    {
+      "timestamp": 0.6,
+      "event_type": "DISSOLUTION",
+      "description": "A significant decrease in field intensity suggests dissolution",
+      "intensity": 0.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.418299"
+    },
+    {
+      "timestamp": 0.6,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.418299"
+    },
+    {
+      "timestamp": 0.7999999999999999,
+      "event_type": "INTEGRATION",
+      "description": "Elevated field values suggest integration of consciousness",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.418798"
+    },
+    {
+      "timestamp": 0.7999999999999999,
+      "event_type": "EMERGENCE",
+      "description": "A significant increase in field intensity suggests emergence",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.418798"
+    },
+    {
+      "timestamp": 0.7999999999999999,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.418798"
+    },
+    {
+      "timestamp": 0.9999999999999999,
+      "event_type": "DISSOLUTION",
+      "description": "A significant decrease in field intensity suggests dissolution",
+      "intensity": 0.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.418798"
+    },
+    {
+      "timestamp": 0.9999999999999999,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.419298"
+    },
+    {
+      "timestamp": 1.2,
+      "event_type": "DISSOLUTION",
+      "description": "A significant decrease in field intensity suggests dissolution",
+      "intensity": 0.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.419298"
+    },
+    {
+      "timestamp": 1.2,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.419298"
+    },
+    {
+      "timestamp": 1.4000000000000001,
+      "event_type": "INTEGRATION",
+      "description": "Elevated field values suggest integration of consciousness",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.419298"
+    },
+    {
+      "timestamp": 1.4000000000000001,
+      "event_type": "EMERGENCE",
+      "description": "A significant increase in field intensity suggests emergence",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.419798"
+    },
+    {
+      "timestamp": 1.4000000000000001,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.419798"
+    },
+    {
+      "timestamp": 1.6000000000000003,
+      "event_type": "INTEGRATION",
+      "description": "Elevated field values suggest integration of consciousness",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.419798"
+    },
+    {
+      "timestamp": 1.6000000000000003,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.420299"
+    },
+    {
+      "timestamp": 1.8000000000000005,
+      "event_type": "INTEGRATION",
+      "description": "Elevated field values suggest integration of consciousness",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.420299"
+    },
+    {
+      "timestamp": 1.8000000000000005,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.420299"
+    },
+    {
+      "timestamp": 2.0000000000000004,
+      "event_type": "INTEGRATION",
+      "description": "Elevated field values suggest integration of consciousness",
+      "intensity": 1.0,
+      "location": null,
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {},
+      "real_time": "2025-04-05T11:53:15.420800"
+    },
+    {
+      "timestamp": 2.0000000000000004,
+      "event_type": "THRESHOLD",
+      "description": "Field value falls below low threshold (0.00 < 0.20)",
+      "intensity": 1.0,
+      "location": [
+        0,
+        0
+      ],
+      "betti_numbers": null,
+      "joy_value": null,
+      "metadata": {
+        "threshold_type": "VALUE",
+        "threshold_value": 0.2,
+        "field_value": 0.0,
+        "crossed_upward": "False"
+      },
+      "real_time": "2025-04-05T11:53:15.420800"
+    }
+  ]
+}

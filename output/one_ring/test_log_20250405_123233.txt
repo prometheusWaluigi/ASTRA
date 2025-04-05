@@ -1,0 +1,68 @@
+ASTRA TEST LOG - 2025-04-05 12:32:33
+
+
+======================================================================
+================ THE ONE RING: MASTER TEST FOR ASTRA =================
+======================================================================
+
+Started at: 2025-04-05 12:32:33
+Python version: 3.11.9
+
+======================================================================
+========================= Core Functionality =========================
+======================================================================
+
+Status: FAILED
+Duration: 0.63 seconds
+Error: UnicodeEncodeError: 'charmap' codec can't encode character '\u03c7' in position 25: character maps to <undefined>
+
+======================================================================
+========================= Enhanced Evolution =========================
+======================================================================
+
+Status: FAILED
+Duration: 0.00 seconds
+Error: ImportError: cannot import name 'evolve' from 'astra.core' (C:\Projects\ASTRA\astra\core\__init__.py)
+
+======================================================================
+======================== Narrative Generation ========================
+======================================================================
+
+Status: FAILED
+Duration: 22.21 seconds
+Error: TypeError: only 8 and 16 unsigned inputs are supported
+
+======================================================================
+========================= Topology Analysis ==========================
+======================================================================
+
+Status: PASSED
+Duration: 0.00 seconds
+
+======================================================================
+============================ TEST SUMMARY ============================
+======================================================================
+
+Total tests: 4
+Passed: 1
+Failed: 3
+Total duration: 22.85 seconds
+
+Detailed Results:
+1. Core Functionality: FAILED (0.63s)
+   Error: UnicodeEncodeError: 'charmap' codec can't encode character '\u03c7' in position 25: character maps to <undefined>
+2. Enhanced Evolution: FAILED (0.00s)
+   Error: ImportError: cannot import name 'evolve' from 'astra.core' (C:\Projects\ASTRA\astra\core\__init__.py)
+3. Narrative Generation: FAILED (22.21s)
+   Error: TypeError: only 8 and 16 unsigned inputs are supported
+4. Topology Analysis: PASSED (0.00s)
+
+======================================================================
+============================ THE ONE RING ============================
+======================================================================
+
+3 TEST(S) FAILED
+
+"The ring was trying to get back to its master." - Gandalf
+
+Full log saved to: output\one_ring\test_log_20250405_123233.txt

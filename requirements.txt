@@ -1,0 +1,21 @@
+# Astrological calculation
+kerykeion
+
+# Scientific computing
+numpy
+scipy
+matplotlib
+
+# Network and graph analysis
+networkx
+
+# Machine learning and TDA
+scikit-learn
+
+# Optional TDA packages (commented out for now)
+# ripser  # For efficient persistent homology computation
+# graphriccicurvature  # For Ricci curvature computation
+# giotto-tda  # For comprehensive topological data analysis
+
+# Image processing
+scikit-image

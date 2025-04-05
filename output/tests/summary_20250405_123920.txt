@@ -1,0 +1,17 @@
+ASTRA TEST SUMMARY
+Date: 2025-04-05 12:39:20
+Total duration: 22.63 seconds
+
+Total tests: 4
+Passed: 0
+Failed: 4
+
+Detailed results:
+1. Core Module (test_core.py): FAILED in 0.77s
+   Log: output\tests\test_core_log.txt
+2. Evolution (test_evolution.py): FAILED in 0.74s
+   Log: output\tests\test_evolution_log.txt
+3. Topology (test_topology.py): FAILED in 1.43s
+   Log: output\tests\test_topology_log.txt
+4. Narrative (test_narrative.py): FAILED in 19.68s
+   Log: output\tests\test_narrative_log.txt

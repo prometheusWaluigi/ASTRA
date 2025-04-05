@@ -1,0 +1,34 @@
+ASTRA TEST LOG: Evolution
+Date: 2025-04-05 12:44:44
+Duration: 0.71 seconds
+Status: FAILED
+
+OUTPUT:
+Running evolution tests at 2025-04-05 12:44:44
+Testing evolve_step...
+Added sun influence at (28,16)
+Added moon influence at (27,22)
+Warning: Could not add mercury: 'SimpleMockNatal' object has no attribute 'mercury'
+Warning: Could not add venus: 'SimpleMockNatal' object has no attribute 'venus'
+Warning: Could not add mars: 'SimpleMockNatal' object has no attribute 'mars'
+Warning: Could not add jupiter: 'SimpleMockNatal' object has no attribute 'jupiter'
+Warning: Could not add saturn: 'SimpleMockNatal' object has no attribute 'saturn'
+Warning: Could not add uranus: 'SimpleMockNatal' object has no attribute 'uranus'
+Warning: Could not add neptune: 'SimpleMockNatal' object has no attribute 'neptune'
+Warning: Could not add pluto: 'SimpleMockNatal' object has no attribute 'pluto'
+Error in evolve_step test: 'charmap' codec can't encode character '\u03c7' in position 25: character maps to <undefined>
+Testing full evolution...
+Could not import evolve function, skipping full evolution test
+EVOLUTION TESTS FAILED
+
+STDERR:
+Traceback (most recent call last):
+  File "C:\Projects\ASTRA\tests\test_evolution.py", line 44, in test_evolve_step
+    field = QualiaField(mock_natal, grid_size=(32, 32))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\ASTRA\astra\core\field.py", line 59, in __init__
+    print(f"Initialized QualiaField (\u03c7-Layer) with size {grid_size}")
+  File "C:\Users\ketan\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u03c7' in position 25: character maps to <undefined>

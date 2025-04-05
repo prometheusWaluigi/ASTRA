@@ -1,0 +1,25 @@
+ASTRA TEST LOG: Topology
+Date: 2025-04-05 12:44:46
+Duration: 1.77 seconds
+Status: PASSED
+
+OUTPUT:
+Running topology tests at 2025-04-05 12:44:44
+Testing basic topology functionality...
+NetworkX is available
+Successfully imported field_to_graph from astra.topology.ricci
+Creating test field...
+Converting field to graph...
+Created graph with 218 nodes and 738 edges
+Graph has 2 connected components
+Average clustering coefficient: 0.4954
+Ricci curvature calculation not available: cannot import name 'compute_ricci_curvature' from 'astra.topology' (C:\Projects\ASTRA\astra\topology\__init__.py)
+Testing advanced topology functionality...
+Advanced persistence homology functions not available, skipping test
+TOPOLOGY TESTS PASSED
+
+STDERR:
+C:\Projects\ASTRA\astra\topology\persistence.py:29: UserWarning: Ripser not found. Using simplified persistence computation. For full TDA capabilities, install: pip install ripser
+  warnings.warn("Ripser not found. Using simplified persistence computation. For full TDA capabilities, install: pip install ripser")
+C:\Projects\ASTRA\astra\topology\ricci.py:36: UserWarning: GraphRicciCurvature not found. Using simplified Ricci computation. For full capabilities, install: pip install graphriccicurvature
+  warnings.warn("GraphRicciCurvature not found. Using simplified Ricci computation. For full capabilities, install: pip install graphriccicurvature")
