@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize echo viewer
     initEchoViewer();
+    
+    // Initialize city datalist
+    createDatalist();
+    setupCityAutocomplete();
+    
+    // Fix date field with current date
+    fixDateField();
+    
+    console.log('ASTRA interface successfully initialized');
 });
 
 // ======== COSMIC BACKGROUND EFFECT ========
@@ -115,6 +124,13 @@ function initForm() {
     const birthCityInput = document.getElementById('birth-city');
     const birthCountrySelect = document.getElementById('birth-country');
     
+    if (!birthForm || !nameInput || !birthCityInput || !birthCountrySelect) {
+        console.error('Form elements not found');
+        return;
+    }
+    
+    console.log('Initializing form handlers');
+    
     // Set up input validation
     nameInput.addEventListener('input', validateName);
     birthCityInput.addEventListener('input', validateCity);
@@ -123,6 +139,9 @@ function initForm() {
         birthCityInput.value = '';
         // Remove validation classes
         birthCityInput.classList.remove('valid', 'invalid');
+        
+        // Update city suggestions for the new country
+        updateCitySuggestions(this.value, '');
     });
     
     // Create datalist for city autocomplete
@@ -205,6 +224,12 @@ function validateName() {
 function validateCity() {
     const cityInput = document.getElementById('birth-city');
     const countrySelect = document.getElementById('birth-country');
+    
+    if (!cityInput || !countrySelect) {
+        console.error('City input or country select not found');
+        return false;
+    }
+    
     const city = cityInput.value.trim();
     const country = countrySelect.value;
     
@@ -226,6 +251,7 @@ function validateCity() {
         cityInput.classList.toggle('invalid', !isValid);
     }
     
+    console.log(`City validation: ${city} is ${isValid ? 'valid' : 'invalid'} for ${country}`);
     return isValid;
 }
 
@@ -250,7 +276,17 @@ function setupCityAutocomplete() {
 // Update city suggestions in datalist
 function updateCitySuggestions(country, filter = '') {
     const datalist = document.getElementById('city-suggestions');
+    if (!datalist) {
+        console.error('City suggestions datalist not found');
+        return;
+    }
+    
     const cities = getCitiesForCountry(country);
+    if (!cities || cities.length === 0) {
+        console.log(`No cities found for country: ${country}`);
+        return;
+    }
+    
     const fragment = document.createDocumentFragment();
     
     cities.filter(city => city.toLowerCase().includes(filter.toLowerCase()))
@@ -264,6 +300,7 @@ function updateCitySuggestions(country, filter = '') {
     requestAnimationFrame(() => {
         datalist.innerHTML = '';
         datalist.appendChild(fragment);
+        console.log(`Updated city suggestions for ${country}: ${cities.slice(0, 3).join(', ')}...`);
     });
 }
 
@@ -696,6 +733,22 @@ function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
+// Fix the date field by setting it to the current date
+function fixDateField() {
+    const birthDateInput = document.getElementById('birth-date');
+    if (birthDateInput) {
+        // Set to current date as default
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        birthDateInput.value = `${year}-${month}-${day}`;
+        console.log('Date field fixed:', birthDateInput.value);
+    } else {
+        console.error('Birth date input field not found');
+    }
+}
+
 function generateRandomEvents() {
     const eventTypes = [
         { type: "EMERGENCE", descriptions: [
@@ -749,10 +802,23 @@ function generateRandomEvents() {
 
 // Create datalist element for city suggestions
 function createDatalist() {
+    // Check if datalist already exists
+    if (document.getElementById('city-suggestions')) {
+        return document.getElementById('city-suggestions');
+    }
+    
     const datalist = document.createElement('datalist');
     datalist.id = 'city-suggestions';
     document.body.appendChild(datalist);
-    document.getElementById('birth-city').setAttribute('list', 'city-suggestions');
+    
+    const cityInput = document.getElementById('birth-city');
+    if (cityInput) {
+        cityInput.setAttribute('list', 'city-suggestions');
+        console.log('City datalist initialized');
+    } else {
+        console.error('City input field not found');
+    }
+    
     return datalist;
 }
 
