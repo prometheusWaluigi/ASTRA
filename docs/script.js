@@ -109,19 +109,59 @@ function initTabs() {
 // ======== FORM HANDLING ========
 function initForm() {
     const birthForm = document.getElementById('birth-data-form');
+    const nameInput = document.getElementById('name');
+    const birthCityInput = document.getElementById('birth-city');
+    const birthCountrySelect = document.getElementById('birth-country');
+    
+    // Set up input validation
+    nameInput.addEventListener('input', validateName);
+    birthCityInput.addEventListener('input', validateCity);
+    birthCountrySelect.addEventListener('change', function() {
+        // Clear city input when country changes
+        birthCityInput.value = '';
+        // Remove validation classes
+        birthCityInput.classList.remove('valid', 'invalid');
+    });
+    
+    // Create datalist for city autocomplete
+    setupCityAutocomplete();
+    
     birthForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        
+        // Validate all inputs before submission
+        const isNameValid = validateName();
+        const isCityValid = validateCity();
+        const isCountryValid = birthCountrySelect.value !== '';
+        const isBirthDateValid = document.getElementById('birth-date').value !== '';
+        const isBirthTimeValid = document.getElementById('birth-time').value !== '';
+        
+        // Check if all inputs are valid
+        if (!isNameValid || !isCityValid || !isCountryValid || !isBirthDateValid || !isBirthTimeValid) {
+            // Show validation errors
+            if (!isNameValid) nameInput.classList.add('invalid');
+            if (!isCityValid) birthCityInput.classList.add('invalid');
+            if (!isCountryValid) birthCountrySelect.classList.add('invalid');
+            if (!isBirthDateValid) document.getElementById('birth-date').classList.add('invalid');
+            if (!isBirthTimeValid) document.getElementById('birth-time').classList.add('invalid');
+            
+            // Shake the form to indicate error
+            birthForm.classList.add('shake');
+            setTimeout(() => birthForm.classList.remove('shake'), 500);
+            
+            return; // Don't submit if validation fails
+        }
         
         // Show loading spinner
         document.getElementById('loading').classList.remove('hidden');
         
         // Collect form data
         const formData = {
-            name: document.getElementById('name').value,
+            name: nameInput.value,
             birthDate: document.getElementById('birth-date').value,
             birthTime: document.getElementById('birth-time').value,
-            birthCity: document.getElementById('birth-city').value,
-            birthCountry: document.getElementById('birth-country').value
+            birthCity: birthCityInput.value,
+            birthCountry: birthCountrySelect.value
         };
         
         // Simulate API call with timeout
@@ -138,6 +178,144 @@ function initForm() {
             }, 2000);
         }, 3000);
     });
+}
+
+// Validate name input
+function validateName() {
+    const nameInput = document.getElementById('name');
+    const name = nameInput.value.trim();
+    
+    // Name should be at least 2 characters long and contain only letters and spaces
+    const isValid = name.length >= 2 && /^[A-Za-z\s'-]+$/.test(name);
+    
+    // Update input styling based on validation
+    if (name === '') {
+        nameInput.classList.remove('valid', 'invalid');
+    } else {
+        nameInput.classList.toggle('valid', isValid);
+        nameInput.classList.toggle('invalid', !isValid);
+    }
+    
+    return isValid;
+}
+
+// Validate city input
+function validateCity() {
+    const cityInput = document.getElementById('birth-city');
+    const countrySelect = document.getElementById('birth-country');
+    const city = cityInput.value.trim();
+    const country = countrySelect.value;
+    
+    // If no country is selected, we can't validate the city
+    if (country === '') {
+        cityInput.classList.remove('valid', 'invalid');
+        return false;
+    }
+    
+    // Check if city exists in the selected country
+    const cityExists = isCityInCountry(city, country);
+    const isValid = city.length >= 2 && cityExists;
+    
+    // Update input styling based on validation
+    if (city === '') {
+        cityInput.classList.remove('valid', 'invalid');
+    } else {
+        cityInput.classList.toggle('valid', isValid);
+        cityInput.classList.toggle('invalid', !isValid);
+    }
+    
+    return isValid;
+}
+
+// Setup city autocomplete
+function setupCityAutocomplete() {
+    const cityInput = document.getElementById('birth-city');
+    const countrySelect = document.getElementById('birth-country');
+    
+    // Create datalist element for city suggestions
+    let datalist = document.getElementById('city-suggestions');
+    if (!datalist) {
+        datalist = document.createElement('datalist');
+        datalist.id = 'city-suggestions';
+        document.body.appendChild(datalist);
+        cityInput.setAttribute('list', 'city-suggestions');
+    }
+    
+    // Update city suggestions when country changes
+    countrySelect.addEventListener('change', function() {
+        updateCitySuggestions(countrySelect.value);
+    });
+    
+    // Update city suggestions when typing
+    cityInput.addEventListener('input', function() {
+        const country = countrySelect.value;
+        if (country) {
+            updateCitySuggestions(country, cityInput.value);
+        }
+    });
+}
+
+// Update city suggestions in datalist
+function updateCitySuggestions(country, filter = '') {
+    const datalist = document.getElementById('city-suggestions');
+    datalist.innerHTML = ''; // Clear previous suggestions
+    
+    if (!country) return;
+    
+    // Get cities for the selected country
+    const cities = getCitiesForCountry(country);
+    
+    // Filter cities based on input
+    const filteredCities = filter ? 
+        cities.filter(city => city.toLowerCase().includes(filter.toLowerCase())) : 
+        cities;
+    
+    // Limit to top 10 suggestions
+    const topCities = filteredCities.slice(0, 10);
+    
+    // Add city options to datalist
+    topCities.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city;
+        datalist.appendChild(option);
+    });
+}
+
+// Check if a city exists in the selected country
+function isCityInCountry(city, country) {
+    if (!city || !country) return false;
+    
+    const cities = getCitiesForCountry(country);
+    return cities.some(c => c.toLowerCase() === city.toLowerCase());
+}
+
+// Get cities for a country
+function getCitiesForCountry(country) {
+    // Major cities database
+    const cityDatabase = {
+        'US': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose', 'Austin', 'Jacksonville', 'Fort Worth', 'Columbus', 'Indianapolis', 'Charlotte', 'San Francisco', 'Seattle', 'Denver', 'Washington'],
+        'CA': ['Toronto', 'Montreal', 'Vancouver', 'Calgary', 'Edmonton', 'Ottawa', 'Winnipeg', 'Quebec City', 'Hamilton', 'Kitchener'],
+        'UK': ['London', 'Birmingham', 'Manchester', 'Glasgow', 'Liverpool', 'Bristol', 'Edinburgh', 'Leeds', 'Sheffield', 'Cardiff'],
+        'AU': ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Gold Coast', 'Canberra', 'Newcastle', 'Wollongong', 'Hobart'],
+        'DE': ['Berlin', 'Hamburg', 'Munich', 'Cologne', 'Frankfurt', 'Stuttgart', 'Düsseldorf', 'Leipzig', 'Dortmund', 'Essen'],
+        'FR': ['Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 'Strasbourg', 'Montpellier', 'Bordeaux', 'Lille'],
+        'IN': ['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Pune', 'Ahmedabad', 'Jaipur', 'Surat', 'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane', 'Bhopal', 'Visakhapatnam', 'Patna', 'Vadodara', 'Ghaziabad'],
+        'JP': ['Tokyo', 'Yokohama', 'Osaka', 'Nagoya', 'Sapporo', 'Kobe', 'Kyoto', 'Fukuoka', 'Kawasaki', 'Saitama'],
+        'CN': ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen', 'Chongqing', 'Tianjin', 'Wuhan', 'Chengdu', 'Hangzhou', 'Nanjing'],
+        'BR': ['São Paulo', 'Rio de Janeiro', 'Brasília', 'Salvador', 'Fortaleza', 'Belo Horizonte', 'Manaus', 'Curitiba', 'Recife', 'Porto Alegre'],
+        'RU': ['Moscow', 'Saint Petersburg', 'Novosibirsk', 'Yekaterinburg', 'Kazan', 'Chelyabinsk', 'Omsk', 'Samara', 'Rostov-on-Don', 'Ufa'],
+        'ZA': ['Johannesburg', 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth', 'Bloemfontein', 'Pietermaritzburg', 'East London', 'Nelspruit', 'Kimberley'],
+        'ES': ['Madrid', 'Barcelona', 'Valencia', 'Seville', 'Zaragoza', 'Málaga', 'Murcia', 'Palma', 'Las Palmas', 'Bilbao'],
+        'IT': ['Rome', 'Milan', 'Naples', 'Turin', 'Palermo', 'Genoa', 'Bologna', 'Florence', 'Catania', 'Bari'],
+        'MX': ['Mexico City', 'Ecatepec', 'Guadalajara', 'Puebla', 'Juárez', 'Tijuana', 'León', 'Zapopan', 'Monterrey', 'Nezahualcóyotl']
+    };
+    
+    // Return default cities for countries not in the database
+    if (!cityDatabase[country]) {
+        return ['Please enter a valid city'];
+    }
+    
+    return cityDatabase[country];
 }
 
 // ======== COSMIC ANIMATIONS ========
