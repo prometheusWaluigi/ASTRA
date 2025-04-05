@@ -66,6 +66,18 @@
                 <span class="tab-icon"><i class="fas fa-sync-alt"></i></span>
                 <span class="tab-text">Echo Viewer</span>
             </button>
+            <button class="tab-btn" data-tab="fhpx">
+                <span class="tab-icon"><i class="fas fa-route"></i></span>
+                <span class="tab-text">Hero's Path</span>
+            </button>
+            <button class="tab-btn" data-tab="dreamsigils">
+                <span class="tab-icon"><i class="fas fa-moon"></i></span>
+                <span class="tab-text">DreamSigils</span>
+            </button>
+            <button class="tab-btn" data-tab="retrofield">
+                <span class="tab-icon"><i class="fas fa-hourglass-half"></i></span>
+                <span class="tab-text">RetroField</span>
+            </button>
         </nav>
 
         <div class="tab-content">
@@ -492,6 +504,189 @@
                     <div id="narrative-events" class="result-section hidden">
                         <h3>Symbolic Narrative</h3>
                         <div class="report-content"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fractal Hero's Path χ Tab Content -->
+            <div id="fhpx" class="tab-pane">
+                <h2>Fractal Hero's Path χ</h2>
+                <div class="hero-journey-container">
+                    <div class="section-header">Hero's Journey Archetypal Map</div>
+                    <div class="hero-journey-canvas-container">
+                        <svg id="hero-journey-canvas" width="100%" height="500"></svg>
+                        <div class="journey-stage-info">
+                            <div class="stage-title">Current Stage: <span id="current-stage">ORDINARY_WORLD</span></div>
+                            <div class="stage-description" id="stage-description">
+                                The psyche inhabits its default state, before the initiation of transformative journey.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="controls-container">
+                        <div class="control-group">
+                            <label>χ-Field Turbulence</label>
+                            <input type="range" min="0" max="100" value="40" id="chi-turbulence">
+                        </div>
+                        <div class="control-group">
+                            <label>Fractal Recursion Depth</label>
+                            <input type="range" min="1" max="5" value="2" id="fractal-depth">
+                        </div>
+                        <div class="control-group">
+                            <label>Archetype Activation</label>
+                            <select id="archetype-selector">
+                                <option value="hero">Hero</option>
+                                <option value="mentor">Mentor</option>
+                                <option value="threshold_guardian">Threshold Guardian</option>
+                                <option value="herald">Herald</option>
+                                <option value="shapeshifter">Shapeshifter</option>
+                                <option value="shadow">Shadow</option>
+                                <option value="trickster">Trickster</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="curvature-field-section">
+                    <div class="section-header">χ-Curvature Field Map</div>
+                    <div class="curvature-map-container">
+                        <canvas id="chi-curvature-map" width="800" height="250"></canvas>
+                        <div class="curvature-legend">
+                            <div class="legend-item">
+                                <div class="color-swatch positive"></div>
+                                <span>Expansive Transitions</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="color-swatch negative"></div>
+                                <span>Contractive Transitions</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="color-swatch neutral"></div>
+                                <span>Stable Nodes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="journey-nodes-section">
+                    <div class="section-header">Journey Node Activation</div>
+                    <div class="journey-nodes-container">
+                        <!-- Will be populated dynamically with journey nodes -->
+                        <div class="node-grid" id="journey-nodes-grid"></div>
+                    </div>
+                    <div class="node-controls">
+                        <button id="reset-journey" class="cosmic-btn">Reset Journey</button>
+                        <button id="evolve-journey" class="cosmic-btn primary">Auto-Evolve</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DreamSigils Module Tab Content -->
+            <div id="dreamsigils" class="tab-pane">
+                <h2>DreamSigils Module</h2>
+                <div class="sigil-generator-section">
+                    <div class="section-header">Dream Sigil Generator</div>
+                    <div class="sigil-canvas-container">
+                        <svg id="sigil-canvas" width="400" height="400"></svg>
+                        <div class="sigil-info">
+                            <div class="sigil-title">Current Sigil: <span id="sigil-name">Undefined</span></div>
+                            <div class="sigil-description" id="sigil-description">Generate a dream sigil to see its symbolic meaning...</div>
+                        </div>
+                    </div>
+                    <div class="sigil-controls">
+                        <button id="generate-sigil" class="cosmic-btn">Generate Dream Sigil</button>
+                        <button id="animate-sigil" class="cosmic-btn">Animate</button>
+                        <button id="download-sigil" class="cosmic-btn secondary">Download</button>
+                    </div>
+                </div>
+                
+                <div class="sigil-library-section">
+                    <div class="section-header">Sigil Pattern Library</div>
+                    <div class="sigil-library-container">
+                        <div class="sigil-grid" id="sigil-library"></div>
+                    </div>
+                    <div class="pattern-analysis">
+                        <div class="panel-header">Pattern Analysis</div>
+                        <div class="pattern-content" id="pattern-analysis-content">
+                            <p>Generate dream sigils to build your pattern library...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glyph-family-section">
+                    <div class="section-header">Glyph Family Tree</div>
+                    <div class="family-tree-container">
+                        <svg id="glyph-family-tree" width="100%" height="300"></svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RetroField Feedback Loop Tab Content -->
+            <div id="retrofield" class="tab-pane">
+                <h2>RetroField Feedback Loop</h2>
+                <div class="intention-input-section">
+                    <div class="section-header">Enter Your Intention</div>
+                    <div class="intention-input-container">
+                        <textarea id="intention-input" placeholder="Type a wish, vision, or worry to encode into the ψ-field..."></textarea>
+                        <div class="intention-controls">
+                            <select id="intention-type">
+                                <option value="wish">Wish</option>
+                                <option value="vision">Vision</option>
+                                <option value="worry">Worry</option>
+                            </select>
+                            <button id="encode-intention" class="cosmic-btn">Encode in Field</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="motif-encoding-section">
+                    <div class="section-header">Topological Motif Encoding</div>
+                    <div class="motif-canvas-container">
+                        <canvas id="motif-canvas" width="800" height="300"></canvas>
+                        <div class="probability-timeline">
+                            <div class="timeline-paths" id="probability-paths"></div>
+                        </div>
+                    </div>
+                    <div class="encoded-motifs">
+                        <div class="panel-header">Active Field Encodings</div>
+                        <div class="motifs-list" id="active-motifs">
+                            <p>No intentions currently encoded in the field...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destiny-negotiation-section">
+                    <div class="section-header">Destiny Negotiation Interface</div>
+                    <div class="negotiation-interface">
+                        <div class="interface-section">
+                            <div class="interface-header">Attractor Field Strength</div>
+                            <div class="interface-controls">
+                                <label>Attraction</label>
+                                <input type="range" min="0" max="100" value="70" id="attraction-strength">
+                            </div>
+                        </div>
+                        <div class="interface-section">
+                            <div class="interface-header">Temporal Scope</div>
+                            <div class="interface-controls">
+                                <label>Near Term</label>
+                                <input type="range" min="1" max="100" value="30" id="temporal-scope">
+                                <label>Far Term</label>
+                            </div>
+                        </div>
+                        <div class="interface-section">
+                            <div class="interface-header">Reality Anchoring</div>
+                            <div class="reality-anchors">
+                                <button class="reality-anchor" data-value="0.25">Light</button>
+                                <button class="reality-anchor active" data-value="0.5">Moderate</button>
+                                <button class="reality-anchor" data-value="0.75">Strong</button>
+                                <button class="reality-anchor" data-value="1.0">Maximum</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="negotiation-outcome">
+                        <div class="panel-header">Field Outcome Projection</div>
+                        <div class="outcome-content" id="outcome-projection">
+                            <p>Enter an intention to see projected field outcomes...</p>
+                        </div>
                     </div>
                 </div>
             </div>
