@@ -1,28 +1,39 @@
 // ASTRA Web Interface - Advanced JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize cosmic background
-    initCosmicBackground();
-    
-    // Tab functionality
-    initTabs();
-    
-    // Form submission
-    initForm();
-    
-    // Add cosmic animations
-    addCosmicAnimations();
-    
-    // Initialize echo viewer
-    initEchoViewer();
-    
-    // Initialize city datalist
-    createDatalist();
-    setupCityAutocomplete();
-    
-    // Fix date field with current date
-    fixDateField();
-    
-    console.log('ASTRA interface successfully initialized');
+    try {
+        // Initialize cosmic background
+        initCosmicBackground();
+        
+        // Configure particle.js
+        initializeParticles();
+        
+        // Tab functionality
+        initTabs();
+        
+        // Form submission
+        initForm();
+        
+        // Add cosmic animations
+        addCosmicAnimations();
+        
+        // Initialize echo viewer
+        initEchoViewer();
+        
+        // Initialize city datalist
+        createDatalist();
+        setupCityAutocomplete();
+        
+        // Fix date field with current date
+        fixDateField();
+        
+        // Add responsive handlers
+        addResponsiveHandlers();
+        
+        console.log('ASTRA interface successfully initialized');
+    } catch (error) {
+        console.error('Error during initialization:', error);
+        showErrorMessage('Failed to initialize ASTRA interface. Please refresh the page.');
+    }
 });
 
 // ======== COSMIC BACKGROUND EFFECT ========
@@ -123,9 +134,12 @@ function initForm() {
     const nameInput = document.getElementById('name');
     const birthCityInput = document.getElementById('birth-city');
     const birthCountrySelect = document.getElementById('birth-country');
+    const generateBtn = document.getElementById('generate-btn');
+    const formError = document.getElementById('form-error');
     
-    if (!birthForm || !nameInput || !birthCityInput || !birthCountrySelect) {
+    if (!birthForm || !nameInput || !birthCityInput || !birthCountrySelect || !generateBtn) {
         console.error('Form elements not found');
+        showErrorMessage('Form initialization failed. Please refresh the page.');
         return;
     }
     
@@ -142,62 +156,100 @@ function initForm() {
         
         // Update city suggestions for the new country
         updateCitySuggestions(this.value, '');
+        
+        // Hide error message if it's showing
+        hideErrorMessage();
     });
     
     // Create datalist for city autocomplete
     setupCityAutocomplete();
     
+    // Add click handler for the generate button
+    generateBtn.addEventListener('click', function() {
+        try {
+            const loadingIndicator = document.getElementById('loading');
+            if (!loadingIndicator) {
+                throw new Error('Loading indicator not found');
+            }
+            
+            // Validate all inputs before submission
+            const isNameValid = validateName();
+            const isCityValid = validateCity();
+            const isCountryValid = birthCountrySelect.value !== '';
+            const isBirthDateValid = validateDateField();
+            const isBirthTimeValid = validateTimeField();
+            
+            // Check if all inputs are valid
+            if (!isNameValid || !isCityValid || !isCountryValid || !isBirthDateValid || !isBirthTimeValid) {
+                // Show validation errors
+                if (!isNameValid) nameInput.classList.add('invalid');
+                if (!isCityValid) birthCityInput.classList.add('invalid');
+                if (!isCountryValid) birthCountrySelect.classList.add('invalid');
+                if (!isBirthDateValid) document.getElementById('birth-date').classList.add('invalid');
+                if (!isBirthTimeValid) document.getElementById('birth-time').classList.add('invalid');
+                
+                // Show error message
+                showErrorMessage('Please fill in all required fields correctly.');
+                
+                // Shake the form to indicate error
+                birthForm.classList.add('shake');
+                setTimeout(() => birthForm.classList.remove('shake'), 500);
+                
+                return;
+            }
+            
+            // Hide any previous error messages
+            hideErrorMessage();
+            
+            // Show loading indicator
+            loadingIndicator.classList.remove('hidden');
+            
+            // Collect form data
+            const formData = {
+                name: nameInput.value,
+                birthDate: document.getElementById('birth-date').value,
+                birthTime: document.getElementById('birth-time').value,
+                birthCity: birthCityInput.value,
+                birthCountry: birthCountrySelect.value
+            };
+            
+            console.log('Form data collected:', formData);
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                try {
+                    generateResults(formData);
+                    loadingIndicator.classList.add('hidden');
+                    
+                    // Switch to visualization tab
+                    const visualizationTab = document.querySelector('[data-tab="visualization"]');
+                    if (visualizationTab) {
+                        visualizationTab.click();
+                        
+                        // After 2 seconds, show the results tab
+                        setTimeout(() => {
+                            const resultsTab = document.querySelector('[data-tab="results"]');
+                            if (resultsTab) {
+                                resultsTab.click();
+                            }
+                        }, 2000);
+                    }
+                } catch (error) {
+                    console.error('Error generating results:', error);
+                    loadingIndicator.classList.add('hidden');
+                    showErrorMessage('Failed to generate results. Please try again.');
+                }
+            }, 3000);
+        } catch (error) {
+            console.error('Error in form submission:', error);
+            showErrorMessage('An error occurred. Please try again.');
+        }
+    });
+    
+    // Keep the submit handler for backward compatibility
     birthForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Validate all inputs before submission
-        const isNameValid = validateName();
-        const isCityValid = validateCity();
-        const isCountryValid = birthCountrySelect.value !== '';
-        const isBirthDateValid = document.getElementById('birth-date').value !== '';
-        const isBirthTimeValid = document.getElementById('birth-time').value !== '';
-        
-        // Check if all inputs are valid
-        if (!isNameValid || !isCityValid || !isCountryValid || !isBirthDateValid || !isBirthTimeValid) {
-            // Show validation errors
-            if (!isNameValid) nameInput.classList.add('invalid');
-            if (!isCityValid) birthCityInput.classList.add('invalid');
-            if (!isCountryValid) birthCountrySelect.classList.add('invalid');
-            if (!isBirthDateValid) document.getElementById('birth-date').classList.add('invalid');
-            if (!isBirthTimeValid) document.getElementById('birth-time').classList.add('invalid');
-            
-            // Shake the form to indicate error
-            birthForm.classList.add('shake');
-            setTimeout(() => birthForm.classList.remove('shake'), 500);
-            
-            return; // Don't submit if validation fails
-        }
-        
-        // Show loading spinner
-        document.getElementById('loading').classList.remove('hidden');
-        
-        // Collect form data
-        const formData = {
-            name: nameInput.value,
-            birthDate: document.getElementById('birth-date').value,
-            birthTime: document.getElementById('birth-time').value,
-            birthCity: birthCityInput.value,
-            birthCountry: birthCountrySelect.value
-        };
-        
-        // Simulate API call with timeout
-        setTimeout(() => {
-            generateResults(formData);
-            document.getElementById('loading').classList.add('hidden');
-            
-            // Switch to visualization tab
-            document.querySelector('[data-tab="visualization"]').click();
-            
-            // After 2 seconds, show the results tab
-            setTimeout(() => {
-                document.querySelector('[data-tab="results"]').click();
-            }, 2000);
-        }, 3000);
+        generateBtn.click();
     });
 }
 
@@ -733,20 +785,175 @@ function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
-// Fix the date field by setting it to the current date
-function fixDateField() {
-    const birthDateInput = document.getElementById('birth-date');
-    if (birthDateInput) {
-        // Set to current date as default
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        birthDateInput.value = `${year}-${month}-${day}`;
-        console.log('Date field fixed:', birthDateInput.value);
-    } else {
-        console.error('Birth date input field not found');
+// This content should already be replaced by now
+
+// Initialize particles.js
+function initializeParticles() {
+    const particlesJS = window.particlesJS;
+    if (!particlesJS) {
+        console.error('particles.js library not loaded');
+        return;
     }
+    
+    try {
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: ['#8a2be2', '#0096ff', '#ff3e9d']
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#8a2be2',
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: true,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 0.8
+                        }
+                    },
+                    push: {
+                        particles_nb: 3
+                    }
+                }
+            },
+            retina_detect: true
+        });
+        console.log('particles.js initialized');
+    } catch (error) {
+        console.error('Error initializing particles.js:', error);
+    }
+}
+
+// Show error message
+function showErrorMessage(message) {
+    const errorEl = document.getElementById('form-error');
+    if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+    } else {
+        console.error(message);
+    }
+}
+
+// Hide error message
+function hideErrorMessage() {
+    const errorEl = document.getElementById('form-error');
+    if (errorEl) {
+        errorEl.classList.add('hidden');
+    }
+}
+
+// Add responsive handlers
+function addResponsiveHandlers() {
+    // Resize handler for canvases
+    window.addEventListener('resize', debounce(function() {
+        resizeCanvases();
+        
+        // Redraw any active visualizations
+        if (document.getElementById('visualization').classList.contains('active')) {
+            updateVisualizations();
+        }
+    }, 250));
+    
+    console.log('Responsive handlers added');
+}
+
+// Resize canvases to match their container size
+function resizeCanvases() {
+    const canvases = document.querySelectorAll('canvas');
+    canvases.forEach(canvas => {
+        const container = canvas.parentElement;
+        if (container) {
+            const rect = container.getBoundingClientRect();
+            if (rect.width > 0 && rect.height > 0) {
+                // Only resize if dimensions are valid
+                canvas.width = rect.width;
+                canvas.height = Math.min(rect.width * 0.6, rect.height);
+            }
+        }
+    });
+}
+
+// Debounce function to limit how often a function is called
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
 function generateRandomEvents() {

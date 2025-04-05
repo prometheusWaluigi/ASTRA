@@ -55,7 +55,7 @@
                 <span class="tab-text">About ASTRA</span>
             </button>
             <button class="tab-btn" data-tab="visualization">
-                <span class="tab-icon"><i class="fas fa-chart-network"></i></span>
+                <span class="tab-icon"><i class="fas fa-chart-bar"></i></span>
                 <span class="tab-text">Visualizations</span>
             </button>
             <button class="tab-btn" data-tab="results">
@@ -84,7 +84,7 @@
             <div id="input" class="tab-pane active">
                 <h2>Enter Your Birth Information</h2>
                 <p class="introduction-text">ASTRA transforms your birth data into a quantum consciousness topology map. <span class="info-tooltip" data-tooltip="Your birth information serves as initial conditions for the field equations that generate your unique consciousness topology.">How does it work?</span></p>
-                <form id="birth-data-form">
+                <form id="birth-data-form" onsubmit="return false;">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
@@ -178,7 +178,8 @@
                         </select>
                     </div>
                     
-                    <button type="submit" class="submit-btn">Generate ASTRA Analysis</button>
+                    <button type="button" id="generate-btn" class="submit-btn">Generate ASTRA Analysis</button>
+                    <div id="form-error" class="error-message hidden"></div>
                 </form>
                 
                 <div id="loading" class="loading hidden">
@@ -704,9 +705,20 @@
     <script src="https://unpkg.com/force-graph@1.43.0/dist/force-graph.min.js"></script>
     <!-- Main script -->
     <script src="script.js"></script>
-    <!-- Analytics scripts (optional) -->
-    <script async defer>
-        console.log('ASTRA Web Interface Loaded Successfully');
+    <!-- Error handling -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Global error caught:', e.message);
+            const errorContainer = document.createElement('div');
+            errorContainer.className = 'global-error';
+            errorContainer.innerHTML = `
+                <div class="error-content">
+                    <h3>Something went wrong</h3>
+                    <p>Please try refreshing the page. If the problem persists, check the browser console for details.</p>
+                </div>
+            `;
+            document.body.appendChild(errorContainer);
+        });
     </script>
 </body>
 </html>
