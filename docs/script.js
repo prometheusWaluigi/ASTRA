@@ -1,6 +1,19 @@
 // ASTRA Web Interface - Advanced JavaScript
+// Define global variables and cache DOM elements to improve performance
+const domCache = {
+    visualizationCanvases: new Map(),
+    tabs: null,
+    tabPanes: null,
+    form: null
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialization sequence - each wrapped individually to prevent one failure from stopping others
+    // Cache frequently used DOM elements
+    domCache.tabs = document.querySelectorAll('.tab-btn');
+    domCache.tabPanes = document.querySelectorAll('.tab-pane');
+    domCache.form = document.getElementById('birth-data-form');
+    
     try {
         // Initialize cosmic background
         initCosmicBackground();
@@ -157,6 +170,10 @@ function createCosmicParticles() {
 
 // ======== TAB NAVIGATION ========
 function initTabs() {
+    if (!domCache.tabs || !domCache.tabPanes) {
+        console.error('Tab elements not found in DOM');
+        return;
+    }
     document.addEventListener('click', function(e) {
         if (e.target.matches('.tab-btn')) {
             const tabId = e.target.dataset.tab;
@@ -175,6 +192,10 @@ function initTabs() {
 
 // ======== FORM HANDLING ========
 function initForm() {
+    if (!domCache.form) {
+        console.error('Form element not found in DOM');
+        return;
+    }
     const birthForm = document.getElementById('birth-data-form');
     const nameInput = document.getElementById('name');
     const birthCityInput = document.getElementById('birth-city');
@@ -830,7 +851,19 @@ function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
-// This content should already be replaced by now
+// DOM Cache initialization function
+function initDomCache() {
+    domCache.visualizationCanvases = new Map();
+    domCache.tabs = document.querySelectorAll('.tab-btn');
+    domCache.tabPanes = document.querySelectorAll('.tab-pane');
+    domCache.form = document.getElementById('birth-data-form');
+    
+    console.log('DOM Cache initialized with:', {
+        'tabs': domCache.tabs?.length || 0,
+        'tabPanes': domCache.tabPanes?.length || 0,
+        'form': domCache.form ? 'found' : 'not found'
+    });
+}
 
 // Initialize particles.js
 function initializeParticles() {
@@ -1075,14 +1108,14 @@ function createDatalist() {
     return datalist;
 }
 
-// Cleanup previous instance
-const cleanupRegistry = new FinalizationRegistry(canvasId => {
+// Cleanup function for canvas elements
+function cleanupCanvas(canvasId) {
     const canvas = domCache.visualizationCanvases.get(canvasId);
     if (canvas) {
-        canvas.ctx = null;
+        if (canvas.ctx) canvas.ctx = null;
         domCache.visualizationCanvases.delete(canvasId);
     }
-});
+}
 
 // ======== NARRATIVE INERTIA TENSOR ========
 function initNarrativeInertiaTensor() {

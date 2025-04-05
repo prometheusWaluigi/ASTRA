@@ -17,7 +17,7 @@
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <!-- Force Graph for topology visualization -->
-    <script src="https://unpkg.com/3d-force-graph"></script>
+    <script src="https://unpkg.com/3d-force-graph@1.43.0/dist/3d-force-graph.min.js"></script>
     <!-- Custom stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -703,17 +703,23 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <!-- ForceGraph for network visualizations -->
     <script src="https://unpkg.com/force-graph@1.43.0/dist/force-graph.min.js"></script>
+    <!-- Fix script -->
+    <script src="astra-fix.js"></script>
+    <!-- Debug script -->
+    <script src="debug.js"></script>
     <!-- Main script -->
     <script src="script.js"></script>
     <!-- Error handling -->
     <script>
         window.addEventListener('error', function(e) {
-            console.error('Global error caught:', e.message);
+            console.error('Global error caught:', e.message, e.filename, e.lineno);
             const errorContainer = document.createElement('div');
             errorContainer.className = 'global-error';
             errorContainer.innerHTML = `
                 <div class="error-content">
                     <h3>Something went wrong</h3>
+                    <p>Error: ${e.message}</p>
+                    <p>Location: ${e.filename}:${e.lineno}</p>
                     <p>Please try refreshing the page. If the problem persists, check the browser console for details.</p>
                 </div>
             `;
