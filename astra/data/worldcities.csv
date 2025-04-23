@@ -1,0 +1,21 @@
+city,country,subcountry,geonameid,lat,lng
+New York,United States,New York,5128581,40.7128,-74.0060
+Los Angeles,United States,California,5368361,34.0522,-118.2437
+London,United Kingdom,England,2643743,51.5074,-0.1278
+Paris,France,Ile-de-France,2988507,48.8566,2.3522
+Tokyo,Japan,Tokyo,1850147,35.6895,139.6917
+Delhi,India,Delhi,1273294,28.7041,77.1025
+Sydney,Australia,New South Wales,2147714,-33.8688,151.2093
+Toronto,Canada,Ontario,6167865,43.6532,-79.3832
+Berlin,Germany,Berlin,2950159,52.52,13.405
+Moscow,Russia,Moscow,524901,55.7558,37.6176
+Beijing,China,Beijing,1816670,39.9042,116.4074
+Cairo,Egypt,Cairo,360630,30.0444,31.2357
+Sao Paulo,Brazil,Sao Paulo,3448439,-23.5505,-46.6333
+Buenos Aires,Argentina,Buenos Aires,3435910,-34.6037,-58.3816
+Johannesburg,South Africa,Gauteng,993800,-26.2041,28.0473
+Istanbul,Turkey,Istanbul,745044,41.0082,28.9784
+Seoul,South Korea,Seoul,1835848,37.5665,126.978
+Singapore,Singapore,Singapore,1880252,1.3521,103.8198
+Dubai,United Arab Emirates,Dubai,292223,25.2048,55.2708
+Mexico City,Mexico,Mexico City,3530597,19.4326,-99.1332

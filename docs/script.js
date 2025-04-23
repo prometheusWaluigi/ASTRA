@@ -67,8 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     try {
-        // Initialize city datalist
-        createDatalist();
+        // Initialize city autocomplete
         setupCityAutocomplete();
         console.log('City autocomplete initialized');
     } catch (error) {
@@ -392,13 +391,33 @@ function setupCityAutocomplete() {
     }
 }
 
-// Update city suggestions in datalist - now handled by Google Places API
-function updateCitySuggestions(country, filter = '') {
-    // This function is kept for backward compatibility
-    // The actual implementation is in google-places-integration.js
-    console.log('City suggestions now handled by Google Places API');
-    return;
+// Update city suggestions using Flask backend
+async function updateCitySuggestions(country, filter = '') {
+    if (!country || filter.length < 1) return;
+    try {
+        const resp = await fetch(`/city_search?country=${encodeURIComponent(country)}&query=${encodeURIComponent(filter)}`);
+        const suggestions = await resp.json();
+        const resultsDiv = document.getElementById('city-autocomplete-results');
+        resultsDiv.innerHTML = '';
+        suggestions.forEach(city => {
+            const div = document.createElement('div');
+            div.className = 'autocomplete-item';
+            div.textContent = city.city;
+            div.dataset.lat = city.lat;
+            div.dataset.lng = city.lng;
+            div.onclick = function() {
+                document.getElementById('birth-city').value = city.city;
+                document.getElementById('birth-city-lat').value = city.lat;
+                document.getElementById('birth-city-lng').value = city.lng;
+                resultsDiv.innerHTML = '';
+            };
+            resultsDiv.appendChild(div);
+        });
+    } catch (e) {
+        console.error('Error fetching city suggestions:', e);
+    }
 }
+
 
 // Check if a city exists in the selected country - now handled by Google Places API
 function isCityInCountry(city, country) {
