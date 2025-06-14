@@ -4,6 +4,8 @@
  */
 
 // Initialize Google Places Autocomplete when the Google Maps API is loaded
+let placeAutocompleteElementInstance = null; // To hold the instance for dynamic updates
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Waiting for Google Places API to load');
     
@@ -33,82 +35,124 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  * Initialize Google Places Autocomplete for the birth city input
  */
-function initGooglePlacesAutocomplete() {
-    // Get the input element
-    const cityInput = document.getElementById('birth-city');
+async function initGooglePlacesAutocomplete() { // Made async for await google.maps.importLibrary
+    // Get original input element and hidden fields
+    const originalCityInput = document.getElementById('birth-city');
     const latInput = document.getElementById('birth-city-lat');
     const lngInput = document.getElementById('birth-city-lng');
-    
-    if (!cityInput) {
-        console.error('Birth city input not found');
+
+    if (!originalCityInput) {
+        console.error('Original birth city input element not found');
         return;
     }
-    
-    // Check if Google Places API is loaded
-    if (!window.google || !window.google.maps || !window.google.maps.places) {
-        console.error('Google Places API not loaded. Please check your API key.');
-        
-        // Add a visual indicator that the API is not loaded
-        cityInput.classList.add('api-error');
-        
-        // Show a more helpful message based on the environment
-        if (window.location.hostname.includes('github.io')) {
-            cityInput.setAttribute('placeholder', 'API key not set in GitHub Secrets');
-            console.warn('For GitHub Pages: Add GOOGLE_API_KEY to repository secrets');
-        } else {
-            cityInput.setAttribute('placeholder', 'Google Places API not loaded');
-            console.warn('For local development: Create config.js with your API key');
-        }
-        
-        // Fall back to basic input
-        setupBasicCityInput(cityInput);
-        return;
-    }
-    
+
+    // Ensure the Places library is loaded
     try {
-        // Create the autocomplete object, restricting the search to geographical
-        // location types (cities, regions, etc.)
-        const autocomplete = new google.maps.places.Autocomplete(cityInput, {
+        if (!google.maps.places) {
+            console.log('Places library not found directly, attempting to import...');
+            await google.maps.importLibrary("places");
+            console.log('Places library imported successfully.');
+        }
+    } catch (e) {
+        console.error('Error importing Google Places library:', e);
+        if (originalCityInput) setupBasicCityInput(originalCityInput); // Fallback for original input
+        return;
+    }
+
+    // Check if Google Places API is truly available now
+    if (!window.google || !window.google.maps || !window.google.maps.places || !google.maps.places.PlaceAutocompleteElement) {
+        console.error('Google Places API or PlaceAutocompleteElement not available after import. Please check your API key and library loading.');
+        if (originalCityInput) {
+            originalCityInput.classList.add('api-error');
+            if (window.location.hostname.includes('github.io')) {
+                originalCityInput.setAttribute('placeholder', 'API key/config issue for new Autocomplete');
+            } else {
+                originalCityInput.setAttribute('placeholder', 'Google Places API (New) not loaded');
+            }
+            setupBasicCityInput(originalCityInput);
+        }
+        return;
+    }
+
+    try {
+        // Create the new PlaceAutocompleteElement
+        const placeAutocompleteElement = new google.maps.places.PlaceAutocompleteElement({
             types: ['(cities)'],
-            fields: ['address_components', 'geometry', 'name', 'formatted_address']
+            // `fields` are requested later with place.fetchFields()
         });
-        
-        // When a place is selected, populate the hidden fields with lat/lng
-        autocomplete.addListener('place_changed', function() {
-            const place = autocomplete.getPlace();
-            
-            if (!place.geometry) {
-                console.warn('No geometry information available for selected place');
+
+        placeAutocompleteElementInstance = placeAutocompleteElement; // Assign to the module-scoped variable
+
+        // Assign properties from the old input to the new element
+        placeAutocompleteElement.id = originalCityInput.id; // 'birth-city'
+        placeAutocompleteElement.name = originalCityInput.name;
+        placeAutocompleteElement.placeholder = originalCityInput.placeholder;
+        if (originalCityInput.required) {
+            placeAutocompleteElement.setAttribute('required', '');
+        }
+        // Copy other relevant classes if any, besides 'api-error' which we handle
+        originalCityInput.classList.forEach(cls => {
+            if (cls !== 'api-error' && cls !== 'valid' && cls !== 'invalid') {
+                placeAutocompleteElement.classList.add(cls);
+            }
+        });
+
+        // Replace the old input with the new PlaceAutocompleteElement
+        originalCityInput.parentNode.replaceChild(placeAutocompleteElement, originalCityInput);
+        console.log('Replaced old input with PlaceAutocompleteElement.');
+
+        // Add the event listener for when a place is selected
+        placeAutocompleteElement.addEventListener('gmp-select', async (event) => {
+            const placePrediction = event.placePrediction;
+            if (!placePrediction) {
+                console.warn('No place prediction data in gmp-select event');
                 return;
             }
+            const place = placePrediction.toPlace();
             
+            try {
+                await place.fetchFields({ fields: ['address_components', 'geometry', 'name', 'formatted_address'] });
+            } catch (error) {
+                console.error('Error fetching place fields:', error);
+                window.alert("Could not retrieve details for the selected place. Error: " + error.message);
+                return;
+            }
+
+            if (!place.geometry || !place.geometry.location) {
+                console.warn('No geometry information available for selected place after fetching fields');
+                // Optionally, clear hidden fields or show a message
+                if (latInput) latInput.value = '';
+                if (lngInput) lngInput.value = '';
+                return;
+            }
+
             // Store latitude and longitude in hidden fields
             if (latInput) latInput.value = place.geometry.location.lat();
             if (lngInput) lngInput.value = place.geometry.location.lng();
-            
+
             // Extract and store city, state/province, and country information
             let city = '';
             let state = '';
             let country = '';
             let countryCode = '';
-            
-            for (const component of place.address_components) {
-                const types = component.types;
-                
-                if (types.includes('locality')) {
-                    city = component.long_name;
-                } else if (types.includes('administrative_area_level_1')) {
-                    state = component.long_name;
-                } else if (types.includes('country')) {
-                    country = component.long_name;
-                    countryCode = component.short_name;
+
+            if (place.address_components) {
+                for (const component of place.address_components) {
+                    const types = component.types;
+                    if (types.includes('locality')) {
+                        city = component.long_name;
+                    } else if (types.includes('administrative_area_level_1')) {
+                        state = component.long_name;
+                    } else if (types.includes('country')) {
+                        country = component.long_name;
+                        countryCode = component.short_name;
+                    }
                 }
             }
-            
+
             // Update country dropdown if available
             const countrySelect = document.getElementById('birth-country');
             if (countrySelect && countryCode) {
-                // Try to select the matching country option
                 const options = countrySelect.options;
                 for (let i = 0; i < options.length; i++) {
                     if (options[i].value === countryCode) {
@@ -117,10 +161,9 @@ function initGooglePlacesAutocomplete() {
                     }
                 }
             }
-            
-            // Log the selected place details
-            console.log('Selected place:', {
-                name: place.name,
+
+            console.log('Selected place (New API):', {
+                name: place.name || place.displayName,
                 formattedAddress: place.formatted_address,
                 lat: place.geometry.location.lat(),
                 lng: place.geometry.location.lng(),
@@ -129,11 +172,11 @@ function initGooglePlacesAutocomplete() {
                 country,
                 countryCode
             });
-            
+
             // Dispatch a custom event for other components to react to
-            const event = new CustomEvent('placeSelected', {
+            const customEvent = new CustomEvent('placeSelected', {
                 detail: {
-                    name: place.name,
+                    name: place.name || place.displayName,
                     formattedAddress: place.formatted_address,
                     lat: place.geometry.location.lat(),
                     lng: place.geometry.location.lng(),
@@ -143,23 +186,39 @@ function initGooglePlacesAutocomplete() {
                     countryCode
                 }
             });
-            document.dispatchEvent(event);
+            document.dispatchEvent(customEvent);
         });
-        
-        // Prevent form submission when Enter is pressed in the autocomplete field
-        cityInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && autocomplete.getPlace === undefined) {
-                e.preventDefault();
+
+        // The new PlaceAutocompleteElement handles Enter key behavior appropriately by default.
+        // The old keydown listener for cityInput might not be necessary or could conflict.
+        // If specific Enter key behavior is still needed, it should be tested carefully with the new element.
+
+        // Add custom styling to the Google Places autocomplete dropdown (may need review for new element)
+        // Listen for country changes to update autocomplete restrictions
+        document.addEventListener('countryChanged', (event) => {
+            if (placeAutocompleteElementInstance && event.detail && event.detail.country) {
+                const countryCode = event.detail.country.toLowerCase(); // Ensure lowercase for API
+                console.log(`Country changed to: ${countryCode}. Updating autocomplete restrictions.`);
+                placeAutocompleteElementInstance.componentRestrictions = { country: countryCode };
+            } else if (placeAutocompleteElementInstance && event.detail && (event.detail.country === '' || event.detail.country === null)) {
+                // If country is cleared (e.g., "Select Country" is chosen or value is empty/null), remove restrictions
+                console.log('Country cleared. Removing autocomplete restrictions.');
+                placeAutocompleteElementInstance.componentRestrictions = null; 
             }
         });
-        
-        // Add custom styling to the Google Places autocomplete dropdown
+
         customizeAutocompleteStyles();
         
-        console.log('Google Places Autocomplete initialized successfully');
+        console.log('Google PlaceAutocompleteElement initialized successfully');
     } catch (error) {
-        console.error('Error initializing Google Places Autocomplete:', error);
-        setupBasicCityInput(cityInput);
+        console.error('Error initializing Google PlaceAutocompleteElement:', error);
+        // If new element failed, try to fallback with the original (now detached) input, or a new basic one.
+        const fallbackInput = document.getElementById('birth-city') || document.createElement('input');
+        if (!document.getElementById('birth-city')) { // If original was removed and new one not added
+            fallbackInput.id = 'birth-city';
+             // Consider re-adding to DOM if it was fully removed and not replaced
+        }
+        setupBasicCityInput(fallbackInput);
     }
 }
 

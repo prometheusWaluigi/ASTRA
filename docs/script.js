@@ -333,43 +333,45 @@ function validateName() {
         nameInput.classList.toggle('valid', isValid);
         nameInput.classList.toggle('invalid', !isValid);
     }
-    
     return isValid;
 }
 
-// Validate city input
+// Validate city input (revised for Google Places API)
 function validateCity() {
-    const cityInput = document.getElementById('birth-city');
-    const countrySelect = document.getElementById('birth-country');
-    
-    if (!cityInput || !countrySelect) {
-        console.error('City input or country select not found');
+    const cityInput = document.getElementById('birth-city'); // This will be the PlaceAutocompleteElement
+    const latInput = document.getElementById('birth-city-lat');
+    const lngInput = document.getElementById('birth-city-lng');
+
+    if (!cityInput) {
+        console.error('Birth city input element not found for validation.');
         return false;
     }
-    
-    const city = cityInput.value.trim();
-    const country = countrySelect.value;
-    
-    // If no country is selected, we can't validate the city
-    if (country === '') {
-        cityInput.classList.remove('valid', 'invalid');
+
+    const cityValue = cityInput.value ? cityInput.value.trim() : ""; // The PlaceAutocompleteElement has a .value property
+
+    // Check 1: City input should not be empty.
+    if (cityValue === '') {
+        cityInput.classList.remove('valid');
+        cityInput.classList.add('invalid');
+        // Error message will be shown by the main form handler if submission is attempted.
         return false;
     }
-    
-    // Check if city exists in the selected country
-    const cityExists = isCityInCountry(city, country);
-    const isValid = city.length >= 2 && cityExists;
-    
-    // Update input styling based on validation
-    if (city === '') {
-        cityInput.classList.remove('valid', 'invalid');
+
+    // Check 2: Hidden lat/lng fields must be populated (indicates a place was selected from Google Places).
+    // This is the most important check for form submission.
+    if (latInput && lngInput && latInput.value.trim() !== '' && lngInput.value.trim() !== '') {
+        cityInput.classList.remove('invalid');
+        cityInput.classList.add('valid');
+        // hideErrorMessage(); // Let main form handler manage messages
+        return true;
     } else {
-        cityInput.classList.toggle('valid', isValid);
-        cityInput.classList.toggle('invalid', !isValid);
+        cityInput.classList.remove('valid');
+        cityInput.classList.add('invalid');
+        // Error message will be shown by the main form handler if submission is attempted.
+        // This indicates the user typed something but didn't select a valid place from the dropdown.
+        console.warn('Validation fail: City input has value but lat/lng are missing. User may not have selected a place.');
+        return false;
     }
-    
-    console.log(`City validation: ${city} is ${isValid ? 'valid' : 'invalid'} for ${country}`);
-    return isValid;
 }
 
 // Setup city autocomplete - now handled by Google Places API
