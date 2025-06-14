@@ -212,7 +212,7 @@ function initForm() {
     
     // Set up input validation
     nameInput.addEventListener('input', validateName);
-    birthCityInput.addEventListener('input', validateCity);
+    // birthCityInput.addEventListener('input', validateCity); // Temporarily commented out for Google Places API testing
     birthCountrySelect.addEventListener('change', function() {
         // Clear city input when country changes
         birthCityInput.value = '';
