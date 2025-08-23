@@ -12,11 +12,20 @@ import traceback
 import numpy as np
 import matplotlib.pyplot as plt
 
+# When this file is executed directly (``python tests/test_simple.py``) the
+# working directory becomes the ``tests`` folder, meaning the project root is
+# not automatically on ``sys.path``.  Add the parent directory so that the
+# ``astra`` package can be imported without requiring installation.
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
 # Make sure output directory exists
 os.makedirs("output/simple_test", exist_ok=True)
 
-# Error handler
-def test_section(name, test_func):
+# Error handler helper used when running this file directly.  The name does not
+# start with ``test_`` so that pytest does not try to treat it as a test.
+def run_section(name, test_func):
     """Run a test section with proper error handling"""
     print(f"\n{'='*60}")
     print(f"Testing {name}...")
@@ -186,7 +195,7 @@ def main():
     
     results = []
     for name, func in tests:
-        success = test_section(name, func)
+        success = run_section(name, func)
         results.append((name, success))
     
     # Print summary

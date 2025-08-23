@@ -12,8 +12,15 @@ matplotlib.use('Agg')  # Use non-interactive backend
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
-# Make sure we can import from the astra package
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Ensure the project root is on the Python path so the ``astra`` package can
+# be imported when this file is executed directly.  ``__file__`` points to
+# ``tests/archive/test_core_ascii.py`` so we need to traverse three directories
+# up to reach the repository root.
+PROJECT_ROOT = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
 
 # Import ASTRA core modules
 try:
