@@ -171,8 +171,15 @@ class QualiaField:
             except (AttributeError, KeyError) as e:
                 print(f"Warning: Could not add {planet_key}: {e}")
         
-        # Normalize to nice range
-        self.state = self.state / np.max(np.abs(self.state)) * 2 - 1
+        # Normalize to [-1, 1] if the field has any variation. The previous
+        # implementation attempted to shift the range using ``* 2 - 1``, which
+        # actually produced values in ``[-3, 1]`` and triggered a division by
+        # zero when the field was entirely flat. We instead scale by the maximum
+        # absolute value only when it is non-zero, leaving a zero field
+        # unchanged.
+        max_val = np.max(np.abs(self.state))
+        if max_val > 0:
+            self.state = self.state / max_val
     
     def get_state(self) -> np.ndarray:
         """
