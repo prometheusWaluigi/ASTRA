@@ -154,6 +154,11 @@ python -m http.server 8000
 
 The web interface provides a simple way to interact with ASTRA without needing to install all the dependencies or run Python code directly.
 
+### Simple Input Page
+
+If the main interface is too feature-rich or requires external API keys, a minimal fallback is available at [`docs/simple.html`](docs/simple.html).
+It offers a basic form with name, birth date, time, and city fields using the built-in city database and displays a lightweight analysis without any additional setup.
+
 ## Modules 🧩
 
 ### `/core` ✅

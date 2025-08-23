@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASTRA – Simple Input</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>ASTRA – Simple Input</h1>
+  <form id="birth-form">
+    <label>Name:
+      <input type="text" id="name" required>
+    </label>
+    <label>Birth Date:
+      <input type="date" id="date" required>
+    </label>
+    <label>Birth Time:
+      <input type="time" id="time" required>
+    </label>
+    <label>Birth Place:
+      <input type="text" id="city" list="city-options" placeholder="City, Country" required>
+      <datalist id="city-options"></datalist>
+    </label>
+    <button type="submit">Generate Analysis</button>
+  </form>
+  <pre id="analysis"></pre>
+  <script src="simple.js"></script>
+</body>
+</html>
