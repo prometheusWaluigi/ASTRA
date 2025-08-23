@@ -28,11 +28,11 @@ def section_header(title):
     print(title)
     print("-" * 60)
 
-def test_component(name, test_func):
-    """Run a test with proper error handling"""
+def run_component(name, test_func):
+    """Run a test section with proper error handling"""
     section_header(f"Testing {name}")
     component_start = time.time()
-    
+
     success = False
     try:
         result = test_func()
@@ -41,10 +41,10 @@ def test_component(name, test_func):
     except Exception as e:
         print(f"✗ ERROR: {type(e).__name__}: {str(e)}")
         traceback.print_exc(limit=2)
-    
+
     duration = time.time() - component_start
     print(f"Duration: {duration:.2f} seconds")
-    
+
     return success
 
 def test_imports():
@@ -409,7 +409,7 @@ def main():
     
     results = []
     for name, func in tests:
-        success = test_component(name, func)
+        success = run_component(name, func)
         results.append((name, success))
     
     # Print summary
