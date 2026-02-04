@@ -7,6 +7,54 @@ const domCache = {
     form: null
 };
 
+const uxLogLimit = 4;
+
+function logUxUpdate(outputId, label, detail) {
+    const output = document.getElementById(outputId);
+    if (!output) return;
+    const list = output.querySelector('.ux-output-list');
+    if (!list) return;
+
+    const item = document.createElement('li');
+    item.className = 'ux-output-item';
+
+    const labelEl = document.createElement('span');
+    const timestamp = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+    labelEl.textContent = `${label} • ${timestamp}`;
+
+    const detailEl = document.createElement('div');
+    detailEl.textContent = detail;
+
+    item.appendChild(labelEl);
+    item.appendChild(detailEl);
+    list.prepend(item);
+
+    while (list.children.length > uxLogLimit) {
+        list.removeChild(list.lastChild);
+    }
+
+    output.classList.add('ux-pulse');
+    setTimeout(() => output.classList.remove('ux-pulse'), 600);
+}
+
+function initUxTextSuite() {
+    const modules = [
+        { id: 'ux-input-output', label: 'Input module ready', detail: 'Awaiting birth data entry.' },
+        { id: 'ux-visualization-output', label: 'Visualization module ready', detail: 'Waiting for visualization controls.' },
+        { id: 'ux-results-output', label: 'Results module ready', detail: 'No analysis generated yet.' },
+        { id: 'ux-echo-output', label: 'Echo Viewer ready', detail: 'Timeline controls standing by.' },
+        { id: 'ux-fhpx-output', label: 'Hero\'s Path ready', detail: 'Stage map standing by.' },
+        { id: 'ux-dreamsigils-output', label: 'DreamSigils ready', detail: 'Generate a sigil to populate the library.' },
+        { id: 'ux-retrofield-output', label: 'RetroField ready', detail: 'Encode an intention to project outcomes.' }
+    ];
+
+    modules.forEach(module => logUxUpdate(module.id, module.label, module.detail));
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialization sequence - each wrapped individually to prevent one failure from stopping others
     // Cache frequently used DOM elements
@@ -65,6 +113,30 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (error) {
         console.error('Error initializing echo viewer:', error);
     }
+
+    try {
+        // Initialize Hero's Path module
+        initHeroPath();
+        console.log('Hero\'s Path initialized');
+    } catch (error) {
+        console.error('Error initializing Hero\'s Path:', error);
+    }
+
+    try {
+        // Initialize DreamSigils module
+        initDreamSigils();
+        console.log('DreamSigils initialized');
+    } catch (error) {
+        console.error('Error initializing DreamSigils:', error);
+    }
+
+    try {
+        // Initialize RetroField module
+        initRetroField();
+        console.log('RetroField initialized');
+    } catch (error) {
+        console.error('Error initializing RetroField:', error);
+    }
     
     try {
         // Initialize city autocomplete
@@ -88,6 +160,14 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Responsive handlers initialized');
     } catch (error) {
         console.error('Error initializing responsive handlers:', error);
+    }
+
+    try {
+        // Initialize UX text suite
+        initUxTextSuite();
+        console.log('UX text suite initialized');
+    } catch (error) {
+        console.error('Error initializing UX text suite:', error);
     }
     
     console.log('ASTRA interface initialization complete');
@@ -211,8 +291,33 @@ function initForm() {
     console.log('Initializing form handlers');
     
     // Set up input validation
-    nameInput.addEventListener('input', validateName);
-    // birthCityInput.addEventListener('input', validateCity); // Temporarily commented out for Google Places API testing
+    nameInput.addEventListener('input', () => {
+        const isValid = validateName();
+        logUxUpdate(
+            'ux-input-output',
+            'Name updated',
+            isValid ? `Name accepted: ${nameInput.value.trim()}` : 'Name must be at least 2 characters.'
+        );
+    });
+    document.addEventListener('input', (event) => {
+        if (event.target && event.target.id === 'birth-city') {
+            const cityValue = event.target.value || '';
+            logUxUpdate(
+                'ux-input-output',
+                'Birth city updated',
+                cityValue ? `City entry: ${cityValue}` : 'City input cleared.'
+            );
+        }
+    });
+    document.addEventListener('placeSelected', (event) => {
+        if (event.detail && event.detail.city) {
+            logUxUpdate(
+                'ux-input-output',
+                'City selected',
+                `${event.detail.city}, ${event.detail.countryCode || event.detail.country || 'Unknown'}`
+            );
+        }
+    });
     birthCountrySelect.addEventListener('change', function() {
         // Clear city input when country changes
         birthCityInput.value = '';
@@ -222,8 +327,22 @@ function initForm() {
         // Update city suggestions for the new country
         updateCitySuggestions(this.value, '');
         
+        logUxUpdate(
+            'ux-input-output',
+            'Country selected',
+            this.value ? `Country set to ${this.value}` : 'Country cleared.'
+        );
+
         // Hide error message if it's showing
         hideErrorMessage();
+    });
+
+    document.getElementById('birth-date').addEventListener('change', function() {
+        logUxUpdate('ux-input-output', 'Birth date updated', `Date set to ${this.value || '—'}`);
+    });
+
+    document.getElementById('birth-time').addEventListener('change', function() {
+        logUxUpdate('ux-input-output', 'Birth time updated', `Time set to ${this.value || '—'}`);
     });
     
     // Create datalist for city autocomplete
@@ -236,6 +355,8 @@ function initForm() {
             if (!loadingIndicator) {
                 throw new Error('Loading indicator not found');
             }
+
+            logUxUpdate('ux-input-output', 'Analysis requested', 'Validating form data before generating results.');
             
             // Validate all inputs before submission
             const isNameValid = validateName();
@@ -255,6 +376,8 @@ function initForm() {
                 
                 // Show error message
                 showErrorMessage('Please fill in all required fields correctly.');
+
+                logUxUpdate('ux-input-output', 'Validation failed', 'One or more required fields are missing or invalid.');
                 
                 // Shake the form to indicate error
                 birthForm.classList.add('shake');
@@ -268,6 +391,7 @@ function initForm() {
             
             // Show loading indicator
             loadingIndicator.classList.remove('hidden');
+            logUxUpdate('ux-input-output', 'Generating analysis', 'Running ASTRA modules to build results.');
             
             // Collect form data
             const formData = {
@@ -285,6 +409,7 @@ function initForm() {
                 try {
                     generateResults(formData);
                     loadingIndicator.classList.add('hidden');
+                    logUxUpdate('ux-results-output', 'Results generated', `Analysis completed for ${formData.name}.`);
                     
                     // Switch to visualization tab
                     const visualizationTab = document.querySelector('[data-tab="visualization"]');
@@ -303,11 +428,13 @@ function initForm() {
                     console.error('Error generating results:', error);
                     loadingIndicator.classList.add('hidden');
                     showErrorMessage('Failed to generate results. Please try again.');
+                    logUxUpdate('ux-results-output', 'Generation error', 'An error occurred while generating analysis.');
                 }
             }, 3000);
         } catch (error) {
             console.error('Error in form submission:', error);
             showErrorMessage('An error occurred. Please try again.');
+            logUxUpdate('ux-input-output', 'Submission error', 'Unable to process form submission.');
         }
     });
     
@@ -496,6 +623,7 @@ function generateResults(formData) {
         </div>
     `;
     document.getElementById('natal-report').classList.remove('hidden');
+    logUxUpdate('ux-results-output', 'Natal report updated', 'Planetary configuration rendered.');
     
     // Generate mock field analysis
     const fieldAnalysis = document.querySelector('#field-analysis .report-content');
@@ -513,6 +641,7 @@ function generateResults(formData) {
         </div>
     `;
     document.getElementById('field-analysis').classList.remove('hidden');
+    logUxUpdate('ux-results-output', 'Field analysis updated', 'QualiaField parameters computed.');
     
     // Generate mock topology analysis
     const topoAnalysis = document.querySelector('#topology-analysis .report-content');
@@ -535,6 +664,7 @@ function generateResults(formData) {
         </div>
     `;
     document.getElementById('topology-analysis').classList.remove('hidden');
+    logUxUpdate('ux-results-output', 'Topology analysis updated', `Betti numbers set to β₀=${betti0}, β₁=${betti1}, β₂=${betti2}.`);
     
     // Generate mock narrative events
     const narrativeEvents = document.querySelector('#narrative-events .report-content');
@@ -548,6 +678,7 @@ function generateResults(formData) {
     eventsHTML += `</ul></div>`;
     narrativeEvents.innerHTML = eventsHTML;
     document.getElementById('narrative-events').classList.remove('hidden');
+    logUxUpdate('ux-results-output', 'Narrative events updated', `${events.length} archetypal events logged.`);
     
     // Update visualizations
     updateVisualizations();
@@ -559,6 +690,8 @@ function updateVisualizations() {
     const initialField = document.getElementById('initial-field');
     const evolvedField = document.getElementById('evolved-field');
     const topologyVis = document.getElementById('topology-vis');
+
+    logUxUpdate('ux-visualization-output', 'Visualization refresh', 'Rendering updated field canvases and topology graph.');
     
     // Replace placeholders with mock visualizations
     initialField.querySelector('.placeholder-img').style.display = 'none';
@@ -581,6 +714,11 @@ function updateVisualizations() {
     document.getElementById('betti1').textContent = betti1;
     document.getElementById('betti2').textContent = betti2;
     document.getElementById('ricci-curvature').textContent = ricciCurvature;
+    logUxUpdate(
+        'ux-visualization-output',
+        'Topology stats updated',
+        `β₀=${betti0}, β₁=${betti1}, β₂=${betti2}, RC=${ricciCurvature}.`
+    );
     
     // Initialize canvas visualizations
     initializeCanvasVisualizations();
@@ -625,11 +763,32 @@ function initializeCanvasVisualizations() {
             const ctx = document.getElementById('evolved-field-canvas').getContext('2d');
             const value = parseInt(this.value) / 100; // 0-1 range
             drawFieldVisualization(ctx, evolvedCanvas.width, evolvedCanvas.height, 'evolved', value);
+            logUxUpdate('ux-visualization-output', 'Evolution timeline', `Timeline set to t=${value.toFixed(2)}.`);
         });
     }
     
     // Topology visualization
     createTopologyGraph();
+
+    const initialRotate = document.getElementById('initial-rotate');
+    const initialZoom = document.getElementById('initial-zoom');
+    const initialContainer = document.querySelector('#initial-field .field-container');
+
+    if (initialRotate && initialContainer) {
+        initialRotate.addEventListener('click', () => {
+            initialContainer.classList.add('ux-pulse');
+            setTimeout(() => initialContainer.classList.remove('ux-pulse'), 600);
+            logUxUpdate('ux-visualization-output', 'Initial field', 'Rotate action requested.');
+        });
+    }
+
+    if (initialZoom && initialContainer) {
+        initialZoom.addEventListener('click', () => {
+            initialContainer.classList.add('ux-pulse');
+            setTimeout(() => initialContainer.classList.remove('ux-pulse'), 600);
+            logUxUpdate('ux-visualization-output', 'Initial field', 'Zoom action requested.');
+        });
+    }
 }
 
 // ======== VISUALIZATION FUNCTIONS ========
@@ -783,6 +942,8 @@ function createTopologyGraph() {
                            node.curvature === 0 ? '#ffffff' : '#0096ff';
                 });
             }
+
+            logUxUpdate('ux-visualization-output', 'Topology view', `Visualization mode set to ${vizType}.`);
         });
     });
 }
@@ -1218,11 +1379,13 @@ function initNarrativeInertiaTensor() {
     perturbationInput.addEventListener('input', function() {
         perturbation = parseFloat(this.value);
         updateInertiaTensor();
+        logUxUpdate('ux-echo-output', 'Perturbation adjusted', `Amplitude set to ${perturbation.toFixed(2)}.`);
     });
     
     inertiaInput.addEventListener('input', function() {
         inertia = parseFloat(this.value);
         updateInertiaTensor();
+        logUxUpdate('ux-echo-output', 'Inertia adjusted', `Coefficient set to ${inertia.toFixed(2)}.`);
     });
     
     // Initial render
@@ -1352,6 +1515,8 @@ function initRetrodictiveAttractorCollapse() {
         
         // Move cursor to beginning
         cursor.style.left = '10%';
+
+        logUxUpdate('ux-echo-output', 'Attractor collapse', `Collapse triggered in ${collapseMode} mode.`);
         
         // Animate collapse
         collapseAnimation();
@@ -1467,6 +1632,8 @@ function initRetrodictiveAttractorCollapse() {
             
             // Update mode
             collapseMode = btn.dataset.mode;
+
+            logUxUpdate('ux-echo-output', 'Collapse mode', `Mode set to ${collapseMode}.`);
             
             // Reset animation if ongoing
             if (isCollapsing) {
@@ -1671,6 +1838,7 @@ function initEntangledChartArrays() {
         
         // Update entanglement correlation display
         updateCorrelationDisplay();
+        logUxUpdate('ux-echo-output', 'Entanglement reset', 'Chart entanglement cleared.');
     }
     
     // Synchronize selected charts
@@ -1698,6 +1866,7 @@ function initEntangledChartArrays() {
         
         // Update entanglement correlation display
         updateCorrelationDisplay();
+        logUxUpdate('ux-echo-output', 'Entanglement sync', `${entangledCount} charts entangled.`);
     }
     
     // Update the correlation display in the chart titles
@@ -1891,5 +2060,392 @@ function initEchoViewer() {
         const timeValue = parseFloat(this.value);
         drawEchoVisualization(timeValue);
         updateSymbolicInterpretation(timeValue);
+        logUxUpdate('ux-echo-output', 'Timeline adjusted', `Temporal symmetry set to ${timeValue.toFixed(2)}.`);
     });
+}
+
+// ======== FRACTAL HERO'S PATH ========
+function initHeroPath() {
+    const svg = d3.select('#hero-journey-canvas');
+    const stageLabel = document.getElementById('current-stage');
+    const stageDescription = document.getElementById('stage-description');
+    const nodeGrid = document.getElementById('journey-nodes-grid');
+    const turbulenceInput = document.getElementById('chi-turbulence');
+    const depthInput = document.getElementById('fractal-depth');
+    const archetypeSelect = document.getElementById('archetype-selector');
+    const resetButton = document.getElementById('reset-journey');
+    const evolveButton = document.getElementById('evolve-journey');
+    const curvatureCanvas = document.getElementById('chi-curvature-map');
+
+    if (svg.empty() || !stageLabel || !stageDescription || !nodeGrid || !turbulenceInput || !depthInput || !archetypeSelect || !resetButton || !evolveButton || !curvatureCanvas) {
+        return;
+    }
+
+    const stages = [
+        { id: 'ORDINARY_WORLD', description: 'Baseline equilibrium before turbulence initiates the journey.' },
+        { id: 'CALL_TO_ADVENTURE', description: 'Emergent signals destabilize the system toward change.' },
+        { id: 'REFUSAL', description: 'Resistance forms, increasing inertia within the field.' },
+        { id: 'MENTOR', description: 'External guidance stabilizes fluctuations and offers structure.' },
+        { id: 'CROSSING', description: 'Threshold energy spikes as the field transitions.' },
+        { id: 'ORDEAL', description: 'Peak perturbations challenge coherence and resilience.' },
+        { id: 'REWARD', description: 'The field crystallizes a new stable attractor.' },
+        { id: 'RETURN', description: 'Integration restores balance with a transformed topology.' }
+    ];
+
+    let currentStageIndex = 0;
+
+    function drawJourneyPath() {
+        const width = svg.node().clientWidth || 900;
+        const height = 500;
+        svg.attr('viewBox', `0 0 ${width} ${height}`);
+        svg.selectAll('*').remove();
+
+        const turbulence = parseInt(turbulenceInput.value, 10) / 100;
+        const depth = parseInt(depthInput.value, 10);
+        const amplitude = 120 * turbulence;
+
+        const points = stages.map((stage, index) => {
+            const x = 80 + (index * (width - 160)) / (stages.length - 1);
+            const wave = Math.sin(index * 0.7 + depth) * amplitude;
+            const y = height / 2 + wave;
+            return { ...stage, x, y };
+        });
+
+        const line = d3.line()
+            .x(point => point.x)
+            .y(point => point.y)
+            .curve(d3.curveCatmullRom.alpha(0.7));
+
+        svg.append('path')
+            .attr('d', line(points))
+            .attr('stroke', 'rgba(0, 214, 255, 0.6)')
+            .attr('stroke-width', 3)
+            .attr('fill', 'none');
+
+        svg.selectAll('circle')
+            .data(points)
+            .enter()
+            .append('circle')
+            .attr('cx', point => point.x)
+            .attr('cy', point => point.y)
+            .attr('r', point => (point.id === stages[currentStageIndex].id ? 16 : 10))
+            .attr('fill', point => (point.id === stages[currentStageIndex].id ? '#ff3e9d' : '#8a2be2'))
+            .attr('stroke', '#ffffff')
+            .attr('stroke-width', 1)
+            .style('cursor', 'pointer')
+            .on('click', (event, point) => {
+                const index = stages.findIndex(stage => stage.id === point.id);
+                updateStage(index);
+            });
+
+        svg.selectAll('text')
+            .data(points)
+            .enter()
+            .append('text')
+            .attr('x', point => point.x)
+            .attr('y', point => point.y - 25)
+            .attr('text-anchor', 'middle')
+            .attr('fill', 'rgba(255,255,255,0.85)')
+            .attr('font-size', '11px')
+            .text(point => point.id.replace('_', ' '));
+    }
+
+    function updateStage(index) {
+        currentStageIndex = index;
+        const stage = stages[index];
+        stageLabel.textContent = stage.id;
+        stageDescription.textContent = stage.description;
+        drawJourneyPath();
+        highlightNodes();
+        logUxUpdate('ux-fhpx-output', 'Stage updated', `${stage.id}: ${stage.description}`);
+    }
+
+    function highlightNodes() {
+        const nodes = nodeGrid.querySelectorAll('.journey-node');
+        nodes.forEach((node, index) => {
+            node.classList.toggle('active', index === currentStageIndex);
+        });
+    }
+
+    function renderNodes() {
+        nodeGrid.innerHTML = '';
+        stages.forEach((stage, index) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'journey-node';
+            button.textContent = stage.id.replace('_', ' ');
+            button.addEventListener('click', () => updateStage(index));
+            nodeGrid.appendChild(button);
+        });
+        highlightNodes();
+    }
+
+    function drawCurvatureMap() {
+        const ctx = curvatureCanvas.getContext('2d');
+        const width = curvatureCanvas.width;
+        const height = curvatureCanvas.height;
+        const turbulence = parseInt(turbulenceInput.value, 10) / 100;
+        const depth = parseInt(depthInput.value, 10);
+
+        ctx.clearRect(0, 0, width, height);
+        for (let x = 0; x < width; x += 10) {
+            for (let y = 0; y < height; y += 10) {
+                const value = Math.sin((x / width) * Math.PI * depth) * Math.cos((y / height) * Math.PI) * turbulence;
+                const color = value > 0 ? `rgba(0, 210, 255, ${0.3 + value})` : `rgba(255, 62, 157, ${0.3 + Math.abs(value)})`;
+                ctx.fillStyle = color;
+                ctx.fillRect(x, y, 10, 10);
+            }
+        }
+    }
+
+    turbulenceInput.addEventListener('input', () => {
+        drawJourneyPath();
+        drawCurvatureMap();
+        logUxUpdate('ux-fhpx-output', 'χ-Turbulence', `Turbulence set to ${turbulenceInput.value}.`);
+    });
+
+    depthInput.addEventListener('input', () => {
+        drawJourneyPath();
+        drawCurvatureMap();
+        logUxUpdate('ux-fhpx-output', 'Recursion depth', `Depth set to ${depthInput.value}.`);
+    });
+
+    archetypeSelect.addEventListener('change', () => {
+        logUxUpdate('ux-fhpx-output', 'Archetype selected', `Archetype set to ${archetypeSelect.value}.`);
+    });
+
+    resetButton.addEventListener('click', () => {
+        updateStage(0);
+        logUxUpdate('ux-fhpx-output', 'Journey reset', 'Stage reset to ORDINARY_WORLD.');
+    });
+
+    evolveButton.addEventListener('click', () => {
+        const nextIndex = (currentStageIndex + 1) % stages.length;
+        updateStage(nextIndex);
+        logUxUpdate('ux-fhpx-output', 'Journey evolved', `Advanced to ${stages[nextIndex].id}.`);
+    });
+
+    renderNodes();
+    updateStage(0);
+    drawCurvatureMap();
+}
+
+// ======== DREAMSIGILS MODULE ========
+function initDreamSigils() {
+    const svg = d3.select('#sigil-canvas');
+    const sigilName = document.getElementById('sigil-name');
+    const sigilDescription = document.getElementById('sigil-description');
+    const generateBtn = document.getElementById('generate-sigil');
+    const animateBtn = document.getElementById('animate-sigil');
+    const downloadBtn = document.getElementById('download-sigil');
+    const sigilLibrary = document.getElementById('sigil-library');
+    const analysisContent = document.getElementById('pattern-analysis-content');
+
+    if (svg.empty() || !sigilName || !sigilDescription || !generateBtn || !animateBtn || !downloadBtn || !sigilLibrary || !analysisContent) {
+        return;
+    }
+
+    const sigilNames = ['Lumen', 'Aether', 'Vesper', 'Nova', 'Umbra', 'Lyra', 'Solace', 'Kairo'];
+    const sigilMeanings = [
+        'Resonates with clarity and adaptive flow.',
+        'Amplifies empathic resonance in the ψ-field.',
+        'Encodes protection and reflective symmetry.',
+        'Stimulates emergence of new attractor states.'
+    ];
+
+    let sigilCount = 0;
+    let isAnimating = false;
+
+    function drawSigil() {
+        const width = 400;
+        const height = 400;
+        svg.attr('viewBox', `0 0 ${width} ${height}`);
+        svg.selectAll('*').remove();
+
+        const points = Array.from({ length: 9 }, (_, i) => {
+            const angle = (Math.PI * 2 * i) / 9;
+            const radius = 120 + Math.random() * 40;
+            return {
+                x: width / 2 + Math.cos(angle) * radius,
+                y: height / 2 + Math.sin(angle) * radius
+            };
+        });
+
+        const line = d3.line()
+            .x(point => point.x)
+            .y(point => point.y)
+            .curve(d3.curveCardinalClosed.tension(0.6));
+
+        svg.append('circle')
+            .attr('cx', width / 2)
+            .attr('cy', height / 2)
+            .attr('r', 140)
+            .attr('stroke', 'rgba(0, 214, 255, 0.6)')
+            .attr('stroke-width', 2)
+            .attr('fill', 'none');
+
+        svg.append('path')
+            .attr('d', line(points))
+            .attr('stroke', '#ff3e9d')
+            .attr('stroke-width', 3)
+            .attr('fill', 'rgba(138, 43, 226, 0.2)');
+
+        points.forEach(point => {
+            svg.append('circle')
+                .attr('cx', point.x)
+                .attr('cy', point.y)
+                .attr('r', 5)
+                .attr('fill', '#00d2ff');
+        });
+    }
+
+    function updateLibrary(name) {
+        const card = document.createElement('div');
+        card.className = 'sigil-card';
+        card.textContent = `${name} • ψ-${sigilCount}`;
+        sigilLibrary.prepend(card);
+    }
+
+    function updateAnalysis(name) {
+        analysisContent.textContent = `${name} is now the dominant glyph. Pattern coherence at ${(0.7 + Math.random() * 0.25).toFixed(2)}.`;
+    }
+
+    generateBtn.addEventListener('click', () => {
+        sigilCount += 1;
+        const name = sigilNames[Math.floor(Math.random() * sigilNames.length)];
+        const meaning = sigilMeanings[Math.floor(Math.random() * sigilMeanings.length)];
+        sigilName.textContent = name;
+        sigilDescription.textContent = meaning;
+        drawSigil();
+        updateLibrary(name);
+        updateAnalysis(name);
+        logUxUpdate('ux-dreamsigils-output', 'Sigil generated', `${name}: ${meaning}`);
+    });
+
+    animateBtn.addEventListener('click', () => {
+        isAnimating = !isAnimating;
+        svg.classed('sigil-animated', isAnimating);
+        logUxUpdate('ux-dreamsigils-output', 'Sigil animation', isAnimating ? 'Sigil animation started.' : 'Sigil animation paused.');
+    });
+
+    downloadBtn.addEventListener('click', () => {
+        const serializer = new XMLSerializer();
+        const svgData = serializer.serializeToString(svg.node());
+        const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `astra-sigil-${Date.now()}.svg`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        logUxUpdate('ux-dreamsigils-output', 'Sigil downloaded', 'SVG export triggered.');
+    });
+
+    drawSigil();
+    logUxUpdate('ux-dreamsigils-output', 'Sigil ready', 'Default sigil rendered.');
+}
+
+// ======== RETROFIELD MODULE ========
+function initRetroField() {
+    const intentionInput = document.getElementById('intention-input');
+    const intentionType = document.getElementById('intention-type');
+    const encodeButton = document.getElementById('encode-intention');
+    const motifCanvas = document.getElementById('motif-canvas');
+    const activeMotifs = document.getElementById('active-motifs');
+    const probabilityPaths = document.getElementById('probability-paths');
+    const attractionStrength = document.getElementById('attraction-strength');
+    const temporalScope = document.getElementById('temporal-scope');
+    const anchors = document.querySelectorAll('.reality-anchor');
+    const outcomeProjection = document.getElementById('outcome-projection');
+
+    if (!intentionInput || !intentionType || !encodeButton || !motifCanvas || !activeMotifs || !probabilityPaths || !attractionStrength || !temporalScope || !anchors.length || !outcomeProjection) {
+        return;
+    }
+
+    let selectedAnchor = 0.5;
+    const ctx = motifCanvas.getContext('2d');
+
+    function drawMotif(text, type) {
+        const width = motifCanvas.width;
+        const height = motifCanvas.height;
+        ctx.clearRect(0, 0, width, height);
+
+        const seed = Math.max(4, text.length);
+        for (let i = 0; i < seed; i++) {
+            const x = (width / seed) * i + 20;
+            const y = height / 2 + Math.sin(i * 0.8) * 60;
+            ctx.strokeStyle = type === 'wish' ? 'rgba(0, 210, 255, 0.6)' : type === 'vision' ? 'rgba(138, 43, 226, 0.6)' : 'rgba(255, 62, 157, 0.6)';
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(width - x, y - 30);
+            ctx.stroke();
+        }
+    }
+
+    function updateProbabilityPaths() {
+        probabilityPaths.innerHTML = '';
+        const strength = parseInt(attractionStrength.value, 10);
+        const scope = parseInt(temporalScope.value, 10);
+        const density = Math.max(3, Math.floor((strength + scope) / 30));
+        for (let i = 0; i < density; i++) {
+            const path = document.createElement('div');
+            path.className = 'probability-path';
+            path.style.width = `${30 + Math.random() * 60}%`;
+            probabilityPaths.appendChild(path);
+        }
+    }
+
+    function updateOutcomeProjection() {
+        const strength = attractionStrength.value;
+        const scope = temporalScope.value;
+        const text = `Attractor strength ${strength} with temporal scope ${scope} yields ${(strength * selectedAnchor / 100).toFixed(2)} ψ-alignment.`;
+        outcomeProjection.textContent = text;
+        logUxUpdate('ux-retrofield-output', 'Outcome projection', text);
+    }
+
+    encodeButton.addEventListener('click', () => {
+        const text = intentionInput.value.trim();
+        if (!text) {
+            logUxUpdate('ux-retrofield-output', 'Intention missing', 'Please enter an intention before encoding.');
+            return;
+        }
+
+        const entry = document.createElement('div');
+        entry.className = 'motif-item';
+        entry.textContent = `${intentionType.value.toUpperCase()}: ${text}`;
+        activeMotifs.prepend(entry);
+
+        drawMotif(text, intentionType.value);
+        updateProbabilityPaths();
+        updateOutcomeProjection();
+        logUxUpdate('ux-retrofield-output', 'Intention encoded', `Encoded "${text}" as a ${intentionType.value}.`);
+    });
+
+    intentionInput.addEventListener('input', () => {
+        logUxUpdate('ux-retrofield-output', 'Intention drafting', intentionInput.value ? 'Drafting intention...' : 'Intention cleared.');
+    });
+
+    intentionType.addEventListener('change', () => {
+        logUxUpdate('ux-retrofield-output', 'Intention type', `Type set to ${intentionType.value}.`);
+    });
+
+    attractionStrength.addEventListener('input', updateOutcomeProjection);
+    temporalScope.addEventListener('input', updateOutcomeProjection);
+
+    anchors.forEach(anchor => {
+        anchor.addEventListener('click', () => {
+            anchors.forEach(btn => btn.classList.remove('active'));
+            anchor.classList.add('active');
+            selectedAnchor = parseFloat(anchor.dataset.value);
+            updateOutcomeProjection();
+            logUxUpdate('ux-retrofield-output', 'Reality anchor', `Anchoring set to ${anchor.textContent}.`);
+        });
+    });
+
+    updateProbabilityPaths();
+    updateOutcomeProjection();
+    drawMotif('seed', intentionType.value);
+    logUxUpdate('ux-retrofield-output', 'RetroField ready', 'Initial motif seeded.');
 }

@@ -1946,6 +1946,152 @@ footer a {
     font-weight: bold !important;
 }
 
+/* UX Text Suite */
+.ux-output {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    background: rgba(6, 10, 24, 0.7);
+    border: 1px solid rgba(138, 43, 226, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.ux-output h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    color: #cbb8ff;
+}
+
+.ux-output-hint {
+    margin: 0 0 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.ux-output-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+}
+
+.ux-output-item {
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    background: rgba(22, 28, 50, 0.85);
+    border: 1px solid rgba(0, 150, 255, 0.25);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.ux-output-item span {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(0, 210, 255, 0.7);
+    margin-bottom: 0.35rem;
+}
+
+.journey-node {
+    padding: 0.5rem 0.75rem;
+    background: rgba(12, 18, 36, 0.8);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.journey-node.active,
+.journey-node:hover {
+    border-color: rgba(255, 62, 157, 0.8);
+    box-shadow: 0 0 12px rgba(255, 62, 157, 0.3);
+    color: #fff;
+}
+
+.node-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.sigil-card {
+    padding: 0.5rem 0.75rem;
+    background: rgba(18, 24, 40, 0.7);
+    border-radius: 8px;
+    border: 1px solid rgba(138, 43, 226, 0.4);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+}
+
+.sigil-animated {
+    animation: sigilSpin 8s linear infinite;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+@keyframes sigilSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.motif-item {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(16, 22, 38, 0.8);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.probability-path {
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(0, 210, 255, 0.4), rgba(255, 62, 157, 0.5));
+    margin-bottom: 6px;
+    animation: pathPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pathPulse {
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scaleX(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleX(1.05);
+    }
+}
+
+.ux-pulse {
+    animation: uxPulse 0.6s ease-out;
+}
+
+@keyframes uxPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 214, 255, 0);
+    }
+    50% {
+        transform: scale(1.01);
+        box-shadow: 0 0 18px rgba(0, 214, 255, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 214, 255, 0);
+    }
+}
+
 /* Print styles */
 @media print {
     body {
