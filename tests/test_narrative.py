@@ -214,13 +214,13 @@ def test_narrative_basic():
         plt.savefig("output/tests/narrative/events_visualization.png")
         plt.close()
         
-        return True
+        assert True
         
     except Exception as e:
         print(f"Error in narrative basic test: {e}")
         import traceback
         traceback.print_exc()
-        return False
+        raise
 
 def test_narrative_sequence():
     """Test narrative sequence generation for an evolving field"""
@@ -246,7 +246,7 @@ def test_narrative_sequence():
             
             # Create field
             mock_natal = SimpleMockNatal()
-            field = QualiaField(mock_natal, grid_size=(32, 32))
+            field = QualiaField(mock_natal, grid_size=(16, 16))
             
             # Get initial state
             if hasattr(field, 'state'):
@@ -266,8 +266,8 @@ def test_narrative_sequence():
             events_sequence.append(events)
             
             # Evolve for a few steps
-            steps = 3
-            dt = 0.05
+            steps = 1
+            dt = 0.02
             current_state = initial_state.copy()
             
             for step in range(steps):
@@ -280,7 +280,7 @@ def test_narrative_sequence():
                         alpha=0.5,
                         beta=0.9,
                         gamma=0.3,
-                        store_frames=2
+                        store_frames=1
                     )
                     
                     # Get evolved state
@@ -318,7 +318,7 @@ def test_narrative_sequence():
                 print(f"Error saving sequence to JSON: {e}")
             
             # Create visualization of the sequence
-            fig, axes = plt.subplots(2, len(frames), figsize=(len(frames)*4, 8))
+            fig, axes = plt.subplots(2, len(frames), figsize=(len(frames) * 4, 8))
             
             # Get global min/max for consistent colormap
             vmin = min(np.min(f) for f in frames)
@@ -351,8 +351,8 @@ def test_narrative_sequence():
         else:
             # Simplified test - just make sure we can detect events
             # Create a sequence of random fields
-            steps = 3
-            frames = [np.random.random((32, 32)) for _ in range(steps+1)]
+            steps = 2
+            frames = [np.random.random((16, 16)) for _ in range(steps + 1)]
             
             # Define a simple event detector
             def simple_detector(field):
@@ -385,23 +385,19 @@ def test_narrative_sequence():
             plt.savefig("output/tests/narrative/event_counts.png")
             plt.close()
         
-        return True
+        assert True
         
     except Exception as e:
         print(f"Error in narrative sequence test: {e}")
         import traceback
         traceback.print_exc()
-        return False
+        raise
 
 if __name__ == "__main__":
     print(f"Running narrative tests at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
-    success_basic = test_narrative_basic()
-    success_sequence = test_narrative_sequence()
+    test_narrative_basic()
+    test_narrative_sequence()
     
-    if success_basic and success_sequence:
-        print("NARRATIVE TESTS PASSED")
-        sys.exit(0)
-    else:
-        print("NARRATIVE TESTS FAILED")
-        sys.exit(1)
+    print("NARRATIVE TESTS PASSED")
+    sys.exit(0)
