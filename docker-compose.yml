@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  astra:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./cache:/app/cache
+      - ./output:/app/output
+    environment:
+      - PYTHONUNBUFFERED=1
+      - GEONAMES_USERNAME=k10r
+    # Keep container running and override the CMD from Dockerfile
+    command: /bin/bash
+    tty: true
+    stdin_open: true 

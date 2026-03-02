@@ -82,6 +82,36 @@ cd frontend
 npm install
 ```
 
+## Docker Installation 🐳
+
+ASTRA can be run in a Docker container, eliminating the need to manage dependencies locally:
+
+```bash
+# Clone the repo
+git clone https://github.com/yourname/astra.git
+cd astra
+
+# Build and start the container
+docker compose up --build -d
+
+# Enter the container to run commands
+docker compose exec astra bash
+
+# Once inside the container, you can run tests:
+python tests/test_diagnostic.py  # Run diagnostic tests
+python tests/test_core.py       # Run core component tests
+python main.py --test           # List available tests
+
+# To stop the container
+docker compose down
+```
+
+The Docker setup includes:
+- All required Python dependencies
+- Persistent volumes for cache and output
+- Environment variables for configuration
+- Web interface accessible at http://localhost:8000
+
 ## Quickstart 🚀
 
 ```python
