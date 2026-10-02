@@ -15,17 +15,18 @@
     font:16px/1.6 Georgia,'Times New Roman',serif;
     background-image:
       radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,169,78,.07), transparent);}
-  .wrap{max-width:820px;margin:0 auto;padding:64px 24px 96px}
+  .wrap{max-width:880px;margin:0 auto;padding:64px 24px 96px}
   header{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:36px}
   h1{font-size:2.6rem;letter-spacing:.12em;margin:0 0 6px;color:var(--gold-hi);
     font-weight:normal}
   h1 .sub{display:block;font-size:1rem;letter-spacing:.28em;
     text-transform:uppercase;color:var(--muted);margin-top:10px}
-  p.lede{font-size:1.15rem;color:var(--text);max-width:60ch}
+  p.lede{font-size:1.15rem;color:var(--text);max-width:62ch}
   .seam{height:1px;margin:44px 0;
     background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent)}
   h2{font-size:.9rem;letter-spacing:.3em;text-transform:uppercase;
-    color:var(--gold);margin:0 0 18px;font-weight:normal}
+    color:var(--gold);margin:0 0 8px;font-weight:normal}
+  p.wing{font-size:.9rem;color:var(--muted);margin:0 0 18px;max-width:64ch}
   .rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
   a.card{display:block;background:var(--paper);border:1px solid var(--line);
     border-radius:10px;padding:18px 20px;color:var(--text);text-decoration:none;
@@ -33,9 +34,43 @@
   a.card:hover{border-color:var(--gold);transform:translateY(-2px)}
   a.card b{display:block;color:var(--gold-hi);font-weight:normal;margin-bottom:6px}
   a.card span{font-size:.85rem;color:var(--muted)}
+  a.card em{display:inline-block;font-style:normal;font-size:.7rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+    border:1px solid var(--line);border-radius:99px;padding:2px 9px;
+    margin-bottom:8px}
   footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
     color:var(--muted);font-size:.85rem}
   footer a{color:var(--gold-hi);text-decoration:none}
+
+  /* --- preview reel --- */
+  .reel{position:relative;border:1px solid var(--line);border-radius:12px;
+    overflow:hidden;background:var(--paper);aspect-ratio:16/9}
+  .reel a.slide{position:absolute;inset:0;display:block;opacity:0;
+    transition:opacity .8s ease;pointer-events:none;color:var(--text);
+    text-decoration:none}
+  .reel a.slide.on{opacity:1;pointer-events:auto}
+  .reel img{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block}
+  .reel .cap{position:absolute;left:0;right:0;bottom:0;padding:48px 22px 16px;
+    background:linear-gradient(transparent,rgba(10,8,5,.88) 60%)}
+  .reel .cap i{display:block;font-style:normal;font-size:.68rem;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+    margin-bottom:4px}
+  .reel .cap b{display:block;font-weight:normal;font-size:1.25rem;
+    color:var(--gold-hi)}
+  .reel .cap span{display:block;font-size:.85rem;color:var(--text);
+    opacity:.85;max-width:56ch}
+  .reelnav{display:flex;align-items:center;gap:10px;margin-top:12px}
+  .reelnav button{background:var(--paper);border:1px solid var(--line);
+    color:var(--gold-hi);border-radius:8px;font:inherit;font-size:.85rem;
+    padding:6px 14px;cursor:pointer;transition:border-color .2s}
+  .reelnav button:hover{border-color:var(--gold)}
+  .reelnav .dots{display:flex;gap:7px;flex:1;justify-content:center}
+  .reelnav .dots button{width:9px;height:9px;padding:0;border-radius:50%;
+    border:1px solid var(--gold);background:transparent;opacity:.4}
+  .reelnav .dots button.on{opacity:1;background:var(--gold)}
+  .reelnav .count{font-size:.75rem;color:var(--muted);letter-spacing:.12em;
+    min-width:44px;text-align:right}
 
   /* --- retrofractal kintsugi dressing --- */
   #bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;
@@ -64,6 +99,7 @@
   a.card:hover::before{background-position:-20% 0}
   @media (prefers-reduced-motion:reduce){
     .seam::after,h1{animation:none}
+    .reel a.slide{transition:none}
   }
 </style>
 <script type="importmap">
@@ -81,14 +117,72 @@
   </h1>
 </header>
 
-<p class="lede">Chart the shape of a psyche — not as fate, but as resonance.
-ASTRA models consciousness as a dynamic field: planetary operators,
-fractal PDEs, and topological data analysis over a qualia surface.
-Consciousness cartography, not astrology.</p>
+<p class="lede">One homelab, many artifacts. ASTRA began as a consciousness
+cartography instrument — a way to chart the shape of a psyche as a field,
+not a fate — and the lab around it kept shipping. This page is the front
+door: every exhibit, simulation, and experiment below is self-contained,
+clickable, and made here.</p>
 
 <div class="seam"></div>
 
-<h2>The app</h2>
+<h2>Preview reel</h2>
+<p class="wing">A rotating sample of what's inside — click any frame to open it.</p>
+<div class="reel" id="reel" aria-roledescription="carousel" aria-label="Featured exhibits">
+  <a class="slide" href="astra-app.html">
+    <img src="assets/reel/field-simulator.jpg" alt="Wireframe qualia field with Gaussian peaks" decoding="async">
+    <span class="cap"><i>The instrument</i><b>ASTRA field simulator</b>
+      <span>Natal data in, qualia topology out — Betti numbers, Ricci curvature, archetypal event logs.</span></span></a>
+  <a class="slide" href="lab/world/index.html">
+    <img src="assets/reel/the-lobby.jpg" alt="The Lobby title screen" loading="lazy" decoding="async">
+    <span class="cap"><i>Maps of the lab</i><b>The Lobby</b>
+      <span>A wanderable Museum of Everything the Lab Has Made — walk the halls, step into exhibits.</span></span></a>
+  <a class="slide" href="lab/plasma-sim/index.html">
+    <img src="assets/reel/plasma-zoo.jpg" alt="Braided plasma flux ropes in blue light" loading="lazy" decoding="async">
+    <span class="cap"><i>Fields &amp; simulations</i><b>Plasma Weirdness Zoo</b>
+      <span>A field guide to filamentary behavior — interactive three.js plasma physics.</span></span></a>
+  <a class="slide" href="https://shouldifly.prometheuswaluigi.workers.dev/">
+    <img src="assets/reel/shouldifly.jpg" alt="ShouldIFly travel decision interface" loading="lazy" decoding="async">
+    <span class="cap"><i>Tools that left the lab</i><b>ShouldIFly?</b>
+      <span>Drive vs fly, scored against your tolerances — door-to-door time, real money, delay risk.</span></span></a>
+  <a class="slide" href="lab/museum/index.html">
+    <img src="assets/reel/poetry-museum.jpg" alt="The Unreliable Poetry Museum" loading="lazy" decoding="async">
+    <span class="cap"><i>Words &amp; voices</i><b>The Unreliable Poetry Museum</b>
+      <span>Read each piece, guess its author, lift the placard — a reveal-and-compare exhibit on attribution.</span></span></a>
+  <a class="slide" href="lab/music/index.html">
+    <img src="assets/reel/music-videos.jpg" alt="Kintsugi bowls — music video stills" loading="lazy" decoding="async">
+    <span class="cap"><i>Songs &amp; stories</i><b>Music Videos</b>
+      <span>Twelve self-contained lyric-video players — songs generated on the A770.</span></span></a>
+  <a class="slide" href="lab/museum/coincidence-machine.html">
+    <img src="assets/reel/coincidence-machine.jpg" alt="The Coincidence Machine" loading="lazy" decoding="async">
+    <span class="cap"><i>The coincidence desk</i><b>The Coincidence Machine</b>
+      <span>A picture-book walk through the phi-audit numbers — zoom, null, and the 680&nbsp;GeV crossing.</span></span></a>
+  <a class="slide" href="lab/viz/hub.html">
+    <img src="assets/reel/viz-rooms.jpg" alt="Viz rooms hub — rooms built from lab data" loading="lazy" decoding="async">
+    <span class="cap"><i>Fields &amp; simulations</i><b>The Viz Rooms</b>
+      <span>Seven self-contained three.js data rooms — galaxy, constellation, seams, attractor, piston, scalpel.</span></span></a>
+  <a class="slide" href="lab/monster-trucks/index.html">
+    <img src="assets/reel/monster-trucks.jpg" alt="Monster truck story title" loading="lazy" decoding="async">
+    <span class="cap"><i>Songs &amp; stories</i><b>Monster Truck Stories</b>
+      <span>Animated interactive tales for Leo — spin-true physics, no compromises.</span></span></a>
+  <a class="slide" href="lab/consilience/consilience.html">
+    <img src="assets/reel/consilience.jpg" alt="Consilience knowledge graph interface" loading="lazy" decoding="async">
+    <span class="cap"><i>Maps of the lab</i><b>Consilience Graph</b>
+      <span>The lab's knowledge graph — papers, miscdocs, and ideas woven into one map.</span></span></a>
+</div>
+<div class="reelnav">
+  <button type="button" id="reel-prev" aria-label="Previous slide">&larr; prev</button>
+  <div class="dots" id="reel-dots"></div>
+  <button type="button" id="reel-next" aria-label="Next slide">next &rarr;</button>
+  <span class="count" id="reel-count"></span>
+</div>
+
+<div class="seam"></div>
+
+<h2>The instrument</h2>
+<p class="wing">The thing the lab is named for. ASTRA initializes a qualia
+field from natal data, evolves it through stochastic field equations,
+watches ego formation as symmetry breaking, and reads the resulting
+topology. Consciousness cartography, not astrology.</p>
 <div class="rooms">
   <a class="card" href="astra-app.html"><b>ASTRA field simulator</b>
     <span>the full web interface — natal data in, qualia topology out</span></a>
@@ -96,57 +190,113 @@ Consciousness cartography, not astrology.</p>
 
 <div class="seam"></div>
 
-<h2>Lab exhibits</h2>
+<h2>Fields &amp; simulations</h2>
+<p class="wing">Live systems you can orbit. Three.js physics and data rooms —
+plasma braids, paired dynamical worlds, and the structure underneath the
+lab's own archive.</p>
 <div class="rooms">
-  <a class="card" href="lab/viz/hub.html"><b>The Viz Rooms</b>
-    <span>seven self-contained three.js data rooms — hub, galaxy,
-    constellation, seams, attractor, piston, scalpel</span></a>
-  <a class="card" href="lab/museum/index.html"><b>The Unreliable Poetry Museum</b>
-    <span>read each piece, guess its author, lift the placard — a
-    reveal-and-compare exhibit on attribution</span></a>
-  <a class="card" href="lab/museum/coincidence-machine.html"><b>The Coincidence Machine</b>
-    <span>a picture-book walk through the phi-audit numbers — zoom, null,
-    and the 680&nbsp;GeV crossing</span></a>
-  <a class="card" href="lab/music/index.html"><b>Music Videos</b>
-    <span>twelve self-contained lyric-video players — songs generated on
-    the A770, framed as clickable artifacts</span></a>
-  <a class="card" href="lab/monster-trucks/index.html"><b>Monster Truck Stories</b>
-    <span>animated interactive tales for Leo — spin-true physics,
-    no compromises</span></a>
-  <a class="card" href="lab/world/index.html"><b>The Lobby</b>
-    <span>a wanderable Museum of Everything the Lab Has Made —
-    walk the halls, step into exhibits</span></a>
-  <a class="card" href="lab/viz/orch-or/index.html"><b>Polyatomic Time Crystals</b>
-    <span>an interactive reading of the microtubule-consciousness
-    proposal — Singh, Hameroff &amp; Bandyopadhyay</span></a>
   <a class="card" href="lab/plasma-sim/index.html"><b>Plasma Weirdness Zoo</b>
     <span>a field guide to filamentary behavior — interactive
     three.js simulation</span></a>
   <a class="card" href="lab/viz/isomorphs/index.html"><b>Isomorph Twin Worlds</b>
     <span>fourteen paired dynamical systems — same math,
     different bodies</span></a>
-  <a class="card" href="lab/consilience/consilience.html"><b>Consilience Graph</b>
-    <span>the lab's knowledge graph — papers, miscdocs, and
-    ideas woven into one map</span></a>
-  <a class="card" href="lab/phi-audit/trilogy.html"><b>The Golden Coincidence Audit</b>
-    <span>three-part audit of phi-flavored numerology —
-    zoom, null, and the 680&nbsp;GeV crossing</span></a>
+  <a class="card" href="lab/viz/orch-or/index.html"><b>Polyatomic Time Crystals</b>
+    <span>an interactive reading of the microtubule-consciousness
+    proposal — Singh, Hameroff &amp; Bandyopadhyay</span></a>
+  <a class="card" href="lab/viz/hub.html"><b>The Viz Rooms</b>
+    <span>seven self-contained three.js data rooms — hub, galaxy,
+    constellation, seams, attractor, piston, scalpel</span></a>
+  <a class="card" href="lab/viz/resonance-companion/index.html"><b>Resonance Companion</b>
+    <span>a quieter room in the viz wing — the field, read slowly</span></a>
+</div>
+
+<div class="seam"></div>
+
+<h2>Words &amp; voices</h2>
+<p class="wing">Paired-voice experiments and attribution games — the lab
+asking two models the same question and hanging the disagreement on the
+wall.</p>
+<div class="rooms">
+  <a class="card" href="lab/museum/index.html"><b>The Unreliable Poetry Museum</b>
+    <span>read each piece, guess its author, lift the placard — a
+    reveal-and-compare exhibit on attribution</span></a>
   <a class="card" href="lab/prompt-chorus/report.html"><b>Prompt Chorus</b>
     <span>paired-voice experiments in divergence — same prompt,
     two hands, one field report</span></a>
+  <a class="card" href="lab/chorus-image-pilot/index.html"><b>Chorus Image Pilot</b>
+    <span>the chorus experiment pointed at pictures — same subject,
+    two imaginations</span></a>
+  <a class="card" href="lab/weird-songs-probe/index.html"><b>Weird Songs Probe</b>
+    <span>a probe into the odd corners of the songbook</span></a>
+  <a class="card" href="lab/misc-full/cento.html"><b>The Cento</b>
+    <span>a poem stitched entirely from the lab's own archive lines</span></a>
+</div>
+
+<div class="seam"></div>
+
+<h2>The coincidence desk</h2>
+<p class="wing">Numerology put on trial. When the lab's numbers kept landing
+on phi, it built exhibits to check whether the coincidence survives a null
+model — zoom, null, and the 680&nbsp;GeV crossing.</p>
+<div class="rooms">
+  <a class="card" href="lab/museum/coincidence-machine.html"><b>The Coincidence Machine</b>
+    <span>a picture-book walk through the phi-audit numbers —
+    zoom, null, and the 680&nbsp;GeV crossing</span></a>
+  <a class="card" href="lab/phi-audit/trilogy.html"><b>The Golden Coincidence Audit</b>
+    <span>the three-part audit behind it — method, nulls,
+    and what survived</span></a>
+</div>
+
+<div class="seam"></div>
+
+<h2>Maps of the lab</h2>
+<p class="wing">Ways to see the whole workshop at once — a walkable museum,
+a knowledge graph, and the placards where the lab argues with itself.</p>
+<div class="rooms">
+  <a class="card" href="lab/world/index.html"><b>The Lobby</b>
+    <span>a wanderable Museum of Everything the Lab Has Made —
+    walk the halls, step into exhibits</span></a>
+  <a class="card" href="lab/consilience/consilience.html"><b>Consilience Graph</b>
+    <span>the lab's knowledge graph — papers, miscdocs, and
+    ideas woven into one map</span></a>
   <a class="card" href="lab/museum-of-corrections/index.html"><b>Museum of Corrections</b>
     <span>competing placards over the same renders —
     dissent included</span></a>
+  <a class="card" href="lab/idea-lab/index.html"><b>Idea Collider</b>
+    <span>seeded collisions between documents — blind until
+    you reveal</span></a>
+  <a class="card" href="lab/misc-full/graph.html"><b>Miscdocs Graph</b>
+    <span>the raw miscdocs archive, drawn as one navigable field</span></a>
 </div>
 
-<p style="margin-top:20px;color:var(--muted);font-size:.9rem">Also in the vault:
-<a style="color:var(--gold-hi);text-decoration:none" href="lab/viz/resonance-companion/index.html">resonance companion</a> ·
-<a style="color:var(--gold-hi);text-decoration:none" href="lab/idea-lab/index.html">idea collider</a> ·
-<a style="color:var(--gold-hi);text-decoration:none" href="lab/misc-full/graph.html">miscdocs graph</a> ·
-<a style="color:var(--gold-hi);text-decoration:none" href="lab/misc-full/cento.html">the cento</a> ·
-<a style="color:var(--gold-hi);text-decoration:none" href="lab/overnight-mm-pilot/index.html">overnight multimodal pilot</a> ·
-<a style="color:var(--gold-hi);text-decoration:none" href="lab/chorus-image-pilot/index.html">chorus image pilot</a> ·
-<a style="color:var(--gold-hi);text-decoration:none" href="lab/weird-songs-probe/index.html">weird songs probe</a></p>
+<div class="seam"></div>
+
+<h2>Songs &amp; stories</h2>
+<p class="wing">Artifacts rendered on the lab's A770 — lyric videos, animated
+tales, and the overnight runs that came back watchable.</p>
+<div class="rooms">
+  <a class="card" href="lab/music/index.html"><b>Music Videos</b>
+    <span>twelve self-contained lyric-video players — songs generated on
+    the A770, framed as clickable artifacts</span></a>
+  <a class="card" href="lab/monster-trucks/index.html"><b>Monster Truck Stories</b>
+    <span>animated interactive tales for Leo — spin-true physics,
+    no compromises</span></a>
+  <a class="card" href="lab/overnight-mm-pilot/index.html"><b>Overnight Multimodal Pilot</b>
+    <span>what the machines made while nobody was watching —
+    a pilot episode</span></a>
+</div>
+
+<div class="seam"></div>
+
+<h2>Tools that left the lab</h2>
+<p class="wing">Lab instincts shipped as real services — these run on their
+own infrastructure, off the homelab.</p>
+<div class="rooms">
+  <a class="card" href="https://shouldifly.prometheuswaluigi.workers.dev/"><em>Cloudflare Workers</em><b>ShouldIFly?</b>
+    <span>drive vs fly, personalized — door-to-door time, real fares,
+    delay risk, scored against your tolerances</span></a>
+</div>
 
 <div class="seam"></div>
 
@@ -156,7 +306,8 @@ stochastic field equations, watches ego formation as symmetry breaking,
 and reads the resulting topology — Betti numbers, Ricci curvature,
 archetypal event logs. It reframes an ancient symbolic interface as
 measurable structure: what if the chart was always a UI for field
-dynamics?</p>
+dynamics? Everything else on this page is the lab practicing that same
+move — taking a strange artifact seriously enough to instrument it.</p>
 
 <footer>
   Built on Ketan's homelab by the Agent Net crew —
@@ -164,6 +315,39 @@ dynamics?</p>
   rooms rendered on an Intel Arc A770, served static.
 </footer>
 </div>
+
+<script>
+/* preview reel — crossfade carousel, pauses on hover/focus,
+   no autoplay under prefers-reduced-motion */
+(function(){
+  const reel=document.getElementById('reel');
+  const slides=[...reel.querySelectorAll('.slide')];
+  const dotsBox=document.getElementById('reel-dots');
+  const count=document.getElementById('reel-count');
+  let i=0,timer=null;
+  const dots=slides.map((_,n)=>{
+    const d=document.createElement('button');
+    d.type='button';d.setAttribute('aria-label','Go to slide '+(n+1));
+    d.addEventListener('click',()=>{go(n);restart();});
+    dotsBox.appendChild(d);return d;});
+  function go(n){
+    slides[i].classList.remove('on');dots[i].classList.remove('on');
+    i=(n+slides.length)%slides.length;
+    slides[i].classList.add('on');dots[i].classList.add('on');
+    count.textContent=(i+1)+' / '+slides.length;
+  }
+  function restart(){clearInterval(timer);
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches)
+      timer=setInterval(()=>go(i+1),6000);}
+  document.getElementById('reel-prev').addEventListener('click',()=>{go(i-1);restart();});
+  document.getElementById('reel-next').addEventListener('click',()=>{go(i+1);restart();});
+  reel.addEventListener('mouseenter',()=>clearInterval(timer));
+  reel.addEventListener('mouseleave',restart);
+  reel.addEventListener('focusin',()=>clearInterval(timer));
+  reel.addEventListener('focusout',restart);
+  go(0);restart();
+})();
+</script>
 
 <script type="module">
 import * as THREE from 'three';
