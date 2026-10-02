@@ -34,11 +34,11 @@ footer{font-size:12px;color:#8c9fb7;margin-top:28px}
 </main>
 <script>
 async function stat(id,url,pick){try{const r=await fetch(url,{cache:"no-store"});const d=await r.json();document.getElementById(id).textContent=d.available===false?"data unavailable":pick(d)}catch(e){document.getElementById(id).textContent="data unavailable"}}
-stat("stat-galaxy","/api/viz/archive",d=>`${d.counts.draftable-d.counts.remaining} of ${d.counts.draftable} sources drafted · ${d.counts.remaining} queued`);
-stat("stat-constellation","/api/viz/constellation",d=>`${d.documents.length} documents · ${d.edges.length} candidate links · ${d.seeds.length} seeds`);
-stat("stat-seams","/api/viz/seams",d=>`${d.summary.total} tensors · ${d.summary.different} differing`);
-stat("stat-attractor","/api/viz/sim",d=>d.gaslit?`dose grid ${Object.keys(d.gaslit.grid||{}).length} cells · live RK4 in-browser`:"live RK4 in-browser");
-stat("stat-piston","/api/viz/sim",d=>d.piston?`archived sweep: ${Object.keys(d.piston.sweeps||{}).length} levels · live MC in-browser`:"live MC in-browser");
-stat("stat-scalpel","/api/viz/scalpel",d=>d.available?`${d.design.decisions_total.toLocaleString()} decisions · ${d.effects.length} measured effects`:"effects file pending");
+stat("stat-galaxy","./data/archive.json",d=>`${d.counts.draftable-d.counts.remaining} of ${d.counts.draftable} sources drafted · ${d.counts.remaining} queued`);
+stat("stat-constellation","./data/constellation.json",d=>`${d.documents.length} documents · ${d.edges.length} candidate links · ${d.seeds.length} seeds`);
+stat("stat-seams","./data/seams.json",d=>`${d.summary.total} tensors · ${d.summary.different} differing`);
+stat("stat-attractor","./data/sim.json",d=>d.gaslit?`dose grid ${Object.keys(d.gaslit.grid||{}).length} cells · live RK4 in-browser`:"live RK4 in-browser");
+stat("stat-piston","./data/sim.json",d=>d.piston?`archived sweep: ${Object.keys(d.piston.sweeps||{}).length} levels · live MC in-browser`:"live MC in-browser");
+stat("stat-scalpel","./data/scalpel.json",d=>d.available?`${d.design.decisions_total.toLocaleString()} decisions · ${d.effects.length} measured effects`:"effects file pending");
 </script>
 </body></html>
