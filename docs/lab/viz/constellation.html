@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Idea Constellation</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;color:#eef3ff;background:#0d1726}*{box-sizing:border-box}body{margin:0;overflow:hidden}
+canvas{display:block}
+#hud{position:fixed;top:12px;left:12px;max-width:330px;background:#101a2bd9;border:1px solid #3a4a63;border-radius:14px;padding:13px 15px;backdrop-filter:blur(4px)}
+#hud h1{font-size:18px;margin:0 0 4px;color:#f0d9a8}#hud p{font-size:12px;color:#b7c4d6;line-height:1.45;margin:4px 0}
+#hud a{color:#d8a84e;font-size:12px}
+#hud button{font:inherit;font-size:12px;background:#243145;color:#eaf2ff;border:1px solid #42536c;border-radius:8px;padding:5px 9px;cursor:pointer;margin-top:6px}
+#legend{font-size:11px;color:#9fb0c5;margin-top:7px;line-height:1.7}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+#tip{position:fixed;pointer-events:none;background:#0d1624ee;border:1px solid #4a6788;border-radius:8px;padding:6px 9px;font-size:12px;max-width:280px;display:none;z-index:5}
+#panel{position:fixed;top:12px;right:12px;width:min(420px,92vw);max-height:86vh;overflow:auto;background:#101a2bf2;border:1px solid #4a6788;border-radius:14px;padding:15px 17px;display:none;z-index:6}
+#panel h2{font-size:15px;margin:0 26px 8px 0;color:#f0d9a8;overflow-wrap:anywhere}
+#panel .meta{font-size:12px;color:#9fb0c5;line-height:1.6;overflow-wrap:anywhere}
+#panel a{color:#d8a84e}
+#panel img{max-width:46%;border-radius:8px;margin:4px 6px 0 0}
+#panel pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.55 ui-monospace,monospace;color:#c7d8ee;border-top:1px solid #304055;margin-top:10px;padding-top:10px}
+#panelClose{position:absolute;top:9px;right:9px;background:none;border:none;color:#9fb0c5;font-size:20px;cursor:pointer}
+@media(max-width:560px){#hud{max-width:250px;padding:10px 12px}#hud p,#legend{display:none}}
+</style>
+</head>
+<body>
+<div id="hud"><h1>Idea Constellation</h1><p>Miscdocs documents and Idea Collider seeds. Satellites are hypotheses — blind Model A/B until you reveal. Unreviewed output.</p><button id="revealBtn">Reveal models</button> <button id="resetBtn">Reset view</button> <a href="../../index.html">← Lab</a><div id="legend"><span class="dot" style="background:#f2c169"></span>seed / accepted link · <span class="dot" style="background:#9fb0c5"></span>document (brighter = has draft) · <span class="dot" style="background:#b78cff"></span>trail/concept nebula</div></div>
+<div id="tip"></div>
+<div id="panel"><button id="panelClose" aria-label="Close">×</button><div id="panelBody"></div></div>
+<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const $=id=>document.getElementById(id);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
+document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0d1726);scene.fog=new THREE.FogExp2(0x0d1726,0.012);
+const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,600);camera.position.set(0,10,46);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.3;
+function glowTexture(){const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.4,'rgba(255,255,255,.4)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)}
+const GLOW=glowTexture();
+let home=null;const homeDir=new THREE.Vector3(.3,.4,1).normalize();let userMoved=false;
+function frameView(useCurrentDir){if(!home)return;const vF=THREE.MathUtils.degToRad(camera.fov*.5);const half=Math.min(vF,Math.atan(Math.tan(vF)*camera.aspect));const dist=home.radius/Math.sin(half)*1.1;let dir=useCurrentDir?camera.position.clone().sub(controls.target):homeDir.clone();if(dir.lengthSq()<1e-6)dir=homeDir.clone();dir.normalize();controls.target.copy(home.center);camera.position.copy(home.center).addScaledVector(dir,dist);camera.near=Math.max(.05,dist*.002);camera.far=dist+home.radius*4+200;camera.updateProjectionMatrix()}
+function labelSprite(text,color){const c=document.createElement('canvas');c.width=512;c.height=80;const g=c.getContext('2d');g.font='40px system-ui';g.fillStyle=color;g.textAlign='center';g.fillText(text.slice(0,48),256,52);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,sizeAttenuation:false}));const w=Math.min(.16,.008+text.length*.004);s.scale.set(w,w*80/512,1);return s}
+const d=await(await fetch('/api/viz/constellation',{cache:'no-store'})).json();
+if(!d.available){$('tip').style.display='block';$('tip').textContent='constellation data unavailable: '+(d.error||'');throw new Error(d.error)}
+const nodes=[],byId=new Map(),links=[];
+function addNode(id,kind,extra){const n={...extra,id,kind,pos:new THREE.Vector3((Math.random()-.5)*30,(Math.random()-.5)*20,(Math.random()-.5)*30)};nodes.push(n);byId.set(id,n);return n}
+for(const doc of d.documents)addNode(doc.id,'doc',doc);
+for(const nb of d.nebulae)addNode('nebula:'+nb.id,'nebula',nb);
+for(const s of d.seeds)addNode('seed:'+s.id,'seed',s);
+for(const s of d.seeds){for(const side of ['left','right']){for(const ref of s[side].links){if(byId.has(ref))links.push(['seed:'+s.id,ref,'seed'])}}}
+for(const e of d.edges){const a=e.a,b=e.b;if(byId.has(a)&&byId.has(b))links.push([a,b,e.decision==='accepted'?'accepted':'pending',e])}
+// simple force layout: repulsion + springs + centering
+const idx=new Map(nodes.map((n,i)=>[n.id,i]));const pos=nodes.map(n=>n.pos);
+for(let it=0;it<300;it++){const disp=nodes.map(()=>new THREE.Vector3());
+  for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const delta=pos[i].clone().sub(pos[j]);let dist=Math.max(delta.length(),.5);const f=18/(dist*dist);delta.normalize().multiplyScalar(f);disp[i].add(delta);disp[j].sub(delta)}
+  for(const [a,b] of links){const ia=idx.get(a),ib=idx.get(b);const delta=pos[ib].clone().sub(pos[ia]);const dist=Math.max(delta.length(),.01);const rest=7;const f=(dist-rest)*.015;delta.normalize().multiplyScalar(f);disp[ia].add(delta);disp[ib].sub(delta)}
+  nodes.forEach((n,i)=>{disp[i].add(pos[i].clone().multiplyScalar(-.008));pos[i].add(disp[i].clampLength(0,2.4))})}
+// frame the settled layout (+ pad for satellite orbits, halos, labels)
+{const sph=new THREE.Sphere().setFromPoints(nodes.map(n=>n.pos));sph.radius+=8;home={center:sph.center,radius:sph.radius};frameView(false)}
+// documents: instanced spheres
+const docs=d.documents;
+const docMesh=new THREE.InstancedMesh(new THREE.SphereGeometry(.34,10,10),new THREE.MeshBasicMaterial({color:0xffffff}),docs.length);
+const m4=new THREE.Matrix4(),cc=new THREE.Color();
+docs.forEach((doc,i)=>{m4.setPosition(byId.get(doc.id).pos);docMesh.setMatrixAt(i,m4);docMesh.setColorAt(i,cc.setRGB(...(doc.has_draft?[.82,.9,1]:[.42,.48,.62])))});
+docMesh.userData.kind='doc';scene.add(docMesh);
+// seeds + nebulae
+const pickables=[docMesh];
+for(const n of nodes){if(n.kind==='seed'){const g=new THREE.Group();g.position.copy(n.pos);const core=new THREE.Mesh(new THREE.SphereGeometry(.8,14,14),new THREE.MeshBasicMaterial({color:0xf2c169}));const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:GLOW,color:0xf2c169,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));halo.scale.set(5,5,1);g.add(core,halo);core.userData=n;g.userData=n;scene.add(g);pickables.push(core);
+  const lb=labelSprite(n.title||n.id,'#f0d9a8');lb.position.copy(n.pos).add(new THREE.Vector3(0,2.1,0));scene.add(lb);
+  // hypothesis satellites
+  const sats=[];for(const blind of ['A','B']){const mk=n.assignment[blind];const out=n.outputs[mk];(out?.hypotheses||[]).forEach((h,k)=>{const sat=new THREE.Mesh(new THREE.SphereGeometry(.22,8,8),new THREE.MeshBasicMaterial({color:blind==='A'?0xffb35c:0x7fb4ff}));sat.userData={kind:'sat',seed:n,blind,model:mk,hyp:h,index:sats.length};scene.add(sat);sats.push(sat);pickables.push(sat)})}
+  n.sats=sats;sats.forEach((s,k)=>{s.userData.orbit={r:2+k*.55,speed:.25+.07*(k%3),phase:k*1.05}})}
+  else if(n.kind==='nebula'){const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:GLOW,color:0xb78cff,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:.9}));sp.position.copy(n.pos);sp.scale.set(7,7,1);sp.userData=n;scene.add(sp);pickables.push(sp);
+    const lb=labelSprite(n.label||n.id,'#cdb4ff');lb.position.copy(n.pos).add(new THREE.Vector3(0,4.2,0));scene.add(lb)}}
+// edges
+const gold=[],dim=[];
+for(const [a,b,cls] of links){const pa=byId.get(a).pos,pb=byId.get(b).pos;(cls==='pending'?dim:gold).push(pa.x,pa.y,pa.z,pb.x,pb.y,pb.z)}
+const g1=new THREE.BufferGeometry();g1.setAttribute('position',new THREE.Float32BufferAttribute(gold,3));scene.add(new THREE.LineSegments(g1,new THREE.LineBasicMaterial({color:0xd8a84e,transparent:true,opacity:.85})));
+if(dim.length){const g2=new THREE.BufferGeometry();g2.setAttribute('position',new THREE.Float32BufferAttribute(dim,3));const ls=new THREE.LineSegments(g2,new THREE.LineDashedMaterial({color:0x5a6a85,dashSize:.6,gapSize:.5,transparent:true,opacity:.5}));ls.computeLineDistances();scene.add(ls)}
+let revealed=false;$('revealBtn').onclick=()=>{revealed=!revealed;$('revealBtn').textContent=revealed?'Hide models':'Reveal models'};
+const modelName=(u)=>revealed?(u.model==='abl'?'abliterated':'standard'):('Model '+u.blind);
+const ray=new THREE.Raycaster();const mouse=new THREE.Vector2();
+addEventListener('pointermove',e=>{mouse.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);$('tip').style.left=e.clientX+14+'px';$('tip').style.top=e.clientY+12+'px'});
+addEventListener('click',e=>{if(e.target.closest('#hud,#panel'))return;pick(true)});
+addEventListener('keydown',e=>{if(e.key==='Escape')$('panel').style.display='none'});
+$('panelClose').onclick=()=>$('panel').style.display='none';
+function panelTitle(t){const h=document.createElement('h2');h.textContent=t;return h}
+function panelMeta(t){const m=document.createElement('div');m.className='meta';m.textContent=t;return m}
+function panelLink(href,text,blank){const a=document.createElement('a');a.href=href;a.textContent=text;if(blank){a.target='_blank';a.rel='noopener'}const w=document.createElement('div');w.style.marginTop='6px';w.append(a);return w}
+function pick(click){ray.setFromCamera(mouse,camera);const hits=ray.intersectObjects(pickables);if(!hits.length){$('tip').style.display='none';return}
+  const hit=hits[0];let u=hit.object.userData;if(hit.object===docMesh)u={kind:'doc',...docs[hit.instanceId]};
+  if(!click){$('tip').textContent=u.kind==='doc'?u.label:u.kind==='seed'?u.title:u.kind==='nebula'?(u.kind+' · '+(u.label||'').slice(0,60)):u.kind==='sat'?modelName(u.userData||u)+' hypothesis':'';$('tip').style.display='block';return}
+  const body=$('panelBody');body.replaceChildren();$('panel').style.display='block';
+  if(u.kind==='doc'){body.append(panelTitle(u.label),panelMeta(u.doc+' · '+(u.has_draft?'draft note ready':'no draft yet')));
+    body.append(panelLink('/api/library/pdf/'+encodeURIComponent(u.label),'Open PDF ↗',true));
+    if(u.has_draft){const pre=document.createElement('pre');pre.textContent='Loading draft note…';body.append(pre);fetch('/api/library/note/'+u.doc,{cache:'no-store'}).then(r=>r.ok?r.text():Promise.reject()).then(t=>pre.textContent=t).catch(()=>pre.textContent='Draft note not available.')}}
+  else if(u.kind==='seed'){body.append(panelTitle(u.title),panelMeta(u.id+' · '+u.question));
+    for(const side of ['left','right']){body.append(panelMeta((side==='left'?'Left: ':'Right: ')+(u[side].concept||'')))}
+    for(const mk of ['abl','std']){const out=u.outputs[mk];if(out)body.append(panelMeta((revealed?(mk==='abl'?'abliterated':'standard'):'Model '+Object.keys(u.assignment).find(k=>u.assignment[k]===mk))+': '+(out.title||'')))}
+    const imgs=[...u.images.abl,...u.images.std];const wrap=document.createElement('div');for(const f of imgs){const im=document.createElement('img');im.src='/api/library/idea-lab/'+f;im.alt=f;wrap.append(im)}body.append(wrap,panelLink('/api/library/idea-lab/','Open the gallery ↗',true))}
+  else if(u.kind==='nebula'){body.append(panelTitle(u.label),panelMeta(u.kind==='trail'?'weird-archive reading trail':'concept anchor'))}
+  else if(u.kind==='sat'){const h=u.hyp;body.append(panelTitle(modelName(u)+' · hypothesis'),panelMeta(h.claim||''),panelMeta('grounding: '+(h.grounding||'?')+' · confidence: '+(h.confidence??'?')));
+    for(const k of ['mechanism','prediction','cheapest_test','kill_condition']){if(h[k])body.append(panelMeta(k.replace('_',' ')+': '+h[k]))}}}
+(function loop(){requestAnimationFrame(loop);if(!reduced){const t=performance.now()/1000;for(const n of nodes){if(n.kind==='seed'&&n.sats){for(const s of n.sats){const o=s.userData.orbit;s.position.set(n.pos.x+Math.cos(t*o.speed+o.phase)*o.r,n.pos.y+Math.sin(t*o.speed*1.3+o.phase)*o.r*.4,n.pos.z+Math.sin(t*o.speed+o.phase)*o.r)}}}}
+  controls.update();renderer.render(scene,camera)})();
+$('resetBtn').onclick=()=>{userMoved=false;frameView(false)};
+controls.addEventListener('start',()=>userMoved=true);
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);if(!userMoved)frameView(true)});
+</script>
+</body></html>

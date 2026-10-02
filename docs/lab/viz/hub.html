@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab rooms</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;color:#eef3ff;background:#0d1726}*{box-sizing:border-box}body{margin:0}
+main{max-width:980px;margin:auto;padding:28px 20px 60px}h1{font-size:clamp(28px,4.6vw,40px);letter-spacing:-.04em;margin:6px 0}p{color:#b7c4d6;line-height:1.55}
+.eyebrow{font-size:12px;color:#e8b45f;letter-spacing:.16em;text-transform:uppercase}.small{font-size:13px;color:#9fb0c5}
+a{color:#d8a84e}nav{margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+.card{display:block;border:1px solid #3a4a63;background:#162033;border-radius:17px;padding:19px;text-decoration:none;color:inherit;min-width:0}
+.card:hover{border-color:#d8a84e;filter:brightness(1.12)}
+.card h2{font-size:19px;margin:0 0 8px;color:#f0d9a8}
+.stat{font-size:12px;color:#8fd6b0;margin-top:12px}
+footer{font-size:12px;color:#8c9fb7;margin-top:28px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<nav><a href="../../index.html">← Lab</a></nav>
+<div class="eyebrow">Local experiments / 3D rooms</div>
+<h1>Rooms built from lab data.</h1>
+<p>Five small three.js scenes rendered entirely on this machine. Data is live and unreviewed — drafts and hypotheses are leads, not findings.</p>
+<div class="grid">
+<a class="card" href=\"galaxy.html\"><h2>Archive Galaxy</h2><p>Ketan's public-writing archive as a spiral galaxy — one arm per repository, an inner ring of blog years, and the queue's next target pulsing violet.</p><div class="stat" id="stat-galaxy">checking…</div></a>
+<a class="card" href=\"constellation.html\"><h2>Idea Constellation</h2><p>Miscdocs documents, candidate edges, and the eight Idea Collider seeds with their hypothesis satellites — blind until you reveal.</p><div class="stat" id="stat-constellation">checking…</div></a>
+<a class="card" href=\"seams.html\"><h2>Weight Seams</h2><p>The two Qwen3-14B GGUFs as a tower of tensors — gold seams where the quantized bytes differ.</p><div class="stat" id="stat-seams">checking…</div></a>
+<a class="card" href=\"attractor.html\"><h2>The Bed</h2><p>The gaslitAF minimal ODE live in phase space — dial a stress dose and watch the state fall (or not) into the second attractor. The clamp makes the trap.</p><div class="stat" id="stat-attractor">checking…</div></a>
+<a class="card" href=\"piston.html\"><h2>The Noise Floor</h2><p>Piston-leak Monte Carlo — trust, entropy, and pressure under stochastic leaks. The metric's blind spot: collapses the detector can't see.</p><div class="stat" id="stat-piston">checking…</div></a>
+<a class="card" href=\"scalpel.html\"><h2>Not a Scalpel</h2><p>Abliteration's off-target footprint as a decision-cloud theater — same surgery, opposite confidence shifts across families. Driven by the real deltas from arXiv:2607.17427.</p><div class="stat" id="stat-scalpel">checking…</div></a>
+</div>
+<footer>Generated locally; no cloud inference. three.js r180 vendored, MIT license.</footer>
+</main>
+<script>
+async function stat(id,url,pick){try{const r=await fetch(url,{cache:"no-store"});const d=await r.json();document.getElementById(id).textContent=d.available===false?"data unavailable":pick(d)}catch(e){document.getElementById(id).textContent="data unavailable"}}
+stat("stat-galaxy","/api/viz/archive",d=>`${d.counts.draftable-d.counts.remaining} of ${d.counts.draftable} sources drafted · ${d.counts.remaining} queued`);
+stat("stat-constellation","/api/viz/constellation",d=>`${d.documents.length} documents · ${d.edges.length} candidate links · ${d.seeds.length} seeds`);
+stat("stat-seams","/api/viz/seams",d=>`${d.summary.total} tensors · ${d.summary.different} differing`);
+stat("stat-attractor","/api/viz/sim",d=>d.gaslit?`dose grid ${Object.keys(d.gaslit.grid||{}).length} cells · live RK4 in-browser`:"live RK4 in-browser");
+stat("stat-piston","/api/viz/sim",d=>d.piston?`archived sweep: ${Object.keys(d.piston.sweeps||{}).length} levels · live MC in-browser`:"live MC in-browser");
+stat("stat-scalpel","/api/viz/scalpel",d=>d.available?`${d.design.decisions_total.toLocaleString()} decisions · ${d.effects.length} measured effects`:"effects file pending");
+</script>
+</body></html>

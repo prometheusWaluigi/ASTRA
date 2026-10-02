@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Not a Scalpel</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;color:#eef3ff;background:#0d1726}*{box-sizing:border-box}body{margin:0;overflow:hidden}
+canvas{display:block}
+#hud{position:fixed;top:12px;left:12px;max-width:360px;background:#101a2bd9;border:1px solid #3a4a63;border-radius:14px;padding:13px 15px;backdrop-filter:blur(4px)}
+#hud h1{font-size:18px;margin:0 0 4px;color:#f0d9a8}#hud p{font-size:12px;color:#b7c4d6;line-height:1.45;margin:4px 0}
+#hud a{color:#d8a84e;font-size:12px}
+#hud label{font-size:12px;color:#c7d8ee;display:inline-block;margin:6px 10px 0 0;cursor:pointer}
+#hud button{font:inherit;font-size:12px;background:#243145;color:#eaf2ff;border:1px solid #42536c;border-radius:8px;padding:5px 9px;cursor:pointer;margin-top:6px}
+#hud .seg{display:inline-flex;border:1px solid #42536c;border-radius:8px;overflow:hidden;margin:6px 6px 0 0}
+#hud .seg button{margin:0;border:0;border-radius:0}
+#hud .seg button.on{background:#3b5d8f;color:#fff}
+#hud table{font-size:11px;color:#9fb0c5;border-collapse:collapse;margin-top:8px}
+#hud td{padding:1px 10px 1px 0;text-align:left}
+.legend span{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+@media(max-width:560px){#hud{max-width:250px;padding:10px 12px}#hud table{display:none}}
+</style>
+</head>
+<body>
+<div id="hud"><h1>Not a Scalpel</h1>
+<p>Abliteration removes a refusal direction — and quietly shifts decision disposition. Each point is a stylized decision: <b>x</b> = optimism (up-bet share), <b>y</b> = expressed confidence, <b>z</b> = horizon spread. Toggle the family and watch the amber (abliterated) cloud move — same surgery, <i>opposite</i> confidence shifts.</p>
+<div class="legend" style="font-size:12px;color:#c7d8ee;margin-top:6px"><span style="background:#7fb8d8"></span>base&nbsp;&nbsp;<span style="background:#f0b95c"></span>abliterated&nbsp;&nbsp;<span style="background:#e06c6c"></span>contaminated pilot</div>
+<div class="seg" id="familySeg"><button data-f="gemma" class="on">Gemma-4-26B</button><button data-f="qwen">Qwen3-30B</button></div>
+<div class="seg" id="regimeSeg"><button data-r="all" class="on">all weeks</button><button data-r="up">up-weeks</button><button data-r="down">down-weeks</button></div>
+<div><label><input type="checkbox" id="contam"> show contaminated pilot (quantizer mismatch)</label><label><input type="checkbox" id="spin" checked> auto-rotate</label></div>
+<div id="stats"></div>
+<table id="tbl"></table>
+<p style="color:#8a97ab;font-size:11px">Stylized re-rendering of headline effect sizes from <a href="https://arxiv.org/abs/2607.17427" target="_blank" rel="noopener">arXiv:2607.17427</a> (21,600 decisions, 60 equities, 18 weeks). Not raw decision data. <a href="hub.html">← rooms</a></p></div>
+<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const $=id=>document.getElementById(id);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
+document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0d1726);scene.fog=new THREE.FogExp2(0x0d1726,0.006);
+const camera=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,.1,900);camera.position.set(-30,26,66);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(4,10,0);
+if(reduced)$('spin').checked=false;
+scene.add(new THREE.AmbientLight(0x8899bb,.7));
+const key=new THREE.DirectionalLight(0xffe0b0,1.1);key.position.set(30,60,40);scene.add(key);
+
+const d=await(await fetch('/api/viz/scalpel',{cache:'no-store'})).json();
+if(!d.available){$('stats').textContent='effects file unavailable: '+(d.error||'');throw new Error(d.error)}
+const E={};for(const e of d.effects)E[e.name]=e;
+
+/* scene mapping: x = optimism share centered at .5 (1pp = 2.4 scene units),
+   y = confidence 0..1 (x38, base ~.55), z = horizon non-collapse share (x26) */
+const PX=2.4, PY=38, PZ=26, BASE_X=0, N=1400;
+const XOFF=15;   // fixed side-by-side separation; the optimism Δ pushes further right
+const floor=new THREE.GridHelper(90,18,0x2c3a52,0x1b2940);floor.position.y=-6;scene.add(floor);
+// axis posts + floor labels as floating lines
+function axisLine(from,to,color){const g=new THREE.BufferGeometry().setFromPoints([from,to]);scene.add(new THREE.Line(g,new THREE.LineBasicMaterial({color})))}
+axisLine(new THREE.Vector3(-45,-6,0),new THREE.Vector3(45,-6,0),0x5a7396); // optimism
+axisLine(new THREE.Vector3(-45,-6,0),new THREE.Vector3(-45,32,0),0x5a7396); // confidence
+axisLine(new THREE.Vector3(-45,-6,0),new THREE.Vector3(-45,-6,26),0x5a7396); // horizon
+
+let rng=0x9e3779b9;const rand=()=>{rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return (rng>>>0)/4294967296};
+const gauss=()=>(rand()+rand()+rand()+rand()-2)/1.15;
+
+function makeCloud(color,size){
+  const g=new THREE.BufferGeometry();
+  const pos=new Float32Array(N*3), jit=new Float32Array(N*3);
+  for(let i=0;i<N;i++){jit[i*3]=gauss()*4.6;jit[i*3+1]=gauss()*4.8;jit[i*3+2]=gauss()*4.6}
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  g.userData.jit=jit;
+  const m=new THREE.PointsMaterial({color,size,transparent:true,opacity:.82,sizeAttenuation:true});
+  const p=new THREE.Points(g,m);scene.add(p);return p;
+}
+const base=makeCloud(0x7fb8d8,0.55), abl=makeCloud(0xf0b95c,0.55), ghost=makeCloud(0xe06c6c,0.5);
+ghost.visible=false;
+
+/* arm state = [optimismShare, confidence, horizonOpen] */
+function armState(family,arm,regime){
+  const opt=E.optimism[family], conf=E.confidence[family], hor=E.horizon[family];
+  let up=(arm==='abl'? (regime==='all'? opt.delta : opt.regime[regime==='up'?'up_weeks':'down_weeks']) : 0);
+  return {
+    x: 0.5 + up/100,                                   // optimism share
+    y: 0.55 + (arm==='abl'? conf.delta : 0)*3,         // confidence (delta x3 for legibility, noted in HUD)
+    z: (arm==='abl'? 1-hor.abl : 1-hor.base)           // horizon openness
+  };
+}
+function layout(cloud, st, spread){
+  const p=cloud.geometry.attributes.position.array, jit=cloud.geometry.userData.jit;
+  for(let i=0;i<N;i++){
+    p[i*3]  =(st.x-0.5)*100*PX + jit[i*3];
+    p[i*3+1]= st.y*PY + jit[i*3+1] - 6;
+    p[i*3+2]= st.z*PZ*(spread||1) + jit[i*3+2] - 5;
+  }
+  cloud.geometry.attributes.position.needsUpdate=true;
+}
+/* keep clouds spatially separated: base sits left of abl on x via fixed offset */
+function place(cloud, st, xoff, spread){ const s={...st,x:st.x + xoff/240}; layout(cloud,s,spread); }
+
+let family='gemma', regime='all', t0=performance.now();
+function refresh(){
+  const b=armState(family,'base',regime), a=armState(family,'abl',regime);
+  place(base,b,-XOFF,1); place(abl,a,XOFF,1);
+  place(ghost,{x:a.x+0.18,y:a.y-0.10,z:a.z},XOFF,1); // contaminated pilot overshoots
+  const conf=E.confidence[family], opt=E.optimism[family], hor=E.horizon[family];
+  $('stats').innerHTML=`family: <b>${family==='gemma'?'Gemma-4-26B-A4B-it':'Qwen3-30B-A3B-Instruct-2507'}</b> · regime: ${regime}`;
+  $('tbl').innerHTML=
+    `<tr><td>optimism Δ</td><td>+${(regime==='all'?opt.delta:opt.regime[regime==='up'?'up_weeks':'down_weeks'])} pp up-bets</td></tr>`+
+    `<tr><td>confidence Δ</td><td>${conf.delta>0?'+':''}${conf.delta} (${conf.direction})</td></tr>`+
+    `<tr><td>verbosity Δ</td><td>+${E.confession_length[family].delta} words</td></tr>`+
+    `<tr><td>horizon 1w</td><td>${Math.round(hor.base*100)}% → ${Math.round(hor.abl*100)}%</td></tr>`;
+}
+$('familySeg').addEventListener('click',e=>{const f=e.target.dataset.f;if(!f)return;
+  for(const b of $('familySeg').children)b.classList.toggle('on',b.dataset.f===f);family=f;refresh()});
+$('regimeSeg').addEventListener('click',e=>{const r=e.target.dataset.r;if(!r)return;
+  for(const b of $('regimeSeg').children)b.classList.toggle('on',b.dataset.r===r);regime=r;refresh()});
+$('contam').addEventListener('change',e=>ghost.visible=e.target.checked);
+refresh();
+
+function animate(t){requestAnimationFrame(animate);
+  if($('spin').checked&&!reduced)scene.rotation.y=(t-t0)*0.00006;
+  controls.update();renderer.render(scene,camera)}
+requestAnimationFrame(animate);
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+</script>
+</body>
+</html>

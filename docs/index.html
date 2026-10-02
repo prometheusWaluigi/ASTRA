@@ -1,788 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASTRA: Archetypal Spacetime Tensor Resonance Architecture</title>
-    <!-- Modern Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Icon Font -->  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Three.js for 3D visualizations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- D3.js for data visualizations -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- GSAP for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <!-- Force Graph for topology visualization -->
-    <script src="https://unpkg.com/3d-force-graph@1.43.0/dist/3d-force-graph.min.js"></script>
-    <!-- Config file with API keys -->
-    <script src="config.js"></script>
-    
-    <!-- Google Places API for city autocomplete - dynamically loaded with API key from config -->
-    <script>
-        // Dynamically create the Google Maps script tag with API key from config
-        document.addEventListener('DOMContentLoaded', function() {
-            // If config is not available (e.g., during development), use a default placeholder
-            const apiKey = (typeof config !== 'undefined' && config.GOOGLE_API_KEY) ? 
-                           config.GOOGLE_API_KEY : 'YOUR_API_KEY';
-                           
-            const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initGooglePlaces`;
-            script.defer = true;
-            script.async = true;
-            document.head.appendChild(script);
-        });
-    </script>
-    <!-- Custom stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASTRA — consciousness cartography</title>
+<style>
+  :root{
+    --ink:#0d0b08; --paper:#14110c; --paper-2:#1c1812;
+    --gold:#d4a94e; --gold-hi:#ffce8a; --text:#e8dcc8; --muted:#9a8f7a;
+    --line:#2a2418;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--text);
+    font:16px/1.6 Georgia,'Times New Roman',serif;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,169,78,.07), transparent);}
+  .wrap{max-width:820px;margin:0 auto;padding:64px 24px 96px}
+  header{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:36px}
+  h1{font-size:2.6rem;letter-spacing:.12em;margin:0 0 6px;color:var(--gold-hi);
+    font-weight:normal}
+  h1 .sub{display:block;font-size:1rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--muted);margin-top:10px}
+  p.lede{font-size:1.15rem;color:var(--text);max-width:60ch}
+  .seam{height:1px;margin:44px 0;
+    background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent)}
+  h2{font-size:.9rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--gold);margin:0 0 18px;font-weight:normal}
+  .rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  a.card{display:block;background:var(--paper);border:1px solid var(--line);
+    border-radius:10px;padding:18px 20px;color:var(--text);text-decoration:none;
+    transition:border-color .2s, transform .2s}
+  a.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+  a.card b{display:block;color:var(--gold-hi);font-weight:normal;margin-bottom:6px}
+  a.card span{font-size:.85rem;color:var(--muted)}
+  footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:.85rem}
+  footer a{color:var(--gold-hi);text-decoration:none}
+</style>
 </head>
 <body>
-    <!-- Dynamic cosmic background -->
-    <div id="cosmic-canvas"></div>
-    <div class="cosmic-overlay"></div>
-    
-    <!-- Particle system -->
-    <div id="particles-js"></div>
-    
-    <div class="container">
-        <div class="noise-overlay"></div>
-        <header>
-            <div class="logo-container">
-                <div class="logo-glow"></div>
-                <div class="logo">ASTRA</div>
-            </div>
-            <h1 class="glitch-text" data-text="ASTRA">ASTRA <span class="subtitle">Archetypal Spacetime Tensor Resonance Architecture</span></h1>
-            <p class="tagline">Chart the shape of your psyche. <span class="highlight">Not as fate—but as resonance.</span> <span class="sparkle">✨</span></p>
-            <div class="header-divider">
-                <svg viewBox="0 0 1200 30" preserveAspectRatio="none">
-                    <path d="M0,0 Q300,30 600,0 T1200,0" fill="none" stroke="var(--primary-color)" stroke-width="2"/>
-                </svg>
-            </div>
-        </header>
+<div class="wrap">
+<header>
+  <h1>ASTRA
+    <span class="sub">Archetypal Spacetime Tensor Resonance Architecture</span>
+  </h1>
+</header>
 
-        <nav class="tabs">
-            <button class="tab-btn active" data-tab="input">
-                <span class="tab-icon"><i class="fas fa-user-circle"></i></span>
-                <span class="tab-text">Input Your Data</span>
-            </button>
-            <button class="tab-btn" data-tab="about">
-                <span class="tab-icon"><i class="fas fa-info-circle"></i></span>
-                <span class="tab-text">About ASTRA</span>
-            </button>
-            <button class="tab-btn" data-tab="visualization">
-                <span class="tab-icon"><i class="fas fa-chart-bar"></i></span>
-                <span class="tab-text">Visualizations</span>
-            </button>
-            <button class="tab-btn" data-tab="results">
-                <span class="tab-icon"><i class="fas fa-brain"></i></span>
-                <span class="tab-text">Analysis Results</span>
-            </button>
-            <button class="tab-btn" data-tab="echo-viewer">
-                <span class="tab-icon"><i class="fas fa-sync-alt"></i></span>
-                <span class="tab-text">Echo Viewer</span>
-            </button>
-            <button class="tab-btn" data-tab="fhpx">
-                <span class="tab-icon"><i class="fas fa-route"></i></span>
-                <span class="tab-text">Hero's Path</span>
-            </button>
-            <button class="tab-btn" data-tab="dreamsigils">
-                <span class="tab-icon"><i class="fas fa-moon"></i></span>
-                <span class="tab-text">DreamSigils</span>
-            </button>
-            <button class="tab-btn" data-tab="retrofield">
-                <span class="tab-icon"><i class="fas fa-hourglass-half"></i></span>
-                <span class="tab-text">RetroField</span>
-            </button>
-        </nav>
+<p class="lede">Chart the shape of a psyche — not as fate, but as resonance.
+ASTRA models consciousness as a dynamic field: planetary operators,
+fractal PDEs, and topological data analysis over a qualia surface.
+Consciousness cartography, not astrology.</p>
 
-        <div class="tab-content">
-            <div id="input" class="tab-pane active">
-                <h2>Enter Your Birth Information</h2>
-                <p class="introduction-text">ASTRA transforms your birth data into a quantum consciousness topology map. <span class="info-tooltip" data-tooltip="Your birth information serves as initial conditions for the field equations that generate your unique consciousness topology.">How does it work?</span></p>
-                <div class="ux-output" id="ux-input-output">
-                    <h3>UX Test Output: Input Module</h3>
-                    <p class="ux-output-hint">Live validation and input updates will appear here.</p>
-                    <ul class="ux-output-list"></ul>
-                </div>
-                <form id="birth-data-form" onsubmit="return false;">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="birth-date">Birth Date:</label>
-                            <input type="date" id="birth-date" name="birth-date" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="birth-time">Birth Time:</label>
-                            <input type="time" id="birth-time" name="birth-time" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="birth-city">Birth City:</label>
-                        <input type="text" id="birth-city" name="birth-city" placeholder="Start typing any city in the world" required>
-                        <div id="city-autocomplete-results" class="autocomplete-results"></div>
-                        <input type="hidden" id="birth-city-lat" name="birth-city-lat">
-                        <input type="hidden" id="birth-city-lng" name="birth-city-lng">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="birth-country">Birth Country:</label>
-                        <select id="birth-country" name="birth-country" required>
-                            <option value="">Select a country</option>
-                            <option value="AF">Afghanistan</option>
-                            <option value="AL">Albania</option>
-                            <option value="DZ">Algeria</option>
-                            <option value="AR">Argentina</option>
-                            <option value="AU">Australia</option>
-                            <option value="AT">Austria</option>
-                            <option value="BD">Bangladesh</option>
-                            <option value="BE">Belgium</option>
-                            <option value="BR">Brazil</option>
-                            <option value="CA">Canada</option>
-                            <option value="CL">Chile</option>
-                            <option value="CN">China</option>
-                            <option value="CO">Colombia</option>
-                            <option value="CZ">Czech Republic</option>
-                            <option value="DK">Denmark</option>
-                            <option value="EG">Egypt</option>
-                            <option value="FI">Finland</option>
-                            <option value="FR">France</option>
-                            <option value="DE">Germany</option>
-                            <option value="GR">Greece</option>
-                            <option value="HK">Hong Kong</option>
-                            <option value="HU">Hungary</option>
-                            <option value="IS">Iceland</option>
-                            <option value="IN">India</option>
-                            <option value="ID">Indonesia</option>
-                            <option value="IR">Iran</option>
-                            <option value="IQ">Iraq</option>
-                            <option value="IE">Ireland</option>
-                            <option value="IL">Israel</option>
-                            <option value="IT">Italy</option>
-                            <option value="JP">Japan</option>
-                            <option value="JO">Jordan</option>
-                            <option value="KE">Kenya</option>
-                            <option value="KR">Korea, South</option>
-                            <option value="LB">Lebanon</option>
-                            <option value="MY">Malaysia</option>
-                            <option value="MX">Mexico</option>
-                            <option value="MA">Morocco</option>
-                            <option value="NL">Netherlands</option>
-                            <option value="NZ">New Zealand</option>
-                            <option value="NG">Nigeria</option>
-                            <option value="NO">Norway</option>
-                            <option value="PK">Pakistan</option>
-                            <option value="PE">Peru</option>
-                            <option value="PH">Philippines</option>
-                            <option value="PL">Poland</option>
-                            <option value="PT">Portugal</option>
-                            <option value="RO">Romania</option>
-                            <option value="RU">Russia</option>
-                            <option value="SA">Saudi Arabia</option>
-                            <option value="SG">Singapore</option>
-                            <option value="ZA">South Africa</option>
-                            <option value="ES">Spain</option>
-                            <option value="SE">Sweden</option>
-                            <option value="CH">Switzerland</option>
-                            <option value="TW">Taiwan</option>
-                            <option value="TH">Thailand</option>
-                            <option value="TR">Turkey</option>
-                            <option value="UA">Ukraine</option>
-                            <option value="AE">United Arab Emirates</option>
-                            <option value="UK">United Kingdom</option>
-                            <option value="US">United States</option>
-                            <option value="VE">Venezuela</option>
-                            <option value="VN">Vietnam</option>
-                        </select>
-                    </div>
-                    
-                    <button type="button" id="generate-btn" class="submit-btn">Generate ASTRA Analysis</button>
-                    <div id="form-error" class="error-message hidden"></div>
-                </form>
-                
-                <div id="loading" class="loading hidden">
-                    <div class="spinner"></div>
-                    <p>Generating your QualiaField and analyzing the psyche topology...</p>
-                </div>
-            </div>
-            
-            <div id="about" class="tab-pane">
-                <h2>About ASTRA</h2>
-                <p>ASTRA is not astrology. It is <strong>consciousness cartography</strong> — a simulator for the evolving topological field of the psyche.</p>
-                
-                <p>ASTRA reinterprets planetary motion and symbolic archetypes as tensor perturbations on a nonlinear qualia surface.</p>
-                
-                <h3>Given natal data, ASTRA:</h3>
-                <ol>
-                    <li>Initializes a qualia field χ(x,0) from birth chart data</li>
-                    <li>Evolves the field via fKPZχ PDEs with fractal noise</li>
-                    <li>Models ego formation through symmetry breaking</li>
-                    <li>Analyzes field topology (Betti numbers, Ricci curvature)</li>
-                    <li>Generates symbolic narratives and archetypal event logs</li>
-                </ol>
-                
-                <h3>Architecture</h3>
-                <p>ASTRA is organized in recursive layers:</p>
-                
-                <div class="architecture">
-                    <div class="arch-layer">
-                        <h4>χ-Layer: Field Evolution 🌊</h4>
-                        <ul>
-                            <li>fKPZχ core PDE engine</li>
-                            <li>Fractional Laplacian (FFT accelerated)</li>
-                            <li>Moon = fractal noise generator η_f</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="arch-layer">
-                        <h4>𝒸-Layer: Archetypal Operators 🌍</h4>
-                        <ul>
-                            <li>Planets as tensor fields modulating χ</li>
-                            <li>Aspect matrix μ_ij (cross-modal coupling)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="arch-layer">
-                        <h4>𝓈-Layer: Topological Signature 🔍</h4>
-                        <ul>
-                            <li>Persistent homology (Betti loops)</li>
-                            <li>Ollivier-Ricci curvature</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="arch-layer">
-                        <h4>𝓂-Layer: Symbolic Narrative 📖</h4>
-                        <ul>
-                            <li>Event log generator</li>
-                            <li>Archetypal pattern recognition</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="visualization" class="tab-pane">
-                <h2>QualiaField Visualization</h2>
-                <p>Your QualiaField represents the topological structure of your conscious experience as modeled by ASTRA. <span class="info-tooltip" data-tooltip="ASTRA visualizes your consciousness as an evolving field with unique topological features that shape your experience of reality.">What is a QualiaField?</span></p>
-                <div class="ux-output" id="ux-visualization-output">
-                    <h3>UX Test Output: Visualization Module</h3>
-                    <p class="ux-output-hint">Visualization controls update this feed.</p>
-                    <ul class="ux-output-list"></ul>
-                </div>
-                <div class="explanation-card">
-                    <div class="card-header">
-                        <i class="fas fa-info-circle"></i>
-                        <h3>Understanding Your Visualizations</h3>
-                    </div>
-                    <div class="card-content">
-                        <p>ASTRA creates multiple visualizations of your consciousness topology:</p>
-                        <ol>
-                            <li><strong>Initial QualiaField</strong>: The starting field generated from your birth data</li>
-                            <li><strong>Evolved QualiaField</strong>: How your consciousness field develops over time</li>
-                            <li><strong>Topological Analysis</strong>: The mathematical structure of your consciousness</li>
-                        </ol>
-                    </div>
-                </div>
-                
-                <div class="visualization-container">
-                    <div id="initial-field" class="field-vis">
-                        <h3>Initial QualiaField χ(x,0)</h3>
-                        <div class="placeholder-img">
-                            <div class="placeholder-glow"></div>
-                            <i class="fas fa-brain"></i>
-                            <p>Generate your analysis to see your initial QualiaField</p>
-                        </div>
-                        <div class="field-container">
-                            <canvas id="initial-field-canvas" width="500" height="500"></canvas>
-                            <div class="field-controls">
-                                <button class="control-btn" id="initial-rotate"><i class="fas fa-sync"></i> Rotate</button>
-                                <button class="control-btn" id="initial-zoom"><i class="fas fa-search-plus"></i> Zoom</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="evolved-field" class="field-vis">
-                        <h3>Evolved QualiaField χ(x,t)</h3>
-                        <div class="placeholder-img">
-                            <div class="placeholder-glow"></div>
-                            <i class="fas fa-project-diagram"></i>
-                            <p>Generate your analysis to see your evolved QualiaField</p>
-                        </div>
-                        <div class="field-container">
-                            <canvas id="evolved-field-canvas" width="500" height="500"></canvas>
-                            <div class="timeline-slider">
-                                <input type="range" min="0" max="100" value="0" id="evolution-timeline">
-                                <div class="timeline-labels">
-                                    <span>t = 0</span>
-                                    <span>t = 0.5</span>
-                                    <span>t = 1.0</span>
-                                    <span>t = 1.5</span>
-                                    <span>t = 2.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="topology-vis" class="topology-container">
-                    <h3>Topological Analysis <span class="info-tooltip" data-tooltip="Topology studies the properties of space that are preserved under continuous deformations. ASTRA uses topology to analyze the structure of your consciousness.">?</span></h3>
-                    <div class="explanation-panel">
-                        <p>The topological analysis reveals the underlying structure of your consciousness field through mathematical analysis of connections, loops, and voids.</p>
-                        <div class="animated-explanation">
-                            <div class="step-indicator">
-                                <span class="step active" data-step="1">Components</span>
-                                <span class="step" data-step="2">Cycles</span>
-                                <span class="step" data-step="3">Voids</span>
-                                <span class="step" data-step="4">Curvature</span>
-                            </div>
-                            <div class="explanation-content">
-                                <div class="explanation-step active" data-step="1">
-                                    <h4>Connected Components (β₀)</h4>
-                                    <p>Represents distinct regions of your consciousness that function independently. More components indicate a compartmentalized mental structure.</p>
-                                </div>
-                                <div class="explanation-step" data-step="2">
-                                    <h4>Loops/Cycles (β₁)</h4>
-                                    <p>Represents feedback loops and circular patterns in your cognitive processes. Higher values indicate complex recursive thinking.</p>
-                                </div>
-                                <div class="explanation-step" data-step="3">
-                                    <h4>Voids/Cavities (β₂)</h4>
-                                    <p>Represents spaces enclosed by your thought patterns. These indicate potential for emerging phenomena in your consciousness.</p>
-                                </div>
-                                <div class="explanation-step" data-step="4">
-                                    <h4>Ricci Curvature</h4>
-                                    <p>Measures how your conscious space is shaped. Positive values indicate convergent thinking, negative values show divergent thinking.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="placeholder-img">
-                        <div class="placeholder-glow"></div>
-                        <i class="fas fa-network-wired"></i>
-                        <p>Generate your analysis to see topological features</p>
-                    </div>
-                    <div class="topology-viz-container">
-                        <div id="topology-3d-graph"></div>
-                        <div class="topology-controls">
-                            <button class="viz-toggle active" data-viz="graph">Network Graph</button>
-                            <button class="viz-toggle" data-viz="betti">Betti Numbers</button>
-                            <button class="viz-toggle" data-viz="curvature">Ricci Curvature</button>
-                        </div>
-                        <div class="topology-stats">
-                            <div class="stat">
-                                <span class="stat-label">β₀</span>
-                                <span class="stat-value" id="betti0">-</span>
-                                <span class="stat-desc">Connected Components</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">β₁</span>
-                                <span class="stat-value" id="betti1">-</span>
-                                <span class="stat-desc">Loops/Cycles</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">β₂</span>
-                                <span class="stat-value" id="betti2">-</span>
-                                <span class="stat-desc">Voids/Cavities</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">RC</span>
-                                <span class="stat-value" id="ricci-curvature">-</span>
-                                <span class="stat-desc">Avg. Ricci Curvature</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="echo-viewer" class="tab-pane">
-                <h2>Narrative Echo Viewer</h2>
-                <p class="introduction-text">Visualize the symmetrical resonance patterns between past and future consciousness states. <span class="info-tooltip" data-tooltip="The Narrative Echo Viewer reveals hidden temporal symmetries in your consciousness field through quantum entanglement visualization.">How does it work?</span></p>
-                <div class="ux-output" id="ux-echo-output">
-                    <h3>UX Test Output: Echo Viewer</h3>
-                    <p class="ux-output-hint">Timeline and tensor controls update this feed.</p>
-                    <ul class="ux-output-list"></ul>
-                </div>
-                
-                <div class="echo-container">
-                    <svg class="echo-canvas" viewBox="0 0 1000 200"></svg>
-                    <div class="echo-controls">
-                        <input type="range" id="echo-timeline" min="0" max="1" step="0.01" value="0.5">
-                        <div class="echo-labels">
-                            <span>Past</span>
-                            <span>Present</span>
-                            <span>Future</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="echo-symbolism">
-                    <h3>Symbolic Symmetry Analysis</h3>
-                    <div class="symbolism-content">
-                        <p>Move the timeline slider to reveal symbolic echoes between past and future states.</p>
-                    </div>
-                </div>
-                
-                <div class="inertia-tensor">
-                    <h3>Narrative Inertia Tensor <span class="info-tooltip" data-tooltip="Quantifies resistance to timeline perturbation; high-inertia narratives resist rewrites.">ⓘ</span></h3>
-                    <div class="tensor-visualization">
-                        <canvas id="inertia-tensor-canvas" width="800" height="200"></canvas>
-                        <div class="tensor-controls">
-                            <div class="tensor-slider">
-                                <label>Perturbation Amplitude:</label>
-                                <input type="range" id="perturbation-amplitude" min="0" max="1" step="0.01" value="0.3">
-                            </div>
-                            <div class="tensor-slider">
-                                <label>Inertia Coefficient:</label>
-                                <input type="range" id="inertia-coefficient" min="0" max="1" step="0.01" value="0.6">
-                            </div>
-                        </div>
-                        <div class="tensor-readout">
-                            <div class="tensor-value">
-                                <span class="label">Narrative Stability Index:</span>
-                                <span class="value" id="stability-index">0.78</span>
-                            </div>
-                            <div class="tensor-value">
-                                <span class="label">Eigenvalue Spectrum:</span>
-                                <span class="value" id="eigenvalue-spectrum">[3.14, 2.71, 1.62]</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="attractor-collapse">
-                    <h3>Retrodictive Attractor Collapse <span class="info-tooltip" data-tooltip="When future boundary constraints crystallize a specific archetypal pattern in the past field—ψ collapses backward.">ⓘ</span></h3>
-                    <div class="collapse-visualization" id="attractor-collapse-container">
-                        <!-- Canvas will be created dynamically -->
-                    </div>
-                    <div class="collapse-controls">
-                        <div class="collapse-control-group">
-                            <button class="collapse-btn active" data-mode="retro">Retrodictive</button>
-                            <button class="collapse-btn" data-mode="forward">Forward</button>
-                            <button class="collapse-btn" data-mode="bidirectional">Bidirectional</button>
-                        </div>
-                        <div class="collapse-control-group">
-                            <button class="collapse-btn" id="collapse-trigger">Trigger Collapse</button>
-                        </div>
-                    </div>
-                    <div class="collapse-timeline">
-                        <div class="collapse-markers" id="collapse-markers">
-                            <!-- Markers will be generated dynamically -->
-                        </div>
-                        <div class="collapse-cursor" id="collapse-cursor"></div>
-                    </div>
-                </div>
-                
-                <div class="entangled-charts">
-                    <h3>Entangled Chart Arrays <span class="info-tooltip" data-tooltip="Map synchronous narratives across multiple subjects with correlated boundary conditions.">ⓘ</span></h3>
-                    <div class="chart-grid">
-                        <div class="chart-cell">
-                            <div class="chart-title">
-                                Subject Alpha
-                                <span class="chart-entanglement">ψ-correlation: 0.89</span>
-                            </div>
-                            <canvas class="chart-canvas" id="chart-alpha"></canvas>
-                        </div>
-                        <div class="chart-cell">
-                            <div class="chart-title">
-                                Subject Beta
-                                <span class="chart-entanglement">ψ-correlation: 0.72</span>
-                            </div>
-                            <canvas class="chart-canvas" id="chart-beta"></canvas>
-                        </div>
-                        <div class="chart-cell">
-                            <div class="chart-title">
-                                Subject Gamma
-                                <span class="chart-entanglement">ψ-correlation: 0.63</span>
-                            </div>
-                            <canvas class="chart-canvas" id="chart-gamma"></canvas>
-                        </div>
-                        <div class="chart-cell">
-                            <div class="chart-title">
-                                Subject Delta
-                                <span class="chart-entanglement">ψ-correlation: 0.91</span>
-                            </div>
-                            <canvas class="chart-canvas" id="chart-delta"></canvas>
-                        </div>
-                    </div>
-                    <div class="entanglement-controls">
-                        <button class="entanglement-btn" id="synchronize-charts">Synchronize Entanglement</button>
-                        <button class="entanglement-btn" id="reset-charts">Reset Coherence</button>
-                    </div>
-                    <svg class="entanglement-lines" id="entanglement-lines"></svg>
-                </div>
-            </div>
-            
-            <div id="results" class="tab-pane">
-                <h2>ASTRA Analysis Results</h2>
-                <div class="ux-output" id="ux-results-output">
-                    <h3>UX Test Output: Results Module</h3>
-                    <p class="ux-output-hint">Result generation status appears here.</p>
-                    <ul class="ux-output-list"></ul>
-                </div>
-                <div id="results-container">
-                    <p>Submit your birth information to receive your ASTRA analysis.</p>
-                    
-                    <div id="natal-report" class="result-section hidden">
-                        <h3>Natal Configuration</h3>
-                        <div class="report-content"></div>
-                    </div>
-                    
-                    <div id="field-analysis" class="result-section hidden">
-                        <h3>QualiaField Analysis</h3>
-                        <div class="report-content"></div>
-                    </div>
-                    
-                    <div id="topology-analysis" class="result-section hidden">
-                        <h3>Topological Signature</h3>
-                        <div class="report-content"></div>
-                    </div>
-                    
-                    <div id="narrative-events" class="result-section hidden">
-                        <h3>Symbolic Narrative</h3>
-                        <div class="report-content"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Fractal Hero's Path χ Tab Content -->
-            <div id="fhpx" class="tab-pane">
-                <h2>Fractal Hero's Path χ</h2>
-                <div class="ux-output" id="ux-fhpx-output">
-                    <h3>UX Test Output: Hero's Path</h3>
-                    <p class="ux-output-hint">Journey controls and stage updates appear here.</p>
-                    <ul class="ux-output-list"></ul>
-                </div>
-                <div class="hero-journey-container">
-                    <div class="section-header">Hero's Journey Archetypal Map</div>
-                    <div class="hero-journey-canvas-container">
-                        <svg id="hero-journey-canvas" width="100%" height="500"></svg>
-                        <div class="journey-stage-info">
-                            <div class="stage-title">Current Stage: <span id="current-stage">ORDINARY_WORLD</span></div>
-                            <div class="stage-description" id="stage-description">
-                                The psyche inhabits its default state, before the initiation of transformative journey.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="controls-container">
-                        <div class="control-group">
-                            <label>χ-Field Turbulence</label>
-                            <input type="range" min="0" max="100" value="40" id="chi-turbulence">
-                        </div>
-                        <div class="control-group">
-                            <label>Fractal Recursion Depth</label>
-                            <input type="range" min="1" max="5" value="2" id="fractal-depth">
-                        </div>
-                        <div class="control-group">
-                            <label>Archetype Activation</label>
-                            <select id="archetype-selector">
-                                <option value="hero">Hero</option>
-                                <option value="mentor">Mentor</option>
-                                <option value="threshold_guardian">Threshold Guardian</option>
-                                <option value="herald">Herald</option>
-                                <option value="shapeshifter">Shapeshifter</option>
-                                <option value="shadow">Shadow</option>
-                                <option value="trickster">Trickster</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="curvature-field-section">
-                    <div class="section-header">χ-Curvature Field Map</div>
-                    <div class="curvature-map-container">
-                        <canvas id="chi-curvature-map" width="800" height="250"></canvas>
-                        <div class="curvature-legend">
-                            <div class="legend-item">
-                                <div class="color-swatch positive"></div>
-                                <span>Expansive Transitions</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="color-swatch negative"></div>
-                                <span>Contractive Transitions</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="color-swatch neutral"></div>
-                                <span>Stable Nodes</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="journey-nodes-section">
-                    <div class="section-header">Journey Node Activation</div>
-                    <div class="journey-nodes-container">
-                        <!-- Will be populated dynamically with journey nodes -->
-                        <div class="node-grid" id="journey-nodes-grid"></div>
-                    </div>
-                    <div class="node-controls">
-                        <button id="reset-journey" class="cosmic-btn">Reset Journey</button>
-                        <button id="evolve-journey" class="cosmic-btn primary">Auto-Evolve</button>
-                    </div>
-                </div>
-            </div>
+<div class="seam"></div>
 
-            <!-- DreamSigils Module Tab Content -->
-            <div id="dreamsigils" class="tab-pane">
-                <h2>DreamSigils Module</h2>
-                <div class="ux-output" id="ux-dreamsigils-output">
-                    <h3>UX Test Output: DreamSigils</h3>
-                    <p class="ux-output-hint">Sigil generation actions update this feed.</p>
-                    <ul class="ux-output-list"></ul>
-                </div>
-                <div class="sigil-generator-section">
-                    <div class="section-header">Dream Sigil Generator</div>
-                    <div class="sigil-canvas-container">
-                        <svg id="sigil-canvas" width="400" height="400"></svg>
-                        <div class="sigil-info">
-                            <div class="sigil-title">Current Sigil: <span id="sigil-name">Undefined</span></div>
-                            <div class="sigil-description" id="sigil-description">Generate a dream sigil to see its symbolic meaning...</div>
-                        </div>
-                    </div>
-                    <div class="sigil-controls">
-                        <button id="generate-sigil" class="cosmic-btn">Generate Dream Sigil</button>
-                        <button id="animate-sigil" class="cosmic-btn">Animate</button>
-                        <button id="download-sigil" class="cosmic-btn secondary">Download</button>
-                    </div>
-                </div>
-                
-                <div class="sigil-library-section">
-                    <div class="section-header">Sigil Pattern Library</div>
-                    <div class="sigil-library-container">
-                        <div class="sigil-grid" id="sigil-library"></div>
-                    </div>
-                    <div class="pattern-analysis">
-                        <div class="panel-header">Pattern Analysis</div>
-                        <div class="pattern-content" id="pattern-analysis-content">
-                            <p>Generate dream sigils to build your pattern library...</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="glyph-family-section">
-                    <div class="section-header">Glyph Family Tree</div>
-                    <div class="family-tree-container">
-                        <svg id="glyph-family-tree" width="100%" height="300"></svg>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- RetroField Feedback Loop Tab Content -->
-            <div id="retrofield" class="tab-pane">
-                <h2>RetroField Feedback Loop</h2>
-                <div class="ux-output" id="ux-retrofield-output">
-                    <h3>UX Test Output: RetroField</h3>
-                    <p class="ux-output-hint">Intentions and negotiation controls update this feed.</p>
-                    <ul class="ux-output-list"></ul>
-                </div>
-                <div class="intention-input-section">
-                    <div class="section-header">Enter Your Intention</div>
-                    <div class="intention-input-container">
-                        <textarea id="intention-input" placeholder="Type a wish, vision, or worry to encode into the ψ-field..."></textarea>
-                        <div class="intention-controls">
-                            <select id="intention-type">
-                                <option value="wish">Wish</option>
-                                <option value="vision">Vision</option>
-                                <option value="worry">Worry</option>
-                            </select>
-                            <button id="encode-intention" class="cosmic-btn">Encode in Field</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="motif-encoding-section">
-                    <div class="section-header">Topological Motif Encoding</div>
-                    <div class="motif-canvas-container">
-                        <canvas id="motif-canvas" width="800" height="300"></canvas>
-                        <div class="probability-timeline">
-                            <div class="timeline-paths" id="probability-paths"></div>
-                        </div>
-                    </div>
-                    <div class="encoded-motifs">
-                        <div class="panel-header">Active Field Encodings</div>
-                        <div class="motifs-list" id="active-motifs">
-                            <p>No intentions currently encoded in the field...</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="destiny-negotiation-section">
-                    <div class="section-header">Destiny Negotiation Interface</div>
-                    <div class="negotiation-interface">
-                        <div class="interface-section">
-                            <div class="interface-header">Attractor Field Strength</div>
-                            <div class="interface-controls">
-                                <label>Attraction</label>
-                                <input type="range" min="0" max="100" value="70" id="attraction-strength">
-                            </div>
-                        </div>
-                        <div class="interface-section">
-                            <div class="interface-header">Temporal Scope</div>
-                            <div class="interface-controls">
-                                <label>Near Term</label>
-                                <input type="range" min="1" max="100" value="30" id="temporal-scope">
-                                <label>Far Term</label>
-                            </div>
-                        </div>
-                        <div class="interface-section">
-                            <div class="interface-header">Reality Anchoring</div>
-                            <div class="reality-anchors">
-                                <button class="reality-anchor" data-value="0.25">Light</button>
-                                <button class="reality-anchor active" data-value="0.5">Moderate</button>
-                                <button class="reality-anchor" data-value="0.75">Strong</button>
-                                <button class="reality-anchor" data-value="1.0">Maximum</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="negotiation-outcome">
-                        <div class="panel-header">Field Outcome Projection</div>
-                        <div class="outcome-content" id="outcome-projection">
-                            <p>Enter an intention to see projected field outcomes...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<h2>The app</h2>
+<div class="rooms">
+  <a class="card" href="astra-app.html"><b>ASTRA field simulator</b>
+    <span>the full web interface — natal data in, qualia topology out</span></a>
+</div>
 
-        <footer>
-            <p>&copy; 2025 ASTRA | <a href="https://github.com/prometheusWaluigi/ASTRA" target="_blank">GitHub</a></p>
-            <p class="disclaimer">ASTRA is for anyone debugging reality and mapping their inner resonance field.</p>
-        </footer>
-    </div>
+<div class="seam"></div>
 
-    <!-- Particle.js for particle effects -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- ForceGraph for network visualizations -->
-    <script src="https://unpkg.com/force-graph@1.43.0/dist/force-graph.min.js"></script>
-    <!-- Fix script -->
-    <script src="astra-fix.js"></script>
-    <!-- Google Places Integration -->
-    <script src="google-places-integration.js"></script>
-    <!-- Debug script -->
-    <script src="debug.js"></script>
-    <!-- Main script -->
-    <script src="script.js"></script>
-    <!-- Error handling -->
-    <script>
-        window.addEventListener('error', function(e) {
-            console.error('Global error caught:', e.message, e.filename, e.lineno);
-            const errorContainer = document.createElement('div');
-            errorContainer.className = 'global-error';
-            errorContainer.innerHTML = `
-                <div class="error-content">
-                    <h3>Something went wrong</h3>
-                    <p>Error: ${e.message}</p>
-                    <p>Location: ${e.filename}:${e.lineno}</p>
-                    <p>Please try refreshing the page. If the problem persists, check the browser console for details.</p>
-                </div>
-            `;
-            document.body.appendChild(errorContainer);
-        });
-    </script>
+<h2>Lab exhibits</h2>
+<div class="rooms">
+  <a class="card" href="lab/viz/hub.html"><b>The Viz Rooms</b>
+    <span>seven self-contained three.js data rooms — hub, galaxy,
+    constellation, seams, attractor, piston, scalpel</span></a>
+  <a class="card" href="lab/museum/index.html"><b>The Unreliable Poetry Museum</b>
+    <span>read each piece, guess its author, lift the placard — a
+    reveal-and-compare exhibit on attribution</span></a>
+  <a class="card" href="lab/museum/coincidence-machine.html"><b>The Coincidence Machine</b>
+    <span>a picture-book walk through the phi-audit numbers — zoom, null,
+    and the 680&nbsp;GeV crossing</span></a>
+</div>
+
+<div class="seam"></div>
+
+<h2>The project</h2>
+<p>ASTRA initializes a qualia field from natal data, evolves it through
+stochastic field equations, watches ego formation as symmetry breaking,
+and reads the resulting topology — Betti numbers, Ricci curvature,
+archetypal event logs. It reframes an ancient symbolic interface as
+measurable structure: what if the chart was always a UI for field
+dynamics?</p>
+
+<footer>
+  Built on Ketan's homelab by the Agent Net crew —
+  <a href="https://github.com/prometheusWaluigi/ASTRA">source &amp; docs</a> ·
+  rooms rendered on an Intel Arc A770, served static.
+</footer>
+</div>
 </body>
 </html>

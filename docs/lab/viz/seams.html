@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weight Seams</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;color:#eef3ff;background:#0d1726}*{box-sizing:border-box}body{margin:0;overflow:hidden}
+canvas{display:block}
+#hud{position:fixed;top:12px;left:12px;max-width:340px;background:#101a2bd9;border:1px solid #3a4a63;border-radius:14px;padding:13px 15px;backdrop-filter:blur(4px)}
+#hud h1{font-size:18px;margin:0 0 4px;color:#f0d9a8}#hud p{font-size:12px;color:#b7c4d6;line-height:1.45;margin:4px 0}
+#hud a{color:#d8a84e;font-size:12px}
+#hud label{font-size:12px;color:#c7d8ee;display:inline-block;margin:6px 10px 0 0;cursor:pointer}
+#hud button{font:inherit;font-size:12px;background:#243145;color:#eaf2ff;border:1px solid #42536c;border-radius:8px;padding:5px 9px;cursor:pointer;margin-top:6px}
+#hud table{font-size:11px;color:#9fb0c5;border-collapse:collapse;margin-top:8px}
+#hud td{padding:1px 10px 1px 0;text-align:left}
+#tip{position:fixed;pointer-events:none;background:#0d1624ee;border:1px solid #4a6788;border-radius:8px;padding:6px 9px;font-size:12px;max-width:280px;display:none;z-index:5}
+@media(max-width:560px){#hud{max-width:250px;padding:10px 12px}#hud table{display:none}}
+</style>
+</head>
+<body>
+<div id="hud"><h1>Weight Seams</h1><p>Different quantized bytes do not show where or how abliteration changed the model — conversion and quantization differences are mixed in.</p><div class="meta" id="stats" style="font-size:12px;color:#8fd6b0"></div><label><input type="checkbox" id="onlyDiff"> only differing</label><label><input type="checkbox" id="onlySame"> only identical</label><label><input type="checkbox" id="spin" checked> auto-rotate</label><button id="resetBtn">Reset view</button><div id="summary"></div><a href="../../index.html">← Lab</a></div>
+<div id="tip"></div>
+<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const $=id=>document.getElementById(id);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
+document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0d1726);scene.fog=new THREE.FogExp2(0x0d1726,0.007);
+const camera=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,.1,800);camera.position.set(26,26,34);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(0,22,0);
+if(reduced)$('spin').checked=false;
+const d=await(await fetch('/api/viz/seams',{cache:'no-store'})).json();
+if(!d.available){$('stats').textContent='catalog unavailable: '+(d.error||'');throw new Error(d.error)}
+const TYPE_ORDER=['attn_q','attn_k','attn_v','attn_output','attn_norm','attn_q_norm','attn_k_norm','ffn_gate','ffn_up','ffn_down','ffn_norm','token_embd','output','output_norm'];
+const typeIndex=t=>{const i=TYPE_ORDER.indexOf(t);return i<0?TYPE_ORDER.length:i};
+const block=d.tensors.filter(t=>t.layer!==null),plinth=d.tensors.filter(t=>t.layer===null);
+const byLayer=new Map();for(const t of block){(byLayer.get(t.layer)||byLayer.set(t.layer,[]).get(t.layer)).push(t)}
+const layers=[...byLayer.keys()].sort((a,b)=>a-b);
+const sameList=[],diffList=[];
+const scale=b=>0.35+Math.log10(Math.max(b,512))/9;
+const tileGeo=new THREE.BoxGeometry(1,.5,1);
+for(const L of layers){const tiles=byLayer.get(L).sort((a,b)=>typeIndex(a.type)-typeIndex(b.type)||a.name.localeCompare(b.name));tiles.forEach((t,i)=>{const a=i/tiles.length*Math.PI*2,r=9;(t.identical?sameList:diffList).push({t,x:Math.cos(a)*r,y:L*1.15,z:Math.sin(a)*r,rotY:-a})})}
+// plinth + crown
+plinth.forEach(t=>{const e={t,rotY:0};if(t.type==='token_embd'){e.x=0;e.y=-1.4;e.z=0;e.wide=8}else if(t.type==='output'){e.x=0;e.y=layers.length*1.15+2.2;e.z=0;e.wide=7}else{e.x=0;e.y=layers.length*1.15+1;e.z=0;e.wide=1.6}(t.identical?sameList:diffList).push(e)});
+function build(list,color){const mesh=new THREE.InstancedMesh(tileGeo,new THREE.MeshBasicMaterial({color}),list.length);const m=new THREE.Matrix4(),q=new THREE.Quaternion(),s=new THREE.Vector3(),p=new THREE.Vector3();list.forEach((e,i)=>{const k=scale(e.t.bytes);q.setFromEuler(new THREE.Euler(0,e.rotY,0));s.set(e.wide||k*2.4,Math.max(.5,k*1.4),k*2.4);p.set(e.x,e.y,e.z);m.compose(p,q,s);mesh.setMatrixAt(i,m)});mesh.userData.list=list;return mesh}
+const sameMesh=build(sameList,0x1b1f2a),diffMesh=build(diffList,0x171208);
+sameMesh.userData.kind='same';diffMesh.userData.kind='diff';
+scene.add(sameMesh,diffMesh);
+// tile edge lines: muted grey for identical, bright gold seams for differing
+function addEdges(list,color,opacity){if(!list.length)return;const edge=new THREE.EdgesGeometry(tileGeo);const base=edge.getAttribute('position').array;const out=[];const m=new THREE.Matrix4(),q=new THREE.Quaternion(),s=new THREE.Vector3(),p=new THREE.Vector3(),v=new THREE.Vector3();
+for(const e of list){const k=scale(e.t.bytes);q.setFromEuler(new THREE.Euler(0,e.rotY,0));s.set((e.wide||k*2.4)*1.02,Math.max(.5,k*1.4)*1.02,k*2.4*1.02);p.set(e.x,e.y,e.z);m.compose(p,q,s);for(let i=0;i<base.length;i+=3){v.set(base[i],base[i+1],base[i+2]).applyMatrix4(m);out.push(v.x,v.y,v.z)}}
+const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(out,3));const lines=new THREE.LineSegments(g,new THREE.LineBasicMaterial({color,transparent:true,opacity}));scene.add(lines);return lines}
+const sameEdges=addEdges(sameList,0x46536b,.45),diffEdges=addEdges(diffList,0xffcf6b,1);
+$('stats').textContent=`${d.summary.total} tensors · ${d.summary.different} differing · ${d.summary.identical} identical · ${d.summary.layers} layers`;
+const counts={};for(const t of d.tensors){const c=counts[t.type]||(counts[t.type]={i:0,d:0});t.identical?c.i++:c.d++}
+const tbl=document.createElement('table');for(const t of Object.keys(counts).sort((a,b)=>typeIndex(a)-typeIndex(b))){const tr=document.createElement('tr');for(const txt of [t,counts[t].i,counts[t].d]){const td=document.createElement('td');td.textContent=txt;tr.append(td)}tbl.append(tr)}
+const head=document.createElement('tr');for(const txt of ['type','same','diff']){const td=document.createElement('td');td.textContent=txt;td.style.color='#e8b45f';head.append(td)}tbl.prepend(head);$('summary').append(tbl);
+function applyToggles(){const od=$('onlyDiff').checked,os=$('onlySame').checked;sameMesh.visible=!od;diffMesh.visible=!os;if(sameEdges)sameEdges.visible=!od;if(diffEdges)diffEdges.visible=!os}
+$('onlyDiff').onchange=$('onlySame').onchange=applyToggles;$('spin').onchange=e=>controls.autoRotate=e.target.checked&&!reduced;
+const ray=new THREE.Raycaster();const mouse=new THREE.Vector2();
+addEventListener('pointermove',e=>{mouse.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);$('tip').style.left=e.clientX+14+'px';$('tip').style.top=e.clientY+12+'px'});
+addEventListener('pointermove',()=>{ray.setFromCamera(mouse,camera);const hits=ray.intersectObjects([sameMesh,diffMesh].filter(m=>m.visible));if(hits.length){const t=hits[0].object.userData.list[hits[0].instanceId].t;$('tip').textContent=`${t.name} · layer ${t.layer??'—'} · ${(t.bytes/1e6).toFixed(1)} MB · ${t.identical?'identical':'different'} bytes`;$('tip').style.display='block'}else $('tip').style.display='none'});
+controls.autoRotate=$('spin').checked&&!reduced;controls.autoRotateSpeed=.4;
+// frame the whole tower (rings r=9, plinth/crown, tall y span)
+let home=null;const homeDir=new THREE.Vector3(.55,.35,.8).normalize();let userMoved=false;
+{const sph=new THREE.Sphere().setFromPoints([...sameList,...diffList].map(e=>new THREE.Vector3(e.x,e.y,e.z)));sph.radius+=8;home={center:sph.center,radius:sph.radius}}
+function frameView(useCurrentDir){if(!home)return;const vF=THREE.MathUtils.degToRad(camera.fov*.5);const half=Math.min(vF,Math.atan(Math.tan(vF)*camera.aspect));const dist=home.radius/Math.sin(half)*1.1;let dir=useCurrentDir?camera.position.clone().sub(controls.target):homeDir.clone();if(dir.lengthSq()<1e-6)dir=homeDir.clone();dir.normalize();controls.target.copy(home.center);camera.position.copy(home.center).addScaledVector(dir,dist);camera.near=Math.max(.05,dist*.002);camera.far=dist+home.radius*4+200;camera.updateProjectionMatrix()}
+frameView(false);
+$('resetBtn').onclick=()=>{userMoved=false;frameView(false)};
+controls.addEventListener('start',()=>userMoved=true);
+(function loop(){requestAnimationFrame(loop);controls.update();renderer.render(scene,camera)})();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);if(!userMoved)frameView(true)});
+</script>
+</body></html>

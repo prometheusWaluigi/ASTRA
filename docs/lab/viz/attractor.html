@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Bed — minimal ODE</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;color:#eef3ff;background:#0d1726}*{box-sizing:border-box}body{margin:0;overflow:hidden}
+canvas{display:block}
+#hud{position:fixed;top:12px;left:12px;max-width:330px;background:#101a2bd9;border:1px solid #3a4a63;border-radius:14px;padding:13px 15px;backdrop-filter:blur(4px)}
+#hud h1{font-size:18px;margin:0 0 4px;color:#f0d9a8}#hud p{font-size:12px;color:#b7c4d6;line-height:1.45;margin:4px 0}
+#hud a{color:#d8a84e;font-size:12px}
+#hud button{font:inherit;font-size:12px;background:#243145;color:#eaf2ff;border:1px solid #42536c;border-radius:8px;padding:5px 9px;cursor:pointer;margin-top:6px;margin-right:4px}
+#hud .chip{font-size:11px;background:#1a2436;border-color:#3a4a63;color:#c7d8ee}
+#hud .chip:hover{border-color:#d8a84e}
+#hud label{font-size:12px;color:#c7d8ee;display:block;margin-top:8px}
+#hud input[type=range]{width:100%;accent-color:#d8a84e}
+#hud .val{color:#e8b45f;font-variant-numeric:tabular-nums}
+#stats{font-size:12px;color:#8fd6b0;margin-top:8px;font-variant-numeric:tabular-nums}
+#legend{font-size:11px;color:#9fb0c5;margin-top:7px;line-height:1.7}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+#tip{position:fixed;pointer-events:none;background:#0d1624ee;border:1px solid #4a6788;border-radius:8px;padding:6px 9px;font-size:12px;max-width:280px;display:none;z-index:5}
+#map{position:fixed;bottom:12px;right:12px;background:#101a2bd9;border:1px solid #3a4a63;border-radius:14px;padding:10px 12px;backdrop-filter:blur(4px)}
+#map .cap{font-size:11px;color:#9fb0c5;margin-top:4px;max-width:230px;line-height:1.4}
+#mapc{display:block}
+@media(max-width:560px){#hud{max-width:250px;padding:10px 12px}#hud p,#legend{display:none}#map{padding:7px 8px}#mapc{width:150px;height:112px}#map .cap{display:none}}
+</style>
+</head>
+<body>
+<div id="hud"><h1>The Bed</h1><p>The gaslitAF minimal ODE, running live: x coherence, y dysfunction, f lock-in. A linear+clamp toy — the clamp at x=0 is what creates the second attractor. Results are qualitative.</p>
+<label>pulse magnitude m <span class="val" id="mv">1.4</span><input type="range" id="m" min="0" max="2" step="0.05" value="1.4"></label>
+<label>pulse duration d <span class="val" id="dv">1.0</span><input type="range" id="d" min="-1" max="5" step="0.05" value="0"></label>
+<label>baseline load <span class="val" id="bv">0.20</span><input type="range" id="base" min="0" max="1" step="0.02" value="0.2"></label>
+<div><button id="stressBtn">Stress</button><button id="resetStateBtn">Reset state</button><button id="pauseBtn">Pause</button><button id="resetBtn">Reset view</button></div>
+<div><button class="chip" data-m="0.5" data-d="0.5">recovery 0.5·0.5</button><button class="chip" data-m="1.2" data-d="1">near-miss 1.2·1</button><button class="chip" data-m="1.4" data-d="1">collapse 1.4·1</button><button class="chip" data-m="0.2" data-d="32">slow grind 0.2·32</button></div>
+<div id="stats">settling…</div>
+<div id="legend"><span class="dot" style="background:#f2c169"></span>state + trail / healthy attractor · <span class="dot" style="background:#b78cff"></span>pathological attractor (x pinned at 0) · <a href="hub.html">← Rooms</a> <a href="../../index.html">← Lab</a></div></div>
+<div id="tip"></div>
+<div id="map"><canvas id="mapc" width="470" height="330" style="width:235px;height:165px"></canvas><div class="cap" id="mapcap">dose map: final x over (m, d) · red = collapse boundary · ring = current dose</div></div>
+<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const $=id=>document.getElementById(id);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// ---- faithful port of gaslitAF minimalOde.js (archive GH-7DBC6CE24147) ----
+const P={ax:.35,bxy:.45,stressImpact:.6,ay:.4,kf:.3,byx:.35,dy:.25,af:.5,bfx:.2,df:.3};
+const S0={x:.6,y:.3,f:.2};
+const clampS=s=>({x:Math.max(0,s.x),y:Math.max(0,s.y),f:Math.max(0,s.f)});
+const loadAt=(t,base,ev)=>{let l=base;for(const e of ev)if(t>=e.start&&t<=e.end)l+=e.magnitude;return Math.max(0,l)};
+function deriv(s,t,base,ev){const{x,y,f}=clampS(s);const load=loadAt(t,base,ev);
+  return{dx:P.ax*(1-x)-P.bxy*y-P.stressImpact*load,dy:P.ay*(load+P.kf*f)-P.byx*x-P.dy*y,df:P.af*y-P.bfx*x-P.df*f,load}}
+function rk4(s,t,dt,base,ev){const k1=deriv(s,t,base,ev),
+  k2=deriv({x:s.x+dt/2*k1.dx,y:s.y+dt/2*k1.dy,f:s.f+dt/2*k1.df},t+dt/2,base,ev),
+  k3=deriv({x:s.x+dt/2*k2.dx,y:s.y+dt/2*k2.dy,f:s.f+dt/2*k2.df},t+dt/2,base,ev),
+  k4=deriv({x:s.x+dt*k3.dx,y:s.y+dt*k3.dy,f:s.f+dt*k3.df},t+dt,base,ev);
+  const o=clampS({x:s.x+dt/6*(k1.dx+2*k2.dx+2*k3.dx+k4.dx),y:s.y+dt/6*(k1.dy+2*k2.dy+2*k3.dy+k4.dy),f:s.f+dt/6*(k1.df+2*k2.df+2*k3.df+k4.df)});o.load=k1.load;return o}
+function settle(base,ev,tEnd,dt=0.01){let s=clampS({...S0});for(let i=0,n=Math.round(tEnd/dt);i<n;i++)s=rk4(s,i*dt,dt,base,ev);return s}
+// ---- scene ----
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
+document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0d1726);scene.fog=new THREE.FogExp2(0x0d1726,0.008);
+const camera=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,.1,800);camera.position.set(16,12,20);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;
+// state (x,y,f) -> scene: X=x*10, Y=y*4.5, Z=f*3.6
+const toScene=(x,y,f)=>new THREE.Vector3(x*10,y*4.5,f*3.6);
+function glowTexture(){const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.4,'rgba(255,255,255,.4)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)}
+const GLOW=glowTexture();
+function labelSprite(text,color){const c=document.createElement('canvas');c.width=512;c.height=80;const g=c.getContext('2d');g.font='40px system-ui';g.fillStyle=color;g.textAlign='center';g.fillText(text.slice(0,48),256,52);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,sizeAttenuation:false}));const w=Math.min(.16,.008+text.length*.004);s.scale.set(w,w*80/512,1);return s}
+// axes: x coherence / y dysfunction / f lock-in
+function axis(dir,len,color,name){const o=new THREE.Vector3(),e=dir.clone().multiplyScalar(len);
+  const g=new THREE.BufferGeometry().setFromPoints([o,e]);scene.add(new THREE.Line(g,new THREE.LineBasicMaterial({color,transparent:true,opacity:.8})));
+  for(let i=1;i<5;i++){const t=dir.clone().multiplyScalar(len*i/5);const off=Math.abs(dir.y)>.5?new THREE.Vector3(.5,0,0):new THREE.Vector3(0,.5,0);const gg=new THREE.BufferGeometry().setFromPoints([t.clone().sub(off),t.clone().add(off)]);scene.add(new THREE.Line(gg,new THREE.LineBasicMaterial({color,transparent:true,opacity:.35})))}
+  const lb=labelSprite(name,color===0xd8a84e?'#e8b45f':'#9fb0c5');lb.position.copy(e).add(new THREE.Vector3(0,.8,0));scene.add(lb)}
+axis(new THREE.Vector3(1,0,0),10.6,0xd8a84e,'x coherence');
+axis(new THREE.Vector3(0,1,0),9.6,0x9fb0c5,'y dysfunction');
+axis(new THREE.Vector3(0,0,1),11.2,0x9fb0c5,'f lock-in');
+const grid=new THREE.GridHelper(22,11,0x2a3850,0x1b2740);grid.position.set(5,-.01,5.4);scene.add(grid);
+// attractor markers: settle real sims, mark where they land
+const healthyPt=settle(0.2,[],80);const sickPt=settle(0.2,[{start:20,end:21,magnitude:1.4}],300);
+function beacon(pos,color,scale,name){const g=new THREE.Group();g.position.copy(pos);
+  const core=new THREE.Mesh(new THREE.SphereGeometry(.3,14,14),new THREE.MeshBasicMaterial({color}));
+  const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:GLOW,color,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));halo.scale.set(scale,scale,1);
+  const lb=labelSprite(name,color===0xf2c169?'#f0d9a8':'#cdb4ff');lb.position.y=1.6;g.add(core,halo,lb);scene.add(g);return g}
+beacon(toScene(healthyPt.x,healthyPt.y,healthyPt.f),0xf2c169,4.5,'healthy attractor');
+beacon(toScene(sickPt.x,sickPt.y,sickPt.f),0xb78cff,6,'pathological attractor (x pinned at 0)');
+// current state: glowing gold sphere + fading ribbon trail
+const ball=new THREE.Mesh(new THREE.SphereGeometry(.32,16,16),new THREE.MeshBasicMaterial({color:0xffd98a}));
+const ballHalo=new THREE.Sprite(new THREE.SpriteMaterial({map:GLOW,color:0xf2c169,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));ballHalo.scale.set(3,3,1);ball.add(ballHalo);scene.add(ball);
+const TRAIL=2000;const trailPos=new Float32Array(TRAIL*3),trailCol=new Float32Array(TRAIL*3);let trailN=0;
+const trailGeo=new THREE.BufferGeometry();
+trailGeo.setAttribute('position',new THREE.BufferAttribute(trailPos,3));trailGeo.setAttribute('color',new THREE.BufferAttribute(trailCol,3));
+const trail=new THREE.Line(trailGeo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9}));trail.frustumCulled=false;scene.add(trail);
+function pushTrail(v){if(trailN>=TRAIL){trailPos.copyWithin(0,3);trailN=TRAIL-1}
+  trailPos[trailN*3]=v.x;trailPos[trailN*3+1]=v.y;trailPos[trailN*3+2]=v.z;trailN++;
+  for(let i=0;i<trailN;i++){const a=Math.pow(i/Math.max(1,trailN),1.8);trailCol[i*3]=a*.95;trailCol[i*3+1]=a*.75;trailCol[i*3+2]=a*.4}
+  trailGeo.setDrawRange(0,trailN);trailGeo.attributes.position.needsUpdate=true;trailGeo.attributes.color.needsUpdate=true}
+// ---- live simulation state ----
+let sim={...S0},t=0,events=[],baseline=0.2,paused=reduced;
+if(reduced)$('pauseBtn').textContent='Run';
+const DT=0.01,STEPS_PER_FRAME=12;
+// ---- dose-map inset (m × d phase map) ----
+const MAGS=[0,.2,.4,.6,.8,1,1.2,1.4,1.6,1.8,2],DURS=[.5,1,2,4,8,16,32];
+const mc=$('mapc'),mg=mc.getContext('2d');const MW=mc.width,MH=mc.height;
+const padL=46,padR=8,padT=8,padB=26;
+const mx=m=>padL+(m/2)*(MW-padL-padR);
+const my=d=>padT+(1-(Math.log2(d)-Math.log2(.5))/(Math.log2(32)-Math.log2(.5)))*(MH-padT-padB);
+let gridCells=null,gridProg=0,gridTotal=MAGS.length*DURS.length,gridBase=0.2,gridSrc='';
+function paintMap(){mg.clearRect(0,0,MW,MH);mg.fillStyle='#0d1624';mg.fillRect(0,0,MW,MH);
+  if(!gridCells){mg.fillStyle='#9fb0c5';mg.font='22px system-ui';mg.fillText('computing map… '+Math.round(100*gridProg/gridTotal)+'%',padL,MH/2);
+    const sweep=(performance.now()/12)%MW;const gr=mg.createLinearGradient(sweep-60,0,sweep,0);gr.addColorStop(0,'rgba(232,180,95,0)');gr.addColorStop(1,'rgba(232,180,95,.25)');mg.fillStyle=gr;mg.fillRect(padL,padT,MW-padL-padR,MH-padT-padB)}
+  else{const cw=(MW-padL-padR)/(MAGS.length-1),ch=(MH-padT-padB)/(DURS.length-1);
+    for(let j=0;j<DURS.length;j++)for(let i=0;i<MAGS.length;i++){const c=gridCells[j*MAGS.length+i];if(!c)continue;
+      if(c.collapsed)mg.fillStyle='#4a1020';
+      else{const a=Math.min(1,c.fx/.657);mg.fillStyle=`rgb(${20+a*212|0},${24+a*156|0},${40+a*55|0})`}
+      mg.fillRect(mx(MAGS[i])-cw/2,my(DURS[j])-ch/2,cw+1,ch+1)}
+    mg.strokeStyle='#ff5566';mg.lineWidth=3;mg.beginPath();
+    const isC=(i,j)=>gridCells[j*MAGS.length+i]&&gridCells[j*MAGS.length+i].collapsed;
+    for(let j=0;j<DURS.length;j++)for(let i=0;i<MAGS.length;i++){
+      if(i+1<MAGS.length&&isC(i,j)!==isC(i+1,j)){const x=mx((MAGS[i]+MAGS[i+1])/2);mg.moveTo(x,my(DURS[j])-ch/2);mg.lineTo(x,my(DURS[j])+ch/2)}
+      if(j+1<DURS.length&&isC(i,j)!==isC(i,j+1)){const y=my(Math.sqrt(DURS[j]*DURS[j+1]));mg.moveTo(mx(MAGS[i])-cw/2,y);mg.lineTo(mx(MAGS[i])+cw/2,y)}}
+    mg.stroke()}
+  mg.strokeStyle='#3a4a63';mg.lineWidth=1;mg.strokeRect(padL,padT,MW-padL-padR,MH-padT-padB);
+  mg.fillStyle='#9fb0c5';mg.font='20px system-ui';mg.textAlign='center';
+  for(const m of[0,.5,1,1.5,2])mg.fillText(m,mx(m),MH-6);
+  for(const d of DURS){mg.textAlign='right';mg.fillText(d,padL-6,my(d)+7)}
+  mg.textAlign='left';mg.fillText('m →',MW-42,MH-6);mg.save();mg.translate(14,my(4));mg.rotate(-Math.PI/2);mg.textAlign='center';mg.fillText('d →',0,0);mg.restore();
+  const m=+$('m').value,d=Math.pow(2,+$('d').value);mg.strokeStyle='#fff';mg.lineWidth=2.5;mg.beginPath();mg.arc(mx(m),my(d),7,0,7);mg.stroke()}
+let computeJob=null;
+function computeGrid(base){gridCells=null;gridProg=0;gridBase=base;gridSrc='live';
+  const cells=new Array(gridTotal);let idx=0;
+  computeJob=()=>{let n=0;while(idx<gridTotal&&n<8){const i=idx%MAGS.length,j=(idx/MAGS.length)|0;
+      const ev=MAGS[i]>0?[{start:20,end:20+DURS[j],magnitude:MAGS[i]}]:[];
+      const fin=settle(base,ev,120);cells[idx]={fx:fin.x,collapsed:fin.x<0.2||fin.y>0.8};idx++;n++}
+    gridProg=idx;if(idx>=gridTotal){gridCells=cells;computeJob=null;$('mapcap').textContent=`dose map: final x over (m, d) · baseline ${base.toFixed(2)} · computed live · red = collapse boundary`}};}
+const pyNum=v=>Number.isInteger(v)?v.toFixed(1):String(v); // grid keys use Python str(float)
+function gridFromApi(g){gridCells=null;let ok=0;
+  const cells=new Array(gridTotal);
+  for(let j=0;j<DURS.length;j++)for(let i=0;i<MAGS.length;i++){const c=g['m='+pyNum(MAGS[i])+',d='+DURS[j]];
+    if(c&&c.final){cells[j*MAGS.length+i]={fx:c.final.x,collapsed:!!c.collapsed};ok++}}
+  if(ok>gridTotal*.8){gridCells=cells;gridSrc='archived';
+    $('mapcap').textContent='dose map: final x over (m, d) · archived grid · baseline 0.20 · red = collapse boundary · ring = current dose'}
+  else computeGrid(0.2)}
+computeGrid(0.2);
+fetch('/api/viz/sim',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+  if(d.available&&d.gaslit&&d.gaslit.grid&&Math.abs(baseline-0.2)<.01)gridFromApi(d.gaslit.grid)}).catch(()=>{});
+// ---- controls ----
+const fmtD=v=>Math.pow(2,v).toFixed(v<0?2:v>3?0:1).replace(/\.0+$/,'');
+function syncLabels(){$('mv').textContent=(+$('m').value).toFixed(2);$('dv').textContent=fmtD(+$('d').value);$('bv').textContent=(+$('base').value).toFixed(2)}
+$('m').oninput=$('d').oninput=syncLabels;
+let baseTimer=null;
+$('base').oninput=()=>{baseline=+$('base').value;syncLabels();clearTimeout(baseTimer);
+  baseTimer=setTimeout(()=>{if(Math.abs(baseline-0.2)>.001||gridSrc!=='archived')computeGrid(baseline)},400)};
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{$('m').value=b.dataset.m;$('d').value=Math.log2(+b.dataset.d);syncLabels()});
+$('stressBtn').onclick=()=>{const m=+$('m').value,d=Math.pow(2,+$('d').value);
+  events.push({start:t+DT,end:t+DT+d,magnitude:m});if(events.length>8)events.shift();paused=false;$('pauseBtn').textContent='Pause'};
+$('resetStateBtn').onclick=()=>{sim={...S0};t=0;events=[];trailN=0;trailGeo.setDrawRange(0,0)};
+$('pauseBtn').onclick=()=>{paused=!paused;$('pauseBtn').textContent=paused?'Run':'Pause'};
+syncLabels();
+// frame the phase volume (axes ~11 units + collapsed attractor headroom)
+let home=null;const homeDir=new THREE.Vector3(.9,.55,1.1).normalize();let userMoved=false;
+{const sph=new THREE.Sphere().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(10.8,9.8,11.4)]);sph.radius+=3;home={center:sph.center,radius:sph.radius}}
+function frameView(useCurrentDir){if(!home)return;const vF=THREE.MathUtils.degToRad(camera.fov*.5);const half=Math.min(vF,Math.atan(Math.tan(vF)*camera.aspect));const dist=home.radius/Math.sin(half)*1.1;let dir=useCurrentDir?camera.position.clone().sub(controls.target):homeDir.clone();if(dir.lengthSq()<1e-6)dir=homeDir.clone();dir.normalize();controls.target.copy(home.center);camera.position.copy(home.center).addScaledVector(dir,dist);camera.near=Math.max(.05,dist*.002);camera.far=dist+home.radius*4+200;camera.updateProjectionMatrix()}
+frameView(false);
+$('resetBtn').onclick=()=>{userMoved=false;frameView(false)};
+controls.addEventListener('start',()=>userMoved=true);
+let frame=0;
+(function loop(){requestAnimationFrame(loop);frame++;
+  if(computeJob)computeJob();
+  if(!paused){for(let i=0;i<STEPS_PER_FRAME;i++){sim=rk4(sim,t,DT,baseline,events);t+=DT;
+      if(i%4===0)pushTrail(toScene(sim.x,sim.y,sim.f))}
+    events=events.filter(e=>e.end>t-60)}
+  ball.position.copy(toScene(sim.x,sim.y,sim.f));
+  if(frame%6===0){$('stats').textContent=`t=${t.toFixed(1)} · load=${(sim.load??baseline).toFixed(2)} · x=${sim.x.toFixed(3)} y=${sim.y.toFixed(3)} f=${sim.f.toFixed(3)}`;paintMap()}
+  controls.update();renderer.render(scene,camera)})();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);if(!userMoved)frameView(true)});
+</script>
+</body></html>

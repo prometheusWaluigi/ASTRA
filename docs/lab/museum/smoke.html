@@ -1,0 +1,99 @@
+<!doctype html><meta charset=utf-8><title>upm smoke harness</title>
+<!--
+  Real-browser smoke harness for index.html (README "Smoke check").
+  Loads the real index.html in an iframe and drives it. Run headless:
+
+    msedge --headless=new --allow-file-access-from-files ^
+      --user-data-dir=<tmp> --virtual-time-budget=20000 ^
+      --window-size=1200,8000 --dump-dom "file:///.../smoke.html"
+
+  --allow-file-access-from-files is required for file:// iframe DOM
+  access. Results land in <pre id=out>. confirm() is stubbed to true so
+  reset can be exercised headlessly.
+-->
+<pre id=out>RUNNING</pre>
+<iframe id=f src="index.html" style="width:900px;height:700px"></iframe>
+<script>
+const out = [], R = document.getElementById('out');
+const ok = (n, c, d) => out.push((c ? 'PASS' : 'FAIL') + ' ' + n + (d ? ' :: ' + d : ''));
+const f = document.getElementById('f');
+let phase = 0;
+f.addEventListener('load', () => { phase ? afterReload() : run1(); });
+const flush = extra => { R.textContent = out.join('\n') + (extra || ''); };
+const key = (w, d, k) => d.dispatchEvent(new w.KeyboardEvent('keydown', {key: k, bubbles: true}));
+
+function run1() {
+  const w = f.contentWindow, d = w.document;
+  try {
+    w.confirm = () => true;
+    let cap = null;
+    const orig = w.URL.createObjectURL.bind(w.URL);
+    w.URL.createObjectURL = b => { cap = b; return orig(b); };
+
+    // 0. intro
+    ok('card count rendered', d.getElementById('count').textContent === '6',
+       d.getElementById('count').textContent);
+    ok('nav+stage hidden on intro',
+       w.getComputedStyle(d.getElementById('nav')).display === 'none'
+       && w.getComputedStyle(d.getElementById('stage')).display === 'none'
+       && w.getComputedStyle(d.getElementById('done')).display === 'none');
+    // 1. enter the gallery
+    d.querySelector('#intro button').click();
+    ok('stage shown after enter', !d.getElementById('stage').hidden);
+    const piece = d.querySelector('#stage .piece');
+    ok('piece 1 renders text', !!(piece && piece.textContent.trim().length > 20));
+
+    // 2. impression + guess + lift placard (R)
+    const imp = d.getElementById('imp');
+    imp.value = 'smoke: felt like wet static';
+    imp.dispatchEvent(new w.Event('input', {bubbles: true}));
+    const g = d.querySelector('#stage input[name=guess]');
+    g.checked = true; g.dispatchEvent(new w.Event('change', {bubbles: true}));
+    key(w, d, 'r');
+    const rev = d.querySelector('#stage .reveal');
+    ok('R lifts the placard', !!rev);
+    ok('reveal shows attribution+source',
+       !!(rev && /attribution:|source:/.test(rev.textContent)));
+    ok('response locked after reveal', !!(d.getElementById('imp') && d.getElementById('imp').disabled));
+    ok('session saved to localStorage',
+       (w.localStorage.getItem('upm-session-v1') || '').includes('wet static'));
+
+    // 3. arrow through remaining pieces to the gift shop
+    let saw = [];
+    for (let i = 0; i < 6; i++) { key(w, d, 'ArrowRight'); saw.push(d.getElementById('pos').textContent); }
+    ok('done plaque reached', !d.getElementById('done').hidden);
+    ok('lifted count reported',
+       /1 of 6 placards lifted/.test(d.getElementById('summary').textContent),
+       d.getElementById('summary').textContent);
+
+    // 4. E exports JSON (blob captured, not downloaded)
+    key(w, d, 'e');
+    ok('export produced a blob', !!cap);
+    (cap ? cap.text() : Promise.resolve('')).then(t => {
+      let j = null; try { j = JSON.parse(t); } catch (e) {}
+      ok('export JSON has 6 responses', !!(j && j.responses && j.responses.length === 6));
+      ok('export carries impression+reveal',
+         !!(j && j.responses[0].revealed === true &&
+            /wet static/.test(j.responses[0].impression)));
+      // 5. persistence: reload -> session resumes
+      phase = 1; flush('\n(reloading)'); w.location.reload();
+    });
+  } catch (e) { ok('run1 exception', false, String(e)); flush('\nDONE'); }
+}
+
+function afterReload() {
+  const w = f.contentWindow, d = w.document;
+  try {
+    ok('session resumes mid-exhibit', !d.getElementById('stage').hidden
+       && d.getElementById('intro').hidden);
+    ok('revealed state restored', !!d.querySelector('#stage .reveal'));
+    // reset returns to intro
+    w.confirm = () => true;
+    w.resetAll();
+    ok('reset wipes localStorage', !w.localStorage.getItem('upm-session-v1'));
+    ok('reset returns to intro', !d.getElementById('intro').hidden
+       && d.getElementById('stage').hidden);
+  } catch (e) { ok('afterReload exception', false, String(e)); }
+  flush('\nDONE');
+}
+</script>

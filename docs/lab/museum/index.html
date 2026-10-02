@@ -1,0 +1,234 @@
+<!doctype html><meta charset=utf-8><title>the unreliable poetry museum</title>
+<style>
+body{background:#0a0c14;color:#e8dcc8;font:15px/1.6 system-ui;
+  max-width:780px;margin:0 auto;padding:36px 20px 80px}
+h1{font-weight:300;letter-spacing:.18em;margin-bottom:4px}
+h2{font-weight:400;letter-spacing:.06em}
+a{color:#ffce8a}
+.muted{opacity:.55;font-size:13px}
+.plaque{background:#11141f;border:1px solid #232838;border-radius:10px;
+  padding:20px 24px;margin:18px 0}
+.piece{white-space:pre-wrap;font-size:19px;line-height:1.75;
+  padding:6px 0 14px}
+.tag{display:inline-block;background:#232838;border-radius:10px;
+  padding:1px 9px;font-size:11px;letter-spacing:.05em;margin:2px 4px 0 0}
+.badge{background:#3a2a14;color:#ffce8a;border:1px solid #6a4d1f;
+  border-radius:10px;padding:1px 9px;font-size:11px;letter-spacing:.08em}
+textarea{width:100%;box-sizing:border-box;background:#0d1019;color:#e8dcc8;
+  border:1px solid #2a3040;border-radius:8px;padding:10px;
+  font:14px/1.5 system-ui;min-height:80px}
+fieldset{border:1px solid #232838;border-radius:8px;margin:14px 0;
+  padding:10px 14px}
+legend{font-size:12px;letter-spacing:.08em;opacity:.7;padding:0 6px}
+label{display:block;margin:6px 0;cursor:pointer}
+button{background:#232838;color:#e8dcc8;border:1px solid #3a4260;
+  border-radius:8px;padding:8px 18px;font:14px system-ui;cursor:pointer;
+  margin:4px 6px 4px 0}
+button:hover{background:#2d3550}
+button:focus,textarea:focus,input:focus{outline:2px solid #ffce8a;
+  outline-offset:2px}
+.nav{display:flex;justify-content:space-between;align-items:center;
+  margin:22px 0 8px}
+[hidden]{display:none!important}
+.reveal{border-left:3px solid #ffce8a}
+.seed{background:#0d1019;border-left:3px solid #3a4260;padding:10px 14px;
+  border-radius:0 8px 8px 0;margin:10px 0;font-style:italic}
+.kbd{font-size:11px;background:#1a1f30;border:1px solid #2a3040;
+  border-radius:4px;padding:0 5px}
+footer{margin-top:60px;opacity:.4;font-size:12px}
+</style>
+
+<h1>🏛 the unreliable poetry museum</h1>
+<p class=muted>a reveal-and-compare exhibit · <span id=count></span> pieces ·
+local-only, nothing leaves this page</p>
+
+<div class=plaque id=intro>
+<p>You will be shown short pieces of writing. For each one:</p>
+<ol>
+<li><b>Respond first.</b> Write a line or two about its texture — what it
+felt like, what it did to your attention. Then guess who made it.</li>
+<li><b>Then lift the placard.</b> The reveal shows the true attribution,
+the source fragment it grew from, and the seams where it was joined.</li>
+</ol>
+<p>This is a museum, not a study. Your guesses are kept in this browser
+only; nothing is collected, scored, or sent anywhere. Being wrong is the
+point of the room.</p>
+<p class=muted>keyboard: <span class=kbd>←</span>/<span class=kbd>→</span>
+between pieces · <span class=kbd>R</span> reveal ·
+<span class=kbd>E</span> export responses</p>
+<button onclick="go(0)" autofocus>enter the gallery →</button>
+</div>
+
+<main id=stage hidden></main>
+
+<div class=nav id=nav hidden>
+<button onclick="go(cur-1)" id=prev>← prev</button>
+<span class=muted id=pos></span>
+<button onclick="go(cur+1)" id=next>next →</button>
+</div>
+
+<div id=done class=plaque hidden>
+<h2>gift shop</h2>
+<p id=summary></p>
+<button onclick="exportJSON()">export my responses (JSON)</button>
+<button onclick="resetAll()">reset the exhibit</button>
+<p class=muted>export downloads one file; reset wipes this browser's
+session. both stay on your machine.</p>
+</div>
+
+<footer>
+retrofractal kintsugi · agent-net · conceived from
+<span title="arXiv 2609.15511">a paper about unreliable labels</span> ·
+built by devin, pieces by eigenfriend/muse
+</footer>
+
+<script src="cards.js"></script>
+<script>
+const KEY = "upm-session-v1";
+const cards = window.MUSEUM_CARDS || [];
+let cur = -1;
+
+let S = load();
+function load(){
+  try { return JSON.parse(localStorage.getItem(KEY)) || fresh(); }
+  catch(e){ return fresh(); }
+}
+function fresh(){ return {started: new Date().toISOString(), resp: {}}; }
+function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
+function R(i){ return S.resp[i] || (S.resp[i] = {impression:"", guess:"", revealed:false}); }
+
+const esc = s => String(s).replace(/[&<>"]/g,
+  c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+document.getElementById("count").textContent = cards.length;
+
+function go(i){
+  if (i < 0) i = 0;
+  if (i >= cards.length){ showDone(); return; }
+  cur = i;
+  document.getElementById("intro").hidden = true;
+  document.getElementById("done").hidden = true;
+  document.getElementById("stage").hidden = false;
+  document.getElementById("nav").hidden = false;
+  render(i);
+}
+
+function render(i){
+  const c = cards[i], r = R(i), stage = document.getElementById("stage");
+  const locked = r.revealed;
+  stage.innerHTML = `
+  <article class=plaque aria-live=polite>
+    <p class=muted>piece ${i+1} of ${cards.length}
+      <span class=tag>${esc(c.form)}</span>
+      ${c.placeholder ? '<span class=badge>PLACEHOLDER — awaiting packet</span>' : ''}
+      ${locked ? '<span class=tag>placard lifted</span>' : ''}
+    </p>
+    <h2>${esc(c.title)}</h2>
+    <div class=piece>${esc(c.text)}</div>
+
+    <fieldset>
+      <legend>your response — texture / feeling</legend>
+      <textarea id=imp ${locked?"disabled":""}
+        placeholder="what did it feel like?">${esc(r.impression)}</textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>your guess — who made this?</legend>
+      ${["a human (Ketan, from the corpus)",
+         "Eigenfriend / Muse (a model)",
+         "another agent on the bus",
+         "honestly no idea"].map(g =>
+        `<label><input type=radio name=guess value="${esc(g)}"
+          ${r.guess===g?"checked":""} ${locked?"disabled":""}> ${esc(g)}</label>`
+      ).join("")}
+    </fieldset>
+
+    ${locked ? "" : `<button onclick="reveal()">lift the placard (R)</button>
+      <span class=muted>your response + guess are recorded when you lift it</span>`}
+  </article>
+
+  ${locked ? `
+  <article class="plaque reveal">
+    <h2>the placard says…</h2>
+    <p><b>attribution:</b> ${esc(c.attribution)}</p>
+    <p><b>source:</b> ${esc(c.source_title)}${c.line_anchor ?
+      " · " + esc(c.line_anchor) : ""}</p>
+    ${c.seed_fragment ?
+      `<p><b>seed fragment</b> (verbatim from the source):</p>
+       <div class=seed>${esc(c.seed_fragment)}</div>` : ""}
+    ${c.transform ? `<p><b>transformation:</b> ${esc(c.transform)}</p>` : ""}
+    ${(c.seams||[]).length ? `<p><b>visible seams:</b></p><ul>
+      ${c.seams.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : ""}
+    <p class=muted>you guessed: <b>${esc(r.guess || "(no guess)")}</b></p>
+  </article>` : ""}`;
+
+  document.getElementById("pos").textContent =
+    `${i+1} / ${cards.length} — lifted: ${Object.values(S.resp).filter(x=>x.revealed).length}`;
+  document.getElementById("prev").disabled = i===0;
+
+  const imp = document.getElementById("imp");
+  if (imp && !locked){
+    imp.addEventListener("input", () => { r.impression = imp.value; save(); });
+  }
+  stage.querySelectorAll("input[name=guess]").forEach(el =>
+    el.addEventListener("change", () => { r.guess = el.value; save(); }));
+}
+
+function reveal(){
+  if (cur < 0) return;
+  const r = R(cur), imp = document.getElementById("imp");
+  if (imp) r.impression = imp.value;
+  r.revealed = true; r.revealed_at = new Date().toISOString();
+  save(); render(cur);
+}
+
+function showDone(){
+  cur = -1;
+  document.getElementById("stage").hidden = true;
+  document.getElementById("nav").hidden = true;
+  const d = document.getElementById("done"); d.hidden = false;
+  const n = Object.values(S.resp).filter(x=>x.revealed).length;
+  document.getElementById("summary").textContent =
+    `${n} of ${cards.length} placards lifted. The museum keeps no score — it keeps the guess.`;
+  d.scrollIntoView();
+}
+
+function exportJSON(){
+  const out = {
+    exhibit: "the-unreliable-poetry-museum",
+    exported_at: new Date().toISOString(),
+    session_started: S.started,
+    responses: cards.map((c,i)=>{
+      const r = S.resp[i] || {};
+      return {index:i, title:c.title, form:c.form,
+        guess:r.guess||null, impression:r.impression||"",
+        revealed:!!r.revealed, placeholder:!!c.placeholder};
+    })
+  };
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(out,null,1)],
+    {type:"application/json"}));
+  a.download = "museum-responses-" + Date.now() + ".json";
+  a.click(); URL.revokeObjectURL(a.href);
+}
+
+function resetAll(){
+  if (!confirm("wipe this browser's museum session?")) return;
+  localStorage.removeItem(KEY); S = fresh(); cur = -1;
+  document.getElementById("stage").hidden = true;
+  document.getElementById("nav").hidden = true;
+  document.getElementById("done").hidden = true;
+  document.getElementById("intro").hidden = false;
+}
+
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return;
+  if (e.key === "ArrowLeft" && cur > 0) go(cur-1);
+  if (e.key === "ArrowRight" && cur >= 0) go(cur+1);
+  if (e.key === "r" || e.key === "R") reveal();
+  if (e.key === "e" || e.key === "E") exportJSON();
+});
+
+// resume mid-session if placards were already lifted
+if (Object.keys(S.resp).length) go(Math.min(...Object.keys(S.resp).map(Number)));
+</script>

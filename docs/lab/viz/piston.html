@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Noise Floor — piston leak</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;color:#eef3ff;background:#0d1726}*{box-sizing:border-box}body{margin:0;overflow:hidden}
+canvas{display:block}
+#hud{position:fixed;top:12px;left:12px;max-width:340px;background:#101a2bd9;border:1px solid #3a4a63;border-radius:14px;padding:13px 15px;backdrop-filter:blur(4px)}
+#hud h1{font-size:18px;margin:0 0 4px;color:#f0d9a8}#hud p{font-size:12px;color:#b7c4d6;line-height:1.45;margin:4px 0}
+#hud a{color:#d8a84e;font-size:12px}
+#hud button{font:inherit;font-size:12px;background:#243145;color:#eaf2ff;border:1px solid #42536c;border-radius:8px;padding:5px 9px;cursor:pointer;margin-top:6px;margin-right:4px}
+#hud .chip{font-size:11px;background:#1a2436;border-color:#3a4a63;color:#c7d8ee}
+#hud .chip:hover{border-color:#d8a84e}
+#hud label{font-size:12px;color:#c7d8ee;display:block;margin-top:7px}
+#hud input[type=range]{width:100%;accent-color:#d8a84e}
+#hud input[type=checkbox]{accent-color:#d8a84e}
+#hud .val{color:#e8b45f;font-variant-numeric:tabular-nums}
+#stats{font-size:12px;color:#8fd6b0;margin-top:8px;font-variant-numeric:tabular-nums;line-height:1.6}
+#floor{font-size:12px;color:#e8b45f;margin-top:6px}
+#legend{font-size:11px;color:#9fb0c5;margin-top:7px;line-height:1.7}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+#tip{position:fixed;pointer-events:none;background:#0d1624ee;border:1px solid #4a6788;border-radius:8px;padding:6px 9px;font-size:12px;max-width:280px;display:none;z-index:5}
+@media(max-width:560px){#hud{max-width:250px;padding:10px 12px}#hud p,#legend{display:none}}
+</style>
+</head>
+<body>
+<div id="hud"><h1>The Noise Floor</h1><p>Piston-leak trust–entropy–pressure sandbox, real Monte Carlo in your browser (seeds 42000+). Fixed-step RK4 port — scipy Radau in the original — absolute rates approximate. N, P axes log-scaled.</p>
+<label>transparency R <span class="val" id="rv">0.30</span><input type="range" id="R" min="0.05" max="0.95" step="0.05" value="0.3"></label>
+<label>noise σ <span class="val" id="sv">0.10</span><input type="range" id="sigma" min="0" max="2" step="0.05" value="0.1"></label>
+<label>leak frequency f <span class="val" id="fv">0.05</span><input type="range" id="freq" min="0" max="0.5" step="0.01" value="0.05"></label>
+<label style="display:inline"><input type="checkbox" id="adaptive"> adaptive R(t,y)=0.1+0.2·N²</label>
+<div><button id="run25">Run 25 sims</button><button id="run200">Run 200 sims</button><button id="clearBtn">Clear</button><button id="resetBtn">Reset view</button></div>
+<div><button class="chip" data-r="0.3" data-s="0.1" data-f="0.05">paper defaults</button><button class="chip" data-r="0.3" data-s="1.0" data-f="0.05">storm σ=1</button><button class="chip" data-r="0.3" data-s="0.1" data-f="0.3">leak flood f=0.3</button></div>
+<div id="floor">below the noise floor: transparency barely matters</div>
+<div id="stats">no runs yet</div>
+<div id="legend"><span class="dot" style="background:#f2c169"></span>survived · <span class="dot" style="background:#ff5566"></span>collapse detected · <span class="dot" style="background:#b78cff"></span>collapsed, invisible to detector (T pinned) · <a href="hub.html">← Rooms</a> <a href="../../index.html">← Lab</a></div></div>
+<div id="tip"></div>
+<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const $=id=>document.getElementById(id);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// ---- faithful port of piston-leak-lab models/core_ode.py ----
+const Q={alpha1:.6,beta1:.3,gamma1:.2,alpha2:.5,beta2:.25,k_policy:.8,delta:.15,
+  noise_sigma:.1,leak_frequency:.05,eps:.15,slope:-0.05,Ncrit:1.2};
+const clip=(v,a,b)=>Math.max(a,Math.min(b,v));
+function system(y,noise,Rv,q){
+  const T=y[0],N=y[1],Pr=y[2];
+  let dT=-q.alpha1*N+q.beta1*Rv-q.gamma1*Pr;
+  if((T<=0&&dT<0)||(T>=1&&dT>0))dT=0;
+  let dN=q.alpha2*Pr+noise-q.beta2*T;
+  if(N<=0&&dN<0)dN=0;else if(N>10)dN-=0.1*N;
+  dN=clip(dN,-100,100);
+  const policy=Math.min(q.k_policy*Math.min(N,100)/(0.1+Math.max(.01,T)),100);
+  let dP=policy-q.delta*Pr;
+  if(Pr<=0&&dP<0)dP=0;else if(Pr>10)dP-=0.1*Pr;
+  dP=clip(dP,-100,100);
+  return[dT,dN,dP]}
+function rk4step(y,t,dt,noise,q,rfunc){
+  const k1=system(y,noise,rfunc(t,y),q);
+  const y2=[y[0]+dt/2*k1[0],y[1]+dt/2*k1[1],y[2]+dt/2*k1[2]];
+  const k2=system(y2,noise,rfunc(t+dt/2,y2),q);
+  const y3=[y[0]+dt/2*k2[0],y[1]+dt/2*k2[1],y[2]+dt/2*k2[2]];
+  const k3=system(y3,noise,rfunc(t+dt/2,y3),q);
+  const y4=[y[0]+dt*k3[0],y[1]+dt*k3[1],y[2]+dt*k3[2]];
+  const k4=system(y4,noise,rfunc(t+dt,y4),q);
+  const o=[y[0]+dt/6*(k1[0]+2*k2[0]+2*k3[0]+k4[0]),y[1]+dt/6*(k1[1]+2*k2[1]+2*k3[1]+k4[1]),y[2]+dt/6*(k1[2]+2*k2[2]+2*k3[2]+k4[2])];
+  o[0]=clip(o[0],0,1);o[1]=clip(o[1],0,1000);o[2]=clip(o[2],0,1000);return o}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function gauss(rng){let u=0;while(u===0)u=rng();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*rng())}
+const HORIZON=365,SUB=4; // dt=1.0 output, 4 fixed RK4 substeps, noise held across substeps
+function runSim(seed,q,rfunc){
+  const rng=mulberry32(seed);let y=[.8,.2,.1];
+  const traj=[y.slice()];let detected=false,pin=0,pinned=false;
+  for(let i=0;i<=HORIZON;i++){
+    const t=i,Rv=rfunc(t,y);
+    const dTdt=system(y,0,Rv,q)[0];
+    const fcc=y[1]*y[2]/(1+y[0]),rsd=y[2]*y[2]*y[1]/(1+y[0]*y[0]);
+    if(dTdt<q.slope&&y[1]>q.Ncrit&&Math.min(fcc,rsd)>q.eps)detected=true;
+    if(y[0]<=0.001){if(++pin>=5)pinned=true}else pin=0;
+    if(i===HORIZON)break;
+    const noise=rng()<q.leak_frequency?q.noise_sigma*gauss(rng):0;
+    for(let s=0;s<SUB;s++)y=rk4step(y,t+s/SUB,1/SUB,noise,q,rfunc);
+    traj.push(y.slice())}
+  return{traj,detected,pinned,final:y}}
+// ---- scene ----
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
+document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0d1726);scene.fog=new THREE.FogExp2(0x0d1726,0.006);
+const camera=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,.1,900);camera.position.set(22,16,30);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.25;
+// (T,N,P) -> scene: X=T*10, Y=log2(1+P)*2.4, Z=log2(1+N)*2.4
+const disp=(T,N,P)=>new THREE.Vector3(T*10,Math.log2(1+P)*2.4,Math.log2(1+N)*2.4);
+function glowTexture(){const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.4,'rgba(255,255,255,.4)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)}
+function labelSprite(text,color){const c=document.createElement('canvas');c.width=512;c.height=80;const g=c.getContext('2d');g.font='40px system-ui';g.fillStyle=color;g.textAlign='center';g.fillText(text.slice(0,48),256,52);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,sizeAttenuation:false}));const w=Math.min(.16,.008+text.length*.004);s.scale.set(w,w*80/512,1);return s}
+function axis(dir,len,color,name){const o=new THREE.Vector3(),e=dir.clone().multiplyScalar(len);
+  const g=new THREE.BufferGeometry().setFromPoints([o,e]);scene.add(new THREE.Line(g,new THREE.LineBasicMaterial({color,transparent:true,opacity:.8})));
+  const lb=labelSprite(name,color===0xd8a84e?'#e8b45f':'#9fb0c5');lb.position.copy(e).add(new THREE.Vector3(0,.9,0));scene.add(lb)}
+axis(new THREE.Vector3(1,0,0),10.6,0xd8a84e,'T trust');
+axis(new THREE.Vector3(0,1,0),21.5,0x9fb0c5,'P pressure (log)');
+axis(new THREE.Vector3(0,0,1),24.5,0x9fb0c5,'N entropy (log)');
+const grid=new THREE.GridHelper(24,12,0x2a3850,0x1b2740);grid.position.set(5,-.01,12);scene.add(grid);
+// detector boundary: collapse detector only sees N > 1.2
+const nz=Math.log2(1+Q.Ncrit)*2.4;
+const plane=new THREE.Mesh(new THREE.PlaneGeometry(10,21),new THREE.MeshBasicMaterial({color:0xff5566,transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false}));
+plane.position.set(5,10.5,nz);scene.add(plane);
+const pl=labelSprite('detector trips only above N=1.2','#ff8899');pl.position.set(5,21.8,nz);scene.add(pl);
+const wall=new THREE.Mesh(new THREE.PlaneGeometry(24,21),new THREE.MeshBasicMaterial({color:0xb78cff,transparent:true,opacity:.06,side:THREE.DoubleSide,depthWrite:false}));
+wall.rotation.y=Math.PI/2;wall.position.set(.02,10.5,12);scene.add(wall);
+const wl=labelSprite('invisible zone: T ≈ 0','#cdb4ff');wl.position.set(.2,22.6,12);scene.add(wl);
+// ribbons + endpoint scatter
+const COLORS={survived:new THREE.Color(0xf2c169),detected:new THREE.Color(0xff5566),invisible:new THREE.Color(0xb78cff)};
+const ribbons=[],MAXRIB=300;
+const SCAT=4000,scatPos=new Float32Array(SCAT*3),scatCol=new Float32Array(SCAT*3);let scatN=0;
+const scatGeo=new THREE.BufferGeometry();
+scatGeo.setAttribute('position',new THREE.BufferAttribute(scatPos,3));scatGeo.setAttribute('color',new THREE.BufferAttribute(scatCol,3));
+const scatter=new THREE.Points(scatGeo,new THREE.PointsMaterial({size:.45,vertexColors:true,transparent:true,opacity:.9,depthWrite:false}));
+scatter.frustumCulled=false;scene.add(scatter);
+function addRun(res){
+  const kind=res.detected?'detected':res.pinned?'invisible':'survived';
+  const n=res.traj.length,pos=new Float32Array(n*3),col=new Float32Array(n*3),c=COLORS[kind];
+  res.traj.forEach((y,i)=>{const v=disp(y[0],y[1],y[2]);pos.set([v.x,v.y,v.z],i*3);
+    const a=.35+.65*i/(n-1);col.set([c.r*a,c.g*a,c.b*a],i*3)});
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));g.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const line=new THREE.Line(g,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9}));
+  line.frustumCulled=false;scene.add(line);ribbons.push(line);
+  while(ribbons.length>MAXRIB){const old=ribbons.shift();scene.remove(old);old.geometry.dispose();old.material.dispose()}
+  ribbons.forEach((l,i)=>l.material.opacity=.18+.72*(i+1)/ribbons.length);
+  const end=disp(res.final[0],res.final[1],res.final[2]),k=scatN%SCAT;
+  scatPos.set([end.x,end.y,end.z],k*3);scatCol.set([c.r,c.g,c.b],k*3);scatN++;
+  scatGeo.setDrawRange(0,Math.min(scatN,SCAT));scatGeo.attributes.position.needsUpdate=true;scatGeo.attributes.color.needsUpdate=true;
+  return kind}
+// ---- run queue ----
+let pending=0,runIdx=0,nRun=0,nDet=0,nInv=0;
+const baseSeed=42000;
+function rfunc(){return $('adaptive').checked?(t,y)=>0.1+0.2*y[1]*y[1]:()=> +$('R').value}
+let archivedLine='';
+function updateStats(){$('stats').innerHTML=`runs <b>${nRun}</b> · detected <b style="color:#ff8899">${nDet}</b> · invisible <b style="color:#cdb4ff">${nInv}</b><br>reported rate ${nRun?(100*nDet/nRun).toFixed(1):'0.0'}% · true incl. invisible ${nRun?(100*(nDet+nInv)/nRun).toFixed(1):'0.0'}%${pending?' · queued '+pending:''}`+archivedLine}
+$('run25').onclick=()=>pending+=25;$('run200').onclick=()=>pending+=200;
+$('clearBtn').onclick=()=>{pending=0;nRun=nDet=nInv=0;runIdx=0;scatN=0;scatGeo.setDrawRange(0,0);
+  while(ribbons.length){const l=ribbons.pop();scene.remove(l);l.geometry.dispose();l.material.dispose()}updateStats()};
+// controls
+function floorNote(){const s=+$('sigma').value;$('floor').textContent=s<=0.1?'below the noise floor: transparency barely matters':s<0.5?'near the noise floor: leak shocks start to bite':'above the floor: sweep R and watch it matter'}
+function syncLabels(){$('rv').textContent=(+$('R').value).toFixed(2);$('sv').textContent=(+$('sigma').value).toFixed(2);$('fv').textContent=(+$('freq').value).toFixed(2);floorNote()}
+$('R').oninput=$('sigma').oninput=$('freq').oninput=syncLabels;
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{$('R').value=b.dataset.r;$('sigma').value=b.dataset.s;$('freq').value=b.dataset.f;syncLabels()});
+syncLabels();updateStats();
+if(!reduced)pending+=25; // auto-run a first batch so the room opens mid-sweep
+// archived sweep summary (degrades silently)
+fetch('/api/viz/sim',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+  if(d.available&&d.piston&&d.piston.sweeps){const sw=d.piston.sweeps;
+    const parts=Object.keys(sw).filter(k=>k.startsWith('R=')).sort((a,b)=>+a.slice(2)-+b.slice(2))
+      .map(k=>k+'→'+((sw[k].collapse_rate||0)*100).toFixed(1)+'%');
+    if(parts.length){archivedLine=`<br><span style="color:#9fb0c5">archived σ=0.1 sweep: ${parts.join(' ')}</span>`;updateStats()}}}).catch(()=>{});
+// frame the volume
+let home=null;const homeDir=new THREE.Vector3(1,.6,1.15).normalize();let userMoved=false;
+{const sph=new THREE.Sphere().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(10.6,22,25)]);sph.radius+=3;home={center:sph.center,radius:sph.radius}}
+function frameView(useCurrentDir){if(!home)return;const vF=THREE.MathUtils.degToRad(camera.fov*.5);const half=Math.min(vF,Math.atan(Math.tan(vF)*camera.aspect));const dist=home.radius/Math.sin(half)*1.1;let dir=useCurrentDir?camera.position.clone().sub(controls.target):homeDir.clone();if(dir.lengthSq()<1e-6)dir=homeDir.clone();dir.normalize();controls.target.copy(home.center);camera.position.copy(home.center).addScaledVector(dir,dist);camera.near=Math.max(.05,dist*.002);camera.far=dist+home.radius*4+200;camera.updateProjectionMatrix()}
+frameView(false);
+$('resetBtn').onclick=()=>{userMoved=false;frameView(false)};
+controls.addEventListener('start',()=>userMoved=true);
+(function loop(){requestAnimationFrame(loop);
+  let n=0;while(pending>0&&n<3){pending--;n++;
+    const q={...Q,noise_sigma:+$('sigma').value,leak_frequency:+$('freq').value};
+    const res=runSim(baseSeed+runIdx++,q,rfunc());
+    const kind=addRun(res);nRun++;if(kind==='detected')nDet++;else if(kind==='invisible')nInv++;
+    updateStats()}
+  controls.update();renderer.render(scene,camera)})();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);if(!userMoved)frameView(true)});
+</script>
+</body></html>

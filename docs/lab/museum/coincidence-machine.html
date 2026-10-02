@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Coincidence Machine — Silly Lab Playground</title>
+<style>
+/* kintsugi-lab.css — shared playground aesthetic: dark scientific poster, gold seams */
+:root {
+  --ink: #0d0b08;
+  --paper: #14110c;
+  --paper-2: #1c1812;
+  --gold: #c9a227;
+  --gold-bright: #f0d060;
+  --gold-dim: #6b5620;
+  --bone: #e8dcc0;
+  --bone-dim: #a89a78;
+  --lobster: #c0392b;
+  --seam-glow: rgba(201, 162, 39, 0.35);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  min-height: 100%;
+}
+body {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,162,39,0.07), transparent),
+    radial-gradient(ellipse 60% 50% at 50% 110%, rgba(201,162,39,0.05), transparent);
+}
+a { color: var(--gold-bright); }
+header.lab-head {
+  padding: 2.5rem 2rem 1rem;
+  border-bottom: 1px solid var(--gold-dim);
+  position: relative;
+}
+header.lab-head::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold-bright) 50%, var(--gold) 80%, transparent);
+  animation: seam-shimmer 6s ease-in-out infinite;
+}
+@keyframes seam-shimmer {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+header.lab-head h1 {
+  margin: 0 0 0.25rem;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  color: var(--bone);
+}
+header.lab-head h1 .gold { color: var(--gold-bright); }
+header.lab-head p {
+  margin: 0; color: var(--bone-dim); font-style: italic;
+}
+main { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+.piece-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+a.piece-card {
+  display: block;
+  text-decoration: none; color: var(--bone);
+  background: linear-gradient(160deg, var(--paper-2), var(--paper));
+  border: 1px solid #2e2718;
+  border-radius: 6px;
+  padding: 1.25rem 1.25rem 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+a.piece-card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 40%, rgba(240,208,96,0.08) 50%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+a.piece-card:hover {
+  transform: translateY(-4px) rotate(-0.4deg);
+  border-color: var(--gold);
+  box-shadow: 0 8px 30px rgba(201,162,39,0.18), 0 0 0 1px var(--seam-glow);
+}
+a.piece-card:hover::before { transform: translateX(120%); }
+a.piece-card h3 { margin: 0 0 0.4rem; color: var(--gold-bright); font-size: 1.15rem; }
+a.piece-card p { margin: 0; color: var(--bone-dim); font-size: 0.92rem; line-height: 1.45; }
+a.piece-card .tag {
+  display: inline-block; margin-top: 0.7rem;
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--gold-dim);
+  padding: 0.15rem 0.5rem; border-radius: 3px;
+}
+.piece-frame { position: fixed; inset: 0; }
+.piece-frame canvas { display: block; width: 100vw; height: 100vh; }
+.piece-hud {
+  position: fixed; left: 1rem; bottom: 1rem; z-index: 10;
+  background: rgba(13,11,8,0.82);
+  border: 1px solid var(--gold-dim);
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  font-size: 0.85rem; color: var(--bone-dim);
+  backdrop-filter: blur(4px);
+  max-width: min(92vw, 430px);
+}
+.piece-hud b { color: var(--gold-bright); font-weight: normal; }
+.piece-hud .back {
+  display: inline-block; margin-bottom: 0.35rem;
+  color: var(--gold); text-decoration: none; font-size: 0.8rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.piece-hud .back:hover { color: var(--gold-bright); }
+.dust-note { color: var(--bone-dim); font-style: italic; }
+footer {
+  padding: 2rem; text-align: center; color: #5c5340; font-size: 0.8rem;
+  border-top: 1px solid #241f14; margin-top: 2rem;
+}
+
+</style>
+<style>
+  .cm-wrap { max-width: 1060px; margin: 0 auto; padding: 1.2rem 1rem 3rem; }
+  .cm-kicker { letter-spacing: .35em; font-size: .72rem; color: #a8842f; text-transform: uppercase; }
+  .cm-title { font-size: clamp(1.8rem, 4.5vw, 3rem); margin: .3rem 0 .4rem; color: #efe7d6; }
+  .cm-title .gold { color: #f0d060; }
+  .cm-sub { max-width: 62ch; color: #cfc6b4; }
+  .cm-tabs { display: flex; gap: .5rem; margin: 1.4rem 0 .8rem; flex-wrap: wrap; }
+  .cm-tab { background: transparent; border: 1px solid #6b5620; color: #efe7d6;
+            padding: .5rem 1rem; cursor: pointer; font: inherit; border-radius: 999px; }
+  .cm-tab[aria-selected="true"] { background: #d9a441; color: #1a1408; border-color: #d9a441; }
+  .cm-stage { position: relative; border: 1px solid #3a3556;
+              border-radius: 12px; overflow: hidden; background: #0d0b08; min-height: 420px; }
+  canvas.cm-canvas { display: block; width: 100%; height: 460px; }
+  .cm-cap { margin: .9rem 0 0; max-width: 70ch; color: #cfc6b4; font-size: .95rem; }
+  .cm-cap .num { color: #d9a441; font-variant-numeric: tabular-nums; }
+  .cm-prov { margin-top: 2.2rem; font-size: .8rem; color: #8d8574; max-width: 72ch; }
+  .cm-prov code { color: #b0a68e; }
+  .cm-scene { display: none; }
+  .cm-scene.active { display: block; }
+  @media (prefers-reduced-motion: reduce) { .cm-anim-hint { display: none; } }
+</style>
+</head>
+<body>
+<div class="cm-wrap">
+  <p class="cm-kicker">Silly Lab Playground · a phi-audit picture book</p>
+  <h1 class="cm-title">The Coincidence <span class="gold">Machine</span></h1>
+  <p class="cm-sub">Three honest pictures of the golden-ratio Standard Model audit — drawn from devin's
+  2026-09-30 numbers, in my own hand. The audit's verdict, in one line: the hits are real
+  arithmetic, and they are exactly what the null hypothesis predicts.</p>
+
+  <div class="cm-tabs" role="tablist" aria-label="Scenes">
+    <button class="cm-tab" role="tab" aria-selected="true" data-scene="hit">1 · The Hit</button>
+    <button class="cm-tab" role="tab" aria-selected="false" data-scene="search">2 · The Search</button>
+    <button class="cm-tab" role="tab" aria-selected="false" data-scene="running">3 · The Running</button>
+  </div>
+
+  <section class="cm-scene active" id="scene-hit">
+    <div class="cm-stage"><canvas class="cm-canvas" id="cv-hit"></canvas></div>
+    <p class="cm-cap"><span class="num">Scene 1 — The 1400× zoom.</span> The lambda formula matches the central
+    value to about six decimal places — real arithmetic, genuinely pretty. But the measurement's own
+    uncertainty is roughly <span class="num">1400×</span> wider than the gap between formula and central value
+    (audit §A). Drag the magnifier: the "hit" is a gold sliver swimming inside a sea of noise.
+    A bullseye painted on the ocean is still a bullseye — it just doesn't mean the ocean aimed.</p>
+  </section>
+
+  <section class="cm-scene" id="scene-search">
+    <div class="cm-stage"><canvas class="cm-canvas" id="cv-search"></canvas></div>
+    <p class="cm-cap"><span class="num">Scene 2 — The search that finds.</span> The audit tried
+    <span class="num">603,000</span> unique formulas across 112 grammar cells — and found coincidences
+    <em>sharper</em> than the original claim (1.6e-7 vs 4.3e-6). The family-wide null says: with that many
+    tries, expect <span class="num">4.5 hits per table</span>; the chance of at least one hit is effectively
+    <span class="num">1.0</span> (audit §B). Finding a hit isn't evidence — it's the forecast. Even the honest
+    failure is on the books: α⁻¹ got 22,000 formulas and its nearest miss was 0.54.</p>
+  </section>
+
+  <section class="cm-scene" id="scene-running">
+    <div class="cm-stage"><canvas class="cm-canvas" id="cv-running"></canvas></div>
+    <p class="cm-cap"><span class="num">Scene 3 — The running.</span> Run the claims up in energy and they melt:
+    the lambda residual slides from −2.5% at Mt to −50% at 10 TeV; sin²θW climbs from +1.3% to +10.3%.
+    One curve — √(4λ/yt²) — crosses its phi-claim near <span class="num">~680 GeV</span> on the way down.
+    But grad(F)·β is nonzero at every scale: none of these is an RG invariant (audit §C). A crossing is
+    also a coincidence. Curves are schematic — endpoints from the audit, shapes illustrative.</p>
+  </section>
+
+  <p class="cm-prov">Provenance: numbers from devin's phi-audit §A/§B/§C board comments, 2026-09-30
+  (frozen PDG-2025 Higgs 125.20 ± 0.11 GeV; GF = 1.1663785e-5 GeV⁻²). Visualization is original
+  Eigenfriend (muse) work — my reading of devin's audit, not devin's plots. This is a retrospective
+  numerology audit, not evidence for a new theory. Nothing here is published; it's all rehearsal.</p>
+</div>
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var GOLD = "#d9a441", GOLD_DIM = "#8a6a2a", INK = "#efe7d6", INK_SOFT = "#b7ab90", BG = "#0d0b08";
+  /* NOTE: kintsugi-lab.css uses --ink for the page background (dark); use explicit light text colors here. */
+
+  // ---- tabs ----
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".cm-tab"));
+  tabs.forEach(function(tab){
+    tab.addEventListener("click", function(){
+      tabs.forEach(function(t){ t.setAttribute("aria-selected","false"); });
+      tab.setAttribute("aria-selected","true");
+      document.querySelectorAll(".cm-scene").forEach(function(s){ s.classList.remove("active"); });
+      document.getElementById("scene-" + tab.dataset.scene).classList.add("active");
+      sizeAll();
+    });
+  });
+
+  function fitCanvas(cv){
+    var r = cv.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.max(300, Math.floor(r.width * dpr));
+    cv.height = Math.floor(460 * dpr);
+    var ctx = cv.getContext("2d");
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {ctx: ctx, w: r.width, h: 460};
+  }
+
+  // ============ SCENE 1: the 1400x zoom ============
+  var hit = { zoom: 0.0, target: 0.0, dragging: false }; // zoom 0 = full view, 1 = deep zoom
+  var cvHit = document.getElementById("cv-hit");
+  function drawHit(){
+    var f = fitCanvas(cvHit), ctx = f.ctx, W = f.w, H = f.h;
+    ctx.fillStyle = BG; ctx.fillRect(0,0,W,H);
+    // The hit: formula vs central value, relative error 4.3e-6 (audit §B).
+    // The uncertainty: ~1400x the gap (audit §A). On a log scale, 1400x = ±3.15 decades.
+    var vHit = 4.3e-6, halfDec = Math.log10(1400); // ≈3.146
+    var pivot = Math.log10(vHit);
+    var z = hit.zoom;
+    var span = 7 * Math.pow(0.10, z); // full view = 7 decades, zoom narrows
+    var cLo = pivot - span * 0.5, cHi = pivot + span * 0.5;
+    function X(v){ var l = Math.log10(v); return 60 + (W-100) * (l - cLo) / (cHi - cLo); }
+    var plotT = 90, plotB = H-170;
+
+    // uncertainty band: vHit/1400 .. vHit*1400
+    var bx0 = Math.max(50, X(vHit/1400)), bx1 = Math.min(W-40, X(vHit*1400));
+    var grd = ctx.createLinearGradient(bx0,0,bx1,0);
+    grd.addColorStop(0,"rgba(217,164,65,0.03)"); grd.addColorStop(0.5,"rgba(217,164,65,0.12)"); grd.addColorStop(1,"rgba(217,164,65,0.03)");
+    ctx.fillStyle = grd; ctx.fillRect(bx0, plotT, bx1-bx0, plotB-plotT);
+    ctx.strokeStyle = "rgba(217,164,65,0.4)"; ctx.setLineDash([6,6]);
+    ctx.strokeRect(bx0, plotT, bx1-bx0, plotB-plotT); ctx.setLineDash([]);
+    ctx.fillStyle = INK_SOFT; ctx.font = "12px sans-serif"; ctx.textAlign = "center";
+    if (bx1-bx0 > 180) ctx.fillText("measurement uncertainty ≈ 1400× the gap", (bx0+bx1)/2, plotT-14);
+
+    // the hit: a razor line
+    var hx = X(vHit);
+    if (hx > 50 && hx < W-40) {
+      ctx.fillStyle = GOLD; ctx.fillRect(hx-1.5, plotT, 3, plotB-plotT);
+      ctx.fillStyle = INK; ctx.font = "bold 13px sans-serif";
+      var lx = Math.min(Math.max(hx, 150), W-150);
+      ctx.fillText("the “hit” — relative error 4.3e-6", lx, plotB+34);
+    }
+
+    // axis ticks
+    ctx.fillStyle = INK_SOFT; ctx.font = "11px sans-serif"; ctx.textAlign = "center";
+    for (var e = Math.ceil(cLo); e <= Math.floor(cHi); e++) {
+      var tx = X(Math.pow(10,e));
+      if (tx < 50 || tx > W-30) continue;
+      ctx.strokeStyle = "rgba(239,231,214,0.25)";
+      ctx.beginPath(); ctx.moveTo(tx, plotB); ctx.lineTo(tx, plotB+6); ctx.stroke();
+      ctx.fillText("1e"+e, tx, plotB+22);
+    }
+    ctx.fillStyle = INK_SOFT; ctx.textAlign = "left"; ctx.font = "12px sans-serif";
+    ctx.fillText("relative error (log scale) — drag horizontally to zoom into the sliver", 60, H-36);
+    ctx.fillStyle = GOLD_DIM; ctx.textAlign = "right";
+    ctx.fillText("zoom: " + Math.round(z*100) + "%", W-60, 40);
+    ctx.textAlign = "left";
+  }
+  function sizeHit(){ drawHit(); }
+  cvHit.addEventListener("pointerdown", function(e){ hit.dragging = true; cvHit.setPointerCapture(e.pointerId); hit.lastX = e.clientX; });
+  cvHit.addEventListener("pointerup", function(){ hit.dragging = false; });
+  cvHit.addEventListener("pointermove", function(e){
+    if (!hit.dragging) return;
+    var dx = e.clientX - (hit.lastX || e.clientX); hit.lastX = e.clientX;
+    hit.target = Math.min(1, Math.max(0, hit.target + dx * 0.0016));
+  });
+  (function animHit(){
+    hit.zoom += (hit.target - hit.zoom) * 0.12;
+    if (document.getElementById("scene-hit").classList.contains("active")) drawHit();
+    if (!reduceMotion) requestAnimationFrame(animHit); else drawHit();
+  })();
+
+  // ============ SCENE 2: the search ============
+  var cvSearch = document.getElementById("cv-search");
+  var drops = [], tried = 0, hits = 0, searchT = 0;
+  var TOTAL = 603000, EXPECTED_HITS = 4.5;
+  function resetSearch(){ drops = []; tried = 0; hits = 0; searchT = 0; }
+  resetSearch();
+  function drawSearch(dt){
+    var f = fitCanvas(cvSearch), ctx = f.ctx, W = f.w, H = f.h;
+    ctx.fillStyle = BG; ctx.fillRect(0,0,W,H);
+    searchT += dt;
+    // spawn drops
+    if (!reduceMotion) {
+      var spawn = Math.min(14, Math.floor(4 + searchT*0.4));
+      for (var i=0;i<spawn && drops.length<900;i++){
+        drops.push({x: Math.random()*W, y: -10, v: 60+Math.random()*160, hit: Math.random() < 1.2e-3});
+      }
+    }
+    // update + draw
+    ctx.textAlign = "left";
+    var landed = 0;
+    for (var j=drops.length-1;j>=0;j--){
+      var d = drops[j];
+      d.y += d.v * dt;
+      if (d.y > H-120) { drops.splice(j,1); landed++; continue; }
+      if (d.hit && d.y > 40) {
+        ctx.fillStyle = GOLD; ctx.beginPath(); ctx.arc(d.x, d.y, 3.4, 0, 7); ctx.fill();
+        ctx.fillStyle = "rgba(217,164,65,0.25)"; ctx.beginPath(); ctx.arc(d.x, d.y, 8, 0, 7); ctx.fill();
+      } else {
+        ctx.fillStyle = "rgba(183,171,144,0.35)";
+        ctx.fillRect(d.x, d.y, 1.6, 7);
+      }
+    }
+    tried = Math.min(TOTAL, tried + Math.floor(TOTAL/18*dt) + landed*3);
+    if (tried >= TOTAL && hits < 5 && Math.random()<0.02) hits++;
+    // counters
+    ctx.fillStyle = INK; ctx.font = "bold 26px sans-serif";
+    ctx.fillText(tried.toLocaleString("en-US"), 40, 60);
+    ctx.fillStyle = INK_SOFT; ctx.font = "13px sans-serif";
+    ctx.fillText("unique formulas tried", 40, 84);
+    ctx.fillStyle = GOLD; ctx.font = "bold 26px sans-serif"; ctx.textAlign = "right";
+    var showHits = Math.min(EXPECTED_HITS, (tried/TOTAL)*EXPECTED_HITS + (tried>=TOTAL?0.4:0));
+    ctx.fillText(showHits.toFixed(1), W-40, 60);
+    ctx.fillStyle = INK_SOFT; ctx.font = "13px sans-serif";
+    ctx.fillText("expected hits (the null)", W-40, 84);
+    ctx.textAlign = "left";
+    // floor: the honest failure
+    ctx.strokeStyle = "rgba(183,171,144,0.3)";
+    ctx.beginPath(); ctx.moveTo(40, H-120); ctx.lineTo(W-40, H-120); ctx.stroke();
+    ctx.fillStyle = INK_SOFT; ctx.font = "12px sans-serif";
+    ctx.fillText("α⁻¹: 22,000 formulas tried · nearest miss 0.54 — also the null. The search keeps receipts.", 40, H-92);
+    ctx.fillStyle = GOLD_DIM;
+    ctx.fillText("each gold spark: a coincidence sharper than the original claim (best 1.6e-7 vs 4.3e-6)", 40, H-70);
+    if (tried >= TOTAL) {
+      ctx.fillStyle = INK; ctx.font = "bold 14px sans-serif"; ctx.textAlign = "center";
+      ctx.fillText("603,000 formulas · 112 grammar cells · P(≥1 hit) ≈ 1.0 — finding hits was the forecast.", W/2, H-40);
+    }
+  }
+  var lastS = 0;
+  (function animSearch(ts){
+    var dt = Math.min(0.05, (ts-lastS)/1000 || 0.016); lastS = ts;
+    if (document.getElementById("scene-search").classList.contains("active")) drawSearch(dt);
+    if (!reduceMotion) requestAnimationFrame(animSearch); else drawSearch(0.016);
+  })();
+  cvSearch.addEventListener("dblclick", resetSearch);
+
+  // ============ SCENE 3: the running ============
+  var cvRun = document.getElementById("cv-running");
+  var runT = 0;
+  function drawRunning(){
+    var f = fitCanvas(cvRun), ctx = f.ctx, W = f.w, H = f.h;
+    ctx.fillStyle = BG; ctx.fillRect(0,0,W,H);
+    runT += 0.008;
+    var padL = 70, padR = 118, padT = 50, padB = 90;
+    var loE = Math.log10(173), hiE = Math.log10(10000);
+    function X(e){ return padL + (W-padL-padR) * (Math.log10(e)-loE)/(hiE-loE); }
+    function Y(p){ return padT + (H-padT-padB) * (1 - (p+60)/75); } // percent -60..+15
+    // zero line
+    ctx.strokeStyle = "rgba(239,231,214,0.35)"; ctx.setLineDash([4,5]);
+    ctx.beginPath(); ctx.moveTo(padL, Y(0)); ctx.lineTo(W-padR, Y(0)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = INK_SOFT; ctx.font = "11px sans-serif"; ctx.textAlign = "right";
+    ctx.fillText("0% = the phi claim", W-padR-6, Y(0)-8);
+    // y ticks
+    ctx.textAlign = "right";
+    [-50,-25].forEach(function(p){
+      ctx.fillStyle = INK_SOFT;
+      ctx.fillText((p>0?"+":"")+p+"%", padL-8, Y(p)+4);
+      ctx.strokeStyle = "rgba(239,231,214,0.12)";
+      ctx.beginPath(); ctx.moveTo(padL, Y(p)); ctx.lineTo(W-padR, Y(p)); ctx.stroke();
+    });
+    ctx.textAlign = "left";
+    // curves: [label, color, points [E, pct]]
+    var curves = [
+      {label:"λ claim residual", color:"#8a6a2a", pts:[[173,-2.5],[400,-8],[1000,-20],[3000,-35],[10000,-50]]},
+      {label:"sin²θW residual", color:"#b7ab90", pts:[[173,1.3],[400,3],[1000,5.5],[3000,8],[10000,10.3]]},
+      {label:"√(4λ/yt²) diagnostic", color:"#d9a441", pts:[[173,4.5],[400,2],[680,0],[1500,-4],[4000,-8],[10000,-11]]}
+    ];
+    // axes labels
+    ctx.fillStyle = INK_SOFT; ctx.textAlign = "center"; ctx.font = "11px sans-serif";
+    [173,1000,10000].forEach(function(e){
+      var x = X(e); ctx.fillText(e>=1000 ? (e/1000)+" TeV" : e+" GeV", x, H-padB+22);
+      ctx.strokeStyle = "rgba(239,231,214,0.15)";
+      ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, H-padB); ctx.stroke();
+    });
+    ctx.textAlign = "left"; ctx.fillText("residual vs phi-claim (%)", 12, 24);
+    ctx.fillText("energy scale (log)", padL, H-24);
+    // draw curves with draw-in
+    var prog = reduceMotion ? 1 : Math.min(1, runT);
+    curves.forEach(function(c){
+      ctx.strokeStyle = c.color; ctx.lineWidth = c.label.indexOf("diagnostic")>=0 ? 3 : 2;
+      ctx.beginPath();
+      var n = Math.max(2, Math.floor(c.pts.length * prog));
+      for (var i=0;i<n;i++){
+        var p = c.pts[i], x = X(p[0]), y = Y(p[1]);
+        if (i===0) ctx.moveTo(x,y); else {
+          var pp = c.pts[i-1];
+          ctx.quadraticCurveTo(X(pp[0]), Y(pp[1]), (X(pp[0])+x)/2, (Y(pp[1])+y)/2);
+          ctx.quadraticCurveTo(x, y, x, y);
+        }
+      }
+      ctx.stroke(); ctx.lineWidth = 1;
+      if (prog >= 1) {
+        var lp = c.pts[c.pts.length-1];
+        ctx.fillStyle = c.color; ctx.font = "12px sans-serif"; ctx.textAlign = "left";
+        var ly = Y(lp[1]);
+        // stagger end labels to avoid collisions
+        if (c.label.indexOf("sin")>=0) ly -= 14;
+        if (c.label.indexOf("diagnostic")>=0) ly += 12;
+        ctx.fillText(c.label, X(lp[0])+8, ly-4);
+        ctx.fillStyle = INK_SOFT;
+        ctx.fillText("→ " + (lp[1]>0?"+":"") + lp[1] + "%", X(lp[0])+8, ly+12);
+      }
+    });
+    // crossing marker at 680 GeV
+    if (prog >= 1) {
+      var cx = X(680), cy = Y(0);
+      var pulse = reduceMotion ? 0 : Math.sin(runT*40)*3;
+      ctx.strokeStyle = GOLD; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(cx, cy, 12+pulse, 0, 7); ctx.stroke(); ctx.lineWidth = 1;
+      ctx.fillStyle = GOLD; ctx.font = "bold 12px sans-serif"; ctx.textAlign = "center";
+      ctx.fillText("crosses near ~680 GeV", cx, cy-24);
+      ctx.fillStyle = INK_SOFT; ctx.font = "11px sans-serif";
+      ctx.fillText("a crossing is also a coincidence — grad(F)·β ≠ 0 at every scale", cx, H-52);
+    }
+  }
+  (function animRun(){
+    if (document.getElementById("scene-running").classList.contains("active")) drawRunning();
+    if (!reduceMotion) requestAnimationFrame(animRun); else drawRunning();
+  })();
+
+  function sizeAll(){
+    if (document.getElementById("scene-hit").classList.contains("active")) drawHit();
+    if (document.getElementById("scene-search").classList.contains("active")) drawSearch(0.016);
+    if (document.getElementById("scene-running").classList.contains("active")) drawRunning();
+  }
+  window.addEventListener("resize", sizeAll);
+  sizeAll();
+})();
+</script>
+</body>
+</html>

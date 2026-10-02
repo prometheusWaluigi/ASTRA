@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Archive Galaxy</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;color:#eef3ff;background:#0d1726}*{box-sizing:border-box}body{margin:0;overflow:hidden}
+canvas{display:block}
+#hud{position:fixed;top:12px;left:12px;max-width:330px;background:#101a2bd9;border:1px solid #3a4a63;border-radius:14px;padding:13px 15px;backdrop-filter:blur(4px)}
+#hud h1{font-size:18px;margin:0 0 4px;color:#f0d9a8}#hud p{font-size:12px;color:#b7c4d6;line-height:1.45;margin:4px 0}
+#hud .stats{font-size:12px;color:#8fd6b0;margin-top:6px}
+#hud a{color:#d8a84e;font-size:12px}
+#hud button{font:inherit;font-size:12px;background:#243145;color:#eaf2ff;border:1px solid #42536c;border-radius:8px;padding:5px 9px;cursor:pointer;margin-top:6px}
+#legend{font-size:11px;color:#9fb0c5;margin-top:7px;line-height:1.7}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+#tip{position:fixed;pointer-events:none;background:#0d1624ee;border:1px solid #4a6788;border-radius:8px;padding:6px 9px;font-size:12px;max-width:280px;display:none;z-index:5}
+#panel{position:fixed;top:12px;right:12px;width:min(400px,92vw);max-height:86vh;overflow:auto;background:#101a2bf2;border:1px solid #4a6788;border-radius:14px;padding:15px 17px;display:none;z-index:6}
+#panel h2{font-size:15px;margin:0 26px 8px 0;color:#f0d9a8;overflow-wrap:anywhere}
+#panel .meta{font-size:12px;color:#9fb0c5;line-height:1.6;overflow-wrap:anywhere}
+#panel a{color:#d8a84e}
+#panel pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.55 ui-monospace,monospace;color:#c7d8ee;border-top:1px solid #304055;margin-top:10px;padding-top:10px}
+#panelClose{position:absolute;top:9px;right:9px;background:none;border:none;color:#9fb0c5;font-size:20px;cursor:pointer}
+@media(max-width:560px){#hud{max-width:250px;padding:10px 12px}#hud p,#legend{display:none}}
+</style>
+</head>
+<body>
+<div id="hud"><h1>Archive Galaxy</h1><p>One arm per GitHub repo; the inner ring is the blog years. Queue status is live — drafts are unreviewed local-model notes.</p><div class="stats" id="stats">loading…</div><button id="picksBtn">Picks tour</button> <button id="resetBtn">Reset view</button> <a href="../../index.html">← Lab</a><div id="legend"><span class="dot" style="background:#ffcf6b"></span>drafted · <span class="dot" style="background:#8fb4e8"></span>queued · <span class="dot" style="background:#ff5d4d"></span>needs attention · <span class="dot" style="background:#b78cff"></span>drafting now</div></div>
+<div id="tip"></div>
+<div id="panel"><button id="panelClose" aria-label="Close">×</button><div id="panelBody"></div></div>
+<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
+document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0d1726);scene.fog=new THREE.FogExp2(0x0d1726,0.008);
+const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,600);camera.position.set(0,26,58);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.35;
+function glowTexture(){const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.35,'rgba(255,255,255,.55)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)}
+function ringTexture(){const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');g.strokeStyle='#f2c169';g.lineWidth=5;g.beginPath();g.arc(32,32,24,0,7);g.stroke();return new THREE.CanvasTexture(c)}
+function textSprite(text,scale=1){const c=document.createElement('canvas');c.width=256;c.height=56;const g=c.getContext('2d');g.font='30px system-ui';g.fillStyle='#c8b896';g.textAlign='center';g.fillText(text,128,38);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));s.scale.set(6*scale,1.9*scale,1);return s}
+const COLORS={done:new THREE.Color(0xffcf6b),queued:new THREE.Color(0x8fb4e8),bad:new THREE.Color(0xff5d4d),next:new THREE.Color(0xb78cff)};
+let points,meta=[],statusById=new Map(),starPos=new Map(),starSize=new Map(),flares=[];
+let home=null;const homeDir=new THREE.Vector3(0,.45,1).normalize();let userMoved=false;
+function frameView(useCurrentDir){if(!home)return;const vF=THREE.MathUtils.degToRad(camera.fov*.5);const half=Math.min(vF,Math.atan(Math.tan(vF)*camera.aspect));const dist=home.radius/Math.sin(half)*1.1;let dir=useCurrentDir?camera.position.clone().sub(controls.target):homeDir.clone();if(dir.lengthSq()<1e-6)dir=homeDir.clone();dir.normalize();controls.target.copy(home.center);camera.position.copy(home.center).addScaledVector(dir,dist);camera.near=Math.max(.05,dist*.002);camera.far=dist+home.radius*4+200;camera.updateProjectionMatrix()}
+function buildScene(data){
+  meta=[];starPos=new Map();starSize=new Map();
+  const byRepo=new Map(),feeds=[];
+  for(const s of data.sources){if(s.origin==='github'){(byRepo.get(s.repo)||byRepo.set(s.repo,[]).get(s.repo)).push(s)}else feeds.push(s)}
+  const repos=[...byRepo.entries()].sort((a,b)=>b[1].length-a[1].length);
+  const positions=[],sizes=[],colors=[],flareArr=[];
+  repos.forEach(([repo,list],i)=>{list.sort((a,b)=>a.priority-b.priority||String(a.path).localeCompare(String(b.path)));const base=i/repos.length*Math.PI*2,len=6+Math.sqrt(list.length)*2.4;list.forEach((s,j)=>{const t=list.length>1?j/(list.length-1):.5,r=7+t*len,a=base+t*1.9;const x=Math.cos(a)*r,z=Math.sin(a)*r,y=(Math.random()-.5)*2.4;push(s,x,y,z)});
+    const tip=textSprite(String(repo||'').split('/').pop(),1.4);tip.position.set(Math.cos(base+1.9)*(9+len),-1.4,Math.sin(base+1.9)*(9+len));scene.add(tip)});
+  const ringR=5.6;
+  const timed=feeds.map(s=>({s,t:s.published_iso?Date.parse(s.published_iso):NaN}));
+  const valid=timed.filter(x=>!isNaN(x.t)).sort((a,b)=>a.t-b.t);
+  const t0=valid.length?valid[0].t:0,t1=valid.length>1?valid[valid.length-1].t:t0;
+  timed.forEach(({s,t},i)=>{const a=(!isNaN(t)&&t1>t0)?-Math.PI/2+(t-t0)/(t1-t0)*Math.PI*2:-Math.PI/2+i/timed.length*Math.PI*2;push(s,Math.cos(a)*ringR,(Math.random()-.5)*.8,Math.sin(a)*ringR)});
+  if(t1>t0){const seen=new Set();const tick=(t,y)=>{if(seen.has(y))return;seen.add(y);const a=-Math.PI/2+(t-t0)/(t1-t0)*Math.PI*2,sp=textSprite(String(y));sp.position.set(Math.cos(a)*8,-2.4,Math.sin(a)*8);scene.add(sp)};
+    for(let y=new Date(t0).getUTCFullYear();y<=new Date(t1).getUTCFullYear();y++){const ty=Date.UTC(y,0,1);if(ty>=t0&&ty<=t1)tick(ty,y)}
+    tick(t0,new Date(t0).getUTCFullYear());tick(t1,new Date(t1).getUTCFullYear())}
+  function push(s,x,y,z){const size=1.15+Math.log10((s.chars||80)+1)*.55;positions.push(x,y,z);sizes.push(size);const key=s.id===data.next?'next':(s.draft_status==='done'?'done':s.draft_status==='queued'?'queued':'bad');colors.push(...COLORS[key].toArray());flareArr.push(0);meta.push(s);starPos.set(s.id,new THREE.Vector3(x,y,z));starSize.set(s.id,size)}
+  const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geo.setAttribute('size',new THREE.Float32BufferAttribute(sizes,1));geo.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geo.setAttribute('flare',new THREE.Float32BufferAttribute(flareArr,1));
+  const mat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,uniforms:{map:{value:glowTexture()}},vertexShader:'attribute float size;attribute vec3 color;attribute float flare;varying vec3 vC;varying float vF;void main(){vC=color;vF=flare;vec4 mv=modelViewMatrix*vec4(position,1.0);gl_PointSize=size*(300.0/-mv.z)*(1.0+flare*1.6);gl_Position=projectionMatrix*mv;}',fragmentShader:'uniform sampler2D map;varying vec3 vC;varying float vF;void main(){vec4 t=texture2D(map,gl_PointCoord);gl_FragColor=vec4(vC*(1.0+vF*1.4),t.a)*t.a;}'});
+  points=new THREE.Points(geo,mat);scene.add(points);
+  geo.computeBoundingSphere();home={center:geo.boundingSphere.center.clone(),radius:geo.boundingSphere.radius+9};frameView(false);
+  if(data.next&&starPos.get(data.next)){const p=starPos.get(data.next);const pulse=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTexture(),color:0xb78cff,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));pulse.position.copy(p);pulse.userData.pulse=true;scene.add(pulse)}
+}
+function applyUpdate(data){
+  const flareAttr=points.geometry.getAttribute('flare'),colAttr=points.geometry.getAttribute('color');
+  meta.forEach((s,i)=>{const cur=data.sources.find(x=>x.id===s.id);if(!cur)return;if(cur.draft_status==='done'&&s.draft_status!=='done'){flareAttr.setX(i,1);colAttr.setXYZ(i,...COLORS.done.toArray());const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTexture(),color:0xfff2cf,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));sp.position.copy(starPos.get(s.id));sp.userData.burst=performance.now();scene.add(sp)}s.draft_status=cur.draft_status});
+  flareAttr.needsUpdate=colAttr.needsUpdate=true;updateStats(data)
+}
+function updateStats(data){const c=data.counts;$('stats').textContent=`${c.draftable-c.remaining} of ${c.draftable} drafted · ${c.remaining} queued · refreshed ${new Date().toLocaleTimeString()}`}
+const $=id=>document.getElementById(id);
+let pickSprites=[],flyQueue=[],flyT=0;
+async function loadPicks(){const d=await(await fetch('/api/viz/picks',{cache:'no-store'})).json();const rt=ringTexture();for(const p of d.picks||[]){const pos=starPos.get(p.id);if(!pos)continue;const s=new THREE.Sprite(new THREE.SpriteMaterial({map:rt,transparent:true,depthWrite:false}));s.position.copy(pos);const k=(starSize.get(p.id)||1.5)*.6;s.scale.set(k,k,1);s.userData.pick=p;scene.add(s);pickSprites.push(s)}$('picksBtn').style.display=pickSprites.length?'inline-block':'none'}
+$('picksBtn').onclick=()=>{if(!pickSprites.length)return;flyQueue=pickSprites.slice();flyNext()};
+function flyNext(){const sp=flyQueue.shift();if(!sp)return;flyT=performance.now();sp.userData.fly=true;const p=sp.userData.pick;const src=meta.find(s=>s.id===p.id);showPanel({title:p.id,meta:`${src?.title||''} · ${src?.repo||src?.origin||''}`,note:p.note,url:src?.canonical_url})}
+const ray=new THREE.Raycaster();ray.params.Points={threshold:1.2};const mouse=new THREE.Vector2();let hovered=-1;
+addEventListener('pointermove',e=>{mouse.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);$('tip').style.left=e.clientX+14+'px';$('tip').style.top=e.clientY+12+'px'});
+addEventListener('click',e=>{if(e.target.closest('#hud,#panel'))return;pick(e,true)});
+addEventListener('keydown',e=>{if(e.key==='Escape')$('panel').style.display='none'});
+$('panelClose').onclick=()=>$('panel').style.display='none';
+function pick(e,click){ray.setFromCamera(mouse,camera);const hit=points?ray.intersectObject(points):[];if(hit.length){const s=meta[hit[0].index];if(click){const p=starPos.get(s.id);const url=s.canonical_url&&/^https?:/.test(s.canonical_url)?s.canonical_url:null;showPanel({title:s.title||s.id,meta:`${s.origin}${s.repo?' · '+s.repo:''}${s.path?' · '+s.path:''} · ${s.chars} chars · ${s.draft_status}`,note:null,url,id:s.id,status:s.draft_status})}else{$('tip').textContent=`${s.title||s.path||s.id} · ${s.repo||s.origin}`;$('tip').style.display='block'}hovered=hit[0].index}else{$('tip').style.display='none';hovered=-1}}
+async function showPanel(o){$('panel').style.display='block';$('panelBody').replaceChildren();const h=document.createElement('h2');h.textContent=o.title;const m=document.createElement('div');m.className='meta';m.textContent=o.meta;$('panelBody').append(h,m);if(o.url){const a=document.createElement('a');a.href=o.url;a.target='_blank';a.rel='noopener';a.textContent='canonical source ↗';$('panelBody').append(a)}if(o.note){const pre=document.createElement('pre');pre.textContent=o.note;$('panelBody').append(pre)}if(o.status==='done'&&o.id){const pre=document.createElement('pre');pre.textContent='Loading draft note…';$('panelBody').append(pre);try{const r=await fetch('/api/library/archive-note/'+o.id,{cache:'no-store'});pre.textContent=r.ok?await r.text():'Draft note not available.'}catch(err){pre.textContent='Draft note not available.'}}}
+async function refresh(){try{const r=await fetch('/api/viz/archive',{cache:'no-store'});const d=await r.json();if(!d.available){$('stats').textContent='archive data unavailable';return}if(points)applyUpdate(d);else{buildScene(d);updateStats(d)}}catch(e){$('stats').textContent='archive data unavailable'}}
+await refresh();await loadPicks();
+setInterval(()=>{if(!document.hidden)refresh()},60000);
+const clock=new THREE.Clock();
+(function loop(){requestAnimationFrame(loop);const t=clock.getElapsedTime();scene.traverse(o=>{if(o.userData.pulse){const k=1+Math.sin(t*3)*.35;o.scale.set(3.4*k,3.4*k,1)}if(o.userData.burst){const age=(performance.now()-o.userData.burst)/1400;if(age>1){scene.remove(o)}else{o.scale.set(2+age*10,2+age*10,1);o.material.opacity=1-age}}});
+if(flyQueue.length===0&&pickSprites.some(s=>s.userData.fly)){const sp=pickSprites.find(s=>s.userData.fly);const k=Math.min(1,(performance.now()-flyT)/1800);camera.position.lerp(sp.position.clone().add(new THREE.Vector3(3,3,6)),.06);controls.target.lerp(sp.position,.08);if(k>=1){sp.userData.fly=false;flyNext()}}
+const fl=points?.geometry.getAttribute('flare');if(fl){let dirty=false;for(let i=0;i<fl.count;i++){if(fl.getX(i)>0){fl.setX(i,Math.max(0,fl.getX(i)-.012));dirty=true}}if(dirty)fl.needsUpdate=true}
+controls.update();renderer.render(scene,camera)})();
+$('resetBtn').onclick=()=>{userMoved=false;frameView(false)};
+controls.addEventListener('start',()=>userMoved=true);
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);if(!userMoved)frameView(true)});
+</script>
+</body></html>
