@@ -27,7 +27,7 @@ canvas{display:block}
 <div id="hud"><h1>Idea Constellation</h1><p>Miscdocs documents and Idea Collider seeds. Satellites are hypotheses — blind Model A/B until you reveal. Unreviewed output.</p><button id="revealBtn">Reveal models</button> <button id="resetBtn">Reset view</button> <a href="../../index.html">← Lab</a><div id="legend"><span class="dot" style="background:#f2c169"></span>seed / accepted link · <span class="dot" style="background:#9fb0c5"></span>document (brighter = has draft) · <span class="dot" style="background:#b78cff"></span>trail/concept nebula</div></div>
 <div id="tip"></div>
 <div id="panel"><button id="panelClose" aria-label="Close">×</button><div id="panelBody"></div></div>
-<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
 <script type="module">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
@@ -44,7 +44,7 @@ const GLOW=glowTexture();
 let home=null;const homeDir=new THREE.Vector3(.3,.4,1).normalize();let userMoved=false;
 function frameView(useCurrentDir){if(!home)return;const vF=THREE.MathUtils.degToRad(camera.fov*.5);const half=Math.min(vF,Math.atan(Math.tan(vF)*camera.aspect));const dist=home.radius/Math.sin(half)*1.1;let dir=useCurrentDir?camera.position.clone().sub(controls.target):homeDir.clone();if(dir.lengthSq()<1e-6)dir=homeDir.clone();dir.normalize();controls.target.copy(home.center);camera.position.copy(home.center).addScaledVector(dir,dist);camera.near=Math.max(.05,dist*.002);camera.far=dist+home.radius*4+200;camera.updateProjectionMatrix()}
 function labelSprite(text,color){const c=document.createElement('canvas');c.width=512;c.height=80;const g=c.getContext('2d');g.font='40px system-ui';g.fillStyle=color;g.textAlign='center';g.fillText(text.slice(0,48),256,52);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,sizeAttenuation:false}));const w=Math.min(.16,.008+text.length*.004);s.scale.set(w,w*80/512,1);return s}
-const d=await(await fetch('/api/viz/constellation',{cache:'no-store'})).json();
+const d=await(await fetch('./data/constellation.json',{cache:'no-store'})).json();
 if(!d.available){$('tip').style.display='block';$('tip').textContent='constellation data unavailable: '+(d.error||'');throw new Error(d.error)}
 const nodes=[],byId=new Map(),links=[];
 function addNode(id,kind,extra){const n={...extra,id,kind,pos:new THREE.Vector3((Math.random()-.5)*30,(Math.random()-.5)*20,(Math.random()-.5)*30)};nodes.push(n);byId.set(id,n);return n}
@@ -97,11 +97,11 @@ function pick(click){ray.setFromCamera(mouse,camera);const hits=ray.intersectObj
   const body=$('panelBody');body.replaceChildren();$('panel').style.display='block';
   if(u.kind==='doc'){body.append(panelTitle(u.label),panelMeta(u.doc+' · '+(u.has_draft?'draft note ready':'no draft yet')));
     body.append(panelLink('/api/library/pdf/'+encodeURIComponent(u.label),'Open PDF ↗',true));
-    if(u.has_draft){const pre=document.createElement('pre');pre.textContent='Loading draft note…';body.append(pre);fetch('/api/library/note/'+u.doc,{cache:'no-store'}).then(r=>r.ok?r.text():Promise.reject()).then(t=>pre.textContent=t).catch(()=>pre.textContent='Draft note not available.')}}
+    if(u.has_draft){const pre=document.createElement('pre');pre.textContent='Loading draft note…';body.append(pre);fetch('./data/note/'+u.doc+'.json',{cache:'no-store'}).then(r=>r.ok?r.text():Promise.reject()).then(t=>pre.textContent=t).catch(()=>pre.textContent='Draft note not available.')}}
   else if(u.kind==='seed'){body.append(panelTitle(u.title),panelMeta(u.id+' · '+u.question));
     for(const side of ['left','right']){body.append(panelMeta((side==='left'?'Left: ':'Right: ')+(u[side].concept||'')))}
     for(const mk of ['abl','std']){const out=u.outputs[mk];if(out)body.append(panelMeta((revealed?(mk==='abl'?'abliterated':'standard'):'Model '+Object.keys(u.assignment).find(k=>u.assignment[k]===mk))+': '+(out.title||'')))}
-    const imgs=[...u.images.abl,...u.images.std];const wrap=document.createElement('div');for(const f of imgs){const im=document.createElement('img');im.src='/api/library/idea-lab/'+f;im.alt=f;wrap.append(im)}body.append(wrap,panelLink('/api/library/idea-lab/','Open the gallery ↗',true))}
+    const imgs=[...u.images.abl,...u.images.std];const wrap=document.createElement('div');for(const f of imgs){const im=document.createElement('img');im.src='../idea-lab/'+f;im.alt=f;wrap.append(im)}body.append(wrap,panelLink('../idea-lab/index.html','Open the gallery ↗',true))}
   else if(u.kind==='nebula'){body.append(panelTitle(u.label),panelMeta(u.kind==='trail'?'weird-archive reading trail':'concept anchor'))}
   else if(u.kind==='sat'){const h=u.hyp;body.append(panelTitle(modelName(u)+' · hypothesis'),panelMeta(h.claim||''),panelMeta('grounding: '+(h.grounding||'?')+' · confidence: '+(h.confidence??'?')));
     for(const k of ['mechanism','prediction','cheapest_test','kill_condition']){if(h[k])body.append(panelMeta(k.replace('_',' ')+': '+h[k]))}}}

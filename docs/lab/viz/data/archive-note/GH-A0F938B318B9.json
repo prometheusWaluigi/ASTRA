@@ -1,0 +1,36 @@
+# Dockerfile.oneapi.fix
+
+Status: unreviewed local-model draft (2026-09-25T11:58:57+00:00)
+
+- Source ID: `GH-A0F938B318B9`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/Dockerfile.oneapi.fix>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `Dockerfile.oneapi.fix`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 123 anchors; verify against the source.
+
+# Source Note: GH-A0F938B318B9
+
+**Subject:** This source is a Dockerfile titled *"Dockerfile.oneapi.fix"*, part of an experimental private wiki and public archive maintained by a single author. The file appears to configure a Docker image for a computational or research environment, with a focus on integrating **Intel OneAPI** and **Arc A770 GPU** support. 
+
+**Genre:** Technical configuration file, likely for software development or computational research. It is part of a larger repository, *gaslit-af-warfare*, which may relate to AI, simulation, or data science work.
+
+**Main Ideas:**
+- The Dockerfile is intended to create a build environment for a project requiring **Intel OneAPI** and **Arc A770 GPU** support, possibly for machine learning or scientific computing.
+- It uses **Ubuntu 22.04** as the base image, as the author notes that "the Intel image isn't available" ([GH-A0F938B318B9 L4]).
+- The build process includes installing **Python** dependencies, **Intel OneAPI**, and **GPU drivers**, with a focus on ensuring compatibility with scientific computing packages.
+- The file includes **scripts** to set up environment variables for non-interactive sessions and to test the availability of key libraries like **PyTorch** and **Intel Extension for PyTorch** ([GH-A0F938B318B9 L84]).
+
+**Striking Details:**
+- The author includes a **custom script** (`with_intel`) to invoke Python commands with Intel OneAPI environment variables set ([GH-A0F938B318B9 L61]).
+- There is an **attempt to install the Intel PyTorch extension** ([GH-A0F938B318B9 L76]), though the installation is conditional.
+- A **test script** (`test_imports.py`) is included to verify the installation of critical libraries, including **scikit-learn**, **biopython**, **spacy**, and **PyTorch**, and to check for **Intel acceleration support** ([GH-A0F938B318B9 L84]).
+- The Dockerfile includes a **custom import fix** (`import_fix.py`) to ensure compatibility with **scikit-allel** ([GH-A0F938B318B9 L102]).
+
+**Coverage Limit:** This note is based on **sampled anchors**, meaning not all content has been reviewed. The file contains **123 anchors**, and only a subset (37) is shown here.
+
+## Speculation
+- Could this project be related to **genetic risk modeling** or **biological simulations**, given the inclusion of **scikit-allel**, **biopython**, and **neuroimmune_simulator.py**? [GH-A0F938B318B9 L102]
+- What is the **purpose of the "run_with_intel" script**? Does it suggest that the author is working in an environment where Intel acceleration is a critical performance factor?
+- Why is there a **custom import fix** for scikit-allel? Is the author working with legacy or modified versions of the library?
+- Is the **Intel PyTorch extension** a key component of the project, or is it a fallback or optional feature, as suggested by the conditional installation in the Dockerfile ([GH-A0F938B318B9 L76])?

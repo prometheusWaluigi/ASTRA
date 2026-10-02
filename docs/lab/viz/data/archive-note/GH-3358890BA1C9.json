@@ -1,0 +1,36 @@
+# cli.py
+
+Status: unreviewed local-model draft (2026-09-25T07:23:12+00:00)
+
+- Source ID: `GH-3358890BA1C9`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/src/cli.py>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `src/cli.py`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 324 anchors; verify against the source.
+
+**Source Note: GH-3358890BA1C9**
+
+**Subject:** This file appears to be a Python script implementing a command-line interface (CLI) for a data analysis or visualization tool, likely part of a larger software project related to handling or processing structured data (possibly from a "SP" or "SP-API" context). The script includes options for acceleration features, visualization, and data inventory operations.
+
+**Genre:** Technical code (Python CLI implementation), likely part of a data processing or scientific computing tool.
+
+**Main Ideas:**
+- The script provides a CLI for running various data analysis commands, such as "inventory" and "sp-data."
+- It includes support for acceleration features, including options to use Intel oneAPI or disable acceleration entirely.
+- The script handles data input/output, visualization, and error handling during execution.
+- It supports sandbox mode, which uses dummy data for testing or development purposes.
+
+**Striking Details:**
+- The script contains code for handling missing dependencies, such as OpenBLAS and LAPACK, with suggestions to install them via Homebrew on macOS systems [GH-3358890BA1C9 L166].
+- It includes verbose and sandbox mode flags for debugging and testing [GH-3358890BA1C9 L49, L228].
+- The script outputs detailed messages during execution, including warnings, success indicators, and error messages [GH-3358890BA1C9 L187, L242, L255].
+- It appears to generate CSV and PNG files as part of its operations, with output directories specified by the user [GH-3358890BA1C9 L248, L310].
+
+**Coverage Limit:** Sampled anchors (44 of 324 total) mean this note does not reflect the full content of the file.
+
+## Speculation
+- Could this CLI be part of a larger archival or bibliographic data processing framework, given the "SP-API" and "inventory" references?
+- What is the relationship between the "SP data analysis" and the "inventory" commands, and are they meant to be used together?
+- Might the use of Intel oneAPI acceleration be tied to performance-critical operations, such as clustering or visualization?
+- How does the script handle cases where acceleration modules are not available, and does it fall back to alternative methods or simply fail?

@@ -1,0 +1,36 @@
+# test_narrative.py
+
+Status: unreviewed local-model draft (2026-09-25T06:19:37+00:00)
+
+- Source ID: `GH-B2D2F96D7744`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/tests/archive/test_narrative.py>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `tests/archive/test_narrative.py`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 220 anchors; verify against the source.
+
+**Source Note: GH-B2D2F96D7744**
+
+**Subject**: This file appears to be a test script for a narrative generation system within a project called ASTRA. It is part of the `tests/archive` directory and is likely used to validate or debug functionalities related to symbolic narrative creation and visualization.
+
+**Genre**: Technical code; specifically, a Python unit test script. It includes comments and code that manipulate symbolic representations of celestial objects and events, as well as visualization components.
+
+**Main Ideas**:
+- The script is testing a narrative generation module that integrates symbolic representations of planetary positions and events.
+- It creates a mock "Qualia Field," a construct that evolves over time, and logs narrative events based on changes in the field.
+- The script visualizes the evolution of the field and its associated narrative events.
+- It generates an event log in JSON format and saves visualizations of the field and events.
+
+**Striking Details**:
+- The planetary positions are represented as dictionaries with properties like `abs_pos`, `pos`, `sign`, `emoji`, `house`, and `retrograde`. For example, `self.moon = {'abs_pos': 342.00, 'pos': 12.00, 'sign': 'Pis', 'emoji': '♓️', 'house': '2nd House', 'retrograde': False}` [GH-B2D2F96D7744 L34].
+- The system appears to detect "phase transitions" and logs them as narrative events, with timestamps and event types [GH-B2D2F96D7744 L99].
+- Visualizations are generated using `matplotlib`, with narrative events marked on plots based on their type and intensity [GH-B2D2F96D7744 L159].
+- The script outputs results to an `output` directory, including a JSON event log and saved figures [GH-B2D2F96D7744 L215].
+
+**Coverage Limit**: Sampled anchors (41 of 220 total) mean this note does not reflect the full content of the source.
+
+## Speculation
+- Could the "Qualia Field" be a metaphor for a computational model of consciousness or perception, given the integration of symbolic narrative and planetary data?
+- How does the system differentiate between types of narrative events, and are these classifications based on the planetary data or external rules?
+- What is the significance of "retrograde" being set to `False` for the moon and Jupiter in the mock setup? Is this a placeholder or a deliberate choice?
+- Does the system simulate real-world astrological events, or is it purely abstract?

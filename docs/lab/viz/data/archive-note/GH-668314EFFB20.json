@@ -1,0 +1,42 @@
+# EBVReactivationMECFS.md
+
+Status: unreviewed local-model draft (2026-09-24T23:03:07+00:00)
+
+- Source ID: `GH-668314EFFB20`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/spikeProtein/EBVReactivationMECFS.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/spikeProtein/EBVReactivationMECFS.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 263 anchors; verify against the source.
+
+# Source Note: GH-668314EFFB20
+
+**Subject:** Viral reactivation and immune dysfunction in myalgic encephalomyelitis/chronic fatigue syndrome (ME/CFS).  
+
+**Genre:** Scientific review or analysis, based on peer-reviewed studies (2020–2025) and sourced from PMC and academic journals.  
+
+**Main Ideas:**  
+- ME/CFS is associated with **high prevalence of latent viral infections**, particularly **EBV, HHV-6, and others**, with **elevated viral load and reactivation** observed in patient cohorts.  
+- **Immune dysregulation** is a key feature, including **autoantibodies** against **β_2-adrenergic receptors** and **muscarinic acetylcholine receptors**, which may contribute to **autonomic nervous system (ANS) dysfunction**.  
+- The **interplay between viral reactivation, immune collapse, and autonomic dysregulation** is hypothesized to drive persistent symptoms.  
+- **Nonlinear dynamics** and **attractor-like disease states** are proposed as potential mechanisms, with **positive feedback loops** reinforcing chronic inflammation and viral persistence.  
+
+**Striking Details:**  
+- **EBV DNA** was detected in **85% of ME/CFS patients** (vs 50% of healthy donors), with **significantly higher copies/mL** (*p* = 0.0256) [GH-668314EFFB20 L51].  
+- **HHV-6** infection was found to have **tissue-specific signatures**, potentially linking **viral antigen exposure** to **chronic cytokine production** and **immune exhaustion** [GH-668314EFFB20 L118].  
+- **Autoantibodies** against neurotransmitter receptors are proposed as **biomarkers of autoimmune involvement** in ME/CFS, with **Gravelsina *et al.*** noting that “infection-triggered disease onset... points to an autoimmune disease involving neurotransmitter receptors” [GH-668314EFFB20 L146].  
+- **Trained immunity** is mentioned as a possible mechanism, where **epigenetic changes** after infection may lead to **hyper-reactive inflammatory responses** later [GH-668314EFFB20 L179].  
+
+**Coverage Limit:**  
+This document is sampled, with anchors shown **evenly** across 263 total. Not all content has been reviewed.  
+
+## Speculation  
+- Could **EBV reactivation** be a **trigger** for ME/CFS in some individuals, or is it a **consequence** of broader immune and metabolic dysregulation?  
+- Might **autoantibodies to neurotransmitter receptors** (e.g., β_2-adrenergic, M4 muscarinic) be **diagnostic biomarkers** for a subset of ME/CFS patients?  
+- Are **attractor-like disease states** a universal feature of ME/CFS, or do they vary by **viral load, immune response, or patient subgroup**?  
+- Could **trained immunity** or **epigenetic changes** be **therapeutic targets** to break the **positive feedback loops** sustaining ME/CFS?  
+
+**Claims Flagged:**  
+- The hypothesis that ME/CFS is an **autoimmune neurological disease** of the **neurovascular system** is flagged as a **proposed interpretation**, not a fact [GH-668314EFFB20 L140].  
+- The **Wirth-Scheibenbogen hypothesis** is presented as **a hypothesis**, not a proven mechanism [GH-668314EFFB20 L140].  
+- The **nonlinear dynamics** and **attractor-like disease states** are **theoretical constructs**, not empirical findings [GH-668314EFFB20 L168].

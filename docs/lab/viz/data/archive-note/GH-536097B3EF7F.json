@@ -1,0 +1,40 @@
+# README.md
+
+Status: unreviewed local-model draft (2026-09-24T21:47:13+00:00)
+
+- Source ID: `GH-536097B3EF7F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/README.md>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `README.md`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 156 anchors; verify against the source.
+
+**Source Note: GH-536097B3EF7F**
+
+This source is a Markdown file (`README.md`) from a GitHub repository titled *bibliophile-sp*, hosted under the username *prometheusWaluigi*. The file appears to serve as a technical guide or documentation for a software project, likely related to data processing or analysis in a bibliophile or library context. The file's content is primarily instructional, focusing on setup, deployment, and usage of the application, with some mention of data processing and quality checks.
+
+**Apparent Subject**: The document outlines the setup and use of a software application, potentially for bibliophile or inventory management tasks, with integration capabilities for hardware acceleration (Intel oneAPI, Apple Silicon). It includes references to data processing, quality flagging, and sales tracking.
+
+**Genre**: Technical documentation / software project README.
+
+**Main Ideas**:
+- Deployment options include Docker and native execution, with emphasis on hardware acceleration.
+- The application processes inventory data, identifies listings with poor metadata or performance (e.g., missing ISBNs, poor titles, no sales), and generates analysis reports.
+- Integration with APIs such as SP-API (likely Amazon's Selling Partner API) is discussed, alongside optional use of oneAPI and Apple-specific acceleration tools.
+
+**Striking Details**:
+- The document mentions the use of **SP-API Sales Data Pull**, indicating integration with Amazon's ecosystem [GH-536097B3EF7F L11].
+- It includes **Quality Flagging Logic** that applies heuristics to flag listings with poor metadata or performance [GH-536097B3EF7F L14].
+- The file includes code blocks and commands for running the application, such as `docker run -it -v $(pwd)/output:/app/output --env-file .env bibliophile-sp` [GH-536097B3EF7F L64].
+- It outlines a CSV output format for inventory analysis, including metrics like `days_since_last_sale > 120` [GH-536097B3EF7F L140].
+
+**Coverage Limit**: Sampled anchors (32 of 156 total) mean that this note does not reflect the full content of the file.
+
+**## Speculation**
+- Could the project be a tool for managing or optimizing an online bookstore or library inventory?
+- Are the oneAPI and Apple Silicon accelerations intended for performance optimization in data-intensive tasks, such as bulk processing or real-time analytics?
+- Might the use of SP-API and quality flagging logic indicate a focus on e-commerce or platform-specific data management?
+
+**Flags**:
+- The mention of "Intel oneAPI Acceleration" and "Apple Silicon / macOS Acceleration" suggests potential hardware-specific optimizations, though these are flagged as **claims** due to lack of elaboration on implementation [GH-536097B3EF7F L100, L110].
+- The project name *bibliophile-sp* is flagged as **self-contradictory** in context, as it appears to be a software tool with no direct indication of literary or bibliophile focus in the technical documentation.

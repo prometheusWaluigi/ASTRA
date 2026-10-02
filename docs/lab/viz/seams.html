@@ -20,7 +20,7 @@ canvas{display:block}
 <body>
 <div id="hud"><h1>Weight Seams</h1><p>Different quantized bytes do not show where or how abliteration changed the model — conversion and quantization differences are mixed in.</p><div class="meta" id="stats" style="font-size:12px;color:#8fd6b0"></div><label><input type="checkbox" id="onlyDiff"> only differing</label><label><input type="checkbox" id="onlySame"> only identical</label><label><input type="checkbox" id="spin" checked> auto-rotate</label><button id="resetBtn">Reset view</button><div id="summary"></div><a href="../../index.html">← Lab</a></div>
 <div id="tip"></div>
-<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
 <script type="module">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
@@ -33,7 +33,7 @@ const scene=new THREE.Scene();scene.background=new THREE.Color(0x0d1726);scene.f
 const camera=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,.1,800);camera.position.set(26,26,34);
 const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(0,22,0);
 if(reduced)$('spin').checked=false;
-const d=await(await fetch('/api/viz/seams',{cache:'no-store'})).json();
+const d=await(await fetch('./data/seams.json',{cache:'no-store'})).json();
 if(!d.available){$('stats').textContent='catalog unavailable: '+(d.error||'');throw new Error(d.error)}
 const TYPE_ORDER=['attn_q','attn_k','attn_v','attn_output','attn_norm','attn_q_norm','attn_k_norm','ffn_gate','ffn_up','ffn_down','ffn_norm','token_embd','output','output_norm'];
 const typeIndex=t=>{const i=TYPE_ORDER.indexOf(t);return i<0?TYPE_ORDER.length:i};

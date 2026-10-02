@@ -1,0 +1,39 @@
+# CLAUDE.md
+
+Status: unreviewed local-model draft (2026-09-25T01:56:17+00:00)
+
+- Source ID: `GH-94AB6EE6B08A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ORACLE/blob/789e9623956f87e323e700b59bcacf16d4265d90/CLAUDE.md>
+- Repo: prometheusWaluigi/ORACLE @ `789e9623956f` path `CLAUDE.md`
+- Published: 2026-05-05T18:27:23Z
+- Coverage: model saw an evenly sampled packet of 258 anchors; verify against the source.
+
+# Source Note: GH-94AB6EE6B08A (CLAUDE.md)
+
+**Subject**: This document is a technical reference for the development of an AI-driven tooling system called ORACLE, with a focus on the integration and use of Claude models. The content appears to be part of a private, experimental wiki maintained by a single author, likely for internal documentation or collaboration.
+
+**Genre**: Technical documentation, software architecture design, and API usage guidelines. The language is formal, precise, and oriented toward developers familiar with Python and AI model integration.
+
+**Main Ideas**:
+- The ORACLE system is structured around multiple agents (e.g., VIBE, ECHO, SAGE, LENS, MUSE, ATLAS), each with a specific role in processing tasks, managing memory, and interacting with external tools.
+- The `cli/` layer is treated as the final, least frequently modified part of the system. The focus is on getting the core library (likely involving memory and agent interactions) correct first.
+- The use of Claude models is central to the system, with different models assigned to specific tasks based on cost, speed, and reasoning complexity. For example, `claude-haiku-4-5-20251001` is used for simple tool calls, while `claude-sonnet-4-6` is used for MUSE, which handles divergent synthesis.
+- The system emphasizes isolation of side effects in tools, particularly those that interact with disk or network, and mandates clear naming conventions for such tools.
+
+**Striking Details**:
+- Extended thinking is enabled in the Planner by default, with a configurable budget of tokens. However, this feature is discouraged elsewhere without explicit measurement of its impact on output quality [GH-94AB6EE6B08A L83].
+- MUSE, an agent responsible for divergent synthesis, is explicitly instructed to ignore priors under certain conditions, with a strict requirement to argue against prior plays when similarity exceeds 0.9 [GH-94AB6EE6B08A L160].
+- The system includes a memory mapping mechanism for the loop, using semantic similarity search across the huddle archive [GH-94AB6EE6B08A L149].
+- Code style emphasizes asynchronous execution in the `core/` and `agents/` modules, with synchronous wrappers reserved for the CLI layer [GH-94AB6EE6B08A L209].
+
+**Coverage Limit**: Sampled anchors (34 of 258) suggest that this note reflects a partial, but representative, view of the source. Not all content has been reviewed.
+
+## Speculation
+
+- **Connection to AI ethics**: The emphasis on isolation of side effects and explicit reasoning against prior plays raises questions about how the system handles ethical or conflicting decision-making scenarios, particularly in MUSE.
+- **Scalability constraints**: The recommendation to use Haiku for structured extraction and simple tool calls, while reserving Opus for planning and novel reasoning, may indicate limitations in API cost or performance that influence system design.
+- **Collaboration vs. solo development**: The document’s structure and tone suggest it was written for a single developer or a very small team. Could this imply a lack of broader peer review or potential for unaddressed edge cases?
+- **Tooling and testing**: The presence of integration tests and strict test file naming conventions suggests a focus on robustness, but the limited sampled anchors may obscure whether testing covers all edge cases or depends on external systems.
+
+**Extraordinary Claims Flagged**: None explicitly identified in the sampled content. Claims about model performance (e.g., "Cheap, fast, structured output") are presented as factual but may be subjective or based on internal benchmarks.

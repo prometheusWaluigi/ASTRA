@@ -1,0 +1,39 @@
+# QuantumMachineDatasets.md
+
+Status: unreviewed local-model draft (2026-09-25T02:21:34+00:00)
+
+- Source ID: `GH-AE3AFAB27735`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/quantumMayhem/QuantumMachineDatasets.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/quantumMayhem/QuantumMachineDatasets.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 224 anchors; verify against the source.
+
+# Source Note: GH-AE3AFAB27735
+
+**Subject**: Quantum machine learning datasets and computational benchmarks.  
+**Genre**: Technical documentation, possibly part of a research archive or experimental project.  
+**Main Ideas**:  
+- Comparative analysis of classical and quantum computational efficiency in processing large-scale datasets.  
+- Discussion of quantum memory architectures, error correction, and energy consumption advantages.  
+- Exploration of applications such as drug discovery, climate modeling, and privacy-preserving computation.  
+
+**Striking Details**:  
+- [GH-AE3AFAB27735 L25] Reports D-Wave's Advantage2 quantum processor solving portfolio optimization problems with 10^15 combinations in 5ms, suggesting significant speed improvements over classical systems.  
+- [GH-AE3AFAB27735 L67] Compares quantum and classical approaches in MNIST classification, noting 98% accuracy with a quantum model using 784→10 qubits, versus classical PCA with 784→30.  
+- [GH-AE3AFAB27735 L101] Claims AWS Braket Hybrid Solver reduces drug discovery cycle time from 18 months to 6 weeks for 10^9 compound libraries.  
+- [GH-AE3AFAB27735 L134] Projects a 2027 roadmap for quantum computing, including whole-Earth climate modeling with 1 EB of data and 10,000 qubits.  
+- [GH-AE3AFAB27735 L115] Introduces **Quantum Homomorphic Encryption** as a potential privacy mechanism.  
+- [GH-AE3AFAB27735 L77] Notes a quantum processor performing a task with energy consumption of 0.9 MWh, contrasting with classical equivalents.  
+
+**Coverage Limit**: Sampled anchors (29 of 224) limit full understanding of the document.  
+
+## Speculation
+- Could the projected 2027 roadmap for quantum computing (e.g., whole-Earth climate modeling) be overly optimistic given current qubit scalability challenges?  
+- How might the use of quantum homomorphic encryption (mentioned in [GH-AE3AFAB27735 L115]) impact the practical deployment of quantum machine learning models?  
+- What implications might the drastic reduction in drug discovery cycle time (as cited in [GH-AE3AFAB27735 L101]) have for the broader field of computational chemistry?  
+- Are the benchmarks provided (e.g., D-Wave's 5ms for portfolio optimization in [GH-AE3AFAB27735 L25]) comparable to classical systems under identical conditions, or do they reflect different problem formulations?  
+
+**Extraordinary Claims**:  
+- The 18-month → 6-week transformation in drug discovery (L101) is flagged as a claim, not a fact, due to the lack of full context or validation in the sampled text.  
+- The 2027 roadmap for quantum computing (L134) is flagged as a speculative claim, possibly influenced by optimistic projections rather than current empirical data.

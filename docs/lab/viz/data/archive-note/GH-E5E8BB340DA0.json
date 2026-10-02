@@ -1,0 +1,34 @@
+# test_core_ode.py
+
+Status: unreviewed local-model draft (2026-09-25T09:08:58+00:00)
+
+- Source ID: `GH-E5E8BB340DA0`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/tests/test_core_ode.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `tests/test_core_ode.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 84 anchors; verify against the source.
+
+**Source Note: GH-E5E8BB340DA0**
+
+**Subject:** This file appears to be a unit test script for a Python-based ODE (Ordinary Differential Equation) model named `PistonLeakODE`, likely part of a larger project involving simulation of a piston leak system. The test script is located in the `tests` directory of the repository `prometheusWaluigi/piston-leak-lab`.
+
+**Genre:** Software testing, specifically unit testing for a scientific or engineering simulation model.
+
+**Main Ideas:**  
+The script tests the initialization, simulation, and behavior of the `PistonLeakODE` model. It verifies that the model produces expected outputs, such as the presence of keys like `'trust'`, `'pressure'`, and `'entropy'` in the simulation results, and that the results meet certain conditions (e.g., non-negativity of `'entropy'` values). The script also tests the use of custom parameters and a custom transparency function in the model.
+
+**Striking Details:**  
+- The model is initialized with default parameters (`PistonLeakODE()`) and is also tested with custom parameters (e.g., `alpha1=0.3`, `gamma1=0.1`) [GH-E5E8BB340DA0 L58–L61].
+- The simulation runs over a time interval from 0 to 10 with a time step (`dt`) of 1.0, producing results with 11 time points [GH-E5E8BB340DA0 L40].
+- The script checks that the results include specific keys, such as `'entropy'`, `'pressure'`, and `'metrics'`, with the latter containing a key `'rsd'` [GH-E5E8BB340DA0 L33–L36, L47].
+- A custom transparency function is defined and used in a test, suggesting the model may involve dynamic or conditional behavior based on transparency inputs [GH-E5E8BB340DA0 L75–L80].
+
+**Coverage Limit:**  
+Sampled anchors only; the full text may contain additional tests, parameters, or functionalities not reflected here.
+
+**## Speculation**  
+1. **Connection to broader research:** Could this ODE model be related to fluid dynamics, mechanical engineering, or experimental physics, given the context of "piston leak"?  
+2. **Purpose of 'trust' and 'transparency' variables:** What do these terms represent in the simulation? Are they indicators of model reliability or input-output consistency?  
+3. **Custom parameters and their impact:** How do the custom parameters (e.g., `alpha1`, `gamma1`) influence the simulation outcomes, and are they calibrated to real-world systems?  
+4. **Role of 'rsd' in metrics:** What does "rsd" stand for in the context of the model's output, and how is it computed or interpreted?

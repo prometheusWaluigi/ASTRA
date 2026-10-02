@@ -1,0 +1,36 @@
+# gaslit-af-runner.py
+
+Status: unreviewed local-model draft (2026-09-25T09:19:00+00:00)
+
+- Source ID: `GH-F1C4E35EE9E8`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/gaslit-af-runner.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `gaslit-af-runner.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 322 anchors; verify against the source.
+
+**Source Note: GH-F1C4E35EE9E8**
+
+**Subject:** This source is a Python script titled `gaslit-af-runner.py` from a GitHub repository named `gaslit-af-warfare` by the user `prometheusWaluigi`. The script appears to be part of an experimental private wiki or archive, functioning as a tool for running simulations or modeling processes.
+
+**Genre:** The text is a programming script, specifically in Python, with a focus on simulation and logging. It incorporates command-line argument parsing, logging configurations, and a modular approach to running different modeling components.
+
+**Main Ideas:**  
+The script is designed to execute multiple modeling simulations, including "biological modeling" and "institutional feedback modeling." It includes configurable parameters such as time steps, boundary conditions, output directories, and random seed values. The script also implements logging, with timestamps and log files generated dynamically. It appears to use a configuration file to set simulation parameters, and if not provided, defaults to predefined values.
+
+**Striking Details:**  
+- The script uses `argparse` to handle command-line arguments, including a configurable `--config` path and an `--output-dir` for saving results [GH-F1C4E35EE8 L83, L90].  
+- It generates log files with timestamps in the format `logs/gaslit-af-YYYYMMDD-HHMMSS.log` [GH-F1C4E35EE8 L62].  
+- The default configuration includes a random seed of `42` [GH-F1C4E35EE8 L158] and a shield decay rate of `0.005` [GH-F1C4E35EE8 L165].  
+- The script includes try-except blocks to manage errors during simulation execution [GH-F1C4E35EE8 L185, L254].  
+- It references saving results with timestamps [GH-F1C4E35EE8 L267], suggesting an interest in tracking simulation outcomes over time.  
+- The script includes a function `run_modules()` that executes specified modules, possibly related to risk assessment or strategic modeling [GH-F1C4E35EE8 L192].
+
+**Coverage Limit:**  
+This note is based on a sampled subset of anchors from the full source, which contains 322 total anchors. Not all content has been reviewed, and the script may include additional modules, parameters, or functionalities not reflected here.
+
+## Speculation
+- Could the "biological modeling simulation" refer to modeling the spread of disease or genetic risk factors, given the mention of `results/genetic_risk` as an output directory [GH-F1C4E35EE8 L144]?  
+- What does the "institutional feedback modeling" simulate, and how might it relate to societal or governmental structures [GH-F1C4E35EE8 L151]?  
+- Is the use of a random seed (`42`) indicative of reproducible research, or does it suggest a preference for controlled testing environments [GH-F1C4E35EE8 L158]?  
+- Could the `shield_decay_rate` be part of a model involving protective measures, such as in public health or defense scenarios [GH-F1C4E35EE8 L165]?

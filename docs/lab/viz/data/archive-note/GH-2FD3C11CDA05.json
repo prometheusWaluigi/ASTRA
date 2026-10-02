@@ -1,0 +1,33 @@
+# Dockerfile
+
+Status: unreviewed local-model draft (2026-09-25T12:48:43+00:00)
+
+- Source ID: `GH-2FD3C11CDA05`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/Dockerfile>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `Dockerfile`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 38 anchors; verify against the source.
+
+**Source Note: GH-2FD3C11CDA05**
+
+**Subject:** This is a Dockerfile for a Python-based project, likely related to data science or machine learning, given the inclusion of Intel oneAPI and performance-optimized libraries such as MKL, daal4py, and scikit-learn-intelex. The file is part of a GitHub repository named `bibliophile-sp` under the user `prometheusWaluigi`.
+
+**Genre:** Technical configuration file (Dockerfile). The content is procedural and focused on environment setup, dependency installation, and configuration for a computational task.
+
+**Main Ideas:** The Dockerfile defines a container image for a Python application, emphasizing the integration of performance-optimized libraries for numerical computing. It ensures the installation of system-level dependencies, adds the Intel oneAPI repository, installs Intel MKL for acceleration, and sets environment variables to locate Intel libraries. It uses Poetry for dependency management and includes specific libraries for Intel-optimized versions of scikit-learn and daal4py.
+
+**Striking Details:**
+- The Dockerfile installs Intel oneAPI components, including the Math Kernel Library (MKL), indicating an intent to leverage hardware-specific optimizations for computational workloads [GH-2FD3C11CDA05 L5-L13].
+- Environment variables such as `LD_LIBRARY_PATH` and `MKLROOT` are explicitly set to ensure proper linking and usage of Intel libraries [GH-2FD3C11CDA05 L21-L24].
+- Poetry is used for dependency management, with a focus on minimizing cache invalidation by copying dependency definitions before application code [GH-2FD3C11CDA05 L26-L29].
+- The final command runs a Python script located at `src/cli.py`, indicating that the project includes a command-line interface [GH-2FD3C11CDA05 L38].
+
+**Coverage Limit:** Sampled anchors include all 38 lines of the source. However, this is a partial view of the broader repository; the full archive may contain additional files or context not visible here.
+
+**## Speculation**
+
+1. What computational tasks does the project likely perform, given the use of Intel oneAPI and performance-optimized libraries?
+2. Could the integration of Intel libraries suggest a focus on high-performance computing or numerical simulations?
+3. Is the use of both Poetry and direct pip installs indicative of a hybrid approach to dependency management, or a conflict between tools?
+4. How might the inclusion of `scikit-learn-intelex` impact the performance or compatibility of the project with non-Intel hardware?

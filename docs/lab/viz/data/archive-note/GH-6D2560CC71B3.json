@@ -1,0 +1,40 @@
+# baseline.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:43:13+00:00)
+
+- Source ID: `GH-6D2560CC71B3`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/baseline.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/baseline.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 53 anchors; verify against the source.
+
+**Source Note: GH-6D2560CC71B3**
+
+This is a YAML configuration file titled *baseline.yml*, part of the *piston-leak-lab* repository on GitHub. The source is a data file, not instructions. It appears to configure a computational model that combines ordinary differential equations (ODE) and agent-based modeling (ABM) to simulate a "Piston Leak" scenario. The model is described as a Monte-Carlo ensemble with 500 runs, derived from a draft version v0.9, and is likely related to the dynamics of information or trust propagation during a pandemic or crisis.
+
+**Subject**: The file defines parameters for simulating the interaction between trust, entropy, and suppression mechanisms in a system modeled as a "Piston Leak." It includes both deterministic (ODE) and stochastic (ABM) components, with a focus on the behavior of a networked population under varying conditions.
+
+**Genre**: Technical configuration, computational modeling, simulation parameters.
+
+**Main Ideas**:
+- The model uses a Monte-Carlo ensemble of 500 runs to account for uncertainty and variability in the system (L4, L10).
+- Trust and entropy are key variables, with coefficients defining their interactions (e.g., *alpha1*, *beta1*, *gamma1*; L19–L21, L23–L24).
+- A Watts-Strogatz network is employed to represent the agent-based layer, with 3,000 agents (L35, L36, L38).
+- The model includes a "noise model" with exogenous leak shocks and a probability of leaks per timestep (L30, L31).
+- A collapse threshold is defined using metrics like *epsilon_overlap*, *trust_slope_threshold*, and *entropy_critical* (L45–L47).
+
+**Striking Details**:
+- The random seed is set to 42, referencing *The Hitchhiker's Guide to the Galaxy* (L11).
+- The simulation's time step is aligned with media cycles, approximating one day (L14).
+- The influence of different agent types (believers, skeptics, agnostics) is weighted asymmetrically (L41, L42).
+- The model includes both deterministic and stochastic components, suggesting a hybrid approach to simulate complex, real-world dynamics.
+
+**Coverage Limit**: Sampled anchors (40 of 53 total) may not cover all content. Some anchors are truncated due to length, and deeper analysis is required for full understanding.
+
+## Speculation
+
+- Could the "Piston Leak" model be used to predict or simulate misinformation spread during pandemics, and how might its parameters (e.g., *k_policy*, *leak_frequency*) be calibrated against real-world data?
+- How does the use of a Watts-Strogatz network in the agent-based layer affect the simulation's ability to capture real-world social dynamics compared to other network models?
+- Might the inclusion of a "collapse threshold" suggest an interest in modeling systemic failure or breakdown in communication networks under crisis conditions?
+- What implications does the asymmetric weighting of agent types (e.g., *skeptic_weight* higher than *believer_weight*) have for the model's predictions about public trust and behavior?

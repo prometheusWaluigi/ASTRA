@@ -1,0 +1,37 @@
+# parser.py
+
+Status: unreviewed local-model draft (2026-09-25T07:44:58+00:00)
+
+- Source ID: `GH-5BBB2464A758`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/backup/src/gaslit_af/clinvar/parser.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `backup/src/gaslit_af/clinvar/parser.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 150 anchors; verify against the source.
+
+# Source Note: GH-5BBB2464A758
+
+**Subject:** Parsing and processing of ClinVar variant data.  
+**Genre:** Python script; computational biology / genomics data processing.  
+**Main Ideas:**  
+- This script parses ClinVar variant data from text files (e.g., `variant_summary.txt`) and VCF files into structured formats (e.g., `DataFrame` objects and Parquet files).  
+- It includes functionality to download files if they are not already present or if a forced re-download is requested.  
+- The script is part of a larger project focused on variant analysis, likely for clinical or research purposes.  
+- Data is cached in Parquet format for efficient storage and retrieval.  
+
+**Striking Details:**  
+- The script is designed to process data in batches for memory efficiency [GH-5BBB2464A758 L118].  
+- It extracts specific fields from VCF records, such as chromosomal location, reference and alternate alleles, and ClinVar identifiers [GH-5BBB2464A758 L93, L96, L109].  
+- The use of `split(';')` on the INFO field in VCF records suggests handling of complex metadata [GH-5BBB2464A758 L102].  
+- The script is associated with the `gaslit-af_variant_analysis` repository, which may be focused on analyzing variants in the context of a specific disease or genetic condition (e.g., "gaslit-af" might refer to a variant of interest).  
+- The script returns `DataFrame` objects, indicating integration with data analysis workflows [GH-5BBB2464A758 L39, L64].  
+
+**Coverage Limit:**  
+Sampled anchors (33 of 150) mean this note does not reflect the full content of the source.
+
+## Speculation
+
+- Could this script be part of a larger system for variant annotation or clinical decision support?  
+- What is the significance of the name "gaslit-af" in the repository? Is it related to a known variant or acronym?  
+- Are there additional data sources or processing steps that this script interacts with, not reflected in the sampled anchors?  
+- How does the use of Parquet files affect downstream analysis workflows, and what tools or frameworks are assumed to be available?

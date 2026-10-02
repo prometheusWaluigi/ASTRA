@@ -1,0 +1,42 @@
+# MultiscaleSpikeProteinSimulationRoadmap.md
+
+Status: unreviewed local-model draft (2026-09-25T04:10:44+00:00)
+
+- Source ID: `GH-E86214AFC455`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/papers/piston-leak/MultiscaleSpikeProteinSimulationRoadmap.md>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `papers/piston-leak/MultiscaleSpikeProteinSimulationRoadmap.md`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 270 anchors; verify against the source.
+
+# Source Note: GH-E86214AFC455
+
+**Subject**: A computational roadmap for simulating the multiscale biological impacts of SARS-CoV-2 spike proteins on the blood-brain barrier (BBB), neuroimmune dysregulation, and long COVID-related pathologies.
+
+**Genre**: Scientific roadmap; computational biology; interdisciplinary research planning.
+
+**Main Ideas**:
+- Integration of computational frameworks across scales: molecular signaling, cellular dynamics, tissue-level BBB integrity, and neural circuit function.
+- Development of a modular simulation framework called a **“virtual neurovascular unit”** to study spike protein-induced BBB disruption and neuroimmune interactions.
+- Use of tools such as **NetPyNE/NEURON** for neuro-glial circuit modeling, and **OpenCOR/COPASI** for molecular pathway simulations (e.g., RhoA activation, calcium signaling, and oxidative stress).
+- Emphasis on validation against experimental and clinical data, including BBB integrity studies and neurovascular coupling impairment.
+- Temporal coordination strategies to manage differing timescales of biological processes.
+
+**Striking Details**:
+- The document references specific experiments, such as **SARS-CoV-2 spike protein-induced BBB disruption via RhoA activation** ([
+GH-E86214AFC455 L127]). 
+- It outlines **custom module development** for spike–ACE2–RhoA signaling and **MMP-9 secretion** ([
+GH-E86214AFC455 L70]).
+- A proposed **ODE model** for cerebral blood flow regulation is mentioned, based on astrocyte calcium waves and NO release ([
+GH-E86214AFC455 L98]).
+- The document suggests **quasi-steady-state coupling** for simulating neural dynamics in response to slow processes like cytokine surges ([
+GH-E86214AFC455 L178]).
+
+**Coverage Limit**: Sampled anchors (32 total) from a list of 270; full text not reviewed.
+
+## Speculation
+- Could this framework be extended to model other viral infections with neurovascular impacts, such as herpes simplex or HIV?
+- How might the integration of **autonomic dysfunction modules** ([
+GH-E86214AFC455 L144]) influence the modeling of postural tachycardia or other long COVID symptoms?
+- Might the **“virtual neurovascular unit”** be adapted for use in clinical trials or personalized medicine contexts?
+- What are the computational trade-offs of using **quasi-steady-state coupling** for neural dynamics versus full temporal resolution?

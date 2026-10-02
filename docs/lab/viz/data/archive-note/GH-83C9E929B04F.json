@@ -1,0 +1,37 @@
+# test_abm.py
+
+Status: unreviewed local-model draft (2026-09-25T08:26:36+00:00)
+
+- Source ID: `GH-83C9E929B04F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/tests/test_abm.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `tests/test_abm.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 140 anchors; verify against the source.
+
+**Source Note: GH-83C9E929B04F**
+
+**Subject:** Unit testing for an ABM (Agent-Based Model) implementation related to a "Piston Leak" simulation. The file appears to be part of a software project involving computational modeling of social dynamics or information spread, potentially within a scientific or engineering context.
+
+**Genre:** Technical code (Python unit tests). The content is part of a software development workflow, likely for a research or simulation tool.
+
+**Main Ideas:**  
+- Testing initialization of the ABM model, including the generation of a social network with 100 agents [GH-83C9E929B04F L31].  
+- Verifying the presence and distribution of belief states (e.g., "BELIEVER," "SKEPTIC") in the model [GH-83C9E929B04F L63, L99].  
+- Simulating state updates and ensuring the model's behavior aligns with expectations, such as maintaining a specific range of believer proportions [GH-83C9E929B04F L72].  
+- Coupling the ABM with an ODE (ordinary differential equation) model for simulation [GH-83C9E929B04F L113, L116].  
+- Checking output consistency, such as the length of simulation results and the presence of keys like 'entropy' and 'times' [GH-83C9E929B04F L122, L125, L137].
+
+**Striking Details:**  
+- The model explicitly uses 100 agents, a number repeated in multiple assertions [GH-83C9E929B04F L31, L42].  
+- The ABM appears to simulate belief states, with "BELIEVER" and "SKEPTIC" being key categories [GH-83C9E929B04F L63, L99].  
+- The ABM is coupled with a PistonLeakODE model, suggesting integration of discrete agent behavior with continuous differential equations [GH-83C9E929B04F L113, L116].  
+- The simulation produces outputs like 'entropy' and 'state_fractions', which may be used to quantify uncertainty or information dynamics in the system [GH-83C9E929B04F L125, L131].
+
+**Coverage Limit:** Sampled anchors only; the full source has 140 anchors, of which 36 are shown here, and no anchor exceeds 800 characters. This means not all content has been examined.
+
+## Speculation  
+- Could the "Piston Leak" model be related to the spread of information or contaminants in a physical or metaphorical "piston" system?  
+- What is the relationship between the ODE model and the ABM, and does this coupling imply a hybrid computational approach to simulate complex systems?  
+- Are the belief states (e.g., "BELIEVER," "SKEPTIC") part of a broader framework for modeling social influence or decision-making?  
+- What role does the "entropy" metric play in evaluating the simulation's outcomes, and how is it derived from the model's internal state?

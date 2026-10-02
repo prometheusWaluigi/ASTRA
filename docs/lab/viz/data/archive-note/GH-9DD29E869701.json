@@ -1,0 +1,36 @@
+# fungalIntelligence.txt
+
+Status: unreviewed local-model draft (2026-09-25T02:07:58+00:00)
+
+- Source ID: `GH-9DD29E869701`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/biological_systems/fungalIntelligence.txt>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/biological_systems/fungalIntelligence.txt`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 92 anchors; verify against the source.
+
+# Source Note: GH-9DD29E869701
+
+**Subject**: Fungal intelligence and its implications for computing and AI.
+
+**Genre**: Scientific paper, interdisciplinary (biology, computer science, AI).
+
+**Main Ideas**:
+- Fungal networks (specifically mycelium) exhibit computational properties akin to neural networks, such as learning, memory, and problem-solving.
+- These networks operate through decentralized information processing, lacking centralized control structures.
+- Fungal intelligence has potential applications in unconventional computing, resilient network design, distributed AI, and biohybrid systems.
+- The paper emphasizes the robustness and scalability of fungal networks, which can maintain functionality even after significant damage.
+
+**Striking Details**:
+- The study combines field observations, lab experiments, and computational modeling [GH-9DD29E869701 L22].
+- *Physarum polycephalum* and cord-forming basidiomycetes were used in lab studies to assess maze-solving and adaptive responses [GH-9DD29E869701 L28].
+- Fungal networks have been demonstrated to solve shortest path problems and perform rudimentary logical operations [GH-9DD29E869701 L55].
+- The paper acknowledges the slow temporal scale of fungal information processing as a limitation [GH-9DD29E869701 L65].
+
+**Coverage Limit**: Sampled anchors (31 of 92) mean not all content has been reviewed.
+
+## Speculation
+- Could fungal intelligence inspire new models for decentralized AI systems that mimic natural resilience?
+- What are the practical barriers to integrating fungal networks into technological systems, such as scalability or interface limitations?
+- Might the study of fungal intelligence lead to novel approaches in ecological monitoring or environmental restoration?
+- Are there unexplored parallels between fungal networks and other biological systems with decentralized intelligence?

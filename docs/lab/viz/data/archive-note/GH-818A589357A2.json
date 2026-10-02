@@ -1,0 +1,38 @@
+# main.js
+
+Status: unreviewed local-model draft (2026-09-25T08:22:13+00:00)
+
+- Source ID: `GH-818A589357A2`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/static/js/main.js>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/frontend/static/js/main.js`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 301 anchors; verify against the source.
+
+**Source Note: GH-818A589357A2**
+
+**Subject:** This file is a JavaScript source code file (`main.js`) from a frontend component of a software project hosted on GitHub. It appears to be part of a web application, possibly related to data visualization, file handling, and interactive UI elements. The project name, "gaslit-af-warfare," suggests a thematic or conceptual focus, though it is not explicitly tied to real-world military or conflict topics.
+
+**Genre:** Technical code (JavaScript), likely part of a larger frontend application. It includes event listeners, DOM manipulation, and charting logic, indicating a web-based interface with interactive features.
+
+**Main Ideas:**  
+- The script initializes various interactive components, including file uploads, Bootstrap tooltips, and form validation.  
+- It handles user interactions such as dragging and dropping files, updating previews, and managing alerts.  
+- The code includes functions for formatting file sizes, generating and managing charts, and exporting data as JSON files.  
+- There are references to charting data, including "Evidence Over Time" and "Institutional Denial Over Time," suggesting a focus on visualizing data trends or patterns.  
+
+**Striking Details:**  
+- Line [GH-818A589357A2 L186] shows a dataset with numerical values potentially used for charting, though the exact context is unclear.  
+- Line [GH-818A589357A2 L218] references a chart labeled "Institutional Denial," which may indicate a thematic or conceptual focus on institutional behavior or critique.  
+- Line [GH-818A589357A2 L288] includes code for exporting data as a JSON file, suggesting the ability to share or save structured data.  
+- The use of Bootstrap tooltips and alerts implies a reliance on front-end frameworks for user interaction and feedback.  
+
+**Coverage Limit:** This note is based on a sampled subset of anchors (44 of 301) from the full file, meaning not all content has been reviewed.
+
+## Speculation
+- Could the "Institutional Denial Over Time" chart referenced in [GH-818A589357A2 L231] relate to a thematic or conceptual critique of systemic issues, potentially within a specific domain or context?  
+- What is the relationship between the "Evidence Over Time" chart and the "Institutional Denial Over Time" chart mentioned in [GH-818A589357A2 L218] and [GH-818A589357A2 L231]? Are they intended to represent contrasting or complementary data?  
+- Does the project "gaslit-af-warfare" have any real-world or historical connections, or is it entirely fictional or metaphorical in nature?  
+- What is the significance of the project name "gaslit-af-warfare," and does it imply any specific focus or narrative within the software?  
+
+**Note:** The project name and chart labels are flagged as potentially fictional, metaphorical, or self-referential, and are not confirmed as factual claims.

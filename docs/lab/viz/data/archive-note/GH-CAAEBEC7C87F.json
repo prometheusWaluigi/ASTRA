@@ -1,0 +1,36 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T12:16:23+00:00)
+
+- Source ID: `GH-CAAEBEC7C87F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/spikeProtein/index.html>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/spikeProtein/index.html`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 32 anchors; verify against the source.
+
+**Source Note: GH-CAAEBEC7C87F**
+
+This is a Markdown source note for the file `index.html` from the experimental private wiki of one author's public archive. The source is real downloaded text and is treated strictly as data, not as instructions.
+
+**Subject & Genre**  
+The file appears to be an HTML index page for a wiki or documentation system, likely part of a personal or experimental project. The content suggests it is part of a larger archive, potentially related to scientific or technical topics given the anchor names. The genre is informational, possibly educational or research-oriented.
+
+**Main Ideas**  
+The page serves as a directory for content related to the term "spikeProtein," which may be a focal point for the author's research or documentation. The anchor links reference topics such as "crossingTheLineSpikeProtein," "EBVReactivationMECFS," and "suppressedCancerSignals," indicating an exploration of biological, medical, or related scientific concepts.
+
+**Striking Details**  
+- The page contains a list of markdown files linked under a `<ul>` tag, suggesting an organized structure for documenting topics.
+- The title and header both read "spikeProtein," indicating a thematic or project-based focus.
+- The copyright notice is dated 2025, which is future relative to the current date, possibly a placeholder or a reflection of the author’s timeline.
+- The use of `styles.css` suggests some level of customization in the presentation of the wiki content.
+- The canonical URL points to a GitHub repository, indicating the source is part of a public or semi-public archive, possibly open to collaboration or review.
+
+**Coverage Limit**  
+The note is based on sampled anchors from the full set of 32 anchors in this file. Anchors are truncated if over 800 characters, so not all content may be fully represented.
+
+## Speculation  
+- What is the significance of the term "spikeProtein" in the context of the author's broader work or interests?  
+- Are the linked files (e.g., *crossingTheLineSpikeProtein.md*, *EBVReactivationMECFS.md*) part of a larger body of research or speculative work on biological or medical topics?  
+- Could the 2025 copyright date reflect a future-oriented vision or a possible error in the source?  
+- How does the structure of this HTML index page relate to the author’s broader approach to organizing or presenting information in this archive?

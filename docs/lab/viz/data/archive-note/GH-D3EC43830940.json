@@ -1,0 +1,37 @@
+# vcf_gene_annotator.py
+
+Status: unreviewed local-model draft (2026-09-25T08:59:05+00:00)
+
+- Source ID: `GH-D3EC43830940`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/vcf_gene_annotator.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `vcf_gene_annotator.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 459 anchors; verify against the source.
+
+**Source Note: GH-D3EC43830940**
+
+**Subject:** This file, `vcf_gene_annotator.py`, is a Python script related to variant analysis within the **GASLIT-AF** model, likely involving genomic data annotation. The script appears to process and annotate genetic variants from VCF (Variant Call Format) files, focusing on gene positions and biological systems.
+
+**Genre:** Technical code (Python script), likely part of a bioinformatics or computational biology project. The script is structured for command-line use, with potential integration into larger variant analysis workflows.
+
+**Main Ideas:**
+- The script processes VCF files and annotates variants with gene-related information.
+- It uses a gene position cache, possibly derived from external genomic databases or predefined lists.
+- The script includes progress tracking, logging, and options to handle compressed input files (e.g., gzipped).
+- The GASLIT-AF model is referenced multiple times, suggesting a connection to a broader system or dataset.
+
+**Striking Details:**
+- The script includes a list of genes, such as **APOE**, **PCSK9**, **UGT1A1**, **HNF1A**, **ABCC8**, **TFAM**, **C19orf12**, **MT-ATP6**, **MT-ATP8**, **PDHA1**, **SDHB**, **NAMPT**, **NMRK1**, and **PGC1A** [GH-D3EC43830940 L59].
+- It loads gene positions from a CSV file, caches them, and checks for overlaps [GH-D3EC43830940 L108, L176].
+- The script supports chunked processing of VCF files, with a default **chunk_size** of **10,000** variants [GH-D3EC43830940 L430].
+- Logging and progress tracking are implemented using the **RichHandler** library [GH-D3EC43830940 L40, L284].
+- The script includes a function to annotate VCF files and output results [GH-D3EC43830940 L196].
+
+**Coverage Limit:** This note is based on a **sampled subset of anchors** (43 of 459 total), so **not all content** has been examined.
+
+**## Speculation**
+- Could the **GASLIT-AF** model be related to a known biological pathway or disease, given the specific list of genes included?
+- Is the **gene position cache** derived from a public database (e.g., Ensembl) or a private dataset?
+- How does the **chunked processing** approach affect performance or memory usage for large VCF files?
+- Does the script handle **non-standard VCF formats** or require specific preprocessing steps not mentioned?

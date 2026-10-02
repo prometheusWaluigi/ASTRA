@@ -1,0 +1,33 @@
+# test_simulation_end_to_end.py
+
+Status: unreviewed local-model draft (2026-09-25T09:04:50+00:00)
+
+- Source ID: `GH-DC01E3873672`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/tests/test_simulation_end_to_end.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `tests/test_simulation_end_to_end.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 125 anchors; verify against the source.
+
+# Source Note: GH-DC01E3873672
+
+**Subject**: This file is a Python unit test script for a simulation framework, likely part of a larger project involving modeling complex systems with multiple interacting domains. The test appears to validate the output and behavior of simulations across different modules.
+
+**Genre**: Technical code (unit testing), likely part of a software project involving computational modeling or simulation.
+
+**Main Ideas**: The test runs end-to-end simulations with configurable parameters, checks for expected output formats (e.g., JSON files, PNG images), and verifies that the simulation results meet certain criteria (e.g., presence of files, correct keys in result dictionaries). The simulation appears to involve multiple domains, including biological, genetic, institutional, and legal processes.
+
+**Striking Details**:
+- The test uses parameters such as `grid_size`, `noise_strength`, `reaction_rate`, and `shield_decay_rate`, suggesting a focus on modeling dynamic, probabilistic systems.
+- The simulation involves institutional actors, such as the FDA, with attributes like "influence" and "denial_bias" [GH-DC01E3873672 L56].
+- The test ensures output directories contain specific files, such as `"final_state.png"` and `"sample_risk_profile.json"` [GH-DC01E3873672 L112, L117].
+- The use of `seed` and `use_hardware_acceleration` suggests an emphasis on reproducibility and computational performance [GH-DC01E3873672 L35, L41].
+- The simulation includes a `"timeline_end"` parameter set to `"2020-01-01"` [GH-DC01E3873672 L70], possibly indicating a historical or predictive modeling focus.
+
+**Coverage Limit**: Sampled anchors represent a subset of the full file (125 total anchors shown, 44 sampled). This means the analysis is based on partial data and may not reflect the full scope or context of the file.
+
+## Speculation
+- Could the inclusion of the FDA and "denial_bias" suggest a focus on modeling regulatory responses to public health or safety issues?
+- How might the `"shield_decay_rate"` and `"capture_spread_rate"` parameters relate to modeling the spread of information or influence within the simulation?
+- Might the presence of `"phase_portrait_steps"` and `"noise_strength"` indicate that the simulation incorporates elements of chaos theory or nonlinear dynamics?
+- What is the significance of the `"legal"` and `"institutional"` modules, and how do they interact with the `"biological"` and `"genetic"` modules in the simulation?

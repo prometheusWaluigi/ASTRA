@@ -1,0 +1,37 @@
+# qsfw_simulation.py
+
+Status: unreviewed local-model draft (2026-09-25T06:32:51+00:00)
+
+- Source ID: `GH-C826C62600B6`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantumSpectralFractalWeaving/blob/33be41b3b1c09149026b9f41304a564a368c6114/src/quantum_spectral_fractal_weaving/qsfw_simulation.py>
+- Repo: prometheusWaluigi/quantumSpectralFractalWeaving @ `33be41b3b1c0` path `src/quantum_spectral_fractal_weaving/qsfw_simulation.py`
+- Published: 2025-04-24T14:56:37Z
+- Coverage: model saw an evenly sampled packet of 111 anchors; verify against the source.
+
+**Source Note: GH-C826C62600B6**
+
+**Subject:** This file is part of a computational project titled *quantumSpectralFractalWeaving*, involving the simulation of quantum systems interacting with neural networks or oscillator-based models. The file, `qsfw_simulation.py`, contains Python code for running such simulations, with a focus on quantum state manipulation, neural field interactions, and spectral analysis.
+
+**Genre:** Technical code (Python), likely part of a research or experimental project. The content includes stubs, function definitions, and simulation logic involving quantum mechanics and neural-like systems.
+
+**Main Ideas:**
+- The simulation involves quantum states (`init_quantum_state`) and their evolution over time.
+- Neural network-like components are modeled using oscillators, with parameters such as size, natural frequencies, and coupling.
+- The interaction between quantum and neural systems is simulated, with the quantum field influencing the phases of the neural oscillators, and vice versa.
+- Spectral analysis is performed using the `scipy.signal.welch` method, suggesting an interest in analyzing frequency content or power spectra of the simulated systems.
+- The code includes placeholder or stub functions (e.g., `run_simulation`, `extract_neural_series`) that are not yet implemented, indicating an ongoing or experimental phase.
+
+**Striking Details:**
+- The quantum Hamiltonian includes a driving term involving a "neural field": `[GH-C826C62600B6 L50]` `H_drive = 0.1 * neural_field * (a + a.dag())`.
+- The use of a Fibonacci-related frequency marker in the plotting: `[GH-C826C62600B6 L109]` `plt.axvline(1/1.618, linestyle='--', color='gray')`.
+- A decoherence rate is explicitly set during the simulation: `[GH-C826C62600B6 L85]` `print(f"[smoke_test] Using decoherence rate=0.01")`.
+- The code includes a "smoke test" routine, likely used for initial validation or debugging: `[GH-C826C62600B6 L81]` `print(f"[smoke_test] Starting: T={T}, dt_N={dt_N}, dt_q={dt_q}, q_steps={q_steps}, dim={dim}")`.
+
+**Coverage Limit:** Sampled anchors (43 of 111) are shown, meaning this note is based on a partial reading of the source.
+
+**## Speculation**
+- Could this project be exploring a metaphorical or conceptual "weaving" of quantum and neural systems, possibly for applications in quantum computing or brain-inspired algorithms?
+- Is the inclusion of Fibonacci-related frequencies (`1/1.618`) a deliberate nod to self-similarity or fractal structures, or is it a coincidence?
+- Might the neural field interactions be modeled after specific biological or theoretical frameworks, such as those involving coupled oscillators in neuroscience?
+- What implications could the use of a decoherence rate have for the simulation’s fidelity or interpretation in a quantum context?

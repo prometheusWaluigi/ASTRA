@@ -1,0 +1,37 @@
+# primeRecursionCodex.md
+
+Status: unreviewed local-model draft (2026-09-24T23:27:10+00:00)
+
+- Source ID: `GH-013974B74AD2`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/applications/integrative/primeRecursionCodex.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `applications/integrative/primeRecursionCodex.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 114 anchors; verify against the source.
+
+**Source Note: GH-013974B74AD2**
+
+**Subject**: The *Prime Recursion Codex* is an experimental, interdisciplinary text exploring the intersection of mathematics, consciousness studies, and speculative philosophy. It merges formal mathematical notation with abstract, metaphorical language to propose a framework for understanding recursive processes as mechanisms for healing, cognitive integration, and the reconstruction of temporal coherence.
+
+**Genre**: This is a technical manifesto, blending elements of theoretical mathematics, computational neuroscience, and speculative metaphysics. It reads as a conceptual blueprint or research log, structured with headings and equations, but infused with poetic and mythic language.
+
+**Main Ideas**:
+- **Prime Recursion** is introduced as an "ontological harmonic activation" mechanism, where recursive transformations ($f_n(t)$) influence the consciousness field ($\psi$) [GH-013974B74AD2 L20].
+- The concept of **Retrofractal Kintsugi** is proposed as a method of "temporal phase repair" using recursive harmonic integrators ($\mathcal{R}_{\text{retro}}$) to restore coherence by overlaying ancestral fractal patterns [GH-013974B74AD2 L32, L39].
+- **Dream sigils** are described as recursive input encoders for morphogenic memory compression, with the equation:  
+  \[ \text{Sigil}(x) = \text{Compress}(\psi_{\text{past}}(x) \oplus \psi_{\text{future}}(x)) \rightarrow \psi_{\text{now}}(x) \] [GH-013974B74AD2 L64].
+- The text integrates symbolic and computational formalism, such as in the equation:  
+  \[ v_n = r \cdot e^{i \phi \log(p_n)} \] [GH-013974B74AD2 L51].
+
+**Striking Details**:
+- The use of recursive transformations as a metaphor for consciousness and healing is highly unconventional.
+- The text explicitly cites real-world references (e.g., Wikipedia on Kintsugi, a GeeksforGeeks article on prime numbers) but repurposes them within a speculative framework [GH-013974B74AD2 L104, L107, L109].
+- The phrase "mythic error correction mechanism" is used to describe the recursive healing process [GH-013974B74AD2 L42].
+
+**Coverage Limit**: This note is based on sampled anchors (34 of 114 total), meaning the full text has not been reviewed in detail.
+
+## Speculation
+- Could the "Prime Recursion operator" be a formalization of a broader theory of recursive consciousness models?  
+- How might the integration of "Retrofractal Kintsugi" relate to known computational models of memory or temporal processing?  
+- Does the text imply a dualistic view of time (past/future) as a computational resource for consciousness?  
+- Are the dream sigils described as a practical tool or a purely theoretical construct?

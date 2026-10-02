@@ -1,0 +1,29 @@
+# 06_gaslit_meltdown.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:06:02+00:00)
+
+- Source ID: `GH-0C7B55F6B161`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/generated/06_gaslit_meltdown.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/generated/06_gaslit_meltdown.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 39 anchors; verify against the source.
+
+**Source Note: GH-0C7B55F6B161**
+
+This is a YAML configuration file from an experimental private wiki, part of a larger archive hosted on GitHub. The file describes a computational simulation titled *GASLIT-af Meltdown (Entropy Surge + Genetic Fragility)*. The apparent subject involves modeling the dynamics of a system under conditions of entropy surge and genetic fragility, likely in a social, biological, or computational context. The genre appears to be technical simulation parameters, possibly related to agent-based modeling or network theory.
+
+Main ideas include the setup of a simulation with 500 runs, a Watts-Strogatz network of 3,000 agents, and parameters governing influence fields, entropy thresholds, and genetic fragility. The simulation likely explores how beliefs (believer_weight, skeptic_weight, agnostic_weight) and trust dynamics (trust_slope_threshold) evolve over time, particularly under conditions of noise and entropy (noise_sigma, entropy_critical). The inclusion of a `leak_frequency` parameter and a `parent_baseline` suggests the simulation may be part of a broader study or comparative analysis with baseline models.
+
+Striking details include the use of specific numerical thresholds (e.g., `entropy_critical: 0.9`, `epsilon_overlap: 0.15`) and the naming convention of the simulation, *GASLIT-af Meltdown*, which may refer to a fictional or metaphorical concept. The presence of a `random_seed` (42) and a `dt` (1.0) implies a structured, replicable experimental framework. The file's version (0.1.6) and date (2025-04-21) suggest it is part of an ongoing, possibly iterative project.
+
+Coverage limit: Sampled anchors include all 39 available, but they are truncated for anchors over 800 characters. This does not necessarily represent the full scope of the file or its parent project.
+
+## Speculation
+
+- Could this simulation be modeling the spread of misinformation or belief systems in a social network, with *GASLIT-af* as a fictional or metaphorical term for a scenario involving systemic collapse or cognitive fragmentation?
+- Are the parameters related to entropy and genetic fragility indicative of a hybrid model combining biological and computational elements, such as modeling the resilience of complex systems under stress?
+- What is the significance of the *Watts-Strogatz* network type in this context? Is it used to simulate real-world social or biological networks with small-world properties?
+- How does the *leak_frequency* parameter influence the simulation's outcome, and does it relate to data leaks, information dissemination, or failure points in the modeled system?
+
+**Flags:** The simulation title and the inclusion of *GASLIT-af* may be fictional or metaphorical, and not factual claims. No evidence is provided that the simulation has been validated or compared to real-world systems.

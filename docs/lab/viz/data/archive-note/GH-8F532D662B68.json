@@ -1,0 +1,37 @@
+# clinvar_cache.py
+
+Status: unreviewed local-model draft (2026-09-25T08:30:19+00:00)
+
+- Source ID: `GH-8F532D662B68`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/backup/src/gaslit_af/clinvar_cache.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `backup/src/gaslit_af/clinvar_cache.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 383 anchors; verify against the source.
+
+# Source Note: GH-8F532D662B68
+
+**Subject:** This file appears to be a Python script implementing a caching system for ClinVar data, which is a public archive of human genetic variation and its relationship to human disease.
+
+**Genre:** Software implementation, specifically a data caching and indexing tool.
+
+**Main Ideas:**  
+The script manages the storage, retrieval, and indexing of genetic variant data from ClinVar. It uses SQLite for database operations and includes features for metadata tracking, cache validation, and querying. The system supports multiple data sources, including variant summaries and VCF files, and tracks critical metadata such as `rs_id`, `last_updated`, and `clinvar_id`. The script also includes functionality to log and report statistics about the cached data, such as total variant counts.
+
+**Striking Details:**  
+- The script defines an SQLite table `variant_index` with columns such as `gene`, `rs_id`, and `last_updated` [GH-8F532D662B68 L66].  
+- An index is created on the `gene` column for efficient querying [GH-8F532D662B68 L82].  
+- It includes logic to update metadata and track cache versions for different data sources [GH-8F532D662B68 L180].  
+- The script queries the database for the count of variants marked as "pathogenic" [GH-8F532D662B68 L253].  
+- It logs the total number of variants stored in the database [GH-8F532D662B68 L277].  
+- The script allows querying based on `clinvar_id`, `gene`, or specific reference and alternate alleles [GH-8F532D662B68 L302, L310].
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the 383 total lines in the file. Not all content has been reviewed, and some details may be omitted or misrepresented.
+
+## Speculation
+
+- Could this caching system be part of a larger project analyzing variant frequencies in clinical populations, given its focus on ClinVar and genetic data?  
+- How does the system handle updates or conflicts when multiple data sources (e.g., VCF files) provide differing information on the same variant?  
+- What criteria determine the validity or rejection of a cache type, as suggested by the conditional checks in the code [GH-8F532D662B68 L155]?  
+- Is there an explicit mechanism for purging outdated or invalid entries from the cache, or does it rely solely on metadata timestamps?

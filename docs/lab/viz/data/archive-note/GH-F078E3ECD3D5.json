@@ -1,0 +1,35 @@
+# testimonies.html
+
+Status: unreviewed local-model draft (2026-09-25T12:27:42+00:00)
+
+- Source ID: `GH-F078E3ECD3D5`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/testimonies.html>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/frontend/templates/testimonies.html`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 272 anchors; verify against the source.
+
+**Source Note: GH-F078E3ECD3D5**
+
+This source is a real downloaded HTML file from the GitHub repository `prometheusWaluigi/gaslit-af-warfare`, located at the path `src/frontend/templates/testimonies.html`. The file appears to be part of a web application's frontend code, likely used to render a collection of user-submitted testimonies. The canonical URL is [https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/testimonies.html](https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/testimonies.html).
+
+**Subject:** The file seems to be part of a testimonies listing page within an application focused on health-related data, possibly related to long-term effects of illness (e.g., "brain fog," "neuropathy").
+
+**Genre:** Web frontend code; specifically, a Jinja2 template for a Django or similar framework.
+
+**Main Ideas:** The page includes functionality for sorting and filtering testimonies based on symptoms and time periods. It features a card-based layout for displaying each testimony, with dynamic content such as `{{ testimony.story }}` and `{{ symptom }}` placeholders. The code includes JavaScript for handling user interactions like clearing filters and sorting options.
+
+**Striking Details:**  
+- The use of filters like "Fewest Symptoms" and symptom-specific checkboxes (e.g., "brain fog," "neuropathy") suggests a focus on health-related testimonies.  
+- The page includes pagination controls (e.g., `[GH-F078E3ECD3D5 L209]`), indicating a potentially large dataset of testimonies.  
+- A placeholder alert is present: `[GH-F078E3ECD3D5 L266]` "alert('Filters cleared! In a real implementation, this would show all testimonies.');" — this suggests the code is incomplete or in development.  
+- The presence of a `testimony-count` div implies the system tracks the number of testimonies displayed under specific filters.
+
+**Coverage Limit:** Sampled anchors (45 out of 272 total) suggest limited reading; many parts of the file are not covered here.
+
+## Speculation
+
+- Could this page be part of a broader effort to collect and analyze data on long-term health effects, possibly in the context of post-viral or post-illness recovery?
+- What is the relationship between the "gaslit-af-warfare" repository and the testimonies listed here? Does the name imply a focus on public health advocacy or awareness?
+- Are the symptoms mentioned (e.g., brain fog, neuropathy) indicative of a specific illness or condition, and is this data being used for research or support purposes?
+- What is the intended audience for this testimonies page — patients, healthcare professionals, or the general public?

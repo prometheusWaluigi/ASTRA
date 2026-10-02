@@ -1,0 +1,36 @@
+# pattern_types.py
+
+Status: unreviewed local-model draft (2026-09-25T04:46:15+00:00)
+
+- Source ID: `GH-34B4016E7974`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/celestialHarmonics/core/pattern_types.py>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `celestialHarmonics/core/pattern_types.py`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 11 anchors; verify against the source.
+
+**Source Note: GH-34B4016E7974**
+
+This source is a Python file from a GitHub repository titled `ideaFilaments`, located in the path `celestialHarmonics/core/pattern_types.py`. It defines type aliases and a class related to pattern and metric structures. The file appears to be part of a larger project, likely related to data modeling or analysis, given the use of type annotations and dictionary-based structures.
+
+**Apparent Subject & Genre**  
+The subject of this text is software development, specifically Python type definitions. The genre is technical code, likely part of a private or experimental project. The tone is informal and playful, as seen in comments such as "fr fr these type definitions be BUSSIN" [GH-34B4016E7974 L3], suggesting a casual or meme-influenced development culture.
+
+**Main Ideas**  
+- The file defines two type aliases: `Pattern` as a dictionary mapping strings to arbitrary values (`Dict[str, Any]`), and `Metric` as a dictionary mapping strings to floats (`Dict[str, float]`) [GH-34B4016E7974 L4, L5].
+- A class named `AspectType` is introduced, which appears to be a placeholder or framework for handling different types of patterns or aspects within the system [GH-34B4016E7974 L8].
+- The comment "no cap these patterns go HARD" [GH-34B4016E7974 L9] suggests enthusiasm or intensity around the use of these patterns, though it is unclear in what context.
+
+**Striking Details**  
+- The use of slang and informal language in comments ("fr fr", "no cap", "go HARD") indicates a personal or informal coding style.
+- The file is described as "CLEAN" in the comment, implying that the rest of the file may follow a similar structure or style [GH-34B4016E7974 L10].
+- The file is part of a private or experimental project, as indicated by the repository name `ideaFilaments` and the lack of clear public documentation.
+
+**Coverage Limit**  
+This note is based on sampled anchors from the file, and it is possible that not all content has been reviewed. The file may contain additional logic or explanations beyond the sampled lines.
+
+## Speculation  
+- Could the informal tone and slang in the comments indicate a broader trend or culture within the `ideaFilaments` project?  
+- Might the `AspectType` class be expanded elsewhere in the repository to handle more complex or abstract pattern classifications?  
+- Are the type aliases `Pattern` and `Metric` used elsewhere in the project, and could they be central to its functionality?  
+- What is the relationship between the `celestialHarmonics` module and the broader goals or themes of the `ideaFilaments` project?

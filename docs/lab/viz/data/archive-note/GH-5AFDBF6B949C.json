@@ -1,0 +1,37 @@
+# DeepNetPlasma.md
+
+Status: unreviewed local-model draft (2026-09-25T01:01:41+00:00)
+
+- Source ID: `GH-5AFDBF6B949C`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/neuralNetPlasma/DeepNetPlasma.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/neuralNetPlasma/DeepNetPlasma.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 212 anchors; verify against the source.
+
+# Source Note: GH-5AFDBF6B949C
+
+**Subject**: DeepNetPlasma.md is a technical document discussing the application of deep neural networks to plasma physics, particularly in fusion energy contexts. It explores implementations in stellarators, tokamaks, and inertial confinement fusion (ICF) systems.
+
+**Genre**: Scientific/Technical Wiki Entry. The text appears to be part of an experimental private wiki, likely serving as a working archive for a single author's research notes on neural networks in plasma physics.
+
+**Main Ideas**:
+- Deep neural networks are used to model and predict plasma equilibria in fusion systems.
+- The document references computational tools such as Princeton's DESC code for solving 3D magnetohydrodynamic (MHD) equilibrium equations.
+- It discusses adaptations of these models for different fusion technologies, including inertial confinement fusion and stellarators.
+- The text explores benchmarking against traditional simulation tools like ZEUS-MP and FLASH, with claims of significant computational cost reduction.
+- Uncertainty quantification techniques, such as dropout-based methods, are highlighted as potential improvements for instability prediction in ICF.
+
+**Striking Details**:
+- The document cites real research papers and simulations, including work on the W7-X stellarator and DeepVel's application to solar granulation modeling [GH-5AFDBF6B949C L77].
+- It references a 0.65 cm positional accuracy in 3D equilibrium reconstruction, comparable to 1 cm accuracy in tokamak performance [GH-5AFDBF6B949C L55].
+- It mentions the use of 32-channel B-dot probes operating at 2 kHz for experimental validation [GH-5AFDBF6B949C L113].
+- The text includes a table comparing Tokamak and ICF implementations of neural network components [GH-5AFDBF6B949C L68].
+
+**Coverage Limit**: Sampled anchors (31 of 212) mean this analysis does not cover the full text. The selection includes sections on implementation, validation, and computational challenges.
+
+## Speculation
+- Could the computational cost reductions mentioned (from 10<sup>6</sup> core-hours to 10<sup>2</sup> GPU-hours) be generalized to other fusion simulation tools, or are they specific to the neural network models discussed?
+- Is the claim that neural networks can surpass traditional EFIT-like codes in handling non-axisymmetric geometries [GH-5AFDBF6B949C L127] based on experimental validation or theoretical assumptions?
+- What are the implications of applying dropout-based uncertainty quantification techniques from GS-DeepNet to ICF Rayleigh-Taylor instability predictions, as suggested in the text [GH-5AFDBF6B949C L77]?
+- Are the connections between stellarator implementations and neural networks purely theoretical, or are they supported by experimental results?

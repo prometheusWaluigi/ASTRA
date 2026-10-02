@@ -1,0 +1,39 @@
+# biological.html
+
+Status: unreviewed local-model draft (2026-09-25T12:36:16+00:00)
+
+- Source ID: `GH-FB52C502EE6A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/biological.html>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/frontend/templates/biological.html`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 498 anchors; verify against the source.
+
+**Source Note: GH-FB52C502EE6A**
+
+This source is a Markdown-formatted HTML template from a GitHub repository named `prometheusWaluigi/gaslit-af-warfare`, specifically located at the path `src/frontend/templates/biological.html`. The text is part of a web application's frontend code, likely related to simulating or visualizing biological systems, possibly in the context of neuroscience or computational biology.
+
+**Subject & Genre:**  
+The content appears to be a frontend template for a web-based simulation or analysis tool focused on biological processes, potentially involving neurotoxicity, attractor states, and parameter-driven outcomes. The genre is technical, with a focus on user interface (UI) elements and data visualization.
+
+**Main Ideas:**  
+- The template includes interactive UI components such as buttons for running simulations (e.g., [GH-FB52C502EE6A L75], [GH-FB52C502EE6A L138]).  
+- It references graphical elements like charts and dynamic data rendering (e.g., [GH-FB52C502EE6A L160], [GH-FB52C502EE6A L255]).  
+- The system tracks parameters such as "Neurotoxicity" and "Autonomic Resilience" (e.g., [GH-FB52C502EE6A L287], [GH-FB52C502EE6A L403]).  
+- The simulation likely involves modeling attractor states (e.g., [GH-FB52C502EE6A L43], [GH-FB52C502EE6A L255]).  
+
+**Striking Details:**  
+- The template uses CSS classes like `.attractor-state.vulnerable` (e.g., [GH-FB52C502EE6A L43]) and styles for visualization.  
+- There is a mention of a chart container with the ID `dynamics-chart` (e.g., [GH-FB52C502EE6A L160]).  
+- Sample data for demonstration is included, though not fully detailed (e.g., [GH-FB52C502EE6A L392]).  
+- JavaScript code segments suggest interaction with user inputs and simulation parameters (e.g., [GH-FB52C502EE6A L329], [GH-FB52C502EE6A L371]).  
+- A numeric value of `-0.85` is shown in a table cell, possibly indicating a simulation result or parameter (e.g., [GH-FB52C502EE6A L276]).  
+
+**Coverage Limit:**  
+This analysis is based on a sampled subset of the anchors (44 of 498), meaning that not all content has been reviewed. The full text may contain additional context or functionality not reflected here.
+
+## Speculation
+- Could this tool be used for modeling neurological disorders or drug interactions?  
+- Are the attractor states referenced here related to computational models of brain dynamics or neural networks?  
+- Does the inclusion of "cerebellar-vulnerability" (e.g., [GH-FB52C502EE6A L329]) suggest a focus on specific neurological regions or conditions?  
+- Might the simulation be part of a larger project involving AI or machine learning applications in biological research?

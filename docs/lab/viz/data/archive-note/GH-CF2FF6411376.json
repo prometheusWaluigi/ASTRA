@@ -1,0 +1,38 @@
+# README.md
+
+Status: unreviewed local-model draft (2026-09-24T22:43:15+00:00)
+
+- Source ID: `GH-CF2FF6411376`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/README.md>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `README.md`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 151 anchors; verify against the source.
+
+**Source Note: GH-CF2FF6411376**
+
+**Subject:** The *Piston Leak Lab* is an experimental private wiki serving as a public archive for a single author's research and development work in symbolic dynamical-systems modeling, particularly applied to institutional narrative collapse within the "Fauci Metaverse." The archive is hosted as a GitHub repository, with the README.md file acting as a central documentation point.
+
+**Genre:** Technical documentation, research archive, and computational modeling framework. The text combines elements of software development (e.g., installation instructions, CI/CD references) with theoretical exploration (e.g., agent-based modeling, entropy-based governance).
+
+**Main Ideas:**
+- The project focuses on **symbolic dynamical-systems modeling**, combining ordinary differential equations (ODE) and agent-based modeling (ABM) to simulate complex interactions within institutional narratives.
+- A core concept is **"entropy-first governance tooling"**, suggesting a framework that prioritizes entropy gradients as a measure for decision-making or system analysis.
+- The project includes a **simulation toolkit** with Python and Julia code, and the use of YAML for configuration.
+- The repository supports **exploratory data analysis** and **visualization**, particularly in tracking the temporal evolution of simulated collapse and recovery scenarios.
+- The README.md provides **installation instructions** (e.g., via Poetry), and includes references to **CI/CD pipelines** and **academic attribution**.
+
+**Striking Details:**
+- The title line [GH-CF2FF6411376 L1] is a GitHub README, suggesting the project is open-source but possibly experimental or niche.
+- A philosophical or ironic invocation appears in [GH-CF2FF6411376 L151]: *"May your entropy gradients be ever in your favor."*
+- A paper draft is mentioned in [GH-CF2FF6411376 L78]: *Piston Leak: A Symbolic Dynamical-Systems Model of Institutional Narrative Collapse in the Fauci Metaverse* (peer-review submission prep, draft v0.9).
+- The project is noted to require **Python ≥3.11** and optionally **Intel oneAPI** for high-performance simulations [GH-CF2FF6411376 L62, L65].
+- The repository includes **Jupyter notebooks** for exploratory analysis [GH-CF2FF6411376 L30].
+
+**Coverage Limit:** Sampled anchors (36 of 151 total) represent a partial view of the content. The text may contain unexamined material beyond the scope of this note.
+
+**## Speculation**
+- What specific aspects of "institutional narrative collapse" are being modeled in the Fauci Metaverse? Does the project aim to critique or predict outcomes in real-world contexts?
+- How does the symbolic modeling approach (ODE + ABM) interact with the use of entropy gradients as a decision-making or analytical tool? Is this a novel framework?
+- Could the "Fauci Metaverse" be a metaphor or a fictional construct, and if so, how might this influence the project's perceived legitimacy or scope?
+- What role does the optional use of Intel oneAPI play in the project’s computational goals? Is high-performance simulation a critical component of the research or merely an enhancement?

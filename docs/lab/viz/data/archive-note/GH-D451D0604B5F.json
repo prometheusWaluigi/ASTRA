@@ -1,0 +1,35 @@
+# README_DOCKER.md
+
+Status: unreviewed local-model draft (2026-09-24T22:44:13+00:00)
+
+- Source ID: `GH-D451D0604B5F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/README_DOCKER.md>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `README_DOCKER.md`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 94 anchors; verify against the source.
+
+# Source Note: GH-D451D0604B5F
+
+**Subject**: A Docker containerization solution for a project involving genetic analysis, NLP, and other Python libraries. The project is named "GASLIT-AF WARSTACK" and appears to be related to computational biology or bioinformatics.
+
+**Genre**: Technical documentation, specifically a README file for a Docker-based project.
+
+**Main Ideas**:
+- The project addresses dependency management issues in a complex software stack involving libraries such as `scikit-allel` and `spaCy`.
+- A custom Dockerfile (`Dockerfile.fix`) is used to ensure consistent environment behavior and resolve specific import path inconsistencies between different Python versions and environments.
+- The solution includes a custom import wrapper to address the `scikit-allel` vs `allel` import issue.
+
+**Striking Details**:
+- The `scikit-allel` package is highlighted as a key dependency with known import path issues ([GH-D451D0604B5F L7]).
+- The Docker container maps directories between the host and the container, specifically for VCF files and results ([GH-D451D0604B5F L76]).
+- A script `run_docker.sh` is used to build and run the Docker image, with commands such as `analyze_vcf` and `shell` ([GH-D451D0604B5F L35, L41]).
+- A test script `test_imports.py` is referenced to validate Python imports within the container ([GH-D451D0604B5F L86]).
+
+**Coverage Limit**: This note is based on a sampled set of anchors from the total of 94 anchors in the document. Anchors over 800 characters are truncated, so not all content has been read or analyzed.
+
+## Speculation
+- Could the "GASLIT-AF WARSTACK" project be related to genetic analysis of warfare-related biological data, given the presence of VCF files and NLP tools?
+- What is the specific version of `scikit-allel` being used, and how does the custom import wrapper address the `scikit-allel` vs `allel` issue?
+- Are there other unmentioned dependencies or patches that may be relevant to the project's functionality?
+- How does the containerization approach impact the scalability or deployment of the project in larger computational environments?

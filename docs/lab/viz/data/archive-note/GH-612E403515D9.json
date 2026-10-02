@@ -1,0 +1,50 @@
+# UnifiedGASLITAFTheory.md
+
+Status: unreviewed local-model draft (2026-09-25T04:01:53+00:00)
+
+- Source ID: `GH-612E403515D9`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/coreTheories/unifiedTheory/UnifiedGASLITAFTheory.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `coreTheories/unifiedTheory/UnifiedGASLITAFTheory.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 198 anchors; verify against the source.
+
+# Source Note: GH-612E403515D9
+
+**Subject:** A unified theoretical model attempting to integrate genetic, structural, and physiological factors in the context of a complex, persistent condition (possibly chronic illness or disease).
+
+**Genre:** Technical theory documentation, likely part of a research or simulation project. Contains mathematical formulations, conceptual claims, and planning for computational modeling.
+
+**Main Ideas:**  
+- The document presents a *Unified GASLIT-AF Theory*, which combines autonomic, immune, and fatigue components into a single framework.  
+- A central focus is on *longitudinal persistence*, *hysteresis*, and *bistability*, suggesting the model accounts for conditions that persist over time and exhibit non-linear behaviors.  
+- The model integrates *genetic/structural predispositions* (referred to as "zebra" themes), including factors such as polygenic risk, connective tissue vulnerabilities, and RCCX/HLA-related genes.  
+- The model proposes a *minimal sub-system* (autonomic, immune, fatigue) that is testable through biomarkers, simulations, and statistical inference.  
+- It outlines a *simulation plan* involving bifurcation analysis, Bayesian inference, and prospective trials to validate the model.
+
+**Striking Details:**  
+- The model includes a *dynamical system* formulation with equations for immune activation (I(t)), autonomic function (A(t)), and other variables [GH-612E403515D9 L89, L139].  
+- The *Stress–Endocrine Loop* is described as a core mechanism: HPA axis dysfunction and limbic stress signaling amplify immune activation and autonomic instability [GH-612E403515D9 L72].  
+- The model's *bistability* suggests the existence of two stable states (healthy vs. pathological) under certain conditions, with transition thresholds that may be measurable [GH-612E403515D9 L114].  
+- *Synergistic therapy effects* are highlighted: multi-target interventions are more effective in destabilizing the pathological attractor than single-loop interventions [GH-612E403515D9 L118].  
+- The document references external files (e.g., criticalReview.md) and points to gaps in the model’s integration with structural and genetic vulnerability themes [GH-612E403515D9 L26, L55].
+
+**Coverage Limit:**  
+This note is based on a sampled subset of anchors (36 of 198 total), which means not all content of the original source has been read or analyzed.
+
+## Speculation
+- Could the "zebra" themes refer to a known set of genetic/structural conditions commonly associated with chronic illness, or is this an original categorization?  
+- Is the *GASLIT-AF attractor model* a pre-existing theory or a novel concept introduced here?  
+- Might the model’s focus on *bistability* and *hysteresis* have implications for understanding relapse or recovery in persistent conditions?  
+- Are the *parameter mappings* (e.g., βIN, βIH) grounded in empirical data, or are they theoretical constructs requiring further validation?  
+
+**Claims Flagged as Extraordinary or Fictional:**  
+- The use of *attractor models* to describe persistent, multi-system conditions is highly conceptual and may not be empirically validated.  
+- The idea of *transition thresholds* between healthy and pathological states is speculative and may not align with clinical observations.  
+- The model’s *synergistic therapy effects* may be influenced by external assumptions not fully described in the text.  
+
+**Factual Observations:**  
+[GH-612E403515D9 L1] The title states the document is a "Unified GASLIT-AF Theory and Simulation Plan."  
+[GH-612E403515D9 L76] Genetic predisposition (γ) is tied to polygenic risk factors such as RCCX and HLA.  
+[GH-612E403515D9 L81] The model is described as both *mechanistic* and *generalizable*.  
+[GH-612E403515D9 L160] Phase 4 involves *prospective simulation trials* to compare predicted recovery and relapse rates.

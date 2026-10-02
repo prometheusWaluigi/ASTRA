@@ -1,0 +1,32 @@
+# Exploring Rulial Space - Turing Machines in Wolfram Physics.pdf
+
+Status: unreviewed local-model draft
+Source ID: ME99E8FF3E83C
+Sampled pages: 1, 11, 20, 30, 40, 50, 59, 69 of 69
+
+**Source Note for Experimental Private Wiki**
+
+**Subject:** The intersection of computational theory and physics, particularly through the lens of Wolfram Physics and the exploration of "rulial space." The work investigates the implications of considering all possible rules and their applications, especially in relation to Turing machines and multiway graphs. It explores how computational models might generalize physics and computation itself.
+
+**Genre:** Technical bulletin, theoretical exploration, interdisciplinary research. The text is part of the Wolfram Physics Project Bulletins, aimed at discussing advanced concepts in computational physics and their broader implications.
+
+**Main Ideas:**  
+- The concept of **rule space relativity** is introduced, suggesting that the universe's behavior might be described by applying all possible rules simultaneously, rather than a single one, akin to relativity in physics.  
+- **Rulial space** is defined as the space formed by transversals of a rulial multiway graph, which incorporates not only all possible updates but also all possible rules.  
+- The work draws parallels between computational structures (like Turing machines) and physical models, such as spatial hypergraphs, causal graphs, and branchial space.  
+- It explores how deterministic and non-deterministic computational processes (e.g., sorting networks, Turing machines) map onto the structure of rulial space and the implications for computational complexity and algorithmic behavior.
+
+**Striking Details:**  
+- The text includes **diagrams of multiway graphs** and **causal graphs** for various Turing machines, particularly those with small state and symbol counts (e.g., s = 2, k = 1 or 2).  
+- The **binary counter Turing machine (1953)** is highlighted as a case with an "exotic" causal graph, suggesting unique computational properties.  
+- The work **connects computational complexity** (e.g., sorting networks) with broader theoretical constructs, such as the geometrization of algorithmic spaces.  
+- The **3D rendering** of layered graphs is mentioned as a method to visualize the connection between computational rules and hypercubes, though the specific content of these renderings is not fully extracted due to sampling limitations.
+
+**Coverage Limit:**  
+The sampled pages [1, 11, 20, 30, 40, 50, 59, 69] provide partial coverage of the document, focusing on conceptual introductions, illustrative diagrams, and computational examples, but not the full technical exposition or detailed derivations. The final page (p69) contains metadata and links rather than content relevant to the main discussion.
+
+**Speculation:**
+- **Connection to computational universality:** Could the exploration of rulial space imply a form of computational universality, where all possible algorithms are embedded within the structure of the space, as suggested by the inclusion of all possible rules? [ME99E8FF3E83C p1]  
+- **Implications for quantum computing:** Might the geometrization of algorithmic spaces, as described in branchial and rulial spaces, offer new frameworks for understanding entanglement or parallel computation? [ME99E8FF3E83C p1]  
+- **OCR uncertainty on p69:** The text on page 69 is extracted via OCR and may contain inaccuracies or incomplete information due to the method. [ME99E8FF3E83C p69]  
+- **Fictional or extraordinary claims:** The document discusses hypothetical scenarios (e.g., "all possible rules being used") that may not align with conventional computational theory, though these are framed as exploratory rather than definitive claims. [ME99E8FF3E83C p1]

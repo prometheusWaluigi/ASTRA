@@ -1,0 +1,34 @@
+# fastq_to_vcf_pipeline.py
+
+Status: unreviewed local-model draft (2026-09-25T08:56:10+00:00)
+
+- Source ID: `GH-D0473C4A5952`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/fastq_to_vcf_pipeline.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `fastq_to_vcf_pipeline.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 556 anchors; verify against the source.
+
+**Source Note: GH-D0473C4A5952**
+
+**Subject:** This source is a Python script titled `fastq_to_vcf_pipeline.py`, part of an experimental private wiki serving as a public archive of one author's work. The script appears to implement a pipeline for converting FASTQ sequencing data into VCF (Variant Call Format) files, a standard format in genomics for storing genetic variation data.
+
+**Genre:** Technical script; bioinformatics workflow automation.
+
+**Main Ideas:**  
+The script automates the process of variant calling from raw sequencing data. It uses tools such as BWA (Burrows-Wheeler Aligner), Samtools, and DeepVariant for alignment, processing, and variant detection. The pipeline includes steps for indexing reference genomes, aligning reads, sorting and indexing BAM files, and running variant calling with DeepVariant in a Docker container. It also includes options to skip alignment steps and configure performance settings like memory limits.
+
+**Striking Details:**  
+- The script employs `argparse` for command-line argument parsing, allowing customization of input paths and computational settings [GH-D0473C4A5952 L36].  
+- It checks for the presence of external tools like `run_deepvariant` and `samtools` using `subprocess.run` [GH-D0473C4A5952 L166, L155].  
+- The use of Docker is explicitly mentioned for running DeepVariant [GH-D0473C4A5952 L426].  
+- The script includes logging mechanisms to report progress and errors, such as warnings about missing tools or failed steps [GH-D0473C4A5952 L155, L532].  
+- A sample name is derived from the FASTQ file’s filename using `args.fastq1.stem.split('.')[0]` [GH-D0473C4A5952 L131].  
+
+**Coverage Limit:** Sampled anchors (39 of 556 total) are used for this note, meaning not all content has been reviewed or analyzed.
+
+**## Speculation**  
+- Could this pipeline be adapted for use in clinical genomics, where variant calling accuracy is critical?  
+- Might the use of OpenVINO (referenced in [GH-D0473C4A5952 L225]) suggest an intent to optimize computational performance on hardware with inference capabilities?  
+- Is the inclusion of Docker-specific commands an indication of the author's preference for containerized workflows, or a potential limitation for environments without Docker support?  
+- What are the implications of skipping alignment steps, and under what conditions would this be advisable?

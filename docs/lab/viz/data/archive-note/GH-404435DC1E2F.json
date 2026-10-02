@@ -1,0 +1,47 @@
+# README.md
+
+Status: unreviewed local-model draft (2026-09-24T21:42:30+00:00)
+
+- Source ID: `GH-404435DC1E2F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/simulationIdeas/README.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `simulationIdeas/README.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 74 anchors; verify against the source.
+
+**Source Note:**  
+
+ID: GH-404435DC1E2F  
+Origin: GitHub  
+Title: README.md  
+Canonical URL: https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/simulationIdeas/README.md  
+Repo: prometheusWaluigi/gaslitAF  
+Path: simulationIdeas/README.md  
+Coverage: Anchors sampled evenly from 74 total (L1, L3, L7, L9, L10, L12, L13, L15, L17, L21, L23, L27, L29, L31, L35, L37, L38, L40, L44, L49, L51, L52, L54, L58, L60, L62, L65, L66, L68, L72). Anchors over 800 characters are truncated.  
+
+**Apparent Subject:**  
+This document outlines simulation ideas for translating the GASLIT-AF theoretical framework into computational models of chronic multi-system syndromes. The focus is on dynamical systems, attractor basins, and personalized monitoring loops.  
+
+**Genre:**  
+Technical documentation, outlining computational approaches, variable definitions, and simulation workflows.  
+
+**Main Ideas:**  
+- Chronic syndromes are modeled as transitions into pathological attractor states in a high-dimensional physiological state space.  
+- Simulation concepts range from minimal ODEs to GPU-accelerated pipelines, with emphasis on modeling genetic vulnerability (γ), stress (Λ), buffering capacity (Ω), and entropy dynamics (σ/C).  
+- Key variables include autonomic capacity (x), inflammation (y), fatigue (f), cortisol (X), energy (E), and oxidative stress (O).  
+- Techniques include bifurcation analysis, delayed feedback, and stochastic terms to simulate relapse, hysteresis, and noise.  
+- Personalized data (wearable signals, symptom logs) are used to fit models and generate early-warning thresholds.  
+
+**Striking Details:**  
+- The document explicitly ties simulation design to specific theoretical constructs from the GASLIT-AF framework, including [GH-404435DC1E2F L7] and [GH-404435DC1E2F L12].  
+- It suggests integrating RCCX/polygenic vulnerabilities into model parameters, as noted in [GH-404435DC1E2F L13].  
+- The use of symbolic attractor expansion for modeling complex physiological networks is highlighted in [GH-404435DC1E2F L27].  
+- The mention of personalized simulations and intervention testing, using inputs like HRV and symptom logs, appears in [GH-404435DC1E2F L51] and [GH-404435DC1E2F L52].  
+
+**## Speculation**  
+- Could the integration of delayed feedback and stochastic terms in [GH-404435DC1E2F L37] be used to simulate unpredictable relapse patterns in chronic illness?  
+- How might the use of symbolic attractor equations in [GH-404435DC1E2F L27] impact the computational complexity of the models?  
+- Are the "threshold surfaces" in [GH-404435DC1E2F L49] meant to be predictive tools for clinical intervention, or are they purely theoretical constructs?  
+- Might the focus on GPU-accelerated pipelines in [GH-404435DC1E2F L58] indicate a shift toward real-time or high-throughput simulation applications?  
+
+**Note:** This is a sampled note; full coverage of the source is not achieved. The source contains claims about modeling chronic syndromes as attractor transitions and personalized simulations, but these are not explicitly validated as factual assertions.

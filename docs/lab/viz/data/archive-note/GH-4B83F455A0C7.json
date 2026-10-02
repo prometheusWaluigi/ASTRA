@@ -1,0 +1,38 @@
+# kynurenineAHR.md
+
+Status: unreviewed local-model draft (2026-09-24T23:01:23+00:00)
+
+- Source ID: `GH-4B83F455A0C7`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/subTheories/kynurenineAHR.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/subTheories/kynurenineAHR.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 94 anchors; verify against the source.
+
+**Source Note: GH-4B83F455A0C7**
+
+This document, titled *kynurenineAHR.md*, is a technical Markdown file from the GitHub repository *prometheusWaluigi/gaslitAF*. It appears to be part of a private wiki or archival system maintained by a single author, likely for personal research or documentation. The text is structured as a sub-theory within a larger body of work, focusing on the biochemical and immunological implications of the kynurenine pathway and its interaction with the aryl hydrocarbon receptor (AHR). The content is derived from scientific literature and hypotheses, not from the author's original research.
+
+**Apparent Subject & Genre**  
+The subject is the interaction between the kynurenine pathway and AHR in the context of chronic multi-system syndromes (CMSSs), particularly ME/CFS and Long COVID. The genre is analytical, combining biochemical pathways with clinical implications, and is written in a semi-technical, speculative tone.
+
+**Main Ideas**  
+- The kynurenine pathway, a metabolic route of tryptophan, plays a critical role in immune regulation and neuroinflammation.
+- AHR activation by kynurenine metabolites can lead to immune suppression, persistent inflammation, and mitochondrial dysfunction, contributing to symptoms observed in ME/CFS and Long COVID.
+- Therapeutic strategies may involve AHR antagonism, IDO2 inhibition, or targeted supplementation to rebalance tryptophan metabolism and immune function.
+
+**Striking Details**  
+- [GH-4B83F455A0C7 L1]: The text opens with a focus on the kynurenine pathway as a "dynamic regulatory circuit" that may be reprogrammed for treatment.
+- [GH-4B83F455A0C7 L11]: A higher ratio of pro-inflammatory metabolites (QUIN, 3-HK) to KYNA is highlighted as a marker for neuroinflammation in CMSSs.
+- [GH-4B83F455A0C7 L33]: A post-viral scenario is described where IDO1/IDO2 upregulation leads to AHR activation and a "seesaw immune pattern" observed in ME/CFS and Long COVID.
+- [GH-4B83F455A0C7 L56]: Reference to BAY 2416964, a small-molecule inhibitor, as a potential therapeutic agent to disrupt the AHR–kynurenine loop.
+- [GH-4B83F455A0C7 L92]: The text concludes by framing persistent immune activation and metabolic derangement as central to the pathophysiology of ME/CFS and Long COVID.
+
+**Coverage Limit**  
+This note is based on sampled anchors from the source text (33 out of 94 total), which means it does not cover the full content of the document.
+
+## Speculation  
+- Could AHR modulation offer a novel, unifying treatment for conditions involving both immune dysregulation and neuroinflammation, beyond ME/CFS and Long COVID?  
+- How might the interplay between AHR, gut flora, and tryptophan metabolism influence the variability of symptoms in CMSSs?  
+- Are the proposed therapies (e.g., AHR antagonism, IDO2 blockade) being tested in clinical trials for these syndromes, and what are the preliminary outcomes?  
+- Could the AHR–kynurenine axis be a biomarker for predicting recovery trajectories in post-viral syndromes?

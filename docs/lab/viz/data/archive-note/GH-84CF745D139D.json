@@ -1,0 +1,34 @@
+# 03_leak_storm.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:49:20+00:00)
+
+- Source ID: `GH-84CF745D139D`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/generated/03_leak_storm.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/generated/03_leak_storm.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 39 anchors; verify against the source.
+
+# Source Note: GH-84CF745D139D
+
+**Subject**: This document is a configuration file for a simulation titled "High-Noise Leak Storm (Wikileaks Week)" and is part of an experimental private wiki maintained by a single author. The file is real, downloaded text and treated as data, not as instructions.
+
+**Genre**: Technical configuration file, likely used in computational modeling or simulation software. The file is structured in YAML syntax.
+
+**Main Ideas**: The simulation models a "leak storm" scenario, possibly related to information dissemination or data leaks, under high-noise conditions. It is part of a series of simulations referred to as "sims/generated" within the repository. The configuration includes parameters for network structure, influence dynamics, and noise levels. The simulation may explore how information spreads or is suppressed in a networked system, potentially with applications in social dynamics, cybersecurity, or political science.
+
+**Striking Details**:
+- The simulation includes a large network of 3,000 agents [GH-84CF745D139D L25].
+- The network type is a Watts-Strogatz small-world network [GH-84CF745D139D L24].
+- Influence dynamics are weighted differently for "believers," "skeptics," and "agnostics" [GH-84CF745D139D L30].
+- Noise levels are explicitly modeled with a standard deviation (`noise_sigma`) of 0.25 [GH-84CF745D139D L21].
+- The simulation includes a time parameter (`t_max`) of 365, likely representing days [GH-84CF745D139D L11].
+
+**Coverage Limit**: Sampled anchors are limited to 39 total lines shown; this does not imply full reading of the source. Anchors over 800 characters are truncated.
+
+## Speculation
+
+- Could the "leak storm" model be used to simulate real-world events such as data breaches or whistleblowing scenarios, and how might this relate to the "Wikileaks Week" reference in the description?
+- What does the weighting of influence fields (e.g., skeptic_weight: 1.2) suggest about the simulation's assumptions regarding information suppression or amplification in networked systems?
+- Is the use of a Watts-Strogatz network indicative of an interest in modeling real-world social or communication networks, and how might this affect the simulation's outcomes?
+- How does the inclusion of a "noise_sigma" parameter impact the reliability or interpretation of the simulation's results, particularly in contexts involving sensitive data or information?

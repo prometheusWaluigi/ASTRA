@@ -1,0 +1,36 @@
+# visualization.py
+
+Status: unreviewed local-model draft (2026-09-25T08:06:57+00:00)
+
+- Source ID: `GH-71D525E350DF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/visualization.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/visualization.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 393 anchors; verify against the source.
+
+**Source Note: GH-71D525E350DF**
+
+This source is a Python script from the public GitHub repository `prometheusWaluigi/gaslit-af_variant_analysis`, located at the path `src/gaslit_af/visualization.py`. The text appears to be part of a tool or module for visualizing genetic variant data, likely in the context of bioinformatics or genomic analysis.
+
+**Subject & Genre:**  
+The subject is the generation of visualizations from genetic variant data. The genre is technical code, specifically Python scripts using libraries like `matplotlib` and `plotly` for data visualization. The script includes functions for plotting variant counts, mutation types, and gene-specific variant distributions.
+
+**Main Ideas:**  
+The script contains functions for creating visualizations such as bar charts, scatter plots, and network diagrams. These visualizations are likely intended to represent the distribution of genetic variants across chromosomes, mutation types, and genes. The code references dataframes (likely from `pandas`) and includes logic for determining variant types, such as SNPs (single nucleotide polymorphisms).
+
+**Striking Details:**  
+- The function `plot_chromosome_variant_counts` creates a bar chart showing the number of variants per chromosome, with the y-axis labeled as "Number of Variants" [GH-71D525E350DF L101].
+- The code includes logic for handling alternate allele columns, using "ALT" or "alt" depending on the dataframe's structure [GH-71D525E350DF L118, L159].
+- The script also contains a function for plotting transition/transversion ratios, a common metric in genetic variant analysis [GH-71D525E350DF L151].
+- There is a function for generating network diagrams, where nodes are annotated with variant counts, and edges are drawn based on sequence similarity thresholds [GH-71D525E350DF L293, L310, L326].
+- The script includes a function `generate_all_visualizations` that orchestrates the creation of multiple visualizations from variant and gene data [GH-71D525E350DF L368].
+
+**Coverage Limit:**  
+The anchors shown represent a sampled subset of the full 393 anchors, meaning that the full code has not been read or analyzed in detail.
+
+**## Speculation**  
+- Could this script be part of a larger project analyzing the genetic basis of disease or population genetics?  
+- Might the use of an arbitrary similarity threshold (e.g., >0.8) in network diagrams introduce bias or inaccuracies?  
+- Are the visualizations intended for publication or internal use, and does the script support exporting to formats like SVG or PNG?  
+- Does the script handle large datasets efficiently, or are there performance limitations not addressed in the code?

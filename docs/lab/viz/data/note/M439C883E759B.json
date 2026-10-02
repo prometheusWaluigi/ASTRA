@@ -1,0 +1,56 @@
+# 1-s2.0-S0960077926012920-main.pdf
+
+Status: full-read note by Devin (not a sampled local-model draft) · 2026-09-26
+Source ID: M439C883E759B
+Coverage: all 19 pages
+
+**Source Note: M439C883E759B**
+
+**Title:** *Geometry-orchestrated objective reduction from a multiscale resonance chain: Polyatomic time crystals*
+
+**Authors:** Pushpendra Singh (IIT Mandi, Sapiotectronics Lab / CQST), Stuart Hameroff (Quantum Life Technologies), Anirban Bandyopadhyay (NIMS Tsukuba)
+
+**Venue:** Chaos, Solitons & Fractals 213 (2026) 119151 · doi:10.1016/j.chaos.2026.119151 · received 2026-05-22, accepted 2026-09-04, online 2026-09-25. [p1, p19]
+
+**Subject:** A normalized nonlinear-systems framework that recasts Orch-OR as a falsifiable geometry-controlled synchronization problem. A "polyatomic time crystal" (PTC) is defined as a finite, dissipative, multiscale ensemble of commensurate phase-locked clocks — spanning π-electron aromatic pockets, microtubules, organelle assemblies, and macroscopic body modes — whose coupling is shaped by three geometric invariants: curvature concentration (κ), host–guest nesting (η), and sectorized geometric phase (σ). The same invariants feed a normalized Diósi–Penrose self-energy proxy, yielding relative collapse-time contours overlaid on the synchronization landscape. [p1–p4]
+
+**Genre:** Theoretical/computational physics paper; mathematical-modeling forward, with explicit falsification protocol and proposed experiments. Carefully hedged epistemics: the DP functional is a normalized proxy for *relative* comparisons, not an absolute gravitational-collapse energy. [p8, p17–p18]
+
+**Model structure:**
+
+- **Model I — PTC state space & resonance network.** N=120 phase oscillators grouped into low/intermediate/high frequency families with log-spaced ωᵢ. Geometry-dependent Sakaguchi–Kuramoto dynamics: dθᵢ/dt = ωᵢ(δ) + (1/N)Σⱼ Kᵢⱼ(κ,η,A)·sin[θⱼ−θᵢ−αᵢⱼ(κ,η,σ,A,δ)], where Kᵢⱼ = clip(MᵢⱼK₀·exp(−ln²(ωᵢ/ωⱼ)/2ℓ²)(1+bκκCᵢⱼ)(1+bηηHᵢⱼ)(1−b_A·A)) with binary connectivity mask Mᵢⱼ dense intra-band and sparse adjacent-band; αᵢⱼ collects α₀ + aκκ(cᵢ−cⱼ) + aηη(hᵢ−hⱼ) + aσσ·2π(sᵢ−sⱼ)/S + a_A·A·ξᵢⱼ + a_δ·δ·qᵢⱼ. Six-component geometric state space M = (L, K, F, Φ, T, H). [p3–p6]
+- **Model II — OR trigger functional.** Voxelized density contrast Δρ between alternative locked configurations (Δρ_mech from curvature/nesting geometry + Δρ_field from stored EM/elastic energy u/c² in low-polarity cavities); softened-Newton-kernel self-energy E_G[I], τ̂_OR = ħ/E_G normalized to a reference. [p8, p10–p11]
+- **Model III — geometry→invariants→dynamics map.** Local constitutive relations: elastic bending U_κ quadratic in curvature deviation (Helfrich-style), host–guest dielectric energy linear in η under fixed-charge boundary conditions (monotonicity explicitly scoped), sector term periodic. Finite-difference monotonicity check defines the calibrated domain. [p11–p13]
+- **Probability-control surface.** Hazard model Z(G,X,t) = 1−exp[−t(λ_G·G + λ_D(1−X))] with G = normalized E_G and X = coherence-protection factor = r. Z=0.5 ridge as neutral benchmark. [p9, p13, p15]
+
+**Key numerical results:** [p13, Table 2]
+
+1. Discrete locking plateaus in r(κ,η) separated by bifurcation-like ridges (sparse cross-band link rearrangement).
+2. τ̂_OR contours compress where curvature/nesting raise energy-density contrast; sector re-partitioning shears the contour family.
+3. Anesthetic perturbation lowers steady-state r and slows approach to locking (π-pocket de-locking + band broadening).
+4. Sensitivity tornado at (G,X)=(0.5,0.6): G (via E_G) is the largest lever, then time window T, λ₀; negative β sensitivity.
+5. Two-parameter (A, δ) perturbation diagram: anesthetic crosses a de-locking ridge (r=0.5) whose position shifts under cavity/dielectric detuning — the headline falsifiable prediction.
+
+**Five key predictions:** discrete ~12-decade cross-scale frequency lattice; geometry-dependent τ_OR; anesthetic-sensitive de-locking at π-rich sites; path-selective ETPA readout along helical/π-rich routes; cavity/vacuum (Casimir–Polder) tuning of sector structure. [p13–p14]
+
+**Proposed validation (E1–E3):** E1 — electro-oriented taxol-stabilized MT films under broadband THz-TDS (0.2–3 THz) + VNA (10 MHz–40 GHz) + lock-in kHz–Hz, with microcurvature substrates, layer-by-layer spacing stacks, and isoflurane/sevoflurane titration in vapor-tight cuvettes; controls = depolymerized tubulin, BSA, inert polymers. E2 — SPDC entangled two-photon absorption vs classical 2PA at ultra-low flux, pathway-resolved amplitude proxy qᵢⱼ. E3 — nanometric cavity/dielectric spacers (nanoparticle-on-mirror) modulating local mode densities. Falsifier logic: "any two independent null results would strongly disfavor" the mechanism. [p14–p18]
+
+**Empirical scaffolding cited:** microtubule dielectric anisotropy/electro-orientation (Minoura & Muto 2006); excitonic transport + Fano Raman lineshapes in tubulin aromatics; anesthetic-tubulin binding literature; the group's own Dodecanogram platform (12 synchronized bands, 1 Hz–5.31 GHz); MHz "triplet-of-triplet" spectral structures across proteins/cells/plants/animals/humans; propofol EEG+DDG clinical study; lidocaine organellar cascade in tomato root cells; silver-nanoparticle plasmonic scalp front-end. [p2, p6, p11]
+
+**Striking details:**
+
+- The PTC is explicitly *not* claimed as an equilibrium phase of matter or evidence of biological OR — it denotes a finite dissipative ensemble of commensurate clocks selected by geometry-dependent coupling. Unusually careful scope-setting for this corner of the literature. [p4]
+- N=120 is a coarse-grained resonant-domain count, not tubulin dimers; finite-size robustness tested at N=50/120/250/500 with r=0.5 boundary convergence. [p6]
+- Meninges claim: "only MHz frequencies can reflect from 14 layers" — the group's consciousness marker lives in MHz scalp patterns (DDG). [p11, refs 33–34]
+- Curvature→collapse link: curved microtubules store more lattice energy AND break more (Tsitkov 2022), so geometry literally prices the collapse-time proxy. [p12]
+
+**Speculation / cross-corpus threads:**
+
+- The corpus's plasma monograph (M2190ECF30984) argues ionospheric plasmas self-organize into coherent oscillator structures — formally isomorphic to the PTC: a double layer is a phase boundary, a filament a resonance chain. Same grammar, planetary scale.
+- Coaxial atom probe paper (M583955B1716F, also Singh) is the instrumentation sibling — the group's hardware habit of reading "hidden circuits" recurs.
+- The candidate falsifier structure (two nulls kill it) is a useful yardstick for the weird-archive's many unfalsifiable resonance theories.
+- Open question for the wiki: does the normalized proxy survive independent reimplementation? A browser-scale Sakaguchi–Kuramoto re-run exists at private-wiki/viz/orch-or/ — plateau and de-locking phenomenology reproduce with qualitative fidelity.
+
+**Filename/Title agreement:** Filename is the ScienceDirect PII slug; metadata title matches the article exactly. No discrepancy.
+
+**OCR uncertainty:** None — pdf-text extraction, all 19 pages legible including equations (with expected inline-math mangling).

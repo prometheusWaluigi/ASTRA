@@ -1,0 +1,38 @@
+# core_ode.md
+
+Status: unreviewed local-model draft (2026-09-24T22:54:27+00:00)
+
+- Source ID: `GH-197CA2FA4551`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/docs/api/core_ode.md>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `docs/api/core_ode.md`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 163 anchors; verify against the source.
+
+# Source Note: GH-197CA2FA4551
+
+**Subject**: Core ODE Model API for simulating narrative dynamics in a private wiki archive.  
+**Genre**: Technical documentation, experimental modeling.  
+**Main Ideas**:  
+- Simulation of narrative entropy, suppression, and trust dynamics using ordinary differential equations (ODEs).  
+- Parameters include entropy dampening, suppression decay, and exogenous noise.  
+- The model tracks narrative collapse based on thresholds tied to trust decay and entropy growth.  
+
+**Striking Details**:  
+- The model includes a `check_collapse` function, which evaluates whether narrative collapse has occurred based on time and state variables [GH-197CA2FA4551 L122].  
+- Trust decay and entropy growth are modulated by parameters such as `beta2` and `alpha2` [GH-197CA2FA4551 L18, L46].  
+- The transparency function is customizable, with an example given: `"return 0.1 + 0.2 * N"` [GH-197CA2FA4551 L149].  
+- The simulation returns metrics such as `fcc`, `rsd`, and `overlap`, which may relate to narrative coherence or fragmentation [GH-197CA2FA4551 L115].  
+
+**Coverage Limit**: Sampled anchors (36 of 163 total) suggest incomplete exploration of the source.  
+
+## Speculation
+
+- Could the `check_collapse` function be used to predict narrative instability in real-world applications, such as social systems or media ecosystems?  
+- What is the relationship between `fcc` (Fractured Character Continuity) and `rsd` (Recursive Suppression Disclosure) in the context of narrative modeling?  
+- How might the transparency function influence the interpretation of narrative metrics like `overlap`?  
+- Is the model intended for use in analyzing text archives, or does it have broader applications in computational linguistics or psychology?  
+
+**Claims**:  
+- The model's ability to simulate narrative collapse is not explicitly validated in the source [GH-197CA2FA4551 L139].  
+- The connection between suppression and entropy growth is theoretical, not empirically tested [GH-197CA2FA4551 L46, L18].

@@ -1,0 +1,40 @@
+# subtheoryKLK15IDOCMSSMore.md
+
+Status: unreviewed local-model draft (2026-09-24T22:56:15+00:00)
+
+- Source ID: `GH-2331E6F21CB2`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/subTheories/subtheoryKLK15IDOCMSSMore.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/subTheories/subtheoryKLK15IDOCMSSMore.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 121 anchors; verify against the source.
+
+# Source Note: GH-2331E6F21CB2
+
+**Subject**: The KLK15–IDO Axis in Chronic Multi-System Syndromes (CMSS), including ME/CFS, Long COVID, POTS, hEDS, fibromyalgia, and MCAS.  
+**Genre**: Scientific review or hypothesis-driven analysis, likely intended for academic or clinical reference, with citations from PubMed Central (PMC) and other sources.  
+**Main Ideas**:  
+- KLK15 and IDO enzymes (IDO1/IDO2) are implicated in the pathogenesis of CMSS, suggesting biochemical pathways that may underlie chronic immune, metabolic, and neurological symptoms.  
+- Genetic variants in KLK15 and IDO genes are associated with susceptibility to conditions like hEDS, ME/CFS, and fibromyalgia.  
+- Dysregulation of the IDO pathway may lead to neuro-immune-metabolic imbalances, with consequences such as neurotoxicity, serotonin depletion, and immune dysfunction.  
+- Upstream and downstream markers of the kallikrein-kinin system (e.g., kininogen, bradykinin) are used to infer KLK15 activity in CMSS patients.  
+
+**Striking Details**:  
+- A rare missense variant in **KLK15** (p.Gly226Asp) is described as segregating with hEDS in familial cases and enriched in sporadic cases ([GH-2331E6F21CB2 L60]).  
+- A **nonsense variant** in **IDO2** (Tyr359Ter, rs4503083) is reported in a high proportion of ME/CFS patients, with loss-of-function (LOF) implications ([GH-2331E6F21CB2 L75]).  
+- A 2024 study by Porebski et al. suggests a link between mast cells and kallikrein pathways in CMSS, though the anchor is truncated ([GH-2331E6F21CB2 L121]).  
+- Genetic analysis of 197 hEDS cases identified significant enrichment of rare damaging variants in the KLK gene family (p = 2.28×10⁻¹⁴) ([GH-2331E6F21CB2 L50]).  
+- The IDO metabolic trap hypothesis suggests that ME/CFS may involve a pathological depletion of tryptophan or its dysregulated metabolism ([GH-2331E6F21CB2 L121]).  
+
+**Coverage Limit**: Sampled anchors (31 of 121). This does not imply exhaustive reading of the document.  
+
+## Speculation  
+- Could the overlap between KLK15 and IDO dysregulation suggest a unified framework for understanding CMSS, or are these pathways independently disrupted in different conditions?  
+- What role might the **kallikrein-kinin system** play in the neuro-inflammation and pain mechanisms observed in hEDS and fibromyalgia?  
+- Are the genetic variants in KLK15 and IDO genes **causal** or merely **correlative** in the context of CMSS?  
+- Might therapies targeting **IDO1/IDO2** or **KLK15** offer cross-syndrome benefits for patients with overlapping CMSS conditions?  
+
+**Claims**:  
+- Genetic defects in kallikreins (e.g., KLK15) are proposed as inherited risk factors for hEDS and its comorbidities, though these are inferred from associations, not causation ([GH-2331E6F21CB2 L52]).  
+- The IDO metabolic trap hypothesis posits that ME/CFS involves a depletion of tryptophan, though this is framed as a hypothesis, not a fact ([GH-2331E6F21CB2 L121]).  
+- Alpha-tryptasemia (extra copies of *TPSAB1*) is reported as a genetic link between EDS, POTS, and MCAS, though the evidence is summarized from external sources ([GH-2331E6F21CB2 L52]).

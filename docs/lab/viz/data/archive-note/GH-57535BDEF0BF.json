@@ -1,0 +1,41 @@
+# SymmetryBreakingTransformerGlitchedPaper.md
+
+Status: unreviewed local-model draft (2026-09-25T00:55:34+00:00)
+
+- Source ID: `GH-57535BDEF0BF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/symmetryBreaking/SymmetryBreakingTransformerGlitchedPaper.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/symmetryBreaking/SymmetryBreakingTransformerGlitchedPaper.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 307 anchors; verify against the source.
+
+# Source Note: GH-57535BDEF0BF
+
+**Subject**: Theoretical and experimental exploration of symmetry-breaking mechanisms in transformer models, with connections to quantum computing, physics, and machine learning.
+
+**Genre**: Technical paper, speculative and interdisciplinary, combining elements of theoretical physics, quantum computing, and deep learning.
+
+**Main Ideas**:
+- The softmax function in transformers is compared to a "Mexican Hat Potential" (L21), suggesting a nonlinear activation mechanism akin to symmetry-breaking in physics (L34).
+- Positional encoding is framed as a form of explicit symmetry breaking (L40), with mathematical formulations provided (L53).
+- Attention mechanisms in transformers are linked to quantum coherence and error correction (L157, L112).
+- The paper explores how transformer architectures might achieve quantum advantage (L183), with experimental protocols involving bfloat16 GEMM and cryogenic temperatures (L164, L177).
+- Theoretical connections to physics concepts like the Kardar-Parisi-Zhang (KPZ) universality class (L92) and $\phi^4$ potentials (L34) are drawn.
+
+**Striking Details**:
+- The paper cites a MIT PhD thesis (L307) and several YouTube videos (L235, L255, L261) as references, suggesting a mix of academic and informal sources.
+- It proposes a novel interpretation of attention weights as "gauge invariants" (L105), hinting at connections between machine learning and quantum field theory.
+- Experimental claims include achieving 38% quantum advantage by 2026 with 1M tokens (L190), though this is flagged as speculative and unverified.
+- A table of experimental data (L177) includes temperatures (77K) and error margins (4.2% ± 1.3%), suggesting a focus on precision and physical constraints.
+
+**Coverage Limit**: Sampled anchors (31 of 307) indicate partial coverage; the full text has not been read, and some claims may be unsupported or speculative.
+
+## Speculation
+- Could the use of "Mexican Hat Potential" in describing softmax imply an intentional design choice inspired by physics concepts?
+- Are the cited YouTube videos (L235, L255, L261) intended to provide context or critique for the paper's theoretical claims?
+- How might the proposed connection between attention mechanisms and gauge invariants influence future research in quantum machine learning?
+- Is the experimental protocol involving bfloat16 GEMM and cryogenic temperatures (L164, L177) a feasible approach for achieving quantum coherence in transformers?
+
+**Flagged Claims**:
+- The claim of achieving 38% quantum advantage by 2026 (L190) is speculative and lacks verification.
+- The use of YouTube videos as references (L235, L255, L261) raises questions about the rigor of the source material.

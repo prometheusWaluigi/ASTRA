@@ -1,0 +1,41 @@
+# MATHEMATICAL_FOUNDATIONS.md
+
+Status: unreviewed local-model draft (2026-09-24T21:40:58+00:00)
+
+- Source ID: `GH-2CC841C2751A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/docs/MATHEMATICAL_FOUNDATIONS.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `docs/MATHEMATICAL_FOUNDATIONS.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 183 anchors; verify against the source.
+
+# Source Note: GH-2CC841C2751A
+
+**Subject**: The document outlines a theoretical framework for the "Quantum-Plasmoid" model, focusing on the mathematical underpinnings of consciousness-related phenomena, particularly through the lens of "CAP pathways" (possibly Consciousness-Associated Pathways).
+
+**Genre**: Academic or pseudo-academic technical documentation, likely intended for a niche audience familiar with quantum mechanics, computational neuroscience, and advanced mathematics.
+
+**Main Ideas**:
+- A Hamiltonian $\hat{H}$ is defined on a "CAP manifold" (L183).
+- Consciousness is modeled through the ORCHARD theorem, which involves constrained optimization (L5, L9).
+- The framework incorporates entropic potential $V_{\text{CAP}}(r)$ derived from local CAP tradeoffs (L47).
+- Spectral isomorphism is introduced, with eigenvalues $\rho_n$ defined as $\rho_n = \frac{1}{2} + i t_n$ (L63).
+- A metric tensor is derived from the Hessian, capturing the curvature of the optimization landscape (L71).
+- Quantum mechanics is integrated through the concept of quantum superposition of CAP states and quantum walks on CAP manifolds (L175, L179).
+
+**Striking Details**:
+- The document references computational methods like persistent homology (L148) and the calculation of fractal dimension (L164).
+- A table is presented comparing CAP configurations for different qualia types, such as "Sensory" and "Psychedelic" (L168). Sensory qualia show "High Consistency (C)" with a fractal dimension of ~1.45, while psychedelic qualia exhibit "High A, low C" with a fractal dimension >1.7.
+- The alignment metric is described as a measure of CAP coherence between qualia types (L113).
+- A boundary condition is defined: $\psi(r \rightarrow \infty) = e^{i\theta}\psi(r \rightarrow -\infty)$ (L51).
+- The Hamiltonian eigenvalue equation is presented: $H_{CAP}\psi_n = \lambda_n\psi_n$ (L55).
+
+**Coverage Limit**: Sampled anchors only; not all text has been reviewed. The document contains 183 anchors, but only 29 are shown here, selected evenly.
+
+## Speculation
+- Could the "CAP manifold" be a metaphor for a non-physical space, or does it imply a mathematical structure with physical analogs?
+- What is the relationship between the "entropic potential" $V_{\text{CAP}}(r)$ and the observed fractal dimensions in EEG signals (L160)?
+- Does the integration of quantum mechanics into CAP models suggest a novel approach to understanding consciousness, or does it reflect a broader trend of quantum-inspired theories in cognitive science?
+- How might the alignment metric (L113) be experimentally validated, given the abstract nature of "qualia types"?
+
+**Extraordinary or Fictional Claims**: The term "quantum-plasmoid" and the integration of quantum mechanics with consciousness-related phenomena appear speculative. The use of "CAP pathways" and "entropic potential" is not standard in mainstream neuroscience or physics. The framework's reliance on abstract mathematical constructs like spectral isomorphism and quantum walks on CAP manifolds may be theoretical or fictional.

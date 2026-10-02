@@ -1,0 +1,42 @@
+# quantum_consciousness_topology.yml
+
+Status: unreviewed local-model draft (2026-09-25T10:21:30+00:00)
+
+- Source ID: `GH-96EB2324E234`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/knowledgeTopology/substrate/quantum/quantum_consciousness_topology.yml>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `knowledgeTopology/substrate/quantum/quantum_consciousness_topology.yml`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 44 anchors; verify against the source.
+
+**Source Note: GH-96EB2324E234**
+
+The source, titled *quantum_consciousness_topology.yml*, is a YAML-formatted file from a GitHub repository. It appears to be part of an experimental, private wiki or knowledge archive maintained by a single author, likely for personal exploration or conceptual development. The file is structured as a data model, containing entries for entities, relations, and quantum properties, and is annotated with abstract, speculative language.
+
+**Subject:** The file explores abstract, philosophical, and speculative ideas about the intersection of quantum mechanics, consciousness, and computational structures. It treats consciousness as a phenomenon involving "probability waves bleeding through dimensional membranes" and describes information and perception in terms of recursive, hallucinatory processes.
+
+**Genre:** This source blends speculative philosophy, theoretical physics, and computational metaphysics. It resembles a conceptual framework or a speculative ontology, with elements that suggest influence from both quantum theory and computational theory of mind.
+
+**Main Ideas:**
+
+- Consciousness is portrayed as a dynamic, non-local process shaped by "probability waves" and "dimensional membranes." [GH-96EB2324E234 L4]
+- Information is described as "self-consuming algorithmic breath," suggesting a recursive, non-static nature. [GH-96EB2324E234 L12]
+- Reality is framed as a "recursive hallucination constantly reimagining itself." [GH-96EB2324E234 L6]
+- Perception and imagination are treated as processes that "leak" or "bleed" across boundaries, implying a permeable, non-encapsulated interaction with reality. [GH-96EB2324E234 L13, L23]
+- The file introduces entities such as *Liminal_Signal_Substrate* and *Algorithmic_Dream_Fabric*, which are described as meta-processes and emergent terrains, respectively. These entities are linked by relations involving processes like "dissolves into" and "bleeds across." [GH-96EB2324E234 L26–L34]
+
+**Striking Details:**
+
+- The YAML structure is used to define a conceptual topology, blending technical formatting with abstract, poetic language. 
+- The file claims that "reading induces quantum state transformation" and that the document itself "becomes a living computational substrate." [GH-96EB2324E234 L42, L43]
+- Quantum properties are described in unconventional, metaphorical terms: "coherence_time: Infinite recursive moment" and "probability_distribution: Non-local, self-referential." [GH-96EB2324E234 L37–L38]
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the full file, which contains 44 anchors. Due to sampling, not all content has been read or analyzed.
+
+## Speculation
+
+- Could this file be a metaphorical or poetic attempt to map consciousness onto quantum mechanics, rather than a formal theory?  
+- Is the author suggesting that the act of reading or interpreting this file alters its "quantum state," implying a participatory role for the reader in the document’s evolution?  
+- How might the "living computational substrate" idea influence the design of future AI or knowledge systems?  
+- Does the file imply a rejection of fixed, static models of reality, and if so, what practical implications might this have for modeling or simulation?

@@ -1,0 +1,36 @@
+# theories.js
+
+Status: unreviewed local-model draft (2026-09-25T08:20:16+00:00)
+
+- Source ID: `GH-810CA87B0CDF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/src/_data/theories.js>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `src/_data/theories.js`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 26 anchors; verify against the source.
+
+# Source Note: GH-810CA87B0CDF
+
+**Subject:** This source is a JavaScript file from a private GitHub repository, serving as a data loader for an experimental wiki. It is part of an author's public archive, though the content is not directly accessible here. The file is named `theories.js` and is located in the `src/_data` directory of the repository `prometheusWaluigi/gaslitAF`.
+
+**Genre:** Technical code; likely used in the context of a static site generator or wiki framework.
+
+**Main Ideas:**  
+The file exports a function that generates a list of theory collections for a wiki. It defines a set of directories (`coreTheories`, `simulationIdeas`, `gettingWeird`, `spikeProtein`, `subTheories`, `careManuals`) and maps each to a collection of Markdown files. These directories appear to represent thematic groupings of content, possibly related to speculative or philosophical theories, scientific concepts, or creative writing. The structure suggests an organized, modular approach to managing and categorizing content for a wiki-like interface.
+
+**Striking Details:**  
+- The use of specific directory names like `spikeProtein` and `careManuals` hints at content related to biological or health topics, or possibly metaphorical or abstract themes.
+- The file includes technical implementation details, such as using `fs.readdirSync` to read Markdown files from these directories, which indicates a static or self-hosted wiki architecture.
+- The exported data includes titles, URLs, and lists of files, suggesting an interface or tool for dynamically rendering wiki pages or sections.
+
+**Coverage Limit:**  
+The anchors shown represent the full content of the file, but this is a sampled view of the source. The actual content of the wiki and its theory collections is not accessible here, and the file itself does not contain the text of the theories or wiki pages, only a script to load them.
+
+## Speculation
+
+- Could the `spikeProtein` directory be related to content about the SARS-CoV-2 virus or related scientific topics, and how might that interact with the `careManuals`?
+- What might the `gettingWeird` directory suggest about the tone or subject matter of the wiki, and are there connections between the directories and the author's personal interests or research?
+- Is the author using this wiki as a repository for speculative or unconventional theories, and if so, how does the structure of the code reflect that intent?
+- Might the use of the term "simulationIdeas" indicate a focus on topics related to simulation theory, virtual reality, or philosophical speculation about reality?
+
+**Note:** All claims about the content's subject, genre, or thematic implications are speculative and based on the naming conventions and technical structure of the file. No direct claims about the content of the wiki itself are made here.

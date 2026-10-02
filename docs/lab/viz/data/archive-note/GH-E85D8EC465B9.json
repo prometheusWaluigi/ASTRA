@@ -1,0 +1,47 @@
+# test_narrative_ascii.py
+
+Status: unreviewed local-model draft (2026-09-25T06:51:21+00:00)
+
+- Source ID: `GH-E85D8EC465B9`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/tests/archive/test_narrative_ascii.py>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `tests/archive/test_narrative_ascii.py`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 261 anchors; verify against the source.
+
+# Source Note: GH-E85D8EC465B9
+
+**Subject**: This file appears to be a Python script for testing narrative generation functionality within a software project, likely related to data visualization or simulation.
+
+**Genre**: Technical software testing script, written in Python.
+
+**Main Ideas**:
+- The script tests the ability to generate and visualize narrative sequences based on simulated or analyzed data fields.
+- It uses libraries such as NumPy and Matplotlib for numerical computation and plotting.
+- The narrative generation process involves detecting and analyzing "events" within a field, which may represent peaks, valleys, or other features.
+- The script saves narrative outputs as JSON files and generates visualizations of the detected events.
+
+**Striking Details**:
+- [GH-E85D8EC465B9 L1] The script begins with a multi-line comment or string, though the content is not visible in the sampled anchors.
+- [GH-E85D8EC465B9 L7] Imports the `os` module, which is used for file system operations.
+- [GH-E85D8EC465B9 L12] Sets the Matplotlib backend to 'Agg' for non-interactive plotting.
+- [GH-E85D8EC465B9 L23] Indicates successful import of ASTRA core modules, suggesting integration with a larger project.
+- [GH-E85D8EC465B9 L29] Creates an output directory for storing narrative data and visualizations.
+- [GH-E85D8EC465B9 L34] Defines a custom JSON encoder to handle complex or non-standard data types.
+- [GH-E85D8EC465B9 L67] Detects valleys in the data field, which may correspond to negative features or anomalies.
+- [GH-E85D8EC465B9 L73] Counts the number of detected valleys using NumPy.
+- [GH-E85D8EC465B9 L84] Calculates the intensity of detected peaks.
+- [GH-E85D8EC465B9 L134] Defines a function `generate_narrative` that creates a narrative sequence based on input parameters such as duration and steps.
+- [GH-E85D8EC465B9 L150] Computes the time step (`dt`) for the simulation or evolution process.
+- [GH-E85D8EC465B9 L167] Updates the narrative with current field data.
+- [GH-E85D8EC465B9 L200] Prints a message indicating the start of narrative generation.
+- [GH-E85D8EC465B9 L206] Specifies a path for saving the narrative output as a JSON file.
+- [GH-E85D8EC465B9 L233] Sets plot titles to indicate the number of events detected in each frame.
+- [GH-E85D8EC465B9 L244] Prints an event summary after processing.
+
+**Coverage Limit**: Sampled anchors (43 of 261) mean this note does not cover all content of the file.
+
+## Speculation
+- Could the narrative generation function be part of a larger system for automated storytelling or data-driven content creation?
+- Are the "events" being detected related to real-world phenomena or purely simulated for testing purposes?
+- What is the role of the "Mentor archetype" mentioned in [GH-E85D8EC465B9 L123], and how does it influence narrative structure?

@@ -1,0 +1,37 @@
+# run_full_analysis.py
+
+Status: unreviewed local-model draft (2026-09-25T07:21:28+00:00)
+
+- Source ID: `GH-2D8A64E9E4BE`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/run_full_analysis.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `run_full_analysis.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 140 anchors; verify against the source.
+
+**Source Note: GH-2D8A64E9E4BE**
+
+**Subject:** This is a Python script named `run_full_analysis.py` from the GitHub repository `prometheusWaluigi/gaslit-af_variant_analysis`. It appears to be part of a computational pipeline for analyzing genetic variation data, specifically working with VCF (Variant Call Format) files, which are commonly used in genomics to store information about genetic variants.
+
+**Genre:** Technical script, likely part of a bioinformatics or computational biology tool. The script is written in Python and uses libraries such as `subprocess`, `logging`, and `rich` for progress tracking.
+
+**Main Ideas:**
+- The script runs a "direct analysis" on VCF files located in a specified data directory.
+- It generates a combined HTML report summarizing the analysis results.
+- It includes functionality to open the generated report in a web browser, depending on the operating system.
+- The script uses command-line arguments to configure input and output directories, as well as other parameters like chunk size.
+- Error handling is implemented to manage failures during the report generation process.
+
+**Striking Details:**
+- The script starts with a shebang line (`#!/usr/bin/env python3`), indicating it is intended to be run directly as a standalone executable.
+- The use of the `rich` library suggests an emphasis on user-facing progress tracking and output formatting.
+- The script defines a function `open_browser(report_file)` to attempt to open the HTML report using platform-specific commands (e.g., `xdg-open` on Linux, `start` on Windows).
+- It logs informational and error messages using the `logging` module, with a custom log format [GH-2D8A64E9E4BE L22].
+- The script defines a `main()` function, which is called at the end of the file [GH-2D8A64E9E4BE L140].
+
+**Coverage Limit:** Anchors shown are sampled evenly from 140 total anchors; this means the full content has not been read.
+
+## Speculation
+- Could this script be part of a larger pipeline that includes variant calling or annotation tools? The focus on VCF files suggests integration with such workflows.
+- What is the purpose of the "chunk size" parameter, and does it relate to processing performance or data segmentation?
+- Are there any dependencies on external tools or APIs that are not explicitly mentioned in the script? The use of `subprocess` implies potential interaction with external commands.

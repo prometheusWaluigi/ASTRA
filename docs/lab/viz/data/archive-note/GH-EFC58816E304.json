@@ -1,0 +1,40 @@
+# InformationTheoreticPanpsychism.md
+
+Status: unreviewed local-model draft (2026-09-25T03:15:25+00:00)
+
+- Source ID: `GH-EFC58816E304`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/quantumMayhem/InformationTheoreticPanpsychism.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/quantumMayhem/InformationTheoreticPanpsychism.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 238 anchors; verify against the source.
+
+```markdown
+# Source Note: GH-EFC58816E304
+
+**Subject:** A speculative exploration of panpsychism through quantum mechanics and information theory.
+
+**Genre:** Academic-style theoretical paper, blending philosophy of mind with quantum physics and computational neuroscience.
+
+**Main Ideas:**
+- Consciousness arises from quantum coherence in biological systems, particularly neural microtubules.
+- Quantum effects (e.g., coherence, tunneling) are proposed as foundational to cognitive processes.
+- The paper references interpretations of quantum mechanics (e.g., QBism) and their implications for understanding consciousness.
+- Consciousness is framed as an optimization problem, with a focus on 1.58-bit efficiency in information processing.
+- Experimental validations are cited, though many are indirect or speculative, involving coupling between geomagnetic plasma fluctuations and EEG signatures during conscious states.
+
+**Striking Details:**
+- [GH-EFC58816E304 L51]: Mentions "retroactive quantum effects" and their resemblance to conscious retrospection.
+- [GH-EFC58816E304 L142]: Claims statistically significant (p<0.01) coupling between geomagnetic plasma fluctuations and EEG signatures during conscious states.
+- [GH-EFC58816E304 L102]: Notes that FP8 and BF16 tensor computing formats achieve optimal inference through 1.58-bit effective representation.
+- [GH-EFC58816E304 L132]: References quantum tunneling in synaptic vesicle release, with isotopic substitution affecting transmission rates.
+- [GH-EFC58816E304 L172]: Asserts that quantum effects demonstrably influence classical outcomes, suggesting causal efficacy.
+
+**Coverage Limit:** Sampled anchors (30 of 238 total) mean not all content has been read or analyzed.
+
+## Speculation
+- Could the proposed coupling between geomagnetic plasma and EEG signatures during conscious states imply a broader, unexplored interaction between biological systems and Earth's electromagnetic environment?
+- Does the mention of 1.58-bit efficiency in consciousness relate to broader computational or information-theoretic constraints in biological systems?
+- Are the references to quantum coherence in neural microtubules consistent with other models of quantum cognition or do they represent a novel framework?
+- How might the convergence of panpsychism with quantum coherence theories challenge or complement current computational models of consciousness?
+```

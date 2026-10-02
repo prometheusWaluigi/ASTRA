@@ -1,0 +1,40 @@
+# 10_believer_lockstep.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:23:37+00:00)
+
+- Source ID: `GH-380C3AECBD92`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/generated/10_believer_lockstep.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/generated/10_believer_lockstep.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 39 anchors; verify against the source.
+
+# Source Note: GH-380C3AECBD92
+
+**Subject**: This document appears to be a configuration file for a computational simulation, likely related to social dynamics, belief propagation, or network behavior under stress. The title "Believer Lockstep (Echo-Chamber Stress)" suggests a focus on how belief systems might evolve or lockstep within a network, especially under conditions of echo-chamber stress.
+
+**Genre**: Technical configuration file, likely part of a larger simulation or research project. The syntax resembles YAML, commonly used for configuration in scientific and computational contexts.
+
+**Main Ideas**:  
+- The simulation models a network of agents interacting with parameters that influence belief dynamics (e.g., `believer_weight`, `skeptic_weight`, `agnostic_weight`).  
+- The network is defined as an Erdős–Rényi graph with 2,500 agents, 8 connections per agent, and a 20% rewire probability [GH-380C3AECBD92 L23–L27].  
+- Parameters such as `alpha1`, `beta1`, `gamma1`, `alpha2`, and `beta2` may represent influence coefficients or behavioral thresholds within the simulation [GH-380C3AECBD92 L14–L19].  
+- The simulation includes noise and leak mechanisms, potentially modeling uncertainty, external interference, or information decay [GH-380C3AECBD92 L20, L22].  
+- Output settings indicate that time-series data, summaries, and plots are generated and saved [GH-380C3AECBD92 L36–L38].
+
+**Striking Details**:  
+- The use of "Echo-Chamber Stress" in the description may indicate a focus on how belief systems become polarized or rigid in isolated or highly connected groups [GH-380C3AECBD92 L2].  
+- The `epsilon_overlap` parameter suggests a threshold for overlapping beliefs or interactions [GH-380C3AECBD92 L32].  
+- The `trust_slope_threshold` and `entropy_critical` may relate to conditions under which trust or uncertainty becomes critical in the simulation [GH-380C3AECBD92 L33–L34].
+
+**Coverage Limit**:  
+This note is based on sampled anchors from the source. The full file may contain additional parameters, comments, or context not included here.
+
+## Speculation
+
+- Could this simulation model the spread of misinformation or ideological lockstep in online communities? The use of "echo-chamber" and weighted belief states raises such possibilities.
+- What does the "leak_frequency" parameter represent in this context? Might it relate to the rate at which information or belief systems are exposed to external influences or decay?
+- How might the `entropy_critical` and `trust_slope_threshold` interact to model the transition between stable and unstable belief states within the network?
+- Is the author (GASLIT-420) part of a larger group or project working on social simulation models, or is this an isolated experimental file?
+
+**Note**: The author's name, "GASLIT-420," and the presence of fictional or abstract concepts (e.g., "Echo-Chamber Stress") are flagged as potentially extraordinary or fictional. This is not confirmed as fact.

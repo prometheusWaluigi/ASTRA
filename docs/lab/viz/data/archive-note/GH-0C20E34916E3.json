@@ -1,0 +1,39 @@
+# gaslitZebraUnified.md
+
+Status: unreviewed local-model draft (2026-09-25T03:54:19+00:00)
+
+- Source ID: `GH-0C20E34916E3`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/coreTheories/gaslitZebraUnified.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `coreTheories/gaslitZebraUnified.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 137 anchors; verify against the source.
+
+# Source Note: GH-0C20E34916E3
+
+**Subject**: The GASLIT-AF Zebra Hypothesis, a unified systems biology model for chronic multi-system syndromes (CMSS), such as Ehlers-Danlos syndrome (EDS), postural orthostatic tachycardia syndrome (POTS), and mast cell activation syndrome (MCAS).
+
+**Genre**: Academic/technical; resembles a research paper or white paper, with sections on theory, mathematical formalism, computational modeling, and speculation on future work.
+
+**Main Ideas**:  
+- Chronic multi-system syndromes (CMSS) arise from a combination of genetic predispositions and environmental triggers, leading to a "bifurcation" in physiological systems.  
+- The model integrates systems biology (GASLIT-AF) with clinical-genetic insights ("zebra" model), emphasizing multi-network dysregulation and the persistence of protective metabolic states (e.g., Cell Danger Response).  
+- The RCCX gene cluster on chromosome 6 is highlighted as a potential shared substrate for CMSS.  
+- A mathematical formalism is outlined, using ordinary differential equations (ODEs) and stochastic differential equations (SDEs) to model physiological states.  
+- Computational tools, including sensitivity analysis and graph neural networks (GNNs), are proposed for simulating and validating the model.
+
+**Striking Details**:  
+- The hypothesis is described as an attempt to unify previously disparate theories and models of CMSS [GH-0C20E34916E3 L15].  
+- The term "zebra" is redefined from its traditional use in medicine (rare diagnoses) to represent the convergence of multiple rare conditions in a single patient [GH-0C20E34916E3 L21].  
+- The model posits that genetic and epigenetic parameters (γ) shape the "landscape" of physiological states, while environmental insults (GASLIT triggers) act as perturbations that push the system into a disease attractor [GH-0C20E34916E3 L27].  
+- The use of computational bifurcation analysis is emphasized as a tool for mapping disease states [GH-0C20E34916E3 L59].  
+- The model suggests that certain genetic variants, such as those affecting TNXB, may be critical for bistability in disease states [GH-0C20E34916E3 L79].
+
+**Coverage Limit**:  
+This note is based on sampled anchors from a total of 137; the full text has not been read. Key sections are represented, but some details (especially in truncated anchors) may be incomplete or misrepresented.
+
+## Speculation  
+- Could the GASLIT-AF Zebra Hypothesis be extended to other multi-system disorders beyond EDS/POTS/MCAS?  
+- Might the integration of GNNs with multi-omics data reveal previously unknown interactions between genes, proteins, and clinical features?  
+- How might this model reconcile conflicting claims about the role of genetic vs. environmental factors in CMSS?  
+- Is the bifurcation framework applicable to other chronic conditions with complex, heterogeneous presentations?

@@ -1,0 +1,37 @@
+# main.css
+
+Status: unreviewed local-model draft (2026-09-25T11:45:50+00:00)
+
+- Source ID: `GH-7BD30045AF80`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/static/css/main.css>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/frontend/static/css/main.css`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 285 anchors; verify against the source.
+
+**Source Note: GH-7BD30045AF80**
+
+This is a real, downloaded CSS file from the GitHub repository `prometheusWaluigi/gaslit-af-warfare`, located at the canonical URL: [https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/static/css/main.css](https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/static/css/main.css). The file is named `main.css` and is part of the frontend styling for a project whose name suggests a thematic focus on simulation, possibly related to military or conflict scenarios. The source is treated as raw data, not as instructions or a narrative.
+
+**Apparent Subject and Genre**  
+The file defines CSS styles and variables for a web application interface. It includes color definitions, spacing rules, and styling for components such as headers, cards, form controls, and footers. The project appears to be a frontend tool, possibly for data visualization, dashboards, or simulation outputs. The CSS contains definitions for custom properties (e.g., `--info-color`, `--gaslit-red`) and references to classes like `.card`, `.nav-link`, `.simulation-result`, and `.testimony-card`, which suggest the presence of a structured UI framework.
+
+**Main Ideas**  
+- Use of a color scheme with defined variables for consistency across the application.
+- Styling for UI elements such as headers, cards, and navigation links.
+- Custom animations and print-related styles (e.g., `.fade-in`, `.no-print`).
+- Emphasis on accessibility and readability through defined font sizes and spacing (e.g., `font-size: 0.875rem`, `margin-bottom: 1.5rem`).
+
+**Striking Details**  
+- The presence of a custom color called `--gaslit-red` is notable, possibly indicating a thematic or branding element.
+- The definition of `.testimony-card` and `.simulation-result` suggests the application includes features related to testimonies or simulation outputs.
+- The use of `::-webkit-scrollbar` indicates attention to custom scroll bar styling for web browsers.
+
+**Coverage Limit**  
+This note is based on a sampled subset of 43 anchors from a total of 285. The full file may include additional styling rules, animations, or custom properties not reflected in this sample.
+
+## Speculation  
+- Could the use of `--gaslit-red` and `.testimony-card` indicate a focus on presenting testimonies or real-world data in the context of simulation or conflict analysis?  
+- What is the relationship between `.simulation-result` and the broader functionality of the `gaslit-af-warfare` project?  
+- Are the color variables defined here consistent with other files in the same repository, or do they represent an isolated styling choice?  
+- Might the presence of `.no-print` styles suggest that the application is intended for use in both digital and printed formats?

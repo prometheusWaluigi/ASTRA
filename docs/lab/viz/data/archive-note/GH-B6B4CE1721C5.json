@@ -1,0 +1,39 @@
+# mkdocs.yml
+
+Status: unreviewed local-model draft (2026-09-25T12:11:49+00:00)
+
+- Source ID: `GH-B6B4CE1721C5`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/mkdocs.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `mkdocs.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 64 anchors; verify against the source.
+
+# Source Note: GH-B6B4CE1721C5
+
+**Subject:** Configuration file for an experimental private wiki, part of a public archive. This file defines the structure and appearance of a documentation site related to symbolic dynamical systems analysis.
+
+**Genre:** Technical configuration (YAML format), likely part of a software project or research archive.
+
+**Main Ideas:**  
+- The wiki is titled *Piston Leak Lab* and is associated with the PrometheusWaluigi GitHub account.  
+- It focuses on symbolic dynamical systems, specifically the analysis of "institutional narrative collapse."  
+- The site's structure includes documentation, API references, examples, and a section for citations and licensing.  
+- The configuration includes theming options (e.g., "deep purple" and "amber" as primary and accent colors), integration with tools like MathJax, and features such as code annotation and copy capabilities.
+
+**Striking Details:**  
+- The copyright is attributed to "GASLIT-420 & R.O.B." [GH-B6B4CE1721C5 L64].  
+- The site includes an API documentation section, with subpages for a "Core ODE Model" and an "Agent-Based Model" [GH-B6B4CE1721C5 L44–L45].  
+- Navigation features such as "instant" and "tracking" are enabled [GH-B6B4CE1721C5 L12–L14].  
+- The site is configured with external JavaScript libraries, including MathJax for rendering mathematical notation [GH-B6B4CE1721C5 L37].  
+- There is an integration with Font Awesome for icons, including links to GitHub and Twitter [GH-B6B4CE1721C5 L60–L61].  
+- The configuration includes a "License" page, suggesting the project may be open-source or otherwise governed by formal terms [GH-B6B4CE1721C5 L55].
+
+**Coverage Limit:**  
+This note is based on sampled anchors from a total of 64, meaning not all content has been reviewed or analyzed.
+
+## Speculation  
+- Could the use of symbolic dynamical systems in this archive be related to modeling complex social or political phenomena?  
+- Is "GASLIT-420" a pseudonym or a group name, and what is the connection to "R.O.B."?  
+- Might the inclusion of both an ODE and an agent-based model indicate a multi-method approach to analyzing narrative collapse?  
+- What is the significance of the name *Piston Leak Lab* in the context of this technical and research-oriented wiki?

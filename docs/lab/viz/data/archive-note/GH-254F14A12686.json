@@ -1,0 +1,37 @@
+# test_caching.py
+
+Status: unreviewed local-model draft (2026-09-25T07:16:36+00:00)
+
+- Source ID: `GH-254F14A12686`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/tests/unit/test_caching.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `tests/unit/test_caching.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 120 anchors; verify against the source.
+
+**Source Note: GH-254F14A12686**
+
+**Subject:** This source is a Python test script from a GitHub repository, focusing on the implementation and testing of a caching system for variant analysis. It is part of the `tests/unit/test_caching.py` file in the `prometheusWaluigi/gaslit-af_variant_analysis` repository.
+
+**Genre:** Unit testing, software development, and data analysis. The script tests the functionality of a class named `AnalysisCache`, which appears to manage caching of data derived from variant analysis (e.g., gene counts, variant dataframes).
+
+**Main Ideas:**  
+- The caching system supports initialization, storage, retrieval, and expiration of cached entries.  
+- Tests include verifying that cache entries are stored and retrieved correctly with and without parameters.  
+- The system checks that expired entries are removed and that cache statistics (e.g., number of entries, total size) are computed accurately.  
+- The cache can be enabled or disabled, and its behavior is tested under both conditions.
+
+**Striking Details:**  
+- The cache uses a dictionary to store data and relies on timestamps to manage expiration [GH-254F14A12686 L54].  
+- A test sets a `max_age_hours` of `0.001`, which corresponds to approximately 3.6 seconds, to simulate rapid expiration [GH-254F14A12686 L54].  
+- The script uses `time.sleep(4)` to wait for entries to expire [GH-254F14A12686 L64].  
+- The cache supports setting and retrieving data with specific keys and parameters [GH-254F14A12686 L34, L44].  
+- The test includes checks for cache statistics, such as `count_entries()` and `count_expired_entries()` [GH-254F14A12686 L100, L110].
+
+**Coverage Limit:** Sampled anchors only (35 of 120 total anchors shown), meaning this note does not reflect the full content of the source.
+
+## Speculation  
+- Could the caching system be optimized for performance in large-scale variant analysis workflows?  
+- What is the relationship between the `AnalysisCache` class and the broader `gaslit-af_variant_analysis` project?  
+- Are there any security concerns with caching sensitive variant data, especially in a public repository?  
+- How does the system handle conflicts or overwrites when multiple parameters are used for the same cache key?

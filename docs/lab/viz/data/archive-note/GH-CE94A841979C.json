@@ -1,0 +1,38 @@
+# transparency_functions.py
+
+Status: unreviewed local-model draft (2026-09-25T08:55:15+00:00)
+
+- Source ID: `GH-CE94A841979C`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/models/transparency_functions.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `models/transparency_functions.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 152 anchors; verify against the source.
+
+**Source Note: GH-CE94A841979C**
+
+**Subject:** This file, *transparency_functions.py*, is part of an experimental private wiki and appears to be a Python script defining functions for modeling "transparency" in a system described as "Trust-Narrative-Pressure." The script generates functions that calculate transparency values based on parameters such as time, trust, entropy, and pressure. It is likely part of a larger simulation or analysis framework.
+
+**Genre:** Technical code; likely part of a research or experimental project. The content is not narrative or descriptive but algorithmic, focusing on computational modeling.
+
+**Main Ideas:**
+- The script defines multiple transparency functions, each with distinct behaviors, such as constant, reactive, threshold-based, and hybrid models.
+- Transparency is influenced by variables such as time (`t`), trust (`y[0]`), entropy (`y[1]`), and pressure (`y[2]`).
+- Some functions introduce delays, thresholds, or periodic behavior to simulate varying levels of transparency over time or in response to system conditions.
+- The functions are created dynamically using configuration parameters, allowing customization of transparency behavior.
+
+**Striking Details:**
+- Transparency values are capped at 1.0 or limited to specific ranges (e.g., `min_R`, `max_R`) to manage numerical stability [GH-CE94A841979C L36].
+- Some functions use entropy as a determinant of transparency, with transparency increasing or triggering only after a certain entropy threshold [GH-CE94A841979C L65, L94].
+- A "burst" transparency function introduces periodic bursts of transparency followed by silence, suggesting a non-continuous or dynamic behavior [GH-CE94A841979C L107, L110].
+- The script includes example configurations and test cases, such as a constant transparency value of 0.2 and a threshold-based model with entropy thresholds [GH-CE94A841979C L130, L133].
+
+**Coverage Limit:** Anchors are sampled evenly from a total of 152, meaning the full text has not been examined.
+
+**## Speculation**
+- Could these transparency functions be part of a broader model for simulating information disclosure in social or organizational systems?
+- Are the parameters (e.g., entropy, trust) derived from external datasets or hypothetical scenarios?
+- Might the "burst" function relate to periodic data releases or communication strategies in the Trust-Narrative-Pressure system?
+
+**Extraordinary Claims Flagged:**
+- No extraordinary or fictional claims are apparent in the sampled text. All behavior is defined algorithmically and appears grounded in computational modeling.

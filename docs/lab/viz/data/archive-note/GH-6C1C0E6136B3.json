@@ -1,0 +1,37 @@
+# test_streaming.py
+
+Status: unreviewed local-model draft (2026-09-25T08:01:30+00:00)
+
+- Source ID: `GH-6C1C0E6136B3`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/tests/unit/test_streaming.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `tests/unit/test_streaming.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 195 anchors; verify against the source.
+
+# Source Note: GH-6C1C0E6136B3
+
+**Subject**: Unit testing for a streaming VCF processor in a Python project related to variant analysis.  
+**Genre**: Software testing / unit test script.  
+**Main Ideas**:  
+- Testing the functionality of a `StreamingVCFProcessor` class that processes VCF files in a memory-efficient manner.  
+- Mocking external dependencies such as memory usage and batch processing.  
+- Validating correct behavior, including error handling for invalid file paths and expected output structures.  
+- Ensuring alignment with target genes and data processing logic.  
+
+**Striking Details**:  
+- The test creates a minimal synthetic VCF file with a single variant entry:  
+  `chr1\t100\t.\tA\tG\t100\tPASS\tANN=G|missense_variant|MODERATE|GENE1|GENE1|transcript|NM_001|protein_coding|1/5|c.100A>G|p.Thr34Ala` [GH-6C1C0E6136B3 L30].  
+- The test checks that the processor's RAM buffer is initialized to 16 [GH-6C1C0E6136B3 L51].  
+- A mock function simulates processing a batch of variants and returns a list of genes found: `["GENE1"]` [GH-6C1C0E6136B3 L67].  
+- The test confirms that the resulting `variant_df` is a pandas DataFrame and that its unique gene entries include "GENE1" and "GENE3" [GH-6C1C0E6136B3 L108, L112].  
+- The script includes a progress callback function to track processing progress [GH-6C1C0E6136B3 L166].  
+- It raises and tests for a `FileError` when an invalid file path is provided [GH-6C1C0E6136B3 L191].  
+
+**Coverage Limit**: Sampled anchors (43 of 195) do not cover the full content of the file.  
+
+## Speculation  
+- Could this test be part of a larger project focused on genomic variant analysis?  
+- What is the significance of the synthetic variant data being tied specifically to "GENE1"?  
+- How does the use of a RAM buffer of 16 impact performance or scalability?  
+- Are there plans to expand the test to include more complex VCF structures or error scenarios?

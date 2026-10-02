@@ -1,0 +1,40 @@
+# analyze_vcf.py
+
+Status: unreviewed local-model draft (2026-09-25T08:32:29+00:00)
+
+- Source ID: `GH-97B318D28AEA`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/analyze_vcf.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `analyze_vcf.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 100 anchors; verify against the source.
+
+**Source Note: GH-97B318D28AEA**
+
+This source is a Python script, `analyze_vcf.py`, from the GitHub repository `prometheusWaluigi/gaslit-af-warfare`. The script appears to be part of a larger project focused on genetic risk analysis, specifically using the `GeneticRiskScanner` tool. Its apparent subject is the processing and evaluation of VCF (Variant Call Format) files, which are standard in genomics for storing genetic variation data.
+
+**Genre:** This is a technical script, likely intended for use in a bioinformatics or computational biology context. The script’s function is to analyze genetic risk factors from VCF data, possibly for research or diagnostic purposes.
+
+**Main Ideas:**
+- The script initializes and runs the `GeneticRiskScanner` tool to assess genetic risk factors.
+- It processes VCF files, which are used to store genetic variation data, and generates output such as risk profiles and heatmaps.
+- The script checks for dependencies, such as `biopython` and `scikit-allel`, and handles errors during the loading and analysis of these files.
+- It creates an output directory and writes results in a structured format, such as JSON files.
+
+**Striking Details:**
+- The script uses a custom module `src.genetic_risk.genetic_scanner`, which suggests that the project includes proprietary or specialized tools for genetic risk assessment [GH-97B318D28AEA L9].
+- The script includes error handling, such as printing messages like “Error loading VCF: {vcf_data['error']},” and catching exceptions during analysis [GH-97B318D28AEA L60, L94].
+- It references two metrics: “Fragility gamma” and “Allostatic omega,” which appear to be specific to this project’s genetic risk model [GH-97B318D28AEA L83, L85].
+- The script appears to prioritize processing CNV (Copy Number Variation) files first, possibly due to their smaller size or importance in the analysis [GH-97B318D28AEA L33, L35].
+
+**Coverage Limit:**  
+This source note is based on a sampled subset of anchors (35 of 100). Anchors over 800 characters are truncated, so the full scope and functionality of the script are not fully represented.
+
+---
+
+## Speculation
+
+- Could the metrics “Fragility gamma” and “Allostatic omega” be derived from a custom model or framework, possibly related to the author’s broader research or project goals? [GH-97B318D28AEA L83, L85]
+- What is the significance of processing CNV files first, and how might this affect the overall genetic risk assessment? [GH-97B318D28AEA L33, L35]
+- Is the `GeneticRiskScanner` tool part of a larger, possibly open-source or closed-source, suite of tools for genomic analysis? [GH-97B318D28AEA L9]
+- How does the use of `scikit-allel` and `biopython` influence the script’s capabilities or limitations in handling VCF data? [GH-97B318D28AEA L14, L18]

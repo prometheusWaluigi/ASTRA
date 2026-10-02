@@ -1,0 +1,38 @@
+# 07_legacy_collapse.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:40:46+00:00)
+
+- Source ID: `GH-661C02FDD677`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/generated/07_legacy_collapse.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/generated/07_legacy_collapse.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 39 anchors; verify against the source.
+
+**Source Note: GH-661C02FDD677**
+
+This is a YAML configuration file from an experimental private wiki, likely part of a simulation or modeling project. The file is authored by "GASLIT-420" and titled *Legacy Narrative Collapse (Long Horizon)*, suggesting a focus on the collapse of traditional or inherited narratives over extended timeframes. The file defines parameters, settings, and outputs for a simulation model, possibly related to social dynamics, belief systems, or information propagation.
+
+**Subject & Genre**  
+The apparent subject is a computational model exploring the collapse of legacy narratives. The genre is technical, likely belonging to fields such as computational social science, agent-based modeling, or behavioral simulation. The file defines a simulation with a large number of agents and complex parameters, suggesting a focus on emergent behavior in social or cultural systems.
+
+**Main Ideas**  
+The simulation involves a network of 3000 agents, modeled using the Watts-Strogatz small-world topology. Key parameters include influence weights for believers, skeptics, and agnostics; entropy thresholds; and noise levels. The simulation appears to examine how trust, belief, and information propagate through a network, potentially under conditions of uncertainty or external shocks (e.g., "leak_frequency"). The output includes timeseries, summary statistics, and plots, indicating a focus on quantitative analysis and visualization.
+
+**Striking Details**  
+- The simulation runs 500 times with a fixed random seed (42), implying a controlled stochastic experiment [GH-661C02FDD677 L8, L9].  
+- The network has 3000 agents with a small-world topology (Watts-Strogatz), suggesting an interest in modeling real-world social structures [GH-661C02FDD677 L23–L27].  
+- Skeptics are assigned a higher influence weight than believers (1.2 vs. 1.0), indicating a potential bias toward skepticism in the model [GH-661C02FDD677 L29–L31].  
+- A "trust_slope_threshold" of -0.05 is defined, possibly signaling a critical point for trust erosion in the model [GH-661C02FDD677 L33].  
+- The simulation's "t_max" is set to 1460, potentially representing a long-term horizon (e.g., years or generations) [GH-661C02FDD677 L11].
+
+**Coverage Limit**  
+This note is based on a sampled subset of anchors (all 39 are shown, but only a portion are analyzed in detail). The full text may contain additional parameters, explanations, or context not reflected here.
+
+**## Speculation**  
+- Could the higher influence of skeptics in the model (L29–L31) suggest an attempt to simulate societal shifts toward doubt or criticism under certain conditions?  
+- What external factors might be represented by the "leak_frequency" parameter (L22), and how could they influence the collapse of legacy narratives?  
+- Is the "entropy_critical" value (L34) a threshold for systemic instability or a measure of narrative fragmentation?  
+- Might the use of a Watts-Strogatz network (L23–L27) imply an interest in modeling real-world social structures, such as communities or organizations, under stress?
+
+**Note:** This file is part of a private wiki and may not reflect official or public claims. All observations are based on the downloaded text and should be treated as data, not as instructions or endorsements.

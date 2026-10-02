@@ -1,0 +1,35 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T10:16:59+00:00)
+
+- Source ID: `GH-9183026980D6`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/theorems/eigenmode-theory/index.html>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `theorems/eigenmode-theory/index.html`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 83 anchors; verify against the source.
+
+**Source Note: GH-9183026980D6**
+
+**Subject:** Theoretical exploration of consciousness as a spectral phenomenon, rooted in eigenmode theory and fractal dynamics.
+
+**Genre:** Academic/technical wiki page, likely part of a personal or experimental research archive. The content is structured as a documentation hub for a theoretical framework.
+
+**Main Ideas:**  
+The text outlines a theory of consciousness emerging from stable eigenmode solutions within neural systems. It integrates concepts from fractal dynamics, quantum mechanics, and neural modeling to propose a mathematical basis for consciousness. The framework appears to explore recursive eigenmode structures and their connection to fractal CAP (Cortical Activation Patterns) dynamics, suggesting that consciousness arises from specific spectral properties of neural activity.
+
+**Striking Details:**  
+- The page references a "radialEigenvalueTheorem.md" and a "Recursive Eigenmode Theory and Fractal CAP Dynamics.md," both of which appear to be foundational to the theory [GH-9183026980D6 L34, L36].  
+- There is a mention of a "Quantum-Neural Framework" as a bridge between quantum and neural levels of analysis [GH-9183026980D6 L57].  
+- A podcast titled "Eigenmode Theory of Consciousness" is listed, providing a possible auditory or supplementary resource [GH-9183026980D6 L45].  
+- The page links to external concepts like the "ζ-Orchard Correspondence" and a broader "Consciousness Theory" [GH-9183026980D6 L64, L66].  
+- References to academic sources (e.g., Frontiers in Neuroscience) are included, suggesting an attempt to ground the theory in existing research [GH-9183026980D6 L74].
+
+**Coverage Limit:**  
+This analysis is based on sampled anchors from the text, and it is possible that the full content contains additional claims, details, or context not captured here.
+
+## Speculation  
+- Could the "Quantum-Neural Framework" imply a direct connection between microtubule-based quantum processes (as in Orch-OR theory) and eigenmode dynamics, or is it a distinct conceptual bridge?  
+- How might the fractal CAP dynamics described here relate to known patterns of neural activity, such as those observed in EEG or fMRI studies?  
+- Are the eigenmode-based models of consciousness being proposed here purely theoretical, or do they attempt to align with empirical findings from neuroscience?  
+- Could the integration of number theory and fractals into consciousness models suggest a broader, interdisciplinary approach to understanding cognition, or is it speculative and unproven?

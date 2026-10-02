@@ -1,0 +1,36 @@
+# test_narrative_basic.py
+
+Status: unreviewed local-model draft (2026-09-25T05:52:47+00:00)
+
+- Source ID: `GH-885475F6F3CF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/tests/archive/test_narrative_basic.py>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `tests/archive/test_narrative_basic.py`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 260 anchors; verify against the source.
+
+# Source Note: GH-885475F6F3CF
+
+**Subject**: This source is a Python test script for a symbolic narrative layer within a project named ASTRA. It appears to be part of a software tool or framework related to astrological or symbolic analysis, possibly involving the generation of narrative events based on a "Qualia Field" model.
+
+**Genre**: Technical code (Python test script), with embedded narrative and symbolic concepts.
+
+**Main Ideas**:
+- Testing a symbolic narrative layer, referred to as the "𝓂-Layer," which likely models the evolution of symbolic or narrative states over time.
+- The script initializes mock natal data, including planetary positions, signs, and houses (e.g., [GH-885475F6F3CF L34], [GH-885475F6F3CF L40]).
+- It simulates the evolution of a "Qualia Field," which may represent a multidimensional space of subjective experience or symbolic constructs, over a series of time steps (e.g., [GH-885475F6F3CF L67], [GH-885475F6F3CF L73]).
+- The script generates narrative events based on the field's evolution and visualizes them (e.g., [GH-885475F6F3CF L133], [GH-885475F6F3CF L166]).
+- It uses narrative templates, such as "DISSOLUTION" and "INTEGRATION," to describe symbolic transitions (e.g., [GH-885475F6F3CF L89], [GH-885475F6F3CF L100]).
+
+**Striking Details**:
+- The script references a mock natal chart with specific planetary data (e.g., Jupiter at 270.26 degrees in Capricorn [GH-885475F6F3CF L40]).
+- It includes a narrative event named "Recursive Loop" with a description indicating self-referential or cyclical processes (e.g., [GH-885475F6F3CF L78]).
+- The visualization includes event types categorized by intensity and displayed with varying marker sizes (e.g., [GH-885475F6F3CF L199]).
+
+**Coverage Limit**: Sampled anchors (42 out of 260 total) may not reflect the full scope or intent of the source.
+
+## Speculation
+- Could the symbolic narrative layer be used to model psychological or spiritual states, and is it influenced by astrological frameworks?
+- What is the relationship between the "Qualia Field" and the planetary data, and how are they used to generate narrative events?
+- Is the project ASTRA related to other open-source tools in symbolic or astrological computation, and how does it differ?
+- How does the use of narrative templates (e.g., "DISSOLUTION") affect the interpretation of the field's evolution?

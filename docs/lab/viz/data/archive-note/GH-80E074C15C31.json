@@ -1,0 +1,41 @@
+# OnePointFiveBitConvergence.md
+
+Status: unreviewed local-model draft (2026-09-25T01:40:57+00:00)
+
+- Source ID: `GH-80E074C15C31`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/onePointFiveBit/OnePointFiveBitConvergence.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/onePointFiveBit/OnePointFiveBitConvergence.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 354 anchors; verify against the source.
+
+# Source Note: GH-80E074C15C31
+
+**Subject**: The recurring appearance of ~1.5-bit quantization in analog-to-digital converters (ADCs), artificial intelligence (AI), and information theory. The text explores whether this value represents an emergent optimization frontier or a fundamental law of information processing.
+
+**Genre**: Technical synthesis/report; interdisciplinary in nature, drawing from fields such as analog electronics, AI, information theory, and quantum systems.
+
+**Main Ideas**:
+
+- The document synthesizes evidence from multiple domains to investigate the significance of the ~1.5-bit quantization threshold.
+- It references energy reductions of 71.4× in AI inference, suggesting that 1.5-bit systems offer significant efficiency gains.
+- It connects 1.5-bit quantization with error tolerance thresholds in ADC architectures and entropy optimization in natural systems.
+- The text draws parallels between 1.5-bit quantization and entropy distributions in systems governed by power-law behavior, such as neural firing rates and Zipf’s law.
+- It also mentions co-design strategies in AI for brain-like efficiency using 1.58-bit accelerators.
+
+**Striking Details**:
+
+- The report includes a variety of references, including academic papers, technical documentation, and general information sources.
+- It highlights the use of fractional bits in error-correcting codes for resilience against noise without excessive overhead [GH-80E074C15C31 L24].
+- The document contains a non-textual element at L1, which appears to be an image of a logo, possibly indicating branding or thematic context.
+- A section titled "Entropy and Optimal Compression" is mentioned at L46, suggesting a focus on information theory concepts.
+- The note includes a reference to a YouTube video [GH-80E074C15C31 L136], which may provide visual or supplementary context.
+
+**Coverage Limit**: Sampled anchors (26 of 354 total) mean not all content has been reviewed. This note reflects only the sampled sections.
+
+## Speculation
+
+- Could the ~1.5-bit quantization threshold represent a universal principle in information processing across analog and digital systems? [GH-80E074C15C31 L9]
+- Are the energy efficiency gains in AI inference related to the same entropy optimization principles observed in natural systems? [GH-80E074C15C31 L69, L76]
+- Might the use of 1.5-bit quantization in ADCs and AI be a convergence on a shared design constraint, rather than a coincidence? [GH-80E074C15C31 L9, L24]
+- Is the recurring appearance of 1.5-bit systems a reflection of limitations in hardware or a deeper optimization in information representation? [GH-80E074C15C31 L9, L69]

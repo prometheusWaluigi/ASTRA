@@ -1,0 +1,37 @@
+# query_tool.py
+
+Status: unreviewed local-model draft (2026-09-25T08:18:02+00:00)
+
+- Source ID: `GH-80C7B3A9E22B`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/query_tool.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `query_tool.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 715 anchors; verify against the source.
+
+**Source Note: GH-80C7B3A9E22B**
+
+This source is a Python script titled `query_tool.py` from the GitHub repository `prometheusWaluigi/piston-leak-lab`, located at [https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/query_tool.py](https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/query_tool.py). The file appears to be part of an experimental private wiki or data analysis tool, given its focus on querying and visualizing data from a database.
+
+**Apparent Subject and Genre:**  
+The script is a data analysis tool that interacts with a database (likely DuckDB, as referenced in [GH-80C7B3A9E22B L47]). It allows users to query data, compare scenarios, and generate visualizations. The genre is technical, with a focus on data manipulation and visualization using Python libraries such as `matplotlib` (referenced in [GH-80C7B3A9E22B L16]).
+
+**Main Ideas:**  
+- The script initializes a query tool that connects to a database and processes tables (as seen in [GH-80C7B3A9E22B L62]).  
+- It includes functionality for comparing scenarios based on a specific metric (as described in [GH-80C7B3A9E22B L229]).  
+- The script supports generating visualizations, including scatter plots, bar charts, and time series graphs (as referenced in [GH-80C7B3A9E22B L198] and [GH-80C7B3A9E22B L381]).  
+- It appears to handle time-series data and possibly scenario-based simulations, with references to "collapse_probability" and "mean_rp_ratio" (as noted in [GH-80C7B3A9E22B L654] and [GH-80C7B3A9E22B L563]).
+
+**Striking Details:**  
+- The script includes an interactive mode, allowing users to input choices for metrics and visualizations (as seen in [GH-80C7B3A9E22B L624] and [GH-80C7B3A9E22B L609]).  
+- There is an explicit reference to a SQL query using `LAST_VALUE` and `OVER` clauses, suggesting complex analytical queries (as seen in [GH-80C7B3A9E22B L244]).  
+- It references a visualization function `plot_interactive`, which may be used to explore data dynamically (as noted in [GH-80C7B3A9E22B L639]).
+
+**Coverage Limit:**  
+The anchors shown are a sampled subset of the 715 total anchors. This means the full text has not been read in its entirety, and the analysis is based on a limited selection of lines.
+
+**## Speculation**  
+- Could this script be part of a larger project simulating or analyzing systemic risks, given the presence of "collapse_probability" and scenario-based comparisons?  
+- Is the use of DuckDB and the interactive visualization features indicative of a tool meant for rapid exploratory data analysis in a private or experimental context?  
+- What is the significance of the `initial_believer` subquery in the context of the data being analyzed (as referenced in [GH-80C7B3A9E22B L457])?  
+- Are the metrics like "mean_rp_ratio" derived from proprietary or unpublished research, or are they common in a specific domain of study?

@@ -1,0 +1,33 @@
+# README.md
+
+Status: unreviewed local-model draft (2026-09-24T21:38:45+00:00)
+
+- Source ID: `GH-0DD78637D543`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/README.md>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/README.md`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 210 anchors; verify against the source.
+
+# Source Note: GH-0DD78637D543
+
+**Subject**: Software development for variant analysis in the context of GASLIT-AF, a genetic condition. The source is a README.md file from a GitHub repository focused on bioinformatics tools for analyzing genetic variants.
+
+**Genre**: Technical documentation, software development, bioinformatics.
+
+**Main Ideas**: The README describes a Python-based package for analyzing genetic variants in the context of GASLIT-AF. Key modules and functions are outlined, including VCF processing, ClinVar annotation, symptom correlation, and visualization. The package supports multiple genome assemblies and integrates with external APIs such as Ensembl and ClinVar.
+
+**Striking Details**: 
+- The package uses Intel oneAPI for accelerated VCF analysis [GH-0DD78637D543 L10].
+- It includes a `COMMON_SYMPTOMS` list with 15 symptoms, such as fatigue and cognitive dysfunction [GH-0DD78637D543 L121].
+- The `EnsemblAnnotator` class retrieves variant consequences from the Ensembl REST API [GH-0DD78637D543 L108].
+- There is a focus on interactive visualization using Plotly, including symptom correlation charts [GH-0DD78637D543 L126].
+- The package includes a `ClinicalVariantManager` class for managing conditions and generating clinical reports [GH-0DD78637D543 L170].
+
+**Coverage Limit**: Sampled anchors from a total of 210; not all content has been read or analyzed.
+
+## Speculation
+- Could the focus on symptom correlation imply a broader application in clinical genetics beyond GASLIT-AF?
+- What are the implications of using localStorage persistence for symptom correlation checkboxes in a clinical context?
+- How might the integration of multiple data sources (Ensembl, ClinVar) affect the reliability of variant annotations?
+- Is there a potential for conflict between the use of different genome assemblies (GRCh37, GRCh38) in variant analysis?

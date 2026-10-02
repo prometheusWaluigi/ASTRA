@@ -36,7 +36,7 @@ canvas{display:block}
 <div id="stats">no runs yet</div>
 <div id="legend"><span class="dot" style="background:#f2c169"></span>survived · <span class="dot" style="background:#ff5566"></span>collapse detected · <span class="dot" style="background:#b78cff"></span>collapsed, invisible to detector (T pinned) · <a href="hub.html">← Rooms</a> <a href="../../index.html">← Lab</a></div></div>
 <div id="tip"></div>
-<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
 <script type="module">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
@@ -150,7 +150,7 @@ document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{$('R').value=b.data
 syncLabels();updateStats();
 if(!reduced)pending+=25; // auto-run a first batch so the room opens mid-sweep
 // archived sweep summary (degrades silently)
-fetch('/api/viz/sim',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+fetch('./data/sim.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
   if(d.available&&d.piston&&d.piston.sweeps){const sw=d.piston.sweeps;
     const parts=Object.keys(sw).filter(k=>k.startsWith('R=')).sort((a,b)=>+a.slice(2)-+b.slice(2))
       .map(k=>k+'→'+((sw[k].collapse_rate||0)*100).toFixed(1)+'%');

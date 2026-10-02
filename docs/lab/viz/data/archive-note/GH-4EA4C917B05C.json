@@ -1,0 +1,35 @@
+# theory-index.njk
+
+Status: unreviewed local-model draft (2026-09-25T11:27:10+00:00)
+
+- Source ID: `GH-4EA4C917B05C`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/src/theory-index.njk>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `src/theory-index.njk`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 17 anchors; verify against the source.
+
+**Source Note: GH-4EA4C917B05C**
+
+**Subject:** This file appears to be part of an experimental private wiki, serving as an index for a collection of theoretical or conceptual content. The wiki is hosted as a public archive, but its structure suggests it is intended for personal or limited use.
+
+**Genre:** Technical, archival, and possibly philosophical or speculative in nature. The file appears to be a template or script for generating a webpage from a collection of markdown files, likely part of a static site generator such as Eleventy.
+
+**Main Ideas:** The file defines a webpage layout that dynamically lists files from a directory, likely for organizing and presenting theoretical content. It uses a templating syntax (likely Nunjucks) and references a variable `theoryCollections`, which may represent a structured grouping of markdown files. The template includes a loop that iterates over files in a directory and generates hyperlinks for each, suggesting a catalog or index of theories, ideas, or documents.
+
+**Striking Details:**
+- The file is part of a GitHub repository named `gaslitAF`, which may be a personal or experimental project.
+- The content is written in a templating language, with references to `permalink`, `layout`, and `eleventyComputed`, indicating use with Eleventy, a static site generator.
+- The template includes a directive to replace `.md` file extensions with empty strings in the displayed filenames, suggesting the content is organized as markdown files.
+- The canonical URL points to a specific version of the file in the repository, indicating the source is a real downloaded text from a public archive.
+
+**Coverage Limit:** This note is based on sampled anchors from the source file. The full content of the file may not have been read, and the file may be part of a larger system of templates and data files.
+
+## Speculation
+
+- Could the "theoryCollections" variable represent a structured or thematic grouping of markdown files, possibly indicating a broader categorization or classification system for the author’s theoretical work?
+- Might the use of Eleventy and Nunjucks imply a focus on technical or self-hosted documentation, possibly reflecting the author’s interest in open-source tools or personal knowledge management?
+- Are the theories referenced in the file part of a larger body of work, and could this wiki serve as a private research log or idea repository?
+- What is the significance of the repository name "gaslitAF"? Does it relate to the content or the author’s personal interests?
+
+**Flagged Claims:** None identified in the sampled text. No direct claims are made about the content or author’s intentions.

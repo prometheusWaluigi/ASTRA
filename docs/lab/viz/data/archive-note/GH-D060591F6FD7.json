@@ -1,0 +1,39 @@
+# Dockerfile.oneapi
+
+Status: unreviewed local-model draft (2026-09-25T12:17:34+00:00)
+
+- Source ID: `GH-D060591F6FD7`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/Dockerfile.oneapi>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `Dockerfile.oneapi`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 103 anchors; verify against the source.
+
+**Source Note: GH-D060591F6FD7**
+
+**Subject:** This document is a Dockerfile for a project named "GASLIT-AF WARSTACK," which integrates Intel OneAPI and Arc A770 GPU support. The file is part of a larger repository, `prometheusWaluigi/gaslit-af-warfare`, and serves as a configuration guide for building a containerized development environment.
+
+**Genre:** Technical configuration file (Dockerfile), likely used for software development or research involving GPU-accelerated computing, bioinformatics, and machine learning.
+
+**Main Ideas:**
+- The Dockerfile is based on the Intel OneAPI BaseKit image for Ubuntu 22.04, indicating an emphasis on Intel hardware and software stack integration.
+- It sets up a Python environment with specific libraries, including `scikit-allel`, `biopython`, and the *Intel Extension for PyTorch*, suggesting the project involves bioinformatics, genetic risk modeling, and machine learning.
+- The file includes steps to install and verify dependencies, as well as to ensure proper environment setup for Intel hardware acceleration.
+- A test script (`test_imports.py`) is generated to check the successful installation of key libraries and the availability of GPU support.
+
+**Striking Details:**
+- The file references `scikit-allel==1.3.13` and `biopython>=1.79`, indicating a specific and possibly outdated version requirement for bioinformatics tools.
+- The use of `with_intel` as a prefix for installation commands suggests a custom script or wrapper to activate the Intel environment during the build process.
+- The presence of directories such as `static/img/biological`, `static/img/genetic`, and `static/img/institutional` implies a web-based interface or documentation component tied to the project.
+- The file includes a wrapper script (`run_with_intel`) that sources the Intel OneAPI environment setup, ensuring that all commands executed within the container utilize Intel-specific optimizations.
+
+**Coverage Limit:** Sampled anchors (39 of 103 total) mean this note has not read the entire file, and may miss context or details not reflected in the sampled lines.
+
+**## Speculation**
+
+- Could the project be related to AI-driven genetic risk analysis or simulation tools, given the presence of `scikit-allel`, `biopython`, and PyTorch?
+- Are the "institutional" and "legal" directories part of a broader framework that includes policy or governance components, or are they merely placeholders or documentation?
+- Does the project leverage the Arc A770 GPU for deep learning workloads, and if so, how does this integration affect performance or scalability?
+- What role does the "WARSTACK" designation play in the project's context—could it imply a military or security-related application?
+
+**Claims:** None identified in the sampled content. No extraordinary, fictional, or self-contradictory claims are apparent from the provided data.

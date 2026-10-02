@@ -1,0 +1,37 @@
+# test_core.py
+
+Status: unreviewed local-model draft (2026-09-25T06:34:47+00:00)
+
+- Source ID: `GH-CC75F873239D`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/tests/archive/test_core.py>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `tests/archive/test_core.py`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 122 anchors; verify against the source.
+
+# Source Note: GH-CC75F873239D
+
+**Subject:** Testing of ASTRA core functionality, including mock astrological data and visualization of a "QualiaField."
+
+**Genre:** Software test script; experimental code with mock data and visualization components.
+
+**Main Ideas:**
+- The script tests the import and functionality of ASTRA core modules, likely part of a larger project involving astrological or astronomical modeling.
+- It includes mock data for planetary positions, signs, and houses, inspired by or modeled after the Kerykeion library's `AstrologicalSubject` class.
+- The script attempts to simulate or visualize a "QualiaField," which may represent a theoretical or abstract construct related to consciousness, perception, or other non-physical phenomena.
+- Visualization outputs are saved as PNG files in an "output" directory, with a focus on time-evolving data.
+
+**Striking Details:**
+- Mock planetary data includes specific positions (e.g., `[GH-CC75F873239D L37]`): `self.mercury = {'abs_pos': 270.18, 'pos': 0.18, 'sign': 'Cap', 'emoji': '♑️', 'house': '1st House', 'retrograde': False}`.
+- The script prints success messages upon completion of specific steps, such as `"[GH-CC75F873239D L27]": print("✓ Successfully imported ASTRA core modules")`.
+- A "QualiaField" is initialized and evolved over time, with visualizations saved as `"[GH-CC75F873239D L68]": output_file = os.path.join("output", "initial_field.png")` and later `"[GH-CC75F873239D L112]": plt.savefig(output_file)"`.
+- The script includes a fallback instruction to the user: `"[GH-CC75F873239D L122]": print("\nPlease check your implementation and dependencies.")"`.
+
+**Coverage Limit:** Sampled anchors only; not all content has been reviewed. The full file may include additional dependencies, test cases, or visualization logic not captured here.
+
+## Speculation
+
+- Could the "QualiaField" represent a computational model of consciousness, integrating astrological or astronomical data with abstract perceptual constructs?
+- What is the relationship between the mock planetary data and the evolution of the "QualiaField"? Is it a symbolic or functional linkage?
+- Are the planetary positions and signs (e.g., `self.mercury = {'abs_pos': 270.18, 'sign': 'Cap'}`) derived from a real astrological chart or are they entirely fictional?
+- Might the ASTRA project involve interdisciplinary research, merging astronomy, astrology, and computational modeling of subjective experience?

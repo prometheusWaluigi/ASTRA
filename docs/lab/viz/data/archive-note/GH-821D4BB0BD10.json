@@ -1,0 +1,47 @@
+# cli.py
+
+Status: unreviewed local-model draft (2026-09-25T08:23:27+00:00)
+
+- Source ID: `GH-821D4BB0BD10`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/cli.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/cli.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 117 anchors; verify against the source.
+
+# Source Note: GH-821D4BB0BD10
+
+**Subject:** This is a Python script (`cli.py`) from a GitHub repository focused on variant analysis in genetic data. It serves as a command-line interface (CLI) for a tool called "GASLIT-AF Variant Analysis."
+
+**Genre:** Software code; specifically, a CLI script for bioinformatics or genomic data analysis.
+
+**Main Ideas:**  
+The script is responsible for parsing command-line arguments and configuring the analysis workflow. It supports a range of options, including specifying input VCF files, setting resource limits (e.g., RAM, batch size), choosing annotation tools (e.g., PySAM, ANNOVAR, API sources), enabling caching, and controlling output formats (e.g., reports, browser auto-opening).
+
+**Striking Details:**  
+- The script integrates with multiple tools and databases, including PySAM, ANNOVAR, and external API sources (e.g., Ensembl, MyVariant).
+- It allows users to control caching behavior, including cache directories and maximum cache age.
+- The script supports both local and remote annotation sources, including the option to download required ANNOVAR databases if they are not already present.
+- It provides flexibility in output generation, such as disabling standard reports or enabling enhanced ones with browser auto-opening.
+- The use of `argparse` is central to handling user input and configuration options.
+
+**Factual Observations:**  
+- [GH-821D4BB0BD10 L1] The file begins with a triple-quote string, likely a docstring or comment.
+- [GH-821D4BB0BD10 L117] The script imports `run_analysis_workflow` from the `workflow` module.
+- [GH-821D4BB0BD10 L18] The `argparse.ArgumentParser` is initialized with the description "GASLIT-AF Variant Analysis."
+- [GH-821D4BB0BD10 L21] A required argument `vcf_path` is defined to specify the input VCF file.
+- [GH-821D4BB0BD10 L28] A `--max-ram` flag is set with a default of 64 GB.
+- [GH-821D4BB0BD10 L43] A `--disable-cache` option is present to control caching.
+- [GH-821D4BB0BD10 L65] An argument for caching API responses is included.
+- [GH-821D4BB0BD10 L85] A `--variant-enrichment` flag enables variant enrichment analysis.
+- [GH-821D4BB0BD10 L107] The script converts cache directory paths to `Path` objects using the `Path` class.
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the file, meaning not all content has been reviewed. The script is likely part of a larger codebase, and additional context may exist in other files or modules.
+
+## Speculation
+
+1. Could this script be part of a larger pipeline for variant annotation and analysis, given its integration with multiple tools like PySAM, ANNOVAR, and API sources?
+2. What might be the implications of the high default RAM limit (64 GB) for the target use case or system requirements of the analysis tool?
+3. How does the script manage the interaction between different caching mechanisms, particularly when combining local caching with API responses?
+4. Are there potential conflicts or redundancies between the options for variant annotation tools, such as `--use-pysam`, `--use-annovar`, and `--api-annotation`?

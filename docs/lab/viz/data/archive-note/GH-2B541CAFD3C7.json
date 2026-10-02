@@ -1,0 +1,34 @@
+# fix_linting.py
+
+Status: unreviewed local-model draft (2026-09-25T07:20:37+00:00)
+
+- Source ID: `GH-2B541CAFD3C7`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/fix_linting.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `fix_linting.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 44 anchors; verify against the source.
+
+**Source Note: GH-2B541CAFD3C7**
+
+**Subject:** This source is a Python script titled `fix_linting.py`, part of the Piston Leak Lab codebase hosted on GitHub. It is designed to automate the correction of common linting issues within the project's Python files.
+
+**Genre:** Technical code script, likely used as part of a software development workflow for code maintenance and quality assurance.
+
+**Main Ideas:**  
+The script aims to standardize and modernize the codebase by removing deprecated typing imports and replacing them with more current or compatible alternatives. It also removes UTF-8 encoding declarations, which are unnecessary in Python 3. The script processes Python files in specific directories (`models`, `sims`, `tests`) and applies a series of regular expression substitutions to achieve these goals.
+
+**Striking Details:**  
+- [GH-2B541CAFD3C7 L14] The script removes the UTF-8 encoding declaration, which suggests the codebase may have included redundant or outdated headers.
+- [GH-2B541CAFD3C7 L17–L24] Several regular expressions are used to replace deprecated `typing` imports (e.g., `Dict`, `List`, `Tuple`, `Optional`, `Union`) with `Any` or with lowercase versions (`dict`, `list`, `tuple`) or restructured `None |` syntax. These changes indicate a shift toward more modern Python practices or compatibility with certain linters or tools.
+- [GH-2B541CAFD3C7 L27] A specific substitution replaces `from typing import Callable` with `from collections.abc import Callable`, suggesting an attempt to align with Python 3.9+ standards or certain linter rules.
+- [GH-2B541CAFD3C7 L41] The script advises users to run an external linter (`ruff`) to address remaining issues, indicating that this script is a partial solution within a broader linting strategy.
+
+**Coverage Limit:**  
+This note is based on a sampled subset of anchors from the source file. The full text may include additional linting rules, error handling, or comments not reflected here.
+
+**## Speculation**  
+- Could the replacement of `Optional` and `Union` with `None |` syntax be an attempt to align with Python 3.10+ features or a specific linter (e.g., Ruff) requirement?  
+- Why is `from typing import Any` used as a replacement for multiple specific typing imports, and does this imply a broader preference for type flexibility over specificity?  
+- Are the directories `models`, `sims`, and `tests` the only ones targeted by this script, and might other parts of the codebase require separate linting fixes?  
+- Does the script's use of regular expressions risk unintended modifications to code, such as altering comments or strings that contain similar patterns?

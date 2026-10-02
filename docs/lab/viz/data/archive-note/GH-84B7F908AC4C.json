@@ -1,0 +1,38 @@
+# data_processing.py
+
+Status: unreviewed local-model draft (2026-09-25T08:27:32+00:00)
+
+- Source ID: `GH-84B7F908AC4C`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/data_processing.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/data_processing.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 326 anchors; verify against the source.
+
+# Source Note: GH-84B7F908AC4C
+
+**Subject:** This file is part of an experimental private wiki, functioning as a public archive for one author's work. The source is real downloaded text, treated strictly as data.
+
+**Genre:** Technical code documentation, primarily Python scripts related to data processing and variant analysis.
+
+**Main Ideas:**  
+The text contains code for handling variant data, including batch processing, error handling, and data extraction from VCF files. The focus appears to be on analyzing genetic variants, particularly within the context of the GASLIT-AF (Genomic Analysis of Somatic Lesions in Tumor - Allele Frequency) project. Key components include:
+- Batch processing of records to manage computational resources [GH-84B7F908AC4C L84].
+- Extraction of essential fields from VCF records, such as `ID`, `ANN`, and `EFFECT` [GH-84B7F908AC4C L63, L202, L222].
+- Use of logging and error handling for robustness, with custom exceptions like `FileError` and `DataProcessingError` [GH-84B7F908AC4C L42, L49].
+- Integration with libraries such as `numpy` and `dpt` (possibly a SYCL-based library) for array manipulation and performance optimization [GH-84B7F908AC4C L8, L257].
+
+**Striking Details:**  
+- The file includes a note about performance optimization using list comprehensions [GH-84B7F908AC4C L188].
+- There is an explicit fallback to CPU processing if SYCL fails, indicating a focus on performance and hardware compatibility [GH-84B7F908AC4C L271].
+- The output includes JSON files with metadata such as `gene_counts_path` and `variant_path` [GH-84B7F908AC4C L319].
+- The author logs information about the number of variants and columns processed [GH-84B7F908AC4C L119].
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the full text; not all content has been reviewed.
+
+## Speculation
+- Could the use of SYCL and fallback to CPU indicate a target platform with specific GPU or accelerator requirements?
+- How might the optimization for performance with list comprehensions affect scalability or compatibility with larger datasets?
+- What is the significance of the `ANN` field in variant annotation, and how might its processing influence downstream analysis?
+- Does the focus on genetic variants suggest broader applications in bioinformatics or personalized medicine?

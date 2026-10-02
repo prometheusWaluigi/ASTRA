@@ -1,0 +1,41 @@
+# gaslitAFZebra.md
+
+Status: unreviewed local-model draft (2026-09-25T04:07:26+00:00)
+
+- Source ID: `GH-B13EACDB0C8A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/coreTheories/gaslitAFZebra.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `coreTheories/gaslitAFZebra.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 156 anchors; verify against the source.
+
+**Source Note: GH-B13EACDB0C8A**
+
+**Subject:** The integration of two models—Zebra and GASLIT-AF—focused on understanding and simulating the complex pathology of myalgic encephalomyelitis (ME)/chronic fatigue syndrome (CFS) and related conditions. The text explores how these models can be combined to better understand comorbidities like POTS (postural orthostatic tachycardia syndrome), hEDS (hypermobile Ehlers-Danlos syndrome), and MCAS (mast cell activation syndrome).
+
+**Genre:** Technical, interdisciplinary, and theoretical, blending clinical observations with mathematical and computational modeling. The document is part of a larger project involving systems medicine and simulation-based research.
+
+**Main Ideas:**
+- Both models describe ME/CFS as a "locked-state" or "pathological attractor," where the body becomes stuck in a dysfunctional state due to immune, autonomic, and structural dysregulation.
+- Zebra is based on clinical and patient-driven insights, emphasizing comorbid conditions and genetic factors like RCCX.
+- GASLIT-AF uses mathematical frameworks such as bifurcation analysis, information geometry, and attractor landscapes to simulate and test hypotheses about ME/CFS.
+- The combination of the models allows for clinical insights to inform simulations and vice versa, potentially leading to better treatment strategies.
+
+**Striking Details:**
+- The document uses complex mathematical notation, such as [GH-B13EACDB0C8A L57] and [GH-B13EACDB0C8A L60], to describe interactions between immune, energy, and autonomic systems.
+- It suggests that structural dysfunction (low S) can amplify immune activation (I) via the coupling term [GH-B13EACDB0C8A L77].
+- Energy deficits (low E) are described as a consequence of high immune and autonomic activity, leading to post-exertional malaise [GH-B13EACDB0C8A L93].
+- The text mentions Shoemaker’s protocol as a potential intervention to reduce inflammation [GH-B13EACDB0C8A L37].
+
+**Coverage Limit:** This note is based on sampled anchors (46 of 156 total), meaning it has not examined the full text.
+
+## Speculation
+- Could the integration of Zebra and GASLIT-AF lead to a unified framework for understanding not just ME/CFS but also other autoimmune or chronic neurological conditions?
+- What are the implications of Zebra's emphasis on RCCX as a genetic driver if it is not confirmed by GASLIT-AF’s broader genetic analysis?
+- How might neurodiversity (e.g., autism) influence the parameters of GASLIT-AF, as suggested in [GH-B13EACDB0C8A L143]?
+- Is the "locked-state" concept in Zebra compatible with the mathematical modeling of attractor landscapes in GASLIT-AF, or does it represent a conceptual divide?
+
+**Claims:**
+- The text contains speculative claims, such as the unproven role of RCCX as a unifying genetic driver in Zebra [GH-B13EACDB0C8A L44].
+- It flags potential contradictions between the two models, particularly regarding genetic factors [GH-B13EACDB0C8A L44].
+- The document proposes theoretical interventions (e.g., reducing $\Lambda_I$) but does not confirm their efficacy in practice [GH-B13EACDB0C8A L87].

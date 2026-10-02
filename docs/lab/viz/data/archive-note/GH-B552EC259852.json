@@ -1,0 +1,38 @@
+# 04_policy_fatigue.yml
+
+Status: unreviewed local-model draft (2026-09-25T12:10:43+00:00)
+
+- Source ID: `GH-B552EC259852`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/generated/04_policy_fatigue.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/generated/04_policy_fatigue.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 39 anchors; verify against the source.
+
+**Source Note: GH-B552EC259852**
+
+This source is a YAML configuration file from an experimental private wiki, likely part of a computational simulation or modeling project. The apparent subject is **"Policy Fatigue (Suppression Decay Stress)"**, a concept modeled through parameters and settings involving agent-based simulation. The genre is **computational modeling or simulation configuration**, with a focus on social dynamics and policy impact.
+
+The main ideas appear to revolve around simulating the **decay of policy effectiveness over time** due to **"policy fatigue"**—a phenomenon where repeated or prolonged policy implementation leads to diminished public or institutional engagement or compliance. The simulation likely explores how **social networks** and **influence dynamics** affect the spread and maintenance of policy adherence. Parameters like `alpha1`, `beta1`, `gamma1`, and `k_policy` suggest a mathematical or algorithmic model that incorporates **decay rates**, **influence thresholds**, and **policy suppression mechanics**.
+
+Key striking details include:
+- The use of a **Watts-Strogatz network model** [GH-B552EC259852 L24], indicating a focus on small-world network structures and their implications for information or influence propagation.
+- The presence of **agent-based parameters** such as `n_agents: 3000` [GH-B552EC259852 L25], suggesting a large-scale simulation of individual actors or entities within a system.
+- **Weighted influence fields** [GH-B552EC259852 L28–L31], distinguishing between **believers**, **skeptics**, and **agnostics** with varying influence strengths, which could relate to modeling public opinion or institutional trust dynamics.
+- A **critical entropy threshold** (`entropy_critical: 1.2` [GH-B552EC259852 L34]) is defined, possibly signaling a condition under which the system transitions from stability to chaos or instability.
+
+The configuration file is part of a **simulation ensemble** with 500 runs and a fixed random seed (42), indicating a structured approach to exploring variability and reproducibility in the modeled system.
+
+**Coverage Limit:** This note is based on sampled anchors from the source. Anchors over 800 characters are truncated, and the full content may contain additional context not visible here.
+
+## Speculation
+
+1. Could the simulation be related to **real-world policy challenges** such as public health interventions or climate change mitigation, where repeated messaging or regulation might lead to public disengagement?
+2. Is the use of **Watts-Strogatz networks** [GH-B552EC259852 L24] an attempt to model the complex, interconnected nature of **policy diffusion** or **social compliance**?
+3. Might the **"epsilon_overlap"** parameter [GH-B552EC259852 L32] represent a threshold for the overlap or interaction between different policy actors or groups?
+4. What role does the **"leak_frequency"** parameter [GH-B552EC259852 L22] play in modeling the emergence or persistence of **policy leaks**, such as information dissemination or compliance breakdowns?
+
+**Flags:**
+- The term **"policy fatigue"** is used as a conceptual framework, but the source does not clarify its exact definition or scope.
+- The inclusion of **"suppression decay stress"** [GH-B552EC259852 L2] is a novel or fictional term, not commonly referenced in standard policy literature.
+- The **"entropy_critical"** parameter [GH-B552EC259852 L34] is a technical detail, but its connection to policy fatigue is speculative and not explicitly explained.

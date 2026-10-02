@@ -1,0 +1,35 @@
+# noise_leak_frequency.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:17:42+00:00)
+
+- Source ID: `GH-276977A558FF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/configs/noise_leak_frequency.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `configs/noise_leak_frequency.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 55 anchors; verify against the source.
+
+**Source Note: GH-276977A558FF**
+
+This document is a configuration file for a computational model related to the simulation of leak frequency in a "Piston Leak ODE + ABM" framework. The apparent subject involves analyzing the sensitivity of leak frequency in a system that combines ordinary differential equations (ODEs) with an agent-based model (ABM). The genre is technical and experimental, reflecting a research or modeling effort, likely in the fields of computational epidemiology, media dynamics, or social simulation.
+
+The main ideas include parameter sweeps over leak frequency values, ensemble runs with a fixed random seed, and the inclusion of both deterministic ODE coefficients and a stochastic noise model. The simulation appears to model the spread of information or influence, possibly related to public health messaging or social behavior, through a network of agents. The use of a Monte-Carlo approach suggests an emphasis on probabilistic outcomes and sensitivity analysis.
+
+Striking details include the use of a fixed random seed (42), the sweep_values for leak_frequency ranging from 0.01 to 0.5, and the inclusion of a noise model with `noise_sigma: 0.1`. The ABM layer defines a network with 3000 agents, a rewiring probability of 0.2, and differing weights for believers and skeptics. The model also defines thresholds for systemic collapse, including an entropy critical value of 1.2 and a trust slope threshold of -0.05.
+
+Factual observations:
+
+- The configuration defines 100 ensemble runs [GH-276977A558FF L10].
+- The sweep_values for leak_frequency include values from 0.01 to 0.5 [GH-276977A558FF L14].
+- The network structure involves 3000 agents with a rewiring probability of 0.2 [GH-276977A558FF L38, L39].
+- The model includes a noise_sigma of 0.1 and a leak_frequency of 0.05 as defaults [GH-276977A558FF L31, L32].
+- The simulation duration is defined as one pandemic year, with 365 timesteps [GH-276977A558FF L18].
+
+**Coverage Limit:** This note is based on sampled anchors; not all content has been reviewed.
+
+## Speculation
+
+1. Could the leak_frequency parameter be modeling the spread of misinformation or the probability of a "leak" in a media or communication system?
+2. What implications might the differing weights for believers and skeptics have on the model's behavior, particularly in scenarios with high leak_frequency?
+3. How does the inclusion of a Monte-Carlo approach affect the interpretation of the simulation results, especially in relation to policy parameters like `k_policy`?
+4. Might the entropy_critical and epsilon_overlap thresholds be related to detecting systemic instability or the breakdown of consensus in the modeled system?

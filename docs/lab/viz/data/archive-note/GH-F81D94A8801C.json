@@ -1,0 +1,40 @@
+# README_DBTOOLS.md
+
+Status: unreviewed local-model draft (2026-09-24T22:48:44+00:00)
+
+- Source ID: `GH-F81D94A8801C`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/README_DBTOOLS.md>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `README_DBTOOLS.md`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 148 anchors; verify against the source.
+
+# Source Note: README_DBTOOLS.md
+
+**Subject**: The README_DBTOOLS.md file describes a set of tools for analyzing a database related to the Piston Leak Lab project, which models institutional narrative fractures using symbolic dynamical systems and narrative topology analysis. The project's focus is on the case study of COVID-19.
+
+**Genre**: Technical documentation, with a focus on software tools and database operations. It outlines scripts and procedures for managing and querying a DuckDB database.
+
+**Main Ideas**:  
+- The database is created at `d:\dev\piston-leak-lab\piston_leak_results.duckdb` [GH-F81D94A8801C L148].  
+- Tools include `duckdb_import.py`, which scans result directories and extracts metadata and summary metrics from JSON files [GH-F81D94A8801C L26].  
+- The database supports comprehensive analysis and visualization, including scenario comparisons (e.g., collapse probability, basin stability) and correlation of stability metrics [GH-F81D94A8801C L42].  
+- The `query_tool.py` script allows users to browse database tables and schemas and run predefined custom queries [GH-F81D94A8801C L60].  
+- Example queries include identifying scenarios where trust collapses (e.g., `WHERE trust < 0.2 AND time > 50`) and calculating average pressure values over time [GH-F81D94A8801C L101, L110].  
+- The database includes tables such as `ode_runs` (ODE simulation results) and views like `ode_final_states` [GH-F81D94A8801C L73, L79].  
+- The project requires Python 3.11+ and matplotlib for data processing and visualization [GH-F81D94A8801C L120].  
+- Output from the query tool is stored in the `query_results/` directory [GH-F81D94A8801C L142].
+
+**Striking Details**:  
+- The project merges symbolic dynamical systems modeling (ODE and agent-based) with narrative topology analysis, suggesting a hybrid approach to modeling complex social phenomena [GH-F81D94A8801C L7].  
+- The tools are explicitly designed for processing and analyzing large-scale simulation results, likely from multiple runs under different scenarios [GH-F81D94A8801C L26, L35].  
+- The use of DuckDB, a lightweight, fast, and embedded analytical database, implies a focus on efficient data querying and manipulation [GH-F81D94A8801C L148].
+
+**Coverage Limit**:  
+Sampled anchors (35 out of 148) indicate that this note does not cover the full content of the source.
+
+## Speculation
+- Could the semantic overload mentioned in the project's description relate to the complexity or volume of data being processed?  
+- How might the use of narrative topology analysis complement the symbolic modeling techniques described?  
+- What is the relationship between the `ode_final_states` view and the broader goals of the Piston Leak Lab project?  
+- Are the database tools designed for public or private use, given the project's name and context?

@@ -1,0 +1,41 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T12:20:17+00:00)
+
+- Source ID: `GH-D2DE97D317CC`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/careManuals/index.html>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/careManuals/index.html`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 32 anchors; verify against the source.
+
+**Source Note: GH-D2DE97D317CC**
+
+This is an experimental private wiki, hosted on GitHub, serving as a public archive for one author's content. The file in question is `index.html`, located in the `careManuals` directory of the `gaslitAF` repository. It functions as a landing page for a collection of documents, likely related to care manuals or clinical guides. The source is real, downloaded text, and is treated as raw data.
+
+**Apparent Subject & Genre:**  
+The subject appears to be a set of care manuals, possibly for mental health, clinical procedures, or personal well-being. The genre is informational, structured as a wiki, with HTML formatting. The page lists links to markdown files, suggesting a broader collection of related documents.
+
+**Main Ideas:**  
+The primary function of this page is to serve as a navigational hub for a series of care-related documents. These are likely part of a larger project or archive, given the presence of a GitHub repository and the naming convention of the files (e.g., "coherenceCareManual," "practicalClinicalGuide"). The content may be intended for personal use, research, or public sharing, though the authorship is singular and private.
+
+**Striking Details:**  
+- The page is minimal in content, focusing solely on navigation to other markdown files. [GH-D2DE97D317CC L16]  
+- The title and header both state "careManuals," reinforcing the thematic focus. [GH-D2DE97D317CC L6, L12]  
+- The footer includes a copyright notice dated 2025, indicating a future-oriented or speculative origin. [GH-D2DE97D317CC L29]  
+- The links listed point to markdown files, suggesting an ongoing or evolving project. [GH-D2DE97D317CC L19, L21, L23]  
+- The use of the name "GASLIT-AF" in the copyright notice may be a personal or project-specific identifier, though its meaning is unclear. [GH-D2DE97D317CC L29]
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the source text. The full content of the wiki or individual care manuals is not included here, as only the `index.html` file is referenced.
+
+## Speculation  
+- What is the significance of the copyright date being 2025, and does it indicate a projected release or a placeholder for a future timeline?  
+- Are the care manuals intended for public use, or are they private notes meant for a specific audience?  
+- Could "GASLIT-AF" be a pseudonym, a project name, or a reference to a fictional entity?  
+- How might the contents of the linked markdown files (e.g., "coherenceCareManual") relate to each other thematically or structurally?  
+
+**Claims:**  
+- The copyright date of 2025 is speculative and may not reflect actual publication intent.  
+- The author's intent or the practical use of the care manuals is not confirmed.  
+- The meaning of "GASLIT-AF" remains unclear and is not factually established.

@@ -1,0 +1,33 @@
+# astra-tui.js
+
+Status: unreviewed local-model draft (2026-09-25T04:56:32+00:00)
+
+- Source ID: `GH-3B481A92E298`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/docs/astra-tui.js>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `docs/astra-tui.js`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 370 anchors; verify against the source.
+
+**Source Note: GH-3B481A92E298**
+
+**Subject:** This file appears to be a JavaScript script related to a terminal-based user interface (TUI) for an application called ASTRA. The script uses the `blessed-contrib` library, which is commonly used for building interactive TUIs in Node.js environments.
+
+**Genre:** Technical code; likely part of a software project's documentation or implementation files.
+
+**Main Ideas:** The script defines a TUI with features such as command mode, status lines, graph rendering, and interaction with a "consciousness field" or "symmetry value." It includes functions for managing user input, rendering visual elements (e.g., graphs, timelines), and switching between different views. The presence of commands like `:quit`, `:q`, `h/l`, and references to "Betti numbers" suggests the application may have a data visualization or analysis component.
+
+**Striking Details:**
+- The script uses ASCII art for decorative purposes, such as in [GH-3B481A92E298 L17].
+- It includes a `renderCmdPalette()` function that logs Betti numbers (β₀=3, β₁=2, β₂=1) in [GH-3B481A92E298 L339].
+- The script references a "symmetry value" and updates a graph based on this value in [GH-3B481A92E298 L299].
+- It contains a `scrollDown()` function and methods for increasing or decreasing values in [GH-3B481A92E298 L221] and [GH-3B481A92E298 L229].
+- It defines a constructor with properties like `cmdBuffer`, `loading`, and `mode` in [GH-3B481A92E298 L25] and [GH-3B481A92E298 L166].
+
+**Coverage Limit:** Sampled anchors (45 of 370 total) mean this note does not reflect the full content of the file.
+
+**## Speculation**
+- What is the "symmetry value" referenced in the script, and how is it calculated or used within the application?
+- Are the Betti numbers (β₀=3, β₁=2, β₂=1) part of a mathematical or topological analysis, or are they symbolic?
+- Could the "consciousness field" and "markers for significant points" in [GH-3B481A92E298 L260] relate to a visualization of neural or cognitive processes?
+- Is this file part of a larger project, and how does the ASTRA application relate to the broader ASTRA repository?

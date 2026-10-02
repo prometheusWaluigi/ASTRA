@@ -1,0 +1,36 @@
+# annotator.py
+
+Status: unreviewed local-model draft (2026-09-25T08:47:42+00:00)
+
+- Source ID: `GH-B4BC99054C82`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/backup/src/gaslit_af/clinvar/annotator.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `backup/src/gaslit_af/clinvar/annotator.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 237 anchors; verify against the source.
+
+# Source Note: GH-B4BC99054C82
+
+**Subject**: This file, titled `annotator.py`, is part of a Python project focused on variant annotation using ClinVar data. It appears to be a tool for analyzing genetic variants in the context of clinical annotations.
+
+**Genre**: Software code (Python) for bioinformatics or genomic data analysis.
+
+**Main Ideas**:  
+The file defines a class with methods to annotate genetic variants using ClinVar data, which is a public archive of interpretations of genetic variants. The class interacts with a cache for efficient data retrieval and supports querying by parameters such as gene, chromosomal position, or variant identifiers. It also includes functionality for refreshing or clearing the cache.
+
+**Striking Details**:  
+- The class includes methods like `lookup_variant`, `get_variants_by_gene`, and `refresh_cache` [GH-B4BC99054C82 L127].  
+- The file uses a cache for storing and retrieving data, which may be populated from a local or remote source [GH-B4BC99054C82 L122].  
+- The method `annotate_variant` checks for significance labels such as "benign" and assigns boolean flags to variant dictionaries [GH-B4BC99054C82 L71].  
+- It supports querying by gene, chromosomal position, or variant identifiers [GH-B4BC99054C82 L207].  
+- The file includes detailed docstrings explaining its functions and parameters [GH-B4BC99054C82 L36, L41, L86, L187].  
+- The `clear_cache` method allows clearing cached data, optionally by cache type [GH-B4BC99054C82 L162].  
+
+**Coverage Limit**:  
+This note is based on sampled anchors from the file, meaning not all content has been reviewed. The full implementation may include additional features or edge-case handling not reflected in the sampled lines.
+
+## Speculation  
+- Could this tool be integrated into a larger pipeline for variant prioritization in clinical or research settings?  
+- What is the source of the cached ClinVar data—does it rely on a specific API or database?  
+- Are there plans to expand the querying capabilities beyond ClinVar, such as incorporating other variant databases?  
+- How does the cache handle updates or conflicts with new ClinVar submissions?

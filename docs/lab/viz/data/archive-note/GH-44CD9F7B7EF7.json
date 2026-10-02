@@ -1,0 +1,39 @@
+# run_docker.sh
+
+Status: unreviewed local-model draft (2026-09-25T07:35:22+00:00)
+
+- Source ID: `GH-44CD9F7B7EF7`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/run_docker.sh>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `run_docker.sh`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 171 anchors; verify against the source.
+
+**Source Note for GH-44CD9F7B7EF7**
+
+**Subject:** A Bash script for running Docker containers related to genetic analysis or simulation workflows.
+
+**Genre:** Technical script, likely part of a research or development project involving Docker and genetic data processing.
+
+**Main Ideas:**
+- The script is designed to run Docker containers with customizable commands and options.
+- It supports building Docker images from a Dockerfile, with an option to use an existing image (`--build`).
+- It provides a way to specify commands to be executed within the container, such as `"analyze_vcf"` or `"app"`.
+- The script includes functions for printing informational or error messages in colored text, as seen in [GH-44CD9F7B7EF7 L12] and [GH-44CD9F7B7EF7 L23].
+- It handles command-line arguments with options like `-h` (help), `-b` (build), and others, as indicated in [GH-44CD9F7B7EF7 L66] and [GH-44CD9F7B7EF7 L70].
+- The script mounts local directories (`data/vcf`, `results`) into the Docker container, as shown in [GH-44CD9B7EF7 L146] and [GH-44CD9F7B7EF7 L167].
+
+**Striking Details:**
+- The script references a directory `data/vcf` containing `.vcf.gz` files, which are standard in bioinformatics for storing genetic variant data [GH-44CD9F7B7EF7 L99].
+- A command `analyze_vcf` is explicitly mentioned as a possible action within the container [GH-44CD9F7B7EF7 L135].
+- The container name is hardcoded as `"gaslit-af-container"` [GH-44CD9F7B7EF7 L59].
+- There is a mention of "simulation mode" [GH-44CD9F7B7EF7 L102], suggesting the script may be used for testing or non-production workflows.
+- The script uses a `case` statement to handle different commands, including `"app"` (likely a Flask application) [GH-44CD9F7B7EF7 L138].
+
+**Coverage Limit:** Sampled anchors (40 of 171) do not cover the entire file. Not all functionality or context is represented.
+
+## Speculation
+- Could the `"app"` command refer to a Flask-based API or web interface for genetic analysis, possibly used for internal tooling or visualization?
+- What is the relationship between the `Dockerfile.fix` referenced in [GH-44CD9F7B7EF7 L113] and the primary Dockerfile used by the project?
+- Are the `.vcf.gz` files in `data/vcf` proprietary, public, or synthetic data? Does the use of "simulation mode" imply they are not real-world datasets?
+- Might the project be connected to other repositories or tools under the same author, given the name "gaslit-af-warfare" and the focus on genetic analysis?

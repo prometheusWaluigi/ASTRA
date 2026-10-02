@@ -1,0 +1,37 @@
+# conftest.py
+
+Status: unreviewed local-model draft (2026-09-25T07:18:33+00:00)
+
+- Source ID: `GH-2692E184D0F9`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/tests/conftest.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `tests/conftest.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 68 anchors; verify against the source.
+
+# Source Note: GH-2692E184D0F9
+
+**Subject**: This file is a test configuration script for a software project related to variant analysis in genomic data. The apparent focus is on setting up testing environments, managing data paths, and ensuring clean test execution.
+
+**Genre**: Technical code (Python), specifically a `conftest.py` file used in pytest for defining fixtures and configuration for testing.
+
+**Main Ideas**: 
+- The script sets up a test environment by defining fixtures for test data, output directories, and cache directories.
+- It prioritizes using a local sample VCF file for testing, but falls back to a specific genomic VCF file if the sample is missing.
+- It ensures that directories for test outputs and visualizations are created and cleaned before each test run.
+- The script manages temporary directories to avoid interference between test runs.
+
+**Striking Details**:
+- The test environment is defined in [GH-2692E184D0F9 L49], with the goal of providing necessary paths for testing.
+- A specific VCF file path is referenced in [GH-2692E184D0F9 L27], suggesting the use of real genomic data for testing.
+- The script includes cleanup logic in [GH-2692E184D0F9 L55], removing all files in the output directory before tests.
+- The fixture `test_environment` returns a dictionary of paths in [GH-2692E184D0F9 L64], which may be used by other test components.
+
+**Coverage Limit**: Sampled anchors (39 out of 68 total) are shown, meaning this note is based on a partial inspection of the source, not a full read.
+
+## Speculation
+
+- Could the use of a specific VCF file in [GH-2692E184D0F9 L27] indicate that the software is being tested with a known dataset, possibly from a specific individual or study?
+- How does the fallback mechanism in [GH-2692E184D0F9 L22] affect testing reliability if the actual VCF file is not accessible or differs significantly from the sample?
+- What is the significance of the name "KetanRaturi-SQ4T88M8-30x-WGS-Sequencing_com-08-24-24.snp-indel.genome.vcf.gz" in [GH-2692E184D0F9 L27]? Is it a placeholder or a real dataset?
+- Are there any other files or directories referenced in this script that might be relevant to understanding the broader project structure or testing scope?

@@ -1,0 +1,43 @@
+# sp_data_analysis.py
+
+Status: unreviewed local-model draft (2026-09-25T08:37:51+00:00)
+
+- Source ID: `GH-AA0E72CC2278`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/src/sp_data_analysis.py>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `src/sp_data_analysis.py`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 701 anchors; verify against the source.
+
+# Source Note: GH-AA0E72CC2278
+
+**Subject:** This source is a Python script titled `sp_data_analysis.py`, part of a private wiki's public archive. It appears to focus on data analysis for sales and inventory performance, likely related to Amazon's Selling Partner API (SP-API). The script processes data from multiple sources and generates analysis and visualizations.
+
+**Genre:** Technical code (Python), with inline documentation and logging. The script incorporates data processing, analysis, and visualization functions. It includes references to a potential use of acceleration via the `oneapi_accelerator` library, which may be an experimental or performance-oriented addition.
+
+**Main Ideas:**
+- The script loads and processes sales, inventory, and performance data.
+- It performs clustering (e.g., via `accelerated_kmeans`) on sales or performance data.
+- It generates heuristic scores based on metadata, sales activity, and time-based criteria.
+- It creates visualizations of performance metrics over time.
+- It logs results and outputs structured analysis, including CSV files and plots.
+
+**Striking Details:**
+- The function `run_sp_data_analysis()` is central, suggesting the script is a command-line or automated analysis tool.
+- Metadata filtering is based on criteria such as "unknown titles" and "bad metadata" from the README, as seen in [GH-AA0E72CC2278 L418].
+- The script includes a mechanism for trying alternative data files, such as in [GH-AA0E72CC2278 L120] and [GH-AA0E72CC2278 L284].
+- It mentions "Heuristic_Score" in [GH-AA0E72CC2278 L433], which is modified based on time since last sale.
+- The use of `ONEAPI_AVAILABLE` and `accelerated_kmeans` suggests experimental or high-performance computing integration, though this appears to be optional and conditional in [GH-AA0E72CC2278 L329].
+
+**Coverage Limit:**  
+This note is based on sampled anchors (37 out of 701), meaning the full source has not been read. Some functions and code paths may be unexamined or truncated.
+
+## Speculation
+- Could the use of `oneapi_accelerator` be a placeholder or experimental feature, and what performance improvements does it aim to achieve?
+- Are the "bad metadata" criteria in [GH-AA0E72CC2278 L418] based on external guidelines or internal rules of the author's archive?
+- What is the significance of "Heuristic_Score" in [GH-AA0E72CC2278 L433], and how might it be used for decision-making or filtering?
+- Does the script support multiple data formats, and could the "alternative sales files" in [GH-AA0E72CC2278 L120] indicate incomplete or inconsistent data sources?
+
+**Flags:**
+- The use of `oneapi_accelerator` is flagged as a potential experimental or performance-related claim, not fact.
+- The script's focus on SP-API data is inferred from column names like "Total Order Items - B2B" and "Average Sales per Order Item" in [GH-AA0E72CC2278 L75], but not explicitly confirmed.

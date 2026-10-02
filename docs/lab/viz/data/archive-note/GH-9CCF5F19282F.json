@@ -1,0 +1,35 @@
+# package.json
+
+Status: unreviewed local-model draft (2026-09-25T11:55:15+00:00)
+
+- Source ID: `GH-9CCF5F19282F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/package.json>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `package.json`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 17 anchors; verify against the source.
+
+**Source Note: GH-9CCF5F19282F**
+
+**Subject:** This is a `package.json` file from a GitHub repository named `prometheusWaluigi/gaslitAF`. The file appears to define the configuration and dependencies for a static site generator project, specifically for hosting podcasts and theories related to "GASLIT-AF."
+
+**Genre:** Technical configuration file (software development), likely part of a static site generator setup (Eleventy).
+
+**Main Ideas:**
+- The project is a GitHub Pages site for hosting podcasts and theories, indicating a focus on content delivery and possibly community engagement around "GASLIT-AF."
+- The use of Eleventy (`@11ty/eleventy`) as the static site generator suggests a preference for simplicity and speed in content creation and deployment.
+- Markdown processing is handled by `markdown-it` and `markdown-it-anchor`, which are used to support markdown formatting and anchor links on the site.
+- Testing is facilitated by Jest, implying a focus on maintaining code quality through automated testing.
+
+**Striking Details:**
+- The `dependencies` section is empty, which may indicate that the project relies only on dev tools and no external runtime libraries.
+- The `scripts` section defines a build process using Eleventy, a start script for local development, and a test command that runs both the build and Jest tests.
+- The use of Eleventy and Jest is notable in the context of a GitHub Pages site, which is typically used for simpler, less complex deployments.
+
+**Coverage Limit:** Sampled anchors represent the full content of this file. However, this is only one file in the repository and does not reflect the broader project or its content beyond the technical configuration.
+
+## Speculation
+- Could this project be part of a larger effort to archive and analyze content related to "GASLIT-AF," possibly with ties to media analysis or conspiracy theory discussions?
+- How does the use of Eleventy and Jest impact the scalability or maintenance of the site compared to other static site generators?
+- Are there additional files or configurations not shown here that provide deeper insight into the structure or content of the "GASLIT-AF" podcasts and theories?
+- What is the significance of the name "GASLIT-AF," and does it relate to the content or purpose of the podcasts and theories hosted on this site?

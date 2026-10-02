@@ -1,0 +1,36 @@
+# annotate_variants.py
+
+Status: unreviewed local-model draft (2026-09-25T08:24:19+00:00)
+
+- Source ID: `GH-8280E336B278`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/tools/annotate_variants.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `tools/annotate_variants.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 246 anchors; verify against the source.
+
+# Source Note: GH-8280E336B278
+
+**Subject**: This is a Python script for variant annotation, likely related to bioinformatics or genomic data analysis.  
+**Genre**: Software tool / script; part of a larger project involving variant analysis and API integration.  
+**Main Ideas**:  
+- The script allows users to annotate genetic variants from a CSV file or by rsID (reference SNP identifier).  
+- It interacts with an API (presumably for genomic databases) to retrieve details about variants.  
+- Output can be generated in JSON or table format, with the ability to save results to a file.  
+- The script uses the `rich` library for progress tracking and console output formatting.  
+
+**Striking Details**:  
+- The script includes error handling for missing or invalid input data, such as the absence of an "ID" column in the input CSV file [GH-8280E336B278 L74].  
+- It supports batch processing of variants, including saving all annotated details to a JSON file [GH-8280E336B278 L194].  
+- The output format includes structured data such as "Consequence" and "Pathogenicity" scores, which are likely sourced from genomic databases like ClinVar or COSMIC [GH-8280E336B278 L152, L157].  
+- The script uses a `VariantAPIIntegration` class to cache API responses, likely for performance optimization [GH-8280E336B278 L178].  
+- It dynamically generates console output with color-coding and structured tables [GH-8280E336B278 L100, L105, L147].  
+
+**Coverage Limit**:  
+This note is based on sampled anchors from the source text, which includes 246 total anchors. The sampling is not exhaustive; therefore, not all content or functionality may be reflected here.  
+
+## Speculation
+- Could the `VariantAPIIntegration` class be part of a larger API framework used for genomic data retrieval, or is it a custom module?  
+- Are the pathogenicity scores retrieved from external databases, or are they generated internally by the script?  
+- What is the relationship between the "ensembl_" prefix in column names and the Ensembl genome database?  
+- How does the caching mechanism in `VariantAPIIntegration` affect performance and data accuracy over time?

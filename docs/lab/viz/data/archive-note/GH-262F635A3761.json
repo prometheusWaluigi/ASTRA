@@ -1,0 +1,34 @@
+# setup_annovar.py
+
+Status: unreviewed local-model draft (2026-09-25T07:17:37+00:00)
+
+- Source ID: `GH-262F635A3761`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/setup_annovar.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `setup_annovar.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 294 anchors; verify against the source.
+
+**Source Note: GH-262F635A3761**
+
+The text is a Python script from a GitHub repository, titled `setup_annovar.py`, and appears to be part of a bioinformatics or genomic analysis project. The script is related to the setup and configuration of **ANNOVAR**, a tool used for annotating genetic variants. Its apparent subject is the automation of downloading and installing ANNOVAR databases and dependencies, likely for variant analysis in a research or clinical setting.
+
+**Genre**: This is a technical script, written in Python, with dependencies on libraries such as `subprocess` and `rich.logging`. It includes functions for downloading, extracting, and verifying the installation of software components, indicating a focus on system automation and bioinformatics toolchain management.
+
+**Main Ideas**: The script automates the installation and configuration of ANNOVAR, which is used for variant annotation. It includes features such as checking for existing installations, downloading databases based on a specified genome build version, and handling user input via command-line arguments. The script also incorporates logging and progress tracking for user feedback during the installation process.
+
+**Striking Details**: 
+- The script requires an **email address for ANNOVAR registration**, as noted in [GH-262F635A3761 L63].
+- It supports **multiple genome builds**, as indicated by the parameter in [GH-262F635A3761 L57].
+- It includes **error handling** for failed downloads or extractions, such as in [GH-262F635A3761 L132] and [GH-262F635A3761 L275].
+- The script uses **progress tracking** during downloads, as seen in [GH-262F635A3761 L95] and [GH-262F635A3761 L113].
+- A **force flag** is provided to override existing installations, per [GH-262F635A3761 L263].
+
+**Coverage Limit**: This note is based on sampled anchors; not all content has been reviewed. The script may include additional functionality or parameters not represented here.
+
+## Speculation
+
+- Could this script be part of a larger pipeline for variant analysis in a clinical or research context, such as cancer genomics or population genetics?  
+- Is the use of ANNOVAR here indicative of a focus on **functional annotation of genetic variants** for downstream analysis, as suggested in [GH-262F635A3761 L7]?  
+- Might the inclusion of **email-based registration** for ANNOVAR imply that the author is using a version that requires **academic or institutional access**, or could it be a placeholder for a fictional or outdated process?  
+- How does the script handle **non-default genome builds**, and are there any known limitations or incompatibilities with certain versions?

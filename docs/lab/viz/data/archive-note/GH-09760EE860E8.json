@@ -1,0 +1,43 @@
+# gaslitDynamicalSystemsLongForm.md
+
+Status: unreviewed local-model draft (2026-09-24T22:51:33+00:00)
+
+- Source ID: `GH-09760EE860E8`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/coreTheories/gaslitDynamicalSystemsLongForm.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/coreTheories/gaslitDynamicalSystemsLongForm.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 368 anchors; verify against the source.
+
+# Source Note: GH-09760EE860E8
+
+**Subject**: A theoretical model exploring chronic multi-system syndromes (CMSS) through the lens of dynamical systems, particularly focusing on conditions like ME/CFS, EDS, POTS, and MCAS.  
+
+**Genre**: Scientific theory, computational modeling, and speculative biology.  
+
+**Main Ideas**:  
+- Chronic multi-system syndromes (CMSS) may arise from complex physiological systems transitioning into self-sustaining "pathological attractor" states.  
+- The GASLIT-AF model proposes that genetic predispositions (e.g., variants in the RCCX gene module) and environmental triggers (e.g., infections, trauma) interact to push the body into a chronic, recursive state.  
+- The model emphasizes feedback loops (e.g., neuroendocrine-immune loops) that reinforce dysfunction and make recovery difficult.  
+- The system's state is represented by a multidimensional vector encompassing variables such as neuroendocrine function, immune activity, and metabolic status.  
+- Theoretical tools include differential equation models, computational simulations, and data-driven approaches like machine learning on longitudinal patient data.  
+
+**Striking Details**:  
+- The text references a 2024 meta-analysis ([GH-09760EE860E8 L368]) showing ~51% of Long COVID patients meet ME/CFS criteria.  
+- The model posits that genetic factors "load the gun" and environmental triggers "pull the trigger" ([GH-09760EE860E8 L48]).  
+- It describes a hypothetical "energy barrier" between healthy and pathological states in a conceptual attractor landscape ([GH-09760EE860E8 L32]).  
+- The RCCX gene module (C4, CYP21A2, TNXB, etc.) is highlighted as a potential genetic contributor to CMSS ([GH-09760EE860E8 L134]).  
+- Simulations may capture hysteresis, where the system returns to the pathological state even after reducing stressor load ([GH-09760EE860E8 L212]).  
+
+**Coverage Limit**: Sampled anchors (18 of 368 total) mean this note does not cover the entire document.  
+
+## Speculation  
+- Could the GASLIT-AF model be applied to other complex chronic conditions beyond CMSS, such as autoimmune disorders or psychiatric illnesses?  
+- Might the proposed genetic mechanisms (e.g., RCCX gene module) explain overlapping symptomatology across seemingly unrelated syndromes?  
+- Is the focus on attractor states and feedback loops a novel contribution to understanding these conditions, or does it reframe existing hypotheses in a new mathematical framework?  
+- How might the model's computational strategy (e.g., differential equations, machine learning) be validated or refined with real-world patient data?  
+
+**Claims**:  
+- The text presents speculative genetic and systems-level hypotheses, not established fact.  
+- The model is described as theoretical and computational, not a clinical diagnostic tool.  
+- Some claims (e.g., the role of the RCCX module) are flagged as hypotheses, not proven conclusions.

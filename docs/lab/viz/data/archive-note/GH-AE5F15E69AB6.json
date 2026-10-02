@@ -1,0 +1,38 @@
+# neuroimmune_simulator.py
+
+Status: unreviewed local-model draft (2026-09-25T08:44:23+00:00)
+
+- Source ID: `GH-AE5F15E69AB6`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/biological_modeling/neuroimmune_simulator.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/biological_modeling/neuroimmune_simulator.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 700 anchors; verify against the source.
+
+**Source Note: GH-AE5F15E69AB6**
+
+**Subject:** A Python script implementing a neuroimmune simulation model. The script appears to model the interaction between neural and immune system components, potentially exploring the effects of neurotoxicity, spike proteins, and autonomic responses on biological systems.
+
+**Genre:** Scientific/Experimental Code (Biological Modeling). The file is a Python script, likely part of a larger research or simulation project, and contains configuration parameters, simulation loops, and visualization routines.
+
+**Main Ideas:**  
+- The script defines a simulation grid that models biological interactions, possibly involving neural tissue and immune responses [GH-AE5F15E69AB6 L179].  
+- It includes parameters such as `time_steps`, `spike_toxicity`, and `coupling_strength`, suggesting the model is exploring dynamic interactions between neurotoxic elements and immune activation [GH-AE5F15E69AB6 L60, L224, L75].  
+- The model incorporates random noise (`np.random.randn`) to simulate variability in immune responses [GH-AE5F15E69AB6 L298].  
+- The simulation tracks the evolution of states over time and identifies "attractor states" such as "Resilient" [GH-AE5F15E69AB6 L358, L417].  
+- Visualization functions are included, such as `visualize_grid` and `visualize_phase_portrait`, suggesting the author intended to analyze and present simulation outcomes graphically [GH-AE5F15E69AB6 L447, L566].
+
+**Striking Details:**  
+- The script checks for the presence of PyTorch and initializes a simulation grid based on configuration, indicating a possible integration of machine learning or computational modeling tools [GH-AE5F15E69AB6 L31, L179].  
+- The use of `spike_toxicity` and the mention of "cerebellar function" suggest a focus on the cerebellum and its interactions with immune processes, though this is speculative [GH-AE5F15E69AB6 L46].  
+- The inclusion of a `generate_phase_portrait` function hints at the exploration of parameter space and bifurcation analysis in the simulation [GH-AE5F15E69AB6 L447].  
+- The script appears to be incomplete or truncated, as it contains placeholder comments and unfinished function definitions [GH-AE5F15E69AB6 L209, L432].
+
+**Coverage Limit:**  
+The source is sampled from 700 anchors, with only 39 shown here (evenly distributed). This means the analysis is based on a partial representation of the full text and may not reflect the full scope of the file.
+
+**## Speculation**  
+- Could this model be related to the study of neurological diseases, such as those involving immune dysregulation or neuroinflammation?  
+- What is the significance of the "spike_toxicity" parameter, and does it relate to viral spike proteins or another type of neurotoxic agent?  
+- The mention of cerebellar function suggests a focus on the cerebellum; could this be part of a broader investigation into neurological disorders with immune components?  
+- Is the use of PyTorch and random noise intended to simulate learning or adaptation in immune responses, or is it a computational artifact without biological relevance?

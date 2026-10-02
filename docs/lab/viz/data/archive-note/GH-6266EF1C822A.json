@@ -1,0 +1,41 @@
+# batch_queries.py
+
+Status: unreviewed local-model draft (2026-09-25T07:50:16+00:00)
+
+- Source ID: `GH-6266EF1C822A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/batch_queries.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `batch_queries.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 308 anchors; verify against the source.
+
+**Source Note: GH-6266EF1C822A**
+
+**Subject:** This file appears to be a Python script related to data analysis and querying, likely for processing simulation or experimental data involving scenarios, entropy, trust, and pressure metrics. The script uses DuckDB, an analytical database engine, to execute complex SQL-like queries on datasets derived from simulations or experiments.
+
+**Genre:** Technical/Experimental Data Analysis Script
+
+**Main Ideas:**  
+The script processes data from simulations or experiments involving "scenarios," "ABM runs" (Agent-Based Model runs), and "ODE runs" (Ordinary Differential Equation runs). It computes statistics such as entropy, trust, pressure, and collapse time. The script seems to be part of a larger project analyzing the behavior of systems under varying conditions, possibly related to social dynamics, network analysis, or system stability. Key operations include grouping data by scenario names, computing averages, standard deviations, and selecting data based on thresholds (e.g., pressure > 0.5).
+
+**Striking Details:**  
+- The script defines and executes multiple SQL-like queries, including aggregations (e.g., `AVG(believer_fraction)`, `STDDEV(trust_pressure_corr)`), and complex window functions (e.g., `LAST_VALUE(agnostic_fraction) OVER (...)`).
+- It generates output files such as `"trust_pressure_correlation.csv"` and `"scenario_stats.csv"`, indicating structured data analysis and reporting.
+- The use of terms like `recovery_basin_size`, `final_skeptic`, `collapse_time`, and `network_entropy` suggests the analysis is focused on dynamic systems and their stability or entropy changes.
+- The script includes conditional filtering, such as `WHERE pressure > 0.5`, which may represent a critical threshold in the analysis.
+
+**Sampled Anchors (partial):**  
+- [GH-6266EF1C822A L1]: Shebang line indicating Python 3 usage.  
+- [GH-6266EF1C822A L14]: Import of DuckDB for database operations.  
+- [GH-6266EF1C822A L34]: Selecting `abm_run_count` and `mean_final_entropy` as metrics.  
+- [GH-6266EF1C822A L132]: Filtering records where `pressure > 0.5`, indicating a critical threshold.  
+- [GH-6266EF1C822A L262]: Output file `"trust_pressure_correlation.csv"` is generated from analysis of `ode_runs`.  
+
+**Coverage Limit:**  
+This note is based on sampled anchors from a total of 308 lines. The full source may contain additional queries or context not reflected here.
+
+**## Speculation**  
+1. Could this script be part of a broader study on the dynamics of trust and entropy in social or computational models?  
+2. Are the "scenarios" analyzed here related to simulations of social networks, or perhaps models of system failure and recovery?  
+3. The use of `pressure > 0.5` as a threshold—what does this represent in the context of the simulations? Is it a commonly used or arbitrary value?  
+4. How does the inclusion of both ABM and ODE runs suggest the integration of different modeling approaches in the analysis?

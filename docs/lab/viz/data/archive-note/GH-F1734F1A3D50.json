@@ -1,0 +1,39 @@
+# bidirectional.py
+
+Status: unreviewed local-model draft (2026-09-25T06:53:24+00:00)
+
+- Source ID: `GH-F1734F1A3D50`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/astra/retrocausal/bidirectional.py>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `astra/retrocausal/bidirectional.py`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 338 anchors; verify against the source.
+
+# Source Note: GH-F1734F1A3D50
+
+**Subject:** A Python script implementing bidirectional evolution of a "QualiaField" object with retrocausal influence, likely part of a computational model exploring retrocausal dynamics in a theoretical or experimental context.
+
+**Genre:** Technical code, scientific simulation, computational modeling.
+
+**Main Ideas:**  
+The script models a bidirectional evolution of a field (referred to as `QualiaField`) that incorporates both forward and backward temporal dynamics. This includes retrocausal terms, nonlinear interactions (e.g., `λ(∇χ)²`), and entanglement between states. The simulation appears to be part of a larger framework, possibly related to quantum mechanics or complex systems theory, though the exact application is unclear.
+
+**Striking Details:**  
+- The script references "retrocausal terms" and "retrocausal influence" [GH-F1734F1A3D50 L8, L166].  
+- It computes a "temporal correlation" matrix [GH-F1734F1A3D50 L116, L130], suggesting an interest in analyzing how states evolve and interact across time.  
+- The code includes entanglement between forward and backward evolutions [GH-F1734F1A3D50 L273], with a parameter `entanglement_strength` [GH-F1734F1A3D50 L101].  
+- The use of `QualiaField` [GH-F1734F1A3D50 L15, L37] implies a focus on subjective or qualia-related phenomena, possibly within a philosophical or neuroscientific context.  
+- The script includes progress tracking and plotting [GH-F1734F1A3D50 L266, L309], indicating an emphasis on visualization and iterative simulation.
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the file, meaning not all content has been reviewed. The full source may contain additional functions, comments, or context not reflected here.
+
+## Speculation  
+- Could the retrocausal terms relate to non-standard interpretations of quantum mechanics or theories involving backward-in-time causality?  
+- Might the entanglement between forward and backward states be a metaphor or computational tool for exploring consciousness or qualia in a physical framework?  
+- How does the `QualiaField` class interact with other components in the ASTRA repository?  
+- Is the nonlinear term `λ(∇χ)²` inspired by specific equations in physics, such as the KPZ equation or its variants?  
+
+**Flagged Claims:**  
+- Retrocausal influence and entanglement between forward and backward states are described as parameters, but their theoretical justification is not provided in the sampled content [GH-F1734F1A3D50 L166, L273].  
+- The use of `QualiaField` suggests a speculative or non-standard approach to modeling qualia, which may not be grounded in conventional scientific practice [GH-F1734F1A3D50 L15, L37].

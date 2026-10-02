@@ -1,0 +1,39 @@
+# test_simulated_vcf_analysis.py
+
+Status: unreviewed local-model draft (2026-09-25T07:27:32+00:00)
+
+- Source ID: `GH-3B02B9F6909A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/tests/test_simulated_vcf_analysis.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `tests/test_simulated_vcf_analysis.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 61 anchors; verify against the source.
+
+**Source Note: GH-3B02B9F6909A**
+
+**Subject:** This file is a Python script for testing a simulated VCF (Variant Call Format) analysis tool. It is part of a software testing suite for a project related to genetic risk analysis. The subject involves unit testing of functions that generate, analyze, and export risk profiles based on simulated genetic data.
+
+**Genre:** Technical code (unit tests), computational biology, genetic risk assessment.
+
+**Main Ideas:**  
+The script tests the functionality of a module named `simulate_vcf_analysis` by running assertions on generated data. Key functions include simulating VCF data, analyzing risk genes, generating heatmap data, and exporting risk profiles. The simulated data includes genetic variants, samples, and risk scores for specific genes. The tests ensure that outputs conform to expected structures and values, such as risk category, fragility gamma, and allostatic lambda.
+
+**Striking Details:**  
+- The simulated VCF data includes 7 variants, as indicated by [GH-3B02B9F6909A L14].  
+- The risk scores for specific genes (e.g., TNXB and COMT) are explicitly set in test cases, such as [GH-3B02B9F6909A L46].  
+- The risk category is constrained to a limited set of options, including "Moderate Risk - Fragility" and "Low Risk," as shown in [GH-3B02B9F6909A L25].  
+- The heatmap generation function sets a "risk" threshold at 0.7, as noted in [GH-3B02B9F6909A L41].  
+- Exported risk profiles include fields like `fragility_gamma`, `allostatic_lambda`, and `risk_category`, as seen in [GH-3B02B9F6909A L47–L52].  
+- All test cases use randomly seeded data to ensure reproducibility, as observed in [GH-3B02B9F6909A L9] and [GH-3B02B9F6909A L19].
+
+**Coverage Limit:** Sampled anchors (36 of 61 total) suggest that this is a partial view of the source. Not all test cases or functions are shown; this is a sampled representation of the code.
+
+**## Speculation**  
+1. Could this tool be part of a larger system for personalized medicine or genetic counseling? The presence of risk scores and categories suggests potential use in clinical or research contexts.  
+2. Are the values for `fragility_gamma` and `allostatic_lambda` based on real-world biological models or arbitrary thresholds? These terms are not standard in genetics, and their use here may indicate proprietary or simulated frameworks.  
+3. What is the relationship between the gene names (e.g., TNXB, COMT) and the risk categories generated? Are these genes known to be associated with specific health conditions or traits?  
+4. Does the export function support formats usable in external systems (e.g., JSON, CSV), or is it intended solely for internal use? The JSON format used in [GH-3B02B9F6909A L46] may indicate compatibility with other software tools.
+
+**Flagged Claims:**  
+- The use of `fragility_gamma` and `allostatic_lambda` appears to be fictional or non-standard terms, as they are not commonly used in genetic risk assessment literature.  
+- The assertion that the risk category is limited to "Moderate Risk - Fragility" or "Low Risk" (as in [GH-3B02B9F6909A L25]) may represent a self-imposed limitation within the simulation, not a universal standard.

@@ -1,0 +1,37 @@
+# run_direct_analysis.py
+
+Status: unreviewed local-model draft (2026-09-25T09:21:08+00:00)
+
+- Source ID: `GH-F61B081F89E6`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/run_direct_analysis.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `run_direct_analysis.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 130 anchors; verify against the source.
+
+# Source Note: GH-F61B081F89E6
+
+**Subject**: This is a Python script (`run_direct_analysis.py`) from a GitHub repository named `gaslit-af_variant_analysis`. It appears to be part of a larger project focused on analyzing genetic variation data, likely from VCF (Variant Call Format) files, which are standard in genomics for storing variant information.
+
+**Genre**: Technical software script, likely part of a bioinformatics or genomic data analysis pipeline. The script is written in Python and utilizes tools from the `rich` and `argparse` libraries, suggesting an emphasis on user interaction, progress visualization, and structured command-line argument parsing.
+
+**Main Ideas**:
+- The script performs batch analysis on VCF files using a class or module called `DirectSystemAnalyzer`.
+- It handles command-line arguments for input, output, and processing parameters (e.g., `--output-base-dir`, `--chunk-size`).
+- Logging and progress tracking are implemented using the `logging` and `rich` libraries.
+- The script includes error handling for missing imports and failed analysis operations.
+- It processes multiple VCF files and generates analysis results in structured output directories.
+
+**Striking Details**:
+- The script starts with a shebang line (`#!/usr/bin/env python3`), indicating it is intended to be executed directly as a Python script [GH-F61B081F89E6 L1].
+- It uses the `rich` library for progress bars and rich text formatting in logs [GH-F61B081F89E6 L15, L81].
+- The `DirectSystemAnalyzer` is imported from a module named `direct_system_analysis`, which may be part of the same project [GH-F61B081F89E6 L23].
+- The script logs detailed progress updates, including the number of VCF files processed and their status [GH-F61B081F89E6 L72, L111, L114].
+- It attempts to create output directories using `Path.mkdir(parents=True, exist_ok=True)` [GH-F61B081F89E6 L92].
+
+**Coverage Limit**: Anchors are sampled evenly from 130 total lines, meaning this note is based on partial data and does not reflect the full content of the script.
+
+## Speculation
+- Could the `DirectSystemAnalyzer` be a proprietary or custom tool developed for this project, or is it a known library? [GH-F61B081F89E6 L4, L23]
+- What is the significance of the `--chunk-size` parameter, and how does it affect the processing of VCF files? [GH-F61B081F89E6 L48]
+- Are the VCF files being analyzed part of a specific dataset or study, and could this script be used in a broader genomic research context? [GH-F61B081F89E6 L70, L125]

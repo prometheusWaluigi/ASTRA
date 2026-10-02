@@ -1,0 +1,35 @@
+# fractalInfoGeometry.txt
+
+Status: unreviewed local-model draft (2026-09-24T23:42:38+00:00)
+
+- Source ID: `GH-14561BC59319`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/theoretical_frameworks/fractalInfoGeometry.txt>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/theoretical_frameworks/fractalInfoGeometry.txt`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 134 anchors; verify against the source.
+
+# Source Note: GH-14561BC59319
+
+**Subject**: Fractal Information Geometry and its relationship to self-reference, consciousness, and complex systems.  
+**Genre**: Theoretical framework, mathematical exposition, and interdisciplinary exploration.  
+**Main Ideas**:  
+- Self-reference is a fundamental challenge in theoretical systems, with connections to Gödel's theorems, Russell's paradox, and consciousness studies.  
+- Fractal information geometry introduces a non-Euclidean approach to modeling information structures, using fractal supports and measures [GH-14561BC59319 L15].  
+- Recursive information systems are described through statistical manifolds and iterated function systems (IFS) [GH-14561BC59319 L41, L69].  
+- Self-referential systems are theorized to generate non-trivial topological structures, with potential applications in artificial intelligence and cognitive science [GH-14561BC59319 L83, L114].  
+
+**Striking Details**:  
+- A mathematical framework for self-reference is proposed through recursive definitions of statistical manifolds [GH-14561BC59319 L41, L43].  
+- The paper references the golden ratio φ in the context of cognitive complexity [GH-14561BC59319 L97].  
+- A theorem is presented asserting that recursive information structures above a critical dimension threshold necessarily have fixed points [GH-14561BC59319 L63].  
+- The text cites works from information geometry, fractal theory, and consciousness studies [GH-14561BC59319 L120, L123, L126, L128].  
+- The concept of "information dimension" is introduced, suggesting a quantifiable measure of complexity in self-referential systems [GH-14561BC59319 L49].  
+
+**Coverage Limit**: Sampled anchors (26 of 134) imply partial coverage; this source note does not claim comprehensive understanding of the full text.
+
+## Speculation  
+- Could the fractal information geometry framework offer a new mathematical language for modeling the emergence of consciousness in AI systems?  
+- Is the inclusion of the golden ratio φ a metaphorical or literal contribution to the theoretical framework, and how does it relate to the scaling laws presented?  
+- Might the fixed-point theorem have implications for the limits of self-awareness in artificial systems, or is it purely abstract?  
+- How might this approach compare to existing models of self-reference, such as those in quantum mechanics or computational theory?

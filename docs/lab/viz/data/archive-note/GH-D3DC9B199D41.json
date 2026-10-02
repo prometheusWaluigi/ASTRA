@@ -1,0 +1,33 @@
+# gene_systems.py
+
+Status: unreviewed local-model draft (2026-09-25T08:58:05+00:00)
+
+- Source ID: `GH-D3DC9B199D41`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/systems/gene_systems.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/systems/gene_systems.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 289 anchors; verify against the source.
+
+# Source Note: GH-D3DC9B199D41
+
+**Subject**: This source is a Python script, `gene_systems.py`, from a GitHub repository titled `gaslit-af_variant_analysis`. It appears to be part of a larger project focused on variant analysis and the organization of genetic systems.
+
+**Genre**: Software code (Python), likely part of a bioinformatics or genomic research tool.
+
+**Main Ideas**: The script manages the loading, creation, and saving of "gene systems" — collections of genes grouped by biological function or pathway. These systems are represented as JSON files, and their management includes operations such as adding genes, retrieving systems, and logging activity. The script initializes default systems, which are described with names and functions, such as "Immune & Inflammatory System" and "Mitochondrial & Cellular Stress."
+
+**Striking Details**:
+- The script includes logging functionality, indicating its use in a development or research environment. For example, [GH-D3DC9B199D41 L209] logs the addition of a gene to a system.
+- It manages gene systems through a dictionary structure, with system IDs and associated data, including gene lists and descriptions. For instance, [GH-D3DC9B199D41 L124] describes a system focused on "cardiac development and electrical conduction."
+- The script checks for existing JSON files in a directory to avoid overwriting data, as seen in [GH-D3DC9B199D41 L38].
+- There is a function that returns a list of genes from a system, as indicated in [GH-D3DC9B199D41 L173].
+- The script includes error handling for loading and saving systems, with logs for failures, such as in [GH-D3DC9B199D41 L56].
+
+**Coverage Limit**: Sampled anchors (39 of 289) do not cover the entire source. Some lines are truncated, and deeper analysis may reveal additional features or functions not visible in the sampled content.
+
+## Speculation
+- Could this script be part of a larger tool for analyzing genetic variants in disease contexts, such as ME/CFS, given [GH-D3DC9B199D41 L130]?
+- How are the "default systems" defined, and are they sourced from external databases or curated internally?
+- What is the relationship between the gene systems described here and the broader analysis goals of the `gaslit-af_variant_analysis` repository?
+- Are the gene systems intended for use in public-facing applications, or are they strictly internal to the project?

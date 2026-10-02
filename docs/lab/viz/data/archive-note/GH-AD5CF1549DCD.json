@@ -1,0 +1,35 @@
+# plots.py
+
+Status: unreviewed local-model draft (2026-09-25T08:40:58+00:00)
+
+- Source ID: `GH-AD5CF1549DCD`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/visualization/plots.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/visualization/plots.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 561 anchors; verify against the source.
+
+**Source Note: GH-AD5CF1549DCD**
+
+**Subject:** This file appears to be part of a computational or simulation project, likely related to modeling social dynamics, belief systems, or information propagation. The content is focused on data visualization, specifically plotting results from simulations involving "trust," "narrative entropy," and "collapse" phenomena.
+
+**Genre:** Technical code; specifically, a Python script for generating visualizations of simulation results.
+
+**Main Ideas:** The script generates plots visualizing trust dynamics, narrative entropy, and outcomes of simulated "collapse" events. It references modules like `models.abm` (likely an agent-based model) and `ode_results`, suggesting it integrates outputs from differential equations or agent-based simulations. The visualizations aim to show the relationship between trust and narrative entropy in phase space, as well as heatmaps and decision boundaries related to "collapse" events.
+
+**Striking Details:**
+- The script includes a visualization titled "Phase Space: Trust vs Narrative Entropy" [GH-AD5CF1549DCD L108].
+- It references a "collapse" event, with code marking collapse points and plotting outcomes like "rp_ratio" and "FCC x RSD ε-band" [GH-AD5CF1549DCD L156, L442, L490].
+- It uses `numpy` and `matplotlib` for data manipulation and plotting [GH-AD5CF1549DCD L13, L168].
+- It generates unique filenames using timestamps, indicating automated or batch processing [GH-AD5CF1549DCD L215, L275].
+- The script includes conditional checks, such as skipping parts if `sklearn` is unavailable [GH-AD5CF1549DCD L204].
+
+**Coverage Limit:** Sampled anchors (38 of 561) mean this note does not cover the full content of the source.
+
+**## Speculation**
+- Could the "collapse" events be related to systemic failures in belief propagation models, and how might this affect trust metrics?
+- What is the role of "FCC x RSD ε-band" in the simulation, and how does it relate to the modeling of trust or narrative entropy?
+- Are the visualizations intended for academic or public-facing use, and what might be the implications of their design choices?
+- How does the integration of ODE and ABM results contribute to the overall analysis of the simulation's outcomes?
+
+**Note:** The file does not explicitly describe the broader context of the simulation or the author's goals beyond visualization. Terms like "FCC x RSD ε-band" and "collapse" are used without further explanation in the sampled anchors. These may be domain-specific or internal to the project. No extraordinary or fictional claims are apparent in the sampled text.

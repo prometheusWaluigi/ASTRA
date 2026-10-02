@@ -1,0 +1,39 @@
+# setup_oneapi.ps1
+
+Status: unreviewed local-model draft (2026-09-25T05:12:49+00:00)
+
+- Source ID: `GH-54C0021C354A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/quantum_spectral_weaving/setup_oneapi.ps1>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `quantum_spectral_weaving/setup_oneapi.ps1`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 44 anchors; verify against the source.
+
+# Source Note: GH-54C0021C354A
+
+**Subject**: This script sets up a computational environment for quantum spectral weaving using Intel's oneAPI and Python. It appears to be part of a private, experimental archive focused on high-performance computing and quantum-related software development.
+
+**Genre**: Technical script, likely for automation and development workflows. It is a PowerShell script intended for use in a Windows environment.
+
+**Main Ideas**:
+- The script removes an existing Conda environment named "quantum_weaving".
+- It creates a new Conda environment with Python 3.9.
+- It activates the environment and initializes Intel oneAPI environment variables via the `setvars.bat` file.
+- It installs dependencies, including PyTorch and related libraries, with specific instructions for CPU-only versions and Intel extensions.
+- It sets various environment variables to configure oneAPI and optimize performance.
+- It installs the local package in editable mode and runs tests.
+
+**Striking Details**:
+- The script uses informal and energetic language (e.g., "BUSSIN", "NO CAP", "fr fr", "yeet") which is unconventional in technical documentation. [GH-54C0021C354A L1, L6, L9, L12, L15, L23]
+- It references a local package `quantum_spectral_weaving` and assumes the script is run from its root directory. [GH-54C0021C354A L37]
+- It installs a custom library from a GitHub repository: `git+https://github.com/NeoVertex1/ComplexTensor.git`. [GH-54C0021C354A L28]
+- It sets environment variables such as `ONEDNN_MAX_CPU_ISA` to "AVX512_CORE_AMX", which suggests hardware-specific optimizations. [GH-54C0021C354A L32]
+- The script includes a verification step that prints a message about the quantum environment being "BUSSIN w oneapi fr fr". [GH-54C0021C354A L41]
+
+**Coverage Limit**: Sampled anchors indicate that the full script has been analyzed, but the source may include additional context or functionality not shown here.
+
+## Speculation
+- What is the relationship between the `quantum_spectral_weaving` package and the `ComplexTensor` repository? Could they be part of a larger project or framework?
+- The informal language and abbreviations (e.g., "fr fr", "NO CAP") may reflect a private or personal development style. Could this be a marker for a non-public or niche community?
+- The use of "AVX512_CORE_AMX" and other hardware-specific configurations may imply that the script is tailored for a particular processor architecture. Are these settings necessary for the quantum spectral weaving tasks, or are they experimental?
+- The script installs PyTorch with CPU-only support, but also installs the Intel extension for PyTorch. Does this suggest the author is testing or comparing different performance configurations?

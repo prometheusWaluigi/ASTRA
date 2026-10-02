@@ -1,0 +1,29 @@
+# 02_authoritarian_clamp.yml
+
+Status: unreviewed local-model draft (2026-09-25T12:06:35+00:00)
+
+- Source ID: `GH-AE39406636AC`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/generated/02_authoritarian_clamp.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/generated/02_authoritarian_clamp.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 40 anchors; verify against the source.
+
+**Source Note: GH-AE39406636AC**
+
+This source is a YAML configuration file titled "02_authoritarian_clamp.yml," hosted on GitHub under the repository prometheusWaluigi/piston-leak-lab. The canonical URL points to a specific commit in the file's history, and the file is part of a simulated experiment involving "Hard Suppression / Low Transparency (Authoritarian Clamp)" [GH-AE39406636AC L2]. The apparent subject is a computational model simulating the suppression of information or ideas within a networked system, likely in a context of political or social control. The genre is technical and scientific, focusing on simulation parameters and configuration settings.
+
+The main ideas involve modeling the effects of an "authoritarian clamp" through a network of agents interacting under specific rules. Parameters such as `alpha1`, `beta1`, `gamma1`, and `k_policy` suggest a complex system with feedback loops and probabilistic behaviors. The simulation appears to involve a Watts-Strogatz network structure [GH-AE39406636AC L24], with 3,000 agents and rewiring probability of 0.2. The influence field is weighted differently for believers, skeptics, and agnostics [GH-AE39406636AC L29–L31], indicating a mechanism for shaping consensus or dissent within the system. The "transparency_value" is set to 0.02 [GH-AE39406636AC L35], suggesting a low level of openness or information sharing.
+
+Striking details include the presence of a `leak_frequency` parameter at 0.05 [GH-AE39406636AC L22], which may model the rate at which information escapes suppression, and the use of a `noise_sigma` value of 0.05 [GH-AE39406636AC L21], indicating small random perturbations in the system. The `epsilon_overlap` is set to 0.15 [GH-AE39406636AC L32], potentially modeling the degree of overlap or interaction between different agent groups. The `entropy_critical` value of 1.2 [GH-AE39406636AC L34] may relate to a threshold for system instability or change.
+
+The simulation is configured to run 500 times with a random seed of 42 [GH-AE39406636AC L8–L9], ensuring reproducibility. Output settings include saving time-series data, summaries, and generating plots [GH-AE39406636AC L37–L39], suggesting an emphasis on analytical and visual outcomes.
+
+**## Speculation**
+
+- Could the low transparency_value (0.02) and leak_frequency (0.05) be modeling a real-world scenario of information control, such as in a closed political regime?
+- What might the influence_field weights (believer, skeptic, agnostic) reveal about the simulation’s assumptions about resistance or compliance in such systems?
+- Does the use of a Watts-Strogatz network imply an interest in understanding how small-world properties affect the spread or suppression of information?
+- How might the entropy_critical threshold relate to systemic tipping points or critical transitions in the modeled environment?
+
+**Coverage Limit:** Sampled anchors (40) are shown in full, but the source contains more content not displayed here. This note is based on the visible data only.

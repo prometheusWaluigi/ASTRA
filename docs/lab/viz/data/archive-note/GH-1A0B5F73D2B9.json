@@ -1,0 +1,38 @@
+# test_institutional_feedback.py
+
+Status: unreviewed local-model draft (2026-09-25T07:11:07+00:00)
+
+- Source ID: `GH-1A0B5F73D2B9`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/tests/test_institutional_feedback.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `tests/test_institutional_feedback.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 347 anchors; verify against the source.
+
+# Source Note: GH-1A0B5F73D2B9
+
+**Subject:** This file is a Python test script for a model simulating institutional feedback dynamics, likely within a broader project involving systemic risk, information entropy, or social simulation.
+
+**Genre:** Software testing, specifically unit testing for a computational model. The code uses `pytest` and mocks external libraries such as `matplotlib.cm`.
+
+**Main Ideas:**
+- Testing the behavior of an `InstitutionalFeedbackModel`, which simulates interactions between institutions (e.g., government, media) and their impact on systemic stability.
+- The model incorporates parameters such as `entropy_threshold`, `denial_bias`, and `influence`, suggesting a focus on information dynamics and systemic risk.
+- Testing methods like `build_institutional_network`, `calculate_denial_loop_strength`, `update_narrative_stability`, and `determine_system_state` imply a focus on systemic feedback loops and stability metrics.
+- The presence of `sample_institutions` indicates that the model is initialized with predefined institution data for testing.
+
+**Striking Details:**
+- [GH-1A0B5F73D2B9 L30] A sample institution, "Media Corp," is defined with a high denial bias (`0.8`) and moderate influence (`0.75`), possibly indicating a role in information distortion or resistance to external pressures.
+- [GH-1A0B5F73D2B9 L318] A test case uses parameters `(0.9, 0.9)` to simulate a scenario where high denial bias and high influence lead to "likely collapse," implying a potential model outcome of systemic failure under certain conditions.
+- [GH-1A0B5F73D2B9 L163] A method `update_entropy` is referenced, suggesting that the model tracks entropy as a measure of systemic disorder or instability.
+- [GH-1A0B5F73D2B9 L281] The script includes a test for saving results to a file, such as `network.png`, suggesting that the model may produce visual outputs of its simulations.
+
+**Coverage Limit:**
+This note is based on sampled anchors from the 347 total anchors in the file. Not all content has been reviewed.
+
+## Speculation
+
+- Could this model be related to broader simulations of misinformation or propaganda dynamics in social systems? The inclusion of denial bias and entropy suggests a focus on such phenomena.
+- Are the parameters like `entropy_threshold` and `denial_bias` inspired by real-world studies or theoretical frameworks in sociology, economics, or political science?
+- How might the model's outcomes (e.g., "likely collapse") be interpreted in the context of institutional behavior and systemic risk? Is the model intended for policy analysis or academic research?
+- What is the relationship between the `InstitutionalFeedbackModel` and other components of the `gaslit-af-warfare` repository? Does this file represent a subset of a larger simulation framework?

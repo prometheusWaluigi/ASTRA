@@ -1,0 +1,41 @@
+# test_core.py
+
+Status: unreviewed local-model draft (2026-09-25T05:35:58+00:00)
+
+- Source ID: `GH-7684E6FF6CD4`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/tests/test_core.py>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `tests/test_core.py`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 102 anchors; verify against the source.
+
+**Source Note: GH-7684E6FF6CD4**
+
+The source is a Python test script titled `test_core.py` from the GitHub repository `prometheusWaluigi/ASTRA`. The file is part of the `tests` directory, suggesting it is used for testing functionalities within the ASTRA project. The script includes code for testing the initialization and properties of a class called `QualiaField`, as well as visualizations using `matplotlib`.
+
+**Apparent Subject:**  
+The script tests the behavior of a `QualiaField` object, which appears to be initialized with planetary data and a grid size. It also includes functionality for visualizing the field as an image.
+
+**Genre:**  
+This is a technical test script, likely part of a larger software project. It uses mocking and testing practices common in software development.
+
+**Main Ideas:**  
+- Testing the initialization and properties of a `QualiaField` class, which seems to model some sort of abstract or symbolic representation involving planetary positions and houses.
+- The script includes a visualization step using `matplotlib` to display the field as a grid.
+- The test checks if the field object has attributes like `state`, `grid`, and `params`, and handles exceptions during these checks.
+
+**Striking Details:**  
+- Planetary data (e.g., `self.moon`, `self.venus`, `self.jupiter`, etc.) is stored in dictionaries with attributes like `abs_pos`, `pos`, `sign`, and `house`. For example, [GH-7684E6FF6CD4 L31] shows:  
+  `self.moon = {'abs_pos': 342.00, 'pos': 12.00, 'sign': 'Pis', 'house': '2nd House'}`.  
+- The script attempts to visualize the field using a `viridis` colormap, with the title "ASTRA Qualia Field" [GH-7684E6FF6CD4 L78].  
+- There is a fallback message if the field state or grid cannot be accessed [GH-7684E6FF6CD4 L61].  
+- The test is part of a larger testing framework, with output saved to a file: `output/tests/qualia_field_test.png` [GH-7684E6FF6CD4 L81].
+
+**Coverage Limit:**  
+This note is based on sampled anchors from a total of 102 in the file. It is possible that other parts of the script contain additional logic, planetary data, or visualization parameters not included in this sampling.
+
+## Speculation
+- Could the planetary data in the script be linked to astrological modeling or symbolic representation within the ASTRA project?  
+- What is the significance of the grid size `(64, 64)` in the `QualiaField` initialization? Is it related to visual resolution or symbolic structure?  
+- Are the planetary positions and signs (e.g., `Sag`, `Cap`) real or arbitrary? Could this relate to a broader framework involving astrology or symbolic interpretation?  
+- Might the `QualiaField` be a metaphor for modeling subjective experience or abstract data structures, given its name and the presence of planetary data?

@@ -1,0 +1,40 @@
+# Dockerfile.fix2
+
+Status: unreviewed local-model draft (2026-09-25T12:32:18+00:00)
+
+- Source ID: `GH-F7533C0E0F99`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/Dockerfile.fix2>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `Dockerfile.fix2`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 79 anchors; verify against the source.
+
+**Source Note: GH-F7533C0E0F99**
+
+This is a Dockerfile from an experimental private wiki, serving as part of a public archive for a single author. The file is titled *Dockerfile.fix2* and originates from the GitHub repository *prometheusWaluigi/gaslit-af-warfare*. The canonical URL is [https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/Dockerfile.fix2](https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/Dockerfile.fix2).
+
+**Apparent Subject:**  
+This Dockerfile appears to be part of a project called *gaslit-af-warfare*, likely related to a software stack or application involving genetic analysis, biological modeling, or institutional/legal data processing. The file includes fixes for dependencies such as *scikit-allel* and modifications to test files, suggesting a focus on computational biology, data science, or AI-driven applications.
+
+**Genre:**  
+Technical documentation, specifically a Dockerfile used in software development and deployment.
+
+**Main Ideas:**  
+The Dockerfile is designed to build an environment for a software application involving Python, with a focus on testing, dependency management, and data science tools. It includes steps for installing specific Python packages, such as *scikit-allel* and *biopython*, and sets up a testing framework with *pytest*. The file also modifies test scripts to skip certain tests or ensure compatibility, indicating an effort to resolve import or execution issues in the project.
+
+**Striking Details:**  
+- The Dockerfile specifies Python 3.10 as the base image [GH-F7533C0E0F99 L4].  
+- It includes a command to run a test script named *run_tests.py* [GH-F7533C0E0F99 L79].  
+- A custom test script, *test_imports.py*, is created to verify the installation and importability of key packages, including *scikit-allel* and *biopython* [GH-F7533C0E0F99 L42].  
+- The script *genetic_scanner.py* is patched to include a new import [GH-F7533C0E0F99 L57].  
+- The test file *test_frontend.py* is modified to skip all tests, with a placeholder test that asserts `True` [GH-F7533C0E0F99 L67].  
+
+**Coverage Limit:**  
+This note is based on a sampled set of anchors from the Dockerfile, not the full text. Anchors over 800 characters are truncated, and the full content has not been reviewed.
+
+## Speculation
+
+- Could the project *gaslit-af-warfare* be related to AI or computational models of genetic risk or biological warfare?  
+- Why are multiple test files being modified to skip tests or include placeholder assertions? Is this due to unresolved dependencies or intentional behavior?  
+- What is the significance of the directory structure mentioned in the Dockerfile, such as *static/img/biological* and *static/img/legal*? Could this imply the project's integration with both scientific and legal data?  
+- Are the modifications to *genetic_scanner.py* and *test_frontend.py* temporary fixes or part of a larger effort to adapt the software for a specific deployment or environment?

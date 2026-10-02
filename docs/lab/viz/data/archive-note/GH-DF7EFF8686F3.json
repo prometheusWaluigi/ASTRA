@@ -1,0 +1,38 @@
+# run_mc.py
+
+Status: unreviewed local-model draft (2026-09-25T09:07:01+00:00)
+
+- Source ID: `GH-DF7EFF8686F3`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/run_mc.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/run_mc.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 573 anchors; verify against the source.
+
+**Source Note: GH-DF7EFF8686F3**
+
+**Subject:** This file appears to be a Python script for running Monte Carlo simulations in the context of modeling or analyzing some system, possibly related to scientific or engineering research. The script is part of a GitHub repository named `piston-leak-lab`, suggesting it may be used for simulations involving mechanical or thermodynamic systems, such as piston leaks or pressure dynamics.
+
+**Genre:** Technical code; scientific simulation script.
+
+**Main Ideas:** The script is designed to execute Monte Carlo simulations, likely for uncertainty quantification or sensitivity analysis. It imports configuration parameters from a YAML file, applies random perturbations to baseline values, and runs simulations (possibly ODE-based or agent-based models). It also handles the visualization and storage of simulation results, including saving CSV files and generating plots.
+
+**Striking Details:**
+- [GH-DF7EFF8686F3 L1] The script starts with a shebang line indicating it is intended to be run as a standalone Python script.
+- [GH-DF7EFF8686F3 L13] Imports the YAML module, suggesting external configuration is used.
+- [GH-DF7EFF8686F3 L86] Defines required sections in the configuration file, such as `'meta'`, `'ensemble'`, `'time'`, `'parameters'`, and `'output'`.
+- [GH-DF7EFF8686F3 L135] Applies perturbations using a normal distribution, indicating sensitivity analysis.
+- [GH-DF7EFF8686F3 L244] Sets a transparency function for an ODE model, possibly simulating some form of leakage or transparency parameter.
+- [GH-DF7EFF8686F3 L269] Includes error handling for ABM simulations, indicating robustness in execution.
+- [GH-DF7EFF8686F3 L342] Sets a trust threshold (`trust_threshold = 0.4`), possibly related to decision-making or recovery basins in the model.
+- [GH-DF7EFF8686F3 L427] Computes an R/P ratio, which may relate to performance or risk metrics.
+- [GH-DF7EFF8686F3 L488] Saves ODE timeseries data to CSV files, suggesting output storage for further analysis.
+- [GH-DF7EFF8686F3 L549] Accepts a YAML configuration file as input, which is a common practice in scientific simulations.
+
+**Coverage Limit:** Sampled anchors mean this note does not reflect the full content of the file.
+
+## Speculation
+- What is the relationship between the transparency parameters (`transparency_value`, `before_transparency`) and the simulated system? Could they relate to mechanical leakage or data transparency?
+- How does the Monte Carlo approach interact with the ODE and ABM simulations? Are these models being compared or combined?
+- Is the `trust_threshold` linked to decision-making or recovery in a simulated environment, and how does it impact outcomes?
+- Does the use of YAML configuration files indicate modular or reusable components in the simulation framework?

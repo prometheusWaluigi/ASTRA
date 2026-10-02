@@ -1,0 +1,49 @@
+# base.html
+
+Status: unreviewed local-model draft (2026-09-25T11:32:59+00:00)
+
+- Source ID: `GH-57FA2EEC7EFA`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/base.html>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/frontend/templates/base.html`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 159 anchors; verify against the source.
+
+**Source Note: GH-57FA2EEC7EFA**
+
+**Subject:** This file is a template for a web application's frontend, likely part of a larger project related to biological modeling, institutional feedback, and user-generated content. The file defines the structure and styling of the application's base HTML page.
+
+**Genre:** Technical/Software Development
+
+**Main Ideas:**  
+- The HTML file uses Bootstrap and Font Awesome for styling and icons.  
+- It includes a navigation bar with dropdown menus and links to sections like "Dashboard," "Biological Modeling," and "Institutional Feedback."  
+- There is a placeholder for dynamic content, such as `{% block page_title %}` and `{% for category, message in messages %}`.  
+- The footer contains links to functionalities like "Upload Genome" and "Testimonies."  
+- The site appears to be under the "GASLIT-AF" project, as indicated by a badge on the page.  
+
+**Striking Details:**  
+- The use of `{% if request.path == url_for('legal') %}` suggests dynamic behavior based on user navigation.  
+- The inclusion of "Biological Modeling" and "Upload Genome" implies a focus on scientific or data-driven applications.  
+- The presence of "Testimonies" and "Institutional Feedback" suggests a component involving user input or feedback mechanisms.  
+- The Bootstrap and Font Awesome libraries are used for UI components, indicating a modern web design approach.  
+- The page is part of a larger project, likely involving multiple templates and dynamic content blocks.  
+
+**Coverage Limit:** Sampled anchors mean not all content has been examined. The file may contain additional features or context not visible in the sampled lines.
+
+**## Speculation**  
+- Could the "Biological Modeling" section be related to genetic research or synthetic biology tools?  
+- Is "GASLIT-AF" an acronym or code name for a specific project, and what might it stand for?  
+- How does the "Institutional Feedback" feature interact with user-generated data or external systems?  
+- Might the "Testimonies" section be a public archive of user experiences or case studies?  
+
+**Claims:**  
+- No extraordinary, fictional, or self-contradictory claims found in the sampled content.  
+
+**Factual Observations:**  
+- [GH-57FA2EEC7EFA L1] The file begins with a standard HTML5 doctype declaration.  
+- [GH-57FA2EEC7EFA L4] The HTML page specifies UTF-8 character encoding.  
+- [GH-57FA2EEC7EFA L38] The "Dashboard" link includes a Font Awesome icon (`fa-chart-line`).  
+- [GH-57FA2EEC7EFA L85] A badge labeled "GASLIT-AF" is present on the page.  
+- [GH-57FA2EEC7EFA L129] The "Upload Genome" feature is accessible via a link with a Font Awesome icon (`fa-upload`).  
+- [GH-57FA2EEC7EFA L75] The "Testimonies" section is linked with a Font Awesome icon (`fa-comments`).

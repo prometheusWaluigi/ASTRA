@@ -1,0 +1,36 @@
+# s42003-025-07576-0.pdf
+
+Status: unreviewed local-model draft
+Source ID: M9003DAD2CE4C
+Sampled pages: 1, 3, 4, 6, 7, 9, 10, 12 of 12
+
+# Source Note: M9003DAD2CE4C
+
+**Subject**: The study investigates the transient destabilization of whole-brain dynamics induced by N,N-Dimethyltryptamine (DMT) using a time-dependent whole-brain model. It explores how DMT affects brain connectivity and reactivity during acute psychedelic states.
+
+**Genre**: Scientific research article, neuroscience, computational modeling, pharmacology.
+
+**Main Ideas**:
+- DMT induces a transient destabilization of whole-brain dynamics, bringing the brain closer to a global bifurcation point (dynamic criticality).
+- This destabilization is temporally aligned with DMT pharmacokinetics, modeled using a gamma function.
+- The heightened reactivity during DMT effects is concentrated in fronto-parietal regions and visual cortices, correlating with serotonin 5HT2a receptor density.
+- The study emphasizes the interaction between drug-induced changes and endogenous brain dynamics, suggesting implications for consciousness and cognition.
+
+**Striking Details**:
+- The model simulates perturbations using resonant frequencies, akin to transcranial alternating current stimulation (tACS).
+- Correlation between peak reactivity and 5HT2a receptor density is strong (ρ ≈ 0.9059) and consistent across stimulation intensities.
+- The study highlights limitations of fMRI temporal resolution and the small number of participants (n = 15), acknowledging the need for future research with higher-resolution data and larger cohorts.
+- Code and data for the study are publicly available via GitHub and Zenodo, ensuring replicability.
+
+**Coverage Limit**: The sampled pages include [1, 3, 4, 6, 7, 9, 10, 12] of a total 12 pages. Key sections such as the methodology, results, and discussion are represented, but full context and detailed statistical analysis are not covered.
+
+**Filename/Title Agreement**: Filename matches the metadata title, indicating consistency.
+
+**OCR Uncertainty**: No OCR uncertainty reported, as extraction method is pdf-text.
+
+**Extraordinary or Fictional Claims**: None identified; the claims are grounded in computational modeling and empirical data.
+
+**Speculation**:
+- **Speculation 1**: Could the observed correlation between 5HT2a receptor density and reactivity imply that DMT’s effects on consciousness are mediated through localized receptor activation rather than global network changes? [M9003DAD2CE4C p3]
+- **Speculation 2**: Might the use of a gamma function to model pharmacokinetics oversimplify the complex temporal dynamics of DMT’s action, potentially missing nuances in its interaction with brain systems? [M9003DAD2CE4C p7]
+- **Speculation 3**: Given that the study found heightened sensitivity to external perturbations during DMT effects, could this mechanism explain the subjective enhancement of sensory experiences and introspection reported by users? [M9003DAD2CE4C p4]

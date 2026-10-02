@@ -1,0 +1,43 @@
+# README.md
+
+Status: unreviewed local-model draft (2026-09-24T21:43:35+00:00)
+
+- Source ID: `GH-4991554BD973`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/README.md>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `README.md`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 252 anchors; verify against the source.
+
+# Source Note: GH-4991554BD973
+
+**Subject:** A technical README file for a software project titled "gaslit-af-warfare," which appears to be an experimental private wiki or archive of one author's work. The file describes the development and deployment of a complex simulation tool.
+
+**Genre:** Technical documentation, software project README, and possibly research archive material.
+
+**Main Ideas:**  
+- The project involves modeling complex systems, possibly in public health or institutional behavior, using a combination of Python libraries and AI tools.  
+- It integrates biological simulations, legal analysis, and institutional feedback modeling.  
+- The README includes installation, usage, and development instructions, indicating an active, ongoing software project.  
+- The project appears to be multi-disciplinary, incorporating data science, AI, and possibly legal reasoning.  
+
+**Striking Details:**  
+- The README contains a list of core simulation attractor states, including "spike protein neurotoxicity → cerebellar trauma → behavioral and autonomic collapse" [GH-4991554BD973 L22].  
+- It references "GPT-in-the-loop for narrative evolution" [GH-4991554BD973 L44], suggesting AI-assisted development.  
+- The project includes a "Front-End Advocacy Layer," which may be related to public engagement or policy advocacy [GH-4991554BD973 L60].  
+- It mentions "graph-based legal precedents" and the use of legal LLMs [GH-4991554BD973 L54], suggesting a focus on legal or regulatory analysis.  
+- The README includes Docker deployment instructions and references Jupyter Notebooks for data analysis [GH-4991554BD973 L193, L215].  
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the full README file. The project likely includes more content not directly referenced here.
+
+## Speculation  
+- Could the "GASLIT-AF attractor states" be related to a broader hypothesis or theory in public health, possibly involving AI modeling of disease pathways?  
+- What is the intended use of the "Front-End Advocacy Layer" in the context of the project's technical components?  
+- Does the integration of legal LLMs and graph-based legal precedents suggest an interest in AI-driven legal strategy or policy simulation?  
+- How might the biological and institutional modeling components interact within the application stack?  
+
+**Flagged Claims:**  
+- The claim about "spike protein neurotoxicity" and its cascading effects is presented without explicit citation or context and may reflect a specific hypothesis or theory.  
+- The use of "GPT-in-the-loop" for narrative evolution is a technical implementation detail, not a factual statement.  
+- The inclusion of both biological and legal modeling components suggests a multi-disciplinary focus, but no explicit connection between them is made in the text.

@@ -1,0 +1,33 @@
+# gene_position_db.py
+
+Status: unreviewed local-model draft (2026-09-25T09:23:07+00:00)
+
+- Source ID: `GH-FBDA67170E73`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/backup/gene_position_db.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `backup/gene_position_db.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 521 anchors; verify against the source.
+
+**Source Note: GH-FBDA67170E73**
+
+**Subject**: This file is part of an experimental private wiki and serves as a script for managing gene position data. It appears to be related to variant analysis and genomic research, particularly involving the GASLIT-AF dataset.
+
+**Genre**: Technical code; likely part of a bioinformatics or computational biology project. The script includes functions for downloading, processing, and saving gene position data from sources like NCBI and GENCODE.
+
+**Main Ideas**: The script handles the creation and management of gene position databases, including manual definitions for specific genes and automated data retrieval from external genomic sources. It emphasizes error handling and logging during data processing and storage.
+
+**Striking Details**:  
+- The script defines manual gene positions for several genes, such as "AHRR" on chromosome 5, with specific start and end coordinates (e.g., [GH-FBDA67170E73 L355]).  
+- It includes error-handling mechanisms for downloading data from NCBI and GENCODE, with logs capturing issues like missing files or connection errors (e.g., [GH-FBDA67170E73 L145]).  
+- The script relies on external modules and data sources, including `requests` for HTTP requests and `src.gaslit_af.gene_lists` for gene lists (e.g., [GH-FBDA67170E73 L45]).  
+- It uses a `RichHandler` for logging, suggesting a focus on user-facing or interactive applications (e.g., [GH-FBDA67170E73 L34]).  
+- The presence of a hardcoded gene list (e.g., "TPSAB1 KIT HNMT TET2" at [GH-FBDA67170E73 L56]) implies a specialized focus on certain genes, possibly for research or clinical applications.
+
+**Coverage Limit**: Sampled anchors (43 of 521 total) mean that this note does not reflect the full content of the source. Key portions of the code, particularly in functions not sampled, may contain additional details, parameters, or logic not described here.
+
+## Speculation
+- Could the manual gene position definitions (e.g., [GH-FBDA67170E73 L355]) indicate a prior reliance on non-automated or curated genomic data sources?  
+- What is the relationship between the GASLIT-AF genes and the specific variant analysis being conducted? Are these genes known to be associated with particular biological pathways or diseases?  
+- Does the script's use of both NCBI and GENCODE data suggest a need for cross-validation or redundancy in gene position data?  
+- How does the error-handling in this script compare to similar tools or workflows in the field of genomic research? Are there standard practices that differ from what is implemented here?

@@ -1,0 +1,43 @@
+# cleanup.py
+
+Status: unreviewed local-model draft (2026-09-25T08:05:57+00:00)
+
+- Source ID: `GH-703308E35DE4`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/backup/cleanup.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `backup/cleanup.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 650 anchors; verify against the source.
+
+**Source Note: GH-703308E35DE4**
+
+**Subject:** This is a Python script named `cleanup.py`, part of a GitHub repository titled `prometheusWaluigi/gaslit-af_variant_analysis`. It appears to be a tool for managing and cleaning up files and directories in a project structure.
+
+**Genre:** Technical script, likely part of a larger project or analysis workflow. The script uses standard Python modules and appears to be focused on file management and cleanup operations.
+
+**Main Ideas:**
+- The script is designed to identify and remove redundant or unnecessary files and directories.
+- It includes functionality for preserving specific directories (e.g., `.pytest_cache`, `.git`, `.temp`) and handling user confirmation in interactive mode.
+- The script supports a "dry run" mode, where it only displays what would be deleted without executing the removal.
+- It appears to generate a cleanup report, likely for documentation or auditing purposes.
+
+**Striking Details:**
+- The script uses the `rich.logging` module for enhanced logging output [GH-703308E35DE4 L29].
+- It defines a `should_clean_path` method to determine whether a given path should be cleaned [GH-703308E35DE4 L181].
+- It includes a feature to compute file hashes to identify redundancies [GH-703308E35DE4 L346].
+- The script logs actions such as "Grouping redundant files..." and "Removed directory: {dir_path}" [GH-703308E35DE4 L263, L484].
+- It supports recursive cleaning of subdirectories [GH-703308E35DE4 L415, L526].
+
+**Coverage Limit:**  
+Sampled anchors (40 of 650 total) mean that not all content has been reviewed. The script may include additional functionality or edge-case handling not visible in the sampled lines.
+
+**## Speculation**
+- Could this script be used in conjunction with other tools in the `gaslit-af_variant_analysis` repository for managing data or analysis artifacts?
+- What criteria define a file or directory as "redundant" in this context—based on file hashes, timestamps, or other factors?
+- Are there any dependencies on external libraries or tools beyond those listed in the script?
+- How does the script handle conflicts or errors during the cleanup process, especially in interactive mode?
+
+**Claims:**
+- The script's purpose is inferred from its structure and functionality, not explicitly stated in the code.
+- The use of "dry run" and interactive confirmation suggests a focus on safety and user control, but this is not confirmed by direct statements in the code.
+- The presence of a cleanup report generation feature implies a need for documentation or tracking of deletions, but this is not directly stated in the code.

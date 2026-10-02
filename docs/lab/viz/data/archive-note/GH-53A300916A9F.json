@@ -1,0 +1,43 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T11:30:41+00:00)
+
+- Source ID: `GH-53A300916A9F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/index.html>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/index.html`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 101 anchors; verify against the source.
+
+**Source Note: GH-53A300916A9F**
+
+**Subject:** This experimental private wiki appears to be a personal archive centered on the GASLIT-AF podcast and related theoretical content, with a strong focus on chronic multisystem illness, systemic collapse, and data manipulation claims. The content is hosted on GitHub and structured as a static HTML page.
+
+**Genre:** The source is a technical and academic-style HTML document, blending podcast listings with theoretical content. It includes anchors and audio elements, suggesting an interactive, self-contained repository.
+
+**Main Ideas:**
+- The wiki hosts a podcast series titled *GASLIT-AF*, which explores topics such as chronic multisystem illness, data suppression, and systemic collapse.
+- There are links to directories of "coreTheories," "spikeProtein," and "careManuals," suggesting a broader theoretical framework.
+- The content includes audio files with titles like *"DUCKSLAP: Systemic Collapse, Gaslighting, and the Meme of Trauma"* and *"GASLIT-AF Model: A Clinical Guide to Complex Chronic Illness."*
+- The page references scientific-sounding terms such as *KLK15* and *IDO* in relation to chronic illness, though context is not provided.
+- The author uses a username (*prometheusWaluigi*) and appears to be self-publishing material without institutional affiliation.
+
+**Striking Details:**
+- Audio elements are embedded directly in the HTML, with some files linked to directories like *gettingWeird* and *careManuals* [GH-53A300916A9F L67, L88].
+- The presence of anchors and nested lists indicates a structured, albeit informal, organization of content [GH-53A300916A9F L18, L24, L52].
+- The title *GASLIT-AF* is used repeatedly and seems central to the project’s identity [GH-53A300916A9F L12, L67, L88].
+- The author includes disclaimers about browser compatibility with audio elements, which may indicate a lack of broader testing or optimization [GH-53A300916A9F L56, L84].
+
+**Coverage Limit:** Sampled anchors (46 of 101) mean that this note does not reflect the full content of the source.
+
+**## Speculation**
+
+- Could the podcast and theories be related to broader discussions on public health misinformation or alternative medical frameworks?
+- What is the intent behind the title *DUCKSLAP: Systemic Collapse, Gaslighting, and the Meme of Trauma*—is it a critique of media narratives or a personal theory?
+- Are the scientific terms (e.g., *KLK15*, *IDO*) used in the context of legitimate research, or are they part of speculative or fringe health theories?
+- How does the author reconcile the use of technical formats (e.g., HTML, GitHub) with the content’s apparent focus on non-traditional or controversial health topics?
+
+**Flags:** 
+- Claims about data suppression, systemic collapse, and the "meme of trauma" are flagged as speculative and not fact [GH-53A300916A9F L67, L73].
+- No explicit references to peer-reviewed research or academic institutions are present.
+- The use of the term *Gaslighting* in the title of an audio file may suggest a thematic focus on psychological or informational manipulation [GH-53A300916A9F L67].

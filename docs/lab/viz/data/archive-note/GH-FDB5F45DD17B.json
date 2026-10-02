@@ -1,0 +1,36 @@
+# sensitivity_trust_decay.yml
+
+Status: unreviewed local-model draft (2026-09-25T12:39:27+00:00)
+
+- Source ID: `GH-FDB5F45DD17B`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/configs/sensitivity_trust_decay.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `configs/sensitivity_trust_decay.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 57 anchors; verify against the source.
+
+**Source Note: GH-FDB5F45DD17B**
+
+This is a YAML configuration file for a computational model titled *"sensitivity_trust_decay.yml"*, part of the repository [prometheusWaluigi/piston-leak-lab](https://github.com/prometheusWaluigi/piston-leak-lab). The file defines parameters for a simulation combining ordinary differential equations (ODE) and agent-based modeling (ABM) to study the dynamics of *"trust decay"* in the context of a hypothetical *"piston-leak"* scenario, likely involving information dissemination or crisis management. The model appears to explore how trust interacts with entropy, suppression, and exogenous shocks, potentially in a context of public health, security, or social systems under stress.
+
+**Genre and Subject:**  
+The source belongs to the genre of computational modeling and simulation configuration files. Its apparent subject is the analysis of trust decay and entropy dynamics in a system where suppression mechanisms and exogenous leaks influence the behavior of agents and overall system stability. It seems to be part of an experimental or research project, possibly related to crisis simulation, misinformation, or organizational resilience.
+
+**Main Ideas:**  
+The simulation explores the sensitivity of trust decay to various parameters, such as the suppression penalty on trust (`gamma1`) and entropy gain from suppression (`alpha2`). The model includes a Monte-Carlo ensemble with a random seed and parameter sweeps, specifically over `alpha1`, which governs trust decay relative to entropy. The system also incorporates a Watts-Strogatz network of 3,000 agents, weighted influence fields (believers, skeptics, agnostics), and a noise model with exogenous leak shocks. The simulation runs for one "pandemic year" (`t_max: 365`), and outputs include parameter heatmaps and plots, with results saved to a directory.
+
+**Striking Details:**  
+- The model includes a sweep over `alpha1` values from 0.2 to 1.0, indicating a focus on sensitivity analysis around trust decay dynamics [GH-FDB5F45DD17B L13, L14].  
+- A Watts-Strogatz network with 3,000 agents is used to simulate social interactions [GH-FDB5F45DD17B L38, L39].  
+- Influence weights are assigned to different agent types: believers (1.0), skeptics (1.2), and agnostics (0.8) [GH-FDB5F45DD17B L44].  
+- The simulation tracks a "trust slope threshold" (`-0.05`) and an "entropy critical" value (`1.2`), possibly signaling conditions under which the system reaches a tipping point [GH-FDB5F45DD17B L49, L50].  
+- The noise model includes a "leak frequency" (`0.05`) and a standard deviation for exogenous shocks (`noise_sigma: 0.1`) [GH-FDB5F45DD17B L34, L33].  
+
+**Coverage Limit:**  
+The anchors shown are sampled evenly from a total of 57, meaning not all content has been reviewed. Some lines may be truncated if they exceed 800 characters [GH-FDB5F45DD17B L1, L40].
+
+**## Speculation**  
+- Could the "piston-leak" scenario be metaphorical, representing systemic vulnerabilities in social or information networks?  
+- How might the influence field weights (believers, skeptics, agnostics) affect the interpretation of trust decay in different contexts?  
+- Is the use of a Watts-Strogatz network a deliberate choice to simulate real-world social structures, and how might this impact the results?  
+- What role might the "ε-band overlap" threshold play in determining system collapse, and is it calibrated to reflect empirical data?

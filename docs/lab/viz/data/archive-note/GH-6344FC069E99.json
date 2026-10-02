@@ -1,0 +1,37 @@
+# enrichment_patterns.py
+
+Status: unreviewed local-model draft (2026-09-25T07:52:16+00:00)
+
+- Source ID: `GH-6344FC069E99`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/systems/enrichment_patterns.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/systems/enrichment_patterns.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 478 anchors; verify against the source.
+
+# Source Note: GH-6344FC069E99
+
+**Subject:** This file appears to be part of a computational analysis pipeline focused on variant enrichment patterns, particularly in the context of ME/CFS (Myalgic Encephalomyelitis/Chronic Fatigue Syndrome) and post-viral syndromes.
+
+**Genre:** Technical code (Python), likely part of a bioinformatics or genetic research project. The content is focused on defining and applying enrichment patterns to variant data.
+
+**Main Ideas:**
+- The file defines a class `EnrichmentPattern` for modeling how genetic variants may be enriched in certain biological systems or conditions.
+- It includes logic for assessing pathogenicity based on variant data, gene associations, and system-specific rules.
+- The code includes methods to apply a set of predefined enrichment patterns sequentially.
+- Specific patterns are tied to ME/CFS and post-viral syndrome, suggesting a focus on understanding the genetic basis of these conditions.
+
+**Striking Details:**
+- The code includes a method `assess_pathogenicity` that initializes fields like `pathogenic` and `af_pathogenic_reason` [GH-6344FC069E99 L143, L153, L316].
+- A specific pattern is described as related to "Transcription factor variants affecting DNA binding" [GH-6344FC069E99 L305].
+- A system-specific enrichment pattern for ME/CFS is initialized with a name, ID, and description: `Enrichment pattern for ME/CFS and post-viral syndrome variants` [GH-6344FC069E99 L326].
+- The file includes a function `create_enrichment_pattern` that allows the creation of new patterns based on a specified type [GH-6344FC069E99 L397].
+- The system ID for ME/CFS is labeled as `"mecfs_postviral"` [GH-6344FC069E99 L326].
+
+**Coverage Limit:** Sampled anchors (34 of 478) mean this note is based on a limited portion of the source. Not all content may be represented here.
+
+## Speculation
+- Could the ME/CFS-specific pathogenicity logic be influenced by external datasets or prior research on post-viral genetic markers? [GH-6344FC069E99 L366]
+- What criteria define the "system_genes" used to determine `mecfs_related` in the code? [GH-6344FC069E99 L356]
+- Are the enrichment patterns used here also applied in other systems or conditions within the same project? [GH-6344FC069E99 L102]
+- Might the logic for assessing pathogenicity be extended or modified for other diseases or conditions? [GH-6344FC069E99 L143]

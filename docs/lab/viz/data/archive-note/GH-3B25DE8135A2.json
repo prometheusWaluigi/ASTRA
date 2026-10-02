@@ -1,0 +1,36 @@
+# generate_montecarlo_configs.py
+
+Status: unreviewed local-model draft (2026-09-25T07:28:35+00:00)
+
+- Source ID: `GH-3B25DE8135A2`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/generate_montecarlo_configs.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `generate_montecarlo_configs.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 248 anchors; verify against the source.
+
+**Source Note for GH-3B25DE8135A2**
+
+**Subject:** This file appears to be a Python script generating Monte Carlo simulation configurations for a research project involving complex systems modeling, possibly in the context of social, political, or economic dynamics. The script references YAML configuration files and various parameters related to simulation scenarios.
+
+**Genre:** Technical code; scientific simulation configuration generation.
+
+**Main Ideas:**
+- The script creates multiple simulation configurations by modifying baseline YAML files.
+- It generates variations based on parameters such as `beta1`, `noise_sigma`, `init_believer_prob`, and others.
+- Scenarios are named descriptively, e.g., "Hard Suppression / Low Transparency (Authoritarian Clamp)" [GH-3B25DE8135A2 L64] and "GASLIT‑AF Meltdown (Entropy Surge + Genetic Fragility)" [GH-3B25DE8135A2 L111].
+- The script uses a loop to generate configuration files with version numbers and unique slugs [GH-3B25DE8135A2 L206].
+
+**Striking Details:**
+- The code includes a parameter called `epsilon_overlap` [GH-3B25DE8135A2 L127], which might relate to overlapping effects or interactions in the modeled systems.
+- The term "influence_field" is used repeatedly, suggesting a focus on modeling how certain variables influence system behavior [GH-3B25DE8135A2 L148, L164].
+- The script inherits from baseline configurations, such as `01_high_transparency_ramp.yml` [GH-3B25DE8135A2 L22], indicating a modular approach to simulation design.
+- It utilizes Python 3 with features from `__future__` imports, such as `annotations` [GH-3B25DE8135A2 L33].
+
+**Coverage Limit:** Sampled anchors only; not all content has been examined.
+
+## Speculation
+- What is the relationship between the named scenarios (e.g., "Hard Suppression / Low Transparency") and the parameters used to simulate them? Are these scenarios based on real-world events or hypothetical models?
+- Could the "influence_field" and "network" parameters [GH-3B25DE8135A2 L169] relate to modeling social or information networks, and if so, what is the intended use case?
+- Are the use of terms like "Genetic Fragility" [GH-3B25DE8135A2 L111] and "Entropy Surge" part of a specialized framework or metaphor for system instability? Is this a novel approach or an adaptation of existing concepts?
+- Given the inclusion of both "Scale‑Free vs Small‑World Network Heterogeneity" [GH-3B25DE8135A2 L132] and "influence_field," is this work exploring the interplay between network structure and systemic behavior under various conditions?

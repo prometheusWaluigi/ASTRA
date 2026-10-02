@@ -1,0 +1,40 @@
+# criticalReview.md
+
+Status: unreviewed local-model draft (2026-09-24T23:10:13+00:00)
+
+- Source ID: `GH-9FA6859621EC`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/coreTheories/criticalReview.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/coreTheories/criticalReview.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 197 anchors; verify against the source.
+
+# Source Note: GH-9FA6859621EC
+
+**Subject:** A critical review of the GASLIT-AF model, which proposes a unified framework for understanding complex chronic syndromes like ME/CFS, POTS, EDS, MCAS, and fibromyalgia.  
+**Genre:** Scientific review/analysis, with a focus on systems biology and multi-domain feedback loops.  
+**Main Ideas:**  
+- Chronic illnesses are maintained by interconnected feedback loops across five domains: immune, autonomic, structural, metabolic, and neural.  
+- The GASLIT-AF model emphasizes "allostatic attractor" states—stable pathological equilibria that are difficult to escape.  
+- Genetic variants (e.g., COMT Val158Met, TPSAB1 duplication) may contribute to these syndromes by influencing biological processes such as catecholamine metabolism or mast-cell activation.  
+- The model integrates computational and empirical approaches to explain overlapping symptoms and suggest potential interventions.  
+
+**Striking Details:**  
+- [GH-9FA6859621EC L12]: The model shifts the narrative from isolated symptoms to a network pathology, suggesting a "connected system" approach.  
+- [GH-9FA6859621EC L26]: A 2021 *BMJ* case report links the COMT Val158Met variant to hyperadrenergic POTS, with symptoms improving after methylated B vitamin treatment.  
+- [GH-9FA6859621EC L51]: Familial co-occurrence of EDS, POTS, and ME/CFS suggests potential structural-genetic factors.  
+- [GH-9FA6859621EC L84]: Hereditary Alpha Tryptasemia (HaT), linked to TPSAB1 gene duplication, is posited as a cause of MCAS, POTS, and EDS.  
+- [GH-9FA6859621EC L101]: The concept of "allostatic attractor" states is described as a bold claim, with limited direct evidence beyond computational modeling and metaphorical language.  
+- [GH-9FA6859621EC L139]: The model references the clinical endocannabinoid deficiency theory, but direct evidence of endocannabinoid deficiency in these patients is sparse and inconclusive.  
+
+**Coverage Limit:** Sampled anchors (28 of 197 total) mean not all content has been reviewed.  
+
+## Speculation
+- Could the GASLIT-AF framework be adapted to other chronic illnesses with multi-system involvement, such as long COVID or autoimmune encephalitis?  
+- How might the model’s focus on genetic variants (e.g., COMT, TPSAB1) affect its applicability to patients with non-genetic triggers (e.g., trauma, infection)?  
+- Might the “allostatic attractor” concept be validated through longitudinal studies tracking patients’ transitions in and out of syndromes?  
+- Could the emphasis on genetic factors lead to underestimation of environmental or epigenetic contributions to these syndromes?  
+
+**Flagged Claims (not fact):**  
+- The existence of a distinct "attractor state" in these syndromes is described as a *bold claim* with only partial empirical support.  
+- The model’s suggestion that all these syndromes are unified by a single framework may be *self-contradictory* if some patients lack involvement in certain domains (e.g., immune activation).

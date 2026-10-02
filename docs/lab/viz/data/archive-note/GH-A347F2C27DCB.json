@@ -1,0 +1,40 @@
+# pyproject.toml
+
+Status: unreviewed local-model draft (2026-09-25T12:00:26+00:00)
+
+- Source ID: `GH-A347F2C27DCB`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/pyproject.toml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `pyproject.toml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 57 anchors; verify against the source.
+
+# Source Note: GH-A347F2C27DCB
+
+**Subject:** This is a `pyproject.toml` file from the GitHub repository `prometheusWaluigi/piston-leak-lab`. It serves as a configuration file for the Python package management tool Poetry, defining project metadata, dependencies, and development tools.
+
+**Genre:** Technical configuration file (software development).
+
+**Main Ideas:**
+- The project is named "piston-leak-lab" and is versioned at "0.1.0".
+- The primary author is identified as "GASLIT-420" with an email address: "semanticnoise@ducks.lap" [GH-A347F2C27DCB L5].
+- The project utilizes the BSD-2-Clause license [GH-A347F2C27DCB L7].
+- Dependencies include Python 3.11, NumPy, SciPy, Pandas, NetworkX, Matplotlib, Plotly, PyYAML, and Click [GH-A347F2C27DCB L14–L25].
+- Optional dependencies for GPU/oneAPI support include `dpnp`, `dpctl`, and `numba-dpex` [GH-A347F2C27DCB L28, L30, L40].
+- Development tools include `pytest`, `black`, `mkdocs`, and `mkdocs-material` [GH-A347F2C27DCB L33–L37].
+- The project includes a script named `run-mc` linked to the `sims.run_mc:cli` function [GH-A347F2C27DCB L43].
+- Code formatting tools are configured with `black` and `ruff`, both targeting Python 3.11 [GH-A347F2C27DCB L45–L51].
+
+**Striking Details:**
+- The email address associated with the author is unusual and appears to be a fictional or pseudonymous address: "semanticnoise@ducks.lap" [GH-A347F2C27DCB L5].
+- The project includes optional support for oneAPI and GPU-related libraries, suggesting a focus on high-performance computing or machine learning [GH-A347F2C27DCB L27–L30, L40].
+- The project is configured to use `mkdocs` and `mkdocs-material`, indicating it may be intended for documentation or public sharing [GH-A347F2C27DCB L36–L37].
+
+**Coverage Limit:** Sampled anchors (43 of 57 total) are shown, but not all content has been read or analyzed. This is a sampled representation of the source.
+
+## Speculation
+
+- Could the use of oneAPI and GPU-related libraries indicate a focus on parallel computing or scientific simulations? [GH-A347F2C27DCB L27–L30, L40]
+- Might the inclusion of `mkdocs` and `mkdocs-material` suggest that the project is intended to be shared publicly or used as a reference? [GH-A347F2C27DCB L36–L37]
+- What is the role of the script `run-mc` in the context of the project? [GH-A347F2C27DCB L43]
+- Does the use of pseudonymous or fictional contact information (e.g., "semanticnoise@ducks.lap") imply a desire for anonymity or a personal/professional boundary? [GH-A347F2C27DCB L5]

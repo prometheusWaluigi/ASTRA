@@ -1,0 +1,36 @@
+# gaslitIDO2.md
+
+Status: unreviewed local-model draft (2026-09-24T23:17:10+00:00)
+
+- Source ID: `GH-C9DE9C18FAF4`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/subTheories/gaslitIDO2.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/subTheories/gaslitIDO2.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 214 anchors; verify against the source.
+
+# Source Note: GH-C9DE9C18FAF4
+
+**Subject**: The GASLIT-AF framework as a unified model of chronic multi-system illness, focusing on the IDO2-kynurenine pathway.
+
+**Genre**: Academic/Research, likely part of a larger private wiki archive. Contains technical descriptions of biological mechanisms, clinical strategies, and references to scientific literature.
+
+**Main Ideas**:  
+- The GASLIT-AF model proposes a unified theoretical framework for understanding chronic multi-system illnesses such as post-acute sequelae of SARS-CoV-2 infection (PASC), ME/CFS, and POTS.  
+- Central to this model is the role of the IDO2 enzyme and the kynurenine pathway in immune activation, inflammation, and autonomic dysregulation.  
+- The model incorporates recursive feedback mechanisms that explain the persistence of pathological states and their resistance to single-target interventions [GH-C9DE9C18FAF4 L46].  
+- Clinical strategies are outlined, including genetic assessment, structural evaluation, pharmacologic interventions, and cognitive-behavioral support [GH-C9DE9C18FAF4 L83, L105, L119].  
+
+**Striking Details**:  
+- The document references specific studies on PASC, including Guo et al. (2023) on prolonged IDO2 activity [GH-C9DE9C18FAF4 L182], and Kashi et al. (2019) on the IDO Metabolic Trap Hypothesis for ME/CFS [GH-C9DE9C18FAF4 L200].  
+- Mathematical modeling and computational simulations are mentioned as tools for refining the GASLIT-AF framework [GH-C9DE9C18FAF4 L160].  
+- The document notes clinical overlap with ME/CFS, POTS, and related conditions [GH-C9DE9C18FAF4 L146].  
+- The term "physiological entropy production" is used to describe σ(t) [GH-C9DE9C18FAF4 L33].  
+
+**Coverage Limit**: This note is based on sampled anchors (25 of 214 total) from the source text, which suggests that the full content has not been read in its entirety.
+
+## Speculation  
+- Could the integration of the IDO2-kynurenine pathway with the GASLIT-AF model offer new therapeutic targets for ME/CFS and POTS?  
+- How might the recursive feedback mechanisms described in the model influence the design of clinical trials for multi-system chronic illnesses?  
+- Is the emphasis on mathematical modeling and computational simulations a novel approach in the study of chronic illnesses, or does it reflect a broader trend in systems biology?  
+- What role might epigenetic profiling play in the proposed genetic assessment strategies for the GASLIT-AF model?

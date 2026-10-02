@@ -1,0 +1,42 @@
+# OnePointFiveBitExternal.md
+
+Status: unreviewed local-model draft (2026-09-25T02:50:28+00:00)
+
+- Source ID: `GH-C541739C797F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/onePointFiveBit/OnePointFiveBitExternal.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/onePointFiveBit/OnePointFiveBitExternal.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 154 anchors; verify against the source.
+
+# Source Note: GH-C541739C797F
+
+**Subject**: The 1.5-bit principle as a heuristic for information-energy optimization in complex systems.
+
+**Genre**: Technical exposition with interdisciplinary focus (economics, ecology, linguistics, urban planning, healthcare, physics).
+
+**Main Ideas**:
+- A recurring pattern of information transfer optimization across diverse systems appears to be governed by a "1.5-bit principle" [GH-C541739C797F L154].
+- This principle is connected to transactional entropy, bounded rationality, and thermodynamic limits of computation [GH-C541739C797F L11, L27].
+- Experimental financial markets exhibit maximal liquidity when information per transaction is near 1.5 bits [GH-C541739C797F L21, L24].
+- Ecological networks and species interactions demonstrate conserved information transfer rates [GH-C541739C797F L47].
+- Linguistic systems show phoneme inventories of size approximately $2^{1.58} \approx 34$ [GH-C541739C797F L73].
+- Social media platforms like Twitter/X and TikTok unconsciously optimize feed algorithms to this threshold [GH-C541739C797F L89].
+- Urban superlinear scaling can be explained by this principle [GH-C541739C797F L95].
+- Sensor fusion architectures in autonomous systems quantize data to ~1.58-bit resolution [GH-C541739C797F L112].
+- The principle is also linked to healthcare diagnostics, where ternary diagnostic trees reduce differential diagnoses by a factor of $2^{1.58}$ [GH-C541739C797F L141].
+
+**Striking Details**:
+- Mathematical expressions are frequently used without derivation, such as $\Delta p / p \approx 2^{-1.58}$ [GH-C541739C797F L17].
+- The document cites no external sources, relying on internal calculations and analogies.
+- It mentions "many-body entanglement in economic networks" [GH-C541739C797F L147], a term typically used in quantum mechanics.
+- The principle is described as a "meta-law" governing complex adaptive systems [GH-C541739C797F L154], though this is flagged as speculative.
+- The document acknowledges limitations, such as timescale disparities between ecological and financial systems [GH-C541739C797F L121].
+
+**Coverage Limit**: Sampled anchors (29 of 154 total) mean not all content has been reviewed.
+
+## Speculation
+- Could the 1.5-bit principle be a coincidence, or is it a reflection of deeper physical constraints in information processing?
+- How might the principle be applied to AI design, especially in contexts requiring energy efficiency?
+- What implications does the mention of "many-body entanglement" in economic networks have for understanding systemic risk?
+- Is the lack of external citations an oversight, or does the author intend to treat the document as a standalone theoretical framework?

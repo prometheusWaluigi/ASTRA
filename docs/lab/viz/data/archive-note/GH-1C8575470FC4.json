@@ -1,0 +1,42 @@
+# core_ode.py
+
+Status: unreviewed local-model draft (2026-09-25T07:12:14+00:00)
+
+- Source ID: `GH-1C8575470FC4`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/models/core_ode.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `models/core_ode.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 363 anchors; verify against the source.
+
+**Source Note: GH-1C8575470FC4**
+
+**Subject:** This file, `core_ode.py`, appears to be part of a computational model involving narrative entropy, suppression, and trust dynamics. It is likely related to simulations of information leakage or control within a system, possibly in the context of AI, social dynamics, or policy modeling.
+
+**Genre:** Technical code (Python), with embedded comments and references to theoretical models.
+
+**Main Ideas:**
+- The model uses differential equations to simulate the evolution of trust, narrative entropy, and suppression over time.
+- Parameters like `gamma1` (trust penalty from suppression) and `delta` (suppression decay rate) are defined and used within the system.
+- The code includes a function `_policy_response` that calculates the influence of policy on narrative entropy.
+- The simulation includes checks for "narrative collapse" and employs stability-focused solvers (e.g., LSODA) for numerical integration.
+- Metrics such as Recursive Suppression Disclosure (RSD) and FCC (possibly "FCC metric value") are calculated to quantify aspects of the system's behavior.
+
+**Striking Details:**
+- The file contains a line: `print("No narrative collapse detected in simulation timeframe.")` [GH-1C8575470FC4 L363].
+- A parameter `ccd_scale` is defined with a value of 1.0, possibly related to Causal Chain Discontinuity [GH-1C8575470FC4 L40].
+- The code references a paper §4.1 for mathematical formulation [GH-1C8575470FC4 L9].
+- The `_policy_response` function includes a dependency on time `t` and narrative entropy `n` [GH-1C8575470FC4 L170].
+- A transparency function is mentioned, which might be time- or state-dependent [GH-1C8575470FC4 L86].
+
+**Coverage Limit:** This note is based on a sampled subset of the file's anchors (37 of 363). Anchors over 800 characters are truncated, and some lines may be incomplete or missing in this sampling.
+
+**## Speculation**
+- Could the "FCC metric value" referenced at [GH-1C8575470FC4 L132] be linked to a broader framework of information control or censorship measurement?
+- What might the "narrative entropy" model represent in real-world applications? Is it tied to AI behavior, media ecosystems, or social systems?
+- Why is the `ccd_scale` parameter set to 1.0, and could this be a placeholder for a more complex or variable value in other contexts?
+- How might the inclusion of a "trust_slope_threshold" at [GH-1C8575470FC4 L47] affect the model's sensitivity to changes in trust dynamics?
+
+**Extraordinary Claims Flagged:**
+- The file does not make explicit claims about being applied to real-world systems or being fictional.
+- The use of terms like "narrative collapse" and "Recursive Suppression Disclosure" is highly conceptual and may not align with standard terminology in the field. These are flagged as claims, not fact.

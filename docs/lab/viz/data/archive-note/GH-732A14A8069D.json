@@ -1,0 +1,38 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T10:04:48+00:00)
+
+- Source ID: `GH-732A14A8069D`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/core-concepts/recursive-systems/index.html>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `core-concepts/recursive-systems/index.html`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 63 anchors; verify against the source.
+
+**Source Note: GH-732A14A8069D**
+
+**Subject:** This document appears to be the index page of an experimental private wiki, part of a larger public archive hosted on GitHub. The wiki is focused on the study of *recursive systems*, with an emphasis on their theoretical foundations, computational applications, and potential relevance to consciousness.
+
+**Genre:** Technical documentation, theoretical exploration, and self-contained resource. The wiki structure suggests it is intended for personal or collaborative research, with sections dedicated to core concepts, theorems, and applications.
+
+**Main Ideas:**  
+- Recursive systems are explored from both computational and philosophical perspectives.  
+- The wiki appears to be a work in progress, with links to markdown files and audio content (e.g., [GH-732A14A8069D L34] and [GH-732A14A8069D L43]).  
+- The content includes sections labeled *meta-theory*, suggesting a focus on abstract principles and self-referential systems.  
+- The author integrates computational models (e.g., "Lattice Networks" [GH-732A14A8069D L54]) with speculative discussions on consciousness.
+
+**Striking Details:**  
+- The file is an HTML index page, likely generated from markdown content.  
+- The wiki is part of a GitHub repository named *quantum-plasmoid*, which may indicate a blend of computational and speculative interests.  
+- There are references to audio files, but they are not embedded due to limitations of GitHub Markdown ([GH-732A14A8069D L48]).  
+- The document includes a footer with a copyright notice dated 2025, suggesting it is a newer or ongoing project.  
+- Navigation links point to sections such as *Core Concepts*, *Theorems*, and *Applications*, indicating a structured, possibly academic or research-oriented approach to the topic.
+
+**Coverage Limit:** This note is based on a sampled subset of anchors from the full text (63 total; 48 sampled). Therefore, not all content has been reviewed in detail.
+
+## Speculation
+
+- Could the inclusion of "Lattice Networks" [GH-732A14A8069D L54] be a metaphor for the structure of the wiki itself, or is it a literal computational model?  
+- What role does the 2025 copyright date [GH-732A14A8069D L60] play in the context of the project, and does it imply future developments or a timeline for the theory?  
+- How might the recursive systems discussed here relate to the author's broader work, particularly given the repo name *quantum-plasmoid*?  
+- Are the references to a podcast [GH-732A14A8069D L39] and downloadable audio files meant to expand the theoretical exploration into a multimedia format, or are they experimental?

@@ -1,0 +1,37 @@
+# gaslitDynamicalRefined.md
+
+Status: unreviewed local-model draft (2026-09-24T23:08:43+00:00)
+
+- Source ID: `GH-955298838465`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/coreTheories/gaslitDynamicalRefined.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/coreTheories/gaslitDynamicalRefined.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 157 anchors; verify against the source.
+
+**Source Note: GH-955298838465**
+
+**Subject**: A theoretical framework named GASLIT-AF for modeling and understanding chronic multi-system syndromes (CMSSs) such as ME/CFS, Long COVID, hEDS, and POTS.  
+
+**Genre**: Scientific theory proposal, mathematical modeling, and experimental design.  
+
+**Main Ideas**:
+- The author proposes a **dynamical systems model** to explain how CMSSs arise from complex interactions between genetic vulnerability, allostatic load (chronic stress), immune/inflammatory activity, and buffering capacity (e.g., endocannabinoid system).
+- The framework introduces a **pathological attractor** concept, suggesting that chronic illnesses may represent a system "stuck" in a stable but dysfunctional state.
+- The model includes variables like **$\Lambda(t)$** (allostatic load), **$\Psi$** (system state), and **$\Omega(t)$** (buffering capacity), with differential equations describing their interplay.
+- The approach emphasizes **validation strategies**, including **retrospective data fitting** and **prospective trials** to test predictions and refine the model.
+- A **multi-modal intervention trial** is proposed to test whether reducing stress alone can reverse the attractor state, implying **hysteresis** in the system.
+
+**Striking Details**:
+- The model integrates **genetic, immune, autonomic, and lifestyle factors**, treating them as part of a feedback-driven system. [GH-955298838465 L34]
+- The author explicitly mentions **"hysteresis loop"** as a possible mechanism explaining why some patients remain symptomatic even after removing external stressors. [GH-955298838465 L107]
+- The **mathematical formulation** includes differential equations, such as $\frac{dy}{dt} = a_2\,y \,\Lambda(t) - \beta_{yx}\,x + \gamma$, where $y(t)$ is immune/inflammatory activity and $\Lambda(t)$ is allostatic load. [GH-955298838465 L67]
+- The author suggests **"polygenic synergy"** and the **TensAR concept**, implying complex interactions between multiple genetic loci. [GH-955298838465 L111]
+
+**Coverage Limit**: Sampled anchors (32 of 157) suggest this is a **partial representation** of the full document. Key sections like implementation and future work are present, but **not all content** has been reviewed.
+
+## Speculation
+- Could the **GASLIT-AF model** be applied to other non-chronic illnesses or mental health conditions with similar multi-system dysregulation?
+- Is **$\Omega(t)$** (buffering capacity) a **novel concept** in medical literature, or does it align with known theories of stress resilience?
+- How might **genomic integration** (e.g., TensAR) influence the model’s predictive power, and does the author address potential limitations in data availability or interpretation?
+- If **hysteresis loops** are confirmed in clinical trials, how might this reshape therapeutic approaches for CMSSs?

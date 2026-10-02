@@ -1,0 +1,38 @@
+# upload_genome.html
+
+Status: unreviewed local-model draft (2026-09-25T11:50:37+00:00)
+
+- Source ID: `GH-8564C0AA8305`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/upload_genome.html>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/frontend/templates/upload_genome.html`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 304 anchors; verify against the source.
+
+**Source Note: GH-8564C0AA8305**  
+*Origin: GitHub*  
+*Title: upload_genome.html*  
+*Canonical URL: [https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/upload_genome.html](https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/upload_genome.html)*  
+
+This source is a fragment of a web application's frontend code, likely part of a tool for uploading genetic data. The apparent subject is a user interface for handling genome uploads, with a focus on file selection, data formatting, and user consent. The genre is technical code, specifically HTML and embedded JavaScript, designed for a web-based application.  
+
+Main ideas include:  
+- A form for uploading genetic data files (e.g., FASTQ, VCF) [GH-8564C0AA8305 L78].  
+- User interaction features, such as file browsing, drag-and-drop upload, and file information display [GH-8564C0AA8305 L98, L233, L265].  
+- A consent checkbox for anonymized data use [GH-8564C0AA8305 L149].  
+- Conditional rendering of content based on the status of uploaded genomes (e.g., "processing") [GH-8564C0AA8305 L175].  
+
+Striking details:  
+- The file-size display rounds to two decimal places [GH-8564C0AA8305 L188].  
+- The form includes a "notes" field for additional information [GH-8564C0AA8305 L130].  
+- The CSS includes a transition effect and a hidden element with a placeholder filename (`filename.vcf`) [GH-8564C0AA8305 L40, L104].  
+- The JavaScript includes handlers for file selection, drag-and-drop, and consent changes [GH-8564C0AA8305 L220, L259, L298].  
+
+**Coverage Limit:**  
+Sampled anchors (44 of 304) mean this note does not reflect the full content of the file.  
+
+## Speculation  
+- Could this tool be part of a larger platform for genetic research or personalized medicine?  
+- What is the scope of the "research purposes" mentioned in the consent checkbox [GH-8564C0AA8305 L149]?  
+- Are there other parts of the application that handle data storage, security, or privacy beyond the consent checkbox?  
+- Might the use of FASTQ and VCF formats suggest a focus on DNA sequencing and variant analysis?

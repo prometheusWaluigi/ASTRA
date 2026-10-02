@@ -1,0 +1,56 @@
+# run_docker_fix2.sh
+
+Status: unreviewed local-model draft (2026-09-25T07:15:42+00:00)
+
+- Source ID: `GH-244207328F64`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/run_docker_fix2.sh>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `run_docker_fix2.sh`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 45 anchors; verify against the source.
+
+**Source Note**  
+ID: GH-244207328F64  
+Origin: GitHub  
+Title: `run_docker_fix2.sh`  
+Canonical URL: [https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/run_docker_fix2.sh](https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/run_docker_fix2.sh)  
+Repo: prometheusWaluigi/gaslit-af-warfare  
+Path: `run_docker_fix2.sh`  
+Anchors: 45 total; sampled anchors shown (L1–L45)  
+
+**Subject**  
+The script automates the process of building and running a Docker container for a project named "GASLIT-AF WARSTACK." It includes steps for stopping and removing existing containers, counting VCF files in a specific directory, and executing commands related to testing and application deployment.  
+
+**Genre**  
+This is a technical script, specifically a Bash shell script, likely part of a software development or bioinformatics project due to the use of VCF files.  
+
+**Main Ideas**  
+1. **Docker Management**: The script manages Docker containers by stopping and removing existing instances before building a new image.  
+2. **VCF File Handling**: It identifies and counts VCF files in the `data/vcf` directory, which are commonly used in genetic data analysis.  
+3. **Testing and Deployment**: The script runs tests using `run_tests.py` and subsequently deploys the application by running `app.py` from the frontend directory.  
+4. **Port Mapping and Volume Sharing**: It maps port 5000 and shares local directories (`data`, `results`, `logs`) with the container.  
+
+**Striking Details**  
+- The script references a "fixed Dockerfile" (L14), suggesting prior issues with the Docker configuration.  
+- The project name "GASLIT-AF WARSTACK" appears repeatedly (L17, L42), indicating it is a significant component of the repo.  
+- The script assumes the presence of a `Dockerfile.fix2` and directories `data`, `results`, and `logs` (L14, L25–L27, L39–L41).  
+- The command `run_tests.py` (L22) implies the inclusion of automated testing procedures.  
+
+**Coverage Limit**  
+Sampled anchors (L1–L45) do not represent the full content of the file. The file may contain additional logic or error-handling not visible in the sampled lines.  
+
+## Speculation  
+- Could the project "GASLIT-AF WARSTACK" be related to genetic or biological warfare simulations, given the use of VCF files and the project name?  
+- What is the relationship between `run_tests.py` and the Docker container's functionality? Is the test suite part of the application's development lifecycle?  
+- Might the use of "WARSTACK" imply a focus on security, defense, or adversarial scenarios in the project's context?  
+- Why is there a need for a "fixed Dockerfile" (L14)? What issues were present in prior versions?  
+
+**Factual Observations**  
+- The script is designed for automated Docker container management (L3–L7, L22–L28).  
+- It uses volume mounting to share directories between the host and container (L25–L27, L39–L41).  
+- The application is deployed to run on port 5000 (L24, L38).  
+- The script references `run_tests.py` (L22) and `app.py` (L42) as key execution points.  
+
+**Claims**  
+- The project "GASLIT-AF WARSTACK" is fictional or metaphorical, as no further context is provided in the sampled text.  
+- The script's functionality is self-contained but assumes pre-existing infrastructure (e.g., Dockerfile, directories).

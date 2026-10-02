@@ -1,0 +1,33 @@
+# s41467-025-58187-6.pdf
+
+Status: unreviewed local-model draft
+Source ID: M0BF3180BB36A
+Sampled pages: 1, 3, 4, 6, 7, 9, 10, 12 of 12
+
+**Source Note: M0BF3180BB36A**
+
+**Subject:** This article investigates the organization of cortical networks in the human brain, focusing on gradients of excitability and recurrence in response to intracerebral electrical stimulation (iES). It combines empirical data from patients with drug-resistant focal epilepsy and computational modeling to explore how hierarchical brain structures influence information processing and evoked responses.
+
+**Genre:** Experimental neuroscience, combining clinical electrophysiology with whole-brain mathematical modeling. The work is methodologically rigorous, employing multimodal recordings (sEEG and hd-EEG) and connectome-based simulations.
+
+**Main Ideas:**  
+- The brain exhibits hierarchical organization, with low-order sensorimotor networks and high-order cognitive/affective networks.  
+- High-order networks demonstrate greater functional integration and dependence on recurrent feedback compared to low-order networks.  
+- Mathematical modeling and virtual dissections reveal that excitability gradients are emergent from the hierarchical structure of brain networks.  
+- The study offers insights into how network-specific differences in information processing might inform targeted neuromodulation strategies.
+
+**Striking Details:**  
+- The research involved 36 patients with drug-resistant epilepsy and 323 stimulation sessions, allowing for robust empirical analysis.  
+- The use of "virtual dissections" in whole-brain modeling to isolate the stimulated network from feedback from other regions is a novel computational approach.  
+- Late evoked potentials in high-order networks were significantly suppressed when recurrent feedback was removed, highlighting their reliance on inter-network communication.  
+- The authors employed a deep learning-based modeling approach, as noted in [M0BF3180BB36A p3], and provided open-source code for replicability [M0BF3180BB36A p10].
+
+**Coverage Limit:** The sampled pages include the introduction, methodology, results, and references, but exclude detailed discussion of the study's limitations or broader implications beyond the scope of the hierarchical network model.
+
+**Speculation:**  
+- **Connection to psychiatric disorders:** Could the observed reliance of high-order networks on recurrent feedback explain altered information processing in conditions like schizophrenia or depression, where such feedback might be impaired?  
+- **Implications for brain stimulation therapy:** Might the findings suggest that stimulation protocols targeting high-order networks require more complex, multi-site approaches to effectively modulate their activity?  
+- **Developmental shifts in connectivity:** Does the shift in communication efficiency from low-order (senders) to high-order (receivers) networks during adolescence, as hinted in [M0BF3180BB36A p7], relate to changes in cognitive maturity or vulnerability to neurological disorders?  
+- **OCR uncertainty:** The presence of unclear text in [M0BF3180BB36A p12], such as "J. D. Grif ﬁths," may affect accurate citation of author contributions and funding sources.
+
+**Note on Filename/Title Agreement:** The filename matches the metadata title exactly, indicating consistency in naming conventions. No extraordinary or fictional claims are apparent in the sampled text. The study is grounded in empirical data and mathematical modeling, with no indication of speculative or unverified assertions beyond standard scientific inquiry.

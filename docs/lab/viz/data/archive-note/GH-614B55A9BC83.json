@@ -1,0 +1,40 @@
+# caching.py
+
+Status: unreviewed local-model draft (2026-09-25T07:49:10+00:00)
+
+- Source ID: `GH-614B55A9BC83`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/caching.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/caching.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 310 anchors; verify against the source.
+
+**Source Note: GH-614B55A9BC83**
+
+**Subject:** This file, `caching.py`, is part of a Python project related to variant analysis, likely for bioinformatics or genomic data processing. It implements a caching mechanism to store and retrieve computational results.
+
+**Genre:** Technical code; specifically, a module implementing a cache system for data analysis workflows.
+
+**Main Ideas:**  
+- The cache system allows for storage of analysis results in `.cache` files to avoid redundant computation.  
+- It includes functionality to manage cache entries based on their age, with an option to clear expired or specific cache entries.  
+- Caching can be enabled or disabled via the `enabled` parameter in the `CacheManager` class.  
+- The system tracks statistics such as the number of cache entries, expired entries, and analysis types.
+
+**Striking Details:**  
+- The cache manager uses `pickle` for serializing and deserializing data [GH-614B55A9BC83 L8].  
+- Cache files are stored in a directory specified by the `cache_dir` parameter, with a default of `./cache` [GH-614B55A9BC83 L21].  
+- The system checks the modification time of cache files to determine their age and validity [GH-614B55A9BC83 L152].  
+- A method named `_get_cache_path` generates a unique path for each cache entry based on a `cache_key` and `analysis_type` [GH-614B55A9BC83 L126].  
+- The cache manager includes logging functionality to report cache clearance actions [GH-614B55A9BC83 L231].  
+- Cache entries can be cleared either for all analysis types or for a specific VCF file [GH-614B55A9BC83 L211, L218].  
+- The number of cache entries is determined by scanning the directory for `.cache` files [GH-614B55A9BC83 L47].
+
+**Coverage Limit:**  
+Sampled anchors only; the full text may contain additional functionality or context not represented here.
+
+## Speculation
+- Could this caching mechanism be used to optimize repeated variant analysis tasks, such as those involving large genomic datasets?  
+- What is the relationship between the `analysis_type` parameter and the caching logic—does it influence how cache keys are generated or how data is stored?  
+- Are there any performance benchmarks or metrics tracked within this module to evaluate the effectiveness of caching?  
+- How might the use of `pickle` affect compatibility or security in this context?

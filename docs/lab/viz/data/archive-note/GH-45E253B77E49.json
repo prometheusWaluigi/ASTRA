@@ -1,0 +1,35 @@
+# podcasts.js
+
+Status: unreviewed local-model draft (2026-09-25T07:36:13+00:00)
+
+- Source ID: `GH-45E253B77E49`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/src/_data/podcasts.js>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `src/_data/podcasts.js`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 38 anchors; verify against the source.
+
+**Source Note: GH-45E253B77E49**
+
+**Subject:** This file appears to be a JavaScript script used in the context of an experimental private wiki, likely for organizing and exporting podcast data. The script is part of a larger project, as indicated by its location in the `src/_data` directory of a GitHub repository.
+
+**Genre:** Technical data-processing script, possibly for a personal or niche archive system.
+
+**Main Ideas:**  
+- The script reads `.mp3` files from specific directories, likely containing audio content related to the author's interests or theories.  
+- It extracts and formats titles from filenames using a regular expression, suggesting a focus on metadata management.  
+- It aggregates and exports podcast data, possibly for display or further processing within the wiki.  
+
+**Striking Details:**  
+- The directories referenced (`coreTheories`, `simulationIdeas`, `spikeProtein`, `subTheories`, `careManuals`, `gettingWeird`) suggest the author is organizing content around speculative, possibly fringe topics, such as conspiracy theories or alternative science. [GH-45E253B77E49 L7-L12]  
+- The script avoids duplicating titles by using a `Set` to track seen titles, indicating an effort to maintain a curated, non-redundant archive. [GH-45E253B77E49 L16]  
+- The filename formatting (`PREFIX_ Suffix`) implies a structured naming convention for the audio files, though the exact meaning of prefixes is unclear. [GH-45E253B77E49 L21]  
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the file and does not reflect the full content or intent of the author's archive.
+
+**## Speculation**  
+- Could the directories like `spikeProtein` and `simulationIdeas` reflect the author's engagement with controversial or speculative topics, such as alternative medicine or metaphysical theories?  
+- What is the relationship between the `careManuals` directory and the rest of the content, and does it suggest a focus on practical guidance or self-help?  
+- Is the script's use of a `Set` to avoid duplicate titles an indication that the author is aware of or concerned about redundancy in their archive?  
+- Might the presence of multiple directories hint at a broader, organized structure to the author's private wiki, potentially reflecting a multi-faceted intellectual or creative process?

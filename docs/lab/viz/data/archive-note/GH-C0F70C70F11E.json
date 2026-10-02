@@ -1,0 +1,41 @@
+# integrativeSystemsModelCMSS.md
+
+Status: unreviewed local-model draft (2026-09-24T23:16:01+00:00)
+
+- Source ID: `GH-C0F70C70F11E`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/coreTheories/integrativeSystemsModelCMSS.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/coreTheories/integrativeSystemsModelCMSS.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 91 anchors; verify against the source.
+
+# Source Note: GH-C0F70C70F11E
+
+**Subject:** An integrative systems theory model for Chronic Multi-System Syndromes (CMSS), focusing on genetic and physiological underpinnings.  
+**Genre:** Academic or pseudo-academic theory paper; combines clinical observations, genetic hypotheses, and systems theory.  
+**Main Ideas:**  
+- CMSS (e.g., ME/CFS, POTS, hEDS, FM, MCAS) are not isolated diseases but overlapping manifestations of a shared systemic dysregulation.  
+- The model integrates **Sharon Meglathery’s RCCX genetic theory** with the **GASLIT-AF model of chronic illness attractors**.  
+- Key pillars include **genetic vulnerability (γ)**, **recursive biofeedback loops** among immune, autonomic, and metabolic systems, and **dynamical systems concepts** (e.g., attractors, entropy, physiological coherence).  
+- The **RCCX module** on chromosome 6 (including *CYP21A2*, *TNXB*, *C4A/C4B*, and *RP1*) is proposed as a central source of multi-system vulnerability.  
+- Other genetic factors, such as **HLA variants**, may contribute to CMSS’s polygenic basis.  
+
+**Striking Details:**  
+- The text emphasizes a **"locking" of the patient in a new, maladaptive equilibrium** due to systemic breakdown, citing [GH-C0F70C70F11E L11].  
+- A **central claim** is that **no singular pathology or biomarker** explains CMSS, citing [GH-C0F70C70F11E L7].  
+- Direct quotes from external sources are used to support the model, including citations from **Health Rising** and **PubMed**.  
+- The **GASLIT-AF model** is referenced as a framework for chronic illness attractors, with a focus on **immune-autonomic feedback** and **low physiological coherence**, citing [GH-C0F70C70F11E L9].  
+- The **RCCX module** is described as a **contiguous cluster of genes** with implications for multiple systems, including **immune function, connective tissue integrity, and stress hormone regulation**, citing [GH-C0F70C70F11E L14].  
+
+**Coverage Limit:** Sampled anchors (L1, L5, L7, L9, L11, L14, L16, L18, L20, L22, L24, L26, L91) represent only a portion of the full text.  
+
+## Speculation  
+- Could the **RCCX theory** be extended to explain **non-chronic conditions** or **mental health disorders** with similar genetic and systemic overlaps?  
+- How might the **GASLIT-AF model** be validated or refuted using **longitudinal patient data** or **multi-omics approaches**?  
+- Are the **recursive biofeedback loops** described here consistent with **other models of chronic illness** or **complex systemic diseases**?  
+- What role might **environmental factors** play in **activating or modulating** these genetic vulnerabilities, beyond the scope of the model?  
+
+**Claims:**  
+- The **RCCX theory** is presented as a potential explanation for CMSS, but **not definitively proven** in the text.  
+- The **GASLIT-AF model** is described as an **integrative framework**, but **not experimentally validated**.  
+- The **"locking" of patients in maladaptive equilibria** is a **hypothesized outcome**, not an observed phenomenon.

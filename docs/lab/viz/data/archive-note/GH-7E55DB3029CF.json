@@ -1,0 +1,38 @@
+# rccx_analysis.py
+
+Status: unreviewed local-model draft (2026-09-25T08:13:50+00:00)
+
+- Source ID: `GH-7E55DB3029CF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/rccx_analysis.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/rccx_analysis.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 228 anchors; verify against the source.
+
+**Source Note: GH-7E55DB3029CF**
+
+**Subject:** Analysis of structural variants (SVs) and copy number variations (CNVs) within the RCCX region of the human genome, using VCF files and genomic coordinates.
+
+**Genre:** Computational biology / Genomics analysis tool (Python script). The source is a Python script focused on parsing and analyzing genomic variation data, particularly within the RCCX (Regulatory Complement Cytotoxicity) region on chromosome 6.
+
+**Main Ideas:**
+
+- The script processes VCF files (Variant Call Format) to identify SVs and CNVs within the RCCX region, which is of interest in genetic research due to its involvement in immune function and disease susceptibility.
+- It supports multiple reference genomes, with a focus on GRCh38 (hg38), and includes handling for missing or incomplete VCF data.
+- The script logs results, including details about detected variants and their genomic coordinates.
+
+**Striking Details:**
+
+- The RCCX region is mapped to **chr6**, with specific coordinates for start and end positions (e.g., [GH-7E55DB3029CF L15]).
+- The script includes error handling for missing VCF files or unsupported reference genomes (e.g., [GH-7E55DB3029CF L107] and [GH-7E55DB3029CF L64]).
+- It attempts to infer SV types and lengths from ALT alleles if INFO fields are missing (e.g., [GH-7E55DB3029CF L141]).
+- The script appears to handle symbolic SVs and complex cases where END coordinates are not explicitly provided (e.g., [GH-7E55DB3029CF L160]).
+
+**Coverage Limit:** Sampled anchors (41 of 228 total) do not cover the full content of the file. Some sections, particularly those beyond 800 characters, are truncated and not fully represented here.
+
+**## Speculation**
+
+- Could the script be adapted to analyze other genomic regions beyond RCCX, and what modifications would be necessary?
+- What are the implications of using GRCh38 coordinates for detecting CNVs in populations with different reference genome standards (e.g., GRCh37)?
+- How might the script's handling of missing or ambiguous SV data affect the accuracy of downstream genetic analyses?
+- Are there known limitations in the RCCX region's genomic structure that could challenge the accuracy of CNV detection algorithms?

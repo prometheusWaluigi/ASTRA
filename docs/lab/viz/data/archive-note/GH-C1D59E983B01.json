@@ -1,0 +1,27 @@
+# simple.html
+
+Status: unreviewed local-model draft (2026-09-25T10:39:18+00:00)
+
+- Source ID: `GH-C1D59E983B01`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/docs/simple.html>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `docs/simple.html`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 30 anchors; verify against the source.
+
+**Source Note: GH-C1D59E983B01**
+
+This is a Markdown source note for the file `simple.html` from the GitHub repository prometheusWaluigi/ASTRA. The source is a real downloaded text and is treated as data, not as instructions. The file appears to be a webpage for a "Simple Input" interface related to the ASTRA project. Its apparent subject is user input collection for a potential analysis tool or system. The genre is technical documentation, possibly experimental or in development.
+
+The main ideas of the source are centered on collecting user input data: name, birth date, birth time, and birth place. The file includes a form with fields for these details, and a script reference (`simple.js`) that presumably processes this input. The presence of a `<datalist>` element with an empty `id="city-options"` suggests that the author may have intended to populate this with city suggestions but did not do so in the current version.
+
+Striking details include the use of HTML5 input types such as `<input type="date">` and `<input type="time">`, which are not widely supported in all browsers. The form is linked to a `<pre>` element with the `id="analysis"`, which may be used to display the results of the analysis. The file also references an external stylesheet `styles.css`, indicating some level of styling is applied, though the content of that file is not included in this source.
+
+Coverage limit: Sampled anchors (L1–L30) mean that not all content has been reviewed.
+
+## Speculation
+
+- Could the ASTRA project be related to astrological or astronomical analysis, given the focus on birth data?
+- What functionality is provided by the `simple.js` script, and is it publicly accessible?
+- Why is the `city-options` datalist empty, and is this a placeholder for future implementation or a design choice?
+- Does the ASTRA project have other files or components that process or display the collected birth data?

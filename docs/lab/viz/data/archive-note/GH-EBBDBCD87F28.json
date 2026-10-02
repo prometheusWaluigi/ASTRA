@@ -1,0 +1,36 @@
+# biological_systems.py
+
+Status: unreviewed local-model draft (2026-09-25T09:13:08+00:00)
+
+- Source ID: `GH-EBBDBCD87F28`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/biological_systems.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/biological_systems.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 270 anchors; verify against the source.
+
+**Source Note: GH-EBBDBCD87F28**
+
+**Subject:** This file, `biological_systems.py`, is part of a codebase analyzing genetic variants within biological systems. It appears to process gene data, categorizing genes into biological systems and generating visualizations (e.g., bar charts, heatmaps, sunbursts) related to variant counts. The content is technical, focused on data analysis and visualization.
+
+**Genre:** This is a computational biology or bioinformatics script, likely from a research or analytical project. It uses Python libraries such as NumPy and Plotly for data manipulation and visualization.
+
+**Main Ideas:**  
+- The script defines a dictionary, `BIOLOGICAL_SYSTEMS`, which maps biological systems (e.g., "Autonomic & Neurotransmitter Pathways") to lists of genes.  
+- It processes variant data, aggregates counts per gene and system, and generates visualizations to represent these findings.  
+- The file includes functions to summarize variant data and create visual outputs, such as bar charts, heatmaps, and sunbursts, for analysis.
+
+**Striking Details:**  
+- [GH-EBBDBCD87F28 L18] The dictionary `BIOLOGICAL_SYSTEMS` contains entries with complex biological system names, such as "Autonomic & Neurotransmitter Pathways," and lists of genes associated with these systems.  
+- [GH-EBBDBCD87F28 L30] Gene entries include both nuclear and mitochondrial genes, such as "MT-ATP6" and "MT-ATP8."  
+- [GH-EBBDBCD87F28 L47] Some genes are related to metabolic or immune processes, such as "IDO1" and "KMO."  
+- [GH-EBBDBCD87F28 L173] The script generates a heatmap to visualize top genes per system, with variant counts represented as the "z" parameter.  
+- [GH-EBBDBCD87F28 L253] A summary line is generated, stating the total number of variants analyzed across all systems.
+
+**Coverage Limit:** Sampled anchors (38 of 270) suggest that this is a partial representation of the full file. Key functions and data structures are likely present but not fully explored.
+
+**## Speculation**  
+- Could the genetic variant analysis be tied to a specific disease or condition, given the focus on biological systems and pathway-related genes?  
+- Are the visualizations intended for publication or internal analysis, given the presence of detailed Plotly configurations?  
+- Does this code interact with other scripts in the repository to build a larger analysis pipeline, given the presence of functions like `get_system_for_gene` and `system_analysis`?  
+- Might the inclusion of both nuclear and mitochondrial genes suggest a focus on multi-organ or systemic disease modeling?

@@ -1,0 +1,35 @@
+# clinical_variants.json
+
+Status: unreviewed local-model draft (2026-09-25T11:44:34+00:00)
+
+- Source ID: `GH-748507F9F31E`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/schemas/clinical_variants.json>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/schemas/clinical_variants.json`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 94 anchors; verify against the source.
+
+**Source Note: GH-748507F9F31E**
+
+This document is a JSON schema titled *clinical_variants.json*, originating from the GitHub repository *prometheusWaluigi/gaslit-af_variant_analysis*. The canonical URL is [https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/schemas/clinical_variants.json](https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/schemas/clinical_variants.json). The file appears to define a data structure for analyzing clinical genetic variants, likely in the context of bioinformatics or medical genetics.
+
+**Subject and Genre**  
+The subject is genetic variant analysis, specifically for clinical applications. This is a data schema, likely used in software to validate or structure variant-related data. The genre is technical documentation, with a focus on medical genetics and computational biology.
+
+**Main Ideas**  
+The schema defines a structure for storing information about genetic conditions, including their symptoms, genetic data, and risk assessment. The data includes fields for clinical significance, confidence levels, and classifications of genetic variants. Key components include "conditions," "genetic_data," and "risk_assessment" as primary categories. The schema uses standardized fields, such as "variant_id," "gene," and "rcv" (likely referencing RefSeq or other gene identifiers).
+
+**Striking Details**  
+- The schema defines a "status" field for genetic variants, with a "confidence" level categorized as "High," "Medium," or "Low" [GH-748507F9F31E L43].  
+- The "risk" field includes an enum: "D," "LD," "IR," "P," "S," and "Other," which may represent different risk classifications (e.g., "D" for disease-causing, "P" for pharmacogenomic relevance) [GH-748507F9F31E L48].  
+- The "genetic_data" section requires fields such as "gene," "variant_id," "rcv," and "genotype" [GH-748507F9F31E L74].  
+- A "risk_assessment" field includes a "frequency" (a number) and "version" (a string) [GH-748507F31E L88].
+
+**Coverage Limit**  
+This note is based on sampled anchors from the full file, which contains 94 anchors. The sampling is not exhaustive, and this source note does not reflect the entirety of the content.
+
+## Speculation  
+- Could this schema be used to integrate with clinical databases like ClinVar or gnomAD, given its focus on variant classification and frequency?  
+- How does the use of "rcv" align with standard identifiers in genomic medicine (e.g., RefSeq, HGVS)?  
+- Is the "risk" enum standardized across platforms, or is it a custom implementation by the author?  
+- Might this schema be part of a larger project involving variant interpretation in personalized medicine?

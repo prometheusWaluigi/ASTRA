@@ -1,0 +1,39 @@
+# geometric_patterns.py
+
+Status: unreviewed local-model draft (2026-09-25T06:38:09+00:00)
+
+- Source ID: `GH-D549F3DE1C4E`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/celestialHarmonics/patterns/geometric_patterns.py>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `celestialHarmonics/patterns/geometric_patterns.py`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 54 anchors; verify against the source.
+
+**Source Note: GH-D549F3DE1C4E**
+
+**Subject:** This file is part of an experimental private wiki, serving as a public archive for a singular author's work. It appears to be a Python script focused on the detection and analysis of geometric patterns in celestial data.
+
+**Genre:** Technical code (Python) with inline documentation and comments, likely part of a larger project involving computational geometry or astronomy.
+
+**Main Ideas:**  
+- The script defines a class `GeometricPattern`, which inherits from `BasePattern`.  
+- It implements methods to detect geometric patterns algebraically, including checking for translation, rotation, reflection, and scale symmetries.  
+- The file emphasizes rigorous computation, caching, and handling of edge cases (e.g., empty dictionaries).  
+- The author uses a symmetry threshold to determine whether a pattern is valid and computes a "pattern strength" based on the highest detected symmetry.
+
+**Striking Details:**  
+- The class includes a `check_pattern` method that returns `True` if any symmetry exceeds the defined threshold [GH-D549F3DE1C4E L21–L22].  
+- The script uses `numpy` for numerical operations and imports from a local module `base_pattern` [GH-D549F3DE1C4E L3, L6].  
+- Inline comments use all caps for emphasis, such as "detect them geometric patterns ALGEBRAICALLY" [GH-D549F3DE1C4E L10].  
+- The file includes a note about maintaining cleanliness in the code: "# rest of file stays the same bc it's CLEAN" [GH-D549F3DE1C4E L54].  
+- The script caches computed symmetries to avoid redundant calculations [GH-D549F3DE1C4E L15–L17, L26–L30].  
+- The `pattern_strength` method returns the maximum symmetry value as a float [GH-D549F3DE1C4E L28–L29].
+
+**Coverage Limit:**  
+This note is based on a sampled subset of anchors (37 of 54 total). Anchors over 800 characters are truncated, and the full text of the file has not been examined.
+
+**## Speculation**  
+- Could the symmetries detected be used for applications beyond astronomy, such as in design or material science?  
+- What specific celestial data is being analyzed, and how does the script handle noise or irregularities in the input points?  
+- Is the use of `BasePattern` a legacy component, or is it part of a broader framework for pattern detection?  
+- How does the "pattern strength" metric influence downstream processing or visualization in the larger project?

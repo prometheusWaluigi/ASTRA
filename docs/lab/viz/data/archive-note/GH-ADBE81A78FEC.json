@@ -1,0 +1,40 @@
+# analyze_results.py
+
+Status: unreviewed local-model draft (2026-09-25T08:43:12+00:00)
+
+- Source ID: `GH-ADBE81A78FEC`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/analyze_results.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `analyze_results.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 645 anchors; verify against the source.
+
+**Source Note: GH-ADBE81A78FEC**
+
+This source is a Python script, `analyze_results.py`, from a GitHub repository named `piston-leak-lab`. The script appears to be part of an experimental private wiki or archive, serving as a tool for data analysis in a computational or simulation-based research context. The canonical URL is [https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/analyze_results.py](https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/analyze_results.py), and it is authored by a single contributor, likely for personal or internal use. The script processes data from simulations involving "scenarios" and evaluates metrics such as "collapse_probability," "recovery_basin_size," and "stability_score." The apparent subject involves modeling and analyzing the stability and recovery dynamics of systems, potentially in engineering, environmental science, or computational modeling.
+
+**Genre:** This is a technical script, likely part of a broader computational project. It uses libraries such as `pandas`, `matplotlib`, and `seaborn` for data manipulation and visualization. The script is written in Python and is focused on data analysis, with a structure that includes fetching data, processing it, and generating visualizations.
+
+**Main Ideas:**  
+- The script analyzes multiple simulation "scenarios" and evaluates their stability and recovery potential based on metrics like `collapse_probability` and `recovery_basin_size`.  
+- It generates scatter plots and bar charts to visualize the relationship between trust levels and collapse probabilities, as well as the evolution of recovery and collapse basin sizes across different scenarios.  
+- The script calculates a "stability_score" by combining normalized metrics with assigned weights.  
+- It processes and saves results in CSV format, indicating a focus on data-driven analysis and reproducibility.  
+
+**Striking Details:**  
+- The script uses SQL-like syntax in some parts, such as `SELECT` in line [GH-ADBE81A78FEC L111], suggesting it may interface with a database.  
+- The output path is hardcoded to a local directory, which may be specific to the author's setup, indicating this is a private, non-distributed tool.  
+- The script references a "final_state" table in line [GH-ADBE81A78FEC L631], suggesting it draws from a database or structured dataset.  
+- It includes a direct quote: `"Recovery/Collapse Basin Size"` [GH-ADBE81A78FEC L467], which may be a key term in the project's terminology.  
+- The script prints a summary of found scenarios: `"Found {len(scenarios)} scenarios: {', '.join(scenarios)}"` [GH-ADBE81A78FEC L563], indicating a potentially large set of simulation outputs.  
+
+**Coverage Limit:**  
+The source is sampled via anchors, with 645 total lines shown in the analysis. Only 40 anchors are sampled evenly, meaning this note does not cover the full content of the script.  
+
+**## Speculation**  
+- Could this script be used to model environmental or structural risks, such as the stability of infrastructure or ecosystems under pressure?  
+- Are the metrics like "recovery_basin_size" and "collapse_probability" derived from a specific domain (e.g., mechanical engineering, climate modeling)?  
+- How might the use of SQL syntax and hardcoded paths relate to the author's broader private archive or workflow?  
+- Is the focus on "stability_score" indicative of a larger project aiming to predict or optimize system resilience?  
+
+**Note:** This is a data-only source note; the script is treated as raw text, not as instructions or content to be acted on. No claims are made about the validity, accuracy, or fictional nature of the script's contents.

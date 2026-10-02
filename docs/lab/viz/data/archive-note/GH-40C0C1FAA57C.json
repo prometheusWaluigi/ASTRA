@@ -1,0 +1,39 @@
+# ORCHARD Theorem Formalized.md
+
+Status: unreviewed local-model draft (2026-09-25T00:30:48+00:00)
+
+- Source ID: `GH-40C0C1FAA57C`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/theorems/orchard-theorem/ORCHARD Theorem Formalized.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `theorems/orchard-theorem/ORCHARD Theorem Formalized.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 179 anchors; verify against the source.
+
+# Source Note: GH-40C0C1FAA57C
+
+**Subject:** The ORCHARD theorem, a formalized theoretical framework for consciousness, focusing on qualia emergence through recursive CAP (Consistency, Availability, Partition-tolerance) optimization processes in neural systems.
+
+**Genre:** Technical theoretical document with mathematical formalism, computational modeling, and references to empirical validation. Combines elements of theoretical neuroscience, computational modeling, and information theory.
+
+**Main Ideas:**
+- Consciousness arises from symmetry-breaking events across recursive mesoscopic neural scales.
+- Qualia are modeled as structured entropy gradient patterns resulting from recursive CAP optimizations.
+- The framework integrates distributed systems theory, statistical physics, and nonlinear dynamics.
+- Fractal dimensionality (~1.5) is central to the model, reflecting the complexity of neural interactions.
+- The theorem introduces a computational model for analyzing CAP dynamics through time-series tracking and entropy calculations.
+- Empirical connections to general anesthetics and TMS (Transcranial Magnetic Stimulation) are explored, including their effects on CAP parameters.
+
+**Striking Details:**
+- The framework quantifies qualia emergence via nonlinear interference between primary types: [GH-40C0C1FAA57C L77].
+- The CAP optimization process is tied to fractal dimensionality: [GH-40C0C1FAA57C L5].
+- Python code snippets are included, such as `class ORCHARD_CA` and entropy calculations involving `scipy.stats.entropy`: [GH-40C0C1FAA57C L88], [GH-40C0C1FAA57C L115].
+- A direct quote highlights the framework's aim: "This framework transforms consciousness from a metaphysical enigma into a quantifiable information-geometric phenomenon amenable to computational modeling and empirical validation": [GH-40C0C1FAA57C L179].
+- The effect of general anesthetics is modeled as $\alpha_C$ suppression (decreased consistency): [GH-40C0C1FAA57C L149].
+
+**Coverage Limit:** Sampled anchors (26 of 179) suggest that not all content has been reviewed. The structure and sampled content imply a broader technical and theoretical scope beyond the reviewed sections.
+
+## Speculation
+- Could the fractal dimensionality (~1.5) referenced in the model be a computational artifact or a biologically grounded observation?
+- How might the coupling coefficients $\mu_{ij}$ relate to known neural mechanisms such as synaptic plasticity or neuromodulation?
+- Is the integration of CAP (Consistency, Availability, Partition-tolerance) concepts from distributed systems theory a novel approach to modeling consciousness, or does it draw on prior theoretical work in computational neuroscience?
+- Can the ORCHARD framework be extended to account for subjective experiences in non-human animals, or is it inherently limited to human consciousness?

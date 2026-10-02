@@ -1,0 +1,40 @@
+# genetic_scanner.py
+
+Status: unreviewed local-model draft (2026-09-25T07:06:04+00:00)
+
+- Source ID: `GH-132A84FFF361`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/genetic_risk/genetic_scanner.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/genetic_risk/genetic_scanner.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 828 anchors; verify against the source.
+
+# Source Note: GH-132A84FFF361
+
+**Subject:** A Python script for genetic risk analysis.  
+**Genre:** Experimental code, likely part of a bioinformatics or health-related project.  
+**Main Ideas:**  
+- The script appears to process genetic data (e.g., VCF and FASTQ files) to assess risk based on variant presence and associated weights.  
+- It includes functionality to calculate "allostatic collapse risk," a term possibly related to stress-related physiological strain.  
+- Risk profiles are saved, with a focus on specific genes such as *TNXB* and *MTHFR*.  
+- The script relies on external libraries like `scikit-allel` and `numpy` for data processing and randomization.  
+
+**Striking Details:**  
+- The script defines a list of known genetic variants with associated risk alleles and weights. For example, [GH-132A84FFF361 L54] includes a variant with ID `rs121912172`, located on chromosome 6 at position 32,045,572, with a risk allele of `'A'` and a weight of `0.8`.  
+- A warning is raised if the required library `scikit-allel` is not installed: [GH-132A84FFF361 L283].  
+- The script generates risk scores and saves a heatmap image, which may be used for visualizing genetic risk profiles: [GH-132A84FFF361 L599].  
+- The method `_calculate_allostatic_collapse_risk` is triggered if both *TNXB* and *MTHFR* variants are detected in the input data: [GH-132A84FFF361 L476].  
+- The script includes logging functionality for debugging and error reporting, with a specific message for high genetic risk: [GH-132A84FFF361 L705].  
+
+**Coverage Limit:**  
+Sampled anchors (39 of 828) provide a partial view of the script. Not all functions, variables, or error conditions may be represented here.  
+
+## Speculation  
+- Could the term "allostatic collapse risk" be a novel or non-standard concept in this context?  
+- Is there a possibility that the risk scores are being used for purposes beyond clinical evaluation, such as predictive analytics or personalized health recommendations?  
+- What is the source of the variant data in `self.RISK_VARIANTS`? Are these curated from public genetic databases or derived from proprietary research?  
+- Might the integration of FASTQ and VCF data suggest a broader analysis pipeline involving both sequencing and variant calling?  
+
+**Flagged Claims:**  
+- The concept of "allostatic collapse risk" is not explicitly defined in the sampled text and may be a fictional or domain-specific construct.  
+- The script's use of genetic data to generate risk profiles is presented as a feature, but its accuracy or clinical validity are not addressed in the sampled text.

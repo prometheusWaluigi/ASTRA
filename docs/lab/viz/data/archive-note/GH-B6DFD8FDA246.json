@@ -1,0 +1,37 @@
+# RESEARCH_ROADMAP.md
+
+Status: unreviewed local-model draft (2026-09-24T22:39:38+00:00)
+
+- Source ID: `GH-B6DFD8FDA246`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/docs/RESEARCH_ROADMAP.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `docs/RESEARCH_ROADMAP.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 143 anchors; verify against the source.
+
+# Source Note: GH-B6DFD8FDA246
+
+**Subject**: A research roadmap for a project named "Quantum-Plasmoid," blending theoretical and computational approaches to consciousness, fractal time, and quantum-informed models.
+
+**Genre**: Technical roadmap, likely for an experimental private wiki; structured as a markdown document with headings and bullet points.
+
+**Main Ideas**:  
+- The project explores consciousness through mathematical frameworks, including the **ORCHARD Theorem** [GH-B6DFD8FDA246 L7] and **ζ-Orchard Correspondence** [GH-B6DFD8FDA246 L13].  
+- Investigates the **Riemannian Geometry of CAP-Space** [GH-B6DFD8FDA246 L25] and the implications of **fractal time integration** [GH-B6DFD8FDA246 L19] on physical systems.  
+- Proposes **quantum-like behaviors in macroscopic plasma phenomena** [GH-B6DFD8FDA246 L61] and develops **quantum algorithms for solving CAP optimization problems** [GH-B6DFD8FDA246 L74].  
+- Includes computational components such as **Higuchi fractal dimension analysis for EEG data** [GH-B6DFD8FDA246 L40], **evolutionary algorithms for optimizing CAP parameters** [GH-B6DFD8FDA246 L52], and **interactive visualizations of recursive eigenmode dynamics** [GH-B6DFD8FDA246 L92].  
+- Aims to integrate neuroscience and quantum computing research through **validation studies** [GH-B6DFD8FDA246 L119] and **quantum-informed extensions** [GH-B6DFD8FDA246 L140].
+
+**Striking Details**:  
+- The document references **"recursive dynamics"** and **"universality classes"** [GH-B6DFD8FDA246 L67], suggesting a focus on non-linear and abstract mathematical models.  
+- A specific **"multi-agent cognitive manifold theory"** is mentioned as a goal [GH-B6DFD8FDA246 L80], indicating a blend of AI and consciousness research.  
+- The roadmap includes **immersive visualization environments** [GH-B6DFD8FDA246 L95] and **collaborative model building tools** [GH-B6DFD8FDA246 L98], suggesting an emphasis on interdisciplinary and interactive research.  
+- The **"CAP pathways"** [GH-B6DFD8FDA246 L10] and **"CAP-Space"** [GH-B6DFD8FDA246 L25] are recurring terms, possibly referring to a central theoretical framework for consciousness.
+
+**Coverage Limit**: Sampled anchors (39 of 143) mean this note reflects only a portion of the full document. The roadmap may include further details not observed here.
+
+## Speculation  
+- Could the "ORCHARD Theorem" [GH-B6DFD8FDA246 L7] be a reimagining or extension of the Orch-OR theory of consciousness, and how does it differ?  
+- What are the potential overlaps between **fractal time integration** [GH-B6DFD8FDA246 L19] and **quantum algorithms** [GH-B6DFD8FDA246 L74], and how might they be applied?  
+- The mention of **"recursive eigenmode dynamics"** [GH-B6DFD8FDA246 L92] raises questions about the practical applications of such models in neuroscience or physics.  
+- How might the **"multi-agent cognitive manifold theory"** [GH-B6DFD8FDA246 L80] influence the design of AI systems, and what are its theoretical foundations?

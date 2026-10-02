@@ -1,0 +1,38 @@
+# .eleventy.js
+
+Status: unreviewed local-model draft (2026-09-25T08:45:18+00:00)
+
+- Source ID: `GH-AF3A6C9E66A6`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/.eleventy.js>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `.eleventy.js`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 50 anchors; verify against the source.
+
+**Source Note: GH-AF3A6C9E66A6**
+
+**Subject:** This file is a configuration script for an Eleventy static site generator, used in the context of a private wiki, likely for an author's public archive. The file defines settings, filters, and data handling for the site.
+
+**Genre:** Technical configuration file, likely part of a larger static site or wiki project.
+
+**Main Ideas:**  
+- Sets up Markdown processing with anchor support for headings, enabling internal linking within generated pages.  
+- Defines filters for URL encoding and slugifying strings to ensure clean, consistent URL structures.  
+- Loads and exposes data from theory and podcast files globally, suggesting the site includes content related to theories and podcasts.  
+- Copies specific directories (e.g., `coreTheories`, `simulationIdeas`, `spikeProtein`, etc.) and files (e.g., `styles.css`) to the output directory, indicating a structured content layout.  
+- Configures site settings, including the `pathPrefix`, input and output directories, and includes folder location.
+
+**Striking Details:**  
+- The file explicitly references "theoryCollections" and "podcastCollections," implying a focus on organizing and presenting theoretical or podcast-based content.  
+- Directories like `spikeProtein` and `gettingWeird` suggest thematic or conceptual categorization of content, possibly related to speculative or controversial topics.  
+- The use of `slugify` and `url_encode` filters indicates a strong emphasis on SEO and clean URL structures for the site.  
+- The script integrates markdown-it and markdown-it-anchor libraries, which are commonly used for advanced Markdown processing and internal linking.  
+- The canonical URL and repo name suggest a potential connection to a larger, possibly experimental or niche project, though no further context is available.
+
+**Coverage Limit:** Sampled anchors (42 of 50 total) are shown, and anchors over 800 characters are truncated. This means not all content has been read or analyzed.
+
+## Speculation
+- Could the inclusion of directories like `spikeProtein` and `simulationIdeas` suggest a focus on unconventional or speculative theories, possibly related to scientific or philosophical topics?
+- Why are "careManuals" and "gettingWeird" included as directories? Could they represent content aimed at guiding users through complex or emotionally intense material?
+- The use of `pathPrefix` and the integration of global data might imply the author is preparing for a multi-author or collaborative environment, despite the private wiki context. Is this a misdirection or an intentional setup for future expansion?
+- The presence of both theory and podcast data collections raises the question: is this archive designed to present content in multiple formats, or is it a hybrid of academic and media-based materials?

@@ -1,0 +1,31 @@
+# worldcities.csv
+
+Status: unreviewed local-model draft (2026-09-25T10:44:15+00:00)
+
+- Source ID: `GH-D0CDA44B43FE`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/astra/data/worldcities.csv>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `astra/data/worldcities.csv`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 21 anchors; verify against the source.
+
+**Source Note: GH-D0CDA44B43FE**
+
+**Subject:** A CSV file listing a selection of major global cities with metadata.  
+**Genre:** Data file; structured as a flat table with headers and rows.  
+**Main Ideas:** The file catalogs cities by name, country, subcountry, geographic identifier (geonameid), and geographic coordinates (latitude and longitude). It appears to be a subset of a larger dataset, likely intended for use in geographic or computational applications.  
+**Striking Details:**  
+- [GH-D0CDA44B43FE L1] The header row defines the structure: `city`, `country`, `subcountry`, `geonameid`, `lat`, `lng`.  
+- [GH-D0CDA44B43FE L2] The first data row includes "New York," with a geonameid of `5128581` and coordinates `40.7128,-74.0060`.  
+- [GH-D0CDA44B43FE L12] "Beijing" has a geonameid of `1816670` and coordinates `39.9042,116.4074`.  
+- [GH-D0CDA44B43FE L19] "Singapore" has a geonameid of `1880252` and coordinates `1.3521,103.8198`.  
+
+The file contains 21 entries, with each entry representing a major city. The geographic coordinates appear to be consistent with known locations. The geonameid values correspond to identifiers used by the GeoNames database, suggesting this file is derived from or compatible with that dataset.  
+
+**Coverage Limit:** Sampled anchors mean not all data has been reviewed. The file may contain additional entries or metadata not visible in the sampled lines.  
+
+## Speculation  
+- Could this file be part of a larger project or tool that relies on geographic data for mapping, simulation, or AI training?  
+- Are the cities listed representative of economic, political, or cultural hubs, or is there a different selection criterion?  
+- Might the geonameid values be used to cross-reference with other geographic or demographic datasets?  
+- What is the purpose of including subcountry information, and how is it used in the context of the ASTRA project?

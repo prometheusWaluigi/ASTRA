@@ -1,0 +1,36 @@
+# sensitivity_narrative_control.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:22:02+00:00)
+
+- Source ID: `GH-35CD6980B972`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/configs/sensitivity_narrative_control.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `configs/sensitivity_narrative_control.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 57 anchors; verify against the source.
+
+**Source Note: GH-35CD6980B972**
+
+This file, `sensitivity_narrative_control.yml`, is a configuration file for a simulation model related to the "Piston Leak Lab" project, hosted on GitHub. It appears to define parameters for a Monte-Carlo sensitivity analysis of a coupled ODE (Ordinary Differential Equation) and ABM (Agent-Based Model) simulation, likely exploring dynamics around trust, entropy, and suppression in a scenario involving information leakage or policy intervention.
+
+**Subject and Genre**  
+The apparent subject is a computational model exploring the sensitivity of narrative control mechanisms under varying policy parameters. The genre is technical configuration, likely for a simulation or research project involving social dynamics, information propagation, or crisis management.
+
+**Main Ideas**  
+The file sets up a simulation that combines ODEs and ABM to analyze how different policy parameters (e.g., `k_policy`) influence outcomes such as trust decay, entropy, suppression fatigue, and information leakage. The simulation is designed to run an ensemble of scenarios with randomized seeds and parameter sweeps. It includes a noise model to simulate exogenous shocks and a network structure for agent interactions.
+
+**Striking Details**  
+- The `sweep_values` for `k_policy` include a range from 0.2 to 1.5, indicating an exploration of policy sensitivity.
+- The agent-based network is modeled after the Watts-Strogatz small-world graph, with 3000 agents and an average degree of 6 [GH-35CD6980B972 L38–L39].
+- The model includes "influence field" weights for different agent types: believers, skeptics, and agnostics [GH-35CD6980B972 L43–L45].
+- A "collapse threshold" is defined using metrics such as `trust_slope_threshold` and `entropy_critical`, suggesting a focus on systemic failure or critical tipping points [GH-35CD6980B972 L49–L50].
+- Output settings include saving summaries and generating plots, indicating an emphasis on data visualization and analysis [GH-35CD6980B972 L53–L56].
+
+**Coverage Limit**  
+This note is based on a sampled subset of the file’s anchors, not the full content. Anchors beyond 800 characters are truncated, and not all lines have been examined.
+
+**## Speculation**  
+- Could this model be used to simulate the spread of misinformation or the effects of public health policies during a crisis?  
+- What assumptions are made about the relationship between suppression and trust, and how might these be validated?  
+- How does the inclusion of exogenous leak shocks (`noise_sigma`, `leak_frequency`) affect the simulation’s predictive power or realism?  
+- Is the "Piston Leak Lab" project related to broader research on systemic risk or social dynamics in information environments?

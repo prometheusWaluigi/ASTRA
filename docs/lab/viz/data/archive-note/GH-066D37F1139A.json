@@ -1,0 +1,36 @@
+# 05_resilience_drive.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:04:52+00:00)
+
+- Source ID: `GH-066D37F1139A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/generated/05_resilience_drive.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/generated/05_resilience_drive.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 43 anchors; verify against the source.
+
+# Source Note: GH-066D37F1139A
+
+**Subject**: This is a configuration file for a computational simulation, likely related to modeling social dynamics, trust, or resilience in a networked system. The file defines parameters for an experiment called "Transparency + Trust Resilience Drive."
+
+**Genre**: Technical configuration file, likely part of a research or experimental project involving agent-based modeling or network simulations.
+
+**Main Ideas**:
+- The simulation involves a network of 3,000 agents structured using a Watts-Strogatz model ([GH-066D37F1139A L25]).
+- Parameters define interactions between agents, including weights for different types of agents (believers, skeptics, agnostics) and thresholds for trust and transparency ([GH-066D37F1139A L30–L38]).
+- The simulation includes noise, perturbations, and leak frequency, suggesting an exploration of robustness or resilience under uncertainty ([GH-066D37F1139A L22, L23]).
+- The output includes timeseries data, summaries, and plots, indicating a focus on data-driven analysis and visualization ([GH-066D37F1139A L40–L42]).
+
+**Striking Details**:
+- The author is listed as "GASLIT-420," a likely pseudonym or alias ([GH-066D37F1139A L3]).
+- The simulation runs 300 times with a fixed random seed of 42, indicating a controlled experimental design ([GH-066D37F1139A L8–L9]).
+- The Watts-Strogatz network parameters include a rewiring probability of 0.2 and an average node degree of 6 ([GH-066D37F1139A L25–L28]).
+
+**Coverage Limit**: This source note is based on sampled anchors from the full text. The file contains 43 anchors, and all are included here, but not all content may be fully represented or interpreted due to truncation and lack of context from the full file.
+
+## Speculation
+
+- Could the simulation be modeling the spread of misinformation or trust in a decentralized system, given the focus on transparency and trust thresholds?
+- What is the significance of "reactive" transparency type ([GH-066D37F1139A L36]) in the context of network resilience?
+- How might the weights assigned to skeptics (1.2) and believers (1.0) influence the dynamics of consensus or conflict within the simulated network?
+- Does the use of a Watts-Strogatz model imply an exploration of small-world network properties in the context of social or information resilience?

@@ -1,0 +1,31 @@
+# getting-started.md
+
+Status: unreviewed local-model draft (2026-09-24T22:53:31+00:00)
+
+- Source ID: `GH-0E073F024763`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/docs/getting-started.md>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `docs/getting-started.md`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 110 anchors; verify against the source.
+
+# Source Note: GH-0E073F024763
+
+**Subject:** A technical guide for setting up and running simulations with the Piston Leak Lab framework.  
+**Genre:** Software documentation, experimental simulation setup.  
+**Main Ideas:** The guide provides steps to install and configure the Piston Leak Lab, a framework for simulating scenarios involving "trust decay," "suppression penalty," and "transparency policy." It emphasizes the use of YAML configuration files to control simulations and includes instructions for running Monte Carlo simulations and visualizing results.  
+**Striking Details:**  
+- The framework appears to simulate complex adaptive systems, possibly related to trust dynamics or information flow, given parameters like `"alpha1": 0.6` (Trust decay vs entropy) and `"gamma1": 0.2` (Suppression penalty on trust) [GH-0E073F024763 L96].  
+- The output includes time-series data in CSV format and interactive dashboards in HTML [GH-0E073F024763 L57].  
+- Example simulation results show metrics like `"n_collapse": 237` and `"recovery_basin_size": 0.526` [GH-0E073F024763 L68].  
+- The guide recommends using Poetry 1.8 or higher for dependency management [GH-0E073F024763 L10].  
+- Simulations are controlled via YAML configurations, with an example showing 500 Monte Carlo runs and the option to randomize parameters slightly [GH-0E073F024763 L80, L82].  
+- The guide mentions optional accelerators like oneAPI for performance [GH-0E073F024763 L29].  
+
+**Coverage Limit:** Sampled anchors (38 of 110 total). The note does not reflect the full content of the source.  
+
+## Speculation
+- Could the parameters involving "trust decay" and "suppression penalty" relate to a broader study of social or computational systems where trust is a variable?  
+- What is the significance of the "recovery_basin_size" metric in the simulation output? Might it indicate system stability or resilience?  
+- Are the "custom transparency functions" mentioned in the "Next Steps" section related to ethical or privacy considerations in the simulated scenarios?  
+- What is the relationship between the "Piston Leak Lab" framework and the broader "piston-leak" concept, and how might this relate to other repositories or projects?

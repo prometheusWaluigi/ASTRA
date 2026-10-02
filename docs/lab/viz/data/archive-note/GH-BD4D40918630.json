@@ -1,0 +1,36 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T10:36:50+00:00)
+
+- Source ID: `GH-BD4D40918630`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/core-concepts/fractal-systems/index.html>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `core-concepts/fractal-systems/index.html`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 64 anchors; verify against the source.
+
+**Source Note: GH-BD4D40918630**
+
+**Subject:** The document appears to be the index page for a section titled "Fractal Systems" within the *quantum-plasmoid* repository on GitHub. It is part of an experimental private wiki intended to serve as a public archive for one author's work. The content focuses on the conceptual and theoretical exploration of fractals in relation to consciousness, complex hierarchies, and cross-disciplinary science.
+
+**Genre:** This is a technical, academic-style wiki page, structured with HTML and Markdown. It combines theoretical exposition, references to other sections (e.g., "celestialFRACTAL.md"), and multimedia elements (e.g., a podcast). The tone is speculative and interdisciplinary.
+
+**Main Ideas:**
+- Fractals are presented as a framework for understanding consciousness and complex hierarchical systems in nature.
+- The wiki appears to integrate mathematical, biological, and social perspectives on fractal organization.
+- The document includes links to external files, such as a podcast and markdown files on celestial and multidisciplinary fractals.
+- The author uses the term "Quantum-Plasmoid Project" as the canonical name for the archive.
+
+**Striking Details:**
+- The document includes a podcast titled "Fractal Systems: Consciousness and Complex Hierarchies (MP3)" [GH-BD4D40918630 L44].
+- The section titled "Key Concepts" lists "Fractal Hierarchies" and "Multidisciplinary Fractals" as core ideas [GH-BD4D40918630 L53, L55].
+- The page includes a footer with a copyright notice and a link to the GitHub repository [GH-BD4D40918630 L60].
+- Anchors such as L10 describe the page's content as "Fractal Systems: Hierarchies, consciousness, and cross-disciplinary fractal theory" [GH-BD4D40918630 L10].
+
+**Coverage Limit:** Sampled anchors are shown, but the full text has 64 anchors. This note does not claim to represent all content of the source.
+
+## Speculation
+- Could the author's use of "Quantum-Plasmoid Project" be a metaphor or a nod to a fictional or speculative science fiction concept?
+- Is the inclusion of a podcast a deliberate attempt to blend traditional academic content with more accessible or multimedia formats?
+- Might the reference to "fractals in celestial and cosmic systems" [GH-BD4D40918630 L35] suggest an interest in astrophysics or cosmology, potentially linking to theoretical physics?
+- Are the terms "self-similar structures in consciousness" [GH-BD4D40918630 L53] intended as a philosophical or scientific hypothesis, or both?

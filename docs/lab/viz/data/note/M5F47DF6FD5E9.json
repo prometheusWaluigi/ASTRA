@@ -1,0 +1,50 @@
+# Nike Enterprise Architecture - Scope and Activities_v1.pdf
+
+Status: unreviewed local-model draft
+Source ID: M5F47DF6FD5E9
+Sampled pages: 1, 4, 8, 11, 15, 18, 22, 25 of 25
+
+**Source Note: M5F47DF6FD5E9**  
+**Filenames:** ['Nike Enterprise Architecture - Scope and Activities_v1.pdf']  
+**Metadata Title:** (Not provided)  
+**Total PDF Pages:** 25  
+**Sampled Pages:** [1, 4, 8, 11, 15, 18, 22, 25]  
+**Coverage Limit:** Partial; sampled pages do not fully cover the document’s content.  
+
+**Subject & Genre:**  
+This document appears to be an internal strategy or planning document related to Nike’s **enterprise architecture** and **developer platforms**. Its genre is **technical planning**, with a focus on enterprise-wide technology strategy, governance, and modernization. The tone is formal, with repeated emphasis on confidentiality and alignment with business goals.  
+
+**Main Ideas:**  
+- The document outlines **enterprise architecture principles** and **developer platform strategies** aimed at streamlining Nike’s global technology operations.  
+- A key focus is on **technology modernization**, **data strategy**, and **generative AI adoption**, suggesting a push toward digital transformation.  
+- There is a strong emphasis on **cost awareness**, **resiliency**, and **security** as critical non-functional requirements for all solution designs.  
+- The text references **cloud infrastructure strategy**, including questions about multi-cloud and regional segmentation, and proposes a **standardized, resilient, and cost-effective technology stack**.  
+- **Architecture governance** is framed as a critical process for resolving conflicts between short-term and long-term objectives, with structured frameworks for leadership involvement and decision-making.  
+
+**Striking Details:**  
+- The repeated use of the phrase “**Keep It Tight**” underscores a culture of strict confidentiality and disciplined execution.  
+- The inclusion of quotes from **Michael Jordan** and **Steve Prefontaine** suggests an attempt to align technical strategy with Nike’s broader corporate ethos and motivational culture.  
+- The document mentions **specific projects or artifacts** such as “Data Egress to NDF,” “Aviatrix Cloud Architecture,” and “Retirement of NSP 1 & 2,” indicating concrete initiatives under consideration.  
+- A **priority framework** for architectural decisions is outlined, with high-priority items like “Domain Data Products” and “Active/Active Resiliency.”  
+- The document references **non-functional requirements (NFR)** such as cost-awareness, security, and performance, which are emphasized as integral to solution design.  
+
+**Speculation:**  
+- **Speculation 1:** Could the repeated mention of “**Generative AI & Automation**” indicate a broader corporate initiative to integrate AI into product development and customer engagement, beyond just internal operations?  
+- **Speculation 2:** Is the use of **quotes from athletes** an intentional strategy to inspire technical teams or a reflection of a deeper cultural alignment between Nike’s business and its brand identity?  
+- **Speculation 3:** Given the emphasis on **multi-cloud and regional segmentations**, does this suggest a need for greater flexibility in global operations or a response to geopolitical or supplier risks?  
+- **Speculation 4:** The mention of **“divest in FY25”** and **“retirement of NSP 1 & 2”** implies legacy systems may be being phased out—what might be the long-term impact on Nike’s technology infrastructure and workforce?  
+
+**Flags:**  
+- No **filename/title disagreement** detected.  
+- **OCR uncertainty:** None flagged, as all extraction methods are **pdf-text** and do not indicate OCR-based ambiguity.  
+- **Extraordinary or fictional claims:** None identified.  
+
+**Citations:**  
+- [M5F47DF6FD5E9 p1] – Highlights confidentiality and the focus on enterprise architecture and developer platforms.  
+- [M5F47DF6FD5E9 p4] – Describes key areas of focus, including technology modernization and generative AI adoption.  
+- [M5F47DF6FD5E9 p8] – Outlines **GT Principles**, emphasizing speed, scale, and curiosity.  
+- [M5F47DF6FD5E9 p11] – Details **Architecture Principles**, including cost-awareness and tenacious reliability.  
+- [M5F47DF6FD5E9 p15] – Addresses **cloud infrastructure strategy**, including questions about multi-cloud and regional segmentation.  
+- [M5F47DF6FD5E9 p18] – References **architecture guardrails** and candidate projects, such as **AI/ML** and **data transformations**.  
+- [M5F47DF6FD5E9 p22] – Discusses **architecture governance**, including structured decision-making frameworks and conflict resolution.  
+- [M5F47DF6FD5E9 p25] – Concludes with a motivational quote and repetition of the document’s title.

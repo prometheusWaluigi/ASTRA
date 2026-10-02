@@ -1,0 +1,36 @@
+# conftest.py
+
+Status: unreviewed local-model draft (2026-09-25T07:55:20+00:00)
+
+- Source ID: `GH-6521FBA5CD29`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/tests/conftest.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `tests/conftest.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 305 anchors; verify against the source.
+
+**Source Note: GH-6521FBA5CD29**
+
+**Subject:** This is a Python test file (`conftest.py`) from a GitHub repository named `prometheusWaluigi/gaslit-af-warfare`. It contains test fixtures and configurations used in unit testing for a software project, possibly related to biological modeling, legal simulation, and institutional data processing.
+
+**Genre:** Software testing and configuration scripts, likely part of a larger Python-based application or library.
+
+**Main Ideas:**  
+The file includes fixtures for generating test data, handling configurations, and simulating scenarios. It appears to be testing components related to genetic risk scanning, biological modeling, and legal frameworks. There are also references to institutional data processing and user interface testing, possibly involving Flask.
+
+**Striking Details:**  
+- The file imports libraries such as `os`, `pathlib`, and `pytest`, suggesting it is part of a Python test suite.  
+- Lines like [GH-6521FBA5CD29 L53] and [GH-6521FBA5CD29 L163] indicate the use of parameters for biological modeling, including `'cerebellar_vulnerability'` and `'initial_evidence'`.  
+- A line [GH-6521FBA5CD29 L234] directly quotes: _"This act established the National Vaccine Injury Compensation Program (VICP) as a no-fault alternative to the traditional tort system for resolving vaccine injury claims."_ This suggests the inclusion of legal-related test data or scenarios.  
+- The file includes handling for temporary files (e.g., [GH-6521FBA5CD29 L137]) and data cleanup (e.g., [GH-6521FBA5CD29 L150], [GH-6521FBA5CD29 L221]).  
+- There is a reference to a Flask application configuration, with [GH-6521FBA5CD29 L260] setting `'WTF_CSRF_ENABLED'` to `False` for testing purposes.  
+- A sample VCF file entry appears at [GH-6521FBA5CD29 L143]: _"6\t32045572\trs121912172\tG\tA\t.\tPASS\t.\tGT\t0/1"_, indicating genetic data testing.
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the file. The total number of anchors is 305, and only 41 are shown here, selected evenly. Thus, not all content has been reviewed.
+
+**## Speculation**  
+1. Could this software be related to public health or epidemiological research, given the presence of genetic risk scanning and biological modeling test configurations?  
+2. What is the relationship between the legal test data (e.g., [GH-6521FBA5CD29 L234]) and the biological or institutional components being tested?  
+3. Why is the Flask application's CSRF protection disabled in the test configuration (as seen in [GH-6521FBA5CD29 L260])? Is this a standard practice for testing, or does it point to specific security considerations?  
+4. Are the genetic risk scanning and biological modeling components interconnected with the legal simulation module? If so, what is the intended use case?

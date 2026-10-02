@@ -1,0 +1,38 @@
+# network_scale_free.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:26:10+00:00)
+
+- Source ID: `GH-4B0D33B01C35`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/configs/network_scale_free.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `configs/network_scale_free.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 50 anchors; verify against the source.
+
+# Source Note: GH-4B0D33B01C35
+
+**Subject**: A configuration file for a computational simulation involving scale-free network dynamics, specifically for a "Piston Leak" model that combines ordinary differential equations (ODEs) and agent-based modeling (ABM). The simulation explores media cycles, pandemic modeling, and influence propagation within a network.
+
+**Genre**: Technical configuration file, likely for a scientific or computational experiment. The file is structured in YAML and contains parameters for a simulation involving both ODE and ABM components.
+
+**Main Ideas**:
+- The simulation runs an ensemble of 500 trials with a scale-free network (Barabasi-Albert model) to study influence propagation or media dynamics.
+- The model incorporates a "piston leak" mechanism, potentially simulating information or behavior diffusion with thresholds for collapse or criticality.
+- Parameters include ODE coefficients (alpha1, beta1, gamma1, alpha2, beta2, delta), noise modeling (noise_sigma, leak_frequency), and agent-based network settings (n_agents, k, influence weights).
+- The simulation tracks media cycles (~1 day per timestep) over a period of one pandemic year (t_max: 365).
+
+**Striking Details**:
+- The configuration file includes a random seed (`42`) for reproducibility, referencing *The Hitchhiker's Guide to the Galaxy*.
+- The scale-free network is built using the Barabasi-Albert model, with 3000 agents and a parameter `k: 6` (referred to as `m` in the original model).
+- Influence weights are assigned to different agent types, suggesting a focus on how belief and agnosticism influence network behavior.
+- The simulation includes a "collapse threshold" defined by conditions such as `epsilon_overlap`, `trust_slope_threshold`, and `entropy_critical`.
+- Output directories and flags for saving timeseries and summary data are explicitly defined.
+
+**Coverage Limit**: Sampled anchors only. Not all content has been reviewed.
+
+## Speculation
+
+- Could the "piston leak" model be related to information or behavioral diffusion in social networks, and how does the scale-free topology affect the robustness of such models? [GH-4B0D33B01C35 L1]
+- Is the inclusion of both ODE and ABM components a novel approach to modeling pandemic dynamics, or a standard technique in this field? [GH-4B0D33B01C35 L18]
+- What is the significance of the "epsilon_overlap" and "entropy_critical" parameters in defining the collapse threshold? Are these thresholds based on empirical data or theoretical assumptions? [GH-4B0D33B01C35 L42]
+- The use of a fictional or self-contradictory author name (GASLIT-420) raises questions about the authenticity or intent behind this configuration file. Is this a real experiment, or part of a creative or satirical project? [GH-4B0D33B01C35 L5]

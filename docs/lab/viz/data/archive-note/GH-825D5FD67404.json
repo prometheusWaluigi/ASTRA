@@ -1,0 +1,40 @@
+# README.md
+
+Status: unreviewed local-model draft (2026-09-24T22:34:27+00:00)
+
+- Source ID: `GH-825D5FD67404`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/systems/README.md>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/systems/README.md`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 38 anchors; verify against the source.
+
+```markdown
+# Source Note: GH-825D5FD67404
+
+## Subject
+The source is a README.md file from a GitHub repository, specifically the `systems` submodule of a project named `gaslit-af_variant_analysis`. The content outlines the structure and functionality of this submodule within a broader computational biology framework focused on variant analysis.
+
+## Genre
+Technical documentation; software architecture description; computational biology tool description.
+
+## Main Ideas
+- The `systems` submodule is part of a larger biological framework (GASLIT-AF) and is designed to analyze variants within the context of biological systems.
+- It uses DuckDB for efficient, file-based storage and querying of variant data.
+- The submodule includes tools for mapping genes to biological systems and applying modular enrichment patterns to annotate variants based on pathogenicity, system relevance, and disease contexts like Atrial Fibrillation (AF) or Myalgic Encephalomyelitis/Chronic Fatigue Syndrome (ME/CFS).
+
+## Striking Details
+- [GH-825D5FD67404 L13] The `GeneSystemManager` class manages mappings between genes and biological systems, including examples like "Immune & Inflammatory" and "Autonomic & Neurotransmitter."
+- [GH-825D5FD67404 L20] DuckDB is used as the backend for variant storage, with specific database schemas defined for `variants` and `system_variants`.
+- [GH-825D5FD67404 L28] The `PathogenicityEnrichmentPattern` class assesses pathogenicity using configurable thresholds, such as CADD scores or ClinVar significance.
+- [GH-825D5FD67404 L30] Specialized enrichment patterns exist for specific diseases, such as `AFEnrichmentPattern` and `MECFSEnrichmentPattern`.
+
+## Coverage Limit
+This note is based on sampled anchors from the source text, which includes 38 anchors total. Not all content has been reviewed.
+
+## Speculation
+- Could the use of hardcoded defaults in `gene_systems.py` [GH-825D5FD67404 L14] imply that the system definitions are not fully dynamic or user-configurable?
+- What is the relationship between the `variant_store.py` and `variant_store_simple.py` modules? [GH-825D5FD67404 L34] Is the older implementation deprecated or still used in some capacity?
+- Are the thresholds for pathogenicity assessment in `PathogenicityEnrichmentPattern` [GH-825D5FD67404 L28] standardized, or are they customizable per project or user?
+- How does the framework handle discrepancies between gene annotations and system mappings? Is there a mechanism for resolving conflicts or flagging inconsistencies?
+```

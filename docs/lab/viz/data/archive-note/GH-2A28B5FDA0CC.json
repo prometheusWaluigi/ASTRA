@@ -1,0 +1,43 @@
+# baseline.yml.bak
+
+Status: unreviewed local-model draft (2026-09-25T11:19:36+00:00)
+
+- Source ID: `GH-2A28B5FDA0CC`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/baseline.yml.bak>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/baseline.yml.bak`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 54 anchors; verify against the source.
+
+**Source Note: GH-2A28B5FDA0CC**
+
+This is a YAML configuration file for a computational simulation related to the "Piston Leak" project, likely modeling the dynamics of information leakage or trust erosion in a system. The file appears to be part of a GitHub repository named `prometheusWaluigi/piston-leak-lab`, and it is labeled as a "baseline.yml.bak," suggesting it is a backup or earlier version of a simulation configuration.
+
+**Subject:** The source describes a Monte Carlo simulation setup involving differential equations (ODE) and agent-based modeling (ABM) techniques. The apparent focus is on modeling the interaction between trust, transparency, and entropy within a system, possibly in the context of social or information dynamics during a crisis or pandemic.
+
+**Genre:** Technical configuration file for a computational model.
+
+**Main Ideas:**
+- The simulation involves both ODE and ABM components, suggesting hybrid modeling of complex systems.
+- Parameters are set to model interactions between trust, suppression, and entropy, with coefficients such as `alpha1`, `beta1`, and `gamma1` governing the decay and restoration of trust.
+- The model includes a noise component (`noise_sigma`) to simulate exogenous shocks or unexpected leaks.
+- A Watts-Strogatz network is used to represent agent interactions, indicating a focus on social or information diffusion networks.
+- The simulation runs 500 ensemble trials with a random seed of 42, referencing "The Hitchhiker's Guide to the Galaxy" as a humorous nod.
+
+**Striking Details:**
+- The simulation spans one "pandemic year" with a time step of one day, indicating a focus on short-term dynamic modeling.
+- The use of a Watts-Strogatz network with 3000 agents and a rewiring probability of 0.2 suggests an exploration of small-world network properties.
+- The "influence field" includes weights for different agent types (`skeptic_weight`, `agnostic_weight`), indicating an attempt to model varying levels of skepticism or neutrality among agents.
+- The file defines thresholds for system collapse, such as `epsilon_overlap` and `trust_slope_threshold`, indicating a focus on identifying critical points in the modeled system's behavior.
+
+**Coverage Limit:** Sampled anchors (L1, L54, L2, L3, L4, L6, L7, L8, L10, L11, L12, L15, L16, L18, L19, L20, L21, L22, L24, L25, L27, L28, L30, L31, L34, L35, L36, L37, L38, L39, L40, L42, L43, L45, L46, L47, L48, L51, L52, L53) represent a subset of the full 54 anchors. The file is not fully read, so some details may be missing or misinterpreted.
+
+**## Speculation**
+- Could the "Piston Leak" project be related to modeling information diffusion or misinformation in online communities during crises?
+- What is the significance of the Watts-Strogatz network parameters (e.g., `k: 6`, `p_rewire: 0.2`) in the context of social or information dynamics?
+- How might the inclusion of both ODE and ABM layers affect the model's ability to predict systemic collapse or trust erosion?
+- Does the use of a "random seed" of 42 imply a deliberate attempt to reproduce results or a humorous reference to pop culture?
+
+**Claims:**
+- The simulation involves a "pandemic year" as a time frame. [GH-2A28B5FDA0CC L16]
+- The file is a "baseline.yml.bak" and appears to be a backup or earlier version of a configuration. [GH-2A28B5FDA0CC L1]

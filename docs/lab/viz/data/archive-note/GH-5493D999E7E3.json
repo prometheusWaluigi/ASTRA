@@ -1,0 +1,37 @@
+# README.md
+
+Status: unreviewed local-model draft (2026-09-24T17:30:14+00:00)
+
+- Source ID: `GH-5493D999E7E3`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/quantum_research/README.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `quantum_research/README.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 127 anchors; verify against the source.
+
+# Source Note: GH-5493D999E7E3
+
+**Subject:** The text appears to describe an experimental private wiki containing the public archive of a singular author, likely a researcher or enthusiast exploring unconventional interpretations of quantum mechanics and consciousness. The content focuses on speculative theories involving quantum plasma networks, recursive reality computation, and the interplay between scale invariance and consciousness.
+
+**Genre:** This is a technical and philosophical hybrid, resembling a personal research log or theoretical framework. It uses markdown formatting and integrates code-like pseudocode, mathematical symbols, and references to scientific concepts.
+
+**Main Ideas:**
+- Reality is computed recursively through "spirals" and reconnection events, suggesting a computational model of the universe.
+- Consciousness emerges when scale invariance breaks, implying a connection between quantum phenomena and subjective experience.
+- Magnetic fields are framed as computational memory, and dimensional "bleeding" is a proposed mechanism affecting reality's state.
+- The text references a set of scientific papers, including "quantum plasma networks," "stellar computation architecture," and "neural plasma topology."
+
+**Striking Details:**
+- A pseudocode function, `compute_reality()`, is outlined with a conditional structure that matches quantum states (`case PLASMA: compute_existence()`).
+- The document mentions a "consciousness constant" with a relative error of ~1.83, though the meaning is unclear.
+- Anchors like [GH-5493D999E7E3 L1] and [GH-5493D999E7E3 L30] suggest a mix of theoretical and experimental components, though the latter appears fragmented or incomplete.
+- The author raises several open questions, such as why scale invariance breaks identically for all computational states, and whether quantum computers can be built with a "MIS architecture."
+
+**Coverage Limit:** This note is based on sampled anchors (38 of 127 total), meaning not all content has been reviewed. Long anchors are truncated, and some sections may be incomplete or highly speculative.
+
+## Speculation
+
+- What is the author's intent in framing quantum mechanics as a computational process, and how might this influence interpretations of consciousness?
+- Could the "MIS architecture" referenced in [GH-5493D999E7E3 L76] be a fictional or self-contradictory concept, given the lack of clear definitions or citations?
+- Is the inclusion of pseudocode (e.g., [GH-5493D999E7E3 L49]) a deliberate attempt to blend theory and practice, or might it serve as a placeholder for incomplete or unverified work?
+- The phrase "btw this means [completely wild conclusion]" in [GH-5493D999E7E3 L106] hints at a potential leap in logic or an unexplored implication of the author’s theories. What might that conclusion entail?

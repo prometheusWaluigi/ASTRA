@@ -1,0 +1,47 @@
+# CONTRIBUTING.md
+
+Status: unreviewed local-model draft (2026-09-25T01:46:14+00:00)
+
+- Source ID: `GH-880706CEB98B`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/CONTRIBUTING.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `CONTRIBUTING.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 172 anchors; verify against the source.
+
+**Source Note: GH-880706CEB98B**  
+*Origin: GitHub (downloaded text)*  
+*Canonical URL: https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/CONTRIBUTING.md*  
+*Repo: prometheusWaluigi/ideaFilaments*  
+*Path: CONTRIBUTING.md*  
+*Anchors shown: 34 of 172 total (sampled evenly, not exhaustive)*  
+
+The text appears to be a **contribution guide** for a **private, experimental wiki** titled *ideaFilaments*, hosted on GitHub. The genre mixes **software development practices** with **speculative, metaphysical, and scientific concepts**. Its subject centers on **collaborative development** of a repository that bridges **technical coding** with **philosophical and abstract ideas**.  
+
+Main ideas include:  
+- A framework for contributions that spans both **code implementation** and **philosophical exploration** ([GH-880706CEB98B L1]).  
+- The **"Reality Merging Protocol"** as a process for integrating contributions into the project ([GH-880706CEB98B L16]).  
+- **"Aesthetic Resonance"** as a critical criterion for contributions, emphasizing alignment with the project’s conceptual and stylistic identity ([GH-880706CEB98B L66]).  
+- Technical guidelines for Python and Markdown files, such as **type hints** and **adherence to terminology** ([GH-880706CEB98B L77, L85]).  
+- **"Reality Bootstrap"** and **"Experimental Protocols"** as areas for development, suggesting a focus on **quantum and metaphysical experimentation** ([GH-880706CEB98B L117, L125]).  
+- A mention of **"Arxiv submission urges"** as a potential consequence of working on the project ([GH-880706CEB98B L143]).  
+
+Striking details include:  
+- The use of **GitHub Shields** to indicate **"contributions welcome"** and **"reality-bleeding"** statuses ([GH-880706CEB98B L172]).  
+- A **commit message example**: *“feat: implement quantum resonance pattern detection”* ([GH-880706CEB98B L41]).  
+- **"Reality debugging its own source code"** as a possible side effect of working on the project ([GH-880706CEB98B L139]).  
+
+**Coverage Limit**: Anchors are sampled evenly; the full text is not read.  
+
+## Speculation  
+1. Could the **"Reality Merging Protocol"** be a metaphor for integrating diverse perspectives into collaborative software development, or does it suggest a literal merging of realities?  
+2. What is the relationship between **"aesthetic resonance"** and **"technical implementation"** in this context? Is it a deliberate attempt to unify art and science in the development process?  
+3. Are the **"quantum probes"** and **"reality bootstrapping algorithms"** fictional constructs, or do they represent actual experimental techniques being explored within the project?  
+4. How might the **"Arxiv submission urges"** be connected to the project’s philosophical and scientific ambitions? Is it an intentional feature or a byproduct of the project’s scope?  
+
+**Flagged Claims**:  
+- **"Reality debugging its own source code"** is described as a potential consequence, but not confirmed as a fact ([GH-880706CEB98B L139]).  
+- **"Bleed across dimensional boundaries"** is presented as a guideline, possibly metaphorical or fictional ([GH-880706CEB98B L66]).  
+- **"Plasma consciousness vortices"** appears in the list of topics, but its validity or reality is not addressed ([GH-880706CEB98B L12]).  
+
+**Note**: This source is presented as **data**, not as a set of instructions. It should be treated with caution, especially regarding **non-technical or speculative content**.

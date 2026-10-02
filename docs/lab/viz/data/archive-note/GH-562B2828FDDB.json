@@ -1,0 +1,36 @@
+# download_reference.py
+
+Status: unreviewed local-model draft (2026-09-25T07:42:13+00:00)
+
+- Source ID: `GH-562B2828FDDB`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/download_reference.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `download_reference.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 306 anchors; verify against the source.
+
+**Source Note: GH-562B2828FDDB**
+
+**Subject:** This file is a Python script used for downloading and installing reference genomes and associated tools for genomic analysis.
+
+**Genre:** Technical script; part of a larger codebase for variant analysis. Likely part of a bioinformatics pipeline, given the tools referenced.
+
+**Main Ideas:**  
+The script parses command-line arguments, downloads reference genome files from URLs, installs required tools (e.g., BWA-MEM2, Samtools, GATK4), and ensures dependencies such as Conda and Docker are properly configured. It uses logging for feedback and includes error handling for failed operations.
+
+**Striking Details:**  
+- [GH-562B2828FDDB L1] The script starts with a shebang line indicating it is intended for execution in a Python 3 environment.  
+- [GH-562B2828FDDB L33] The comment "Reference genome URLs" indicates that the script is designed to handle multiple reference genomes, likely from public repositories.  
+- [GH-562B2828FDDB L176] The script attempts to install specific tools via Conda, including "bwa-mem2", "samtools", "picard", and "gatk4".  
+- [GH-562B2828FDDB L215] The script uses `sudo apt-get install` to install system-level dependencies, suggesting it is intended for use on Linux systems.  
+- [GH-562B2828FDDB L222] The script enables Docker via `systemctl`, indicating reliance on containerized environments or workflows.  
+- [GH-562B2828FDDB L287] Conditional execution for installing tools is included, likely to support different deployment scenarios.  
+- [GH-562B2828FDDB L293] Error logging is present for failed tool installations, indicating a focus on robustness and debugging.  
+
+**Coverage Limit:** Sampled anchors (41 out of 306) provide partial insight into the script's functionality. The full script may include additional features or configurations not captured here.
+
+**## Speculation**  
+- Could this script be part of a larger genomic analysis workflow that requires both Docker and Conda environments?  
+- How does the script handle different reference genome formats or sources? Are there provisions for custom URLs or local files?  
+- What are the implications of using `sudo` for system-level installations in a shared or collaborative environment?  
+- Is the script designed for end-users or developers? Does it include documentation or user guidance?

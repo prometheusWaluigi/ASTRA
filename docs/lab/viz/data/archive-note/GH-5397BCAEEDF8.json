@@ -1,0 +1,37 @@
+# run_tests.py
+
+Status: unreviewed local-model draft (2026-09-25T07:39:16+00:00)
+
+- Source ID: `GH-5397BCAEEDF8`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/run_tests.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `run_tests.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 107 anchors; verify against the source.
+
+**Source Note: GH-5397BCAEEDF8**
+
+This is a downloaded text file from the GitHub repository `prometheusWaluigi/gaslit-af_variant_analysis`, specifically the file `run_tests.py`. The file is a script used to run tests for a software project related to variant analysis, likely in the context of genetic or genomic data processing.
+
+**Apparent Subject & Genre:**  
+The subject of this source is the configuration and execution of automated tests for a Python-based software project. The genre is technical code, specifically a test runner script.
+
+**Main Ideas:**  
+The script provides a command-line interface for running different types of tests (e.g., unit, integration, clinical variant tests). It uses `pytest` as the testing framework and supports options such as mocking API responses, filtering test types, and enabling verbose output. The script dynamically generates a list of available test modules and runs them based on user input.
+
+**Striking Details:**  
+- The script begins with a shebang line pointing to `python3` ([GH-5397BCAEEDF8 L1]).  
+- It includes a comment stating its purpose: *"Test runner for GASLIT-AF Variant Analysis."* ([GH-5397BCAEEDF8 L3]).  
+- It imports modules such as `argparse` and `pathlib` for parsing arguments and handling file paths ([GH-5397BCAEEDF8 L8, L10, L12]).  
+- It allows selective execution of test modules (e.g., clinical, integration) ([GH-5397BCAEEDF8 L19, L24, L26, L28, L30, L37, L39]).  
+- It sets an environment variable `USE_MOCK_API` to "1" when the `--mock-api` flag is used ([GH-5397BCAEEDF8 L69]).  
+- The script prints the test modules being executed, including integration tests like *"test_clinical_api_integration.py"* and unit tests like *"test_api_integration.py"* ([GH-5397BCAEEDF8 L55, L57, L91, L98]).
+
+**Coverage Limit:**  
+The anchors shown are sampled from a total of 107, meaning the analysis is based on partial data and does not reflect the full content of the file.
+
+**## Speculation**  
+- Could the use of `--mock-api` suggest that the software relies on external APIs that are not publicly accessible or are unstable?  
+- Why are both clinical and integration tests included under the same test type, and does this imply overlapping responsibilities or potential redundancy in the testing framework?  
+- What is the relationship between the "GASLIT-AF Variant Analysis" project and the "clinical variant tests"? Is there a focus on medical or biotech applications?  
+- Are the test modules structured in a way that could be generalized for other variant analysis projects, or are they tightly coupled with this specific implementation?

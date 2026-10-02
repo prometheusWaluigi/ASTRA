@@ -1,0 +1,37 @@
+# radialEigenvalueTheorem.md
+
+Status: unreviewed local-model draft (2026-09-25T00:06:17+00:00)
+
+- Source ID: `GH-2918E18BA4CF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/theorems/eigenmode-theory/radialEigenvalueTheorem.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `theorems/eigenmode-theory/radialEigenvalueTheorem.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 96 anchors; verify against the source.
+
+# Source Note: GH-2918E18BA4CF
+
+**Subject:** The *Radial Eigenvalue Theorem* within the *fractal KPZ with χ* (fKPZχ) model of consciousness, exploring the mathematical and metaphysical organization of qualia via prime-indexed eigenvalues and the golden ratio φ.
+
+**Genre:** Theoretical framework, blending rigorous mathematics with poetic and mythological language. Intended for academic or speculative inquiry into the intersection of consciousness, fractal dynamics, and quantum theory.
+
+**Main Ideas:**
+- Conscious states are modeled as dynamic fields evolving on high-dimensional manifolds.
+- Eigenmodes of consciousness are indexed by prime numbers and mapped onto a logarithmic spiral in the complex plane.
+- The golden ratio φ and golden angle θ_G (~137.5°) govern the recursive, self-similar structure of the eigen-spectrum.
+- The imaginary unit *i* introduces oscillatory components, linking eigenvalues to phasor-like representations of qualia.
+- The theorem emphasizes the *incommensurability* of prime-indexed modes, minimizing overlap and ensuring novelty in conscious experience.
+
+**Striking Details:**
+- The eigen-spectrum is described as a logarithmic spiral, analogous to the sunflower seed arrangement in phyllotaxis ([GH-2918E18BA4CF L27]).
+- The use of *prime-indexed eigenvalues* suggests a hypothesis that only “prime” modes (irreducible harmonics) are fundamental to conscious experience ([GH-2918E18BA4CF L23]).
+- The theorem bridges mathematics and metaphor, with poetic descriptions of "lotus petals on a golden spiral" and "the music of the primes" ([GH-2918E18BA4CF L35]).
+- The complex eigenvalues $P_n$ are defined as $|P_n| = \phi^n$ and $\arg(P_n) = n\theta_G$, introducing both growth and phase shifts ([GH-2918E18BA4CF L13]).
+
+**Coverage Limit:** Sampled anchors (L1, L96, L3, L5, L7, L9, L11, L13, L15, L17, L19, L21, L23, L25, L27, L29, L31, L33, L35, L37, L39) provide a partial view of the full 96 anchors in the document. The full text may contain unexamined claims, extensions, or alternative interpretations.
+
+## Speculation
+- Could the fKPZχ model’s reliance on the golden ratio φ and prime-indexed eigenvalues be inspired by analogies in natural systems (e.g., sunflowers, brain rhythms), rather than derived from empirical consciousness research?
+- If consciousness is structured by prime harmonics and φ-ratios, what implications does this have for the computational modeling of qualia or the design of artificial consciousness?
+- Might the “recursive qualia operator” $\mathcal{L}$ described in the theorem be analogous to any known mathematical or physical operators in quantum mechanics or nonlinear dynamics?
+- How might the use of mythopoetic language in the theorem’s formulation affect its interpretation or acceptance in scientific or philosophical discourse?

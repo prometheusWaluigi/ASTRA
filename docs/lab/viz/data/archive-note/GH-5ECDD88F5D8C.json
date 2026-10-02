@@ -1,0 +1,36 @@
+# demo.py
+
+Status: unreviewed local-model draft (2026-09-25T05:24:30+00:00)
+
+- Source ID: `GH-5ECDD88F5D8C`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/quantum_spectral_weaving/demo.py>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `quantum_spectral_weaving/demo.py`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 182 anchors; verify against the source.
+
+**Source Note: GH-5ECDD88F5D8C**
+
+This source is a Python script titled `demo.py`, hosted on GitHub as part of the repository `prometheusWaluigi/ideaFilaments` in the directory `quantum_spectral_weaving`. It appears to be a demonstration tool for a computational project involving "quantum spectral weaving," a term not clearly defined within the text. The script is written in Python 3 and utilizes libraries such as `numpy` and `torch` [GH-5ECDD88F5D8C L9, L16].
+
+**Subject & Genre**  
+The script's apparent subject is the simulation or visualization of a quantum mechanical or spectral process, possibly related to quantum computing or theoretical physics. The genre is experimental code, likely part of a larger research or conceptual framework.
+
+**Main Ideas**  
+The script demonstrates core functionality for a project referred to as "quantum spectral weaving." This includes configuration settings, computation of Riemann zeros and eigenvalues, and visualization of spectral patterns or system evolution. There is a focus on coupling strength, zeros, eigenvalues, and statistical tracking of a system's behavior during simulation [GH-5ECDD88F5D8C L5, L32, L40, L128, L140].
+
+**Striking Details**  
+- The script includes command-line argument parsing for parameters like `--zeros`, `--eigenvalues`, and `--coupling` [GH-5ECDD88F5D8C L32, L40].
+- The coupling strength is set to `0.28082` in multiple places, suggesting a specific value of interest [GH-5ECDD88F5D8C L40, L66].
+- It references KPZ viscosity, a concept from theoretical physics related to stochastic processes, though its relevance in this context is unclear [GH-5ECDD88F5D8C L66].
+- The script saves outputs in files such as `quantum_stats.txt` and `riemann_zeros.npy`, indicating an intent to track and store simulation results [GH-5ECDD88F5D8C L167, L170, L174].
+- There is a function `visualize_stats_evolution` that appears to plot system statistics over time [GH-5ECDD88F5D8C L93, L101].
+
+**Coverage Limit**  
+This note is based on sampled anchors from the full source, which contains 182 anchors. Due to this sampling, not all parts of the script have been examined in detail.
+
+## Speculation  
+- Is the coupling strength `0.28082` chosen for its relation to known physical or mathematical constants, or is it arbitrary?  
+- Does the reference to "Riemann zeros" indicate a connection to the Riemann Hypothesis or related numerical methods?  
+- Could the project's "quantum spectral weaving" be a metaphorical or abstract representation of a computational process rather than a literal quantum physics application?  
+- What is the relationship between the KPZ viscosity parameter and the simulation's behavior, and how is it being used in the code?

@@ -1,0 +1,39 @@
+# SystemsBiologyGASLITAF.md
+
+Status: unreviewed local-model draft (2026-09-24T23:13:13+00:00)
+
+- Source ID: `GH-B98F9AE57DB0`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/coreTheories/SystemsBiologyGASLITAF.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/coreTheories/SystemsBiologyGASLITAF.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 278 anchors; verify against the source.
+
+# Source Note: GH-B98F9AE57DB0
+
+**Subject:** A Systems Biology Model for Chronic Multi-System Syndromes (GASLIT-AF Framework)
+
+**Genre:** Scientific proposal; theoretical and computational modeling in systems biology, with interdisciplinary references.
+
+**Main Ideas:**
+- The document outlines a modeling framework (GASLIT-AF) to study chronic multi-system syndromes (CMSS), such as ME/CFS and hEDS.
+- It combines dynamical systems theory, network medicine, information theory, and thermodynamics to analyze the stability, attractor landscapes, and complexity of physiological systems.
+- The model uses nonlinear ODEs with feedback delays and stochastic noise, incorporating parameters like γ, Λ, Ω, σ, Θ, and Ξ.
+- The framework explores how perturbations, stress, and interventions might shift the system from a healthy to a disease state or vice versa.
+- It introduces tools for numerical bifurcation analysis, mutual information, entropy production, and optimal control theory to quantify system behavior and guide interventions.
+
+**Striking Details:**
+- The model defines a high-dimensional state space Ψ representing multi-organ dynamics, with state variables such as mast cell activation ($M(t)$) [GH-B98F9AE57DB0 L19].
+- A double-well potential metaphor is used to visualize transitions between healthy and disease states [GH-B98F9AE57DB0 L72].
+- The use of mutual information (MI) is emphasized to identify strong couplings between subsystems, such as autonomic tone and immune activation [GH-B98F9AE57DB0 L101].
+- The model incorporates stochastic differential equations (SDEs) to capture unpredictable fluctuations in CMSS [GH-B98F9AE57DB0 L172].
+- It proposes the use of fractal measures (Hurst exponent, DFA) to assess multi-scale variability in physiological signals [GH-B98F9AE57DB0 L142].
+
+**Coverage Limit:**
+- Sampled anchors (22 of 278) are evenly distributed; this source note does not represent the full text.
+
+## Speculation
+- Could the GASLIT-AF model be adapted to study other chronic diseases, such as autoimmune disorders or neurodegenerative conditions, by modifying the state space or parameter definitions?
+- What might be the implications of using optimal control theory to design interventions, particularly in light of the framework's emphasis on exogenous perturbations for recovery [GH-B98F9AE57DB0 L201]?
+- Might the inclusion of multi-layer networks (e.g., genetic, protein, organ-level) enhance the model's accuracy, and could this be explored further in future iterations [GH-B98F9AE57DB0 L190]?
+- How might the model account for individual variability in disease onset and progression, given its reliance on parameterized systems and attractor landscapes?

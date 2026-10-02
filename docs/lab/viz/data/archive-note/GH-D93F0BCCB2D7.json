@@ -1,0 +1,35 @@
+# test_oneapi_accel.py
+
+Status: unreviewed local-model draft (2026-09-25T09:02:47+00:00)
+
+- Source ID: `GH-D93F0BCCB2D7`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/tests/test_oneapi_accel.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `tests/test_oneapi_accel.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 67 anchors; verify against the source.
+
+# Source Note: GH-D93F0BCCB2D7
+
+**Subject:** Testing oneAPI SYCL device detection and GPU acceleration on Intel Arc GPUs.  
+**Genre:** Software testing script; Python code.  
+**Main Ideas:**  
+- This script checks for the availability of the oneAPI stack, specifically the SYCL devices and the Intel Arc GPU.  
+- It includes a test for vector addition using the numba-dpex library to run on the GPU.  
+- The script aims to validate the correct installation and functionality of oneAPI Python packages (dpctl, numba-dpex) and the presence of the target hardware.  
+
+**Striking Details:**  
+- The script begins with a failure message if the oneAPI stack is not available: [GH-D93F0BCCB2D7 L67].  
+- It imports libraries related to SYCL and GPU acceleration, including dpctl, numba, and numba-dpex: [GH-D93F0BCCB2D7 L12, L14, L15].  
+- A function `list_sycl_devices()` is defined to enumerate available SYCL devices and search for an Intel Arc GPU: [GH-D93F0BCCB2D7 L22, L23, L29, L30].  
+- The script includes a kernel definition for vector addition and runs the test within a device context: [GH-D93F0BCCB2D7 L45, L46, L52, L56].  
+- The result is checked using `np.allclose()`, and success or failure is printed accordingly: [GH-D93F0BCCB2D7 L60, L61, L63].  
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the source (67 total; 43 sampled), meaning not all content has been reviewed.  
+
+## Speculation  
+- Could the script be used to identify compatibility issues between oneAPI and non-Intel GPU hardware?  
+- Is the use of numba-dpex a critical dependency for running SYCL-based GPU acceleration tests on Intel Arc GPUs?  
+- Might this script be part of a larger effort to benchmark or troubleshoot oneAPI performance on specific hardware?  
+- How might the presence or absence of the Intel Arc GPU affect the broader testing framework of the piston-leak-lab repository?

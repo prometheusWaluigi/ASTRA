@@ -1,0 +1,37 @@
+# theory.md
+
+Status: unreviewed local-model draft (2026-09-24T22:52:33+00:00)
+
+- Source ID: `GH-0BF46D037657`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/docs/theory.md>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `docs/theory.md`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 78 anchors; verify against the source.
+
+# Source Note: GH-0BF46D037657
+
+**Subject:** Theoretical framework for a "Piston Leak" dynamical systems model, focusing on institutional narratives, trust, suppression, and systemic collapse.
+
+**Genre:** Technical theory document, likely part of a research or modeling project. Contains mathematical notation, conceptual frameworks, and metaphorical analogies.
+
+**Main Ideas:**
+- The model explores how trust (T) and suppression pressure (P) interact within a network of narratives, with credibility emerging as a systemic property rather than an individual one.
+- The system is governed by coupled ordinary differential equations (ODEs), including the dynamics of trust, narrative entropy (N), and response (R).
+- Narrative collapse occurs when semantic tensions exceed critical thresholds, akin to phase transitions in physical systems.
+- The model introduces quantified metrics such as FCC (FCC) and RSD (RSD), which relate to suppression pressure, narrative entropy, and trust.
+
+**Striking Details:**
+- The use of a metaphorical mapping to Pixar’s *Cars* universe to explain abstract dynamics [GH-0BF46D037657 L62].
+- The collapse criterion involves a threshold for trust decay, narrative entropy, and overlap between FCC and RSD [GH-0BF46D037657 L53].
+- A critical ratio $(R/P)_c \approx 1.7$ is proposed for maintaining stability [GH-0BF46D037657 L76].
+- The model includes a noise function $f_\text{noise}(t)$, which may represent unpredictable external influences [GH-0BF46D037657 L17].
+- The concept of "attractor fracture" is introduced, where contradictory epistemic roles in a narrative (e.g., Dr. Fauci as both "apolitical scientist" and "narrative architect") lead to topological forks in belief space [GH-0BF46D037657 L35].
+
+**Coverage Limit:** Sampled anchors (30 of 78 total) suggest this is a partial representation of the full text. Not all content has been reviewed.
+
+## Speculation
+- Could the *Cars* universe metaphor be used to explore how institutional narratives might evolve or fracture in real-world contexts?
+- What implications might the FCC and RSD metrics have for assessing the stability of public discourse or media ecosystems?
+- Is the proposed $(R/P)_c \approx 1.7$ ratio a universal constant or context-dependent, and how might it be validated?
+- How might the model account for variations in cultural or political contexts when applying the FCC and RSD frameworks?

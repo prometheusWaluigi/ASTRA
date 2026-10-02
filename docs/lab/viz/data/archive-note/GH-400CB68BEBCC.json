@@ -1,0 +1,27 @@
+# Dockerfile
+
+Status: unreviewed local-model draft (2026-09-25T12:51:27+00:00)
+
+- Source ID: `GH-400CB68BEBCC`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/Dockerfile>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `Dockerfile`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 54 anchors; verify against the source.
+
+**Source Note: GH-400CB68BEBCC**
+
+This source is a Dockerfile from the public GitHub repository `prometheusWaluigi/gaslit-af-warfare`, specifically from the branch `4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8`. The Dockerfile appears to be part of a larger project, likely related to a modular simulation-and-exposure engine, as indicated by the comment at [GH-400CB68BEBCC L2]. The file defines the configuration for building a Docker image, which is used to containerize the application for deployment or testing.
+
+The Dockerfile specifies the use of Python 3.10 as the base image [GH-400CB68BEBCC L4], and sets several environment variables to optimize performance and reduce caching [GH-400CB68BEBCC L8–L11]. It installs system dependencies such as `build-essential`, `gcc`, `g++`, `libffi-dev`, and `libssl-dev` [GH-400CB68BEBCC L18–L22], suggesting the project requires compiling components or interacting with low-level libraries. The Dockerfile also installs Python dependencies via `pip install` [GH-400CB68BEBCC L31], and explicitly downloads the spaCy English language model (`en_core_web_sm`) [GH-400CB68BEBCC L35], indicating natural language processing (NLP) is a component of the application.
+
+The file copies the project’s source code into the Docker image [GH-400CB68BEBCC L38], and sets up directories for storing results, logs, uploads, and data (e.g., `data/testimonies`, `data/genomes`) [GH-400CB68BEBCC L44]. This suggests the application may process or store sensitive or structured data, potentially related to biological, genetic, institutional, or legal information, as implied by the directory structure [GH-400CB68BEBCC L44]. The Dockerfile exposes port 5000 [GH-400CB68BEBCC L48], likely for a web interface, and defines the entry point as `src/frontend/app.py` [GH-400CB68BEBCC L51], indicating the application is web-based.
+
+**## Speculation**
+
+- Could the directories under `data/` and `static/img/` be related to a broader project involving bioinformatics, legal analysis, or institutional data processing?
+- How does the inclusion of spaCy and the presence of directories like `data/genomes` tie into the simulation or exposure engine described in the comment at [GH-400CB68BEBCC L2]?
+- Is the `--host 0.0.0.0` flag in the CMD instruction [GH-400CB68BEBCC L54] intended for public access, and what security implications might this have?
+- Does the use of Python 3.10 and specific system packages like `libssl-dev` suggest compatibility requirements or dependencies on older infrastructure?
+
+**Coverage Limit:** Sampled anchors (35 of 54) mean this note does not reflect the full content of the Dockerfile. Direct quotes are limited to short, verbatim excerpts. No extraordinary or fictional claims are flagged here, as the file appears to be standard Docker configuration.

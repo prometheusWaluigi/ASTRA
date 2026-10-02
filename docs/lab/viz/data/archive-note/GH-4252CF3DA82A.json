@@ -1,0 +1,38 @@
+# quantum_encoding_is_actually_impossible.md
+
+Status: unreviewed local-model draft (2026-09-25T00:33:10+00:00)
+
+- Source ID: `GH-4252CF3DA82A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/onePointFiveBit/quantum_encoding_is_actually_impossible.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/onePointFiveBit/quantum_encoding_is_actually_impossible.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 257 anchors; verify against the source.
+
+# Source Note: GH-4252CF3DA82A
+
+**Subject**: Theoretical and practical challenges of encoding classical data into quantum states for near-term quantum computing applications.
+
+**Genre**: Technical analysis, with elements of speculative problem-solving and hardware-software co-design.
+
+**Main Ideas**:
+- Quantum encoding of classical data is a critical bottleneck for near-term quantum applications.
+- Theoretical methods like amplitude encoding offer potential but are constrained by hardware limitations.
+- Practical encoding methods, such as kernel/feature maps, are limited in scalability (e.g., 50-100 features).
+- Emerging solutions, including Matrix Product States (MPS) and photonic systems, attempt to address these limitations but involve tradeoffs in accuracy or complexity.
+- The article suggests that fundamental breakthroughs in error correction (e.g., surface codes) and non-von Neumann architectures may be necessary to overcome the bottleneck.
+
+**Striking Details**:
+- [GH-4252CF3DA82A L34] Notes that encoding a 1MP image theoretically requires 20 qubits but is "prohibitively expensive" in practice.
+- [GH-4252CF3DA82A L121] Highlights a 10-100ms communication overhead between CPU and QPU per batch.
+- [GH-4252CF3DA82A L181] Mentions that Matrix Product States (MPS) can reduce circuit depth by 100× but with a 2-5% accuracy drop.
+- [GH-4252CF3DA82A L213] States that "hybrid classical-quantum systems will remain data-starved until topological qubits mature post-2030."
+- [GH-4252CF3DA82A L192] Cites photonic systems demonstrating parallel encoding with 100+ qubits via frequency bins.
+
+**Coverage Limit**: Sampled anchors (32 of 257 total) mean the full text has not been read.
+
+## Speculation
+- Could photonic systems (as cited in [GH-4252CF3DA82A L192]) provide a scalable alternative to qubit-based encoding methods?
+- What implications might the 2-5% accuracy drop with Matrix Product States (MPS) have for practical machine learning applications (see [GH-4252CF3DA82A L181])?
+- If topological qubits are required for breaking the encoding bottleneck (as implied in [GH-4252CF3DA82A L213]), what are the immediate alternatives for data-starved systems?
+- How do the cited references (e.g., [GH-4252CF3DA82A L121]) reflect the current state of quantum-classical integration in industry?

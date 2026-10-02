@@ -1,0 +1,31 @@
+# 08_network_heterogeneity.yml
+
+Status: unreviewed local-model draft (2026-09-25T12:37:56+00:00)
+
+- Source ID: `GH-FC06904AD891`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/generated/08_network_heterogeneity.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/generated/08_network_heterogeneity.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 39 anchors; verify against the source.
+
+**Source Note for GH-FC06904AD891**
+
+This file, titled *08_network_heterogeneity.yml*, is a configuration file from the GitHub repository *prometheusWaluigi/piston-leak-lab*. It appears to define parameters for a computational simulation exploring **network heterogeneity**, specifically contrasting **scale-free** and **small-world** network structures. The file is dated *2025-04-21* and authored by *GASLIT-420*, with a version number of *0.1.8*. It references a parent configuration file, *baseline.yml*, and is part of a larger set of generated simulations under the *sims/generated/* directory.
+
+The simulation involves **500 runs** with a fixed **random seed (42)**, suggesting reproducibility. Time parameters are set with a **time step (dt)** of *1.0* and a **maximum simulation time (t_max)** of *365*. The network type is defined as **barabasi_albert**, a scale-free network model, with **5000 agents** and a **rewiring probability (p_rewire)** of *0.2*, which may introduce small-world properties. The configuration includes **influence field weights** for different agent types: *believers (1.0)*, *skeptics (1.2)*, and *agnostics (0.8)*, indicating a focus on **information diffusion** or **opinion dynamics** within heterogeneous networks.
+
+Key parameters include **alpha1 (0.6)**, **beta1 (0.3)**, **gamma1 (0.2)**, and **alpha2 (0.5)**, **beta2 (0.25)**, which may relate to influence propagation or interaction rules. A **leak frequency (0.05)** is mentioned, possibly indicating **information leakage** or **error propagation** in the system. Other notable values include **noise_sigma (0.1)**, **epsilon_overlap (0.15)**, **trust_slope_threshold (-0.05)**, and **entropy_critical (1.2)**, which could be thresholds or scaling factors for decision-making, trust dynamics, or system instability.
+
+Under the **output** section, the file specifies saving **time series data**, **summary statistics**, and **plots** to the *results/baseline/* directory, indicating a focus on **data-driven analysis** and **visualization** of simulation outcomes.
+
+**Coverage Limit**: The anchors shown cover the full content of the file (39 total), but due to truncation of anchors over 800 characters, the full detail of some parameters or descriptions may not be accessible.
+
+**## Speculation**
+
+- Could the simulation be modeling **social or information networks** under conditions of **information leakage** or **opinion divergence**? The inclusion of weights for different agent types (believers, skeptics, agnostics) may suggest an exploration of **group behavior** or **epidemic-like diffusion**.
+- How might the **barabasi_albert** network type interact with the **rewiring probability (p_rewire)** to produce emergent properties in the simulation? This could be relevant to understanding **resilience** or **vulnerability** in heterogeneous systems.
+- Are the parameters such as **trust_slope_threshold** and **entropy_critical** indicative of **decision-making thresholds** or **systemic instability markers**? This may hint at a deeper exploration of **trust dynamics** or **criticality** in networked systems.
+- Might the **leak_frequency** parameter be modeling **real-world data leakage** scenarios, such as in **cybersecurity** or **information systems**, and what implications could this have for **network robustness**?
+
+**Note**: This is a **configuration file** for a simulation, not a standalone analysis or report. The **author, GASLIT-420**, is not identified as a known researcher or public figure in the context of this source. The use of terms like *"piston-leak-lab"* and *"leak_frequency"* may imply a focus on **information security** or **networked systems**, though this is speculative. No claims are made about the **validity** or **intended use** of the simulation beyond its apparent technical configuration.

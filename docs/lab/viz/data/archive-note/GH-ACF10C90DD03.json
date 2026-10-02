@@ -1,0 +1,38 @@
+# README.md
+
+Status: unreviewed local-model draft (2026-09-24T22:35:35+00:00)
+
+- Source ID: `GH-ACF10C90DD03`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/docs/README.md>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `docs/README.md`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 123 anchors; verify against the source.
+
+# Source Note: GH-ACF10C90DD03
+
+**Subject**: This is the README.md file for a private wiki documenting the "GASLIT-AF WARSTACK" project, hosted on GitHub. It appears to be part of an experimental archive maintained by a single author.
+
+**Genre**: Technical documentation, with elements of systems modeling and theoretical analysis.
+
+**Main Ideas**:  
+The document outlines the structure and purpose of a complex modeling framework that integrates biological, institutional, and computational components. The focus appears to be on simulating systemic collapse, feedback loops, and risk assessment in both biological and social contexts. Key modules include:
+
+- **Biological Modeling Layer**: Simulates neuroimmune dynamics and system transitions [GH-ACF10C90DD03 L9].
+- **Institutional Feedback Modeling**: Models denial-injury-denial loops and regulatory capture [GH-ACF10C90DD03 L11].
+- **Genetic Risk Scanning**: Involves fragility architecture (γ) and phenotype indexing [GH-ACF10C90DD03 L40, L45].
+- **NCVIA frameworks** and **ethical obligations** are mentioned as components of the system [GH-ACF10C90DD03 L63, L66].
+
+**Striking Details**:  
+- The documentation includes instructions for building and viewing the project locally, such as using Sphinx and running `make html` [GH-ACF10C90DD03 L123, L89, L97].
+- There are references to **phase portraits of feedback loop entrapment** and **narrative collapse simulation** [GH-ACF10C90DD03 L35, L58].
+- The project includes **dynamic dashboards of systemic harm** and **visualization interfaces** [GH-ACF10C90DD03 L76, L81].
+- The author emphasizes **clear, concise language** and **tested code examples** in contributions [GH-ACF10C90DD03 L110, L113].
+
+**Coverage Limit**: This note is based on sampled anchors from the source text. Anchors shown represent a subset of the total content (123 anchors; 38 sampled). Therefore, not all information in the source has been reviewed.
+
+## Speculation
+- Could the "GASLIT-AF WARSTACK" project be related to broader research on systemic risk in complex adaptive systems, such as those found in public health or cybersecurity?
+- What is the relationship between the "Biological Modeling Layer" and the "Institutional Feedback Modeling" modules? Is there a theoretical framework that unifies these domains?
+- Are the "NCVIA frameworks" and "ethical obligations" components of the same system, or are they separate but related? How might they interact within the modeling architecture?
+- Does the use of terms like "memetic immunosuppression nets" suggest a focus on information warfare or psychological manipulation, and if so, how is this modeled computationally?

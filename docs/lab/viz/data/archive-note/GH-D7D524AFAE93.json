@@ -1,0 +1,36 @@
+# test_selenium_links.py
+
+Status: unreviewed local-model draft (2026-09-25T06:38:58+00:00)
+
+- Source ID: `GH-D7D524AFAE93`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/test_selenium_links.py>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `test_selenium_links.py`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 77 anchors; verify against the source.
+
+**Source Note: GH-D7D524AFAE93**
+
+**Subject:** This file, `test_selenium_links.py`, is a Python script for automated testing of links in a local documentation site. It uses Selenium, a browser automation tool, to verify that all links—both internal and external—function as intended and that anchor links scroll correctly to their target sections.
+
+**Genre:** Software testing script, specifically for web application quality assurance.
+
+**Main Ideas:**
+- The script tests the functionality of all links (internal, external, and anchor) within a locally served documentation site.
+- It ensures that external links open in new tabs and that anchor links correctly scroll to their target sections within the same page.
+- The use of Selenium allows for headless browser testing, ensuring that the documentation site is navigable and visually correct without manual intervention.
+
+**Striking Details:**
+- The script includes a function `is_top_in_viewport()` that checks whether the top of an element is visible in the browser’s viewport, accounting for potential sticky headers.
+- It uses a headless Chrome browser for testing, which is configured via `options.add_argument('--headless')` and `options.add_argument('--no-sandbox')` [GH-D7D524AFAE93 L16].
+- Anchor links are processed separately, with the script skipping anchor links that do not contain a `#` in their `href` attribute [GH-D7D524AFAE93 L61].
+- The script handles potential errors in link clicks, such as `ElementClickInterceptedException`, by attempting to click via JavaScript [GH-D7D524AFAE93 L69].
+
+**Coverage Limit:**  
+The anchors shown are sampled (43 of 77 total), meaning this note does not reflect the full content of the file. Anchors over 800 characters are truncated, and not all lines have been reviewed.
+
+**## Speculation**
+- Could this script be part of a larger QA pipeline for a documentation-heavy project or tool?
+- Does the use of `--no-sandbox` indicate that this script might be running in a restricted or containerized environment?
+- Are there any untested edge cases, such as broken external links or anchor links pointing to non-existent sections?
+- How does this script interact with the documentation site's build or deployment process?

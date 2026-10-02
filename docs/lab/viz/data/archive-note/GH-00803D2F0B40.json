@@ -1,0 +1,39 @@
+# KrebsCycleQuantumAlgorithm.md
+
+Status: unreviewed local-model draft (2026-09-24T23:25:11+00:00)
+
+- Source ID: `GH-00803D2F0B40`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/quantumMayhem/KrebsCycleQuantumAlgorithm.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/quantumMayhem/KrebsCycleQuantumAlgorithm.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 236 anchors; verify against the source.
+
+# Source Note: GH-00803D2F0B40
+
+**Subject**: Quantum mechanics applied to the Krebs cycle in metabolic processes.  
+**Genre**: Technical discussion, speculative science, theoretical biology.  
+**Main Ideas**:  
+- Quantum coherence and spin entanglement play roles in mitochondrial energy transfer and metabolic scaling.  
+- The Krebs cycle is modeled using quantum algorithms, potentially offering computational advantages for metabolic simulations.  
+- Metabolic scaling laws (e.g., $ B \propto M^{3/4} $) are linked to symmetry breaking and dimensional reduction in quantum systems.  
+- Proton gradients and ATP synthase dynamics are framed within quantum mechanical principles, such as U(1) symmetry breaking.  
+
+**Striking Details**:  
+- The document references quantum discord in FADH₂ generation [GH-00803D2F0B40 L26].  
+- A proposed quantum advantage for solving MAX-CUT problems via spin-glass models of Krebs intermediates [GH-00803D2F0B40 L106].  
+- A synthetic D₄-symmetric ATP synthase in transgenic mice is predicted to exhibit anomalous behavior [GH-00803D2F0B40 L121].  
+- The inclusion of $ \Omega_R \approx 10^{15} $, suggesting a high-frequency quantum process [GH-00803D2F0B40 L116].  
+- Equations involving Bose-Einstein integrals and metabolic scaling laws [GH-00803D2F0B40 L56, L66].  
+
+**Coverage Limit**: Sampled anchors (31 of 236) suggest incomplete exploration; many sections and footnotes are unexamined.  
+
+## Speculation  
+- Could the proposed quantum advantage in MAX-CUT problems be validated experimentally, and what implications would that have for computational biology?  
+- How might the introduction of synthetic D₄-symmetric ATP synthase affect mitochondrial dynamics, and are there unresolved risks in such genetic modifications?  
+- Are the symmetry-breaking cascades described here consistent with known biochemical constraints, or do they imply novel, untested mechanisms?  
+- Is the link between metabolic scaling and quantum coherence a plausible hypothesis, or does it rely on unproven assumptions about quantum effects in biological systems?  
+
+**Flags**:  
+- Claims about quantum advantage in metabolic simulations and synthetic ATP synthase are speculative, not fact.  
+- The document does not explicitly confirm agreement between cited sources or between theoretical models and empirical data.

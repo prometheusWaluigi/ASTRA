@@ -1,0 +1,27 @@
+# test_simulation_runner.py
+
+Status: unreviewed local-model draft (2026-09-25T08:16:40+00:00)
+
+- Source ID: `GH-7FC7383E6C39`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/tests/test_simulation_runner.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `tests/test_simulation_runner.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 85 anchors; verify against the source.
+
+**Source Note: GH-7FC7383E6C39**
+
+This is a Python script from the `tests` directory of the `gaslit-af-warfare` repository on GitHub, authored by user *prometheusWaluigi*. The file, titled `test_simulation_runner.py`, appears to be a unit test for a simulation runner module within the project. Its subject is the validation of simulation configurations and outputs across multiple domains—biological, genetic, institutional, and legal. The genre is computational testing, likely part of a larger software project focused on modeling complex systems or scenarios involving these domains.
+
+Main ideas include testing the correctness of simulation parameters, ensuring that outputs are generated and contain expected keys, and verifying that modules are loaded correctly. The script uses `importlib.util` to dynamically load a module named "gaslit_runner" and then runs simulations with various configurations. Parameters such as `grid_size`, `time_steps`, `noise_strength`, and `reaction_rate` are set for biological and genetic simulations, while institutional simulations involve entities like the FDA, with attributes such as influence, denial bias, and evidence growth rates. Legal simulations are configured with timeline start dates and shield decay rates.
+
+Striking details include the use of multiple simulated domains, each with distinct parameters and outcomes. The script uses `assert` statements to confirm that the simulation results are not `None` and that the expected keys are present in the output dictionary. For example, at [GH-7FC7383E6C39 L81], the script checks that the results dictionary contains keys for "biological", "genetic", "institutional", and "legal" domains.
+
+The coverage limit is defined by sampled anchors, which represent only a portion of the total 85 anchors in the file. This means the full scope of the code and its functionality may not be fully explored.
+
+## Speculation
+
+- Could the simulated domains (biological, genetic, institutional, legal) be part of a larger model of societal or governmental response to a hypothetical crisis or event?
+- What is the relationship between the "denial_effectiveness" and "evidence_growth_rate" parameters in the institutional simulations, and how might they interact in real-world scenarios?
+- Why is the `use_hardware_acceleration` flag set to `False` in most configurations, and could this affect the scalability or performance of the simulations?
+- Are the institutional entities (e.g., "FDA") modeled as autonomous agents, and if so, how are their behaviors and interactions defined within the simulation?

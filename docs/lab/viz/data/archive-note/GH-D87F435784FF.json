@@ -1,0 +1,38 @@
+# downloader.py
+
+Status: unreviewed local-model draft (2026-09-25T08:59:57+00:00)
+
+- Source ID: `GH-D87F435784FF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/backup/src/gaslit_af/clinvar/downloader.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `backup/src/gaslit_af/clinvar/downloader.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 101 anchors; verify against the source.
+
+# Source Note: GH-D87F435784FF
+
+**Subject**: A Python script for downloading and caching ClinVar data files.  
+**Genre**: Software code (Python), focused on data retrieval and management.  
+**Main Ideas**:  
+- The script is designed to fetch and store ClinVar data files from a remote FTP server.  
+- It supports multiple file types, including XML, VCF, and tab-delimited citation files.  
+- The script checks for cached versions of these files and uses them if they are not too old.  
+- It logs activity and manages the cache directory automatically.  
+- The script includes a method to retrieve the release date of the latest ClinVar data from the server.  
+
+**Striking Details**:  
+- The script uses Python's `logging` module and `pathlib` for file operations [GH-D87F435784FF L7, L10, L14].  
+- It defines a dictionary mapping file types to their respective URLs on the ClinVar FTP server [GH-D87F435784FF L33, L35, L37, L39].  
+- The method `download_file` handles caching and checks the age of existing files before downloading [GH-D87F435784FF L61, L63, L65].  
+- The script uses HTTP headers, specifically the `Last-Modified` header, to determine the latest release date of ClinVar data [GH-D87F435784FF L90, L92, L95].  
+- If a file type is not recognized, the script returns "Unknown" [GH-D87F435784FF L101].  
+- The script includes error handling for network requests and date parsing [GH-D87F435784FF L99].  
+
+**Coverage Limit**:  
+Sampled anchors (38 of 101 total) suggest this is a partial view of the script, and not all content has been reviewed.  
+
+## Speculation  
+- Could this script be part of a larger bioinformatics pipeline that processes ClinVar data for variant analysis?  
+- Are the file types defined here intended to be extended or customized for different data formats or versions?  
+- What is the threshold for determining whether a cached file is "too old" for use?  
+- Does the script interact with other tools or repositories that depend on ClinVar data?

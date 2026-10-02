@@ -1,0 +1,33 @@
+# test_retrocausal.py
+
+Status: unreviewed local-model draft (2026-09-25T05:41:17+00:00)
+
+- Source ID: `GH-7A1F463BD7A7`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/tests/archive/test_retrocausal.py>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `tests/archive/test_retrocausal.py`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 264 anchors; verify against the source.
+
+# Source Note: GH-7A1F463BD7A7
+
+**Subject:** This file is part of a software test suite for an experimental retrocausal extension of the ASTRA project, a tool for astrological chart generation and analysis. The content is a Python script testing the implementation of retrocausal effects in the ASTRA framework.
+
+**Genre:** Technical software testing code, likely part of a larger scientific or astrological research project involving computational models of celestial mechanics and possibly metaphysical or theoretical extensions of traditional astrology.
+
+**Main Ideas:** The script simulates bidirectional evolution of astrological charts, incorporating retrocausal effects—where future boundary conditions influence past states. It generates mock natal data, runs forward and retrocausal evolutions, and visualizes the results, including comparisons and differences between the two approaches.
+
+**Striking Details:**
+- The script references a "retrocausal extension (fKPZχ-R)" of ASTRA, suggesting a formalized, possibly theoretical framework for retrocausal influence [GH-7A1F463BD7A7 L18].
+- It creates mock planetary data, including specific positions and retrograde statuses (e.g., Jupiter at 270.26° in Capricorn, not retrograde) [GH-7A1F463BD7A7 L46].
+- It implements a "spiral pattern" as a future boundary condition, indicating an abstract or symbolic representation of future states influencing past evolution [GH-7A1F463BD7A7 L96].
+- The script checks for NaNs/Infs in both forward and retrocausal histories, emphasizing numerical stability [GH-7A1F463BD7A7 L79, L135].
+- It visualizes the effects of retrocausal evolution, including temporal correlation and differences between forward-only and bidirectional simulations [GH-7A1F463BD7A7 L141, L214].
+
+**Coverage Limit:** This note is based on sampled anchors from a total of 264; the full content of the file has not been reviewed.
+
+## Speculation
+- Could the use of a "spiral pattern" as a future boundary condition represent an intentional metaphor for the complexity or unpredictability of retrocausal influence? [GH-7A1F463BD7A7 L96]
+- How might the ASTRA framework's retrocausal extension be applied to real-world astrological or scientific modeling, if at all? [GH-7A1F463BD7A7 L107]
+- Does the mention of "fractional order" in retrocausal parameters suggest a non-integer or unconventional mathematical approach to modeling retrocausal effects? [GH-7A1F463BD7A7 L113]
+- Are the visualizations intended for scientific validation or for illustrative purposes in a broader philosophical or metaphysical context? [GH-7A1F463BD7A7 L141, L214]

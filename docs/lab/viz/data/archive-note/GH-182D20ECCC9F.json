@@ -1,0 +1,40 @@
+# selfOrganizing.txt
+
+Status: unreviewed local-model draft (2026-09-24T23:44:46+00:00)
+
+- Source ID: `GH-182D20ECCC9F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/complex_systems/selfOrganizing.txt>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/complex_systems/selfOrganizing.txt`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 119 anchors; verify against the source.
+
+# Source Note: GH-182D20ECCC9F
+
+**Subject:** Theoretical modeling of consciousness as a self-organizing critical phenomenon, integrating fractal mathematics and dynamical systems analysis.  
+**Genre:** Academic technical report, theoretical neuroscience, computational modeling, mathematical physics.  
+**Main Ideas:**  
+- Consciousness emerges from neural dynamics near the edge of chaos.  
+- Self-organizing criticality (SOC) is modeled using a revised Morphing Infinity Spiral (MIS) equation.  
+- The MIS equation provides a mathematical framework for scale-invariant structure and phase transitions.  
+- The brain's state space is represented as a Hilbert manifold, with strange attractors as signatures of continuous experience.  
+- Emotional regulation and pathological states are analyzed via the Lyapunov spectrum.  
+- Neural activity may adhere to KPZ universality class scaling behavior.  
+- Computational models like tensor networks and stochastic PDEs are proposed to simulate critical dynamics.
+
+**Striking Details:**  
+- The text explicitly links **fractal mathematics** (MIS equation) to **neural criticality** (self-organizing systems).  
+- A **critical regime** where $ \lambda_{\text{max}} \approx 0 $ is described as a state of balance between resilience and flexibility, possibly related to healthy emotional regulation.  
+- The **KPZ universality class** is mentioned with specific exponents $ \chi = 1/2 $, $ \beta = 1/3 $, and $ z = 3/2 $, which are used to describe neural scaling behavior.  
+- The **MIS equation** is described as exhibiting exact scale invariance at $ t = 0 $, transitioning to controlled intermittency for $ t > 0 $.  
+- The framework proposes a **mapping of qualia** to **invariant topological structures** (attractors) in the brain's state space.  
+
+**Coverage Limit:** Sampled anchors (28 of 119 total) mean this note does not reflect the full content of the source.
+
+## Speculation
+- Could the proposed **mapping of qualia to invariant topological structures** provide a new pathway for understanding the hard problem of consciousness?  
+- How might the **MIS equation’s symmetry-breaking** be experimentally validated in neural systems?  
+- Does the **KPZ universality class** offer a broader framework for understanding not just neural scaling but also other forms of complex adaptive systems?  
+- Might the **Lyapunov spectrum’s interpretation** of emotional regulation be extended to model mental health disorders, or is it potentially **overreaching** given the complexity of human emotion?  
+
+**Note:** Claims such as the direct mapping of **qualia to attractors** and the **MIS equation’s relevance to consciousness** are presented as hypotheses, not established facts.

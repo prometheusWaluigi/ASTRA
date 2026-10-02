@@ -1,0 +1,38 @@
+# visualization.py
+
+Status: unreviewed local-model draft (2026-09-25T07:32:21+00:00)
+
+- Source ID: `GH-437323C15E94`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/src/visualization.py>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `src/visualization.py`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 194 anchors; verify against the source.
+
+**Source Note: GH-437323C15E94**
+
+**Subject:** This file is part of a Python script related to data visualization, specifically for visualizing inventory analysis results. The script appears to be used within a larger project involving sales and inventory tracking, likely for analytical or reporting purposes.
+
+**Genre:** Technical code, specifically Python script focused on data visualization using `matplotlib`.
+
+**Main Ideas:**
+- The script defines a class or module (`visualization.py`) that visualizes sales and inventory data.
+- It includes functions for generating scatter plots, histograms, and dashboards based on analysis results.
+- The script checks for the presence of data before performing visualizations and raises errors when data is missing.
+- It allows users to save generated plots to files or directories.
+- It includes functionality for visualizing the distribution of sales, customer activity, and flag counts (likely for categorizing or segmenting data).
+
+**Striking Details:**
+- The script uses `matplotlib` for plotting and includes detailed customizations such as axis labels, titles, and grid settings [GH-437323C15E94 L91, L58].
+- It includes an `ax.axvline(x=120, ...)` command, suggesting an interest in highlighting a specific threshold or cutoff point in the data [GH-437323C15E94 L108].
+- The script includes a function that generates a dashboard and saves multiple plots [GH-437323C15E94 L165, L169].
+- Error handling is present for missing data, with messages such as "❌ Analysis results not found. Run the analysis first." [GH-437323C15E94 L194] and "No data available. Load data first." [GH-437323C15E94 L132].
+- The script defines a method `plot_sales_distribution` that visualizes the relationship between "Days Since Last Sale" and "Sales Last 30d" [GH-437323C15E94 L38, L83].
+
+**Coverage Limit:** Sampled anchors (35 of 194 total) do not cover the entire file. This note is based on a partial view of the source and does not reflect all content.
+
+## Speculation
+- Could the use of `ax.axvline(x=120, ...)` indicate a specific business rule or customer behavior threshold (e.g., 120 days since last sale being a critical metric)?
+- What is the origin or purpose of the "Flag" column referenced in `flag_counts = self.data['Flag'].value_counts()` [GH-437323C15E94 L137]? Is it part of a classification system or inventory categorization?
+- Given the presence of a dashboard generation feature, is this script used in conjunction with other modules or tools for data analysis and reporting?
+- Are the data sources for the visualizations internal to the project or external datasets? What is the frequency of data updates?

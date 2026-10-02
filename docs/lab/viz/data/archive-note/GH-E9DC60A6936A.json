@@ -1,0 +1,41 @@
+# 09_skeptic_surge.yml
+
+Status: unreviewed local-model draft (2026-09-25T12:23:51+00:00)
+
+- Source ID: `GH-E9DC60A6936A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/sims/generated/09_skeptic_surge.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `sims/generated/09_skeptic_surge.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 42 anchors; verify against the source.
+
+**Source Note: GH-E9DC60A6936A**
+
+This is a YAML configuration file from an experimental private wiki, likely part of a simulation or modeling project. The file describes a scenario called "Skeptic Influence Surge (Influence Tilt)" and is authored by GASLIT-420, dated 2025-04-21, with version 0.1.9. It references a "parent_baseline" file named `baseline.yml`, suggesting it is part of a larger simulation framework.
+
+The content outlines parameters for a simulation involving social influence dynamics, likely modeling the spread of beliefs or opinions in a network. The file defines an ensemble of 500 simulation runs with a fixed random seed of 42. The simulation time is set to a maximum of 365 units, with a time step of 1.0. The network is described as a Watts-Strogatz small-world network, with 3000 agents, each connected to 6 neighbors, and a rewiring probability of 0.2.
+
+Key parameters include influence weights for different agent types (believers, skeptics, agnostics), noise levels, and thresholds for trust and entropy. The initial probabilities for agent types are set as 0.45 for believers, 0.35 for skeptics, and 0.2 for agnostics. The output settings indicate that time-series data, summaries, and plots are to be saved in the `results/baseline/` directory.
+
+**Apparent Subject**: Social influence modeling, with a focus on the dynamics of belief systems and the impact of skepticism in a networked population.
+
+**Genre**: Computational model configuration file, likely from a research or experimental context involving social simulations or network science.
+
+**Main Ideas**: 
+- Modeling the influence of skeptics in a population with varying levels of belief and agnosticism.
+- Simulating the evolution of social dynamics under controlled conditions, including noise and entropy thresholds.
+- Using a Watts-Strogatz network to represent interactions between agents.
+
+**Striking Details**:
+- The skeptic_weight is higher than believer_weight (1.5 vs. 0.9), suggesting an emphasis on the influence of skepticism in the model.
+- The simulation involves a large number of agents (3000) and a high number of ensemble runs (500), indicating a focus on robust statistical outcomes.
+- The presence of a "leak_frequency" parameter (0.05) and entropy_critical (1.2) suggests modeling of uncertainty or instability in belief systems.
+- The trust_slope_threshold is set to a negative value (-0.05), potentially indicating a sensitivity to declining trust in the model.
+
+**## Speculation**
+- Could the high skeptic_weight imply a scenario where skepticism is modeled as a destabilizing force in belief networks?
+- How does the use of a Watts-Strogatz network affect the propagation of influence compared to other network types?
+- What real-world phenomena might this model be attempting to simulate, such as the spread of misinformation or scientific consensus?
+- Might the "leak_frequency" parameter be related to the introduction of external influences or errors into the simulation?
+
+**Coverage Limit**: Anchors shown are all 42 total anchors, but they are sampled and truncated where over 800 characters. Not all content has been fully read or analyzed.

@@ -1,0 +1,36 @@
+# tell_your_story.html
+
+Status: unreviewed local-model draft (2026-09-25T11:24:57+00:00)
+
+- Source ID: `GH-4063C1A00919`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/tell_your_story.html>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/frontend/templates/tell_your_story.html`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 212 anchors; verify against the source.
+
+**Source Note: GH-4063C1A00919**
+
+**Subject:** This file appears to be a template for a web form within a software project, likely related to user-submitted personal testimonies or health-related data collection. The apparent genre is technical documentation, specifically a frontend template for a web application.
+
+**Main Ideas:** The template facilitates user input, including personal stories, symptoms, demographic information, and consent for follow-up. It emphasizes the collection of personal experiences as a means to analyze systemic impacts, suggesting a focus on health, institutional responses, and possibly long-term patterns of exposure or conditions.
+
+**Striking Details:**  
+- The form includes fields for pseudonyms or anonymity, indicating a sensitivity to privacy [GH-4063C1A00919 L55].  
+- Users are asked to report symptoms such as "POTS" (Postural Orthostatic Tachycardia Syndrome) and "MCAS" (Mast Cell Activation Syndrome), suggesting a focus on rare or complex health conditions [GH-4063C1A00919 L100, L113].  
+- There is a field for approximate onset dates of symptoms, implying an interest in tracking timelines of health issues [GH-4063C1A00919 L136].  
+- The form includes a consent checkbox for follow-up questions or research opportunities [GH-4063C1A00919 L176].  
+- The template references a project called "GASLIT-AF WARSTACK," which may be a fictional or experimental name, or a codename for a real initiative [GH-4063C1A00919 L41].  
+- The file uses standard web development syntax (e.g., HTML, JavaScript) and is part of a GitHub repository, suggesting it is part of a software project [GH-4063C1A00919 L1, L203].
+
+**Coverage Limit:** Sampled anchors are shown (44 of 212 total), meaning that this note is based on partial data and does not reflect the full content of the file.
+
+**## Speculation**  
+- Could "GASLIT-AF WARSTACK" be a fictional or internally coded project name, or does it relate to a real-world initiative involving health data and systemic impact analysis?  
+- What is the relationship between the symptoms listed (e.g., POTS, MCAS) and the broader goals of the GASLIT-AF WARSTACK project?  
+- Might this form be part of a larger dataset or research effort, and if so, what are the potential implications for user privacy and data ethics?  
+- Are the institutional responses mentioned in the placeholder text (e.g., "Include any patterns you've noticed, institutional responses you've encountered") indicative of a focus on systemic or environmental health issues?
+
+**Flagged Claims:**  
+- The name "GASLIT-AF WARSTACK" is flagged as potentially fictional or self-contradictory, as no further context is provided to confirm its reality or purpose.  
+- The use of terms like "systemic impacts" and "patterns" are flagged as potentially reflecting a broader narrative or hypothesis, rather than being established facts.

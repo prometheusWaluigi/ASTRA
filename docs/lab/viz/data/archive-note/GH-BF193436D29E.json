@@ -1,0 +1,37 @@
+# practicalClinicalGuide.md
+
+Status: unreviewed local-model draft (2026-09-24T23:14:24+00:00)
+
+- Source ID: `GH-BF193436D29E`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/careManuals/practicalClinicalGuide.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/careManuals/practicalClinicalGuide.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 245 anchors; verify against the source.
+
+# Source Note: GH-BF193436D29E
+
+**Subject:** A clinical guide focused on managing complex chronic illnesses through the GASLIT-AF model, emphasizing genetic, autonomic, structural, and fatigue-related aspects.
+
+**Genre:** Medical/clinical documentation; likely intended for healthcare professionals managing patients with chronic, multi-system conditions.
+
+**Main Ideas:**
+- The guide promotes a holistic, multi-faceted approach to treating chronic illness, integrating evidence-based medicine with innovative therapies.
+- It highlights the importance of diagnosing and addressing autonomic dysregulation, mast cell activation, and metabolic dysfunctions.
+- Patient empowerment and lifestyle modifications are integral components of the proposed care plan.
+- The guide emphasizes collaboration with specialists and involvement in clinical trials or research initiatives.
+
+**Striking Details:**
+- Specific diagnostic tests are highlighted, such as [GH-BF193436D29E L17] *24-hour urinary N-methylhistamine* and [GH-BF193436D29E L48] *QSART sweat test*.
+- Medications and therapies are listed with dosage recommendations, e.g., [GH-BF193436D29E L141] *Coenzyme Q10 (CoQ10): 100–300 mg daily*.
+- Lifestyle interventions are detailed, including [GH-BF193436D29E L162] *Recumbent exercises (rowing, recumbent bike, swimming)*.
+- Mental health support is incorporated, as seen in [GH-BF193436D29E L183] *Cognitive Behavioral Therapy (CBT): Stress management, pacing strategies*.
+- The text mentions specific institutions and organizations, such as [GH-BF193436D29E L224] *Johns Hopkins, Stanford, Mt. Sinai* and [GH-BF193436D29E L235] *EDS Society*.
+
+**Coverage Limit:** Sampled anchors (40 of 245) are shown; this is not a full read of the document.
+
+## Speculation
+- Could the GASLIT-AF model be related to or overlap with other frameworks for chronic illness management, such as POTS or EDS treatment protocols?
+- What are the potential risks or limitations of the proposed therapies, such as [GH-BF193436D29E L126] *Anticonvulsants: pregabalin, gabapentin (start low)*, particularly in patients without confirmed neuroinflammatory or chronic pain conditions?
+- How does the author reconcile the emphasis on genomic and epigenetic analysis with the practicality of implementing such measures in clinical settings?
+- Might the focus on patient empowerment and self-management, as described in [GH-BF193436D29E L152], be a response to gaps in conventional medical care for these conditions?

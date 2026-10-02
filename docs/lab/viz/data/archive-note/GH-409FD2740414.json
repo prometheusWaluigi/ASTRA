@@ -1,0 +1,41 @@
+# institutional_model.py
+
+Status: unreviewed local-model draft (2026-09-25T07:31:17+00:00)
+
+- Source ID: `GH-409FD2740414`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/institutional_feedback/institutional_model.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/institutional_feedback/institutional_model.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 835 anchors; verify against the source.
+
+**Source Note: GH-409FD2740414**
+
+**Subject:** This file appears to be a Python script implementing a computational model of institutional dynamics, likely related to the simulation of power structures, influence, and systemic feedback loops within complex systems. The script is part of an experimental private wiki, possibly used to explore themes of societal control, information manipulation, and systemic instability.
+
+**Genre:** Technical code, with embedded documentation and commentary that suggest a focus on systems analysis and simulation. The code is structured for computational modeling and includes features for graph-based representation, entropy calculations, and visualization.
+
+**Main Ideas:**  
+- The model simulates interactions between institutional actors (e.g., regulatory bodies, industry entities, academia) and evaluates their influence, denial bias, and capture factors.  
+- It incorporates entropy as a metric for systemic instability or unpredictability.  
+- The model includes a "memetic immunosuppression" calculation, which may relate to the suppression of dissenting narratives or ideas.  
+- Visualization tools are included, possibly for displaying the state of the system over time, with colors assigned to different institutional categories (e.g., 'international': 'purple') [GH-409FD2740414 L658].
+
+**Striking Details:**  
+- The file includes a function for calculating "regulatory capture," a term often used in political science to describe the influence of private interests on public regulatory bodies [GH-409FD2740414 L285].  
+- The model uses a directed graph (DiGraph) to represent institutional relationships [GH-409FD2740414 L178].  
+- It tracks metrics such as "narrative stability" and "denial_level" [GH-409FD2740414 L551, L746].  
+- A "capture_spread_rate" is defined, suggesting an attempt to quantify how influence spreads or is absorbed within the system [GH-409FD2740414 L427].  
+- The script includes logging functionality and a warning for cases where simulation history is not available [GH-409FD2740414 L729].
+
+**Coverage Limit:** This note is based on a sampled subset of anchors (37 of 835 total). Anchors over 800 characters are truncated, and not all content has been reviewed.
+
+**## Speculation**  
+1. Could this model be used to analyze real-world political or economic systems, or is it purely abstract?  
+2. What does "memetic immunosuppression" refer to in this context? Is it a metaphorical or literal concept?  
+3. How might the inclusion of entropy and narrative stability metrics relate to the broader goals of the project?  
+4. Does the model simulate potential scenarios of institutional failure or collapse, and if so, what implications might this have for policy or strategy?
+
+**Claims:**  
+- The model's use of "denial_bias" and "capture_factor" may be metaphorical or abstract constructs, not grounded in empirical data.  
+- The term "memetic immunosuppression" is not defined within the source, and its interpretation remains speculative.

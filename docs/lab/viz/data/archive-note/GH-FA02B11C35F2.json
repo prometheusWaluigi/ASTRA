@@ -1,0 +1,41 @@
+# Recursive Eigenmode Theory and Fractal CAP Dynamics.md
+
+Status: unreviewed local-model draft (2026-09-25T03:23:49+00:00)
+
+- Source ID: `GH-FA02B11C35F2`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/theorems/eigenmode-theory/Recursive Eigenmode Theory and Fractal CAP Dynamics.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `theorems/eigenmode-theory/Recursive Eigenmode Theory and Fractal CAP Dynamics.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 42 anchors; verify against the source.
+
+**Source Note: GH-FA02B11C35F2**
+
+**Subject:** A theoretical exploration of consciousness through the lens of recursive neural dynamics and fractal architecture, inspired by quantum mechanics and computational neuroscience.
+
+**Genre:** Technical theoretical paper; appears to be part of a research project or personal archive, likely intended for academic or experimental analysis.
+
+**Main Ideas:**
+- Consciousness is framed as a *spectral selection* process, where specific stable states (eigenmodes) are selected from a broader computational spectrum within the brain.
+- The brain's dynamics are modeled as recursive systems, with different levels of recursive depth (r) influencing neural behavior.
+- A critical fractal dimension (~1.5) is proposed as a necessary condition for the emergence of stable conscious states.
+- The theory introduces the *CAP Trilemma*, a mathematical optimization function balancing consistency, availability, and partition-tolerance in neural systems.
+- Conscious states are represented as eigenfunctions (ψₙ) of a formal operator (H_CAP), with eigenvalues (λₙ) reflecting properties of these states.
+- Global, time-symmetric boundary conditions are posited to stabilize eigenmode selection across recursive scales.
+- Empirical predictions include shifts in EEG fractal dimensions, time-symmetric recovery after perturbations (e.g., TMS), and the detection of toroidal attractor manifolds via persistent homology.
+
+**Striking Details:**
+- [GH-FA02B11C35F2 L12] The CAP Trilemma defines a trade-off between consistency (C), availability (A), and partition-tolerance (P), with each factor weighted by parameters (α_C, α_A, α_P).
+- [GH-FA02B11C35F2 L14] Time-symmetric boundary conditions are described as critical for global constraints, with ψ(r → ∞) = e^(iθ) ψ(r → −∞).
+- [GH-FA02B11C35F2 L32] Preliminary simulations using a "Recursive CAP lattice" reportedly produce eigenmodes near the critical fractal dimension, matching predictions from random matrix theory (GUE).
+- [GH-FA02B11C35F2 L38] The theory draws speculative parallels between neural eigenmodes, quantum wave functions, and the Riemann zeta spectrum, suggesting potential "spectral isomorphisms."
+
+**Coverage Limit:** Sampled anchors (42 total, all shown) do not guarantee comprehensive reading of the full text. Some anchors are truncated or exceed 800 characters.
+
+## Speculation
+- Could the proposed fractal dimension (d_f ≈ 1.5) be a universal constant across all conscious systems, or is it specific to human neural architectures?
+- What experimental evidence supports the claim of "time-symmetric recovery trajectories" in conscious states, and how might this differ from unconscious states?
+- If the CAP Trilemma is a generalizable framework, could it be applied to non-biological systems, such as AI or synthetic neural networks?
+- How might the "spectral isomorphisms" between neural eigenmodes and quantum mechanics influence future research in quantum consciousness or computational neuroscience?
+
+**Note:** This source is a private experimental archive, not a peer-reviewed publication. All claims are presented as part of the author's theoretical framework, and may not be supported by external evidence.

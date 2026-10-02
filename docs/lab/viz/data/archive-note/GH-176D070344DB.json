@@ -1,0 +1,38 @@
+# abm.py
+
+Status: unreviewed local-model draft (2026-09-25T07:08:16+00:00)
+
+- Source ID: `GH-176D070344DB`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/models/abm.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `models/abm.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 433 anchors; verify against the source.
+
+**Source Note: GH-176D070344DB**
+
+**Subject:** This file, `abm.py`, is a Python script implementing an **Agent-Based Model (ABM)** for a project titled "Piston Leak." The model appears to simulate interactions within a network of agents, potentially representing social or information dynamics influenced by macro-level states.
+
+**Genre:** Technical code (Python), likely part of a simulation or research project involving network modeling and computational social science.
+
+**Main Ideas:**  
+- The model generates a **small-world network** with adjustable parameters such as mean degree (`k: int = 6`) and **coupling strength** (`coupling_strength: float = 0.3`) between agents and macro states.  
+- Agents transition between states based on **Glauber dynamics**, with a **base transition rate** (`base_transition_rate: float = 0.05`) and probabilistic adjustments influenced by their current and neighboring agents’ states.  
+- The file includes a **belief state system**, where agents may be in states like `BeliefState.AGNOSTIC`, `BeliefState.BELIEVER`, or `BeliefState.SKEPTIC`. The `AGNOSTIC` state is flagged as "Undecided/uncertain" [GH-176D070344DB L29].  
+- The model tracks the **entropy** of the network over time, which is printed at the end of the simulation [GH-176D070344DB L433].  
+- The script appears to interface with **ODE results**, possibly from a complementary model or dataset [GH-176D070344DB L424].
+
+**Striking Details:**  
+- The use of **Erdős–Rényi graph generation** with a random seed suggests a focus on **randomized network structures** and reproducibility [GH-176D070344DB L139].  
+- The **init_believer_prob** is initialized to `0.7`, indicating a **high initial bias** toward belief states in the simulation [GH-176D070344DB L415].  
+- The model simulates **state transitions** and calculates **entropy** and **clustering** metrics for the network [GH-176D070344DB L314, L332].  
+- The file includes a **seed parameter** (`seed: int = 42`) for deterministic behavior, suggesting the model may be used for controlled experiments or comparisons [GH-176D070344DB L93].
+
+**Coverage Limit:**  
+This note is based on **sampled anchors** (37 of 433) and does not reflect the full content of the file. The source is **real downloaded text** and treated as data, not instructions.
+
+## Speculation  
+- Could the **high initial belief probability** (`init_believer_prob=0.7`) be intended to reflect a **social consensus scenario**, or is it a placeholder for further calibration?  
+- Is the **coupling strength** (`0.3`) a heuristic value, or does it correspond to empirical data from another part of the project?  
+- Might the **entropy metric** be used to analyze **information diffusion** or **social polarization** within the network?  
+- What is the **relationship** between the **ODE results** and the ABM simulation? Is the ABM meant to validate, extend, or approximate the ODE model?

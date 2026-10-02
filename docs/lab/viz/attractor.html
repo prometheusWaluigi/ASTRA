@@ -36,7 +36,7 @@ canvas{display:block}
 <div id="legend"><span class="dot" style="background:#f2c169"></span>state + trail / healthy attractor · <span class="dot" style="background:#b78cff"></span>pathological attractor (x pinned at 0) · <a href="hub.html">← Rooms</a> <a href="../../index.html">← Lab</a></div></div>
 <div id="tip"></div>
 <div id="map"><canvas id="mapc" width="470" height="330" style="width:235px;height:165px"></canvas><div class="cap" id="mapcap">dose map: final x over (m, d) · red = collapse boundary · ring = current dose</div></div>
-<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
 <script type="module">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
@@ -142,7 +142,7 @@ function gridFromApi(g){gridCells=null;let ok=0;
     $('mapcap').textContent='dose map: final x over (m, d) · archived grid · baseline 0.20 · red = collapse boundary · ring = current dose'}
   else computeGrid(0.2)}
 computeGrid(0.2);
-fetch('/api/viz/sim',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+fetch('./data/sim.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
   if(d.available&&d.gaslit&&d.gaslit.grid&&Math.abs(baseline-0.2)<.01)gridFromApi(d.gaslit.grid)}).catch(()=>{});
 // ---- controls ----
 const fmtD=v=>Math.pow(2,v).toFixed(v<0?2:v>3?0:1).replace(/\.0+$/,'');

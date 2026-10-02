@@ -1,0 +1,40 @@
+# dedeo-using-big-data-to-track-major-shifts-in-human-cognition.pdf
+
+Status: unreviewed local-model draft
+Source ID: M8C07D8E54E2F
+Sampled pages: 1, 2, 3 of 3
+
+**Source Note: M8C07D8E54E2F**
+
+**Subject:** Analysis of shifts in human cognition using large-scale text data, focusing on the interplay between rational and intuitive language.  
+**Genre:** Scholarly commentary, with elements of critique and replication of prior research.  
+**Main Ideas:**  
+- The use of big data (e.g., Google Books corpus, newspaper archives) to detect historical trends in cognitive styles, represented by shifts in vocabulary polarities.  
+- Identification of two primary linguistic polarities: one reflecting archaic vs. modern themes, and another representing rational ("system II") vs. intuitive ("system I") language.  
+- A proposed "rise" of rationality from the mid-19th century to the late 20th century, followed by a "fall" beginning in the 1980s, potentially linked to the rise of social media.  
+- Critique of the interpretation of these shifts, particularly their alignment with Max Weber’s concept of bureaucratic rationalization and the idea of a "post-truth" era.  
+
+**Striking Details:**  
+- The paper replicates and extends Scheffer et al.’s (1) findings using The New York Times archive and additional newspapers (The Guardian, Pittsburgh Post-Gazette, Santa Fe New Mexican), revealing discrepancies in timing and magnitude of trends across sources.  
+- The authors flag OCR-related errors (e.g., the exclusion of "hunch" due to false hits from OCR) and note that the decline in rationality is not universally observed, with The Guardian showing a peak in rationality 30 years earlier than Google Books.  
+- The critique highlights the distinction between public expressions of rationality and actual cognitive processes, suggesting that linguistic shifts may reflect stylistic or cultural preferences rather than deeper psychological changes.  
+- The paper draws on examples from history (e.g., the Vietnam War, Hannah Arendt’s analysis of the Pentagon Papers) and pop culture (e.g., *Office Space*) to question the interpretation of cognitive trends.  
+
+**Speculation:**  
+- **Speculation 1:** Could the "fall" of rationality observed in some datasets be influenced by changes in media formats or editorial priorities, rather than a genuine societal shift in cognitive style?  
+- **Speculation 2:** Might the discrepancy in timing between Google Books and The Guardian suggest that the use of rational language varies significantly across cultural contexts, challenging the universality of the proposed cognitive trends?  
+- **Speculation 3:** If linguistic shifts are tied to social media, could the acceleration of the decline in rationality after 2000 be better explained by algorithmic curation of content, rather than a broad cultural shift?  
+
+**Citations of Factual Observations (exact form):**  
+- [M8C07D8E54E2F p1]: The study uses principal component analysis on the Google Books corpus to identify shifts in vocabulary polarities, linking them to cognitive styles (rational vs. intuitive).  
+- [M8C07D8E54E2F p1]: The authors propose a "rise" of rationality from the mid-19th century to the late 20th century, followed by a "fall" beginning in 1980.  
+- [M8C07D8E54E2F p2]: The analysis of The New York Times and other newspapers reveals discrepancies in the timing and magnitude of cognitive shifts, with The Guardian peaking in rationality in the 1950s.  
+- [M8C07D8E54E2F p3]: The critique notes that linguistic trends may reflect style and cultural prestige rather than psychological changes, using examples from history and pop culture.  
+
+**Coverage Limit:** This note is based on the full text of the sampled PDF (pages 1–3). The source may contain further discussion not included here.  
+
+**Filename/Title Agreement:** The filename and metadata title agree.  
+
+**OCR Uncertainty:** OCR uncertainty is flagged where the method explicitly states it (e.g., exclusion of "hunch" due to OCR errors).  
+
+**Fictional or Extraordinary Claims:** The paper includes references to pop culture (e.g., *Office Space*) and historical examples (e.g., the Pentagon Papers) as illustrative, not as extraordinary claims. No fictional claims are made about cognitive shifts.

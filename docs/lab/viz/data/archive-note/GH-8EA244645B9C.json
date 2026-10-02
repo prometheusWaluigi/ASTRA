@@ -1,0 +1,35 @@
+# SymmetryBreakingBiological.md
+
+Status: unreviewed local-model draft (2026-09-25T01:49:54+00:00)
+
+- Source ID: `GH-8EA244645B9C`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/symmetryBreaking/SymmetryBreakingBiological.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/symmetryBreaking/SymmetryBreakingBiological.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 231 anchors; verify against the source.
+
+# Source Note: GH-8EA244645B9C
+
+**Subject**: The document explores symmetry breaking in biological systems, connecting it to quantum phenomena, cellular processes, and disease. It appears to be a speculative, interdisciplinary analysis informed by scientific literature and theoretical models.
+
+**Genre**: Technical markdown paper, likely part of a personal research archive. It mixes scientific concepts with conceptual frameworks, including mathematical notation and references to experimental observations.
+
+**Main Ideas**:
+- Symmetry breaking underpins multiple biological phenomena, from avian magnetoreception to cellular polarization and organogenesis.
+- Quantum coherence and terahertz spectroscopy are used to detect and analyze symmetry breaking in biological contexts.
+- The document proposes a symmetry-breaking cascade, linking molecular-scale effects to macroscopic developmental outcomes.
+- There is a focus on the interplay between symmetry, quantum mechanics, and biological function, particularly in photosynthesis and disease.
+
+**Striking Details**:
+- The use of mathematical notation (e.g., [GH-8EA244645B9C L60] $T_2 \approx 12 \, \text{ns}$) and specific experimental techniques (e.g., [GH-8EA244645B9C L79] Terahertz spectroscopy detects edge state resonances).
+- The document includes a table that outlines symmetry transitions (e.g., [GH-8EA244645B9C L167] **Cellular (1-10 μm)** | D₆ → D₂ | Epithelial polarization | Ferroelectric domains (…)).
+- It discusses specific biological systems, such as avian magnetoreception ([GH-8EA244645B9C L16]) and photosynthetic light harvesting ([GH-8EA244645B9C L84]).
+
+**Coverage Limit**: Sampled anchors (31 of 231 total) suggest partial coverage; not all content has been read.
+
+## Speculation
+- Could the symmetry-breaking framework be extended to model other developmental anomalies or disease states?
+- How might the proposed symmetry-breaking cascade relate to broader theories of biological self-organization?
+- Are the claims about quantum coherence in disease ([GH-8EA244645B9C L197] ### 5.2 Quantum Coherence in Disease) based on experimental data or theoretical speculation?
+- Does the document imply a unified physical principle underlying diverse biological phenomena, or is this an extrapolation beyond the evidence?

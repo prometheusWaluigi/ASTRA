@@ -1,0 +1,39 @@
+# signal_generator.py
+
+Status: unreviewed local-model draft (2026-09-25T06:27:42+00:00)
+
+- Source ID: `GH-BDE4BAF9464E`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/examples/quantum_signal/signal_generator.py>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `examples/quantum_signal/signal_generator.py`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 231 anchors; verify against the source.
+
+**Source Note: GH-BDE4BAF9464E**
+
+**Subject:** The file `signal_generator.py` appears to be a Python script designed to generate synthetic signals for testing or simulation purposes. It seems to be part of a larger project related to signal processing, possibly in the context of quantum signal analysis or similar technical applications.
+
+**Genre:** Technical code; likely part of a software development or research project. The script uses Python and NumPy for numerical operations, suggesting a focus on computational signal generation.
+
+**Main Ideas:**  
+- The script generates synthetic signals composed of multiple frequency components, pulses, and noise.  
+- It supports customizable parameters such as signal length, number of components, noise levels, and pulse widths.  
+- The script can generate both continuous sinusoidal signals and pulsed signals, with the ability to normalize and add noise to the output.  
+- It includes functionality for defining frequency bands with specified center frequencies, bandwidths, and amplitudes, which are then combined into a single signal array.
+
+**Striking Details:**  
+- [GH-BDE4BAF9464E L1] The file begins with a standard Python docstring, possibly for documentation or comments.  
+- [GH-BDE4BAF9464E L11] The function `generate_test_signal` is defined with parameters including `num_components`, `noise_level`, and `length`.  
+- [GH-BDE4BAF9464E L40] Noise is generated using `np.random.normal(0, noise_level, length)`, with a default noise level of 0.1.  
+- [GH-BDE4BAF9464E L70] The core signal is generated using a sine wave formula: `np.sin(2 * np.pi * freq * t)`.  
+- [GH-BDE4BAF9464E L133] The script includes a function to generate a signal with multiple pulses, which may be relevant to applications such as modulation or testing signal integrity.  
+- [GH-BDE4BAF9464E L226] Noise is added to the final signal, which may be intended to simulate real-world signal conditions.  
+- [GH-BDE4BAF9464E L221] The signal is built incrementally by adding contributions from each defined frequency band.
+
+**Coverage Limit:** Sampled anchors (33 of 231) mean that this note does not reflect the full content of the file.
+
+## Speculation
+- Could this script be used for simulating quantum signal behavior, given its inclusion in the `quantum_signal` directory?  
+- What is the relationship between the `base_freq` and `num_pulses` variables, and how do they affect the final signal structure?  
+- Are the noise parameters and pulse configurations optimized for a specific application, or are they generic?  
+- Might this script be part of a larger framework for signal analysis or machine learning training?

@@ -1,0 +1,36 @@
+# Dockerfile.mac
+
+Status: unreviewed local-model draft (2026-09-25T12:40:33+00:00)
+
+- Source ID: `GH-FEF7CB5C822F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/Dockerfile.mac>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `Dockerfile.mac`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 27 anchors; verify against the source.
+
+# Source Note: GH-FEF7CB5C822F
+
+**Subject**: This source is a Dockerfile tailored for macOS compatibility, part of a private wiki archive maintained by a single author. The Dockerfile appears to be a configuration for a Python-based application, likely related to data processing or development tools. The file is named `Dockerfile.mac`, suggesting it is specific to macOS environments, though it uses Linux-based Docker instructions.
+
+**Genre**: Technical configuration file, likely part of a software project's infrastructure documentation. It is not a narrative or analytical text but rather a script for building a Docker container.
+
+**Main Ideas**:
+- The Dockerfile builds an image from the `python:3.12-slim` base image.
+- It installs system-level dependencies (`git`, `build-essential`) and Poetry, a Python dependency management tool.
+- It emphasizes macOS compatibility by noting that the Docker container does not utilize Apple’s Accelerate framework, which is native to macOS.
+- It implements best practices for Docker image optimization, such as cleaning up after package installations and using caching strategies by copying dependency files first.
+
+**Striking Details**:
+- [GH-FEF7CB5C822F L14] explicitly states that the Docker container does not use the Accelerate framework, which is a macOS-specific optimization tool. This may indicate that the application requires or benefits from native macOS acceleration when run outside of Docker.
+- [GH-FEF7CB5C822F L20] uses Poetry to install dependencies without creating a virtual environment, suggesting a preference for simplicity or a specific deployment workflow.
+- [GH-FEF7CB5C822F L27] defines the command to run the application as `poetry run python src/cli.py`, pointing to a CLI-based tool or utility.
+
+**Coverage Limit**: Sampled anchors (L1–L27) represent the full file, but this does not imply exhaustive reading. The file is short and focused on a single purpose, so missing content is unlikely, but the absence of additional context (e.g., the broader project or author's intent) limits interpretation.
+
+## Speculation
+
+- Could the author be developing a tool that benefits from native macOS acceleration but requires cross-platform compatibility? The note about Accelerate framework may be a workaround or a point of interest for users.
+- Does the use of Poetry and the avoidance of virtual environments reflect a particular deployment philosophy or dependency management strategy?
+- Why is the file named `Dockerfile.mac`? Does it imply that there are other Dockerfiles for different platforms, or is this a naming convention specific to the author’s workflow?
+- How does the author balance macOS-specific features with the use of Docker, which by default runs in Linux environments? Is this a deliberate choice to support hybrid workflows or development environments?

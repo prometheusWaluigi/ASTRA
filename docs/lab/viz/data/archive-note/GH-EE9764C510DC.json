@@ -1,0 +1,31 @@
+# run_all_configs.py
+
+Status: unreviewed local-model draft (2026-09-25T09:17:00+00:00)
+
+- Source ID: `GH-EE9764C510DC`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/run_all_configs.py>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `run_all_configs.py`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 83 anchors; verify against the source.
+
+**Source Note: GH-EE9764C510DC**
+
+**Subject**: Automation of batch-running Monte Carlo simulations with scenario configuration files.  
+**Genre**: Scripting / computational research tool.  
+**Main Ideas**: The script manages large-scale simulation runs by organizing output directories and ensuring runs do not overwrite each other. It processes YAML configuration files, executes a simulator CLI command, and handles command-line arguments for configuration, output paths, and flags to pass to the simulator.  
+**Striking Details**:  
+- The script includes a version note: *New* ⚡ **v0.2** – auto-routes results so runs don’t clobber each other. [GH-EE9764C510DC L4]  
+- It uses `argparse` for argument parsing, and `shlex` for splitting command-line flags. [GH-EE9764C510DC L31, L32]  
+- Output directories are derived from the YAML filenames, stripping numeric prefixes (e.g., `03_leak_storm.yml` → `leak_storm`). [GH-EE9764C510DC L66]  
+- The script includes error handling for missing directories and configuration files. [GH-EE9764C510DC L55, L59]  
+- Example command-line usage is provided, indicating the script is intended for direct execution with specified parameters. [GH-EE9764C510DC L10–L15]  
+
+**Coverage Limit**: Sampled anchors (35 of 83) mean not all content has been reviewed.  
+
+## Speculation
+
+- Could this script be part of a larger simulation framework focused on leak detection or fluid dynamics? [GH-EE9764C510DC L27, L66]  
+- What is the significance of the `--extra` flag, and how might it affect the behavior of the simulator CLI? [GH-EE9764C510DC L24]  
+- Are the YAML configurations standardized across multiple projects, or are they specific to this repository? [GH-EE9764C510DC L57]  
+- How might the auto-routing of results influence the structure or scalability of the output directory tree? [GH-EE9764C510DC L27]

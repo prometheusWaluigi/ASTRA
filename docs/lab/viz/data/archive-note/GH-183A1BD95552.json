@@ -1,0 +1,31 @@
+# gene_lists.py
+
+Status: unreviewed local-model draft (2026-09-25T07:10:06+00:00)
+
+- Source ID: `GH-183A1BD95552`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/gene_lists.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/gene_lists.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 158 anchors; verify against the source.
+
+**Source Note: GH-183A1BD95552**
+
+**Subject:** This file is part of a bioinformatics project focused on variant analysis, particularly concerning the GASLIT-AF gene list. The apparent subject involves the cataloging and processing of genetic data related to potential biological pathways and their associations with sleep traits, immune function, and cardiac development.
+
+**Genre:** This is a Python script, likely part of a larger codebase for variant analysis. The file contains gene lists, SNP (single nucleotide polymorphism) data, and parsing logic for handling genetic information.
+
+**Main Ideas:** The file defines gene lists and maps SNPs to specific genes. It focuses on genes involved in pathways like the kynurenine pathway, mast cell activation, calcium and ion channels, and mitochondrial function. There is a specific emphasis on genes related to cardiac development, sleep traits, and immune response.
+
+**Striking Details:**
+- The gene list includes a wide range of biological functions, such as immune response (e.g., `IDO2`, `AHR`, `HLA-DQB1`) and cardiac development (e.g., `PITX2`, `SCN5A`, `LMNA`) [GH-183A1BD95552 L14].
+- The file includes a dictionary mapping specific SNPs (e.g., `rs6277`, `rs575602255`) to gene symbols (e.g., `DRD2`, `ADGRV1`) [GH-183A1BD95552 L54, L111].
+- There is a function that parses gene symbols from a text string, distinguishing between quoted and unquoted gene names [GH-183A1BD95552 L125, L131].
+
+**Coverage Limit:** Sampled anchors (45 of 158) suggest that this note is based on a partial examination of the file. Not all content has been reviewed.
+
+## Speculation
+- Could the focus on cardiac development and immune-related genes indicate an exploration of genetic links to autoimmune disorders or cardiovascular diseases?
+- What is the significance of including both real and hypothetical gene/pathway names (e.g., "Ang-(1-7)", "Activin B") in the gene lists? Are these placeholder names or actual biological terms?
+- How does the mapping of SNPs to genes relate to the broader goals of the gaslit-af_variant_analysis project? Is it used for functional annotation or variant prioritization?
+- Might the inclusion of gene symbols like `AKAP1` and `DRP1` point to an interest in mitochondrial dynamics and its role in disease or biological processes?

@@ -1,0 +1,23 @@
+# pyproject.toml
+
+Status: unreviewed local-model draft (2026-09-25T09:46:59+00:00)
+
+- Source ID: `GH-2E57626292EB`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/celestialHarmonics/pyproject.toml>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `celestialHarmonics/pyproject.toml`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 60 anchors; verify against the source.
+
+**Source Note: GH-2E57626292EB**
+
+This is a Markdown source note for the file `pyproject.toml` from the GitHub repository `prometheusWaluigi/ideaFilaments`, specifically from the directory `celestialHarmonics`. The file is a real downloaded text and treated as data, not as instructions. The apparent subject is the configuration of a Python project, likely related to the development of a software tool or library. The genre is technical configuration, possibly related to scientific computing or research software. The main ideas revolve around setting up dependencies, tools, and configurations for a project named "celestial-harmonics." The description of the project is stated as "quantum celestial mechanics but make it TRANSGRESSIVE af" [GH-2E57626292EB L4], indicating a blend of scientific and possibly unconventional or artistic approaches. The project includes dependencies on libraries such as `torch`, `numpy`, `matplotlib`, `scipy`, `sympy`, `qutip`, and `gudhi` [GH-2E57626292EB L20–L27], suggesting a focus on computational physics, mathematics, and potentially topological data analysis. The use of `complextensor` from a Git repository [GH-2E57626292EB L30] may indicate the inclusion of custom or specialized tools. The project also includes development tools like `pytest-cov`, `black`, `ruff`, `mypy`, and `jupyter` [GH-2E57626292EB L34–L39], which are used for testing, code formatting, linting, type checking, and interactive computing. The name of the project is "celestial-harmonics" [GH-2E57626292EB L2], and the author is listed as "ketan <ketan@based.quantum>" [GH-2E57626292EB L5]. The file includes a section for `tool.black` [GH-2E57626292EB L45–L47], which specifies code formatting preferences, and a section for `tool.ruff` [GH-2E57626292EB L49–L57], which outlines linting and type-checking rules. The project is built using `poetry-core` [GH-2E57626292EB L42], a dependency management tool for Python.
+
+**## Speculation**
+
+- Could the term "TRANSGRESSIVE" in the project description [GH-2E57626292EB L4] imply an artistic or philosophical angle in the scientific approach, blending quantum mechanics with unconventional or non-traditional methodologies?
+- How does the inclusion of `gudhi` [GH-2E57626292EB L26], a library for topological data analysis, relate to the project's stated focus on quantum celestial mechanics?
+- The use of "based.quantum" in the author's email [GH-2E57626292EB L5] might suggest a connection to a specific subculture or community within the quantum physics or computational research domains.
+- What is the significance of the project name "celestial-harmonics," and how might it reflect the integration of harmonic analysis with celestial mechanics in a quantum context?
+
+**Coverage Limit:** Sampled anchors mean you have not read everything.

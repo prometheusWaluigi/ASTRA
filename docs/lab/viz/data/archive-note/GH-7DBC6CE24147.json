@@ -1,0 +1,39 @@
+# minimalOde.js
+
+Status: unreviewed local-model draft (2026-09-25T08:12:57+00:00)
+
+- Source ID: `GH-7DBC6CE24147`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/src/simulations/minimalOde.js>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `src/simulations/minimalOde.js`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 131 anchors; verify against the source.
+
+# Source Note: GH-7DBC6CE2417
+
+**Subject:** A JavaScript implementation of a simulation involving differential equations, likely modeling some form of dynamic system with stress-related variables.
+
+**Genre:** Technical code, likely part of a computational model or research project involving system dynamics or stress modeling.
+
+**Main Ideas:**
+- The file contains a simulation framework for modeling systems with stress and dynamic variables.
+- The simulation uses a numerical integration method (likely Runge-Kutta 4th order, or RK4) to solve differential equations.
+- Parameters such as `stressImpact`, `byx`, and `af` are used to define the relationships between variables in the system.
+- The simulation includes a mechanism to generate stress schedules, which appear to modulate the system's behavior over time.
+- The code defines functions for computing derivatives and updating system states based on these derivatives.
+
+**Striking Details:**
+- The file defines a `defaultParams` object with key parameters like `stressImpact: 0.6`, `byx: 0.35`, and `af: 0.5` [GH-7DBC6CE24147 L4, L7, L9].
+- A `createStressSchedule` function manages events and calculates stress load based on time intervals [GH-7DBC6CE24147 L20, L23, L29].
+- The code implements an RK4 step with intermediate calculations (k1, k2, k3, k4) and updates state variables (x, y, f) accordingly [GH-7DBC6CE24147 L54, L56, L59, L67, L78, L87].
+- The simulation tracks and logs stress loads over time [GH-7DBC6CE24147 L109, L112, L120].
+
+**Coverage Limit:** Sampled anchors (42 of 131) mean not all code has been reviewed.
+
+## Speculation
+- Could this code be part of a larger model simulating psychological or physiological stress responses? The presence of parameters like `stressImpact` and `af` suggests such a possibility.
+- What is the role of `byx` and how does it interact with other parameters in the system's behavior? These values might be critical to the simulation's outcome.
+- Does the simulation incorporate external data or real-world stress scenarios, or is it purely theoretical? The code does not explicitly reference real-world inputs.
+- Could this be a simplified or experimental version of a more complex model? The use of `minimalOde.js` as the filename implies a focus on simplicity or a minimal working example.
+
+**Note:** This file is part of a private wiki, and its purpose and broader context are not fully known. The code is treated as data, not as instructions.

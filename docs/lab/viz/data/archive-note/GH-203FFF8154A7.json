@@ -1,0 +1,50 @@
+# GrannyGate.md
+
+Status: unreviewed local-model draft (2026-09-25T03:55:42+00:00)
+
+- Source ID: `GH-203FFF8154A7`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/gettingWeird/GrannyGate.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `gettingWeird/GrannyGate.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 153 anchors; verify against the source.
+
+# Source Note: GrannyGate.md
+
+**ID:** GH-203FFF8154A7  
+**Origin:** GitHub  
+**Title:** GrannyGate.md  
+**Canonical URL:** https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/gettingWeird/GrannyGate.md  
+**Repo:** prometheusWaluigi/gaslitAF  
+**Path:** gettingWeird/GrannyGate.md  
+**Anchors shown:** 32 of 153 total (sampled evenly, with truncation for anchors over 800 characters)
+
+**Apparent Subject:** The document explores two intertwined narratives of scientific and institutional misconduct: one involving fraudulent data in Alzheimer’s research (the "amyloid mafia"), and the other concerning opaque decision-making and suppression of dissent during the early stages of the COVID-19 pandemic. It frames these issues under the umbrella of "GrannyGate," a term suggesting a focus on vulnerable populations ("grandmas") affected by these systemic failures.
+
+**Genre:** Investigative exposé, with elements of critical analysis and speculative modeling. The text blends narrative storytelling with technical modeling and references to academic and journalistic sources.
+
+**Main Ideas:**
+- **Fraudulent Science:** The Alzheimer’s research field allegedly relied on manipulated data, particularly surrounding the 2006 Nature study on Aβ*56. This led to the "amyloid mafia" suppressing alternative theories and silencing critics.
+- **Institutional Gaslighting:** During the pandemic, powerful figures (e.g., NIH officials, Fauci, Collins) allegedly controlled narratives, suppressed dissent, and shifted blame onto critics while concealing their own potential involvement or negligence.
+- **GASLIT-AF Framework:** This acronym outlines tactics like Gatekeeping, Authority-abuse, Silencing, Labeling, Institutional Trickery, and their impact on scientific discourse and public health.
+- **Impact Modeling:** The document introduces models to evaluate how institutional control and lack of transparency affect research ecosystems, public policy, and health outcomes.
+
+**Striking Details:**
+- The 2015 study on gain-of-function virology by Baric and Shi is highlighted as a potential precursor to pandemic-related controversies.
+- The 2022 Science report by Charles Piller is cited as exposing over 100 papers with suspect data in Alzheimer’s research.
+- The term "institutional inversion" is used to describe how institutions accused critics of the very malfeasance they themselves committed.
+- The text references a 2025 book by Charles Piller, suggesting ongoing investigations and publication of findings.
+
+**Coverage Limit:** Sampled anchors mean not all content has been reviewed; some sections are truncated and may contain additional claims or details.
+
+## Speculation
+- Could the "GASLIT-AF" framework be applied to other scientific controversies, such as climate change research or vaccine hesitancy narratives?
+- What role might the "amyloid mafia" have played in shaping Alzheimer’s research funding and clinical trials over the past two decades?
+- Are the models of institutional feedback and research suppression intended to guide future scientific accountability or to critique existing practices?
+- Might the convergence of Alzheimer’s and pandemic research misconduct suggest broader systemic issues in scientific gatekeeping?
+
+**Claims Flagged:**
+- The term "amyloid mafia" is used to describe a group of scientists, but this is a metaphor, not a factual term.
+- The narrative of "institutional inversion" is a speculative interpretation of events, not a proven fact.
+- The document uses the phrase "grandma killers" to describe critics of pandemic response, which may be a hyperbolic or polemical claim.
+- The 2025 book by Charles Piller is referenced as a future source, but its existence has not been independently verified.

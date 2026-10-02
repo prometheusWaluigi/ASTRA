@@ -1,0 +1,34 @@
+# run_tests.py
+
+Status: unreviewed local-model draft (2026-09-25T07:43:09+00:00)
+
+- Source ID: `GH-56F3BFB06BFA`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/run_tests.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `run_tests.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 183 anchors; verify against the source.
+
+**Source Note: GH-56F3BFB06BFA**
+
+**Subject:** This is a Python script, `run_tests.py`, used to execute tests for a project named *GASLIT-AF WARSTACK*. The script appears to be part of a software development workflow, possibly within a larger codebase.
+
+**Genre:** This is a technical code artifact, specifically a test runner script. It is not a narrative, essay, or documentation, but rather functional code intended to automate testing and reporting processes.
+
+**Main Ideas:**  
+The script provides a command-line interface (CLI) for running tests, generating reports, and managing test execution options. It supports running tests in specific modules, generating coverage reports in HTML or JSON formats, skipping slow or GPU-dependent tests, and exiting on the first test failure. The script uses `pytest` as the underlying testing framework and integrates with tools like `pytest-cov` for coverage reporting and `pytest-html` for HTML reports.
+
+**Striking Details:**  
+- The script allows users to select which module's tests to run, with an example mapping for `'biological'` to `'tests/test_biological_modeling.py'` [GH-56F3BFB06BFA L20].
+- It includes options to skip slow tests (`--skip-slow`) and tests requiring GPU (`--skip-gpu`) [GH-56F3BFB06BFA L75, L133].
+- The script attempts to generate coverage reports using `pytest-cov` and HTML reports using `pytest-html`, but includes error handling for cases where these tools are not installed [GH-56F3BFB06BFA L113, L121].
+- It prints detailed results, including elapsed time, number of tests passed, failed, or skipped, and handles JSON report parsing with fallback behavior [GH-56F3BFB06BFA L144, L160, L171].
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the source. The full script contains 183 lines, but only 40 are shown here, selected evenly. Not all code or functionality has been reviewed.
+
+## Speculation  
+- Could the *GASLIT-AF WARSTACK* project involve AI or machine learning, given the presence of a `'biological'` module and GPU-related test skipping?  
+- Are the test modules structured to support parallel testing or are they run sequentially?  
+- What is the relationship between the *GASLIT-AF WARSTACK* project and the term "GASLIT-AF" itself—is this a known acronym or internal reference?  
+- Is the script designed for a collaborative environment, or is it primarily used by a single developer?

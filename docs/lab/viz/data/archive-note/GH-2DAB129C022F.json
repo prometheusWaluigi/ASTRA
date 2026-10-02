@@ -1,0 +1,36 @@
+# run_sp_analysis.py
+
+Status: unreviewed local-model draft (2026-09-25T07:22:20+00:00)
+
+- Source ID: `GH-2DAB129C022F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/src/run_sp_analysis.py>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `src/run_sp_analysis.py`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 132 anchors; verify against the source.
+
+# Source Note: GH-2DAB129C022F
+
+**Subject:** This is a Python script named `run_sp_analysis.py`, part of a private experimental wiki hosted on GitHub. The script is likely used for running analysis on data from the "SP-API," based on the presence of a function call `run_sp_data_analysis` and references to a data directory.
+
+**Genre:** Technical code, likely for data processing or analysis. The script uses standard Python libraries such as `argparse`, `logging`, and `os`, and appears to be part of a larger project involving data handling and possibly machine learning or clustering, given the mention of "inventory clusters."
+
+**Main Ideas:**
+- The script sets up logging and parses command-line arguments to configure its behavior.
+- It checks for the existence of a data directory and handles errors related to missing or invalid input.
+- It determines whether to use "oneAPI acceleration," which may refer to hardware-based performance optimization.
+- It runs an analysis on the data and prints a summary of the results, including metrics like the number of flagged items and identified inventory clusters.
+
+**Striking Details:**
+- The script includes a logging configuration that outputs timestamps, logger names, log levels, and messages [GH-2DAB129C022F L21].
+- There is an explicit check for the existence of a data directory and an error message if it is missing [GH-2DAB129C022F L71].
+- The script allows the user to disable "oneAPI acceleration," which may be a performance-related feature [GH-2DAB129C022F L51].
+- It mentions the identification of "distinct inventory clusters" in the output summary [GH-2DAB129C022F L115].
+
+**Coverage Limit:** Sampled anchors mean that this note does not reflect the full content of the file. The analysis is based on a subset of lines selected for brevity and relevance.
+
+## Speculation
+- What is the nature of the "SP-API data files" referenced in this script? Are they proprietary or open-source?
+- Could the "oneAPI acceleration" be related to Intel's oneAPI toolkit, and if so, how does its use affect the performance of the analysis?
+- Does the mention of "inventory clusters" imply that this script is part of a larger project involving supply chain or logistics data?
+- How does the script handle missing or corrupted data files, and what are the implications for the analysis results?

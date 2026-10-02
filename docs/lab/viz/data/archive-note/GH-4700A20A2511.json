@@ -1,0 +1,37 @@
+# critiqueGASLITAFCMSS.md
+
+Status: unreviewed local-model draft (2026-09-24T23:00:01+00:00)
+
+- Source ID: `GH-4700A20A2511`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/coreTheories/critiqueGASLITAFCMSS.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/coreTheories/critiqueGASLITAFCMSS.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 294 anchors; verify against the source.
+
+# Source Note: GH-4700A20A2511
+
+**Subject:** Critique and refinement of the GASLIT-AF model for Chronic Multi-System Syndromes (CMSS). The source is a private wiki entry authored by one individual, likely part of a broader project aimed at unifying understanding of complex, overlapping chronic illnesses.
+
+**Genre:** Scientific critique and theoretical model refinement. The text is structured as a markdown document with academic references and conceptual proposals.
+
+**Main Ideas:**
+- Chronic illnesses like Long COVID, ME/CFS, POTS, and hEDS share overlapping symptoms and mechanisms but require distinct parameterization in modeling.
+- The GASLIT-AF model must incorporate **allostatic load** as a measurable, multi-system construct, not just a single metric.
+- The model should operationalize **physiological resiliency (Ω)** through quantifiable biomarkers (e.g., HRV, cortisol dynamics, ECS tone, glutathione levels).
+- The critique highlights a **lack of mechanistic granularity** in the current model, particularly in defining dysregulated feedback loops (e.g., HPA axis, autonomic circuits, immune self-regulation).
+- The proposed refinements include **customizable sub-models** for different CMSS conditions and the integration of **dynamical systems theory** to explain the coexistence of multiple "pathological attractor states."
+
+**Striking Details:**
+- The text references **PMC (PubMed Central)** articles, including a study on Long COVID and hypocortisolemia ([GH-4700A20A2511 L38]), and another on the role of the **endocannabinoid system (ECS)** in chronic illness ([GH-4700A20A2511 L51]).
+- It draws a connection between **hEDS** (hypermobile Ehlers-Danlos) and **POTS** (Postural Orthostatic Tachycardia Syndrome), noting that while they share some symptoms, they are driven by **distinct genetic mechanisms** (e.g., *TNXB* mutations) ([GH-4700A20A2511 L70]).
+- The document explicitly proposes a **composite function for Ω**, which integrates **neuroendocrine, autonomic, metabolic, and ECS buffering** ([GH-4700A20A2511 L51]).
+- It cites research on **structured pacing protocols** for post-COVID-19 syndrome ([GH-4700A20A2511 L144]) and **microglial activation** as a perpetuating factor in chronic illness ([GH-4700A20A2511 L101]).
+
+**Coverage Limit:** Sampled anchors (21 of 294 total) mean not all content has been reviewed.
+
+## Speculation
+- How might the proposed **customizable sub-models** for CMSS conditions affect clinical trial design or treatment personalization?
+- Could the **attractor framework** be applicable to other complex, multi-system disorders beyond CMSS?
+- Is the model’s emphasis on **allostatic load** and **physiological resiliency** compatible with existing frameworks in psychoneuroimmunology?
+- What implications might the **ECS’s role in Ω** have for therapeutic interventions targeting chronic illness?

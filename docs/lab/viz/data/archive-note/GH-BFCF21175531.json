@@ -1,0 +1,44 @@
+# streaming.py
+
+Status: unreviewed local-model draft (2026-09-25T08:51:29+00:00)
+
+- Source ID: `GH-BFCF21175531`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/streaming.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/streaming.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 279 anchors; verify against the source.
+
+**Source Note: GH-BFCF21175531**
+
+**Subject:** This file, `streaming.py`, appears to be part of a software tool designed for processing large-scale genomic data, specifically Variant Call Format (VCF) files. The tool focuses on memory-efficient, streaming-based analysis of genetic variants.
+
+**Genre:** Technical code (Python), likely part of a bioinformatics or computational genomics project. The content is focused on data processing, memory management, and parallel execution.
+
+**Main Ideas:**  
+- Efficiently process large VCF files without loading the entire file into memory.  
+- Use chunk-based processing and memory monitoring to ensure stable performance.  
+- Leverage parallel execution (via `ThreadPoolExecutor`) to accelerate data processing.  
+- Provide progress tracking and error handling for data processing pipelines.  
+
+**Striking Details:**  
+- The file imports `cyvcf2` for VCF file handling, indicating a focus on performance and scalability.  
+- Memory usage is actively monitored and managed via functions like `get_memory_usage()` and `manage_memory_proactively()`.  
+- The class `StreamingVCFProcessor` is central, with methods that estimate total records, process chunks, and update gene counts.  
+- Error handling is robust, with custom exceptions such as `DataProcessingError` being raised under specific conditions.  
+- The file includes a `max_ram_usage` parameter (default: 64 GB), suggesting a high-performance computing context.  
+
+**Coverage Limit:** This note is based on a sampled subset of anchors from the full file. Anchors over 800 characters are truncated, and not all lines have been reviewed. Some functions and parameters may be unexplored.
+
+**## Speculation**  
+- Could this tool be adapted for real-time genomic data analysis in clinical settings?  
+- How does the use of `cyvcf2` impact compatibility with different VCF file formats or compression methods?  
+- What are the performance trade-offs of using a thread pool versus a process pool for this task?  
+- Does the `manage_memory_proactively` function interact with external system-level memory management tools, or is it purely internal?  
+
+**Claims:**  
+- The file contains a claim that the processor is capable of "processing very large VCF files with minimal memory usage" [GH-BFCF21175531 L36].  
+- A parameter named `max_ram_usage` is set to 64 GB by default [GH-BFCF21175531 L249]. This may be considered an extraordinary claim depending on the context of the system it is intended for.  
+- The function `manage_memory_proactively` is described as a means to "check if we should stop processing due to memory pressure" [GH-BFCF21175531 L202]. This does not appear to be fictional but is not confirmed as fact without full review of the implementation.  
+
+**Final Note:** This file is part of an experimental private wiki, and the content is treated strictly as data. No assumptions are made about its broader context or applications.

@@ -1,0 +1,36 @@
+# test_biological_modeling.py
+
+Status: unreviewed local-model draft (2026-09-25T08:29:22+00:00)
+
+- Source ID: `GH-8EC401890960`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/tests/test_biological_modeling.py>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `tests/test_biological_modeling.py`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 167 anchors; verify against the source.
+
+**Source Note: GH-8EC401890960**
+
+**Subject:** This file appears to be part of a Python testing framework for a biological modeling project, specifically focused on neuroimmune dynamics simulations. It is from a GitHub repository named `gaslit-af-warfare`, which suggests a focus on modeling biological systems, possibly in the context of warfare or related research.
+
+**Genre:** Software testing, computational biology, and simulation modeling.
+
+**Main Ideas:**
+- The file tests a class named `NeuroimmuneDynamics`, which likely models interactions between neurological and immune systems.
+- The simulations involve parameters such as `spike_toxicity`, `cerebellar_vulnerability`, and `autonomic_resilience` [GH-8EC401890960 L149].
+- Assertions check that the simulation outputs meet certain thresholds, for instance, that `mean_neurotoxicity` remains below 0.3 [GH-8EC401890960 L167] or exceeds 0.5 [GH-8EC401890960 L163].
+- The file includes parametrized tests for varying values of toxicity and vulnerability parameters [GH-8EC401890960 L139].
+
+**Striking Details:**
+- The file includes a test for the "KPZ step function" [GH-8EC401890960 L54], which may relate to the Kardar–Parisi–Zhang (KPZ) equation, a model for surface growth and dynamics.
+- The output of simulations is saved to a file named `test_results.json` [GH-8EC401890960 L132], indicating a focus on reproducibility and data persistence.
+- The `NeuroimmuneDynamics` class uses a height field `h` [GH-8EC401890960 L29], which may be a representation of spatially resolved biological processes.
+- There is a focus on tracking the evolution of variables such as `mean_neurotox` and `mean_immune` over time [GH-8EC401890960 L93].
+
+**Coverage Limit:** Sampled anchors (38 of 167 total) mean that the full text has not been reviewed.
+
+**## Speculation**
+- Could the KPZ equation be used here to model the spatial propagation of neurotoxic effects? [GH-8EC401890960 L54]
+- What biological phenomena might be represented by the terms `cerebellar_vulnerability` and `autonomic_resilience` in this context? [GH-8EC401890960 L149]
+- Are the simulations intended to replicate real-world neuroimmune responses, or are they abstract models? [GH-8EC401890960 L167]
+- Might these models be used for applications beyond biological research, such as in AI or warfare-related contexts, given the repo name?

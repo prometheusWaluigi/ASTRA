@@ -1,0 +1,37 @@
+# dynamical_simulation.py
+
+Status: unreviewed local-model draft (2026-09-25T07:26:17+00:00)
+
+- Source ID: `GH-3997B73C595E`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/dynamical_simulation.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `dynamical_simulation.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 625 anchors; verify against the source.
+
+**Source Note: GH-3997B73C595E**
+
+**Subject:** This file appears to be a Python script implementing a **dynamical simulation** of biological or medical systems, likely related to **genetic fragility**, **metabolic processes**, and **symptom prediction**. The script includes functions for modeling system states, simulating their evolution over time, and generating visualizations of the results.
+
+**Genre:** This is a **computational biology or medical modeling script**, likely part of a larger research or analysis project. It uses Python and includes logging, plotting, and parameter loading from external JSON files.
+
+**Main Ideas:**
+- The script models **biological systems** (e.g., "Mast Cell Stability," "Calcium Homeostasis") and their interactions over time.
+- It incorporates **parameters** such as "γ = genetic fragility" and "σ = entropy production," suggesting a focus on **complex adaptive systems** and their **dynamics**.
+- The simulation includes **predictive elements**, such as **symptom severity predictions** based on system state changes.
+- The script includes **plotting functionality** for visualizing system states and symptom severities, likely for **data analysis or presentation** purposes.
+
+**Striking Details:**
+- The script defines **system-specific dynamics** with coefficients tied to biological processes, e.g., `self.parameter_values = None` and `self.system_states = { ... }`.
+- It appears to load **parameter values from JSON files**, indicating external configuration or data integration.
+- It uses **logging** to track simulation progress, e.g., `[GH-3997B73C595E L160]` logs parameter values and their units.
+- The script includes **symptom prediction logic**, assigning severity based on simulated system states, e.g., `self.symptom_predictions[symptom] = severity` [GH-3997B73C595E L359].
+- Plotting functions generate **phase space plots** and **symptom severity plots**, likely to visualize system behavior over time [GH-3997B73C595E L466, L559].
+
+**Coverage Limit:** This note is based on **sampled anchors** from a total of **625**, meaning not all content has been reviewed directly.
+
+**## Speculation**
+- Could this script be part of a broader study on **genetic disorders or chronic disease modeling**? The inclusion of "genetic fragility" and "kynurenine balance" [GH-3997B73C595E L267] suggests a possible link to neurodegenerative or inflammatory conditions.
+- How are the **parameter values** structured in the JSON files? The script references them but does not define their exact format or source [GH-3997B73C595E L147].
+- What is the **role of entropy production (σ)** in the system dynamics? This term appears to be a key factor in the simulation but is not elaborated in the sampled anchors [GH-3997B73C595E L54, L187].
+- Is this simulation meant for **clinical application or theoretical exploration**? The presence of symptom predictions suggests a potential interface with medical diagnostics, though no explicit mention of clinical validation is present.

@@ -1,0 +1,42 @@
+# CAP and Fractal Time.md
+
+Status: unreviewed local-model draft (2026-09-25T02:47:21+00:00)
+
+- Source ID: `GH-C307CA2D3BFF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/time-models/CAP and Fractal Time.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `time-models/CAP and Fractal Time.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 174 anchors; verify against the source.
+
+**Source Note: GH-C307CA2D3BFF**
+
+This document is a conceptual exploration of consciousness and time, presented as a **theoretical framework** rooted in **computational neuroscience** and **complex systems theory**. It draws from **peer-reviewed literature** and **neuroscientific models**, integrating **distributed processing**, **criticality**, **fractal dynamics**, and **symmetry-breaking** as potential mechanisms underpinning conscious experience. The text is part of an **experimental private wiki**, and the author is likely a **researcher or enthusiast** with technical familiarity in neuroscience and physics.
+
+**Apparent Subject:**  
+The text discusses **consciousness as an emergent property** of **distributed neural systems**, focusing on **mechanistic models** that explain the **trade-offs between consistency and availability** (CAP) in neural processing. It also explores **fractal time dynamics**, **criticality**, and **KPZ (Kardar-Parisi-Zhang) universality classes** as potential frameworks for understanding how **conscious states** arise and change.
+
+**Genre:**  
+Theoretical neuroscience, computational modeling, and conceptual analysis, with a focus on **emergent properties** and **complex systems**.
+
+**Main Ideas:**  
+- Consciousness may be **analogous to distributed systems** in computer science, where **CAP trade-offs** (consistency vs. availability) influence how neural networks operate.  
+- The brain may operate near a **critical regime**, characterized by **fractal temporal dynamics** (e.g., pink noise, 1/f power spectra) and a **fractal dimension** around **1.5**.  
+- **Symmetry-breaking** and **phase transitions** are proposed as mechanisms for transitions between **conscious states**, such as waking, dreaming, or anesthesia.  
+- **KPZ dynamics**, often used in physics, may apply to **neural activity propagation**, with **nonlinear growth** and **noise** playing key roles.  
+- The framework emphasizes **local optimization** (e.g., predictive coding) and **global coherence**, but struggles with **qualia**—the **subjective quality** of conscious experiences.
+
+**Striking Details:**  
+- The text cites **split-brain experiments** to support the **CAP analogy**, noting that the intact brain operates in a **“CP”** (consistency and partition tolerance) regime, while split-brain patients may shift to an **“AP”** (availability and partition tolerance) regime ([GH-C307CA2D3BFF L19]).  
+- **Neuronal global oscillations** (e.g., gamma synchronization) are described as mechanisms that enforce **consistency** at the expense of **local independence** ([GH-C307CA2D3BFF L23]).  
+- **Fractal/critical dynamics** are supported by empirical evidence from **resting-state EEG** and **anesthesia studies** ([GH-C307CA2D3BFF L60]).  
+- The framework **does not address qualia** in detail, acknowledging this as a **weakness** ([GH-C307CA2D3BFF L100]).
+
+**Coverage Limit:**  
+This note is based on **sampled anchors** (L8, L19, L23, L27, L30, L34, L38, L45, L56, L60, L64, L67, L71, L75, L89, L100), representing **16 of 174 total anchors** in the source. Not all content has been reviewed.
+
+**## Speculation**  
+- Could **fractal time dynamics** in the brain be a **universal feature** of **conscious systems**, or are they specific to **human neuroanatomy**?  
+- Might **KPZ universality classes** provide a **predictive model** for how **conscious states transition**, such as during **anesthesia** or **dreaming**?  
+- Could the **CAP analogy** be extended beyond **neural systems** to **artificial intelligence** or **complex networks** in general?  
+- If **symmetry-breaking** is essential to generating **new conscious contents**, could this mechanism also explain **cognitive flexibility** or **creativity**?

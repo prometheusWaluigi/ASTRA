@@ -1,0 +1,38 @@
+# Quantum Spectral Fractal Weaving Multi Scale Eigenmode.md
+
+Status: unreviewed local-model draft (2026-09-25T02:07:14+00:00)
+
+- Source ID: `GH-9D9650211723`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/theorems/eigenmode-theory/Quantum Spectral Fractal Weaving Multi Scale Eigenmode.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `theorems/eigenmode-theory/Quantum Spectral Fractal Weaving Multi Scale Eigenmode.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 157 anchors; verify against the source.
+
+# Source Note: GH-9D9650211723
+
+**Subject**: A theoretical model proposing that consciousness arises from recursive, multi-scale quantum and neural dynamics.
+
+**Genre**: Scientific/technical theory documentation, with emphasis on mathematical modeling and simulation design.
+
+**Main Ideas**:
+- Consciousness may emerge from **recursive, multi-scale dynamics** that integrate quantum coherence and classical brain processes.
+- The hypothesis, termed *Quantum Spectral Fractal Weaving*, posits that consciousness is a **recursive eigenmode across scales** — a self-similar information pattern spanning from quantum to macroscopic levels.
+- The brain is conceptualized as a **scale-invariant hierarchy**, with quantum-level processes (e.g., microtubule oscillations) influencing higher-level neural activity.
+- The model incorporates **discrete scale invariance** in Hamiltonians, ensuring energy spectra are **self-similar across scales**.
+- Environmental **decoherence** is modeled as a mechanism that selects **pointer states** — stable, classical-like states that emerge from quantum dynamics.
+- A **critical point** is proposed where quantum coherence and classical decoherence balance, allowing for the emergence of stable, system-wide coherence that supports consciousness.
+
+**Striking Details**:
+- The model uses **Lindblad operators** and **stochastic noise terms** to simulate decoherence at lower scales, e.g., "off-diagonal density matrix elements [...] decay with a certain decoherence rate Γ" [GH-9D9650211723 L71].
+- The **multi-scale Hamiltonian** is structured to allow for recursive, fractal-like eigenmodes, with each level’s Hamiltonian being a **scaled replica** of a base Hamiltonian [GH-9D9650211723 L38].
+- The framework draws from **fractal brain dynamics**, **quantum decoherence theory**, and the **recursive nature of cognitive processing** [GH-9D9650211723 L4].
+- The document references the **neuronal cytoskeleton** and **microtubule oscillations**, suggesting a **quantum-to-neural hierarchy** [GH-9D9650211723 L21].
+
+**Coverage Limit**: Sampled anchors (L1, L157, L4, L8, L11, L14, L18, L21, L24, L28, L31, L38, L44, L54, L64, L67, L71, L77, L84, L87) provide a **partial, non-exhaustive view** of the full text, which contains 157 anchors.
+
+## Speculation
+- Could the proposed **"critical cusp"** be analogous to **phase transitions** in physical systems, suggesting a thermodynamic-like mechanism for consciousness?
+- How might **fractal time-series analysis** applied to neural activity align with the theory's predictions for recursive eigenmodes?
+- Are the **"pointer states"** in this model comparable to **integrated information theory** (IIT) concepts of consciousness, or do they represent a fundamentally different approach?
+- What empirical evidence might distinguish this model from others that claim consciousness arises from **quantum processes** in the brain?

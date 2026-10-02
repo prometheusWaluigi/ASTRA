@@ -1,0 +1,38 @@
+# PRD.md
+
+Status: unreviewed local-model draft (2026-09-25T03:58:39+00:00)
+
+- Source ID: `GH-30C79F9402BC`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/PRD.md>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `PRD.md`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 99 anchors; verify against the source.
+
+# Source Note: GH-30C79F9402BC
+
+**Subject**: This document is a **Product Requirements Document (PRD)** for a **Genomic Variant Analysis Module** named **GASLIT-AF**, developed as part of the **gaslit-af_variant_analysis** repository on GitHub. The apparent focus is on the **technical and functional requirements** for software that processes genomic variant data, specifically from **VCF files**.
+
+**Genre**: Technical documentation, specifically a PRD, which outlines software specifications, objectives, and implementation plans. The document is structured in markdown, with clear headings, bullet points, and numbered sections.
+
+**Main Ideas**:
+- The project aims to **process large genomic variant files** (VCF format) on **Windows 11** systems with **80GB RAM**.
+- The software is designed to **detect variants** in **specific gene categories**, including **Immune & Inflammatory Pathways**, **Structural & Connective Tissue Integrity**, **Endocannabinoid System (ECS)**, and **Kynurenine Pathway**. These categories are listed with specific genes (e.g., COMT, APOE, TPSAB1).
+- The system must utilize **parallel processing** optimized for **Intel 12700K** hardware, with a **chunk size of 1,000,000 variants** per worker.
+- Features include **interactive visualizations**, **comprehensive variant summaries**, and **export options in CSV format**.
+- **Non-functional requirements** emphasize **maintainability**, **modular architecture**, and **error-free parsing** of VCF files.
+
+**Striking Details**:
+- The document includes **specific file paths** (e.g., `C:\Projects\gaslitAFModel\data\KetanRaturi-SQ4T88M8-30x-WGS-Sequencing_com-08-24-24.snp-indel.genome.vcf`), suggesting it is based on real data processing tasks.
+- **Gene lists** are explicitly provided for each biological pathway, indicating a **targeted approach to genomic variant analysis**.
+- The document outlines **project phases**, including **Environment Setup**, **Parser Integration**, **Data Processing**, and **Visualization and Reporting**.
+- **Risk categories** are identified, such as **Memory Management Risk** and **Accuracy Risk**, which are flagged as concerns but not resolved in the sampled anchors.
+
+**Coverage Limit**: The anchors shown are **sampled evenly** from 99 total, meaning that **not all content has been reviewed**. Some sections may be **truncated** or **omitted** entirely.
+
+## Speculation
+
+- Could the **gene categories** listed (e.g., immune pathways, ECS) be **linked to broader research or clinical applications**, such as **personalized medicine** or **disease modeling**?
+- Does the **explicit mention of specific hardware (Intel 12700K)** imply that the software is **not broadly compatible** with other systems or processors?
+- Might the **presence of multiple risk categories** suggest that the project is **still in early development stages** or that **performance and accuracy are ongoing challenges**?
+- Are the **gene lists** derived from **publicly available databases** or **custom-defined** for this project?

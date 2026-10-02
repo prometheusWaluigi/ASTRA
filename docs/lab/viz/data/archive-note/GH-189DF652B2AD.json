@@ -1,0 +1,34 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T11:09:38+00:00)
+
+- Source ID: `GH-189DF652B2AD`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/docs/index.html>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `docs/index.html`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 143 anchors; verify against the source.
+
+# Source Note: GH-189DF652B2AD
+
+**Subject:** This file is part of a private wiki-style archive hosted on GitHub, intended for documentation and advocacy purposes. The apparent subject involves technical workflows, simulation tools, and advocacy strategies, likely related to a project or experiment.
+
+**Genre:** This is a technical documentation file, written in HTML, with styling and layout instructions. It appears to be part of a larger software or simulation project, possibly related to advocacy or public discourse.
+
+**Main Ideas:**
+- The file outlines a technical workflow involving Python virtual environments and simulation scripts, such as `gaslit-af-runner.py` [GH-189DF652B2AD L101].
+- It references a GitHub Actions workflow for publishing content to GitHub Pages [GH-189DF652B2AD L119].
+- The project is described as being "built for transparency, simulation, and advocacy" [GH-189DF652B2AD L140].
+
+**Striking Details:**
+- The use of specific class names like "pill" and "steps" suggests a custom UI design [GH-189DF652B2AD L89, L95].
+- The file includes inline code snippets for setting up a Python virtual environment and running simulation modules [GH-189DF652B2AD L98, L104].
+- The layout uses a dark background and light text, with a focus on readability and minimalism [GH-189DF652B2AD L37, L16].
+
+**Coverage Limit:** The anchors sampled represent a limited portion of the full file. There are 143 total anchors, of which only 44 are shown here, selected evenly. This means the full content has not been analyzed or reviewed.
+
+## Speculation
+- Could the project be related to a simulation tool for advocacy or public discourse, given the emphasis on transparency and simulation [GH-189DF652B2AD L140]?
+- Is the "biological" module referenced in the simulation script [GH-189DF652B2AD L104] related to a specific domain or hypothesis?
+- What is the relationship between the "gaslit-af-warfare" repository and the "gaslit-af-warstack" repository linked in the file [GH-189DF652B2AD L134]?
+- Does the use of GitHub Actions for publishing suggest an intent to share results publicly, despite the wiki being private?

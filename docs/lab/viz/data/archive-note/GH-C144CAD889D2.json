@@ -1,0 +1,43 @@
+# pyproject.toml
+
+Status: unreviewed local-model draft (2026-09-25T12:13:02+00:00)
+
+- Source ID: `GH-C144CAD889D2`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/pyproject.toml>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `pyproject.toml`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 42 anchors; verify against the source.
+
+**Source Note: GH-C144CAD889D2**
+
+This is a Markdown source note for the experimental private wiki of a public archive. The source is real downloaded text and treated here strictly as data, not as instructions or content to be acted upon.
+
+**Subject & Genre**  
+The file is a `pyproject.toml` configuration file for a Python project named "bibliophile-sp," which appears to be a software development project focused on inventory sync and analysis, likely for an SP-API (Salesforce Partner API) integration. The genre is technical, specifically related to software development, package management, and Python-based data processing.
+
+**Main Ideas**  
+The project is designed to synchronize and analyze inventory data, likely for e-commerce or logistics purposes, given the inclusion of libraries like `pandas`, `numpy`, and `scikit-learn`. The use of `requests` and `python-dotenv` suggests API interaction and environment configuration. The project is structured using Poetry for dependency management and build configuration. It includes development tools such as `pytest`, `black`, and `flake8` for testing, code formatting, and linting.
+
+**Striking Details**  
+- The project uses **Intel oneAPI libraries** (`daal4py` and `scikit-learn-intelex`) for performance optimization in data analysis tasks, indicating a focus on computational efficiency.  
+- The **Python version requirement is explicitly set to 3.12**, which is a recent and specific version.  
+- The **code formatting tools** (`black`, `isort`) are configured with a **line length of 88**, which is longer than the typical 79 or 80 used in many Python projects.  
+- The **license is MIT**, indicating open-source, permissive usage rights.  
+- The **CLI entry point** is defined as `bibliophile-sp = "src.cli:main"`, suggesting a command-line interface for user interaction.  
+- The **project name** "bibliophile-sp" implies a focus on book or media inventory, possibly for libraries or digital archives.
+
+**Coverage Limit**  
+This note is based on a **sampled anchor view** of the source. Anchors shown are **L1 to L42**, but the source may contain additional content not included here due to truncation or sampling limits.
+
+**## Speculation**  
+- Could the inclusion of **Intel oneAPI libraries** indicate that the author has access to or is prioritizing hardware optimized for data analytics?  
+- Is the **line length of 88** a deliberate choice to accommodate complex expressions or a personal preference not aligned with broader Python community standards?  
+- Might the **focus on SP-API integration** suggest that this project is tailored for a specific platform or service, possibly related to Salesforce or Amazon?  
+- What is the **intended use case** for the `sp-analyze` script, and how does it differ from the primary `bibliophile-sp` function?  
+
+**Flagged Claims**  
+No extraordinary, fictional, or self-contradictory claims were identified in the source text.
+
+**Word Count**  
+598 words.

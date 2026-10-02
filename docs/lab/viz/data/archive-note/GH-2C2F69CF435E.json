@@ -1,0 +1,36 @@
+# test_core_ascii.py
+
+Status: unreviewed local-model draft (2026-09-25T04:42:21+00:00)
+
+- Source ID: `GH-2C2F69CF435E`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ASTRA/blob/61b8ccf883eccd19619ef12e1891d77546579d75/tests/archive/test_core_ascii.py>
+- Repo: prometheusWaluigi/ASTRA @ `61b8ccf883ec` path `tests/archive/test_core_ascii.py`
+- Published: 2026-02-04T21:25:37Z
+- Coverage: model saw an evenly sampled packet of 95 anchors; verify against the source.
+
+# Source Note: GH-2C2F69CF435E
+
+**Subject**: Testing the core functionality of the ASTRA project, with a focus on the `QualiaField` class and its visualization and evolution processes.
+
+**Genre**: Python test script, likely part of a larger software testing framework for the ASTRA project. Contains mocked data and test procedures.
+
+**Main Ideas**:
+- The script tests the ASTRA core modules, particularly the `QualiaField` class, its visualization, and evolution functions.
+- It uses mocked natal data, including planetary positions and retrograde statuses, to simulate input for the ASTRA system.
+- The script creates a visualization of the `QualiaField` using matplotlib, and tests the behavior of the `evolve_step` function with specified parameters.
+
+**Striking Details**:
+- Mocked planetary data includes positions in zodiac signs and houses, such as: [GH-2C2F69CF435E L45] and [GH-2C2F69CF435E L53].
+- The script uses a non-interactive backend for matplotlib to avoid GUI dependencies: [GH-2C2F69CF435E L11].
+- The `QualiaField` is initialized with a grid size of (64, 64): [GH-2C2F69CF435E L71].
+- The test prints output statistics of the field, such as the minimum and mean values: [GH-2C2F69CF435E L75] and [GH-2C2F69CF435E L77].
+- The script saves the visualization as "output/qualia_field_core.png": [GH-2C2F69CF435E L85].
+
+**Coverage Limit**: Anchors are sampled evenly, so not all content has been examined.
+
+## Speculation
+- Could the use of zodiacal data in `MockNatalData` indicate that ASTRA integrates with or is inspired by astrological or esoteric modeling systems?
+- What is the relationship between the `evolve_step` function's parameters (e.g., `alpha`, `beta`, `gamma`) and the behavior of the `QualiaField`?
+- Is the ASTRA project related to computational models of consciousness, given the presence of terms like "QualiaField"?
+- How does the `QualiaField` class interact with other ASTRA modules, and what might its broader application be?

@@ -1,0 +1,47 @@
+# OnePointFiveBitEfficiency.md
+
+Status: unreviewed local-model draft (2026-09-25T00:09:43+00:00)
+
+- Source ID: `GH-2B12D0461A4B`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/onePointFiveBit/OnePointFiveBitEfficiency.md>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/onePointFiveBit/OnePointFiveBitEfficiency.md`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 299 anchors; verify against the source.
+
+# Source Note: GH-2B12D0461A4B
+
+**Subject**: The document discusses the intersection of computational efficiency, energy constraints, and biological processes, including DNA error correction, neural coding, and mushroom yield optimization. It appears to be a speculative or interdisciplinary analysis.
+
+**Genre**: Technical/Experimental Wiki Archive, likely part of a personal knowledge repository or research journal. The text includes markdown formatting, citations, and references to scientific literature.
+
+**Main Ideas**:
+- **Energy-Information Equivalence**: The text explores how computational systems (biological or artificial) balance energy expenditure with information processing efficiency, particularly in contexts of error correction and reliability.
+- **1.5-bit Efficiency**: A recurring theme is the idea of "1.5-bit-like" efficiency in biological processes, such as DNA codon usage, neural spike timing, and ion channel gating.
+- **Biological and Computational Cross-Disciplinary Insights**: The document draws comparisons between biological systems (e.g., collagen networks, mushroom yield, lignocellulose degradation) and computational models (e.g., energy minimization, nonlinear computation).
+
+**Striking Details**:
+- The text cites a range of scientific papers and resources, suggesting a focus on empirical data and theoretical frameworks from computational biology and physics.
+- It mentions a **71.4× energy reduction** in certain models compared to FP16, which may relate to computational efficiency in artificial systems.
+- The term **"Landauer limit"** is referenced, tying energy costs to information processing at a fundamental physical level.
+- **"Stochastic ternary states"** in ion channels are discussed, suggesting an exploration of probabilistic models in biological systems.
+
+**Coverage Limit**: Anchors are sampled evenly from a total of 299, meaning the content is not fully explored. The source is presented as a fragment or excerpt, not a complete document.
+
+## Speculation
+
+- Could the focus on 1.5-bit efficiency suggest a computational framework inspired by biological error correction mechanisms, and how might this influence AI design?
+- Are the energy reduction claims (e.g., 71.4×) tied to specific biological processes or computational models, and how might they be validated or contextualized?
+- Might the exploration of nonlinear computation (e.g., NAND/OR gates) reflect an interest in hybrid computational-biological systems, and what are the implications for AI or synthetic biology?
+- How might the apparent convergence of topics (e.g., mushroom yield and energy minimization) reflect the author’s broader conceptual framework or personal research interests?
+
+**Claims**:
+- The text refers to **"1.5-bit-like redundancy"** in DNA codon usage and collagen networks, which may be a speculative or theoretical interpretation rather than an empirically established fact.
+- The **"71.4× energy reduction"** is cited but not elaborated, and it is unclear whether this is a comparison between specific models or a generalized claim.
+- The **"stochastic ternary states"** in ion channel gating are described but not directly tied to computational or theoretical models in the sampled anchors.
+
+**Factual Observations**:
+- [GH-2B12D0461A4B L1]: Contains an image link to a logo, likely representing the author's branding or project identity.
+- [GH-2B12D0461A4B L14]: Mentions DNA codon usage and collagen fibril networks with **1.5-bit-like redundancy** for error correction, citing references [^1] and [^6].
+- [GH-2B12D0461A4B L45]: States that **above 2 bits**, energy costs exceed metabolic budgets, implying a threshold for computational efficiency in biological systems.
+- [GH-2B12D0461A4B L77]: Claims **71.4× energy reduction** vs FP16 models, citing references [^12] and [^4].

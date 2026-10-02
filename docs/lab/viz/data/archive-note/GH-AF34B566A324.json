@@ -1,0 +1,33 @@
+# noise_magnitude.yml
+
+Status: unreviewed local-model draft (2026-09-25T12:08:01+00:00)
+
+- Source ID: `GH-AF34B566A324`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/configs/noise_magnitude.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `configs/noise_magnitude.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 55 anchors; verify against the source.
+
+**Source Note: GH-AF34B566A324**
+
+**Subject:** This YAML file defines a configuration for a computational model exploring the sensitivity of a pandemic simulation to noise parameters, specifically the magnitude of exogenous leak shocks. The model combines ordinary differential equations (ODEs) and agent-based modeling (ABM) to simulate the spread of a leak or information shock within a population.
+
+**Genre:** Technical configuration file for a computational experiment, likely related to epidemiology, social dynamics, or information diffusion.
+
+**Main Ideas:**  
+The configuration outlines a Monte-Carlo simulation with multiple runs (100), random seeding, and parameter sweeps over a range of noise magnitudes. The simulation includes both deterministic (ODE) and stochastic (ABM) components. The noise model introduces variability through leak shocks, with parameters such as `noise_sigma` (standard deviation of shocks) and `leak_frequency` (probability of a leak per timestep). The ABM component uses a network of 3,000 agents, with rewiring probability and influence weights for believers and skeptics. The model also defines thresholds for system collapse, including overlap of an ε-band, trust slope, and entropy criticality.
+
+**Striking Details:**  
+- The noise_sigma parameter is set to 0.1 but will be overridden by a sweep over values from 0.02 to 0.5 [GH-AF34B566A324 L31, L14].
+- The simulation runs over a timescale of 365 timesteps, with each timestep representing a day [GH-AF34B566A324 L17, L18].
+- The ABM network includes 3,000 agents with a rewiring probability of 0.2 and influence weights of 1.0 for believers and 1.2 for skeptics [GH-AF34B566A324 L37, L38, L42].
+- The model defines three distinct collapse thresholds: epsilon_overlap (0.15), trust_slope_threshold (-0.05), and entropy_critical (1.2) [GH-AF34B566A324 L46, L47, L48].
+
+**Coverage Limit:** Sampled anchors (L1, L55, L2, L3, L4, L6, L7, L9, L10, L11, L12, L14, L16, L17, L18, L21, L22, L23, L24, L25, L26, L27, L30, L31, L32, L34, L35, L37, L38, L39, L40, L41, L42, L45, L46, L47, L48, L50, L52, L53, L54) suggest the configuration is incomplete or partial, with some anchors truncated due to length.
+
+**## Speculation**  
+- Could the noise_sigma sweep be used to explore how uncertainty or misinformation affects the stability of the modeled system?  
+- How might the influence weights (believer vs. skeptic) affect the propagation of leak shocks in the ABM layer?  
+- Are the collapse thresholds (epsilon_overlap, trust_slope_threshold, entropy_critical) derived from empirical data, or are they arbitrary for the simulation?  
+- What is the relationship between the ODE and ABM layers in the simulation? Do they interact, or are they parallel models?

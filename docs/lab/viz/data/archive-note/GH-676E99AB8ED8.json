@@ -1,0 +1,38 @@
+# cleanup_list.txt
+
+Status: unreviewed local-model draft (2026-09-25T04:02:56+00:00)
+
+- Source ID: `GH-676E99AB8ED8`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/cleanup_list.txt>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `cleanup_list.txt`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 26 anchors; verify against the source.
+
+**Source Note: GH-676E99AB8ED8**
+
+This Markdown source note describes the experimental private wiki of a single author's public archive. The source is real downloaded text and must be treated strictly as data, not as instructions. The file `cleanup_list.txt` from the GitHub repository `prometheusWaluigi/gaslit-af_variant_analysis` appears to be a list of files, modules, and directories to be removed or deprecated from a software project focused on variant analysis, likely related to genetic or genomic data processing.
+
+**Apparent Subject:**  
+The file outlines a cleanup process for a software project, specifically identifying obsolete or redundant files and components. It is part of a larger variant analysis pipeline, possibly related to genetic research or bioinformatics tools.
+
+**Genre:**  
+Technical documentation, specifically a cleanup list for a software development project.
+
+**Main Ideas:**  
+The primary purpose of the file is to catalog and remove outdated or unused components of the project, including scripts, modules, and test files. The author has transitioned to newer scripts such as `direct_system_analysis.py` and `run_direct_analysis.py`, which have replaced older tools like `analyze.py` and `run_all_vcf_analysis.py`. The focus is on streamlining the project by eliminating redundancies and unused code.
+
+**Striking Details:**  
+- The list includes both Python scripts and directories, indicating a comprehensive cleanup effort [GH-676E99AB8ED8 L1–L10, L19–L26].
+- The author has explicitly marked multiple modules as “not used in current pipeline,” suggesting a significant refactoring of the codebase [GH-676E99AB8ED8 L14, L15, L17, L18].
+- Test files are included in the cleanup list, indicating that the author has also removed testing infrastructure for deprecated modules [GH-676E99AB8ED8 L21–L25].
+
+**Coverage Limit:**  
+This source note is based on a sampled subset of anchors from the file. Anchors shown include all 26 lines of the file, but some lines may be truncated due to length constraints. Therefore, the full scope and context of the cleanup process may not be fully represented here.
+
+## Speculation
+
+- Could this cleanup reflect a shift in the project's focus or methodology? For instance, the removal of `clinvar_integration.py` and related directories [GH-676E99AB8ED8 L18, L20] might indicate a change in how clinical variant data is handled.
+- What is the relationship between the deprecated files and the newer scripts such as `direct_system_analysis.py` and `run_direct_analysis.py` [GH-676E99AB8ED8 L2, L13]? Are these newer scripts part of a broader overhaul or merely incremental updates?
+- Why are multiple test files listed for removal [GH-676E99AB8ED8 L21–L25]? Does this imply that the testing framework has also been updated or simplified?
+- Are there any unmentioned dependencies or legacy systems that might still rely on the removed files [GH-676E99AB8ED8 L1–L10, L19–L26]? Could this cleanup potentially disrupt existing workflows or integrations?

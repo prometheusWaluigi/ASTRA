@@ -1,0 +1,35 @@
+# find_specific_variants.py
+
+Status: unreviewed local-model draft (2026-09-25T08:25:28+00:00)
+
+- Source ID: `GH-8379C6B247E7`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/backup/find_specific_variants.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `backup/find_specific_variants.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 144 anchors; verify against the source.
+
+**Source Note: GH-8379C6B247E7**
+
+**Subject:** This source is a Python script titled `find_specific_variants.py`, part of a private experimental wiki and public archive hosted on GitHub. It appears to be a computational tool for variant analysis, likely in the context of genomic or genetic research.
+
+**Genre:** Technical code script with inline documentation and logging configuration. The script is part of a larger project, as indicated by references to external modules and files, such as `src.gaslit_af.device` and `pysam`.
+
+**Main Ideas:**  
+The script is designed to process genomic variant data, specifically filtering for specific SNPs (single nucleotide polymorphisms) based on predefined mappings. It utilizes logging for debugging and reporting, and includes parameters for configuring output directories, thread counts, and batch sizes. The tool likely interacts with VCF (Variant Call Format) files, a standard format for storing genetic variation data.
+
+**Striking Details:**  
+- At [GH-8379C6B247E7 L38], the script references a dictionary mapping gene names to specific RSIDs (Reference SNP cluster IDs), such as `"BCL2": ["rs956572"]`.  
+- At [GH-8379C6B247E7 L41], it includes a comment block labeled "Sleep Traits" suggesting a possible focus on genetic factors influencing sleep.  
+- At [GH-8379C6B247E7 L101], the script specifies `dbsnp_path`, a parameter likely used to locate a DBSNP database for variant annotation.  
+- At [GH-8379C6B247E7 L135], the script prints variant details in a structured format: `"[bold]{gene}[/] - {rsid} ({genotype}) at {chrom}:{pos}"`.  
+- At [GH-8379C6B247E7 L126], it logs a message indicating that specific variants are saved to a CSV file, suggesting a downstream analysis or reporting phase.
+
+**Coverage Limit:**  
+This note is based on sampled anchors from a total of 144 lines. Not all content has been reviewed, and the full context of the script or project may include additional functionality, parameters, or dependencies.
+
+**## Speculation**  
+- Could the presence of a "Sleep Traits" block [GH-8379C6B247E7 L41] indicate a broader research interest in the genetic basis of sleep disorders or circadian rhythms?  
+- What is the relationship between the `initialize_device` function [GH-8379C6B247E7 L19] and the computational workload described in the script, such as multi-threaded batch processing [GH-8379C6B247E7 L56]?  
+- Is the use of the `rich` library for logging [GH-8379C6B247E7 L28] a deliberate choice for enhanced visualization in a research or development context, or for compatibility with a specific workflow?  
+- Might the script's interaction with DBSNP [GH-8379C6B247E7 L101] imply a focus on clinical or population genetics, or is it more aligned with experimental or computational biology?

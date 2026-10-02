@@ -1,0 +1,44 @@
+# exceptions.py
+
+Status: unreviewed local-model draft (2026-09-25T07:37:18+00:00)
+
+- Source ID: `GH-4C3D4A5FB8CB`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/exceptions.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `src/gaslit_af/exceptions.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 124 anchors; verify against the source.
+
+**Source Note**
+
+ID: GH-4C3D4A5FB8CB  
+Origin: github  
+Title: exceptions.py  
+Canonical URL: https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/src/gaslit_af/exceptions.py  
+Repo: prometheusWaluigi/gaslit-af_variant_analysis  
+Path: src/gaslit_af/exceptions.py  
+Anchors shown: 34 (sampled evenly from 124 total)  
+
+**Subject**: This file defines a set of custom exception classes and utilities for error handling within a software project named "GASLIT-AF." The exceptions are likely used in the context of variant analysis, a field often associated with bioinformatics or genetic research.  
+
+**Genre**: Technical code; specifically, a module for exception handling in a Python-based application. The file includes class definitions, utility functions, and decorators for managing errors and retries.  
+
+**Main Ideas**:  
+- Custom exception classes are defined to handle specific error scenarios in the GASLIT-AF project. These include `GaslitAFError`, `AnnotationError`, `CacheError`, `ConfigurationError`, and `VisualizationError`, each with tailored messages and the ability to store additional details.  
+- A utility function or decorator is provided for retrying operations that might fail transiently. This includes parameters such as maximum attempts, delay between retries, and a list of exceptions to catch and retry.  
+- The use of `super().__init__` indicates inheritance from Python's built-in `Exception` class, suggesting a modular and hierarchical error-handling approach.  
+
+**Striking Details**:  
+- The `GaslitAFError` class is the base exception for all errors in the project and includes a default message: "An error occurred in GASLIT-AF" [GH-4C3D4A5FB8CB L9].  
+- The `retry` decorator is described as handling operations that might fail transiently [GH-4C3D4A5FB8CB L93].  
+- The retry logic includes logging for both failures and retries, with a message like: "Operation failed, retrying ({attempts}/{max_attempts}): {e}" [GH-4C3D4A5FB8CB L121].  
+- The file contains references to error handling in areas such as API operations, device initialization, and visualization [GH-4C3D4A5FB8CB L35, L56, L77].  
+
+**Coverage Limit**:  
+Sampled anchors only; the full file may contain additional exceptions, error-handling logic, or documentation not represented here.  
+
+## Speculation  
+- Could the retry decorator be used to handle transient network failures in API calls or data fetching processes?  
+- What specific visualization errors does the `VisualizationError` class address, and how do they differ from other error types?  
+- How does the logging mechanism in the retry decorator contribute to debugging or monitoring the application's reliability?  
+- Are there any unmentioned exceptions or error types that might be relevant to the GASLIT-AF project's broader functionality?

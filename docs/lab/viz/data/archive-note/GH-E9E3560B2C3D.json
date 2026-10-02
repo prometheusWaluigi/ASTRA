@@ -1,0 +1,41 @@
+# dashboard.html
+
+Status: unreviewed local-model draft (2026-09-25T12:25:18+00:00)
+
+- Source ID: `GH-E9E3560B2C3D`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/dashboard.html>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/frontend/templates/dashboard.html`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 401 anchors; verify against the source.
+
+**Source Note: GH-E9E3560B2C3D**
+
+This is a Markdown source note for the file `dashboard.html` from the GitHub repository `prometheusWaluigi/gaslit-af-warfare`, specifically the commit `4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8`. The file appears to be part of a web application's frontend, likely a dashboard interface for monitoring or analyzing complex systems, possibly related to security, risk, or institutional behavior.
+
+**Subject:**  
+The content revolves around the design and structure of a dashboard interface with a focus on displaying metrics and results from simulations or analyses, possibly related to biological, genetic, and institutional modeling.
+
+**Genre:**  
+This is a technical file, specifically a web template written in HTML with embedded Jinja2 templating syntax. It is part of a software project, likely related to data visualization and analysis.
+
+**Main Ideas:**  
+- The dashboard includes multiple modules, such as "Biological Modeling," "Genetic Risk," and "Institutional Feedback."
+- It visualizes data using charts (e.g., `bioCouplingChart`, `shieldBreachChart`), with color-coding and styling elements (e.g., `--primary-color`).
+- There is a call to action for users to "Share Your Story" and a link to "View All" testimonies, suggesting a user-facing component.
+- The file references a variable `results` which contains data points such as `genetic.risk_results.fragility_gamma` and `institutional.final_state`.
+
+**Striking Details:**  
+- The use of a metric label such as "Biological Attractor State" [GH-E9E3560B2C3D L69] suggests a focus on biological systems and their modeling.
+- The presence of a "shieldBreachValue" [GH-E9E3560B2C3D L120] and a chart with a red-based color scheme [GH-E9E3560B2C3D L316] implies a concern with risk, breach, or failure scenarios.
+- The inclusion of a testimonies page [GH-E9E3560B2C3D L248] and a "Share Your Story" button [GH-E9E3560B2C3D L282] indicates an interactive or community-driven component to the system.
+
+**Coverage Limit:**  
+Sampled anchors (47 of 401) mean that the full content has not been reviewed, and some details may be unrepresented or misrepresented.
+
+## Speculation
+
+- Could the "Biological Attractor State" [GH-E9E3560B2C3D L69] be a metaphor or a literal model for human or AI behavior in crisis situations?
+- What kind of data is being visualized in the "shieldBreachChart" [GH-E9E3560B2C3D L299], and what does it represent in the context of the system?
+- How might the "Institutional Feedback" [GH-E9E3560B2C3D L214] module interact with the "Legal & Policy" [GH-E9E3560B2C3D L231] section to provide insights or recommendations?
+- Is the "Share Your Story" [GH-E9E3560B2C3D L282] feature an attempt to gather user feedback or testimonies about the system's impact?

@@ -30,7 +30,7 @@ canvas{display:block}
 <div id="stats"></div>
 <table id="tbl"></table>
 <p style="color:#8a97ab;font-size:11px">Stylized re-rendering of headline effect sizes from <a href="https://arxiv.org/abs/2607.17427" target="_blank" rel="noopener">arXiv:2607.17427</a> (21,600 decisions, 60 equities, 18 weeks). Not raw decision data. <a href="hub.html">← rooms</a></p></div>
-<script type="importmap">{"imports":{"three":"/viz/vendor/three.module.min.js","three/addons/":"/viz/vendor/addons/"}}</script>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
 <script type="module">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
@@ -46,7 +46,7 @@ if(reduced)$('spin').checked=false;
 scene.add(new THREE.AmbientLight(0x8899bb,.7));
 const key=new THREE.DirectionalLight(0xffe0b0,1.1);key.position.set(30,60,40);scene.add(key);
 
-const d=await(await fetch('/api/viz/scalpel',{cache:'no-store'})).json();
+const d=await(await fetch('./data/scalpel.json',{cache:'no-store'})).json();
 if(!d.available){$('stats').textContent='effects file unavailable: '+(d.error||'');throw new Error(d.error)}
 const E={};for(const e of d.effects)E[e.name]=e;
 

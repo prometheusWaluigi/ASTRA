@@ -1,0 +1,47 @@
+# chaos_patterns.py
+
+Status: unreviewed local-model draft (2026-09-25T04:58:15+00:00)
+
+- Source ID: `GH-46697FE43F3A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/celestialHarmonics/patterns/chaos_patterns.py>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `celestialHarmonics/patterns/chaos_patterns.py`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 282 anchors; verify against the source.
+
+**Source Note: GH-46697FE43F3A**  
+Origin: GitHub  
+Title: chaos_patterns.py  
+Canonical URL: https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/celestialHarmonics/patterns/chaos_patterns.py  
+Repo: prometheusWaluigi/ideaFilaments  
+Path: celestialHarmonics/patterns/chaos_patterns.py  
+
+**Apparent Subject:**  
+The file appears to be a Python script implementing algorithms related to chaotic systems, specifically focusing on resonance webs, Arnold webs, and transport patterns. It is likely part of a computational physics or dynamical systems project, possibly involving simulations of celestial mechanics or analogous systems.  
+
+**Genre:**  
+Technical code; computational physics / dynamical systems.  
+
+**Main Ideas:**  
+- The script defines classes and methods for computing resonance webs and chaotic transport patterns.  
+- It uses graph structures (via `networkx`) to represent phase spaces and transport channels.  
+- Key functions include computing unstable manifolds, resonance checks, and splitting angles.  
+- The code handles edge cases, such as when there are insufficient points to form a resonance web ([GH-46697FE43F3A L115]), or when no edges exist in a graph ([GH-46697FE43F3A L282]).  
+- The use of `np.sin`, `np.arctan`, and `np.linalg.norm` suggests numerical computations in phase space.  
+
+**Striking Details:**  
+- The script contains a comment about respecting "dimensionality" when computing the dimension of a position vector ([GH-46697FE43F3A L198]).  
+- There is a direct quote: `print(f"unstable manifold computation failed bc CHAOS DO BE CHAOTIC: {e}")` ([GH-46697FE43F3A L192]).  
+- A line references a "BASIC VERSION RN" for computing the Melnikov integral ([GH-46697FE43F3A L127]).  
+- The code defines a class `ChaoticTransportPattern` that inherits from `BasePattern` ([GH-46697FE43F3A L210]).  
+
+**Coverage Limit:**  
+Sampled anchors (39 total) do not cover the entire file. The file may include additional functions, comments, or computational details not sampled here.  
+
+## Speculation  
+- Could the reference to "CHAOS DO BE CHAOTIC" ([GH-46697FE43F3A L192]) be a humorous or self-aware comment about the inherent complexity of chaotic systems?  
+- Is the mention of "BASIC VERSION RN" ([GH-46697FE43F3A L127]) an indication that this script is part of an ongoing or evolving project with more advanced versions?  
+- Might the use of the term "filaments" in the repo name "ideaFilaments" suggest a broader framework or methodology involving the study of chaotic systems or transport phenomena?  
+- Are the graph-based models of resonance and transport intended for applications beyond celestial mechanics, such as in quantum systems or neural networks?  
+
+**Note:** The claims made in this source note are based on sampled text and do not represent a complete reading of the file.

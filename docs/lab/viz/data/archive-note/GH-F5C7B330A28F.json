@@ -1,0 +1,35 @@
+# docker-compose.yml
+
+Status: unreviewed local-model draft (2026-09-25T12:30:51+00:00)
+
+- Source ID: `GH-F5C7B330A28F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/docker-compose.yml>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `docker-compose.yml`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 39 anchors; verify against the source.
+
+**Source Note: GH-F5C7B330A28F**
+
+This document is a `docker-compose.yml` file from the GitHub repository `prometheusWaluigi/bibliophile-sp`, specifically from the commit hash `a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e`. It serves as a configuration file for Docker Compose, defining how to build and run containers for a project named "bibiliophile-sp."
+
+**Subject & Genre:**  
+The apparent subject is a technical configuration for a software project, likely related to a tool or application called "bibiliophile-sp." The genre is configuration and automation, specifically for containerized development environments using Docker.
+
+**Main Ideas:**  
+The file defines two Docker services: one for the primary service (`bibiliophile-sp`) and another for a macOS-optimized version (`mac`). Both use a Dockerfile to build the container image, with the primary service utilizing Intel oneAPI acceleration, while the macOS version avoids such dependencies. Both services mount a local `./output` directory to the container's `/app/output`, load environment variables from a `.env` file, and execute a Python script via Poetry. There is an option to use an SP-API with real data, though it is commented out in both services.
+
+**Striking Details:**  
+- The project appears to be Python-based, using Poetry for dependency management [GH-F5C7B330A28F L16].
+- The use of `--profile mac` in the final comment suggests that the macOS-optimized version is intended for development on Apple systems [GH-F5C7B330A28F L38].
+- The file contains two nearly identical service configurations, differing only in the Dockerfile used and the inclusion of a `profiles` key for the macOS version [GH-F5C7B330A28F L20–L36].
+- The SP-API option, while commented, implies the possibility of integration with external data sources or APIs [GH-F5C7B330A28F L18, L34].
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the source file. The full text may contain additional configuration details or comments not reflected here.
+
+## Speculation  
+- Could the "bibiliophile-sp" project be related to data processing or archiving, given the use of an SP-API and the inclusion of output directories?  
+- Why are there two nearly identical service configurations, and does this imply platform-specific development or deployment workflows?  
+- Is the SP-API a proprietary or custom API, or does it relate to a known data source?  
+- What is the significance of the name "bibiliophile-sp," and does it hint at the project's focus or functionality?

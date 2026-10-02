@@ -1,0 +1,38 @@
+# personalizedProtocol.md
+
+Status: unreviewed local-model draft (2026-09-24T22:50:05+00:00)
+
+- Source ID: `GH-03DF08791944`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/simulationIdeas/personalizedProtocol.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/simulationIdeas/personalizedProtocol.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 118 anchors; verify against the source.
+
+# Source Note: GH-03DF08791944
+
+**Subject:** A personalized protocol for managing multi-system dysregulation through integration of biometric, genetic, and behavioral data.
+
+**Genre:** Technical proposal with elements of simulation modeling, biohacking, and speculative science.
+
+**Main Ideas:**
+- The protocol uses **attractor dynamics** to model the user’s physiological state space, identifying transitions between wellness and dysregulation states.
+- **Wearable data** (e.g., HRV, body temperature) and **symptom journals** are used to estimate parameters like Λ (chronic stress), γ (genetic risk), and Ω (endocannabinoid buffering).
+- Interventions include **non-invasive vagus nerve stimulation (tVNS)**, **theta-frequency binaural beats**, and **low-dose naltrexone (LDN)**, aimed at modulating autonomic, neuroinflammatory, and immune responses.
+- **Circadian rhythm restoration** is emphasized through structured light exposure and blue-light blocking.
+- A **quantum-cognitive framework** is proposed to conceptualize healing as a state-switching process influenced by conscious observation and belief systems.
+- The protocol combines **biophysical modeling** with **computational tools** like Python or MATLAB to simulate and predict transitions in the user’s state space.
+
+**Striking Details:**
+- The model identifies **coherence tipping points**, such as specific HRV or body temperature thresholds that signal a transition toward symptomatic collapse ([GH-03DF08791944 L13]).
+- The user’s **ATM** and **BCL2** gene variants are referenced as indicators of oxidative stress and neuroinflammation ([GH-03DF08791944 L33]).
+- The protocol explicitly frames **placebo effects** as a form of conscious influence over the system, akin to the **observer effect** in quantum physics ([GH-03DF08791944 L61]).
+- A **sample attractor phase portrait** is described, illustrating how minor interventions might temporarily shift the user from a dominant dysregulation state (State 1) toward a healthier state (States 2 or 3), but with a strong risk of relapse ([GH-03DF08791944 L83]).
+
+**Coverage Limit:** Sampled anchors (23 of 118) suggest partial exposure; the full text likely contains additional technical details and unobserved content.
+
+## Speculation
+- Could the **quantum-cognitive framing** be a metaphor for the psychological impact of interventions, or is it being used as a literal modeling tool?
+- How might **genetic variants** (e.g., ATM, BCL2) interact with **coherence metrics** in a way that is unique to this user, and how might that affect intervention efficacy?
+- Is the **gamma-coherence profile** a novel concept, or does it align with existing models in systems biology or personalized medicine?
+- What are the **clinical implications** of using a model that predicts relapse based on minor interventions, and how might this affect patient expectations or engagement?

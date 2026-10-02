@@ -1,0 +1,41 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T11:01:26+00:00)
+
+- Source ID: `GH-FF15C10C8504`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/time-models/index.html>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `time-models/index.html`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 65 anchors; verify against the source.
+
+# Source Note: GH-FF15C10C8504
+
+**Subject:** An experimental private wiki documenting the author's public archive, focused on theoretical explorations of time, consciousness, and computational models.  
+**Genre:** Technical documentation, speculative theory, and self-published research.  
+**Main Ideas:**  
+- The interplay between fractal time, CAP (Consistency, Availability, Partition-tolerance) models, and recursive dynamics in consciousness.  
+- Integration of computational theory with theoretical models of mind and physics.  
+- Use of Markdown and GitHub-hosted content to organize and share ideas.  
+
+**Striking Details:**  
+- The document appears to be part of a broader project called "Quantum-Plasmoid," which may involve interdisciplinary work in physics, philosophy, and computer science.  
+- The wiki includes links to Markdown files, such as "CAP and Fractal Time.md" and "Fractal Time and CSCM Framework.md," suggesting a structured approach to documentation.  
+- A podcast file titled "Fractal Time and Consciousness Models (MP3)" is mentioned but not embedded, with a note that GitHub Markdown does not support audio playback.  
+- The page contains a navigation bar linking to sections such as "Home," "Theorems," and "Applications," indicating an attempt to categorize content systematically.  
+- The footer includes a copyright notice for "2025 Quantum-Plasmoid Project" and a link to the GitHub repository.  
+
+**Coverage Limit:**  
+Sampled anchors (48 of 65 total) suggest that not all content has been reviewed in full. This may affect understanding of the full scope or depth of the author’s work.
+
+## Speculation
+
+1. **Interdisciplinary Connections:** Could the author be merging ideas from distributed systems theory (e.g., CAP theorem) with neuroscience or theoretical physics? The use of CAP models in the context of consciousness is unusual and warrants further investigation.  
+2. **Self-Published Research:** What is the author’s background, and how does this project relate to their other work? The lack of citation or external references suggests that this is a private, self-contained archive.  
+3. **Podcast Content:** What insights or arguments are presented in the podcast file "Fractal Time and Consciousness Models (MP3)"? The document’s note about GitHub Markdown limitations suggests that the podcast may contain critical ideas not present in the written documentation.  
+4. **Recursive Mind Models:** How does the author define "recursive mind," and what implications does this have for understanding consciousness or computational models? The term appears repeatedly, but its exact meaning is not elaborated in the sampled text.  
+
+**Claims (not fact):**  
+- The author suggests that fractal time and recursive dynamics may underpin consciousness.  
+- The use of CAP models in the context of time and mind is speculative and not grounded in conventional computational theory.  
+- The project may be an attempt to formalize consciousness through computational and mathematical frameworks.

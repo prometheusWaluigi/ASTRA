@@ -1,0 +1,40 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T11:51:55+00:00)
+
+- Source ID: `GH-8A20747CAD8C`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/src/frontend/templates/index.html>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `src/frontend/templates/index.html`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 187 anchors; verify against the source.
+
+**Source Note: GH-8A20747CAD8C**
+
+**Subject:** The file is part of a private wiki or experimental archive related to a project named "GASLIT-AF WARSTACK." The content appears to be a webpage template for a web application with a focus on biological, genetic, legal, and institutional modeling.
+
+**Genre:** Technical documentation, web application template, and possibly conceptual framework or research archive.
+
+**Main Ideas:**  
+The text suggests the development of a web-based tool or platform for simulating complex systems related to public health, institutional behavior, and policy. Key topics include biological modeling, genetic risk scanning, legal and policy simulation, and institutional feedback mechanisms. The template includes links to various sections of the application, such as "Biological Modeling," "Genetic Risk Scanning," and "Legal & Policy."
+
+**Striking Details:**  
+- The template includes references to "denial-injury-denial loops," "regulatory capture graphs," and "memetic immunosuppression nets" [GH-8A20747CAD8C L84].  
+- A section titled "Institutional Feedback" is mentioned alongside "CDC/FDA/Media narrative collapse" and "attractor state simulation" [GH-8A20747CAD8C L88].  
+- There is an emphasis on user contribution, with a prompt to "Share your testimony" for building an "evidence base" and exposing "institutional culpability" [GH-8A20747CAD8C L132].  
+- The application includes a feature for uploading genomic data, with a note that user data is "kept private and secure" [GH-8A20747CAD8C L155].  
+- The template uses a "card" UI structure with color-coded headers (e.g., "bg-info," "bg-warning") and icons (e.g., fas fa-dna, fas fa-balance-scale) to categorize sections [GH-8A20747CAD8C L33, L104].
+
+**Coverage Limit:**  
+This note is based on sampled anchors from the file. The full text may contain additional content not represented here.
+
+**## Speculation**  
+- Could the project be related to analyzing or predicting institutional failures or public health crises through computational modeling?  
+- What is the relationship between "genetic risk scanning" and the upload feature for genome data?  
+- Are the terms "memetic immunosuppression nets" and "attractor state simulation" derived from a specific theoretical or academic framework?  
+- Might the "evidence base" built through user testimony relate to a broader activism or investigative effort?
+
+**Flagged Claims:**  
+- The use of terms like "memetic immunosuppression" and "regulatory capture graphs" may be fictional or speculative, as no clear academic or technical definition is provided in the sampled text.  
+- The claim that user data is "kept private and secure" is presented as a feature, but no evidence of encryption, compliance, or data-handling protocols is cited in the sampled anchors.  
+- The project's apparent focus on institutional critique or surveillance may conflict with its stated data privacy guarantees, though this is not confirmed by the text.

@@ -1,0 +1,35 @@
+# microlocal.py
+
+Status: unreviewed local-model draft (2026-09-25T06:36:20+00:00)
+
+- Source ID: `GH-D1CF40A53D53`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/celestialHarmonics/core/quantum/microlocal.py>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `celestialHarmonics/core/quantum/microlocal.py`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 57 anchors; verify against the source.
+
+# Source Note: GH-D1CF40A53D53
+
+**Subject**: A Python implementation of microlocal analysis, focusing on wavefront sets and singularities extraction.
+
+**Genre**: Technical code (Python), with comments that blend formal programming language with informal, stylized English.
+
+**Main Ideas**:  
+The code defines a `MicrolocalAnalyzer` class that computes wavefront sets using an approximation of the FBI transform. It caches results for efficiency and identifies singularities by detecting discontinuous phase jumps in the computed wavefront set.
+
+**Striking Details**:  
+- The class uses NumPy for numerical computations.  
+- Comments include stylized language: "make it RIGOROUS," "we FLEXIBLE w them number types," "bc we EFFICIENT," and "bc we EXPLORATORY."  
+- The wavefront set is computed with an arbitrary threshold (0.1) for detecting significant contributions from the FBI transform.  
+- Singularities are extracted by identifying phase discontinuities in the wavefront set, using a threshold of `np.pi`.  
+- The implementation is described as "basic version rn" and "EXPEDITIOUSLY" for singularities extraction.  
+
+**Coverage Limit**:  
+Sampled anchors only (36 of 57 total). Not all code or comments have been read or analyzed.
+
+## Speculation
+- Could this code be part of a broader project involving quantum mechanics or signal processing?  
+- What is the significance of the stylized language in the comments, and does it reflect a specific philosophical or methodological approach?  
+- How might the arbitrary threshold (0.1) affect the accuracy or reliability of the wavefront set computation?  
+- Are there potential applications of this code in machine learning or data science contexts?

@@ -1,0 +1,36 @@
+# cleanup.ps1
+
+Status: unreviewed local-model draft (2026-09-25T06:33:47+00:00)
+
+- Source ID: `GH-C880DE0F955E`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/cleanup.ps1>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `cleanup.ps1`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 312 anchors; verify against the source.
+
+# Source Note: GH-C880DE0F955E
+
+**Subject:** This source is a PowerShell script titled `cleanup.ps1`, part of the `quantum-plasmoid` repository hosted on GitHub. It describes a reorganization of the repository's structure.
+
+**Genre:** Technical script, likely used for automating the restructuring of files and directories in a software or research project.
+
+**Main Ideas:**
+- The script is designed to move and reorganize Markdown files into a new directory structure, possibly for better categorization or documentation purposes.
+- It creates directories and subdirectories under paths like `core-concepts`, `theorems`, and `applications`, suggesting an effort to align content thematically.
+- The script generates or updates README.md files for each directory to provide context or summaries of the content within.
+- It appears to be part of a larger project involving topics such as quantum physics, consciousness, and computational models, as indicated by directory and file names like "Fractal Time and CSCM Framework.md" and "Neural Eigenmodes of Consciousness.md".
+
+**Striking Details:**
+- The script moves files like `meta_theory_of_recursion.md` and `Consciousness Function and more.md` into subdirectories under `core-concepts` and `theorems`, indicating a focus on theoretical and conceptual organization.
+- It includes a directive to remove the `unifiedTheories` directory after reorganization, suggesting that this was a prior, less structured approach to organizing content.
+- The script creates README.md files for each directory, with descriptions like "Theoretical frameworks connecting quantum physics to consciousness and complex systems" [GH-C880DE0F955E L180].
+- It updates a main `README.md` file to reflect the new structure, listing links to sections such as "Recursive Systems" and "Integrative" [GH-C880DE0F955E L259, L272].
+
+**Coverage Limit:** Sampled anchors (43 shown) do not cover the full text of the source. This is a partial representation of the script's content and functionality.
+
+## Speculation
+- Could the reorganization reflect a shift in the author's focus from unifying theories to emphasizing computational and integrative approaches in the quantum-plasmoid project?
+- What might the original `unifiedTheories` directory have contained, and why was it deemed obsolete or redundant in the new structure?
+- Are the directory names and file contents indicative of a broader interdisciplinary research agenda blending quantum physics, consciousness, and computational modeling?
+- How does the script's treatment of README.md files suggest an intent to improve accessibility or documentation for collaborators or users of the quantum-plasmoid project?

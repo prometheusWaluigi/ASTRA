@@ -1,0 +1,38 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T10:54:25+00:00)
+
+- Source ID: `GH-E29C5AF37E88`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/core-concepts/consciousness/index.html>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `core-concepts/consciousness/index.html`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 79 anchors; verify against the source.
+
+**Source Note for GH-E29C5AF37E88**  
+This is a sampled anchor-based analysis of the real downloaded text from the file `index.html` in the GitHub repository `prometheusWaluigi/quantum-plasmoid`, located at the canonical URL: https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/core-concepts/consciousness/index.html. The text appears to be part of an experimental private wiki, likely used as a public-facing archive or documentation hub for the author's work.  
+
+**Subject & Genre**  
+The apparent subject is a theory of consciousness, framed within a computational or scientific context. The genre appears to be academic or speculative, with a focus on theoretical models and conceptual exploration. The content includes sections titled "Summary," "Key Concepts," "Related Links," and "References & Further Reading," suggesting a structured approach to documentation.  
+
+**Main Ideas**  
+The text describes consciousness as a "functional, recursive, and fractal information process" [GH-E29C5AF37E88 L28]. It connects consciousness to models involving "neural eigenmodes" and "unconscious semantic lattices" [GH-E29C5AF37E88 L34, L36]. The document also references external theoretical frameworks, such as the "ORCHARD Theorem" and "Eigenmode Theory" [GH-E29C5AF37E88 L61, L62].  
+
+**Striking Details**  
+- The file appears to be part of a larger project, given the presence of a GitHub repository link and internal navigation anchors [GH-E29C5AF37E88 L19].  
+- It references Markdown files, such as `Consciousness Function.md` and `UnconsciousSemanticLattice.md`, which may contain further elaboration on the models described [GH-E29C5AF37E88 L34, L36].  
+- A podcast titled "Models of Consciousness: Function, Semantics, and Dynamics (MP3)" is listed as a resource [GH-E29C5AF37E88 L44].  
+- The document is styled with external CSS and includes a favicon, indicating an intent to present itself as a polished, public-facing archive [GH-E29C5AF37E88 L8, L9].  
+
+**Coverage Limit**  
+This analysis is based on sampled anchors from the 79 available in the file. Anchors over 800 characters are truncated, and the content is not fully read.  
+
+**## Speculation**  
+- Could the "fractal information process" model be an attempt to reconcile quantum mechanics with consciousness, as suggested by some speculative theories in the field?  
+- What is the relationship between "UnconsciousSemanticLattice.md" and the author’s broader work on the ORCHARD Theorem?  
+- Might the podcast be a public-facing component of the project, intended to disseminate ideas beyond the technical documentation?  
+- Are the references to external theories (e.g., Eigenmode Theory) meant to indicate collaboration or influence, or are they standalone contributions?  
+
+**Claims**  
+- The document's speculative nature is evident in its treatment of consciousness as a "fractal information process" and its connection to "neural eigenmodes" [GH-E29C5AF37E88 L28, L34]. These are not presented as established facts but as theoretical frameworks.  
+- The author may be using fictional or highly speculative terminology, such as "quantum-plasmoid," to frame their work, though no explicit fictional claims are made within the sampled content.

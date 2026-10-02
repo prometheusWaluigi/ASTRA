@@ -1,0 +1,37 @@
+# FRACTAL.md
+
+Status: unreviewed local-model draft (2026-09-24T23:59:47+00:00)
+
+- Source ID: `GH-26AAAC118C22`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/core-concepts/fractal-systems/FRACTAL.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `core-concepts/fractal-systems/FRACTAL.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 111 anchors; verify against the source.
+
+# Source Note: GH-26AAAC118C22
+
+**Subject:** The F.R.A.C.T.A.L. Framework, a multidisciplinary synthesis exploring the intersection of neuroscience, quantum biology, and complex systems theory. The text is part of an experimental private wiki, likely authored by a single individual, and organized as a public archive.
+
+**Genre:** Technical exposition with philosophical and speculative undertones, blending scientific discourse with metaphorical language. It draws from neuroscience, quantum physics, and systems theory, and includes references to computational and mathematical models.
+
+**Main Ideas:**
+- The brain operates as a **fractal system**, with recursive timing mechanisms and nested oscillations (e.g., theta and gamma rhythms) enabling cross-scale coordination.
+- **Quantum coherence** in biological systems (e.g., photosynthesis, magnetoreception) is presented as a potential mechanism for consciousness, with fractal architecture possibly offering a defense against decoherence.
+- The mind is conceptualized as a **complex dynamical system**, with attractors representing coherent mental states. Trauma may be interpreted as a **maladaptive attractor**, and healing as the process of escaping such dominance.
+- **Topological Data Analysis (TDA)** is introduced as a quantitative tool for mapping the mind’s state-space, including persistent homology and attractor topology.
+- **Bifurcation theory** is applied to therapeutic transformation, suggesting that small changes in control parameters (e.g., support, stress) can shift the brain–mind from one attractor to another.
+
+**Striking Details:**
+- The text explicitly mentions **quantum entanglement in magnetoreception** and **wave-like energy transfer in photosynthesis** as biological examples of quantum phenomena ([GH-26AAAC118C22 L22]).
+- It references **Waddington’s epigenetic landscape** as a metaphor for the brain’s attractor dynamics ([GH-26AAAC118C22 L31]).
+- The concept of **time-symmetry in consciousness**, drawing from quantum interpretations like the *transactional interpretation*, is explored in relation to predictive coding ([GH-26AAAC118C22 L24]).
+- The **free energy principle** is cited in the context of neural dynamics and mental flexibility ([GH-26AAAC118C22 L41]).
+
+**Coverage Limit:** Sampled anchors (17 of 111) provide a partial view of the text; not all content has been read or analyzed.
+
+## Speculation
+- Could the **fractal architecture of the brain** be a universal design feature across biological systems, potentially linked to **evolutionary advantages in noise resilience**?
+- How might **topological data analysis** be applied to **clinical neuroscience** to map the transition from maladaptive to adaptive mental states?
+- Is the **convergence of quantum mechanics and neuroscience** in this text more a metaphorical framework than a testable hypothesis?
+- Does the **mention of archetypal cosmology** suggest a philosophical or spiritual dimension to the F.R.A.C.T.A.L. model, beyond its scientific claims?

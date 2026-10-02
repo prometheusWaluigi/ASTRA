@@ -1,0 +1,42 @@
+# mycelialNetworks.txt
+
+Status: unreviewed local-model draft (2026-09-24T23:39:31+00:00)
+
+- Source ID: `GH-0E8571D5BAA3`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ideaFilaments/blob/88ff43cf441436d6d966b5e55575c2a7b850f863/papers/complex_systems/mycelialNetworks.txt>
+- Repo: prometheusWaluigi/ideaFilaments @ `88ff43cf4414` path `papers/complex_systems/mycelialNetworks.txt`
+- Published: 2025-04-13T22:32:14Z
+- Coverage: model saw an evenly sampled packet of 55 anchors; verify against the source.
+
+# Source Note: GH-0E8571D5BAA3
+
+**Subject:** Mycelial networks and their potential role in quantum computation, information processing, and non-local interactions.
+
+**Genre:** Technical paper, blending theoretical mathematics, quantum physics, and computational biology.
+
+**Main Ideas:**  
+The text explores the idea that mycelial networks—fungal structures—may function as quantum computational substrates. It connects mycelial topology to the E8 lattice, a mathematical object from Lie theory, and suggests that these networks might support quantum coherence, error correction, and non-local information transfer. The paper also introduces a framework for modeling subjective experience ("qualia") using presheaf theory.
+
+**Striking Details:**  
+- The E8 Gosset polytope is described as having 240 vertices [GH-0E8571D5BAA3 L3], with specific symmetry properties [GH-0E8571D5BAA3 L1].  
+- Mycelial networks are characterized as having fractal geometries, scale-free topology, and small-world properties [GH-0E8571D5BAA3 L15–L19].  
+- Persistent homology analysis of Psilocybe cubensis and Amanita muscaria networks reveals features consistent with E8 lattice substructures [GH-0E8571D5BAA3 L23].  
+- The paper suggests that mycelial networks could support quantum coherence through mechanisms like topological protection and microtubule-like structures [GH-0E8571D5BAA3 L29–L33].  
+- Experimental evidence of long decoherence times (>100μs) in isolated mycelial networks is cited, though not fully explained [GH-0E8571D5BAA3 L35].  
+- The paper introduces the concept of "qualia presheaves," where subjective experience is modeled as a mathematical structure over measurement contexts [GH-0E8571D5BAA3 L37–L41].  
+- The authors conclude that fungal networks may implement topologically protected quantum computation [GH-0E8571D5BAA3 L53].
+
+**Coverage Limit:**  
+Sampled anchors (L1, L3, L7, L9, L11, L15, L17, L19, L21, L23, L25, L27, L29, L31, L33, L35, L37, L39, L41, L45, L47, L49, L53, L55) represent a subset of the full text. The source includes 55 anchors total; this note is based on a sampled selection.  
+
+## Speculation  
+- Could the observed persistence of homological features in mycelial networks suggest a biological implementation of higher-dimensional geometries, such as those described in E8 theory?  
+- Is the alignment of decoherence times in mycelial networks with theoretical models of topological protection a coincidence, or could it indicate a novel biological mechanism for maintaining quantum coherence?  
+- How might the use of presheaf structures to model qualia in mycelial networks challenge or complement existing interpretations of consciousness in quantum systems?  
+- Does the Martian Transfer Hypothesis, mentioned in passing [GH-0E8571D5BAA3 L55], imply a broader context for non-local information transfer that could be tested through further study of fungal networks?  
+
+**Flags:**  
+- Claims about the Martian Transfer Hypothesis [GH-0E8571D5BAA3 L55] are flagged as speculative, not factual.  
+- The connection between mycelial networks and quantum computation is flagged as extraordinary and not universally accepted in mainstream biology or physics.  
+- The paper does not claim that all experimental results are fully validated, but presents them as intriguing and mathematically consistent.

@@ -1,0 +1,36 @@
+# run_docker_oneapi.sh
+
+Status: unreviewed local-model draft (2026-09-25T07:38:14+00:00)
+
+- Source ID: `GH-5004CDBA8DC5`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af-warfare/blob/4a1cf4b8931b3bdb3601c87fd0b2bd52138d4be8/run_docker_oneapi.sh>
+- Repo: prometheusWaluigi/gaslit-af-warfare @ `4a1cf4b8931b` path `run_docker_oneapi.sh`
+- Published: 2026-01-19T19:02:59Z
+- Coverage: model saw an evenly sampled packet of 327 anchors; verify against the source.
+
+**Source Note: GH-5004CDBA8DC5**
+
+**Subject:** This is a Bash shell script, `run_docker_oneapi.sh`, used to execute a Docker container for a project called "GASLIT-AF WARSTACK" with integration for Intel OneAPI technologies. The script includes options for building Docker images, configuring environment variables, and running specific application components.
+
+**Genre:** Technical script, likely part of a software development or research workflow involving containerization and performance benchmarking with Intel hardware extensions.
+
+**Main Ideas:**
+- The script provides a command-line interface for managing Docker containers related to the GASLIT-AF WARSTACK project.
+- It supports optional flags such as rebuilding the Docker image (`--rebuild`), using Intel OneAPI optimizations, and running specific application components (e.g., a Flask application, tests).
+- The script includes conditional checks for hardware capabilities, such as the presence of an Intel GPU.
+- It sets up environment variables to control the use of Intel-specific optimizations and benchmarks performance with and without these optimizations.
+
+**Striking Details:**
+- The script is written in Bash and includes color-coding for terminal output (e.g., `NC='\033[0m'`).
+- It references a Flask application (`src/frontend/app.py`) and a neuroimmune simulator (`src.biological_modeling.neuroimmune_simulator`), suggesting interdisciplinary work combining software development with biological modeling.
+- It benchmarks execution time, comparing runs with and without Intel optimizations. For example, [GH-5004CDBA8DC5 L244] prints "=== Running with Intel optimizations ===" and [GH-5004CDBA8DC5 L216] includes a benchmark configuration with a `reaction_rate` of 1.0.
+- The script includes plotting functionality for visualizing performance data (e.g., [GH-5004CDBA8DC5 L265] sets the y-axis label to "Execution Time (seconds)").
+
+**Coverage Limit:** Sampled anchors (43 of 327 total) suggest that this note is based on a partial reading of the source. Not all code or context may be captured here.
+
+## Speculation
+- Could the neuroimmune simulator (`NeuroimmuneDynamics`) be part of a broader simulation framework that integrates with Intel OneAPI for accelerated computation?
+- What is the relationship between the Flask application and the benchmarking logic? Could they be part of a larger system for real-time analysis or visualization?
+- How might the use of Intel GPU detection and performance benchmarking relate to the project's goals in "warfare" or AI research?
+- Are the performance comparisons (e.g., execution time with and without Intel optimizations) part of a larger effort to evaluate hardware-specific improvements in computational models?

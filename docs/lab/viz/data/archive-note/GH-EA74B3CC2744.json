@@ -1,0 +1,38 @@
+# Neural Eigenmodes of Consciousness.md
+
+Status: unreviewed local-model draft (2026-09-25T03:10:30+00:00)
+
+- Source ID: `GH-EA74B3CC2744`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/theorems/eigenmode-theory/Neural Eigenmodes of Consciousness.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `theorems/eigenmode-theory/Neural Eigenmodes of Consciousness.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 80 anchors; verify against the source.
+
+# Source Note: GH-EA74B3CC2744
+
+**Subject:** Theoretical exploration of consciousness, focusing on "recursive eigenmode theory," fractal patterns in neural activity, and spectral selection mechanisms. The text draws connections between neuroscience, mathematics, and computational models.
+
+**Genre:** Technical exposition, speculative theory, and interdisciplinary synthesis. The content blends neuroscience with abstract mathematical and computational concepts.
+
+**Main Ideas:**
+- Consciousness may emerge from recursive neural processes and interactions between stable activity patterns (eigenmodes).
+- Fractal patterns (self-similarity across scales) in neural structures and dynamics could underpin recursive processes.
+- Spectral selection—differential activation of neural oscillation frequency bands—may be critical for forming unified conscious experiences.
+- The text references the Recurse Theory of Consciousness (RTC), which outlines a sequence of neurobiological and cognitive processes (Attention, Recursion, Reflection, Distinctions, Stabilization, Emotion) that lead to subjective experience.
+- The CAP theorem (Consistency, Availability, Partition Tolerance) is metaphorically applied to understand constraints in neural systems, suggesting a trade-off between stability and responsiveness in consciousness.
+
+**Striking Details:**
+- The text cites multiple sources, including academic articles and Reddit discussions, indicating a synthesis of formal and informal discourse on consciousness [GH-EA74B3CC2744 L80].
+- It explicitly links thalamocortical loops and default mode networks to processes like recursion and reflection [GH-EA74B3CC2744 L9].
+- The concept of a "fractal dimension of approximately 1.5" is emphasized as a potential marker of criticality in neural systems [GH-EA74B3CC2744 L14].
+- Spectral selection is described as enabling the brain to organize activity into patterns that support specific conscious experiences [GH-EA74B3CC2744 L19].
+- The "CAP Trilemma" is introduced as a metaphor for constraints in neural systems, with "availability" tied to the brain's resilience and continuous functioning [GH-EA74B3CC2744 L25].
+
+**Coverage Limit:** Sampled anchors (L1, L80, L3, L4, L6, L8, L9, L11, L13, L14, L16, L18, L19, L21, L23, L25) represent a fraction of the 80 anchors in the source. The full text may contain additional concepts or elaborations not captured here.
+
+## Speculation
+- Could the proposed "recursive eigenmode theory" serve as a computational framework for modeling consciousness in AI systems?
+- How might the fractal dimension of 1.5 be experimentally validated or challenged in different neural systems?
+- Is the metaphorical use of the CAP theorem in neuroscience a useful tool, or does it risk conflating computational and biological constraints?
+- Might the emphasis on emotional salience in RTC suggest a deeper role for affective processes in the stabilization of conscious experiences?

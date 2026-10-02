@@ -1,0 +1,40 @@
+# test_gene_lists.py
+
+Status: unreviewed local-model draft (2026-09-25T06:59:53+00:00)
+
+- Source ID: `GH-03CA11D2FA1B`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/tests/unit/test_gene_lists.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `tests/unit/test_gene_lists.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 78 anchors; verify against the source.
+
+**Source Note: GH-03CA11D2FA1B**
+
+**Subject:** This is a Python unit test script for a module related to gene lists and SNP (single nucleotide polymorphism) data. It tests the integrity and correctness of gene-related data structures, likely used in genetic or bioinformatics analysis.
+
+**Genre:** Software testing / unit test code.
+
+**Main Ideas:**
+
+- The script tests the non-emptiness of gene list and SNP data structures (e.g., `GASLIT_AF_GENES`, `KNOWN_SNPS`, `SNP_TO_GENE`).
+- It checks the correctness of mappings between SNPs and genes.
+- It validates the functionality of a `parse_gene_list` utility.
+- Specific genes and SNPs are referenced as "important" and are tested for presence in the datasets.
+
+**Striking Details:**
+
+- The script uses hard-coded examples of genes and SNPs, including "DRD2" and "rs6277" [GH-03CA11D2FA1B L26].
+- It includes a test case where a custom gene list is temporarily substituted into the module for validation [GH-03CA11D2FA1B L39].
+- The test includes assertions that verify the presence of genes such as "CHRM2", "TFAM", and "ADGRV1" in the gene list [GH-03CA11D2FA1B L60].
+- It checks that specific SNPs are associated with particular genes, such as "rs6277" with "DRD2" [GH-03CA11D2FA1B L26].
+- The test includes a cleanup step to restore the original gene list text after substitution [GH-03CA11D2FA1B L52].
+
+**Coverage Limit:** Sampled anchors (39 of 78 total) mean not all content has been reviewed. The script may contain other unreviewed test cases or data structures.
+
+**## Speculation**
+
+- Could the gene lists be tied to a specific disease or research project, given the inclusion of SNPs like "rs8191992" and "rs2350780" [GH-03CA11D2FA1B L70]?
+- What is the origin of the dataset `GASLIT_AF_GENES`, and how does it relate to `KNOWN_SNPS`?
+- Are the gene lists and SNP mappings derived from a public database, or are they proprietary or custom-curated?
+- Does the use of `parse_gene_list` indicate that the module supports external or user-defined gene lists, possibly for customization or extension?

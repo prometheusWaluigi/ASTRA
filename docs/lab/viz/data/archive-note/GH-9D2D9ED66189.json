@@ -1,0 +1,33 @@
+# generate_combined_report.py
+
+Status: unreviewed local-model draft (2026-09-25T08:35:18+00:00)
+
+- Source ID: `GH-9D2D9ED66189`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/generate_combined_report.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `generate_combined_report.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 397 anchors; verify against the source.
+
+**Source Note: GH-9D2D9ED66189**
+
+**Subject:** This source is a Python script titled `generate_combined_report.py`, part of a GitHub repository named `prometheusWaluigi/gaslit-af_variant_analysis`. It appears to generate HTML reports summarizing variant analysis results from multiple VCF files using the GASLIT-AF framework.
+
+**Genre:** Technical script, likely used for bioinformatics or genomics data analysis.
+
+**Main Ideas:** The script processes analysis directories, compiles variant data, and generates an HTML report with visualizations (e.g., pie charts) and summaries. It uses libraries such as `argparse` for command-line arguments, `logging` for error tracking, and `rich` for console output. The report includes sections like "System Distribution" and "Top Genes," and it integrates Bootstrap for styling.
+
+**Striking Details:**  
+- The script includes a Bootstrap CSS link for styling the HTML output [GH-9D2D9ED66189 L119].  
+- It dynamically checks for the existence of image files (e.g., `system_distribution.png`) before including them in the report [GH-9D2D9ED66189 L85].  
+- The HTML output contains a section describing the report’s purpose: "This report combines the results of GASLIT-AF direct analysis on multiple VCF files" [GH-9D2D9ED66189 L203].  
+- It uses a richly styled HTML template with classes such as `.container`, `.visualization`, and `.row` for layout [GH-9D2D9ED66189 L127, L170, L271].  
+- The script includes a mechanism to filter analysis directories based on filenames starting with "direct_" [GH-9D2D9ED66189 L52].  
+
+**Coverage Limit:** This note is based on sampled anchors (43 of 397), meaning not all content has been reviewed.
+
+## Speculation
+- Could this script be adapted to process other types of genomic data beyond GASLIT-AF?  
+- What criteria define "direct analysis" in the context of this project?  
+- Are the visualizations (e.g., pie charts) generated from raw variant counts or aggregated summaries?  
+- Does the script support interactive or downloadable versions of the visualizations?

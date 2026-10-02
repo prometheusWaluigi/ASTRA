@@ -1,0 +1,39 @@
+# gaslitHPCMVP.md
+
+Status: unreviewed local-model draft (2026-09-24T23:05:44+00:00)
+
+- Source ID: `GH-79D0D8FCF99B`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/simulationIdeas/gaslitHPCMVP.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/simulationIdeas/gaslitHPCMVP.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 175 anchors; verify against the source.
+
+## Source Note: GH-79D0D8FCF99B
+
+**Subject:** This document outlines the development of a minimum viable product (MVP) for a computational framework called "GASLIT-AF," which appears to integrate high-performance computing (HPC), GPU-accelerated machine learning (ML), and multi-omics data analysis. The focus is on simulating physiological processes and exploring their relationship with complex biological data.
+
+**Genre:** Technical documentation, likely part of a software project's experimental private wiki. The content reflects planning, implementation strategies, and integration workflows for a computational biology or systems physiology tool.
+
+**Main Ideas:** 
+- The project involves creating a Python-based prototype for ordinary differential equations (ODEs) that model physiological systems.
+- GPU acceleration is emphasized, particularly through libraries like RAPIDS (cuDF), NVIDIA's DCGM, and Triton Inference Server.
+- Integration with ML workflows, including autoencoders and causal discovery methods, is central to the MVP.
+- The framework aims to bridge HPC simulation capabilities with GPU-based ML for scalability and performance.
+- Data preprocessing, simulation testing, and validation via knockout experiments are outlined as key steps.
+
+**Striking Details:**
+- [GH-79D0D8FCF99B L175] Mentions a "cosmic vantage" perspective, suggesting a grand-scale ambition in modeling physiological collapse and re-coherence.
+- [GH-79D0D8FCF99B L12] Indicates a modular approach, with the ODE model likely hosted in a dedicated directory.
+- [GH-79D0D8FCF99B L127] Proposes a GPU-based causal discovery approach, possibly using independence tests on multi-omics data.
+- [GH-79D0D8FCF99B L131] Describes a "knockout experiment" on a learned DAG, suggesting a focus on validation and reproducibility.
+- [GH-79D0D8FCF99B L153] References H100 GPU optimization techniques such as mixed precision and MIG partitioning, highlighting advanced hardware use.
+
+**Coverage Limit:** Sampled anchors mean this note does not reflect the full content of the source. Key sections and strategies may be omitted or underrepresented.
+
+## Speculation
+
+1. Could the integration of GPU-based ML with HPC simulations represent a novel approach to modeling physiological systems at scale? The combination of ODEs and causal discovery methods might allow for complex, real-time predictions.
+2. What is the intended use of the "fast-lane predictor" mentioned in [GH-79D0D8FCF99B L49]? Does it imply a prioritization of certain simulations or data analyses for speed?
+3. How might the project's reliance on synthetic data (as noted in [GH-79D0D8FCF99B L53]) affect its ability to validate against real-world biological systems?
+4. What implications might arise from the project's stated goal of "bridging HPC simulation and GPU ML," particularly in fields where computational resources are limited or distributed?

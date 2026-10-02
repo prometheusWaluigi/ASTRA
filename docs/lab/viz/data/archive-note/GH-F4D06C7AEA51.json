@@ -1,0 +1,29 @@
+# initial_preCollapse.yml
+
+Status: unreviewed local-model draft (2026-09-25T12:29:42+00:00)
+
+- Source ID: `GH-F4D06C7AEA51`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/piston-leak-lab/blob/834c4db60c19682a7b582f32c5db699c21b018e9/configs/initial_preCollapse.yml>
+- Repo: prometheusWaluigi/piston-leak-lab @ `834c4db60c19` path `configs/initial_preCollapse.yml`
+- Published: 2026-01-19T19:02:11Z
+- Coverage: model saw an evenly sampled packet of 62 anchors; verify against the source.
+
+**Source Note: GH-F4D06C7AEA51**
+
+This source is a YAML configuration file from an experimental private wiki, hosted on GitHub. The file is part of a simulation project called "Piston Leak ODE + ABM simulation." The apparent subject is a computational model exploring pre-collapse conditions in a social or systemic context, likely related to trust dynamics, entropy, and policy responses. The genre is scientific or technical, with a focus on simulation parameters and modeling strategies.
+
+The main ideas include running a 500-run ensemble simulation starting from a "pre-collapse state" characterized by "low trust" and "high entropy." The simulation combines an ordinary differential equation (ODE) model with an agent-based model (ABM), suggesting a hybrid approach to modeling complex systems. Key parameters include ODE coefficients (alpha1, beta1, alpha2, beta2), a policy response coefficient (k_policy), and noise modeling (noise_sigma). The ABM component involves an initial distribution of agents categorized as "skeptic" or "agnostic," with probabilities set at 0.5 and 0.2, respectively. The network model uses a Watts-Strogatz structure with 3,000 agents and an average degree of 6, indicating a small-world network topology.
+
+Striking details include the use of a "random_seed" of 42, a nod to *The Hitchhiker's Guide to the Galaxy*, and the inclusion of a "collapse threshold" defined by an "ε-band overlap" of 0.15 and a "entropy_critical" value of 1.2. These metrics likely determine when the system transitions into a "collapse" state. The file also specifies output settings, such as saving summaries and generating plots.
+
+The coverage limit is defined by sampled anchors, meaning the file has not been fully read or analyzed beyond the selected lines.
+
+## Speculation
+
+- Could the "pre-collapse state" model real-world scenarios such as societal breakdowns or information cascades, and how might this simulation contribute to understanding such phenomena?
+- What implications might the use of a Watts-Strogatz network have on the simulation's outcomes, particularly in relation to the spread of trust or skepticism?
+- How does the "influence_field" with differing weights for "believer" and "skeptic" agents affect the simulation’s representation of social dynamics or misinformation?
+- Are the "epsilon_overlap" and "entropy_critical" values derived from empirical data or are they arbitrary thresholds set by the author?
+
+Flagged claims: No extraordinary, fictional, or self-contradictory claims were identified in the sampled text.

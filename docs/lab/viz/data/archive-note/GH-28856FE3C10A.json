@@ -1,0 +1,34 @@
+# gaslitHPC.md
+
+Status: unreviewed local-model draft (2026-09-24T22:57:31+00:00)
+
+- Source ID: `GH-28856FE3C10A`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/simulationIdeas/gaslitHPC.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/simulationIdeas/gaslitHPC.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 464 anchors; verify against the source.
+
+# Source Note: GH-28856FE3C10A
+
+**Subject:** High-performance computing (HPC) and machine learning (ML) integration for simulation workflows, with a focus on multi-omics data analysis and GPU-accelerated computational methods.
+
+**Genre:** Technical documentation, experimental project planning, and code repository notes.
+
+**Main Ideas:** The text describes a pipeline for integrating and analyzing multi-omics data, leveraging GPU-accelerated computing for tasks like data preprocessing, simulation, ML model training, and causal discovery. It outlines strategies for distributed computing, memory optimization, and automation via CI/CD. The document emphasizes performance, scalability, and reproducibility in computational workflows.
+
+**Striking Details:**
+- [GH-28856FE3C10A L100] The integration of multi-omics data includes advanced techniques like **block-scaling** and **kernel-based integration** to manage heterogeneous features.
+- [GH-28856FE3C10A L139] Chaos detection is discussed in the context of high-dimensional simulations, with **maximal Lyapunov exponent** computation and **GPU thread distribution** as key enablers.
+- [GH-28856FE3C10A L178] The project includes **causal discovery** in multi-omics data, using ML methods to infer **cause-effect relationships**, not just correlations.
+- [GH-28856FE3C10A L336] The simulation engine utilizes **FP64 Tensor Core operations** and **DPX instructions** on H100 GPUs to enhance performance in linear algebra and dynamic programming.
+- [GH-28856FE3C10A L316] **Sparsity-inducing pruning** is explored for ML models to improve inference throughput, with a target of **~2× speedup** via TensorRT deployment.
+- [GH-28856FE3C10A L257] **MLflow Tracking** is emphasized to ensure full **reproducibility** of experiments, capturing code, configuration, and environment details.
+
+**Coverage Limit:** Sampled anchors (22 of 464 total) mean this is not a full reading of the source.
+
+## Speculation
+- Could the integration of multi-omics data and chaos detection methods be applied to fields outside of precision medicine, such as climate modeling or financial systems?
+- How might the use of **block-scaling** or **kernel-based integration** impact the interpretability of the final feature vectors? Are these techniques standard in the domain?
+- The focus on **causal discovery** raises questions about the assumptions made in the data and the robustness of the models used—how might these be validated or tested?
+- The mention of **DPX instructions** and **FP64 Tensor Core operations** highlights a specific hardware focus—could this limit the generalizability of the pipeline to non-NVIDIA GPU ecosystems?

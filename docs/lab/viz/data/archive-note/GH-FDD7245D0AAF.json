@@ -1,0 +1,43 @@
+# parse_variants.py
+
+Status: unreviewed local-model draft (2026-09-25T09:24:22+00:00)
+
+- Source ID: `GH-FDD7245D0AAF`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslit-af_variant_analysis/blob/fbfd32b1b1560494993efc34c185fe891a4eeaf6/backup/parse_variants.py>
+- Repo: prometheusWaluigi/gaslit-af_variant_analysis @ `fbfd32b1b156` path `backup/parse_variants.py`
+- Published: 2025-04-10T18:52:42Z
+- Coverage: model saw an evenly sampled packet of 470 anchors; verify against the source.
+
+**Source Note: GH-FDD7245D0AAF**
+
+**Subject:** This file appears to be a Python script for parsing and analyzing genetic variants, likely within the context of bioinformatics or genomic data processing. The script is part of a larger project related to variant analysis, possibly for medical or research purposes.
+
+**Genre:** Technical code (Python), with some comments and logging setup. It appears to be part of a variant analysis pipeline, possibly involving genetic data interpretation or visualization.
+
+**Main Ideas:**  
+- The script processes genomic variant data, extracting blocks of text that represent individual variants or their classifications.  
+- It uses command-line arguments to control output format (standard or recursive), and seems to generate structured output (e.g., dictionaries) based on parsed data.  
+- The script includes logging and error handling, with a focus on organizing variants into categories or systems (e.g., "Immune & Inflammatory System").  
+- It assigns confidence multipliers and scores (e.g., λ and χ) to variant classifications, suggesting a prioritization or ranking system.  
+- The file imports modules like `rich.logging` and uses regular expressions for parsing, which indicates a focus on structured data extraction and user feedback through rich terminal output.
+
+**Striking Details:**  
+- [GH-FDD7245D0AAF L1] The shebang line indicates the script is intended to be run with Python 3.  
+- [GH-FDD7245D0AAF L51] The `--format` argument accepts options "standard" or "recursive," implying different levels of detail in output.  
+- [GH-FDD7245D0AAF L11] The triple quotes may indicate a docstring or comment block, though the full content is not visible.  
+- [GH-FDD7245D0AAF L21] The use of `rich.logging` suggests an emphasis on enhanced terminal output for debugging or user interaction.  
+- [GH-FDD7245D0AAF L161] The script extracts and assigns a "frequency" value to variant data, indicating it processes quantitative or statistical information.  
+- [GH-FDD7245D0AAF L201] A conditional branch handles "Likely benign" classifications, with a confidence multiplier set to 0.8.  
+- [GH-FDD7245D0AAF L240] The script calculates and rounds a lambda score (`Λ`) to two decimal places, suggesting a scoring mechanism for variant analysis.  
+- [GH-FDD7245D0AAF L300] The `gene_to_system` dictionary maps genes to biological systems, indicating an attempt to categorize variants by functional context.  
+- [GH-FDD7245D0AAF L330] Variants are sorted by their `Λ` (lambda) score in descending order, implying a prioritization of variants based on this metric.  
+- [GH-FDD7245D0AAF L350] The script groups variants under specific biological systems, such as "Immune & Inflammatory System" and "Calcium & Ion Channels."
+
+**Coverage Limit:** Sampled anchors (44 of 470) mean this note does not reflect the full content of the source.
+
+## Speculation
+- Could this script be part of a larger project that integrates variant analysis with machine learning or predictive modeling?  
+- What is the significance of the lambda (`Λ`) and chi (`Χ`) scores in determining variant prioritization? Are these metrics derived from external datasets or internal logic?  
+- How does the script handle variants with missing or ambiguous classifications, given the presence of confidence multipliers and default scoring?  
+- Are the biological systems categorized here (e.g., "Immune & Inflammatory System") part of a predefined ontology or user-defined classification system?

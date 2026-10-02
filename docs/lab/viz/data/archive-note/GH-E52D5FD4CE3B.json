@@ -1,0 +1,52 @@
+# systemsBiologyModel.md
+
+Status: unreviewed local-model draft (2026-09-24T23:21:37+00:00)
+
+- Source ID: `GH-E52D5FD4CE3B`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/coreTheories/systemsBiologyModel.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/coreTheories/systemsBiologyModel.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 181 anchors; verify against the source.
+
+# Source Note: GH-E52D5FD4CE3B
+
+**Subject**: A nonlinear systems biology model for chronic post-COVID syndromes, termed Gaslighted Allodynic Fatigue (GASLIT-AF).  
+**Genre**: Scientific modeling, with elements of medical theory and data integration.  
+**Main Ideas**:  
+- GASLIT-AF is a framework proposing that post-acute and post-immunization syndromes (e.g., Long COVID, post-vaccination syndrome) involve complex neuro-immune feedback loops and persistent inflammation.  
+- The model introduces **six attractor parameters** (γ, Λ, Ω, σ, Θ, Ξ), representing factors such as genetic susceptibility, allostatic load, and buffering capacity, which govern the system’s behavior.  
+- The model integrates **hysteresis**, **bistability**, and **delayed feedback**, suggesting that transitioning to a chronic illness state may involve a **saddle-node bifurcation**.  
+- The chronic state is described as a self-perpetuating attractor, with **recovery requiring drastic changes** in parameters (e.g., reducing genetic susceptibility or allostatic load, or increasing buffering capacity).  
+- The model is validated using **empirical data**, including studies on herpesvirus reactivation (e.g., EBV) in Long COVID patients and genetic risk factors (e.g., TLR4) for long-term symptoms.  
+
+**Striking Details**:  
+- The system is defined by [GH-E52D5FD4CE3B L32]:  
+  ```math
+  \frac{dI}{dt} = -\alpha_I \, I + f_I(N(t-\Theta), \Lambda, \gamma) + u_I(t) + \sigma\, \xi_I(t), \\
+  \frac{dN}{dt} = -\alpha_N \, N + f_N(I(t-\Theta), H(t-\Theta)) + \sigma\, \xi_N(t), \\
+  \frac{dH}{dt} = -\alpha_H \, H + f_H(N(t), \text{external stress}),
+  ```
+  with external stress and immune persistence (e.g., EBV reactivation) playing a role.  
+- The **collapse index (Ξ)** is defined as [GH-E52D5FD4CE3B L51]:  
+  $$
+  \Xi = \frac{\gamma \Lambda}{\Omega}
+  $$  
+  indicating that high genetic susceptibility (γ) and allostatic load (Λ) relative to buffering capacity (Ω) can lead to chronic illness.  
+- The model suggests that recovery from the chronic state is not straightforward, as [GH-E52D5FD4CE3B L55] notes:  
+  > "simply reversing the initial trigger is not enough – one would have to drastically reduce γ or Λ or boost Ω far more than the amount by which they crossed the threshold."  
+- A 2021 study cited in [GH-E52D5FD4CE3B L78] indicates that **66.7% of long COVID patients had evidence of EBV reactivation**, compared to only 10% of non-long COVID survivors.  
+- The model emphasizes a **systems medicine approach**, integrating immunology, neurology, and endocrinology, as described in [GH-E52D5FD4CE3B L124].  
+
+**Coverage Limit**: Sampled anchors (15 of 181 total) do not represent the full content of the source.  
+
+## Speculation  
+- Could the model’s emphasis on **genetic susceptibility (γ)** and **buffering capacity (Ω)** be useful in predicting individual risk for long-term post-COVID syndromes?  
+- Does the proposed **hysteresis** in the model imply that **cognitive-limbic feedback** might be a critical but underexplored target for therapies?  
+- Might the **recursive time delay (Θ)** be linked to mechanisms of **immune memory or neuroplasticity** in chronic illness states?  
+- Is the term "gaslighted allodynic fatigue" a metaphor or a clinical descriptor, and does it reflect broader sociomedical challenges in diagnosing these syndromes?  
+
+**Claims**:  
+- The model is a **nonlinear systems biology framework** and not a conventional linear medical theory.  
+- The **collapse index (Ξ)** is a theoretical construct derived from the model’s parameters.  
+- The model **does not claim to be universally applicable** but rather a framework for a subset of patients with irreversible neuro-immune dysfunction.

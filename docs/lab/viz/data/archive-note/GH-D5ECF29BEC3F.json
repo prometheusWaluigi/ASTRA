@@ -1,0 +1,37 @@
+# symbolicAttractorExpansion.md
+
+Status: unreviewed local-model draft (2026-09-24T23:19:48+00:00)
+
+- Source ID: `GH-D5ECF29BEC3F`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/docs/coreTheories/symbolicAttractorExpansion.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `docs/coreTheories/symbolicAttractorExpansion.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 111 anchors; verify against the source.
+
+# Source Note: GH-D5ECF29BEC3F
+
+**Subject:** A mathematical model for chronic multi-system syndromes, termed the *Symbolic Attractor Model for Chronic Multi-System Syndromes (GASLIT-AF)*.  
+**Genre:** Technical documentation, likely part of a research or clinical archive, blending theoretical modeling with physiological and biochemical concepts.
+
+**Main Ideas:**
+- The model describes chronic illness as a shift from a *healthy homeostatic state* to a *chronic illness state* through complex feedback loops in a 5-dimensional state space.
+- Key variables include **cortisol (X)**, **inflammation (I)**, **autonomic nervous system (A)**, **energy (E)**, and **oxidative stress (O)**.
+- The model integrates **HPA axis** (hypothalamic-pituitary-adrenal), **immune system**, **autonomic nervous system**, and **mitochondrial function** into a unified framework.
+- Feedback loops are central: **inflammation and autonomic activation (I–A)**, **oxidative stress and energy (E–O)**, and **cortisol suppression by inflammation (I–X)**.
+
+**Striking Details:**
+- [GH-D5ECF29BEC3F L15] The model includes regulatory parameters such as **vagal tone** and **receptor sensitivity** (e.g., glucocorticoid receptor function).
+- [GH-D5ECF29BEC3F L24] The **I–A feedback loop** is described as a *vicious cycle*, where sympathetic activation promotes inflammation and vice versa.
+- [GH-D5ECF29BEC3F L36] The equation for cortisol production is modeled using a **saturating function**, with suppression by inflammation and stimulation by autonomic input.
+- [GH-D5ECF29BEC3F L41] Inflammation is influenced by **cortisol suppression** and **autonomic activation**, with optional self-amplification from immune feedback.
+- [GH-D5ECF29BEC3F L62] Parasympathetic activity is **not modeled separately**, but rather as an implicit component of autonomic dynamics.
+- [GH-D5ECF29BEC3F L76] Oxidative stress is modeled as rising with **low energy** (mitochondrial dysfunction) and **high autonomic activation** (e.g., catecholamine-induced ROS), with clearance mechanisms.
+
+**Coverage Limit:** Sampled anchors (25 of 111 total) do not cover the full text. The model is described in fragments, with equations and references truncated or omitted. Not all variables, parameters, or interactions are explicitly detailed.
+
+## Speculation
+- Could this model be adapted to study **neurodegenerative diseases** or **mental health disorders** with chronic inflammatory components?  
+- What are the implications of **not modeling vagal tone separately**, and might this omission affect predictions of treatment efficacy for autonomic-based interventions?  
+- Are the **feedback thresholds** (e.g., Hill exponents) calibrated based on empirical data, or are they theoretical estimates?  
+- Might the **single-variable autonomic model** (A) be insufficient for capturing nuanced differences between **sympathetic and parasympathetic dysregulation** in complex syndromes?

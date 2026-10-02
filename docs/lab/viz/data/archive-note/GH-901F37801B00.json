@@ -1,0 +1,36 @@
+# UnconsciousSemanticLattice.md
+
+Status: unreviewed local-model draft (2026-09-25T01:53:54+00:00)
+
+- Source ID: `GH-901F37801B00`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/core-concepts/consciousness/UnconsciousSemanticLattice.md>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `core-concepts/consciousness/UnconsciousSemanticLattice.md`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 131 anchors; verify against the source.
+
+# Source Note: GH-901F37801B00
+
+**Subject:** A theoretical framework proposing that the hippocampus supports unconscious semantic processing through a nonlocal semantic field. The work is rooted in neuroscience, physics, and information theory, and introduces a formal model involving predictive resonance, recursive attractor drift, and coherence surfaces.
+
+**Genre:** Scientific theory/technical exposition, with a strong emphasis on mathematical formalism and interdisciplinary claims.
+
+**Main Ideas:**
+- The **Hippocampal Unconscious Semantic Coherence Theorem** posits that the hippocampus maintains a **nonlocal semantic field** capable of predictive resonance and semantic learning even under unconscious states like general anesthesia.
+- The hippocampus is suggested to process **semantic and grammatical features** of language and detect novel stimuli (e.g., “oddball” tones) without conscious awareness, based on experimental evidence ([GH-901F37801B00 L9]).
+- The model incorporates a **predictive operator** $\hat{P}$ and an **attractor manifold** $\mathcal{A}$, which allow the semantic field $S(x,t)$ to anticipate future inputs and stabilize unconscious representations ([GH-901F37801B00 L26]).
+- **Coherence surfaces**, potentially formed by microtubule networks, enable rapid integrative signaling and ground the semantic field in physical structures ([GH-901F37801B00 L34]).
+
+**Striking Details:**
+- The semantic field equation is presented as:  
+  $\tau \frac{\partial S(x,t)}{\partial t} = -\,\frac{\delta V[S]}{\delta S(x,t)} \;+\; \hat{P}[S](x,t)\;+\; I(x,t)\;+\; \xi(x,t)$, ([GH-901F37801B00 L42]).
+- The model suggests that **nonlocal semantic anticipation** is possible: the hippocampal field $S(x,t)$ may contain information about future inputs before they arrive ([GH-901F37801B00 L59]).
+- The **coherence surfaces** are theorized to provide **gain**, enabling the hippocampus to amplify weak inputs (e.g., those under anesthesia) if they resonate with existing attractor patterns ([GH-901F37801B00 L65]).
+
+**Coverage Limit:** Sampled anchors (L1, L4, L7, L9, L12, L15, L26, L31, L34, L42, L45, L51, L59, L65, L67, L73, L76, L78) represent only a fraction of the full text. The source may contain additional claims, models, or experimental details not reflected here.
+
+## Speculation
+- Could the proposed **coherence surfaces** have implications for understanding **nonlocal information processing** in other brain regions or systems?
+- Might the **predictive operator** $\hat{P}$ be related to **unconscious learning mechanisms** observed in other contexts, such as sleep or implicit memory?
+- How might the **semantic field equation** be tested empirically, given its reliance on abstract mathematical constructs?
+- Is the **nonlocal semantic anticipation** claim consistent with current neuroscientific evidence, or does it challenge established views of causality in neural processing?

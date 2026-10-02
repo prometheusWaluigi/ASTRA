@@ -1,0 +1,36 @@
+# Arby’s Steak Nuggets and Simulacrum Gradient of Coherence Collapse
+
+Status: unreviewed local-model draft (2026-09-24T16:36:42+00:00)
+
+- Source ID: `MD-2A3D00F18A6D`
+- Origin: medium
+- Canonical URL: <https://medium.com/@Iconomancer/arbys-steak-nuggets-and-the-simulacrum-gradient-of-coherence-collapse-how-legibility-traps-create-307f08478f33>
+- Published: Tue, 21 Oct 2025 22:01:51 GMT
+- Coverage: model saw an evenly sampled packet of 42 anchors; verify against the source.
+
+**Source Note: MD-2A3D00F18A6D**
+
+This text is a personal, critical reflection on the phenomenon of "proxy optimization death spirals" in systems design, using the Arby’s app and its marketing of steak nuggets as a metaphor. The author, identified as @Iconomancer on Medium, explores how measurement and optimization can lead to systemic failure when the metrics used become ends in themselves rather than means to understand or improve the system.
+
+**Subject**: The degradation of complex systems due to overreliance on simplistic metrics and the failure of optimization strategies to account for deeper systemic realities.
+
+**Genre**: Philosophical critique, with a focus on systems theory, economics, and sociology. The text blends personal experience with theoretical concepts drawn from multiple disciplines.
+
+**Main Ideas**:
+- **Instrumentation bias** (the distortion of systems by the metrics used to monitor them) is a key theme, illustrated through the example of Arby’s app notifications.
+- **Goodhart’s Law** is invoked to explain how metrics, when optimized, become unreliable indicators of true system performance.
+- **Coherence collapse** is described as the point where a system's simplifications and misaligned incentives lead to a loss of functional integrity.
+- **Legibility traps** refer to the flattening of complex realities into simplistic models, often with harmful consequences for individuals or systems.
+
+**Striking Details**:
+- The author orders steak nuggets and then receives a notification about them, which they interpret as a failure of the app to recognize their purchase (see [MD-2A3D00F18A6D para-4]).
+- The text draws an analogy between the app's behavior and the **dual-slit experiment**, where observation alters the behavior of the observed (see [MD-2A3D00F18A6D para-27]).
+- A personal anecdote about misdiagnosis and the flattening of complex health issues into simplistic explanations is used to underscore the real-world impact of these systemic failures (see [MD-2A3D00F18A6D para-34]).
+
+**Coverage Limit**: This note is based on sampled anchors (41 of 42 total), meaning not all content has been reviewed in full.
+
+## Speculation
+- Could the author’s critique of Arby’s app be extended to other consumer-facing tech, such as social media or fitness trackers, where similar misattribution of success metrics might occur?
+- How might the concept of "illegible knowledge" (as mentioned in [MD-2A3D00F18A6D para-25]) be applied to non-commercial systems, such as governance or scientific research?
+- Is the author’s experience with misdiagnosis and being flattened into a "broken gear" an example of how **legibility traps** operate in healthcare, and what might be the implications for patient autonomy?
+- If the simulacrum gradient is a systemic issue, are there known escape conditions or interventions that can mitigate its effects, as suggested in [MD-2A3D00F18A6D para-36]?

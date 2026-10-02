@@ -1,0 +1,32 @@
+# find_critical_ridge.py
+
+Status: unreviewed local-model draft (2026-09-25T04:47:11+00:00)
+
+- Source ID: `GH-36E7EEF56BDB`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantumSpectralFractalWeaving/blob/33be41b3b1c09149026b9f41304a564a368c6114/src/quantum_spectral_fractal_weaving/find_critical_ridge.py>
+- Repo: prometheusWaluigi/quantumSpectralFractalWeaving @ `33be41b3b1c0` path `src/quantum_spectral_fractal_weaving/find_critical_ridge.py`
+- Published: 2025-04-24T14:56:37Z
+- Coverage: model saw an evenly sampled packet of 30 anchors; verify against the source.
+
+# Source Note: GH-36E7EEF56BDB
+
+**Subject**: This source appears to be a Python script titled `find_critical_ridge.py` from a GitHub repository named `quantumSpectralFractalWeaving`. It is part of an experimental private wiki, functioning as a public archive of one author's work.
+
+**Genre**: Computational/Quantum Modeling, likely related to theoretical neuroscience or consciousness studies. The script is written in Python and utilizes libraries such as NumPy and Matplotlib for data analysis and visualization.
+
+**Main Ideas**: The script defines a function, `find_critical_ridge`, which computes and visualizes a "critical ridge" in a parameter space. This ridge is identified as the region where a "combined consciousness metric" reaches its peak, derived from multiplying two parameters: "coherence" and "integration" from a dataset called `sweep_results`. The function appears to analyze a range of coupling exponents (α) and decoherence rates (Γ), plotting the optimal parameter combinations that maximize this metric.
+
+**Striking Details**:
+- The function's docstring explicitly references "consciousness measures," suggesting a focus on modeling aspects of consciousness [GH-36E7EEF56BDB L5].
+- The visualization plots a 2D heatmap with axes labeled "Log Decoherence Rate (Γ)" and "Coupling Exponent (α)" [GH-36E7EEF56BDB L26, L27].
+- The script saves the result as `consciousness_ridge.png` [GH-36E7EEF56BDB L29].
+- The code accesses nested dictionaries from `sweep_results`, indicating that it is designed to work with precomputed data involving complex simulations or experiments [GH-36E7EEF56BDB L6, L7, L10].
+
+**Coverage Limit**: The provided anchors represent the full text of this file, but the source is part of a larger repository. The script's function is based on data from `sweep_results`, which is not included here. Therefore, this note is limited to the observed code and does not reflect the broader context or full dataset used in the analysis.
+
+## Speculation
+- Could the "critical ridge" represent a theoretical point of maximal coherence and integration in a model of consciousness, and might this be connected to the "hard problem of consciousness" in philosophy of mind?
+- What kind of experimental or computational setup would generate the `sweep_results` dataset, and how might it relate to brain imaging or quantum mechanics?
+- Does the use of logarithmic scaling for decoherence rate (Γ) imply a focus on orders of magnitude in parameter sensitivity, and what might this suggest about the underlying physical or computational model?
+- Are the terms "coherence" and "integration" used here in the context of computational neuroscience, and could this script be part of a broader framework exploring the neural correlates of consciousness?

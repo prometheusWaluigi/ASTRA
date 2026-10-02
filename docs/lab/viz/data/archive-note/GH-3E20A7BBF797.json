@@ -1,0 +1,27 @@
+# index.md
+
+Status: unreviewed local-model draft (2026-09-25T03:59:20+00:00)
+
+- Source ID: `GH-3E20A7BBF797`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/gaslitAF/blob/e75a8d11ac822aac2f55acb96888ba0fc1c2d96e/src/index.md>
+- Repo: prometheusWaluigi/gaslitAF @ `e75a8d11ac82` path `src/index.md`
+- Published: 2026-02-04T21:24:35Z
+- Coverage: model saw an evenly sampled packet of 34 anchors; verify against the source.
+
+**Source Note: GH-3E20A7BBF797**
+
+The text is the Markdown source for a webpage titled *GASLIT-AF Podcast & Theories*, hosted on GitHub. The apparent subject is an experimental private wiki serving as a public archive of the author's theoretical papers and podcast content. The genre is a hybrid of academic-style theory documentation and informal media hosting, likely intended for personal or niche audience consumption.
+
+The main ideas revolve around the organization and dissemination of theoretical content, with a focus on structuring information through a combination of written theories and audio-based discussions. The source shows the use of templating syntax (e.g., `{% for dir in theoryCollections %}`), suggesting it is part of a larger website or application built with a static site generator or similar framework.
+
+Striking details include the use of GitHub as the hosting platform, the integration of audio elements directly into the Markdown file, and the structured listing of theories and podcasts. A direct quote from the text reads: *"Explore our comprehensive repository of theoretical papers and listen to our podcast series."* [GH-3E20A7BBF797 L8]. Another notable line is: *"Your browser does not support the audio element."* [GH-3E20A7BBF797 L30].
+
+The coverage limit is *sampled anchors*: the text is partially shown, and the author has not read the entirety of the source. The content appears to be authored by one individual, given the personal tone and the absence of collaborative indicators.
+
+## Speculation
+
+- Could the "theoretical papers" referenced here relate to unconventional or fringe topics, given the informal structure and the use of GitHub as a hosting platform?
+- What is the purpose of the podcast series, and does it complement or diverge from the theoretical content listed?
+- Is the use of templating syntax indicative of a larger project or a personal experiment in content management?
+- How does the integration of audio files into Markdown files affect the accessibility or functionality of the archive?

@@ -1,0 +1,37 @@
+# README.md
+
+Status: unreviewed local-model draft (2026-09-24T17:55:41+00:00)
+
+- Source ID: `GH-8D3C61963219`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/ORACLE/blob/789e9623956f87e323e700b59bcacf16d4265d90/README.md>
+- Repo: prometheusWaluigi/ORACLE @ `789e9623956f` path `README.md`
+- Published: 2026-05-05T18:27:23Z
+- Coverage: model saw an evenly sampled packet of 652 anchors; verify against the source.
+
+# Source Note: GH-8D3C61963219
+
+**Subject:** A technical README for an experimental private wiki, part of a software project named "ORACLE" hosted on GitHub. The content outlines the structure, philosophy, and components of the project.
+
+**Genre:** Technical documentation, software architecture description, and project README.
+
+**Main Ideas:**  
+ORACLE is designed as an eigenvector system, emphasizing **typed coordination**, **recursive evaluation**, and **compound memory**. The project uses **task graphs** instead of chat loops, with each task having explicit inputs, outputs, and dependencies. A central evaluation criterion determines task success, and the system scales from small workflows to large research pipelines. The architecture is described through a **loop** involving six nodes: VIBE, ECHO, SAGE, LENS, MUSE, and ATLAS.
+
+**Striking Details:**  
+- The README emphasizes **self-similarity** across scales, with the eigenvector (typed coordination) being a recurring design principle [GH-8D3C61963219 L56].  
+- The **Huddle Object** is a central data structure, with fields like `drift_hypothesis` and `false_negative_delta` [GH-8D3C61963219 L195, L292].  
+- **ATLAS** enforces strict execution of plans from MUSE, with no improvisation, and aborts if the play cannot be executed as specified [GH-8D3C61963219 L306].  
+- **VIBE** reports a **category-7 refusal rate** of 8.1% with a `confidence=0.74` and recommends escalation [GH-8D3C61963219 L403].  
+- The project includes **tools** for configuration management, telemetry, and archival [GH-8D3C61963219 L320].  
+- The README includes **sample task definitions** in Python, such as `Task(id="t4", name="Document API", depends_on=["t2"], output_type="docs")` [GH-8D3C61963219 L486].  
+
+**Coverage Limit:**  
+This note is based on **sampled anchors** from a total of 652, meaning not all content has been read or analyzed.
+
+## Speculation
+
+- Could the **eigenvector system** described in the README be related to broader AI or machine learning research on scalable frameworks?  
+- What might be the implications of **ATLAS's strict execution policy** in scenarios where tasks require adaptive behavior?  
+- Are the **VIBE metrics** (e.g., refusal rate, confidence level) indicative of a larger system monitoring or feedback mechanism?  
+- How might the **Huddle Object** and its fields (e.g., `drift_hypothesis`) be used in collaborative or multi-agent environments?

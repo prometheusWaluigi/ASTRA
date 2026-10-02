@@ -1,0 +1,45 @@
+# index.html
+
+Status: unreviewed local-model draft (2026-09-25T10:11:39+00:00)
+
+- Source ID: `GH-8789029CE7DD`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantum-plasmoid/blob/d5162bc6935cfd9de733e4e3b103cff98b9042c7/applications/computational/index.html>
+- Repo: prometheusWaluigi/quantum-plasmoid @ `d5162bc6935c` path `applications/computational/index.html`
+- Published: 2026-04-09T02:00:55Z
+- Coverage: model saw an evenly sampled packet of 77 anchors; verify against the source.
+
+**Source Note: GH-8789029CE7DD**
+
+**Subject:** This file appears to be part of an experimental private wiki, serving as a computational applications overview for the *Quantum-Plasmoid* framework. The wiki is hosted on GitHub and likely serves as a public-facing archive of the author’s work.
+
+**Genre:** Technical documentation, with elements of theoretical exposition and computational modeling. The tone suggests an academic or research-oriented approach, though it is informal and lacks peer review.
+
+**Main Ideas:**
+- The *Quantum-Plasmoid* framework is explored through computational models and algorithms.
+- Key topics include the **Ruliad Traversal System**, **cellular automata**, and the **simulation of consciousness** as a recursive process.
+- The document references external materials, such as *A New Kind of Science* (Wolfram), indicating an interest in computational complexity and rule-based systems.
+- There is a podcast linked to this page, though its content is not accessible directly due to GitHub Markdown limitations.
+- The page contains links to related sections of the wiki, including a **"Theorems"** section and a **"Consciousness Theory"** page, suggesting a broader theoretical context for the computational applications discussed.
+
+**Striking Details:**
+- The wiki is described as the author’s **public archive**, though the presence of a **private** designation implies some content may not be fully accessible or intended for public consumption.
+- The **ORCHARD Theorem** is linked to, but its content is not included here; it is referenced as a theoretical underpinning.
+- The **Ruliad Traversal System** is described as a model of **consciousness as navigation through a vast space of computational rules** [GH-8789029CE7DD L51].
+- The **simulated consciousness** is framed as a **recursive process**, suggesting an exploration of self-referential computational structures [GH-8789029CE7DD L28].
+- The document is structured with clear **sections** (summary, contents, podcast, details, links, references), and includes **anchor links** for internal navigation.
+- A **favicon** is referenced, indicating an attempt at branding or user experience optimization [GH-8789029CE7DD L9].
+
+**Coverage Limit:** Sampled anchors (48 of 77 total) suggest the content is **not fully read or analyzed**, and the **wiki’s full scope** remains unknown.
+
+**## Speculation**
+- Could the **Ruliad Traversal System** be a derivative or reinterpretation of concepts from *A New Kind of Science*? If so, how might the author be extending or modifying Wolfram’s ideas?
+- Is the **simulation of consciousness** a central goal of the *Quantum-Plasmoid* framework, or is it a byproduct of the computational models described?
+- What is the **relationship between the ORCHARD Theorem** and the computational applications described here? Are they intended to be complementary or foundational?
+- Might the **private designation** of the wiki suggest that some content is not yet ready for public release, or that the author is experimenting with open-source dissemination strategies?
+
+**Claims flagged:**
+- The **Quantum-Plasmoid** framework is described as a computational model with potential links to consciousness theory, but this is presented in a speculative or conceptual manner, not as a proven or established claim [GH-8789029CE7DD L28].
+- The **simulation of consciousness as a recursive process** is a theoretical proposition, not a factual assertion [GH-8789029CE7DD L28].
+
+**End of Source Note.**

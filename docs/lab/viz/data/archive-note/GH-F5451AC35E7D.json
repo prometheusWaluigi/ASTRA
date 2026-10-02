@@ -1,0 +1,36 @@
+# parameter_sweep.py
+
+Status: unreviewed local-model draft (2026-09-25T06:55:24+00:00)
+
+- Source ID: `GH-F5451AC35E7D`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/quantumSpectralFractalWeaving/blob/33be41b3b1c09149026b9f41304a564a368c6114/src/quantum_spectral_fractal_weaving/parameter_sweep.py>
+- Repo: prometheusWaluigi/quantumSpectralFractalWeaving @ `33be41b3b1c0` path `src/quantum_spectral_fractal_weaving/parameter_sweep.py`
+- Published: 2025-04-24T14:56:37Z
+- Coverage: model saw an evenly sampled packet of 69 anchors; verify against the source.
+
+**Source Note: GH-F5451AC35E7D**
+
+**Subject:** This source is a Python script from an experimental private wiki, part of a public archive hosted on GitHub. It appears to be related to computational modeling involving quantum coherence, neural activity, and fractal dimensions.
+
+**Genre:** Technical code; likely part of a research or experimental project involving interdisciplinary topics such as quantum mechanics, neuroscience, and computational modeling.
+
+**Main Ideas:**
+- The script performs a *parameter sweep* to generate heatmaps illustrating the relationship between *quantum coherence* and various parameters, specifically the *coupling exponent (α)* and *decoherence rate (Γ)*.
+- It simulates quantum systems and extracts *neural series* from the results, which are then used to compute *fractal dimensions*.
+- The integration of information from the simulations is visualized alongside coherence and fractal dimensions in a multi-panel figure.
+- The script uses *numpy* and *matplotlib* for numerical computations and visualization.
+
+**Striking Details:**
+- The function `compute_fractal_dimension` returns a fixed value of `1.5` [GH-F5451AC35E7D L15], which may indicate a placeholder or a simplified model.
+- The function `calculate_integration` returns a fixed value of `0.5` [GH-F5451AC35E7D L18], suggesting the same simplification or abstraction.
+- The parameter sweep involves *logspace* sampling of decoherence rates (Γ) and *linspace* sampling of coupling exponents (α) [GH-F5451AC35E7D L23, L24].
+- The script saves the final output as a PNG image named `parameter_sweep.png` [GH-F5451AC35E7D L62].
+
+**Coverage Limit:** Sampled anchors represent a subset of the full source. Not all code or comments have been examined, and the full context of the project is not available.
+
+## Speculation
+- Could this script be part of a broader investigation into the interplay between quantum systems and neural dynamics, possibly in the context of quantum computing or consciousness research?
+- Are the fixed return values in `compute_fractal_dimension` and `calculate_integration` indicative of a simplified model or a placeholder for more complex, unimplemented logic?
+- Might the use of *logspace* for decoherence rates and *linspace* for coupling exponents reflect a deliberate choice to emphasize certain ranges of parameter behavior?
+- How does the coupling exponent (α) influence the observed coherence and fractal dimensions in the heatmaps, and what might this suggest about the underlying system being modeled?

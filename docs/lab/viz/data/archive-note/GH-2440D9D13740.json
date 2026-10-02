@@ -1,0 +1,34 @@
+# ci.yml
+
+Status: unreviewed local-model draft (2026-09-25T11:16:10+00:00)
+
+- Source ID: `GH-2440D9D13740`
+- Origin: github
+- Canonical URL: <https://github.com/prometheusWaluigi/bibliophile-sp/blob/a2e82f7d1a4a8d6080a89aa59cb3f1d52a73c26e/.github/workflows/ci.yml>
+- Repo: prometheusWaluigi/bibliophile-sp @ `a2e82f7d1a4a` path `.github/workflows/ci.yml`
+- Published: 2025-04-15T20:25:48Z
+- Coverage: model saw an evenly sampled packet of 74 anchors; verify against the source.
+
+**Source Note: GH-2440D9D13740**
+
+**Subject:** This source is a GitHub Actions workflow configuration file titled `ci.yml`, part of a private experimental wiki hosted in the repository `prometheusWaluigi/bibliophile-sp`. It outlines continuous integration (CI) processes for a Python-based project.
+
+**Genre:** Technical configuration file, specifically a GitHub Actions workflow. It defines automated tasks for testing, linting, and building code.
+
+**Main Ideas:**  
+The file defines two primary jobs: `test` and `build`. The `test` job runs tests, lints code with flake8, and checks formatting with black. The `build` job is responsible for packaging the project using Poetry and uploading the artifact.
+
+**Striking Details:**  
+- The file uses Poetry for dependency management and testing, as seen in [GH-2440D9D13740 L24] and [GH-2440D9D13740 L31].  
+- The `test` job runs on the `main` branch only, per [GH-2440D9D13740 L7].  
+- The `build` job uploads an artifact named `dist/` as specified in [GH-2440D9D13740 L74].  
+- The file includes a direct quote from the installation script: `curl -sSL https://install.python-poetry.org | python3 -` [GH-2440D9D13740 L26].  
+- Multiple steps use the same setup actions for Python and checkout, suggesting a standardized CI environment [GH-2440D9D13740 L17, L54].
+
+**Coverage Limit:** Sampled anchors only; this file is not fully read or analyzed.
+
+## Speculation  
+- Could the use of Poetry and black indicate a preference for modern Python development tools in this project?  
+- Does the limited scope of the `test` job (only `main` branch) suggest a lack of concern for testing on feature branches?  
+- What is the relationship between this `ci.yml` file and the broader project goals outlined elsewhere in the `bibliophile-sp` repository?  
+- Are the repeated setup steps a sign of a shared CI configuration across multiple projects in the same repository?
