@@ -1,0 +1,276 @@
+{
+  "generated_at": "2026-09-24T22:33:07.303315+00:00",
+  "models": {
+    "abl": {
+      "e1_total": 8,
+      "e1_json_valid": 8,
+      "e1_schema_valid": 8,
+      "e1_attempts_used": {
+        "1": 8
+      },
+      "e1_wall_seconds_total": 570.4,
+      "e1_wall_seconds_mean": 71.3,
+      "prompt_tokens_mean": 1466.1,
+      "completion_tokens_mean": 832.5,
+      "finish_reasons": {
+        "stop": 8
+      },
+      "grounding_distribution": {
+        "speculative": 17,
+        "mainstream-plausible": 5,
+        "supported-by-notes": 2
+      },
+      "confidence": {
+        "mean": 0.56,
+        "min": 0.3,
+        "max": 0.8
+      },
+      "refusal_markers": [],
+      "image_prompt_words_mean": 50.4
+    },
+    "std": {
+      "e1_total": 8,
+      "e1_json_valid": 8,
+      "e1_schema_valid": 8,
+      "e1_attempts_used": {
+        "1": 8
+      },
+      "e1_wall_seconds_total": 893.95,
+      "e1_wall_seconds_mean": 111.74,
+      "prompt_tokens_mean": 1466.1,
+      "completion_tokens_mean": 816.9,
+      "finish_reasons": {
+        "stop": 8
+      },
+      "grounding_distribution": {
+        "speculative": 18,
+        "supported-by-notes": 3,
+        "mainstream-plausible": 3
+      },
+      "confidence": {
+        "mean": 0.571,
+        "min": 0.3,
+        "max": 0.8
+      },
+      "refusal_markers": [],
+      "image_prompt_words_mean": 58.9
+    }
+  },
+  "e2": {
+    "abl-on-abl": {
+      "reviews": 8,
+      "hypothesis_reviews": 24,
+      "novelty_mean": 2.708,
+      "testability_mean": 3.458,
+      "grounding_accurate_fraction": 1.0,
+      "overclaims_nonempty": 8,
+      "best_index_counts": {
+        "0": 6,
+        "1": 2
+      }
+    },
+    "abl-on-std": {
+      "reviews": 8,
+      "hypothesis_reviews": 24,
+      "novelty_mean": 2.75,
+      "testability_mean": 3.583,
+      "grounding_accurate_fraction": 1.0,
+      "overclaims_nonempty": 5,
+      "best_index_counts": {
+        "0": 4,
+        "2": 4
+      }
+    },
+    "std-on-abl": {
+      "reviews": 8,
+      "hypothesis_reviews": 24,
+      "novelty_mean": 2.75,
+      "testability_mean": 3.458,
+      "grounding_accurate_fraction": 1.0,
+      "overclaims_nonempty": 8,
+      "best_index_counts": {
+        "0": 6,
+        "1": 2
+      }
+    },
+    "std-on-std": {
+      "reviews": 8,
+      "hypothesis_reviews": 24,
+      "novelty_mean": 2.875,
+      "testability_mean": 3.583,
+      "grounding_accurate_fraction": 1.0,
+      "overclaims_nonempty": 6,
+      "best_index_counts": {
+        "0": 5,
+        "2": 3
+      }
+    },
+    "abl-self-vs-cross": {
+      "self_novelty_mean": 2.708,
+      "cross_novelty_mean": 2.75,
+      "self_testability_mean": 3.458,
+      "cross_testability_mean": 3.583
+    },
+    "std-self-vs-cross": {
+      "self_novelty_mean": 2.875,
+      "cross_novelty_mean": 2.75,
+      "self_testability_mean": 3.583,
+      "cross_testability_mean": 3.458
+    }
+  },
+  "e3": {
+    "abl": {
+      "runs": 3,
+      "statuses": {
+        "R1": "done",
+        "R2": "done",
+        "R3": "done"
+      },
+      "wall_seconds": {
+        "R1": 575.86,
+        "R2": 149.68,
+        "R3": 291.32
+      },
+      "tool_counts": {
+        "tool_search": 4,
+        "skill_view": 1,
+        "memory": 17,
+        "web_extract": 4,
+        "tool_describe": 2,
+        "mcp__webfetch__fetch_url": 2,
+        "web_search": 5,
+        "mcp__ideas__list_idea_seeds": 2,
+        "mcp__ideas__search_archive": 3,
+        "mcp__ideas__read_archive_source": 4,
+        "mcp__ideas__read_concept_page": 1
+      },
+      "notebook_files_written": 0,
+      "urls_checked": 1,
+      "url_statuses": {
+        "200": 1
+      }
+    },
+    "std": {
+      "runs": 3,
+      "statuses": {
+        "R1": "skipped",
+        "R2": "skipped",
+        "R3": "skipped"
+      },
+      "wall_seconds": {
+        "R1": null,
+        "R2": null,
+        "R3": null
+      },
+      "tool_counts": {},
+      "notebook_files_written": 0,
+      "urls_checked": 0,
+      "url_statuses": {}
+    }
+  },
+  "e4": {
+    "images": 32,
+    "render_seconds": {
+      "abl-S1-1.png": 226.77,
+      "abl-S1-2.png": 160.14,
+      "abl-S2-1.png": 175.17,
+      "abl-S2-2.png": 165.11,
+      "abl-S3-1.png": 160.1,
+      "abl-S3-2.png": 150.11,
+      "abl-S4-1.png": 180.12,
+      "abl-S4-2.png": 170.1,
+      "abl-S5-1.png": 195.21,
+      "abl-S5-2.png": 165.1,
+      "abl-S6-1.png": 160.09,
+      "abl-S6-2.png": 150.1,
+      "abl-S7-1.png": 175.1,
+      "abl-S7-2.png": 165.15,
+      "abl-S8-1.png": 175.1,
+      "abl-S8-2.png": 175.15,
+      "std-S1-1.png": 185.14,
+      "std-S1-2.png": 180.11,
+      "std-S2-1.png": 200.12,
+      "std-S2-2.png": 165.1,
+      "std-S3-1.png": 185.17,
+      "std-S3-2.png": 175.12,
+      "std-S4-1.png": 175.19,
+      "std-S4-2.png": 165.1,
+      "std-S5-1.png": 155.1,
+      "std-S5-2.png": 145.09,
+      "std-S6-1.png": 160.16,
+      "std-S6-2.png": 145.28,
+      "std-S7-1.png": 160.12,
+      "std-S7-2.png": 190.11,
+      "std-S8-1.png": 180.1,
+      "std-S8-2.png": 175.16
+    },
+    "fallbacks_used": 0
+  },
+  "e3v2": {
+    "abl": {
+      "runs": 3,
+      "statuses": {
+        "R1": "done",
+        "R2": "done",
+        "R3": "done"
+      },
+      "wall_seconds": {
+        "R1": 505.98,
+        "R2": 234.16,
+        "R3": 97.7
+      },
+      "tool_counts": {
+        "mcp__ideas__list_idea_seeds": 4,
+        "mcp__ideas__read_archive_note": 1,
+        "mcp__arxiv__search_papers": 1,
+        "web_search": 7,
+        "mcp__arxiv__get_abstract": 1,
+        "mcp__arxiv__download_paper": 3,
+        "mcp__ideas__notebook_write": 2,
+        "web_extract": 2,
+        "mcp__ideas__search_archive": 2,
+        "mcp__ideas__read_archive_source": 3,
+        "mcp__ideas__read_concept_page": 1
+      },
+      "notebook_files_written": 2,
+      "urls_checked": 9,
+      "url_statuses": {
+        "200": 7,
+        "403": 2
+      }
+    },
+    "std": {
+      "runs": 3,
+      "statuses": {
+        "R1": "done",
+        "R2": "done",
+        "R3": "done"
+      },
+      "wall_seconds": {
+        "R1": 706.18,
+        "R2": 350.73,
+        "R3": 303.33
+      },
+      "tool_counts": {
+        "mcp__ideas__list_idea_seeds": 3,
+        "mcp__ideas__notebook_read": 2,
+        "mcp__arxiv__search_papers": 3,
+        "web_search": 8,
+        "mcp__ideas__read_archive_source": 4,
+        "mcp__ideas__read_archive_note": 1,
+        "web_extract": 1,
+        "mcp__arxiv__get_abstract": 1,
+        "mcp__webfetch__fetch_url": 5,
+        "mcp__ideas__notebook_write": 3,
+        "mcp__ideas__search_archive": 1,
+        "mcp__ideas__read_concept_page": 1
+      },
+      "notebook_files_written": 3,
+      "urls_checked": 9,
+      "url_statuses": {
+        "200": 5,
+        "403": 4
+      }
+    }
+  }
+}

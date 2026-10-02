@@ -1,0 +1,62 @@
+{
+  "spec": {
+    "core": "bridge",
+    "title": "dynamic_hysteresis",
+    "label_a": "A dynamic switching mathematical model for estimating energy expenditure based on physiological hysteresis",
+    "label_b": "Diffusion bridge with randomized initial and terminal times and its application to fish migration",
+    "params_a": {
+      "noise": 0.7,
+      "endpoint_spread": 0.3,
+      "drift": 0.1
+    },
+    "params_b": {
+      "noise": 1.2,
+      "endpoint_spread": 0.5,
+      "drift": -0.2
+    },
+    "skeleton": "Nonlinear time-dependent systems with adaptive parameters",
+    "why": "Both model dynamic processes influenced by external and internal variables, using time-dependent adjustments to reflect complex nonlinear behavior."
+  },
+  "members": [
+    {
+      "name": "dynamic_hysteresis",
+      "world_a": "A dynamic switching mathematical model for estimating energy expenditure based on physiological hysteresis",
+      "world_b": "Diffusion bridge with randomized initial and terminal times and its application to fish migration",
+      "shared_skeleton": "Nonlinear time-dependent systems with adaptive parameters",
+      "core": "bridge",
+      "params_a": {
+        "noise": 0.7,
+        "endpoint_spread": 0.3,
+        "drift": 0.1
+      },
+      "params_b": {
+        "noise": 1.2,
+        "endpoint_spread": 0.5,
+        "drift": -0.2
+      },
+      "why": "Both model dynamic processes influenced by external and internal variables, using time-dependent adjustments to reflect complex nonlinear behavior."
+    },
+    {
+      "name": "Migratory Hysteresis",
+      "world_a": "Diffusion bridge with randomized initial and terminal times",
+      "world_b": "A dynamic switching mathematical model for estimating energy expenditure based on physiological hysteresis",
+      "shared_skeleton": "Dynamic systems with time-dependent and state-dependent parameters that distort synchronization",
+      "core": "bridge",
+      "params_a": {
+        "noise": 1.5,
+        "endpoint_spread": 0.6,
+        "drift": -0.3
+      },
+      "params_b": {
+        "noise": 1.2,
+        "endpoint_spread": 0.4,
+        "drift": 0.1
+      },
+      "why": "Both model systems where temporal and spatial randomness disrupts the flow of coherence."
+    }
+  ],
+  "runs": [
+    "std-viral-pattern-language",
+    "std-waluigiprompt"
+  ]
+}

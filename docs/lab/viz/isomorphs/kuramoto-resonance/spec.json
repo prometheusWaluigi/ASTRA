@@ -1,0 +1,43 @@
+{
+  "spec": {
+    "core": "kuramoto",
+    "title": "Kuramoto-Resonance",
+    "label_a": "Geometry-orchestrated objective reduction from a multiscale resonance chain",
+    "label_b": "A dynamic switching mathematical model for estimating energy expenditure",
+    "params_a": {
+      "coupling": 3.2,
+      "frustration": 0.8,
+      "spread": 2.1
+    },
+    "params_b": {
+      "coupling": 2.9,
+      "frustration": -0.5,
+      "spread": 1.7
+    },
+    "skeleton": "Coupled phase oscillators that synchronize through non-linear interactions and environmental modulation",
+    "why": "Both model synchronization phenomena influenced by external or internal perturbations."
+  },
+  "members": [
+    {
+      "name": "Kuramoto-Resonance",
+      "world_a": "Geometry-orchestrated objective reduction from a multiscale resonance chain",
+      "world_b": "A dynamic switching mathematical model for estimating energy expenditure",
+      "shared_skeleton": "Coupled phase oscillators that synchronize through non-linear interactions and environmental modulation",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 3.2,
+        "frustration": 0.8,
+        "spread": 2.1
+      },
+      "params_b": {
+        "coupling": 2.9,
+        "frustration": -0.5,
+        "spread": 1.7
+      },
+      "why": "Both model synchronization phenomena influenced by external or internal perturbations."
+    }
+  ],
+  "runs": [
+    "abl-bare-voice"
+  ]
+}

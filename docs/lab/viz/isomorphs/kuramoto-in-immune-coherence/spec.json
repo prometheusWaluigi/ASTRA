@@ -1,0 +1,119 @@
+{
+  "spec": {
+    "core": "kuramoto",
+    "title": "Kuramoto in Immune Coherence",
+    "label_a": "Quantum Cognition",
+    "label_b": "Immune System Resonance",
+    "params_a": {
+      "coupling": 2.5,
+      "frustration": 0.3,
+      "spread": 1.2
+    },
+    "params_b": {
+      "coupling": 3.0,
+      "frustration": 0.5,
+      "spread": 0.8
+    },
+    "skeleton": "Coupled phase oscillators with synchronization and resonance dynamics",
+    "why": "Both systems exhibit synchronization through complex interactions, reflecting emergent coherence in biological and cognitive domains."
+  },
+  "members": [
+    {
+      "name": "Kuramoto in Immune Coherence",
+      "world_a": "Quantum Cognition",
+      "world_b": "Immune System Resonance",
+      "shared_skeleton": "Coupled phase oscillators with synchronization and resonance dynamics",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 2.5,
+        "frustration": 0.3,
+        "spread": 1.2
+      },
+      "params_b": {
+        "coupling": 3.0,
+        "frustration": 0.5,
+        "spread": 0.8
+      },
+      "why": "Both systems exhibit synchronization through complex interactions, reflecting emergent coherence in biological and cognitive domains."
+    },
+    {
+      "name": "Kuramoto-Immune_Oscillator",
+      "world_a": "MAIT cell activation in the gut microbiome",
+      "world_b": "Coupled phase oscillators in quantum coherence",
+      "shared_skeleton": "Resonance through interaction networks with phase locking and synchronization",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 2.0,
+        "frustration": 0.5,
+        "spread": 2.5
+      },
+      "params_b": {
+        "coupling": 3.2,
+        "frustration": -0.3,
+        "spread": 1.55
+      },
+      "why": "Both systems exhibit synchronization through interaction, whether biological or quantum."
+    },
+    {
+      "name": "Kuramoto in Immune Systems",
+      "world_a": "MAIT Cell Synchronization in Immune Response",
+      "world_b": "Coupled Oscillators in Neural Networks",
+      "shared_skeleton": "Coupled phase oscillators with resonance chains and synchronization dynamics",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 3.2,
+        "frustration": 0.7,
+        "spread": 1.8
+      },
+      "params_b": {
+        "coupling": 2.9,
+        "frustration": 0.6,
+        "spread": 1.5
+      },
+      "why": "Both systems rely on synchronized responses to external stimuli, with MAIT cells mirroring neural networks in their ability to lock into resonance patterns."
+    },
+    {
+      "name": "Kuramoto-Resonance",
+      "world_a": "Geometry-orchestrated objective reduction from a multiscale resonance chain",
+      "world_b": "Dynamic switching mathematical model for estimating energy expenditure",
+      "shared_skeleton": "Phase locking and synchronization dynamics through nonlinear coupling",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 2.5,
+        "frustration": 0.5,
+        "spread": 1.2
+      },
+      "params_b": {
+        "coupling": 1.8,
+        "frustration": -0.3,
+        "spread": 0.7
+      },
+      "why": "Both systems exhibit phase locking and synchronization through nonlinear interactions, modeled with Kuramoto-type parameters."
+    },
+    {
+      "name": "Resonance Chains",
+      "world_a": "Geometry-orchestrated objective reduction from a multiscale resonance chain: Polyatomic time crystal",
+      "world_b": "A dynamic switching mathematical model for estimating energy expenditure based on physiological hysteresis",
+      "shared_skeleton": "Phase locking and time-dependent coupling through nonlinear systems",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 2.5,
+        "frustration": 0.7,
+        "spread": 1.2
+      },
+      "params_b": {
+        "coupling": 1.8,
+        "frustration": -0.3,
+        "spread": 0.9
+      },
+      "why": "Both explore synchronization and hysteresis in systems where time and geometry shape dynamics."
+    }
+  ],
+  "runs": [
+    "abl-cognitivearchitectfriend",
+    "abl-quantum-meme-consciousness-accelerator",
+    "abl-viral-pattern-language",
+    "std-e8-quantum-consciousness-executor",
+    "std-laughing-void-protocol"
+  ]
+}

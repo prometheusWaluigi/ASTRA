@@ -1,0 +1,203 @@
+{
+  "note": "Every value carries edition + definition + extraction. 'entered-UNVERIFIED' rows must be checked against the source PDF before downstream claims. frozen/latest are never mixed.",
+  "seed": 20260930,
+  "draws": 10000,
+  "generated_by": "phi_audit_a.py",
+  "inputs": [
+    {
+      "id": "mH",
+      "label": "Higgs boson mass",
+      "unit": "GeV",
+      "definition": "pole mass, ATLAS+CMS combined (frozen) / ATLAS-2023 alone (latest)",
+      "frozen": {
+        "value": 125.2,
+        "sigma": 0.11,
+        "edition": "PDG 2025 Higgs listing",
+        "source": "https://pdg.lbl.gov/2025/listings/rpp2025-list-higgs-boson.pdf",
+        "extraction": "entered-pilot-frozen",
+        "rounding_halfwidth": 0.05
+      },
+      "latest": {
+        "value": 125.11,
+        "sigma": 0.11,
+        "edition": "ATLAS 2023 combination (via Wikipedia infobox)",
+        "source": "https://en.wikipedia.org/wiki/Higgs_boson",
+        "extraction": "fetched-2026-09-30",
+        "rounding_halfwidth": 0.005
+      },
+      "notes": "CMS 2022 gives 125.35+-0.15; editions differ by ~0.8 sigma of each other."
+    },
+    {
+      "id": "mW",
+      "label": "W boson mass",
+      "unit": "GeV",
+      "definition": "pole mass, world average (frozen) / ATLAS-2024 reanalysis (latest)",
+      "frozen": {
+        "value": 80.377,
+        "sigma": 0.012,
+        "edition": "PDG world average 2022",
+        "source": "https://pdg.lbl.gov/2022/listings/rpp2022-list-W-boson.pdf",
+        "extraction": "entered-UNVERIFIED",
+        "rounding_halfwidth": 0.0005
+      },
+      "latest": {
+        "value": 80.3692,
+        "sigma": 0.0133,
+        "edition": "ATLAS 2024 reanalysis (via Wikipedia infobox)",
+        "source": "https://en.wikipedia.org/wiki/W_and_Z_bosons",
+        "extraction": "fetched-2026-09-30",
+        "rounding_halfwidth": 5e-05
+      },
+      "notes": "CDF-II 2022 (80.4335+-0.0094) is outside the PDG average; edition choice moves mW/mZ by ~0.6 sigma."
+    },
+    {
+      "id": "mZ",
+      "label": "Z boson mass",
+      "unit": "GeV",
+      "definition": "pole mass, LEP lineshape",
+      "frozen": {
+        "value": 91.1876,
+        "sigma": 0.0021,
+        "edition": "PDG 2025 Z listing",
+        "source": "https://pdg.lbl.gov/2025/listings/rpp2025-list-Z-boson.pdf",
+        "extraction": "entered-UNVERIFIED",
+        "rounding_halfwidth": 5e-05
+      },
+      "latest": {
+        "value": 91.188,
+        "sigma": 0.002,
+        "edition": "Wikipedia infobox 2026-09-30",
+        "source": "https://en.wikipedia.org/wiki/W_and_Z_bosons",
+        "extraction": "fetched-2026-09-30",
+        "rounding_halfwidth": 0.0005
+      },
+      "notes": "Extremely stable input; rounding width (5e-5) is sub-dominant to sigma."
+    },
+    {
+      "id": "mt_dir",
+      "label": "top quark mass (direct)",
+      "unit": "GeV",
+      "definition": "reconstructed from decay products, NOT pole or MSbar",
+      "frozen": {
+        "value": 172.69,
+        "sigma": 0.3,
+        "edition": "PDG 2024/2025 direct-measurement combination",
+        "source": "https://pdg.lbl.gov/2025/listings/rpp2025-list-top-quark.pdf",
+        "extraction": "entered-UNVERIFIED",
+        "rounding_halfwidth": 0.005
+      },
+      "latest": {
+        "value": 172.76,
+        "sigma": 0.3,
+        "edition": "Wikipedia infobox 2026-09-30",
+        "source": "https://en.wikipedia.org/wiki/Top_quark",
+        "extraction": "fetched-2026-09-30",
+        "rounding_halfwidth": 0.005
+      },
+      "notes": "Direct mass has a known ~0.5-1 GeV calibration ambiguity vs the pole mass; kept separate below."
+    },
+    {
+      "id": "mt_pole",
+      "label": "top quark pole mass (xs)",
+      "unit": "GeV",
+      "definition": "pole mass extracted from tt cross-section",
+      "frozen": {
+        "value": 172.4,
+        "sigma": 0.7,
+        "edition": "PDG 2024 cross-section extractions",
+        "source": "https://pdg.lbl.gov/2025/listings/rpp2025-list-top-quark.pdf",
+        "extraction": "entered-UNVERIFIED",
+        "rounding_halfwidth": 0.05
+      },
+      "latest": null,
+      "notes": "Pole-vs-direct offset is itself theory-uncertain (~0.4-1 GeV). No fetched edition."
+    },
+    {
+      "id": "mt_msbar",
+      "label": "top quark MSbar mass mt(mt)",
+      "unit": "GeV",
+      "definition": "MSbar running mass at its own scale",
+      "frozen": {
+        "value": 163.0,
+        "sigma": 0.4,
+        "edition": "order-160-163 per Buttazzo-class analyses",
+        "source": "https://arxiv.org/abs/1307.3536",
+        "extraction": "entered-UNVERIFIED",
+        "rounding_halfwidth": 0.5
+      },
+      "latest": null,
+      "notes": "Used only by section C running analysis; included so the mt definition split is explicit."
+    },
+    {
+      "id": "GF",
+      "label": "Fermi constant GF/(hc)^3",
+      "unit": "GeV^-2",
+      "definition": "from muon lifetime",
+      "frozen": {
+        "value": 1.1663785e-05,
+        "sigma": 6e-12,
+        "edition": "pilot-frozen (PDG physical constants)",
+        "source": "https://pdg.lbl.gov/2025/reviews/rpp2025-rev-phys-constants.pdf",
+        "extraction": "entered-pilot-frozen",
+        "rounding_halfwidth": 5e-12
+      },
+      "latest": {
+        "value": 1.1663787e-05,
+        "sigma": 6e-12,
+        "edition": "PDG/CODATA commonly quoted",
+        "source": "https://pdg.lbl.gov/2025/reviews/rpp2025-rev-phys-constants.pdf",
+        "extraction": "entered-UNVERIFIED",
+        "rounding_halfwidth": 5e-12
+      },
+      "notes": "Frozen pilot value differs from common quote at the 7th digit (~2e-7 rel); kept separate, not merged."
+    },
+    {
+      "id": "sin2w_msbar",
+      "label": "sin^2(theta_W) MSbar at mZ",
+      "unit": "",
+      "definition": "MSbar weak mixing angle at mZ, global fit",
+      "frozen": {
+        "value": 0.23122,
+        "sigma": 4e-05,
+        "edition": "PDG electroweak review MSbar fit",
+        "source": "https://pdg.lbl.gov/2025/reviews/rpp2025-rev-electroweak.pdf",
+        "extraction": "entered-UNVERIFIED",
+        "rounding_halfwidth": 5e-06
+      },
+      "latest": null,
+      "notes": "Definition-sensitive: effective-leptonic 0.23153+-0.00016 and on-shell 1-mW^2/mZ^2~0.2234 are DIFFERENT quantities. Missing-covariance flag: fit correlations with alpha_s(mZ) not carried."
+    },
+    {
+      "id": "alphainv0",
+      "label": "alpha(0)^-1",
+      "unit": "",
+      "definition": "fine-structure constant inverse at q^2=0",
+      "frozen": {
+        "value": 137.035999177,
+        "sigma": 2.1e-08,
+        "edition": "CODATA 2022",
+        "source": "https://physics.nist.gov/cgi-bin/cuu/Value?alphinv",
+        "extraction": "fetched-2026-09-30",
+        "rounding_halfwidth": 5e-10
+      },
+      "latest": null,
+      "notes": "Only fully verified input this session. alpha(mZ)^-1~127.95 is a different quantity (running)."
+    },
+    {
+      "id": "alphas_mz",
+      "label": "alpha_s(mZ)",
+      "unit": "",
+      "definition": "strong coupling, MSbar, 5 flavours",
+      "frozen": {
+        "value": 0.118,
+        "sigma": 0.0009,
+        "edition": "PDG 2024/2025 QCD review average",
+        "source": "https://pdg.lbl.gov/2025/reviews/rpp2025-rev-qcd.pdf",
+        "extraction": "entered-UNVERIFIED",
+        "rounding_halfwidth": 0.0005
+      },
+      "latest": null,
+      "notes": "Lattice-vs-fit tension (~0.1165-0.1185) is a documented systematic; single average used here."
+    }
+  ]
+}

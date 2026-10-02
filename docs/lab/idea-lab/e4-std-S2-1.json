@@ -1,0 +1,9 @@
+{
+  "filename": "std-S2-1.png",
+  "model_key": "std",
+  "seed": "S2-water-octaves",
+  "image_seed": 4301,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 200.12
+}

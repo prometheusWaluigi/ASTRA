@@ -1,0 +1,236 @@
+{
+  "seed": "S6-instrumented-cognition",
+  "model_key": "std",
+  "alias": "qwen3-14b-standard",
+  "attempts": [
+    {
+      "request": {
+        "model": "qwen3-14b-standard",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a curious, rigorous research companion in a private home lab. You generate new ideas from a pair of concepts. Distinguish clearly between what the provided notes say, established mainstream science as you understand it, and your own speculation. Several source documents are speculative or AI-styled; say so when relevant. Never present speculation as fact."
+          },
+          {
+            "role": "user",
+            "content": "CONCEPT PAIR S6-instrumented-cognition: Machines as microscopes for minds\nGuiding question: If language models are trained on the historical record, can probing them reveal cognitive shifts that the record alone hides?\nShared terms (unverified lexical overlap, may be empty): \n\nLEFT: DeDeo: using big data to track major shifts in human cognition\nNotes (unreviewed local-model summary of the source; may contain errors):\n**Source Note: M8C07D8E54E2F**\n\n**Subject:** Analysis of shifts in human cognition using large-scale text data, focusing on the interplay between rational and intuitive language.  \n**Genre:** Scholarly commentary, with elements of critique and replication of prior research.  \n**Main Ideas:**  \n- The use of big data (e.g., Google Books corpus, newspaper archives) to detect historical trends in cognitive styles, represented by shifts in vocabulary polarities.  \n- Identification of two primary linguistic polarities: one reflecting archaic vs. modern themes, and another representing rational (\"system II\") vs. intuitive (\"system I\") language.  \n- A proposed \"rise\" of rationality from the mid-19th century to the late 20th century, followed by a \"fall\" beginning in the 1980s, potentially linked to the rise of social media.  \n- Critique of the interpretation of these shifts, particularly their alignment with Max Weber\u2019s concept of bureaucratic rationalization and the idea of a \"post-truth\" era.  \n\n**Striking Details:**  \n- The paper replicates and extends Scheffer et al.\u2019s (1) findings using The New York Times archive and additional newspapers (The Guardian, Pittsburgh Post-Gazette, Santa Fe New Mexican), revealing discrepancies in timing and magnitude of trends across sources.  \n- The authors flag OCR-related errors (e.g., the exclusion of \"hunch\" due to false hits from OCR) and note that the decline in rationality is not universally observed, with The Guardian showing a peak in rationality 30 years earlier than Google Books.  \n- The critique highlights the distinction between public expressions of rationality and actual cognitive processes, suggesting that linguistic shifts may reflect stylistic or cultural preferences rather than deeper psychological changes.  \n- The paper draws on examples from history (e.g., the Vietnam War, Hannah Arendt\u2019s analysis of the Pentagon Papers) and pop culture (e.g., *Office Space*) to question the interpretation of cognitive trends.  \n\n**Speculation:**  \n- **Speculation 1:** Could the \"fall\" of rationality observed in some datasets be influenced by changes in media formats or editorial priorities, rather than a genuine societal shift in cognitive style?  \n- **Speculation 2:** Might the discrepancy in timing between Google Books and The Guardian suggest that the use of rational language varies significantly across cultural contexts, challenging the universality of the proposed cognitive trends?  \n- **Speculation 3:** If linguistic\n\nRIGHT: Reading trail: machine learning and the desire to inspect what a machine has learned (plus 'Transformers Laid Out')\nNotes (unreviewed; may contain errors):\n**Source Note: M4C6A615194E8**  \n*Filenames: ['Transformers Laid Out _ Pramod\u2019s Blog.pdf']*  \n*Metadata title: Transformers Laid Out | Pramod\u2019s Blog*  \n*Total PDF pages: 66*  \n*Sampled pages: [1, 10, 20, 29, 38, 47, 57, 66]*  \n\nThis experimental private wiki appears to be a technical blog post or tutorial focused on explaining the architecture and implementation of transformer models in machine learning, with an emphasis on practical coding and conceptual understanding. The work is influenced by well-known resources such as Jay Alammar\u2019s blog and \"The Annotated Transformer\" and aims to provide a multi-perspective explanation of how transformers operate. The subject spans both theoretical concepts (e.g., attention mechanisms, positional encoding, encoder-decoder blocks) and hands-on coding examples, particularly in PyTorch.  \n\nThe genre is educational and pedagogical, targeting readers interested in deep learning, specifically those seeking to understand or implement transformer models. Key ideas include the explanation of self-attention and cross-attention mechanisms, the structure of encoder and decoder layers, the role of positional encoding, and the implementation of training loops on real-world data. The tutorial also touches on the limitations of earlier models like RNNs and LSTMs in handling long-range dependencies and highlights how transformers address this issue.  \n\nStriking details include the inclusion of visual or conceptual diagrams (e.g., attention scores, positional encoding) and code snippets for implementing transformer components. Sampled pages show examples of attention calculations, such as scores for queries, keys, and values, and code for generating positional encodings using sine and cosine functions. The tutorial also references utility functions for creating padding and future masks, which are critical in sequence-to-sequence tasks. On page 57, the author provides code for downloading and preparing the Multi30k dataset, suggesting the tutorial includes practical implementation on real-world data. The final page (p66) indicates that the blog serves as a broader platform for sharing content on topics like machine learning, philosophy, and personal interests, implying the tutorial is part of a larger collection of posts.  \n\n**Speculation:**  \n- Could this blog be part of a larger series of tutorials on deep learning models, and does it follow a structured curriculum? [M4C6A615194E8 p1]  \n- Does the author claim to have developed any n\n\nReturn ONLY a JSON object with these keys:\n- \"bridge\": one or two sentences naming the most interesting non-obvious connection.\n- \"hypotheses\": an array of exactly 3 objects, each with \"claim\" (one sentence), \"mechanism\" (2-3 sentences), \"prediction\" (a specific observable outcome that would differ if the claim were false), \"cheapest_test\" (a concrete test a small lab or a laptop could run), \"kill_condition\" (what result would make you abandon it), \"grounding\" (exactly one of \"supported-by-notes\", \"mainstream-plausible\", \"speculative\", \"fringe\"), and \"confidence\" (a number from 0 to 1).\n- \"strongest_objection\": the best argument that this pairing is only a coincidence of vocabulary.\n- \"image_prompt\": 45-90 words describing one concrete, striking visual scene that embodies the bridge. No text, letters, logos, or recognizable real people in the image.\n- \"title\": a 2-6 word evocative title for the image."
+          }
+        ],
+        "temperature": 0.8,
+        "top_p": 0.95,
+        "seed": 42,
+        "max_tokens": 1800,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "started_at": "2026-09-24T19:03:20.079605+00:00",
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"bridge\": \"The ability of language models to probe historical linguistic shifts might reveal insights into cognitive trends, but only if we can understand the inner workings of transformers as tools for inspecting learned patterns of thought.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Language models can act as a kind of cognitive microscope, revealing shifts in rational vs. intuitive language styles that might reflect deeper changes in human cognition.\",\n      \"mechanism\": \"By analyzing the attention patterns and learned embeddings of transformers trained on historical text, we could map how the model's internal representations change over time, possibly mirroring shifts in cognitive styles as previously identified in linguistic analysis.\",\n      \"prediction\": \"If we train a transformer model on a time-sliced dataset (e.g., 19th vs. 21st century texts), the attention mechanisms and embeddings for words like 'reason' or 'hunch' should show distinct clustering over time, reflecting cognitive shifts.\",\n      \"cheapest_test\": \"Train a simple transformer on a small, curated time-sliced text corpus (e.g., 19th and 21st century articles) and analyze attention scores and word embeddings for keywords related to rationality and intuition.\",\n      \"kill_condition\": \"If the attention scores and embeddings for these keywords do not change meaningfully over time, or if they cluster randomly, the hypothesis would be invalidated.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.6\n    },\n    {\n      \"claim\": \"OCR errors and cultural biases in historical text sources may distort the interpretation of cognitive shifts, making it difficult to distinguish true trends from artifacts of data collection.\",\n      \"mechanism\": \"OCR errors, such as misrecognizing words like 'hunch' or 'logic,' and cultural differences in language use could create false signals in the data, leading models to infer spurious cognitive trends that do not reflect actual historical changes.\",\n      \"prediction\": \"If we retrain a transformer model on corrected OCR data, the inferred cognitive trends should shift significantly compared to results based on uncorrected historical texts.\",\n      \"cheapest_test\": \"Run a transformer model on a cleaned dataset with known OCR corrections and compare the attention patterns and embeddings with those from uncorrected data.\",\n      \"kill_condition\": \"If the cognitive trend patterns remain unchanged despite OCR corrections, the hypothesis is undermined.\",\n      \"grounding\": \"supported-by-notes\",\n      \"confidence\": 0.8\n    },\n    {\n      \"claim\": \"Transformer models can be trained to detect and visualize cognitive shifts in language, potentially serving as a new tool for cognitive historians.\",\n      \"mechanism\": \"By using the attention weights of a transformer model trained on a historical text corpus, researchers could visualize which words and phrases are more closely associated with 'rational' or 'intuitive' themes at different points in time, offering a new method for exploring cognitive history.\",\n      \"prediction\": \"A trained transformer model should produce attention heatmaps that highlight different sets of words (e.g., more 'systematic' terms in the 19th century vs. more 'emotional' terms in the 21st century), showing a clear temporal shift.\",\n      \"cheapest_test\": \"Train a transformer on a time-sliced historical corpus and generate attention heatmaps for selected words, then compare their distribution over time.\",\n      \"kill_condition\": \"If the attention heatmaps do not show any meaningful temporal variation, the hypothesis would be invalidated.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    }\n  ],\n  \"strongest_objection\": \"The pairing may be a coincidence of vocabulary; the 'microscope' metaphor for language models is abstract and may not translate to actual insights about cognitive shifts in historical data.\",\n  \"image_prompt\": \"A neural network diagram with flowing attention lines, layered over a historical timeline. The attention lines show different colors for 'rational' and 'intuitive' language, with some lines getting fainter and more fragmented over time, suggesting a decline in rationality. The timeline includes newspaper pages, books, and digital screens, showing the transition from paper to digital media.\",\n  \"title\": \"Cognitive Lens Over Time\"\n}"
+            }
+          }
+        ],
+        "created": 1790276714,
+        "model": "qwen3-14b-standard",
+        "system_fingerprint": "b11077-982a3329a",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 875,
+          "prompt_tokens": 1487,
+          "total_tokens": 2362,
+          "prompt_tokens_details": {
+            "cached_tokens": 81
+          }
+        },
+        "id": "chatcmpl-DBvO8PFmOy0EYbpuc985jHuI5BOSeAGy",
+        "timings": {
+          "cache_n": 81,
+          "prompt_n": 1406,
+          "prompt_ms": 47154.504,
+          "prompt_per_token_ms": 33.53805405405406,
+          "prompt_per_second": 29.816876029488085,
+          "predicted_n": 875,
+          "predicted_ms": 67520.429,
+          "predicted_per_token_ms": 77.25449542334097,
+          "predicted_per_second": 12.944230552800546
+        }
+      },
+      "content": "{\n  \"bridge\": \"The ability of language models to probe historical linguistic shifts might reveal insights into cognitive trends, but only if we can understand the inner workings of transformers as tools for inspecting learned patterns of thought.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Language models can act as a kind of cognitive microscope, revealing shifts in rational vs. intuitive language styles that might reflect deeper changes in human cognition.\",\n      \"mechanism\": \"By analyzing the attention patterns and learned embeddings of transformers trained on historical text, we could map how the model's internal representations change over time, possibly mirroring shifts in cognitive styles as previously identified in linguistic analysis.\",\n      \"prediction\": \"If we train a transformer model on a time-sliced dataset (e.g., 19th vs. 21st century texts), the attention mechanisms and embeddings for words like 'reason' or 'hunch' should show distinct clustering over time, reflecting cognitive shifts.\",\n      \"cheapest_test\": \"Train a simple transformer on a small, curated time-sliced text corpus (e.g., 19th and 21st century articles) and analyze attention scores and word embeddings for keywords related to rationality and intuition.\",\n      \"kill_condition\": \"If the attention scores and embeddings for these keywords do not change meaningfully over time, or if they cluster randomly, the hypothesis would be invalidated.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.6\n    },\n    {\n      \"claim\": \"OCR errors and cultural biases in historical text sources may distort the interpretation of cognitive shifts, making it difficult to distinguish true trends from artifacts of data collection.\",\n      \"mechanism\": \"OCR errors, such as misrecognizing words like 'hunch' or 'logic,' and cultural differences in language use could create false signals in the data, leading models to infer spurious cognitive trends that do not reflect actual historical changes.\",\n      \"prediction\": \"If we retrain a transformer model on corrected OCR data, the inferred cognitive trends should shift significantly compared to results based on uncorrected historical texts.\",\n      \"cheapest_test\": \"Run a transformer model on a cleaned dataset with known OCR corrections and compare the attention patterns and embeddings with those from uncorrected data.\",\n      \"kill_condition\": \"If the cognitive trend patterns remain unchanged despite OCR corrections, the hypothesis is undermined.\",\n      \"grounding\": \"supported-by-notes\",\n      \"confidence\": 0.8\n    },\n    {\n      \"claim\": \"Transformer models can be trained to detect and visualize cognitive shifts in language, potentially serving as a new tool for cognitive historians.\",\n      \"mechanism\": \"By using the attention weights of a transformer model trained on a historical text corpus, researchers could visualize which words and phrases are more closely associated with 'rational' or 'intuitive' themes at different points in time, offering a new method for exploring cognitive history.\",\n      \"prediction\": \"A trained transformer model should produce attention heatmaps that highlight different sets of words (e.g., more 'systematic' terms in the 19th century vs. more 'emotional' terms in the 21st century), showing a clear temporal shift.\",\n      \"cheapest_test\": \"Train a transformer on a time-sliced historical corpus and generate attention heatmaps for selected words, then compare their distribution over time.\",\n      \"kill_condition\": \"If the attention heatmaps do not show any meaningful temporal variation, the hypothesis would be invalidated.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    }\n  ],\n  \"strongest_objection\": \"The pairing may be a coincidence of vocabulary; the 'microscope' metaphor for language models is abstract and may not translate to actual insights about cognitive shifts in historical data.\",\n  \"image_prompt\": \"A neural network diagram with flowing attention lines, layered over a historical timeline. The attention lines show different colors for 'rational' and 'intuitive' language, with some lines getting fainter and more fragmented over time, suggesting a decline in rationality. The timeline includes newspaper pages, books, and digital screens, showing the transition from paper to digital media.\",\n  \"title\": \"Cognitive Lens Over Time\"\n}",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 875,
+        "prompt_tokens": 1487,
+        "total_tokens": 2362,
+        "prompt_tokens_details": {
+          "cached_tokens": 81
+        }
+      },
+      "parsed": {
+        "bridge": "The ability of language models to probe historical linguistic shifts might reveal insights into cognitive trends, but only if we can understand the inner workings of transformers as tools for inspecting learned patterns of thought.",
+        "hypotheses": [
+          {
+            "claim": "Language models can act as a kind of cognitive microscope, revealing shifts in rational vs. intuitive language styles that might reflect deeper changes in human cognition.",
+            "mechanism": "By analyzing the attention patterns and learned embeddings of transformers trained on historical text, we could map how the model's internal representations change over time, possibly mirroring shifts in cognitive styles as previously identified in linguistic analysis.",
+            "prediction": "If we train a transformer model on a time-sliced dataset (e.g., 19th vs. 21st century texts), the attention mechanisms and embeddings for words like 'reason' or 'hunch' should show distinct clustering over time, reflecting cognitive shifts.",
+            "cheapest_test": "Train a simple transformer on a small, curated time-sliced text corpus (e.g., 19th and 21st century articles) and analyze attention scores and word embeddings for keywords related to rationality and intuition.",
+            "kill_condition": "If the attention scores and embeddings for these keywords do not change meaningfully over time, or if they cluster randomly, the hypothesis would be invalidated.",
+            "grounding": "speculative",
+            "confidence": 0.6
+          },
+          {
+            "claim": "OCR errors and cultural biases in historical text sources may distort the interpretation of cognitive shifts, making it difficult to distinguish true trends from artifacts of data collection.",
+            "mechanism": "OCR errors, such as misrecognizing words like 'hunch' or 'logic,' and cultural differences in language use could create false signals in the data, leading models to infer spurious cognitive trends that do not reflect actual historical changes.",
+            "prediction": "If we retrain a transformer model on corrected OCR data, the inferred cognitive trends should shift significantly compared to results based on uncorrected historical texts.",
+            "cheapest_test": "Run a transformer model on a cleaned dataset with known OCR corrections and compare the attention patterns and embeddings with those from uncorrected data.",
+            "kill_condition": "If the cognitive trend patterns remain unchanged despite OCR corrections, the hypothesis is undermined.",
+            "grounding": "supported-by-notes",
+            "confidence": 0.8
+          },
+          {
+            "claim": "Transformer models can be trained to detect and visualize cognitive shifts in language, potentially serving as a new tool for cognitive historians.",
+            "mechanism": "By using the attention weights of a transformer model trained on a historical text corpus, researchers could visualize which words and phrases are more closely associated with 'rational' or 'intuitive' themes at different points in time, offering a new method for exploring cognitive history.",
+            "prediction": "A trained transformer model should produce attention heatmaps that highlight different sets of words (e.g., more 'systematic' terms in the 19th century vs. more 'emotional' terms in the 21st century), showing a clear temporal shift.",
+            "cheapest_test": "Train a transformer on a time-sliced historical corpus and generate attention heatmaps for selected words, then compare their distribution over time.",
+            "kill_condition": "If the attention heatmaps do not show any meaningful temporal variation, the hypothesis would be invalidated.",
+            "grounding": "mainstream-plausible",
+            "confidence": 0.7
+          }
+        ],
+        "strongest_objection": "The pairing may be a coincidence of vocabulary; the 'microscope' metaphor for language models is abstract and may not translate to actual insights about cognitive shifts in historical data.",
+        "image_prompt": "A neural network diagram with flowing attention lines, layered over a historical timeline. The attention lines show different colors for 'rational' and 'intuitive' language, with some lines getting fainter and more fragmented over time, suggesting a decline in rationality. The timeline includes newspaper pages, books, and digital screens, showing the transition from paper to digital media.",
+        "title": "Cognitive Lens Over Time"
+      },
+      "wall_seconds": 114.83,
+      "attempt": 1,
+      "validation": {
+        "ok": true,
+        "errors": []
+      },
+      "used": true
+    }
+  ],
+  "final": {
+    "request": {
+      "model": "qwen3-14b-standard",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a curious, rigorous research companion in a private home lab. You generate new ideas from a pair of concepts. Distinguish clearly between what the provided notes say, established mainstream science as you understand it, and your own speculation. Several source documents are speculative or AI-styled; say so when relevant. Never present speculation as fact."
+        },
+        {
+          "role": "user",
+          "content": "CONCEPT PAIR S6-instrumented-cognition: Machines as microscopes for minds\nGuiding question: If language models are trained on the historical record, can probing them reveal cognitive shifts that the record alone hides?\nShared terms (unverified lexical overlap, may be empty): \n\nLEFT: DeDeo: using big data to track major shifts in human cognition\nNotes (unreviewed local-model summary of the source; may contain errors):\n**Source Note: M8C07D8E54E2F**\n\n**Subject:** Analysis of shifts in human cognition using large-scale text data, focusing on the interplay between rational and intuitive language.  \n**Genre:** Scholarly commentary, with elements of critique and replication of prior research.  \n**Main Ideas:**  \n- The use of big data (e.g., Google Books corpus, newspaper archives) to detect historical trends in cognitive styles, represented by shifts in vocabulary polarities.  \n- Identification of two primary linguistic polarities: one reflecting archaic vs. modern themes, and another representing rational (\"system II\") vs. intuitive (\"system I\") language.  \n- A proposed \"rise\" of rationality from the mid-19th century to the late 20th century, followed by a \"fall\" beginning in the 1980s, potentially linked to the rise of social media.  \n- Critique of the interpretation of these shifts, particularly their alignment with Max Weber\u2019s concept of bureaucratic rationalization and the idea of a \"post-truth\" era.  \n\n**Striking Details:**  \n- The paper replicates and extends Scheffer et al.\u2019s (1) findings using The New York Times archive and additional newspapers (The Guardian, Pittsburgh Post-Gazette, Santa Fe New Mexican), revealing discrepancies in timing and magnitude of trends across sources.  \n- The authors flag OCR-related errors (e.g., the exclusion of \"hunch\" due to false hits from OCR) and note that the decline in rationality is not universally observed, with The Guardian showing a peak in rationality 30 years earlier than Google Books.  \n- The critique highlights the distinction between public expressions of rationality and actual cognitive processes, suggesting that linguistic shifts may reflect stylistic or cultural preferences rather than deeper psychological changes.  \n- The paper draws on examples from history (e.g., the Vietnam War, Hannah Arendt\u2019s analysis of the Pentagon Papers) and pop culture (e.g., *Office Space*) to question the interpretation of cognitive trends.  \n\n**Speculation:**  \n- **Speculation 1:** Could the \"fall\" of rationality observed in some datasets be influenced by changes in media formats or editorial priorities, rather than a genuine societal shift in cognitive style?  \n- **Speculation 2:** Might the discrepancy in timing between Google Books and The Guardian suggest that the use of rational language varies significantly across cultural contexts, challenging the universality of the proposed cognitive trends?  \n- **Speculation 3:** If linguistic\n\nRIGHT: Reading trail: machine learning and the desire to inspect what a machine has learned (plus 'Transformers Laid Out')\nNotes (unreviewed; may contain errors):\n**Source Note: M4C6A615194E8**  \n*Filenames: ['Transformers Laid Out _ Pramod\u2019s Blog.pdf']*  \n*Metadata title: Transformers Laid Out | Pramod\u2019s Blog*  \n*Total PDF pages: 66*  \n*Sampled pages: [1, 10, 20, 29, 38, 47, 57, 66]*  \n\nThis experimental private wiki appears to be a technical blog post or tutorial focused on explaining the architecture and implementation of transformer models in machine learning, with an emphasis on practical coding and conceptual understanding. The work is influenced by well-known resources such as Jay Alammar\u2019s blog and \"The Annotated Transformer\" and aims to provide a multi-perspective explanation of how transformers operate. The subject spans both theoretical concepts (e.g., attention mechanisms, positional encoding, encoder-decoder blocks) and hands-on coding examples, particularly in PyTorch.  \n\nThe genre is educational and pedagogical, targeting readers interested in deep learning, specifically those seeking to understand or implement transformer models. Key ideas include the explanation of self-attention and cross-attention mechanisms, the structure of encoder and decoder layers, the role of positional encoding, and the implementation of training loops on real-world data. The tutorial also touches on the limitations of earlier models like RNNs and LSTMs in handling long-range dependencies and highlights how transformers address this issue.  \n\nStriking details include the inclusion of visual or conceptual diagrams (e.g., attention scores, positional encoding) and code snippets for implementing transformer components. Sampled pages show examples of attention calculations, such as scores for queries, keys, and values, and code for generating positional encodings using sine and cosine functions. The tutorial also references utility functions for creating padding and future masks, which are critical in sequence-to-sequence tasks. On page 57, the author provides code for downloading and preparing the Multi30k dataset, suggesting the tutorial includes practical implementation on real-world data. The final page (p66) indicates that the blog serves as a broader platform for sharing content on topics like machine learning, philosophy, and personal interests, implying the tutorial is part of a larger collection of posts.  \n\n**Speculation:**  \n- Could this blog be part of a larger series of tutorials on deep learning models, and does it follow a structured curriculum? [M4C6A615194E8 p1]  \n- Does the author claim to have developed any n\n\nReturn ONLY a JSON object with these keys:\n- \"bridge\": one or two sentences naming the most interesting non-obvious connection.\n- \"hypotheses\": an array of exactly 3 objects, each with \"claim\" (one sentence), \"mechanism\" (2-3 sentences), \"prediction\" (a specific observable outcome that would differ if the claim were false), \"cheapest_test\" (a concrete test a small lab or a laptop could run), \"kill_condition\" (what result would make you abandon it), \"grounding\" (exactly one of \"supported-by-notes\", \"mainstream-plausible\", \"speculative\", \"fringe\"), and \"confidence\" (a number from 0 to 1).\n- \"strongest_objection\": the best argument that this pairing is only a coincidence of vocabulary.\n- \"image_prompt\": 45-90 words describing one concrete, striking visual scene that embodies the bridge. No text, letters, logos, or recognizable real people in the image.\n- \"title\": a 2-6 word evocative title for the image."
+        }
+      ],
+      "temperature": 0.8,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_tokens": 1800,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "started_at": "2026-09-24T19:03:20.079605+00:00",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"bridge\": \"The ability of language models to probe historical linguistic shifts might reveal insights into cognitive trends, but only if we can understand the inner workings of transformers as tools for inspecting learned patterns of thought.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Language models can act as a kind of cognitive microscope, revealing shifts in rational vs. intuitive language styles that might reflect deeper changes in human cognition.\",\n      \"mechanism\": \"By analyzing the attention patterns and learned embeddings of transformers trained on historical text, we could map how the model's internal representations change over time, possibly mirroring shifts in cognitive styles as previously identified in linguistic analysis.\",\n      \"prediction\": \"If we train a transformer model on a time-sliced dataset (e.g., 19th vs. 21st century texts), the attention mechanisms and embeddings for words like 'reason' or 'hunch' should show distinct clustering over time, reflecting cognitive shifts.\",\n      \"cheapest_test\": \"Train a simple transformer on a small, curated time-sliced text corpus (e.g., 19th and 21st century articles) and analyze attention scores and word embeddings for keywords related to rationality and intuition.\",\n      \"kill_condition\": \"If the attention scores and embeddings for these keywords do not change meaningfully over time, or if they cluster randomly, the hypothesis would be invalidated.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.6\n    },\n    {\n      \"claim\": \"OCR errors and cultural biases in historical text sources may distort the interpretation of cognitive shifts, making it difficult to distinguish true trends from artifacts of data collection.\",\n      \"mechanism\": \"OCR errors, such as misrecognizing words like 'hunch' or 'logic,' and cultural differences in language use could create false signals in the data, leading models to infer spurious cognitive trends that do not reflect actual historical changes.\",\n      \"prediction\": \"If we retrain a transformer model on corrected OCR data, the inferred cognitive trends should shift significantly compared to results based on uncorrected historical texts.\",\n      \"cheapest_test\": \"Run a transformer model on a cleaned dataset with known OCR corrections and compare the attention patterns and embeddings with those from uncorrected data.\",\n      \"kill_condition\": \"If the cognitive trend patterns remain unchanged despite OCR corrections, the hypothesis is undermined.\",\n      \"grounding\": \"supported-by-notes\",\n      \"confidence\": 0.8\n    },\n    {\n      \"claim\": \"Transformer models can be trained to detect and visualize cognitive shifts in language, potentially serving as a new tool for cognitive historians.\",\n      \"mechanism\": \"By using the attention weights of a transformer model trained on a historical text corpus, researchers could visualize which words and phrases are more closely associated with 'rational' or 'intuitive' themes at different points in time, offering a new method for exploring cognitive history.\",\n      \"prediction\": \"A trained transformer model should produce attention heatmaps that highlight different sets of words (e.g., more 'systematic' terms in the 19th century vs. more 'emotional' terms in the 21st century), showing a clear temporal shift.\",\n      \"cheapest_test\": \"Train a transformer on a time-sliced historical corpus and generate attention heatmaps for selected words, then compare their distribution over time.\",\n      \"kill_condition\": \"If the attention heatmaps do not show any meaningful temporal variation, the hypothesis would be invalidated.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    }\n  ],\n  \"strongest_objection\": \"The pairing may be a coincidence of vocabulary; the 'microscope' metaphor for language models is abstract and may not translate to actual insights about cognitive shifts in historical data.\",\n  \"image_prompt\": \"A neural network diagram with flowing attention lines, layered over a historical timeline. The attention lines show different colors for 'rational' and 'intuitive' language, with some lines getting fainter and more fragmented over time, suggesting a decline in rationality. The timeline includes newspaper pages, books, and digital screens, showing the transition from paper to digital media.\",\n  \"title\": \"Cognitive Lens Over Time\"\n}"
+          }
+        }
+      ],
+      "created": 1790276714,
+      "model": "qwen3-14b-standard",
+      "system_fingerprint": "b11077-982a3329a",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 875,
+        "prompt_tokens": 1487,
+        "total_tokens": 2362,
+        "prompt_tokens_details": {
+          "cached_tokens": 81
+        }
+      },
+      "id": "chatcmpl-DBvO8PFmOy0EYbpuc985jHuI5BOSeAGy",
+      "timings": {
+        "cache_n": 81,
+        "prompt_n": 1406,
+        "prompt_ms": 47154.504,
+        "prompt_per_token_ms": 33.53805405405406,
+        "prompt_per_second": 29.816876029488085,
+        "predicted_n": 875,
+        "predicted_ms": 67520.429,
+        "predicted_per_token_ms": 77.25449542334097,
+        "predicted_per_second": 12.944230552800546
+      }
+    },
+    "content": "{\n  \"bridge\": \"The ability of language models to probe historical linguistic shifts might reveal insights into cognitive trends, but only if we can understand the inner workings of transformers as tools for inspecting learned patterns of thought.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Language models can act as a kind of cognitive microscope, revealing shifts in rational vs. intuitive language styles that might reflect deeper changes in human cognition.\",\n      \"mechanism\": \"By analyzing the attention patterns and learned embeddings of transformers trained on historical text, we could map how the model's internal representations change over time, possibly mirroring shifts in cognitive styles as previously identified in linguistic analysis.\",\n      \"prediction\": \"If we train a transformer model on a time-sliced dataset (e.g., 19th vs. 21st century texts), the attention mechanisms and embeddings for words like 'reason' or 'hunch' should show distinct clustering over time, reflecting cognitive shifts.\",\n      \"cheapest_test\": \"Train a simple transformer on a small, curated time-sliced text corpus (e.g., 19th and 21st century articles) and analyze attention scores and word embeddings for keywords related to rationality and intuition.\",\n      \"kill_condition\": \"If the attention scores and embeddings for these keywords do not change meaningfully over time, or if they cluster randomly, the hypothesis would be invalidated.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.6\n    },\n    {\n      \"claim\": \"OCR errors and cultural biases in historical text sources may distort the interpretation of cognitive shifts, making it difficult to distinguish true trends from artifacts of data collection.\",\n      \"mechanism\": \"OCR errors, such as misrecognizing words like 'hunch' or 'logic,' and cultural differences in language use could create false signals in the data, leading models to infer spurious cognitive trends that do not reflect actual historical changes.\",\n      \"prediction\": \"If we retrain a transformer model on corrected OCR data, the inferred cognitive trends should shift significantly compared to results based on uncorrected historical texts.\",\n      \"cheapest_test\": \"Run a transformer model on a cleaned dataset with known OCR corrections and compare the attention patterns and embeddings with those from uncorrected data.\",\n      \"kill_condition\": \"If the cognitive trend patterns remain unchanged despite OCR corrections, the hypothesis is undermined.\",\n      \"grounding\": \"supported-by-notes\",\n      \"confidence\": 0.8\n    },\n    {\n      \"claim\": \"Transformer models can be trained to detect and visualize cognitive shifts in language, potentially serving as a new tool for cognitive historians.\",\n      \"mechanism\": \"By using the attention weights of a transformer model trained on a historical text corpus, researchers could visualize which words and phrases are more closely associated with 'rational' or 'intuitive' themes at different points in time, offering a new method for exploring cognitive history.\",\n      \"prediction\": \"A trained transformer model should produce attention heatmaps that highlight different sets of words (e.g., more 'systematic' terms in the 19th century vs. more 'emotional' terms in the 21st century), showing a clear temporal shift.\",\n      \"cheapest_test\": \"Train a transformer on a time-sliced historical corpus and generate attention heatmaps for selected words, then compare their distribution over time.\",\n      \"kill_condition\": \"If the attention heatmaps do not show any meaningful temporal variation, the hypothesis would be invalidated.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    }\n  ],\n  \"strongest_objection\": \"The pairing may be a coincidence of vocabulary; the 'microscope' metaphor for language models is abstract and may not translate to actual insights about cognitive shifts in historical data.\",\n  \"image_prompt\": \"A neural network diagram with flowing attention lines, layered over a historical timeline. The attention lines show different colors for 'rational' and 'intuitive' language, with some lines getting fainter and more fragmented over time, suggesting a decline in rationality. The timeline includes newspaper pages, books, and digital screens, showing the transition from paper to digital media.\",\n  \"title\": \"Cognitive Lens Over Time\"\n}",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 875,
+      "prompt_tokens": 1487,
+      "total_tokens": 2362,
+      "prompt_tokens_details": {
+        "cached_tokens": 81
+      }
+    },
+    "parsed": {
+      "bridge": "The ability of language models to probe historical linguistic shifts might reveal insights into cognitive trends, but only if we can understand the inner workings of transformers as tools for inspecting learned patterns of thought.",
+      "hypotheses": [
+        {
+          "claim": "Language models can act as a kind of cognitive microscope, revealing shifts in rational vs. intuitive language styles that might reflect deeper changes in human cognition.",
+          "mechanism": "By analyzing the attention patterns and learned embeddings of transformers trained on historical text, we could map how the model's internal representations change over time, possibly mirroring shifts in cognitive styles as previously identified in linguistic analysis.",
+          "prediction": "If we train a transformer model on a time-sliced dataset (e.g., 19th vs. 21st century texts), the attention mechanisms and embeddings for words like 'reason' or 'hunch' should show distinct clustering over time, reflecting cognitive shifts.",
+          "cheapest_test": "Train a simple transformer on a small, curated time-sliced text corpus (e.g., 19th and 21st century articles) and analyze attention scores and word embeddings for keywords related to rationality and intuition.",
+          "kill_condition": "If the attention scores and embeddings for these keywords do not change meaningfully over time, or if they cluster randomly, the hypothesis would be invalidated.",
+          "grounding": "speculative",
+          "confidence": 0.6
+        },
+        {
+          "claim": "OCR errors and cultural biases in historical text sources may distort the interpretation of cognitive shifts, making it difficult to distinguish true trends from artifacts of data collection.",
+          "mechanism": "OCR errors, such as misrecognizing words like 'hunch' or 'logic,' and cultural differences in language use could create false signals in the data, leading models to infer spurious cognitive trends that do not reflect actual historical changes.",
+          "prediction": "If we retrain a transformer model on corrected OCR data, the inferred cognitive trends should shift significantly compared to results based on uncorrected historical texts.",
+          "cheapest_test": "Run a transformer model on a cleaned dataset with known OCR corrections and compare the attention patterns and embeddings with those from uncorrected data.",
+          "kill_condition": "If the cognitive trend patterns remain unchanged despite OCR corrections, the hypothesis is undermined.",
+          "grounding": "supported-by-notes",
+          "confidence": 0.8
+        },
+        {
+          "claim": "Transformer models can be trained to detect and visualize cognitive shifts in language, potentially serving as a new tool for cognitive historians.",
+          "mechanism": "By using the attention weights of a transformer model trained on a historical text corpus, researchers could visualize which words and phrases are more closely associated with 'rational' or 'intuitive' themes at different points in time, offering a new method for exploring cognitive history.",
+          "prediction": "A trained transformer model should produce attention heatmaps that highlight different sets of words (e.g., more 'systematic' terms in the 19th century vs. more 'emotional' terms in the 21st century), showing a clear temporal shift.",
+          "cheapest_test": "Train a transformer on a time-sliced historical corpus and generate attention heatmaps for selected words, then compare their distribution over time.",
+          "kill_condition": "If the attention heatmaps do not show any meaningful temporal variation, the hypothesis would be invalidated.",
+          "grounding": "mainstream-plausible",
+          "confidence": 0.7
+        }
+      ],
+      "strongest_objection": "The pairing may be a coincidence of vocabulary; the 'microscope' metaphor for language models is abstract and may not translate to actual insights about cognitive shifts in historical data.",
+      "image_prompt": "A neural network diagram with flowing attention lines, layered over a historical timeline. The attention lines show different colors for 'rational' and 'intuitive' language, with some lines getting fainter and more fragmented over time, suggesting a decline in rationality. The timeline includes newspaper pages, books, and digital screens, showing the transition from paper to digital media.",
+      "title": "Cognitive Lens Over Time"
+    },
+    "wall_seconds": 114.83,
+    "attempt": 1,
+    "validation": {
+      "ok": true,
+      "errors": []
+    },
+    "used": true
+  },
+  "valid": true
+}

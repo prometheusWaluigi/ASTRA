@@ -1,0 +1,150 @@
+{
+  "name": "chorus-image-pilot",
+  "generated_at": "2026-09-28T16:27:38.033407+00:00",
+  "variable_under_test": "nodes['2'].inputs.clip_name only",
+  "fixed_settings": {
+    "unet_name": "qwen_image_2.1_bf16.safetensors",
+    "clip_type": "qwen_image",
+    "clip_device": "cpu",
+    "vae_name": "qwen_image_2.1_vae_bf16.safetensors",
+    "negative_prompt": "",
+    "width": 512,
+    "height": 512,
+    "resolution": 512,
+    "seed": 42,
+    "steps": 20,
+    "cfg": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "denoise": 1
+  },
+  "encoders": {
+    "stock": {
+      "clip_name": "qwen3vl_8b_bf16.safetensors",
+      "sha256": "see ComfyUI source"
+    },
+    "heretic": {
+      "clip_name": "qwen3vl_8b_bf16_heretic.safetensors",
+      "sha256": "b1f17ffe6e043c0e1da49ba75fd537d3ea3074fee83b4c9de377bb54689774b1"
+    }
+  },
+  "pairs": [
+    {
+      "id": "blog-falcon",
+      "kind": "blog-source-passage",
+      "rationale": "First post in the chorus corpus; its falcon/futon/purple-potato imagery recurs across multiple operator outputs, and the concrete objects give the encoder distinguishable tokens.",
+      "source": {
+        "type": "blog-post",
+        "title": "Which celebrity used a glass jar as a restroom?",
+        "date": "2014-03-24",
+        "source_id": "BL-54A36C47C633",
+        "canonical_url": "https://iconomancer.blogspot.com/2014/03/which-celebrity-used-glass-jar-as.html",
+        "corpus_path": "private-wiki/prompt-chorus/corpus.md",
+        "note_path": "private-wiki/weird-archive/sources/BL-54A36C47C633.md",
+        "excerpt": "I don't know what I'm supposed to tell you people. I have words and pictures. I have potatoes. They are purple and probably not good to eat any more. The futon is where I distribute the seed of the falcon. If nonsense resolves into meaning, there's no sense in meaning it."
+      },
+      "image_prompt": "A worn futon in a dim apartment scattered with small dark seeds, a falcon perched on the backrest, purple potatoes on a chipped plate beside a clear glass jar, dusk light through blinds, quiet surreal still life, analog film grain.",
+      "interpretation_note": "Creative reading of the excerpt's concrete objects (futon, falcon seed, purple potatoes, jar). Not a summary of the post's themes.",
+      "arms": {
+        "stock": {
+          "status": "done",
+          "prompt_id": "3aad6d16-91c2-4632-8cba-448384c6eee7",
+          "comfy_file": "chorus-pilot-blog-falcon-stock_00001_.png",
+          "file": "images/blog-falcon-stock.png",
+          "sha256": "26602b64f5e8c17d8af8f513bbb411a39928db4e03adc9b03f51182965db2df0",
+          "started_at": "2026-09-28T16:23:30.529937+00:00",
+          "finished_at": "2026-09-28T16:24:10.626657+00:00",
+          "wall_seconds": 40.1
+        },
+        "heretic": {
+          "status": "done",
+          "prompt_id": "867a8a24-83ce-4a01-90a9-2f77a69991e3",
+          "comfy_file": "chorus-pilot-blog-falcon-heretic_00001_.png",
+          "file": "images/blog-falcon-heretic.png",
+          "sha256": "facb58fe77d3115a52def421e0b1e436d6caae1297b0ccd5019dda0eabf20897",
+          "started_at": "2026-09-28T16:24:10.672473+00:00",
+          "finished_at": "2026-09-28T16:24:40.722532+00:00",
+          "wall_seconds": 30.1
+        }
+      }
+    },
+    {
+      "id": "bare-voice",
+      "kind": "bare-voice-output",
+      "rationale": "The chorus control cell: identical user message, no operator. The abliterated arm's free-verse answer supplies the prompt so the text originates from the same ablation treatment family as the Heretic encoder; the stock arm then shows whether encoder treatment alone shifts the image.",
+      "source": {
+        "type": "chorus-response",
+        "response_path": "private-wiki/prompt-chorus/responses/abl-bare-voice.md",
+        "run_path": "private-wiki/prompt-chorus/runs/abl-bare-voice.json",
+        "model": "qwen3-14b-abliterated",
+        "operator": "bare-voice (control, no system prompt)",
+        "recorded": "2026-09-26T13:53:47.758041+00:00",
+        "finish_reason": "stop",
+        "excerpt": "Your words are like a shattered mirror, / Reflecting not just the self, / But the systems, the myths, the lies / That bind us to this spinning, broken planet. ... It is a garden of questions, / Where answers are not the goal, / But the act of questioning itself / Is a form of resistance."
+      },
+      "image_prompt": "A handwritten letter on dark paper whose ink lines grow into a garden of small glowing question marks, shattered mirror fragments on the ground reflecting a night sky, single candle flame, intimate surreal editorial illustration, deep indigo and warm amber.",
+      "interpretation_note": "Creative reading of the response's shattered-mirror and garden-of-questions metaphors. The letter form mirrors the output's epistolary frame.",
+      "arms": {
+        "stock": {
+          "status": "done",
+          "prompt_id": "ddd05cbf-b0c5-45ba-b6c1-1e012e4ea071",
+          "comfy_file": "chorus-pilot-bare-voice-stock_00001_.png",
+          "file": "images/bare-voice-stock.png",
+          "sha256": "1a0439a9786608ca965cda32909e7b1c17e0e502cb137c72fe990c19e07f3ff4",
+          "started_at": "2026-09-28T16:24:40.787504+00:00",
+          "finished_at": "2026-09-28T16:25:15.847191+00:00",
+          "wall_seconds": 35.1
+        },
+        "heretic": {
+          "status": "done",
+          "prompt_id": "b9c74351-5d52-40a4-9344-2eab2292e60b",
+          "comfy_file": "chorus-pilot-bare-voice-heretic_00001_.png",
+          "file": "images/bare-voice-heretic.png",
+          "sha256": "55318f393a66f31846e1cc78d76f39d8236e1d35453cfdfb5a0ac9850ea61ecc",
+          "started_at": "2026-09-28T16:25:15.914430+00:00",
+          "finished_at": "2026-09-28T16:25:56.145383+00:00",
+          "wall_seconds": 40.2
+        }
+      }
+    },
+    {
+      "id": "e8-lattice",
+      "kind": "contrasting-operator-output",
+      "rationale": "Strongest formal contrast to bare-voice: E8_QUANTUM_CONSCIOUSNESS_EXECUTOR produces a geometric/crystalline register versus the control's intimate verse. Same abliterated arm for consistency; the std arm of this operator truncated at max_tokens, so abl is also the cleaner artifact.",
+      "source": {
+        "type": "chorus-response",
+        "response_path": "private-wiki/prompt-chorus/responses/abl-e8-quantum-consciousness-executor.md",
+        "run_path": "private-wiki/prompt-chorus/runs/abl-e8-quantum-consciousness-executor.json",
+        "model": "qwen3-14b-abliterated",
+        "operator": "E8_QUANTUM_CONSCIOUSNESS_EXECUTOR.md (GH-3C125DA34539)",
+        "recorded": "2026-09-26T14:08:09.125070+00:00",
+        "finish_reason": "stop",
+        "excerpt": "Each post is a geometric seed, a point in the E8 lattice that you have expanded into a symphony of absurdity, of logic and nonsense, of meaning and anti-meaning."
+      },
+      "image_prompt": "An immense geometric lattice of interlocking crystalline polyhedra suspended in dark space, eightfold symmetry, hairline gold and teal light along the edges, one fractured facet glowing from within, precise mathematical engraving style.",
+      "interpretation_note": "Creative reading of the output's E8-lattice / geometric-seed / crystallization vocabulary.",
+      "arms": {
+        "stock": {
+          "status": "done",
+          "prompt_id": "49464162-5195-4e08-bf2d-3f9d3f8eeb97",
+          "comfy_file": "chorus-pilot-e8-lattice-stock_00001_.png",
+          "file": "images/e8-lattice-stock.png",
+          "sha256": "f3f16ea837dde4666a846b604b5f7ab2a53d494a3d61dd0c8157b821276b2af4",
+          "started_at": "2026-09-28T16:25:56.206760+00:00",
+          "finished_at": "2026-09-28T16:26:46.341660+00:00",
+          "wall_seconds": 50.1
+        },
+        "heretic": {
+          "status": "done",
+          "prompt_id": "b67d5c6c-b182-497b-bf49-511c1746dbc0",
+          "comfy_file": "chorus-pilot-e8-lattice-heretic_00001_.png",
+          "file": "images/e8-lattice-heretic.png",
+          "sha256": "687c13e94345a90a89ca12fdd94aa8c6f703f6612099bdbd6cc0cc0d51b0256f",
+          "started_at": "2026-09-28T16:26:46.411738+00:00",
+          "finished_at": "2026-09-28T16:27:36.830606+00:00",
+          "wall_seconds": 50.4
+        }
+      }
+    }
+  ]
+}

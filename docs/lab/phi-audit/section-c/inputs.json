@@ -1,0 +1,66 @@
+{
+  "note": "Matched MSbar inputs at mu_bar=Mt via Buttazzo v4 eqs (55)-(60). baseline=historical 2014 Table-2 observables; current=section-A latest observables through the same formulas (formula-domain caveat: Mt there is a direct-reconstruction mass, not pole).",
+  "conventions": {
+    "potential": "V = -1/2 m^2|H|^2 + lambda|H|^4 (mH^2=2 lambda v^2 tree)",
+    "hypercharge": "gY non-GUT; g1^2=5/3 gY^2; sin2w=gY^2/(gY^2+g2^2)",
+    "scheme": "MSbar",
+    "matching_scale": "mu_bar = Mt",
+    "loop_order": "one-loop betas, yt-only (illustrative)"
+  },
+  "table2": {
+    "MW": {
+      "value": 80.384,
+      "sigma": 0.014
+    },
+    "MZ": {
+      "value": 91.1876,
+      "sigma": 0.0021
+    },
+    "Mh": {
+      "value": 125.15,
+      "sigma": 0.24
+    },
+    "Mt": {
+      "value": 173.34,
+      "sigma": 0.8170679286326199
+    },
+    "a3": {
+      "value": 0.1184,
+      "sigma": 0.0007
+    },
+    "GF": {
+      "value": 1.1663781e-05,
+      "sigma": 6e-11
+    }
+  },
+  "table2_current_edition": {
+    "MW": {
+      "value": 80.3692,
+      "sigma": 0.0133
+    },
+    "Mh": {
+      "value": 125.11,
+      "sigma": 0.11
+    },
+    "Mt": {
+      "value": 172.76,
+      "sigma": 0.3
+    },
+    "a3": {
+      "value": 0.118,
+      "sigma": 0.0009
+    },
+    "GF": {
+      "value": 1.1663787e-05,
+      "sigma": 6e-11
+    }
+  },
+  "theory_uncertainties": {
+    "th_lam": 0.0003,
+    "th_yt": 0.0005
+  },
+  "seed": 20260930,
+  "draws": 2000,
+  "source": "https://arxiv.org/abs/1307.3536v4 eqs(55)-(60), Table 2",
+  "generated_by": "phi_audit_c.py"
+}

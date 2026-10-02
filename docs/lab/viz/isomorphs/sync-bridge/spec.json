@@ -1,0 +1,62 @@
+{
+  "spec": {
+    "core": "bridge",
+    "title": "sync_bridge",
+    "label_a": "Geometry-orchestrated objective reduction from a multiscale resonance chain",
+    "label_b": "Diffusion bridge with randomized initial and terminal times",
+    "params_a": {
+      "noise": 0.5,
+      "endpoint_spread": 0.5,
+      "drift": 0.2
+    },
+    "params_b": {
+      "noise": 1.5,
+      "endpoint_spread": 0.3,
+      "drift": 0.0
+    },
+    "skeleton": "Dynamic systems governed by time-dependent coupling and stochastic influence",
+    "why": "Both models involve time-dependent interactions influenced by noise and environmental drift or endpoints."
+  },
+  "members": [
+    {
+      "name": "sync_bridge",
+      "world_a": "Geometry-orchestrated objective reduction from a multiscale resonance chain",
+      "world_b": "Diffusion bridge with randomized initial and terminal times",
+      "shared_skeleton": "Dynamic systems governed by time-dependent coupling and stochastic influence",
+      "core": "bridge",
+      "params_a": {
+        "noise": 0.5,
+        "endpoint_spread": 0.5,
+        "drift": 0.2
+      },
+      "params_b": {
+        "noise": 1.5,
+        "endpoint_spread": 0.3,
+        "drift": 0.0
+      },
+      "why": "Both models involve time-dependent interactions influenced by noise and environmental drift or endpoints."
+    },
+    {
+      "name": "Bridge-Hysteresis",
+      "world_a": "Dynamic Switching Model",
+      "world_b": "Diffusion Bridge in Fish Migration",
+      "shared_skeleton": "Mathematical modeling of dynamic systems with time-dependent influences and stochastic components",
+      "core": "bridge",
+      "params_a": {
+        "noise": 0.8,
+        "endpoint_spread": 0.3,
+        "drift": -0.5
+      },
+      "params_b": {
+        "noise": 1.2,
+        "endpoint_spread": 0.6,
+        "drift": 0.2
+      },
+      "why": "Both models incorporate time-dependent processes and environmental randomness."
+    }
+  ],
+  "runs": [
+    "std-bare-voice",
+    "std-mathematical-friendship-operator"
+  ]
+}

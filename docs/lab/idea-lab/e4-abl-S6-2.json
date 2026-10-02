@@ -1,0 +1,9 @@
+{
+  "filename": "abl-S6-2.png",
+  "model_key": "abl",
+  "seed": "S6-instrumented-cognition",
+  "image_seed": 4302,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 150.1
+}

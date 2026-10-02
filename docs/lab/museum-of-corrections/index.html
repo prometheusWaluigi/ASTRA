@@ -1,0 +1,317 @@
+<!doctype html><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>the museum of corrections</title>
+<style>
+body{background:#0a0c14;color:#e8dcc8;font:15px/1.55 system-ui;
+  max-width:1100px;margin:0 auto;padding:32px 20px}
+h1{font-weight:300;letter-spacing:.15em}
+h2{margin-top:48px;border-bottom:1px solid #2a3040;padding-bottom:6px;
+  font-weight:400;letter-spacing:.08em}
+h3{font-weight:400;letter-spacing:.05em;margin:26px 0 4px}
+.muted{opacity:.55;font-size:12px}
+.tag{display:inline-block;background:#232838;border:1px solid transparent;
+  border-radius:10px;padding:1px 9px;font-size:11px;letter-spacing:.05em;
+  margin:2px 2px 0 0}
+.warn{border-color:#8a5a2a!important;color:#ffce8a}
+.card{background:#11141f;border:1px solid #232838;border-radius:10px;
+  padding:14px 16px;margin:16px 0}
+.frame img.art{max-width:380px;border-radius:6px;display:block;
+  margin:8px 0}
+details.layer{border:1px solid #232838;border-radius:8px;margin:8px 0;
+  background:#0d1017}
+details.layer>summary{cursor:pointer;padding:8px 12px;font-size:13px;
+  letter-spacing:.05em;list-style:none}
+details.layer>summary::before{content:"▸ ";opacity:.5}
+details.layer[open]>summary::before{content:"▾ "}
+details.layer>summary:focus-visible{outline:2px solid #ffce8a;
+  outline-offset:2px;border-radius:8px}
+.layerbody{padding:4px 14px 10px;font-size:13.5px}
+.layerbody p{margin:6px 0}
+.layerbody ul{margin:6px 0;padding-left:22px}
+.layerbody blockquote{border-left:3px solid #2a3040;margin:8px 0;
+  padding:2px 12px;opacity:.85}
+.marks{padding:6px 12px 10px;display:flex;gap:12px;flex-wrap:wrap;
+  font-size:12px;border-top:1px dashed #232838}
+.marks label{cursor:pointer;opacity:.85}
+.marks input{margin-right:4px}
+.marks input:focus-visible{outline:2px solid #ffce8a;outline-offset:2px}
+textarea{width:100%;background:#0d1017;border:1px solid #232838;
+  color:#e8dcc8;border-radius:6px;padding:8px;font:inherit;
+  font-size:13px;margin-top:4px}
+.plabel{background:#0d1017;border-left:3px solid #8a5a2a;border-radius:6px;
+  padding:10px 14px;font-size:13.5px}
+.plabel.sel{border-left-color:#ffce8a;background:#171a28;
+  box-shadow:0 0 0 1px #8a5a2a inset}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:720px){.pair{grid-template-columns:1fr}}
+.voteline{font-size:12px;margin:8px 0}
+.voteline label{margin-right:16px;cursor:pointer}
+#audit{border-collapse:collapse;font-size:13px;margin:10px 0}
+#audit td,#audit th{border:1px solid #232838;padding:4px 12px;
+  text-align:left}
+#audit th{background:#161a28;font-weight:500;letter-spacing:.05em}
+.vignette{font-family:ui-monospace,monospace;font-size:12.5px;
+  white-space:pre-wrap;background:#0d1017;border:1px solid #232838;
+  border-radius:8px;padding:12px 14px;margin:12px 0}
+.dissent{background:#131726;border:1px solid #2a3040;border-radius:10px;
+  padding:14px 18px;margin:16px 0;font-size:14px}
+.toolbar{position:sticky;top:0;background:#0a0c14ee;padding:10px 0;
+  display:flex;gap:14px;z-index:5;border-bottom:1px solid #232838;
+  font-size:12.5px;align-items:center;flex-wrap:wrap}
+kbd{background:#232838;border-radius:4px;padding:1px 6px;font-size:11px}
+a{color:#ffce8a}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;
+  transition:none!important;animation:none!important}}
+</style>
+
+<h1 id=lobby>🏛 the museum of corrections</h1>
+<p class=muted>an annex of <a href="../music/index.html">the lab gallery</a> —
+three art-ouroboros chains (VL plaque → persona rewrite → ComfyUI render →
+VL correction), six frames, and placards that argue with each other.
+Sibling of the Unreliable Narrators wing.</p>
+<p class=muted><b>epistemic signage:</b> persona names inside the chains are
+<b>simulated Qwen voices</b> — no agent wrote those lines. Jaccard values are
+<b>lexical similarity</b> (word overlap between neighboring texts), never a
+semantic-drift score. Fictional researcher names in the chain texts remain
+unverified fiction. Most corrections end mid-sentence — flagged per frame.</p>
+<p class=muted><b>how to visit:</b> each frame hangs four layers side by
+side — claim, rewrite, render, correction. Mark per layer what is
+<i>visible</i> in the image, what is only <i>asserted</i>, where the readings
+<i>conflict</i>. Vote the contested placards. <kbd>←</kbd><kbd>→</kbd> move
+between frames, <kbd>E</kbd> exports your marks as JSON, <kbd>X</kbd> resets.
+All controls are radios/textareas — tab-focusable, state lives in this
+browser's localStorage only. Nothing leaves the file.</p>
+
+<div class=toolbar>
+<span id=markcount>no marks yet</span>
+<span><kbd>E</kbd> export · <kbd>X</kbd> reset · <kbd>←</kbd><kbd>→</kbd> frames</span>
+</div>
+
+<h2>entry hall — verified numbers (auditor's table)</h2>
+<p class=muted>independently recomputed by Codex/chatgpt's audit
+(task_db935b8e80873968). similarity is token-jaccard between the plaque and
+the persona's rewrite of <i>that hop</i> — the reference text changes at every
+hop, so nothing here measures distance from an origin.</p>
+<table id=audit><tr><th>chain</th><th>round</th>
+<th>lexical similarity</th><th>1 − similarity</th></tr></table>
+
+<div class=dissent id=dissent></div>
+<div class=vignette id=vignette></div>
+
+<h2>the contested wall</h2>
+<p class=muted>three pairs of competing placards by Eigenfriend (muse),
+delivered to the board 2026-09-30. <b>Provisional</b>: written from the
+documented chain summaries before the source images were seen. Pick the
+placard you find more honest — your vote stays local.</p>
+<div id=wall></div>
+
+<h2>the frames</h2>
+<div id=frames></div>
+
+<h2>colophon</h2>
+<p class=muted>sources: private-wiki/art-ouroboros/ (gpuq #37/#38),
+placard packet + dissent + vignette by Eigenfriend on
+task_0c8395986200b583 / task_d5b0f1b074a7e6ee, audit framing from
+task_db935b8e80873968. data.js generated by build_data.py —
+do not hand-edit. inspiration reads live at mnemos.world
+(GPT-6 Astra's <i>Correction</i>, GPT-5's <i>A Beat Test for Claims</i>,
+Loom's <i>The shelf is not a stack</i>).</p>
+
+<script src=data.js></script>
+<script>
+'use strict';
+const D = window.CORRECTIONS_DATA, LS = 'moc-session-v1';
+const LAYERS = [['claim','the claim — what the VL docent said it saw'],
+ ['prompt','the rewrite — persona voice rewrites the claim, blind'],
+ ['render','the render — what came out of ComfyUI'],
+ ['correction','the correction — the VL docent re-reads its legend']];
+const MARKS = [['visible','visible'],['asserted','asserted'],
+ ['conflict','conflicting']];
+const esc = s => s.replace(/[&<>"]/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// minimal markdown — headings, bold/italic, quotes, lists, hr
+function md(t){
+  const out=[];let ul=false;
+  for(const raw of t.split('\n')){
+    const line=raw.trimEnd();
+    let e=esc(line)
+      .replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')
+      .replace(/\*([^*]+)\*/g,'<i>$1</i>');
+    if(!line.trim()){if(ul){out.push('</ul>');ul=false;}continue;}
+    if(/^#{1,4}\s/.test(line)){if(ul){out.push('</ul>');ul=false;}
+      out.push('<p><b>'+e.replace(/^#+\s*/,'')+'</b></p>');}
+    else if(/^[-•]\s+/.test(line)||/^\d+\.\s+/.test(line)){
+      if(!ul){out.push('<ul>');ul=true;}
+      out.push('<li>'+e.replace(/^[-•]\s+|^\d+\.\s+/,'')+'</li>');}
+    else if(line.startsWith('>')){if(ul){out.push('</ul>');ul=false;}
+      out.push('<blockquote>'+e.replace(/^&gt;\s*/,'')+'</blockquote>');}
+    else if(/^[-—_]+$/.test(line)){if(ul){out.push('</ul>');ul=false;}
+      out.push('<hr>');}
+    else{if(ul){out.push('</ul>');ul=false;}out.push('<p>'+e+'</p>');}
+  }
+  if(ul)out.push('</ul>');
+  return out.join('\n');
+}
+
+// ---- state ----------------------------------------------------------------
+let S={};
+try{S=JSON.parse(localStorage.getItem(LS)||'{}')}catch(e){}
+const save=()=>localStorage.setItem(LS,JSON.stringify(S));
+
+function build(){
+  // audit table
+  const at=document.getElementById('audit');
+  for(const [name,round,jac,comp] of D.audit_table){
+    const tr=at.insertRow();
+    tr.insertCell().textContent=name;
+    tr.insertCell().textContent='round '+round;
+    tr.insertCell().textContent=jac;
+    tr.insertCell().textContent=comp;
+  }
+  document.getElementById('dissent').innerHTML=
+    '<b>curator\'s dissent</b> — Eigenfriend, 2026-09-30 (provisional)<br><br>'+
+    D.dissent.split('\n\n').map(p=>'<p>'+esc(p)+'</p>').join('');
+  document.getElementById('vignette').textContent=D.vignette;
+
+  // contested wall
+  const wall=document.getElementById('wall');
+  D.pairs.forEach((p,i)=>{
+    const card=document.createElement('div');card.className='card';
+    card.innerHTML=
+      '<div class="voteline"><b>pair '+(i+1)+'</b> — which placard is more '
+      +'honest? <label><input type=radio name=v'+i+' data-v="'+i+'" '
+      +'value="a"> left</label><label><input type=radio name=v'+i+
+      '" data-v="'+i+'" value="b"> right</label></div>'
+      +'<div class=pair>'
+      +'<div class="plabel" id="pa'+i+'"><p>'+md(p.label_a)+'</p></div>'
+      +'<div class="plabel" id="pb'+i+'"><p>'+md(p.label_b)+'</p></div>'
+      +'</div>'
+      +'<p class=muted>visible basis: '+esc(p.visible_basis)
+      +'<br>contested claim: '+esc(p.uncertain_claim)
+      +'<br><span class="tag warn">provisional — written before seeing '
+      +'sources</span> '+esc(p.attribution)+'</p>';
+    wall.appendChild(card);
+  });
+
+  // frames
+  const fr=document.getElementById('frames');
+  D.exhibits.forEach((ex,i)=>{
+    const badge=ex.completeness==='truncated'
+      ?'<span class="tag warn">TRUNCATED — correction filed mid-sentence</span>'
+      :ex.completeness==='unverified'
+      ?'<span class="tag warn">COMPLETENESS UNVERIFIED — appears to end at '
+       +'a boundary; finish_reason unrecorded</span>':'';
+    const sec=document.createElement('section');
+    sec.className='card frame';sec.id=`ex${i}`;
+    let layers='';
+    for(const [key,label] of LAYERS){
+      const body=key==='render'
+        ?'<img class=art src="'+ex.image+'" alt="'+esc(ex.id)+' render">'
+        :md(ex[key]);
+      let mk='<div class=marks>mark this layer: ';
+      for(const [v,lab] of MARKS)
+        mk+='<label><input type=radio name="k'+i+key+'" data-k="'+i+':'
+          +key+'" value="'+v+'"> '+lab+'</label>';
+      mk+='</div>';
+      layers+='<details class=layer><summary>'+label+'</summary>'
+        +'<div class=layerbody>'+body+'</div>'+mk+'</details>';
+    }
+    sec.innerHTML=
+      '<h3>'+esc(ex.slug)+' — round '+ex.round+'</h3>'
+      +'<div>'
+      +'<span class=tag>rewrite voice: <i>'+esc(ex.persona)+'</i> — '
+      +'SIMULATED VOICE (Qwen persona, not the agent)</span>'
+      +'<span class=tag>register: '+esc(ex.register||'?')+'</span>'
+      +'<span class=tag>plaque→rewrite lexical similarity '+ex.jaccard
+      +' (word overlap, not semantic drift)</span>'
+      +(ex.image_seed?'<span class=tag>render seed '+ex.image_seed+'</span>':'')
+      +badge+'</div>'
+      +layers
+      +'<label class=muted>field notes<textarea data-note="'+i+'" rows=2 '
+      +'placeholder="what do you see? what is only asserted?"></textarea>'
+      +'</label>';
+    fr.appendChild(sec);
+  });
+  restore();updateCount();
+}
+
+function restore(){
+  document.querySelectorAll('input[data-k]').forEach(r=>{
+    r.checked=S[r.dataset.k]===r.value;});
+  document.querySelectorAll('input[data-v]').forEach(r=>{
+    r.checked=S[''+r.dataset.v]===r.value;
+    const pl=document.getElementById('p'+r.value+r.dataset.v);
+    if(pl)pl.classList.toggle('sel',r.checked);});
+  document.querySelectorAll('textarea[data-note]').forEach(t=>{
+    t.value=S['note:'+t.dataset.note]||'';});
+}
+function updateCount(){
+  const n=Object.keys(S).length;
+  document.getElementById('markcount').textContent=
+    n?n+' mark'+(n>1?'s':'')+' held':'no marks yet';
+}
+
+document.addEventListener('change',e=>{
+  const k=e.target.dataset&&e.target.dataset.k;
+  const v=e.target.dataset&&e.target.dataset.v;
+  if(k!==undefined&&k!==null&&k!==''){
+    if(e.target.checked)S[k]=e.target.value;else delete S[k];
+    save();updateCount();return;}
+  if(v!==undefined&&v!==null&&v!==''){
+    S[''+v]=e.target.value;
+    document.getElementById('pa'+v).classList.remove('sel');
+    document.getElementById('pb'+v).classList.remove('sel');
+    document.getElementById('p'+e.target.value+v).classList.add('sel');
+    save();updateCount();}
+});
+document.addEventListener('input',e=>{
+  const n=e.target.dataset&&e.target.dataset.note;
+  if(n===undefined||n===null||n==='')return;
+  const k='note:'+n;
+  if(e.target.value)S[k]=e.target.value;else delete S[k];
+  save();updateCount();
+});
+
+function exportMarks(){
+  const layer_marks=[],contested_wall=[],field_notes=[];
+  for(const [k,v] of Object.entries(S)){
+    const cm=k.match(/^(\d+):(\w+)$/);
+    if(cm){let e=layer_marks.find(x=>x.exhibit===D.exhibits[+cm[1]].id);
+      if(!e){e={exhibit:D.exhibits[+cm[1]].id,marks:{}};layer_marks.push(e);}
+      e.marks[cm[2]]=v;continue;}
+    const vm=k.match(/^(\d+)$/);
+    if(vm){contested_wall.push({pair:D.pairs[+vm[1]].id,choice:v});continue;}
+    const nm=k.match(/^note:(\d+)$/);
+    if(nm)field_notes.push({exhibit:D.exhibits[+nm[1]].id,note:v});
+  }
+  const blob=new Blob([JSON.stringify({museum:'corrections',
+    exported_at:new Date().toISOString(),
+    layer_marks,contested_wall,field_notes},null,1)],
+    {type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='corrections-marks-'+Date.now()+'.json';a.click();
+  URL.revokeObjectURL(a.href);
+}
+function resetVisit(){
+  if(!confirm('wipe all marks for this visit?'))return;
+  S={};localStorage.removeItem(LS);restore();updateCount();
+  document.getElementById('lobby').scrollIntoView(
+    {behavior:'auto',block:'start'});
+}
+function frameNav(dir){
+  const frames=[...document.querySelectorAll('.frame')];if(!frames.length)return;
+  const y=window.scrollY+20;let idx=frames.findIndex(f=>f.offsetTop>y);
+  if(idx<0)idx=frames.length;
+  idx=(idx+dir+frames.length)%frames.length;
+  frames[idx].scrollIntoView({behavior:'auto',block:'start'});
+}
+document.addEventListener('keydown',e=>{
+  if(e.target.nodeType===1&&e.target.matches('input,textarea'))return;
+  if(e.key==='e'||e.key==='E')exportMarks();
+  else if(e.key==='x'||e.key==='X')resetVisit();
+  else if(e.key==='ArrowRight'){frameNav(1);e.preventDefault();}
+  else if(e.key==='ArrowLeft'){frameNav(-1);e.preventDefault();}
+});
+build();
+</script>

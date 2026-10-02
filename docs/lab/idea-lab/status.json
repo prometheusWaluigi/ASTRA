@@ -1,0 +1,43 @@
+{
+  "phase": "complete",
+  "initial_state": {
+    "miscdocs_qwen": true,
+    "weird_archive_drafts": true
+  },
+  "errors": [],
+  "missing_notes": [],
+  "started_at": "2026-09-24T18:27:10.282709+00:00",
+  "updated_at": "2026-09-24T21:37:54.416669+00:00",
+  "current_step": "done",
+  "last_e1_valid": true,
+  "last_e3_status": "done",
+  "e3_std_probe": {
+    "ran": false
+  },
+  "counts": {
+    "e1_valid": {
+      "abl": 8,
+      "std": 8
+    },
+    "e2_valid": {
+      "abl-on-abl": 8,
+      "abl-on-std": 8,
+      "std-on-abl": 8,
+      "std-on-std": 8
+    },
+    "e3": {
+      "abl": {
+        "R1": "done",
+        "R2": "done",
+        "R3": "done"
+      },
+      "std": {
+        "R1": "skipped",
+        "R2": "skipped",
+        "R3": "skipped"
+      }
+    },
+    "e4_images": 32,
+    "e4_fallbacks": 0
+  }
+}

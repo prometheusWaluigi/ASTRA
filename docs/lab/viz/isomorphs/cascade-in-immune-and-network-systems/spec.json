@@ -1,0 +1,39 @@
+{
+  "spec": {
+    "core": "cascade",
+    "title": "Cascade in Immune and Network Systems",
+    "label_a": "Immune Cell Recruitment in Infection",
+    "label_b": "Information Spread in Social Networks",
+    "params_a": {
+      "theta": 0.3,
+      "rewire": 0.2
+    },
+    "params_b": {
+      "theta": 0.25,
+      "rewire": 0.15
+    },
+    "skeleton": "Threshold-based contagion on a network with percolation effects",
+    "why": "Both systems exhibit cascading effects that depend on threshold activation and network structure."
+  },
+  "members": [
+    {
+      "name": "Cascade in Immune and Network Systems",
+      "world_a": "Immune Cell Recruitment in Infection",
+      "world_b": "Information Spread in Social Networks",
+      "shared_skeleton": "Threshold-based contagion on a network with percolation effects",
+      "core": "cascade",
+      "params_a": {
+        "theta": 0.3,
+        "rewire": 0.2
+      },
+      "params_b": {
+        "theta": 0.25,
+        "rewire": 0.15
+      },
+      "why": "Both systems exhibit cascading effects that depend on threshold activation and network structure."
+    }
+  ],
+  "runs": [
+    "abl-viral-pattern-language"
+  ]
+}

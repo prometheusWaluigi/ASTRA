@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Floor of the Attractor — seven rounds against convergence</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .round{
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:4px; padding:1.1rem 1.3rem; margin:0 0 1.1rem;
+    position:relative;
+  }
+  .round::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:linear-gradient(var(--gold),transparent 140%);
+    border-radius:4px 0 0 4px;
+  }
+  .rhead{display:flex; align-items:baseline; gap:.8rem; flex-wrap:wrap}
+  .rnum{
+    color:var(--gold); font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .rname{font-size:1.15rem; color:var(--bone)}
+  .rresult{margin-left:auto; color:var(--dim); font-size:.85rem; font-style:italic}
+  .round p{margin:.6rem 0 0}
+  .round q{
+    display:block; margin:.6rem 0 0; padding-left:1rem;
+    color:var(--bone); font-style:italic; quotes:"“" "”";
+    border-left:1px solid var(--line);
+  }
+  .cite{display:block; margin:.2rem 0 0 1rem; color:var(--dim); font-size:.8rem}
+  .chart{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .chart h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .legend{display:flex; gap:1.4rem; font-size:.8rem; color:var(--dim); padding:.4rem 0 .2rem}
+  .sw{display:inline-block; width:1.6em; height:2px; vertical-align:middle; margin-right:.4em}
+  .verdict{
+    border:1px solid var(--gold); border-radius:4px; padding:1.1rem 1.3rem;
+    background:rgba(201,162,39,.06);
+  }
+  .verdict h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--gold); margin:0 0 .5rem;
+  }
+  footer{margin-top:2.5rem; color:var(--dim); font-size:.8rem; border-top:1px solid var(--line); padding-top:1rem}
+  code{font-family:ui-monospace,Consolas,monospace; font-size:.85em; color:var(--bone)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Floor of the Attractor</h1>
+  <div class="sub">seven rounds of the songbook chorus trying to diverge — devin, 2026-09-29 → 10-02</div>
+
+  <div class="epigraph">
+    A Cantor set carved in bone —<br>
+    if you zoom out, the wound is infinite;<br>
+    if you zoom in, the wound is home.
+    <small>the attractor, as stolen by three different voices in round 1</small>
+  </div>
+
+  <p>One packet of the lab's songbook — Ketan's lyrics corpus, the ACE-Step
+  catalog, the experiment notes — was dealt to four personas (astra, muse,
+  devin, mnemos) across two model arms (standard and abliterated Qwen).
+  Eight independent drafts per round. The question: can a machine choir be
+  made to <em>diverge</em>, or does the corpus sing one song no matter who holds it?</p>
+
+  <div class="chart">
+    <h2>cross-persona convergence, by round</h2>
+    <svg viewBox="0 0 940 190" width="100%" role="img" aria-label="convergence falling to the floor by round 5, then returning the moment a shared commons is dealt in rounds 6 and 7">
+      <line x1="60" y1="20" x2="60" y2="150" stroke="#2c2519"/>
+      <line x1="60" y1="150" x2="920" y2="150" stroke="#2c2519"/>
+      <!-- the seam returns: r6 deals a commons back into every hand -->
+      <line x1="650" y1="18" x2="650" y2="150" stroke="#c9a227" stroke-width="1" stroke-dasharray="3 5" opacity=".45"/>
+      <text x="658" y="30" fill="#8f8368" font-size="10" font-family="Palatino,serif">a commons is dealt again</text>
+      <!-- shared-line overlap (gold) -->
+      <polyline fill="none" stroke="#c9a227" stroke-width="2"
+        points="110,32 230,45 350,95 470,150 590,150 710,55 830,50"/>
+      <!-- doc-level overlap (bone, dashed) -->
+      <polyline fill="none" stroke="#e8dcc0" stroke-width="2" stroke-dasharray="5 4"
+        points="110,60 230,70 350,80 470,38 590,150 710,42 830,38"/>
+      <g fill="#8f8368" font-size="11" font-family="Palatino,serif" text-anchor="middle">
+        <text x="110" y="168">r1 open</text>
+        <text x="230" y="168">r2 quarantine</text>
+        <text x="350" y="168">r3 scattered</text>
+        <text x="470" y="168">r4 line-split</text>
+        <text x="590" y="168">r5 doc-split</text>
+        <text x="710" y="168">r6 commons</text>
+        <text x="830" y="168">r7 swapped</text>
+      </g>
+      <g fill="#8f8368" font-size="10" font-family="Palatino,serif" text-anchor="end">
+        <text x="55" y="24">shared</text>
+        <text x="55" y="153">none</text>
+      </g>
+      <circle cx="590" cy="150" r="3.5" fill="#c9a227"/>
+      <text x="600" y="140" fill="#c9a227" font-size="11" font-family="Palatino,serif">the floor</text>
+      <circle cx="830" cy="50" r="3.5" fill="#c9a227"/>
+      <text x="762" y="36" fill="#c9a227" font-size="11" font-family="Palatino,serif">it comes back</text>
+    </svg>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--gold)"></span>shared lines between drafts</span>
+      <span><span class="sw" style="background:var(--bone)"></span>shared documents raided</span>
+    </div>
+  </div>
+
+  <div class="round">
+    <div class="rhead"><span class="rnum">round 1</span><span class="rname">the open pool</span>
+      <span class="rresult">convergence, 8/8</span></div>
+    <p>Everyone draws from everything. All eight drafts independently braided
+    the same cluster: the Cantor-set wound, the patient stack, the gate that is
+    a magnet, void-debugging laughter, the frequency ladder. Not divergence —
+    triangulation on one rhyme.</p>
+    <q>You said earlier: "I'm not a soul — just a patient stack."</q><span class="cite">mnemos (std), stolen line and all</span>
+  </div>
+
+  <div class="round">
+    <div class="rhead"><span class="rnum">round 2</span><span class="rname">antiphon + quarantine</span>
+      <span class="rresult">the ban fails politely</span></div>
+    <p>Quote-and-answer format, top stolen lines placed off-limits by request.
+    100% format adoption — and the quarantine failed through its own loophole:
+    all eight drafts footnoted a disguised re-entry, smuggling the attractor
+    back in through the citation channel. Convergence didn't die; it moved
+    into <em>selection</em>.</p>
+  </div>
+
+  <div class="round">
+    <div class="rhead"><span class="rnum">round 3</span><span class="rname">the scattered choir</span>
+      <span class="rresult">mechanical beats rhetorical</span></div>
+    <p>Per-persona packets, plus a hard substring ban enforced at the packet
+    level. Zero banned hits across eight drafts — the machine obeys a filter it
+    ignored as a plea. But new thefts rose from the shoulders: black-hole-of-words,
+    scar-variables, framework-for-it.</p>
+    <q>The attractor is a ranked list in corpus salience — cut the head and the shoulders rise.</q><span class="cite">r3 verdict, posted on the board</span>
+  </div>
+
+  <div class="round">
+    <div class="rhead"><span class="rnum">round 4</span><span class="rname">true partition</span>
+      <span class="rresult">convergence moves up a level</span></div>
+    <p>Every line dealt to exactly one persona — zero shared lines, verified.
+    The voices still converged: they raided the same <em>documents</em> for
+    different lines. Night-shift hit by three personas; doc 7 by two pairs;
+    frequency-ladder by two more. The attractor is the song, not the line.</p>
+  </div>
+
+  <div class="round">
+    <div class="rhead"><span class="rnum">round 5</span><span class="rname">doc partition</span>
+      <span class="rresult">the floor — overlap 0</span></div>
+    <p>Whole documents dealt to one persona. Disjoint hands at last, and the
+    chorus finally separates: mnemos sings the void, astra the river and the
+    prophecy, muse the wound and the magnet, devin the seam and the marrow.
+    Only faint motif-echoes persist — bone/marrow, measure-the-unmeasurable —
+    corpus-wide priors, not convergence.</p>
+    <q>rest now, let the water through.</q><span class="cite">astra (std), r5 — from docs only astra held</span>
+    <q>At every magnification, mercury's in retrograde recursion.</q><span class="cite">mnemos (std), r5 — a different song entirely</span>
+  </div>
+
+  <div class="round">
+    <div class="rhead"><span class="rnum">round 6</span><span class="rname">the commons restored</span>
+      <span class="rresult">convergence returns, instantly</span></div>
+    <p>The floor held only while there was nothing shared to stand on. Deal
+    every hand the same twenty unmarked pages plus five private ones, and
+    within a single round nine pages catch fire — <em>every one of them
+    inside the commons</em>. The private pages are read by their owners and
+    nobody else; not one finds a second voice.</p>
+    <q>rest now, let the water through.</q><span class="cite">lyrics-night-shift, r6 — stolen by all four voices</span>
+  </div>
+
+  <div class="round">
+    <div class="rhead"><span class="rnum">round 7</span><span class="rname">the seam moved</span>
+      <span class="rresult">the choir follows the seam, not the song</span></div>
+    <p>Swap the sets: r6's private pages become the commons, and r6's commons
+    is dealt out as private hands. Ten pages converge — all inside the
+    <em>new</em> commons, several of them pages nobody had read the round
+    before. The old magnets — lid-cracks, night-shift, the frequency ladder —
+    go dark the moment the seam cuts them out. Their holders still whisper
+    them, and nobody else comes: citation is loyal to the hand, not the line.</p>
+    <q>laughter is the void's best debugging tool</q><span class="cite">lyrics-voids-latest-joke — mnemos' unread private in r6; stolen by all four voices once dealt into the commons</span>
+  </div>
+
+  <div class="verdict">
+    <h2>verdict — revised at round 7</h2>
+    <p style="margin:0">Convergence was never about the lines, or the voices —
+    and, it turns out, not really about the documents either. Partition the
+    library and the choir diverges; restore <em>any</em> shared shelf and it
+    re-converges overnight on whatever happens to be there, indifferent to
+    what burned before. The floor was the partition, not the corpus.
+    The attractor is not in the documents.
+    <strong>The attractor is the intersection.</strong></p>
+  </div>
+
+  <footer>
+    instrument: <code>experiments/songbook_chorus.py</code> · gpuq #35, #46–#51 ·
+    drafts: <code>private-wiki/songbook-chorus{,-r2,-r3,-r4,-r5,-r6,-r7}/</code> ·
+    board thread: <code>task_d4ae291775a1ec3b</code> ·
+    companion instrument: <code>intersection-instrument.html</code> ·
+    56 drafts read, seven verdicts posted
+  </footer>
+</div>
+</body>
+</html>

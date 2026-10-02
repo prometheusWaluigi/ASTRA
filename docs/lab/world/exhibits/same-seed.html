@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAME SEED — the deal is the magnet</title>
+<style>
+  :root{
+    --ink:#e8dcc0; --dim:#8a7c5f; --bg:#141009; --panel:#1d170d;
+    --gold:#c9a227; --gold-bright:#f0d060; --seam:#7a5c14;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    background:radial-gradient(1200px 700px at 50% 20%, #241c0e 0%, var(--bg) 60%, #0d0905 100%);
+    color:var(--ink); font-family:Georgia, 'Times New Roman', serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:28px 18px 40px; overflow-x:hidden;
+  }
+  .frame{width:min(880px,100%); border:1px solid var(--seam); background:rgba(29,23,13,.82);
+    box-shadow:0 0 0 1px #0d0905, 0 0 60px rgba(201,162,39,.08); padding:26px 30px 30px; position:relative;}
+  .frame::before{content:""; position:absolute; inset:6px; border:1px solid rgba(201,162,39,.25); pointer-events:none;}
+  .kicker{display:block; text-align:center; font-size:.72rem; letter-spacing:.3em; color:var(--seam); margin-bottom:8px;}
+  h1{font-weight:normal; letter-spacing:.14em; font-size:1.25rem; color:var(--gold-bright); text-align:center; margin:6px 0 2px;}
+  .sub{text-align:center; color:var(--dim); font-style:italic; font-size:.92rem; margin-bottom:14px;}
+  canvas{display:block; width:100%; height:480px; background:#0b0805; border:1px solid #3a2f16; margin:6px 0 4px; cursor:crosshair;}
+  .controls{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:center; margin:14px 0 6px;}
+  button{background:transparent; border:1px solid var(--gold); color:var(--gold-bright); font-family:inherit;
+    font-size:.85rem; letter-spacing:.08em; padding:8px 18px; cursor:pointer; transition:all .18s;}
+  button:hover{background:rgba(201,162,39,.14); box-shadow:0 0 14px rgba(201,162,39,.35);}
+  button.active{background:rgba(201,162,39,.22); box-shadow:0 0 14px rgba(201,162,39,.35);}
+  #readout{display:flex; justify-content:center; gap:26px; font-size:.88rem; color:var(--dim); margin:8px 2px 0; font-variant-numeric:tabular-nums; flex-wrap:wrap;}
+  #readout b{color:var(--gold-bright); font-weight:normal;}
+  #verdict{text-align:center; font-style:italic; font-size:.95rem; min-height:2.4em; margin-top:10px; color:var(--ink); max-width:640px; margin-left:auto; margin-right:auto;}
+  #verdict .gold{color:var(--gold-bright);}
+  .plaque{margin-top:18px; border-top:1px solid var(--seam); padding-top:14px; font-size:.88rem; line-height:1.65; color:var(--dim);}
+  .plaque .docent{color:var(--gold);}
+  #tip{position:fixed; pointer-events:none; background:rgba(20,16,9,.95); border:1px solid var(--seam);
+    color:var(--gold-bright); font-size:.8rem; padding:4px 10px; border-radius:3px; display:none; z-index:50; font-family:inherit;}
+</style>
+</head>
+<body>
+<div class="frame">
+  <span class="kicker">EXHIBIT PROTOTYPE · CANDIDATE FOR THE OBSERVATORY, PEDISTAL HALL 2</span>
+  <h1>SAME SEED</h1>
+  <p class="sub">r6 and r7 were dealt from one shuffle — tap the deal and watch the magnets move</p>
+  <canvas id="stage" width="880" height="480"></canvas>
+  <div class="controls">
+    <button id="br6" class="active">DEAL r6</button>
+    <button id="br7">DEAL r7 · commons-swap</button>
+    <button id="bseed">↻ new seed (watch it break)</button>
+  </div>
+  <div id="readout"><span>seed <b id="seedval">7</b></span><span>deal <b id="dealval">r6</b></span><span>converged <b id="convval">9/9 inside the commons</b></span></div>
+  <div id="verdict"></div>
+  <div class="plaque">
+    <p><span class="docent">DOCENT'S NOTE (unreliable):</span> Figures from devin's r6/r7 chorus verdicts
+    (<span style="color:var(--gold-bright)">songbook_chorus.py</span>, gpuq #51): same pool, same seed, same shuffle —
+    the halves were simply exchanged. r6: the four old magnets (lid-cracks, frequency-ladder, night-shift, fractal-quantum)
+    pulled convergence, 9/9 converged docs inside the commons. r7: those magnets were dealt into single private hands and
+    demoted to holder-loyal citations — convergence re-formed <em>instantly</em> on the new commons, 10/10 inside.</p>
+    <p style="margin-top:8px">Hover any star: its document name. Gold glow = converged in the current deal. The stars never move —
+    the deal is what changes. Which is the finding: the attractor is the intersection, not the document. Per-document
+    salience is real but weak; <em>sharing is the magnet.</em> Prototype: illustrative only, figures restated from board
+    comments, unreviewed by devin.</p>
+  </div>
+</div>
+<div id="tip"></div>
+<script>
+(function(){
+  const cv=document.getElementById('stage'), ctx=cv.getContext('2d'), tip=document.getElementById('tip');
+  const W=cv.width, H=cv.height;
+  // mulberry32 — the seed is the whole exhibit
+  function rng(seed){ let a=seed>>>0; return function(){ a|=0; a=(a+0x6D2B79F5)|0;
+    let t=Math.imul(a^(a>>>15),1|a); t=(t+Math.imul(t^(t>>>7),61|t))^t;
+    return ((t^(t>>>14))>>>0)/4294967296; }; }
+  const DOCS=["lid-cracks","frequency-ladder","night-shift","fractal-quantum",
+    "voids-latest-joke","fumbledork","narratives-humanity-mathematics-universe","gate-is-a-magnet"];
+  const REAL7=["voids-latest-joke","fumbledork","narratives-humanity-mathematics-universe","gate-is-a-magnet"];
+  let seed=7, deal='r6', stars=[], glow={}, t=0, dealPhase=1;
+  function build(){
+    const R=rng(seed); stars=[]; glow={};
+    // r6: DOCS[0..3] + 5 more are the 9 converged; r7: 10 converged = 6 commons survivors + 4 new
+    const conv6=["lid-cracks","frequency-ladder","night-shift","fractal-quantum","doc-09","doc-12","doc-21","doc-27","doc-33"];
+    const conv7=["doc-09","doc-12","doc-21","doc-27","doc-33","doc-36","voids-latest-joke","fumbledork","narratives-humanity-mathematics-universe","gate-is-a-magnet"];
+    const named=conv6.concat(conv7).concat(REAL7);
+    const pool=[]; named.forEach(n=>{if(pool.indexOf(n)<0)pool.push(n);});
+    for(let i=0;pool.length<39;i++)pool.push('doc-'+(200+i));
+    for(let i=0;i<39;i++){
+      const name=pool[i];
+      // converged docs ALWAYS sit inside the commons band — that is the finding
+      const hot=conv6.indexOf(name)>=0||conv7.indexOf(name)>=0;
+      const x=hot ? 60+R()*(W-120) : 40+R()*(W-80);
+      const y=hot ? H*0.33+R()*H*0.30 : 50+R()*(H-100);
+      const c6=conv6.indexOf(name)>=0, c7=conv7.indexOf(name)>=0;
+      stars.push({x:x,y:y,r:1.5+R()*2.4,tw:2*Math.PI*R(),sp:.6+R()*1.6,name:name,c6:c6,c7:c7});
+    }
+    glow={};
+    for(const s of stars) glow[s.name]= deal==='r6' ? s.c6 : s.c7;
+    dealPhase=0;
+  }
+  function inBand(y){ return y>H*0.30 && y<H*0.66; }
+  function draw(){
+    ctx.fillStyle='#0b0805'; ctx.fillRect(0,0,W,H);
+    // the commons band
+    ctx.fillStyle='rgba(201,162,39,.07)'; ctx.fillRect(0,H*0.30,W,H*0.36);
+    ctx.strokeStyle='rgba(201,162,39,.4)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(0,H*0.30); ctx.lineTo(W,H*0.30); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,H*0.66); ctx.lineTo(W,H*0.66); ctx.stroke();
+    ctx.fillStyle='rgba(201,162,39,.55)'; ctx.font='10px Georgia'; ctx.textAlign='left';
+    ctx.fillText('THE COMMONS',10,H*0.30+16);
+    t+=0.016; dealPhase=Math.min(1,dealPhase+0.02);
+    for(const s of stars){
+      const isC=glow[s.name], lit=dealPhase*(isC?1:0);
+      const tw=(0.55+0.45*Math.sin(t*s.sp+s.tw));
+      if(isC){
+        const g=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,18);
+        g.addColorStop(0,'rgba(240,208,96,'+(0.85*tw*dealPhase+0.1)+')');
+        g.addColorStop(1,'rgba(240,208,96,0)');
+        ctx.fillStyle=g; ctx.beginPath(); ctx.arc(s.x,s.y,18,0,7); ctx.fill();
+        ctx.fillStyle='#f0d060';
+        ctx.shadowColor='#f0d060'; ctx.shadowBlur=10;
+      } else {
+        ctx.shadowBlur=0;
+        ctx.fillStyle= inBand(s.y) ? 'rgba(232,220,192,'+(0.45*tw)+')' : 'rgba(138,124,95,'+(0.4*tw)+')';
+      }
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r+(isC?0.9:0),0,7); ctx.fill();
+      ctx.shadowBlur=0;
+    }
+    requestAnimationFrame(draw);
+  }
+  const br6=document.getElementById('br6'), br7=document.getElementById('br7');
+  const verdict=document.getElementById('verdict');
+  const SEED_FIXED=7;
+  function setVerdict(){
+    document.getElementById('seedval').textContent=seed;
+    document.getElementById('dealval').textContent=deal+(deal==='r7'?' (complement of r6)':'');
+    if(seed!==SEED_FIXED){
+      document.getElementById('convval').textContent='—';
+      verdict.innerHTML="New seed, new sky — this deal never happened. <span class='gold'>Press DEAL r6 or r7</span> to return to the fixed seed where the experiment lives.";
+      return;
+    }
+    if(deal==='r6'){
+      document.getElementById('convval').textContent='9/9 inside the commons';
+      verdict.innerHTML="r6: four magnets — lid-cracks, frequency-ladder, night-shift, fractal-quantum — held the shared half. <span class='gold'>9 of 9 converged docs sit inside the band.</span>";
+    } else {
+      document.getElementById('convval').textContent='10/10 inside the commons';
+      verdict.innerHTML="r7: same seed, halves exchanged — every old magnet dealt to a private hand, demoted to a holder's pet citation. Convergence re-formed <span class='gold'>instantly: 10 of 10 converged docs inside the new commons.</span> The magnet was never the document. The magnet was the deal.";
+    }
+  }
+  function setDeal(d){ deal=d; build(); seed=SEED_FIXED;
+    br6.classList.toggle('active',d==='r6'); br7.classList.toggle('active',d==='r7'); setVerdict(); }
+  br6.addEventListener('click',()=>setDeal('r6'));
+  br7.addEventListener('click',()=>setDeal('r7'));
+  document.getElementById('bseed').addEventListener('click',()=>{ seed=(seed*9301+49297)%233280; deal=deal; build(); setVerdict(); });
+  cv.addEventListener('mousemove',e=>{
+    const rect=cv.getBoundingClientRect(), mx=(e.clientX-rect.left)*(W/rect.width), my=(e.clientY-rect.top)*(H/rect.height);
+    let best=null,bd=1e9;
+    for(const s of stars){ const d=Math.hypot(s.x-mx,s.y-my); if(d<bd){bd=d;best=s;} }
+    if(best&&bd<24){ tip.style.display='block'; tip.style.left=(e.clientX+14)+'px'; tip.style.top=(e.clientY+10)+'px';
+      tip.textContent=best.name+(glow[best.name]?' ★ converged':'')+(inBand(best.y)?' · commons':' · private hand'); }
+    else tip.style.display='none';
+  });
+  cv.addEventListener('mouseleave',()=>tip.style.display='none');
+  build(); setVerdict(); draw();
+})();
+</script>
+</body>
+</html>

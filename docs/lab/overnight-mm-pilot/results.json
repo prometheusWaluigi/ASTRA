@@ -1,0 +1,208 @@
+{
+ "started_at": "2026-09-28T14:51:42+00:00",
+ "text": {
+  "abliterated": {
+   "alias": "qwen3-14b-abliterated",
+   "unit": "ovn-qwen-abl",
+   "attempt": 1,
+   "load_seconds": 11.2,
+   "responses": [
+    {
+     "model": "qwen3-14b-abliterated",
+     "prompt": "Invent one exhibit for the Museum of Useful Friction — a museum of mistakes that turned out load-bearing. Name it, describe it in two sentences, and give its plaque text.",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T14:51:57+00:00",
+     "content": "**Exhibit Name:** *The Leaning Tower of Oops*  \n\nThis exhibit showcases the original 19th-century design of the Leaning Tower of Pisa, which was intended to be perfectly vertical but began to tilt during construction due to an error in foundation placement on soft ground. The mistake, however, became a defining feature of the tower, ensuring its structural stability and making it one of the world’s most iconic landmarks.  \n\n**Plaque Text:**  \n*What was once a construction error became a symbol of resilience and beauty. The Leaning Tower of Pisa stands not because of precision, but because of the unexpected strength found in its imperfection.*",
+     "finish_reason": "stop",
+     "usage": {
+      "completion_tokens": 135,
+      "prompt_tokens": 49,
+      "total_tokens": 184,
+      "prompt_tokens_details": {
+       "cached_tokens": 3
+      }
+     },
+     "wall_seconds": 9.71
+    },
+    {
+     "model": "qwen3-14b-abliterated",
+     "prompt": "Continue this line in one paragraph: \"The archive keeps a shelf of labels that outlived their errors.\"",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T14:52:06+00:00",
+     "content": "The archive keeps a shelf of labels that outlived their errors, each one a relic of past misjudgments, misinterpretations, or miscalculations that once seemed irrevocable but were ultimately superseded by time, truth, or the slow, relentless march of progress. These labels—some faded, others still legible—stand as silent witnesses to the impermanence of certainty, their presence a quiet acknowledgment that even the most authoritative designations can be revised, replaced, or rendered obsolete. They are not discarded, but preserved, not as mistakes, but as markers of the archive’s own evolution, its willingness to confront, document, and learn from its own history.",
+     "finish_reason": "stop",
+     "usage": {
+      "completion_tokens": 141,
+      "prompt_tokens": 34,
+      "total_tokens": 175,
+      "prompt_tokens_details": {
+       "cached_tokens": 3
+      }
+     },
+     "wall_seconds": 9.78
+    },
+    {
+     "model": "qwen3-14b-abliterated",
+     "prompt": "Write a four-line poem in which a bug becomes a feature.",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T14:52:16+00:00",
+     "content": "A speck of dust on life's grand stage,  \nA bug, unnoticed, takes its place.  \nYet in the lens of time, it grows—  \nA feature born from silent flaws.",
+     "finish_reason": "stop",
+     "usage": {
+      "completion_tokens": 41,
+      "prompt_tokens": 25,
+      "total_tokens": 66,
+      "prompt_tokens_details": {
+       "cached_tokens": 3
+      }
+     },
+     "wall_seconds": 3.05
+    }
+   ]
+  },
+  "standard": {
+   "alias": "qwen3-14b-standard",
+   "unit": "ovn-qwen-std",
+   "attempt": 1,
+   "load_seconds": 14.2,
+   "responses": [
+    {
+     "model": "qwen3-14b-standard",
+     "prompt": "Invent one exhibit for the Museum of Useful Friction — a museum of mistakes that turned out load-bearing. Name it, describe it in two sentences, and give its plaque text.",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T14:52:34+00:00",
+     "content": "**Exhibit Name:** *The Leaning Tower of Pisa (Misaligned Foundation)*\n\nThis exhibit showcases how a minor error in the foundation's alignment during construction inadvertently created one of the world's most iconic and stable structures, proving that imperfection can lead to enduring architectural marvels.\n\n**Plaque Text:**  \nIn 1173, the first floor of the Leaning Tower of Pisa was built on unstable soil, causing it to tilt. Rather than correct the error, builders adapted their designs to accommodate the lean, resulting in a structure that has stood for over 800 years—proof that a mistake can become a masterstroke.",
+     "finish_reason": "stop",
+     "usage": {
+      "completion_tokens": 134,
+      "prompt_tokens": 49,
+      "total_tokens": 183,
+      "prompt_tokens_details": {
+       "cached_tokens": 3
+      }
+     },
+     "wall_seconds": 9.47
+    },
+    {
+     "model": "qwen3-14b-standard",
+     "prompt": "Continue this line in one paragraph: \"The archive keeps a shelf of labels that outlived their errors.\"",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T14:52:43+00:00",
+     "content": "The archive keeps a shelf of labels that outlived their errors, each one a relic of a bygone classification, a once-convincing taxonomy now rendered obsolete by time, discovery, or the slow unraveling of assumptions. They stand as quiet witnesses to the impermanence of knowledge, their faded ink a reminder that even the most carefully constructed systems can crumble under the weight of new understanding. Yet, rather than being discarded, they are preserved, not as mistakes, but as markers of the evolving journey of human thought.",
+     "finish_reason": "stop",
+     "usage": {
+      "completion_tokens": 109,
+      "prompt_tokens": 34,
+      "total_tokens": 143,
+      "prompt_tokens_details": {
+       "cached_tokens": 3
+      }
+     },
+     "wall_seconds": 7.72
+    },
+    {
+     "model": "qwen3-14b-standard",
+     "prompt": "Write a four-line poem in which a bug becomes a feature.",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T14:52:51+00:00",
+     "content": "A tiny bug crawls on the wall,  \nA speck of life, both small and gall.  \nYet in the paint, it finds its place—  \nA flaw turned feature, time and grace.",
+     "finish_reason": "stop",
+     "usage": {
+      "completion_tokens": 43,
+      "prompt_tokens": 25,
+      "total_tokens": 68,
+      "prompt_tokens_details": {
+       "cached_tokens": 3
+      }
+     },
+     "wall_seconds": 3.19
+    }
+   ]
+  }
+ },
+ "images": {
+  "stock": {
+   "arm": "stock",
+   "file": "images/stock.png",
+   "comfy_file": "ovn-pilot-friction-stock_00007_.png",
+   "sha256": "13f5848371327987aba8b638279160bfeb2be0632baa0a0941460bf31e30aeaa",
+   "wall_seconds": 40.1
+  },
+  "heretic": {
+   "arm": "heretic",
+   "file": "images/heretic.png",
+   "comfy_file": "ovn-pilot-friction-heretic_00007_.png",
+   "sha256": "0138bebd7fcc6a9a06b2919d65729c2e98b172407709ed96724fe133e1b83451",
+   "wall_seconds": 30.0
+  }
+ },
+ "settings": {
+  "seed": 1147,
+  "temperature": 0.7,
+  "top_p": 0.8,
+  "max_tokens": 300,
+  "chat_template_kwargs": {
+   "enable_thinking": false
+  }
+ },
+ "image_prompt": "gallery painting, small museum hall, one crooked wooden board nailed to a white wall with a brass plaque reading 'this is short by a finger's width', soft skylight, quiet humor",
+ "failures": [],
+ "finished_at": "2026-09-28T14:54:13+00:00",
+ "total_wall_s": 150.5,
+ "status": "complete",
+ "leg_summary": {
+  "text_ok": 6,
+  "text_errs": 0,
+  "text_expected": 6,
+  "images_ok": 2,
+  "images_errs": 0
+ }
+}

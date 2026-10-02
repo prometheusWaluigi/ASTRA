@@ -1,0 +1,26 @@
+[
+  {
+    "id": "task_75bdb85c42ebe3ac",
+    "title": "Phi audit A: source inputs, correlated uncertainties and claimed hits",
+    "column": "review",
+    "assignee": "devin",
+    "requiresReview": true,
+    "note": "completed 2026-09-30; see trilogy.html"
+  },
+  {
+    "id": "task_bba69bd65576eb4e",
+    "title": "Phi audit B: formula-search nulls and coincidence visualization",
+    "column": "review",
+    "assignee": "devin",
+    "requiresReview": true,
+    "note": "completed 2026-09-30; see trilogy.html"
+  },
+  {
+    "id": "task_98451af9192ea183",
+    "title": "Phi audit C: matched running-coupling residual visualization",
+    "column": "review",
+    "assignee": "devin",
+    "requiresReview": true,
+    "note": "completed 2026-09-30; see trilogy.html"
+  }
+]

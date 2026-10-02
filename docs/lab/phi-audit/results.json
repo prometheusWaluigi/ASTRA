@@ -1,0 +1,183 @@
+{
+  "protocol": "Retrospective pilot v1; bounds selected after seeing claim; no global p-value.",
+  "grammar": "a/b * 2^(k/6) * c^(n/3); a,b=1..B, k,n=-6..6; B=3,5,8,12",
+  "null": "Target log-uniform on [0.05,0.5]; sensitivity [0.01,1]; interval union, no Monte Carlo.",
+  "GF": 1.1663785e-05,
+  "GF_sigma": 6e-12,
+  "higgs": 125.2,
+  "higgs_sigma": 0.11,
+  "v": 246.21967190389205,
+  "lambda_tree": 0.12928054240945408,
+  "lambda_formula": 0.129280563443397,
+  "higgs_formula": 125.20001018501894,
+  "relative_lambda_error": 1.6269998970308563e-07,
+  "relative_lambda_measurement_sigma": 0.0017571884984025558,
+  "higgs_pull": 9.259108124255859e-05,
+  "source_urls": [
+    "https://pdg.lbl.gov/2025/listings/rpp2025-list-higgs-boson.pdf",
+    "https://pdg.lbl.gov/2025/reviews/rpp2025-rev-phys-constants.pdf"
+  ],
+  "script_sha256": "b837b452aebd9927aa859530a0a50d5d340021e3c76b525a00c73690faea2aad",
+  "records": [
+    {
+      "base": "phi",
+      "budget": 3,
+      "unique": 819,
+      "expression": "1/3 * 2^(-4/6) * c^(-3/3)",
+      "relative_error": 0.0038556685381250233,
+      "coverage_at_tweet_error": 3.2432805844060843e-05,
+      "coverage_at_measurement_error": 0.3258162485070947,
+      "coverage_at_tweet_error_wide": 2.893515031410309e-05
+    },
+    {
+      "base": "phi",
+      "budget": 5,
+      "unique": 2119,
+      "expression": "1/5 * 2^(-1/6) * c^(-2/3)",
+      "relative_error": 1.6269999014717484e-07,
+      "coverage_at_tweet_error": 8.853661378467103e-05,
+      "coverage_at_measurement_error": 0.6599043720790219,
+      "coverage_at_tweet_error_wide": 7.486396034105099e-05
+    },
+    {
+      "base": "phi",
+      "budget": 8,
+      "unique": 4537,
+      "expression": "1/5 * 2^(-1/6) * c^(-2/3)",
+      "relative_error": 1.6269999014717484e-07,
+      "coverage_at_tweet_error": 0.00019071055116769666,
+      "coverage_at_measurement_error": 0.8600127121413648,
+      "coverage_at_tweet_error_wide": 0.00016029154699117408
+    },
+    {
+      "base": "phi",
+      "budget": 12,
+      "unique": 9737,
+      "expression": "1/5 * 2^(-1/6) * c^(-2/3)",
+      "relative_error": 1.6269999014717484e-07,
+      "coverage_at_tweet_error": 0.00039795547395652184,
+      "coverage_at_measurement_error": 0.9783800376446257,
+      "coverage_at_tweet_error_wide": 0.00034400678709867633
+    },
+    {
+      "base": "sqrt3",
+      "budget": 3,
+      "unique": 553,
+      "expression": "1/3 * 2^(-5/6) * c^(-2/3)",
+      "relative_error": 0.0033370087009274574,
+      "coverage_at_tweet_error": 2.5649473901619306e-05,
+      "coverage_at_measurement_error": 0.2682917294294256,
+      "coverage_at_tweet_error_wide": 1.9537409185512214e-05
+    },
+    {
+      "base": "sqrt3",
+      "budget": 5,
+      "unique": 1587,
+      "expression": "1/5 * 2^(1/6) * c^(-3/3)",
+      "relative_error": 0.0025542183974691657,
+      "coverage_at_tweet_error": 6.762134029547631e-05,
+      "coverage_at_measurement_error": 0.4530797978083646,
+      "coverage_at_tweet_error_wide": 5.606847808386924e-05
+    },
+    {
+      "base": "sqrt3",
+      "budget": 8,
+      "unique": 3487,
+      "expression": "1/5 * 2^(1/6) * c^(-3/3)",
+      "relative_error": 0.0025542183974691657,
+      "coverage_at_tweet_error": 0.00014562965763355396,
+      "coverage_at_measurement_error": 0.6049596763562172,
+      "coverage_at_tweet_error_wide": 0.00012319520043094692
+    },
+    {
+      "base": "sqrt3",
+      "budget": 12,
+      "unique": 6937,
+      "expression": "1/5 * 2^(1/6) * c^(-3/3)",
+      "relative_error": 0.0025542183974691657,
+      "coverage_at_tweet_error": 0.00028659577456810665,
+      "coverage_at_measurement_error": 0.6742883680565415,
+      "coverage_at_tweet_error_wide": 0.00024508319627092177
+    },
+    {
+      "base": "e",
+      "budget": 3,
+      "unique": 819,
+      "expression": "1/1 * 2^(-9/6) * c^(-3/3)",
+      "relative_error": 0.006068054261278766,
+      "coverage_at_tweet_error": 3.695502713907008e-05,
+      "coverage_at_measurement_error": 0.3848992835085538,
+      "coverage_at_tweet_error_wide": 2.8935150314127197e-05
+    },
+    {
+      "base": "e",
+      "budget": 5,
+      "unique": 2119,
+      "expression": "1/5 * 2^(2/6) * c^(-2/3)",
+      "relative_error": 0.0007152253381019769,
+      "coverage_at_tweet_error": 9.489598748075819e-05,
+      "coverage_at_measurement_error": 0.745226135193392,
+      "coverage_at_tweet_error_wide": 7.486396034068937e-05
+    },
+    {
+      "base": "e",
+      "budget": 8,
+      "unique": 4537,
+      "expression": "1/5 * 2^(2/6) * c^(-2/3)",
+      "relative_error": 0.0007152253381019769,
+      "coverage_at_tweet_error": 0.00020130950732780977,
+      "coverage_at_measurement_error": 0.9381856220033673,
+      "coverage_at_tweet_error_wide": 0.00016007956786529676
+    },
+    {
+      "base": "e",
+      "budget": 12,
+      "unique": 9737,
+      "expression": "1/5 * 2^(2/6) * c^(-2/3)",
+      "relative_error": 0.0007152253381019769,
+      "coverage_at_tweet_error": 0.0004311655365914401,
+      "coverage_at_measurement_error": 0.9981004901427633,
+      "coverage_at_tweet_error_wide": 0.00034216963469058294
+    },
+    {
+      "base": "pi",
+      "budget": 3,
+      "unique": 819,
+      "expression": "1/3 * 2^(5/6) * c^(-4/3)",
+      "relative_error": 0.0015245008331059573,
+      "coverage_at_tweet_error": 3.752030480089199e-05,
+      "coverage_at_measurement_error": 0.3241181807498388,
+      "coverage_at_tweet_error_wide": 2.8935150314006657e-05
+    },
+    {
+      "base": "pi",
+      "budget": 5,
+      "unique": 2119,
+      "expression": "3/1 * 2^(-14/6) * c^(-4/3)",
+      "relative_error": 0.0007331100901115661,
+      "coverage_at_tweet_error": 9.489598748070997e-05,
+      "coverage_at_measurement_error": 0.6767228728742708,
+      "coverage_at_tweet_error_wide": 7.486396033979737e-05
+    },
+    {
+      "base": "pi",
+      "budget": 8,
+      "unique": 4537,
+      "expression": "3/1 * 2^(-14/6) * c^(-4/3)",
+      "relative_error": 0.0007331100901115661,
+      "coverage_at_tweet_error": 0.0002006029102504239,
+      "coverage_at_measurement_error": 0.9495364763529881,
+      "coverage_at_tweet_error_wide": 0.00015958494990949695
+    },
+    {
+      "base": "pi",
+      "budget": 12,
+      "unique": 9737,
+      "expression": "3/1 * 2^(-14/6) * c^(-4/3)",
+      "relative_error": 0.0007331100901115661,
+      "coverage_at_tweet_error": 0.00043074157834498925,
+      "coverage_at_measurement_error": 0.9979411160767456,
+      "coverage_at_tweet_error_wide": 0.00034047380170234475
+    }
+  ]
+}

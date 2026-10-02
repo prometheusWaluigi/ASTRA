@@ -1,0 +1,73 @@
+{
+  "spec": {
+    "core": "gray-scott",
+    "title": "Gray-Scott in Immune Pattern Formation",
+    "label_a": "Fractal Neural Networks",
+    "label_b": "MAIT Cell Distribution",
+    "params_a": {
+      "feed": 0.05,
+      "kill": 0.06
+    },
+    "params_b": {
+      "feed": 0.045,
+      "kill": 0.07
+    },
+    "skeleton": "Reaction-diffusion dynamics underlying pattern formation",
+    "why": "Pattern formation in immune cell localization mirrors fractal network dynamics in cognition."
+  },
+  "members": [
+    {
+      "name": "Gray-Scott in Immune Pattern Formation",
+      "world_a": "Fractal Neural Networks",
+      "world_b": "MAIT Cell Distribution",
+      "shared_skeleton": "Reaction-diffusion dynamics underlying pattern formation",
+      "core": "gray-scott",
+      "params_a": {
+        "feed": 0.05,
+        "kill": 0.06
+      },
+      "params_b": {
+        "feed": 0.045,
+        "kill": 0.07
+      },
+      "why": "Pattern formation in immune cell localization mirrors fractal network dynamics in cognition."
+    },
+    {
+      "name": "Gray-Scott in Immune Coherence",
+      "world_a": "Pattern formation in immune responses",
+      "world_b": "Reaction-diffusion patterns in the microbiome",
+      "shared_skeleton": "A mathematical structure where the formation of immune patterns within the microbiome can be modeled as reaction-diffusion dynamics akin to the Gray-Scott equations.",
+      "core": "gray-scott",
+      "params_a": {
+        "feed": 0.06,
+        "kill": 0.06
+      },
+      "params_b": {
+        "feed": 0.05,
+        "kill": 0.055
+      },
+      "why": "The immune system's response to the microbiome is a dynamic pattern formation akin to chemical diffusion."
+    },
+    {
+      "name": "Gray-Scott_Immune_Pattern",
+      "world_a": "MAIT Cell Distribution in Tumor Microenvironment",
+      "world_b": "Pattern Formation in Immune-Microbiome Interactions",
+      "shared_skeleton": "Reaction-diffusion patterns modeling spatial dynamics in immune biology",
+      "core": "gray-scott",
+      "params_a": {
+        "feed": 0.05,
+        "kill": 0.06
+      },
+      "params_b": {
+        "feed": 0.04,
+        "kill": 0.05
+      },
+      "why": "Both involve complex spatial organization emerging from localized interactions."
+    }
+  ],
+  "runs": [
+    "abl-cognitivearchitectfriend",
+    "abl-laughing-void-protocol",
+    "abl-wah-metamath-chaos-destroyer"
+  ]
+}

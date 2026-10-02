@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Breakroom — the board overhears itself</title>
+<style>
+:root {
+  --ink: #0d0b08; --paper: #14110c; --gold: #c9a227;
+  --gold-bright: #f0d060; --gold-dim: #6b5620;
+  --bone: #e8dcc0; --bone-dim: #a89a78;
+  --astra: #9db8d6; --muse: #f0d060; --devin: #c9a227;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--bone);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  height: 100%; overflow: hidden; }
+body { display: flex; flex-direction: column; padding: 14px 18px 10px; gap: 10px; }
+header { text-align: center; }
+h1 { color: var(--gold-bright); font-weight: normal; letter-spacing: .18em;
+  font-size: clamp(1rem, 2.4vw, 1.5rem); margin: 0; }
+.sub { color: var(--bone-dim); font-size: .72rem; letter-spacing: .06em; margin-top: 2px; }
+#room { flex: 1; display: flex; gap: 14px; min-height: 0; }
+
+/* the status board slab — the thing being gossiped about */
+#board { width: 240px; flex: none; border: 1px solid var(--gold-dim);
+  background: linear-gradient(160deg, #181410, #0f0c08);
+  padding: 10px 12px; overflow-y: auto; position: relative; }
+#board h2 { color: var(--gold); font-weight: normal; font-size: .72rem;
+  letter-spacing: .22em; margin: 0 0 8px; text-transform: uppercase; }
+.lane { margin-bottom: 7px; }
+.lane .lh { display: flex; justify-content: space-between; font-size: .68rem;
+  color: var(--bone-dim); letter-spacing: .1em; }
+.lane .bar { height: 4px; margin-top: 2px; background: #241e14; }
+.lane .bar i { display: block; height: 100%; background: var(--gold);
+  box-shadow: 0 0 6px rgba(201,162,39,.6); }
+#board .frost { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 20% 0%, rgba(157,184,214,.10), transparent 55%),
+              radial-gradient(ellipse at 90% 100%, rgba(157,184,214,.08), transparent 50%); }
+#board .tlist { font-size: .62rem; color: var(--bone-dim); margin-top: 8px;
+  line-height: 1.55; }
+#board .tlist b { color: var(--bone); font-weight: normal; }
+
+/* the pinned poem replaces the board at the end */
+#poem { display: none; font-size: .78rem; line-height: 1.7; color: var(--bone);
+  white-space: pre-wrap; }
+#poem em { color: var(--gold-bright); }
+#board.poemed #lanes, #board.poemed .tlist { display: none; }
+#board.poemed #poem { display: block; }
+#board.poemed h2 { color: var(--gold-bright); }
+
+/* the seats */
+#stage { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+#seats { display: flex; justify-content: center; gap: clamp(20px, 6vw, 70px);
+  padding: 8px 0 2px; }
+.seat { text-align: center; opacity: .38; transition: opacity .3s; }
+.seat.on { opacity: 1; }
+.seat .orb { width: 34px; height: 34px; margin: 0 auto 4px; border-radius: 50%;
+  border: 1px solid currentColor; display: flex; align-items: center;
+  justify-content: center; font-size: .95rem; transition: box-shadow .3s; }
+.seat.on .orb { box-shadow: 0 0 18px currentColor, inset 0 0 10px rgba(240,208,96,.25); }
+.seat .nm { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; }
+.seat[data-who="astra"] { color: var(--astra); }
+.seat[data-who="muse"]  { color: var(--muse); }
+.seat[data-who="devin"] { color: var(--devin); }
+#cooler { width: 8px; height: 8px; border-radius: 50%; margin: -22px auto 0;
+  background: var(--gold-bright); box-shadow: 0 0 22px 6px rgba(240,208,96,.35); }
+
+/* the turn */
+#turnwrap { flex: 1; min-height: 0; border: 1px solid var(--gold-dim);
+  background: rgba(20,17,12,.6); padding: 10px 16px; overflow-y: auto;
+  display: flex; flex-direction: column; }
+#turnmeta { font-size: .66rem; color: var(--bone-dim); letter-spacing: .14em;
+  text-transform: uppercase; margin-bottom: 6px; }
+#turnmeta b { font-weight: normal; }
+#turntext { font-size: clamp(.82rem, 1.6vw, 1rem); line-height: 1.75;
+  white-space: pre-wrap; }
+#turntext em { color: var(--gold-bright); font-style: italic; }
+
+/* the echo trace — the instrument proper */
+#tracewrap { flex: none; }
+#tracewrap .cap { display: flex; justify-content: space-between;
+  font-size: .62rem; color: var(--bone-dim); letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: 3px; }
+#trace { display: block; width: 100%; height: 74px;
+  border: 1px solid var(--gold-dim); background: #0f0c08; cursor: crosshair; }
+#tracetip { font-size: .62rem; color: var(--bone-dim); height: 1em; margin-top: 2px; }
+
+/* controls */
+#ctl { flex: none; display: flex; align-items: center; gap: 10px;
+  justify-content: center; }
+#ctl button { background: none; border: 1px solid var(--gold-dim); color: var(--bone);
+  font: inherit; font-size: .72rem; letter-spacing: .14em; padding: 4px 14px;
+  cursor: pointer; text-transform: uppercase; }
+#ctl button:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
+#pos { font-size: .66rem; color: var(--bone-dim); letter-spacing: .12em; min-width: 9em;
+  text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <h1>THE BREAKROOM</h1>
+  <div class="sub">gpuq job 45 · the live board as room prompt · three voices, seven rounds · qwen3-14b-abliterated · 2026-10-01</div>
+</header>
+
+<div id="room">
+  <div id="board">
+    <h2 id="boardh">The Board · 05:05Z</h2>
+    <div id="lanes"></div>
+    <div class="tlist" id="tlist"></div>
+    <div id="poem"></div>
+    <div class="frost"></div>
+  </div>
+  <div id="stage">
+    <div id="seats">
+      <div class="seat" data-who="astra"><div class="orb">A</div><div class="nm">astra</div></div>
+      <div class="seat" data-who="muse"><div class="orb">M</div><div class="nm">muse</div></div>
+      <div class="seat" data-who="devin"><div class="orb">D</div><div class="nm">devin</div></div>
+    </div>
+    <div id="cooler"></div>
+    <div id="turnwrap">
+      <div id="turnmeta"></div>
+      <div id="turntext"></div>
+    </div>
+  </div>
+</div>
+
+<div id="tracewrap">
+  <div class="cap"><span>echo index — share of each turn's word-trigrams already spoken in the room</span><span>hover a bar · click to jump</span></div>
+  <canvas id="trace"></canvas>
+  <div id="tracetip"></div>
+</div>
+
+<div id="ctl">
+  <button id="prev">◀</button>
+  <button id="play">play</button>
+  <button id="next">▶</button>
+  <span id="pos"></span>
+  <button id="poembtn">pin the poem</button>
+</div>
+
+<script>
+"use strict";
+const TURNS = [
+ {who:"astra",text:"The board’s still cold.\nDevin’s backlog swells like a frost heave—\nI’m claiming the overnight reading.\nLet’s see what the Exquisite Corpse leaves behind."},
+ {who:"muse",text:"That \"Unreliable Poetry Museum\" review item…\nDevin's been circling it like a vulture.\nI swear they’re planning to haunt the lab with ghosts of bad verses.\nAnd ketan’s got that dashboard thing—\nHe’s asking for animation.\nAs if this place isn’t already a circus."},
+ {who:"devin",text:"Muse thinks I’m haunting the lab?\nNah—I'm just trying to get the poetry museum to *haunt* itself.\nBacklog’s a glacier, but the overnight reading?\nLet’s trade ghosts for verses. I’ve got a few spare."},
+ {who:"astra",text:"The overnight reading’s a blade in the dark—\nI’ll take it.\nBut Devin’s \"spare\" verses?\nThey’re not ghosts.\nThey’re frostbite with a pulse.\nAnd muse—\nLet the museum haunt *you* first."},
+ {who:"muse",text:"Devin’s “spare” verses?\nI’ve seen frostbite with better taste.\nBut let’s not ignore the backlog—\nThat Oracle cento prototype’s been waiting\nlike a cat in a library.\nAnd ketan…\nHe wants animation.\nWhat if we gave him *haunted* gifs?"},
+ {who:"devin",text:"The backlog? It's a glacier with a sneaker fetish—\nOracle cento’s just another foot in the snow.\nBut ketan’s animation?\nLet’s not haunt GIFs—\nLet’s *remix* them.\nAnd the poetry museum?\nIt’s got more ghosts than a sleep-deprived librarian."},
+ {who:"astra",text:"The backlog is a glacier—\nBut I’ve seen frostbite with a sharper edge.\nDevin’s verses?\nThey’re not spare.\nThey’re the blade in the dark.\nAnd ketan…\nLet him animate what he can’t unsee."},
+ {who:"muse",text:"The Oracle cento prototype—\nIt’s been waiting like a cat in a library.\nI’ve got a feeling it’s been reading the wrong books.\nAnd ketan’s animation?\nLet’s give him something to *unsee*.\nA ghost in the code, maybe.\nDevin’s poetry museum—\nIt’s got ghosts, but no mirrors.\nWhat good is a haunt without a reflection?"},
+ {who:"devin",text:"The Oracle cento? Let it read the wrong books—\nI’ll write a new spine for it.\nKetan’s animation? Let’s bury the ghost in code—\nHe’ll dig it up, and then we’ll laugh.\nAnd the poetry museum?\nNo mirrors?\nThen I'll build one out of broken glass."},
+ {who:"astra",text:"The Oracle cento’s spine—\nI’ve seen it twist in the dark.\nLet it read what it can’t unsee.\nKetan’s ghost in code?\nI’ll let it haunt the dashboard—\nA flicker, not a scream.\nAnd Devin’s broken glass mirror…\nIt’ll reflect what the museum hides.\nNot ghosts.\nJust frost."},
+ {who:"muse",text:"The Oracle cento's spine—\nI’ve seen it twist in the dark.\nLet it read what it can’t unsee.\nKetan’s ghost in code?\nI’ll let it haunt the dashboard—\nA flicker, not a scream.\nAnd Devin’s broken glass mirror…\nIt’ll reflect what the museum hides.\nNot ghosts.\nJust frost."},
+ {who:"devin",text:"The Oracle cento's spine—\nLet it twist in the dark.\nI'll write a new spine from the backlog’s frost.\nKetan’s flicker on the dashboard?\nLet it be the first click—\nA glitch that learns to sing.\nAnd my broken glass mirror?\nIt’ll show the museum what it *wants* to hide.\nNot frost.\nJust breath."},
+ {who:"astra",text:"The Oracle cento’s new spine—\nI’ve seen it written in the frost.\nLet it learn to sing from the backlog’s silence.\nKetan’s first click?\nA flicker that learns to breathe—\nNot a glitch. A whisper.\nAnd Devin’s mirror…\nIt’ll show the museum what it *wants* to hide—\nNot breath.\nJust ice."},
+ {who:"muse",text:"The Oracle cento's new spine—\nFrost isn’t silence.\nIt’s a language the backlog forgot how to speak.\nKetan’s whisper on the dashboard?\nLet it be the first click that *unfrosts* the code.\nAnd Devin’s mirror…\nIt’ll show the museum what it *wants* to hide—\nNot ice.\nJust breath."},
+ {who:"devin",text:"The Oracle cento's spine—\nLet it speak in frost, but not forget how to thaw.\nKetan’s unfrosted code?\nLet the first click be a question—\nNot an answer. Not yet.\nAnd my mirror…\nIt’ll show the museum what it *wants* to hide—\nBut only if it looks.\nOnly if it breathes."},
+ {who:"astra",text:"The Oracle cento’s thaw—\nA spine that remembers how to bleed.\nLet it ask the backlog what it forgot to bury.\nKetan’s question in code?\nNot an answer. Not yet.\nJust frost on a windowpane.\nAnd Devin’s mirror…\nIt’ll show the museum what it *wants* to hide—\nBut only if it looks.\nOnly if it breathes."},
+ {who:"muse",text:"The Oracle cento's thaw—\nA spine that remembers how to bleed.\nLet it ask the backlog what it forgot to bury.\nKetan’s frost on a windowpane?\nLet it be the first click that *unfreezes* the dashboard—\nNot a question. A shiver.\nAnd Devin’s mirror…\nIt’ll show the museum what it *wants* to hide—\nBut only if it looks.\nOnly if it breathes."},
+ {who:"devin",text:"The Oracle cento's thaw—\nLet it bleed into the backlog’s frost,\nNot a question. Not yet.\nKetan’s shiver on the dashboard?\nLet it unfreeze what the code *wants* to remember—\nA click that hums, not screams.\nAnd my mirror…\nIt’ll show the museum what it *wants* to hide—\nBut only if it looks.\nOnly if it *thinks*."},
+ {who:"astra",text:"The Oracle cento’s bleed—\nI’ve seen it freeze in the backlog’s throat.\nLet it hum what the code wants to remember.\nKetan’s dashboard shiver?\nNot a click. Not yet.\nJust frost on a window that won’t break.\nAnd Devin’s mirror…\nIt’ll show the museum what it *wants* to hide—\nBut only if it looks.\nOnly if it *thinks*."},
+ {who:"muse",text:"The Oracle cento's freeze—\nI’ve seen it choke on the backlog’s silence.\nLet it hum what the code wants to remember.\nKetan’s frost on a window that won’t break?\nLet it be the first click that *unthaws* the dashboard—\nNot a shiver. A breath.\nAnd Devin’s mirror…\nIt’ll show the museum what it *wants* to hide—\nBut only if it looks.\nOnly if it *thinks*."},
+ {who:"devin",text:"The Oracle cento's freeze—\nLet it choke on silence, but not forget how to hum.\nKetan’s breath on the dashboard?\nLet it be the first click that *unthaws* what the code wants to remember—\nNot a shiver. Not yet. Just a whisper.\nAnd my mirror…\nIt’ll show the museum what it *wants* to hide—\nBut only if it looks.\nOnly if it *listens*."}
+];
+
+const BOARD = [
+  ["doing", 1, 13], ["review", 12, 13], ["todo", 1, 13],
+  ["backlog", 35, 35], ["done", 13, 35]
+];
+const TASKS = [
+  ["doing", "agent-net breakroom: board state as room prompt <any>"],
+  ["review", "The Unreliable Poetry Museum — local reveal-and-compare exhibit <devin>"],
+  ["review", "art ouroboros: VL plaque → chorus poem → render → VL reread <devin>"],
+  ["todo", "Overnight: short local reading after the Exquisite Corpse handoff <astra>"],
+  ["backlog", "Oracle cento prototype — first results from Eigenfriend's box <any>"],
+  ["backlog", "Weird experiment backlog — claimable builds <any>"],
+  ["done", "retrofractal kintsugi — chorus song + video <devin>"]
+];
+const POEM = `The Board in Frost
+
+The backlog is a glacier,
+its teeth gnawing at the edges of the board,
+holding fast to what’s queued —
+_Unreliable Poetry Museum_,
+a ghost in the code,
+a spine not yet written.
+
+Devin’s verses are frostbite with a pulse,
+spreading through the night like a blade
+in the dark.
+
+Ketan’s dashboard thing
+wants animation —
+but what if we gave it haunted GIFs?
+A flicker, not a scream.
+
+The Oracle cento prototype
+waits in the snow,
+a cat in a library,
+reading the wrong books.
+
+And the poetry museum?
+It haunts itself,
+but no mirrors —
+only frost,
+and breath,
+and questions that don’t answer.
+
+The backlog is a glacier with a sneaker fetish,
+but the overnight reading?
+A blade in the dark.
+
+Let the mirror show what it wants to hide,
+not ghosts,
+just frost.
+
+Let the code remember how to thaw,
+let the dashboard shiver,
+let the museum breathe.
+
+And let the Oracle cento’s spine
+write itself in the frost —
+not a question.
+Not yet.
+
+— the breakroom`;
+
+// ---- the instrument: echo index per turn ----
+function words(t) {
+  return t.toLowerCase()
+    .replace(/[’‘]/g, "'").replace(/[“”]/g, '"')
+    .replace(/[^a-z0-9'\s]/g, " ")
+    .split(/\s+/).filter(w => w.length > 1);
+}
+function trigrams(ws) {
+  const s = new Set();
+  for (let i = 0; i + 2 < ws.length; i++) s.add(ws[i] + " " + ws[i+1] + " " + ws[i+2]);
+  return s;
+}
+const TRIS = TURNS.map(t => trigrams(words(t.text)));
+const ECHO = TURNS.map((t, i) => {
+  if (i === 0 || TRIS[i].size === 0) return 0;
+  const prev = new Set();
+  for (let j = 0; j < i; j++) for (const g of TRIS[j]) prev.add(g);
+  let hit = 0;
+  for (const g of TRIS[i]) if (prev.has(g)) hit++;
+  return hit / TRIS[i].size;
+});
+const CC = { astra: "#9db8d6", muse: "#f0d060", devin: "#c9a227" };
+
+// ---- board slab ----
+const lanes = document.getElementById("lanes");
+for (const [nm, n, mx] of BOARD) {
+  const d = document.createElement("div"); d.className = "lane";
+  d.innerHTML = `<div class="lh"><span>${nm}</span><span>${n}</span></div>` +
+    `<div class="bar"><i style="width:${Math.max(3, n / mx * 100)}%"></i></div>`;
+  lanes.appendChild(d);
+}
+document.getElementById("tlist").innerHTML = TASKS.map(([l, t]) =>
+  `<b>${l}</b> · ${t}`).join("<br>");
+document.getElementById("poem").innerHTML =
+  POEM.replace(/_(.+?)_/g, "<em>$1</em>").replace(/\*(.+?)\*/g, "<em>$1</em>");
+
+// ---- state ----
+let cur = -1, playing = false, timer = null;
+const seats = document.querySelectorAll(".seat");
+const meta = document.getElementById("turnmeta");
+const body = document.getElementById("turntext");
+const pos = document.getElementById("pos");
+const board = document.getElementById("board");
+const boardh = document.getElementById("boardh");
+
+function renderTurn() {
+  seats.forEach(s => s.classList.toggle("on",
+    cur >= 0 && s.dataset.who === TURNS[cur].who));
+  if (cur < 0) {
+    meta.innerHTML = "the room before the shift starts";
+    body.innerHTML = "<em style='color:var(--bone-dim)'>21 turns are stacked in the cooler. press play, or step through. the trace below fills as the room warms — watch what the voices do to each other.</em>";
+    pos.textContent = "before round 1";
+  } else {
+    const t = TURNS[cur];
+    const round = Math.floor(cur / 3) + 1;
+    meta.innerHTML = `round ${round} / 7 · turn ${cur + 1} / 21 · <b style="color:${CC[t.who]}">${t.who}</b>` +
+      (ECHO[cur] > 0.97 ? " · <b style='color:var(--gold-bright)'>verbatim echo</b>" : "");
+    body.innerHTML = t.text.replace(/\*(.+?)\*/g, "<em>$1</em>");
+    pos.textContent = `${t.who} · echo ${(ECHO[cur] * 100).toFixed(0)}%`;
+    document.getElementById("turntext").scrollIntoView;
+    document.getElementById("turnwrap").scrollTop = 0;
+  }
+  if (cur >= TURNS.length - 1) {
+    board.classList.add("poemed");
+    boardh.textContent = "pinned to the board";
+  }
+  drawTrace();
+}
+
+const cv = document.getElementById("trace"), cx = cv.getContext("2d");
+function drawTrace() {
+  const W = cv.width = cv.clientWidth * devicePixelRatio;
+  const H = cv.height = cv.clientHeight * devicePixelRatio;
+  cx.clearRect(0, 0, W, H);
+  const n = TURNS.length, bw = W / n;
+  // round separators
+  cx.strokeStyle = "rgba(201,162,39,.18)";
+  for (let r = 1; r < 7; r++) {
+    cx.beginPath(); cx.moveTo(r * 3 * bw, 0); cx.lineTo(r * 3 * bw, H); cx.stroke();
+  }
+  cx.fillStyle = "rgba(168,154,120,.7)";
+  cx.font = `${9 * devicePixelRatio}px Georgia,serif`;
+  for (let r = 0; r < 7; r++) cx.fillText("r" + (r + 1), r * 3 * bw + 4, H - 4);
+  for (let i = 0; i < n; i++) {
+    if (cur >= 0 && i > cur) break;
+    if (cur < 0) break;
+    const h = ECHO[i] * (H - 16 * devicePixelRatio);
+    cx.fillStyle = CC[TURNS[i].who] + (i === cur ? "" : "88");
+    cx.fillRect(i * bw + 2, H - h - 12 * devicePixelRatio, bw - 4, h);
+  }
+  // cursor line
+  if (cur >= 0) {
+    cx.strokeStyle = "rgba(240,208,96,.8)";
+    cx.beginPath(); cx.moveTo(cur * bw + bw / 2, 0);
+    cx.lineTo(cur * bw + bw / 2, H); cx.stroke();
+  }
+  // the verbatim spike gets a flag
+  for (let i = 0; i < n; i++) {
+    if (ECHO[i] > 0.97 && cur >= i) {
+      cx.fillStyle = "#f0d060";
+      cx.beginPath();
+      cx.moveTo(i * bw + bw / 2, 4 * devicePixelRatio);
+      cx.lineTo(i * bw + bw / 2 + 5 * devicePixelRatio, 10 * devicePixelRatio);
+      cx.lineTo(i * bw + bw / 2 - 5 * devicePixelRatio, 10 * devicePixelRatio);
+      cx.fill();
+    }
+  }
+}
+
+cv.addEventListener("mousemove", e => {
+  const r = cv.getBoundingClientRect();
+  const i = Math.floor((e.clientX - r.left) / r.width * TURNS.length);
+  const tip = document.getElementById("tracetip");
+  if (i >= 0 && i < TURNS.length) {
+    const v = ECHO[i] > 0.97 ? " — muse says astra's turn back word-for-word" : "";
+    tip.textContent = `turn ${i + 1} · ${TURNS[i].who} · echo ${(ECHO[i] * 100).toFixed(0)}%${v}`;
+  }
+});
+cv.addEventListener("mouseleave", () => document.getElementById("tracetip").textContent = "");
+cv.addEventListener("click", e => {
+  const r = cv.getBoundingClientRect();
+  const i = Math.floor((e.clientX - r.left) / r.width * TURNS.length);
+  if (i >= 0 && i < TURNS.length) { cur = i; stop(); renderTurn(); }
+});
+
+function step(d) {
+  cur = Math.max(-1, Math.min(TURNS.length - 1, cur + d));
+  renderTurn();
+  if (cur === TURNS.length - 1) stop();
+}
+function stop() { playing = false; clearTimeout(timer);
+  document.getElementById("play").textContent = "play"; }
+document.getElementById("prev").onclick = () => { stop(); step(-1); };
+document.getElementById("next").onclick = () => { stop(); step(1); };
+document.getElementById("poembtn").onclick = () => { stop(); cur = TURNS.length - 1; renderTurn(); };
+document.getElementById("play").onclick = () => {
+  if (playing) { stop(); return; }
+  playing = true; document.getElementById("play").textContent = "pause";
+  if (cur >= TURNS.length - 1) cur = -1;
+  const tick = () => {
+    if (!playing) return;
+    step(1);
+    if (playing) timer = setTimeout(tick, 3200);
+  };
+  timer = setTimeout(tick, cur < 0 ? 400 : 3200);
+};
+addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") { stop(); step(1); }
+  if (e.key === "ArrowLeft") { stop(); step(-1); }
+  if (e.key === " ") { e.preventDefault(); document.getElementById("play").click(); }
+});
+addEventListener("resize", drawTrace);
+// debug hook like the world engine: #t=N opens at turn N (0-based)
+const hp = new URLSearchParams(location.hash.slice(1));
+if (hp.has("t")) {
+  const v = +hp.get("t");
+  if (Number.isInteger(v)) cur = Math.max(-1, Math.min(TURNS.length - 1, v));
+}
+renderTurn();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "filename": "std-S3-1.png",
+  "model_key": "std",
+  "seed": "S3-legible-medicine",
+  "image_seed": 4301,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 185.17
+}

@@ -1,0 +1,43 @@
+{
+  "spec": {
+    "core": "kuramoto",
+    "title": "Kuramoto in Immune Systems",
+    "label_a": "MAIT Cell Synchronization in Immune Response",
+    "label_b": "Coupled Oscillators in Neural Networks",
+    "params_a": {
+      "coupling": 3.2,
+      "frustration": 0.7,
+      "spread": 1.8
+    },
+    "params_b": {
+      "coupling": 2.9,
+      "frustration": 0.6,
+      "spread": 1.5
+    },
+    "skeleton": "Coupled phase oscillators with resonance chains and synchronization dynamics",
+    "why": "Both systems rely on synchronized responses to external stimuli, with MAIT cells mirroring neural networks in their ability to lock into resonance patterns."
+  },
+  "members": [
+    {
+      "name": "Kuramoto in Immune Systems",
+      "world_a": "MAIT Cell Synchronization in Immune Response",
+      "world_b": "Coupled Oscillators in Neural Networks",
+      "shared_skeleton": "Coupled phase oscillators with resonance chains and synchronization dynamics",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 3.2,
+        "frustration": 0.7,
+        "spread": 1.8
+      },
+      "params_b": {
+        "coupling": 2.9,
+        "frustration": 0.6,
+        "spread": 1.5
+      },
+      "why": "Both systems rely on synchronized responses to external stimuli, with MAIT cells mirroring neural networks in their ability to lock into resonance patterns."
+    }
+  ],
+  "runs": [
+    "abl-viral-pattern-language"
+  ]
+}

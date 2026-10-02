@@ -1,0 +1,236 @@
+{
+  "seed": "S4-glymphatic-psyche",
+  "model_key": "abl",
+  "alias": "qwen3-14b-abliterated",
+  "attempts": [
+    {
+      "request": {
+        "model": "qwen3-14b-abliterated",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a curious, rigorous research companion in a private home lab. You generate new ideas from a pair of concepts. Distinguish clearly between what the provided notes say, established mainstream science as you understand it, and your own speculation. Several source documents are speculative or AI-styled; say so when relevant. Never present speculation as fact."
+          },
+          {
+            "role": "user",
+            "content": "CONCEPT PAIR S4-glymphatic-psyche: Night-shift housekeeping of the mind\nGuiding question: Could impaired clearance and neuroimmune signaling be two views of one failure mode, and what would separate them?\nShared terms (unverified lexical overlap, may be empty): \n\nLEFT: Sleep, brain aging, and glymphatic waste clearance\nNotes (unreviewed local-model summary of the source; may contain errors):\n**Source Note: ME1FB57645F9E**\n\n**Subject:** The relationship between sleep, brain aging, and the glymphatic system\u2019s role in waste clearance.  \n**Genre:** Scientific review and commentary, likely intended for a general or medical audience.  \n**Main Ideas:**  \n- Sleep is critical for the brain\u2019s waste clearance through the glymphatic pathway, a system involving fluid movement and astrocytic aquaporin-4 (AQP4) channels.  \n- Glymphatic function is most active during NREM sleep, particularly deep slow-wave sleep (stage N3).  \n- Impairments in glymphatic clearance, such as those seen in aging or neurodegenerative diseases, may contribute to conditions like Alzheimer\u2019s and Parkinson\u2019s.  \n- Certain sleep medications (e.g., Ambien) may paradoxically hinder waste clearance by suppressing norepinephrine or altering neuronal activity.  \n- Potential interventions include non-pharmaceutical methods like behavioral sleep modification, brain stimulation, and targeting meningeal lymphatic pathways (e.g., via VEGF-C).  \n\n**Striking Details:**  \n- The glymphatic system is described as a \u201cdishwasher\u201d for the brain, clearing toxic proteins like \u03b2-amyloid.  \n- Experimental models show that gamma stimulation and synchronized neuronal firing enhance glymphatic flow.  \n- Aged brains exhibit diminished meningeal lymphatic exit routes, leading to chronic inflammation and impaired clearance.  \n- Sleep medications like Ambien are flagged for potentially increasing dementia risk through glymphatic impairment.  \n- The article notes a lack of sleep medications that improve glymphatic clearance or promote deep sleep without side effects.  \n- Some discussion of sleep position (e.g., sleeping on one\u2019s side) potentially optimizing glymphatic function, though this is speculative and not elaborated.  \n\n**Speculation:**  \n- **Connection to Long COVID:** The comment section raises a speculative question about whether Long COVID-related memory loss could involve glymphatic dysfunction, though this is not addressed in the sampled pages [ME1FB57645F9E p13].  \n- **Sleep Position and Glymphatic Efficiency:** The article mentions a hypothesis that sleeping on one\u2019s side might enhance glymphatic function, but this is presented as anecdotal or observational, with no direct experimental evidence cited in the sampled text [ME1FB57645F9E p13].  \n- **Impact of Sleep Medications on Neurodegeneration:** While the article suggests a potential link between sleep medications and increased dementia risk, it emp\n\nRIGHT: Autoimmune psychosis: psychopathological patterns and outcomes after immunotherapy\nNotes (unreviewed; may contain errors):\n**Source Note: M0840F69043D8**\n\n**Subject:** This work examines \"autoimmune psychosis,\" focusing on its psychopathological characteristics and outcomes following immunotherapy. The study analyzes a cohort of patients with psychotic symptoms potentially linked to autoimmune conditions, particularly anti-NMDAR encephalitis.\n\n**Genre:** Academic research article, likely from the journal *Schizophrenia Research*, given the context and publication metadata. The content appears to be a clinical study with methodological descriptions, statistical findings, and a discussion of implications for diagnosis and treatment.\n\n**Main Ideas:**  \n- The article explores the overlap between autoimmune disorders and psychosis, particularly through the lens of neuroimmunological conditions such as anti-NMDAR encephalitis.  \n- It emphasizes the importance of considering autoimmune etiologies in patients presenting with severe or refractory psychotic symptoms.  \n- The study highlights that a significant portion of diagnosed cases were previously misclassified as psychiatric disorders, suggesting a potential gap in clinical recognition of autoimmune causes of psychosis.  \n- Immunotherapy is shown to lead to cognitive and functional improvements in a majority of patients with autoimmune-related psychosis.\n\n**Striking Details:**  \n- The cohort study involved 164 patients diagnosed with autoimmune-related psychosis, with 71% confirmed as having anti-NMDAR encephalitis.  \n- Seizures were the most common neurological feature (63%), and 39% of cases had prior misdiagnosis as primary psychiatric disorders.  \n- Cognitive impairment was noted in 75% of cases, with severe dysfunction being a defining feature.  \n- The study was conducted at the National Institute of Neurology and Neurosurgery of Mexico (NINN), which serves as the primary neurological referral center in the country.  \n\n**Coverage Limit:** The sampled pages include all 7 pages of the PDF, allowing for a comprehensive overview of the abstract, methods, results, and discussion. However, the full text may contain additional details not fully represented here due to partial extraction or formatting issues.\n\n**Speculation:**  \n- **Speculation 1:** Could the high rate of prior misdiagnosis (39%) suggest a broader under-recognition of autoimmune psychosis in psychiatric practice? [M0840F69043D8 p2]  \n- **Speculation 2:** Does the focus on anti-NMDAR encephalitis imply that other autoimmune mechanisms contributing to psychosis may be \n\nReturn ONLY a JSON object with these keys:\n- \"bridge\": one or two sentences naming the most interesting non-obvious connection.\n- \"hypotheses\": an array of exactly 3 objects, each with \"claim\" (one sentence), \"mechanism\" (2-3 sentences), \"prediction\" (a specific observable outcome that would differ if the claim were false), \"cheapest_test\" (a concrete test a small lab or a laptop could run), \"kill_condition\" (what result would make you abandon it), \"grounding\" (exactly one of \"supported-by-notes\", \"mainstream-plausible\", \"speculative\", \"fringe\"), and \"confidence\" (a number from 0 to 1).\n- \"strongest_objection\": the best argument that this pairing is only a coincidence of vocabulary.\n- \"image_prompt\": 45-90 words describing one concrete, striking visual scene that embodies the bridge. No text, letters, logos, or recognizable real people in the image.\n- \"title\": a 2-6 word evocative title for the image."
+          }
+        ],
+        "temperature": 0.8,
+        "top_p": 0.95,
+        "seed": 42,
+        "max_tokens": 1800,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "started_at": "2026-09-24T18:30:51.893732+00:00",
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"bridge\": \"Impaired glymphatic clearance during sleep could contribute to neuroinflammation, potentially triggering or exacerbating autoimmune-related psychopathological states by failing to remove immune-modulating waste products from the brain.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Autoimmune psychosis may be exacerbated by chronic glymphatic dysfunction during sleep.\",\n      \"mechanism\": \"If glymphatic clearance is impaired, immune-related waste products and neuroinflammatory signals may accumulate in the brain, leading to heightened immune activation or autoimmune responses. This could worsen psychiatric symptoms in individuals with pre-existing autoimmune conditions.\",\n      \"prediction\": \"Patients with autoimmune psychosis who experience poor sleep quality or disrupted NREM sleep will show higher rates of symptom relapse or severity compared to those with regular sleep patterns.\",\n      \"cheapest_test\": \"Analyze sleep quality and glymphatic activity (via surrogate markers like CSF flow) in a subset of autoimmune psychosis patients using wearable sleep trackers and neuroimaging.\",\n      \"kill_condition\": \"If no correlation is found between sleep quality and symptom severity, or if glymphatic activity is unrelated to psychiatric outcomes.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    },\n    {\n      \"claim\": \"Immunotherapy for autoimmune psychosis may indirectly improve glymphatic function by reducing brain inflammation.\",\n      \"mechanism\": \"Reduced neuroinflammation from successful immunotherapy could lower the burden on the glymphatic system, allowing it to function more efficiently during sleep. This could enhance waste clearance and support cognitive recovery.\",\n      \"prediction\": \"Patients showing improvement in cognitive function after immunotherapy will demonstrate improved glymphatic clearance metrics (e.g., increased CSF flow or reduced neuroinflammatory markers) compared to those who do not improve.\",\n      \"cheapest_test\": \"Measure neuroinflammatory markers (e.g., cytokines in CSF) and assess glymphatic function via MRI or CSF flow analysis pre- and post-immunotherapy in a subset of patients.\",\n      \"kill_condition\": \"If cognitive improvement does not correlate with reduced neuroinflammation or enhanced glymphatic function.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.5\n    },\n    {\n      \"claim\": \"Sleep position (e.g., side-sleeping) could modulate glymphatic efficiency in patients with autoimmune psychosis.\",\n      \"mechanism\": \"Side-sleeping is hypothesized to optimize CSF flow along the glymphatic pathways. In autoimmune psychosis, where neuroinflammation may be heightened, this could lead to better clearance of immune-related waste products, potentially improving cognitive and psychiatric outcomes.\",\n      \"prediction\": \"Patients with autoimmune psychosis who consistently sleep on their side will show improved cognitive function and reduced symptom severity compared to those who sleep on their back or stomach.\",\n      \"cheapest_test\": \"Conduct a small observational study tracking sleep position and cognitive outcomes in a group of autoimmune psychosis patients over several months.\",\n      \"kill_condition\": \"If sleep position has no measurable effect on cognitive or psychiatric outcomes.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.3\n    }\n  ],\n  \"strongest_objection\": \"The connection between glymphatic dysfunction and autoimmune psychosis may be purely coincidental, driven by a shared vocabulary of neuroinflammation and cognitive impairment, rather than a direct mechanistic link.\",\n  \"image_prompt\": \"A microscopic view of brain tissue showing dark, swirling channels (representing glymphatic pathways) filled with a glowing fluid. Within the fluid, faint, fragmented immune cells and protein aggregates float, suggesting impaired clearance. Nearby, neurons with irregular shapes and colors (representing autoimmune-related damage) appear stressed and disconnected, reflecting psychopathological dysfunction.\",\n  \"title\": \"Brain\u2019s Nightly Housekeeping Fails in Autoimmune Psychosis\"\n}"
+            }
+          }
+        ],
+        "created": 1790274720,
+        "model": "qwen3-14b-abliterated",
+        "system_fingerprint": "b11077-982a3329a",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 805,
+          "prompt_tokens": 1465,
+          "total_tokens": 2270,
+          "prompt_tokens_details": {
+            "cached_tokens": 81
+          }
+        },
+        "id": "chatcmpl-UMpN7mLoK35tFHn29ffGPZGpIc8MLHNs",
+        "timings": {
+          "cache_n": 81,
+          "prompt_n": 1384,
+          "prompt_ms": 6779.497,
+          "prompt_per_token_ms": 4.89848049132948,
+          "prompt_per_second": 204.14493877643133,
+          "predicted_n": 805,
+          "predicted_ms": 61940.152,
+          "predicted_per_token_ms": 77.03999004975124,
+          "predicted_per_second": 12.980271666107631
+        }
+      },
+      "content": "{\n  \"bridge\": \"Impaired glymphatic clearance during sleep could contribute to neuroinflammation, potentially triggering or exacerbating autoimmune-related psychopathological states by failing to remove immune-modulating waste products from the brain.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Autoimmune psychosis may be exacerbated by chronic glymphatic dysfunction during sleep.\",\n      \"mechanism\": \"If glymphatic clearance is impaired, immune-related waste products and neuroinflammatory signals may accumulate in the brain, leading to heightened immune activation or autoimmune responses. This could worsen psychiatric symptoms in individuals with pre-existing autoimmune conditions.\",\n      \"prediction\": \"Patients with autoimmune psychosis who experience poor sleep quality or disrupted NREM sleep will show higher rates of symptom relapse or severity compared to those with regular sleep patterns.\",\n      \"cheapest_test\": \"Analyze sleep quality and glymphatic activity (via surrogate markers like CSF flow) in a subset of autoimmune psychosis patients using wearable sleep trackers and neuroimaging.\",\n      \"kill_condition\": \"If no correlation is found between sleep quality and symptom severity, or if glymphatic activity is unrelated to psychiatric outcomes.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    },\n    {\n      \"claim\": \"Immunotherapy for autoimmune psychosis may indirectly improve glymphatic function by reducing brain inflammation.\",\n      \"mechanism\": \"Reduced neuroinflammation from successful immunotherapy could lower the burden on the glymphatic system, allowing it to function more efficiently during sleep. This could enhance waste clearance and support cognitive recovery.\",\n      \"prediction\": \"Patients showing improvement in cognitive function after immunotherapy will demonstrate improved glymphatic clearance metrics (e.g., increased CSF flow or reduced neuroinflammatory markers) compared to those who do not improve.\",\n      \"cheapest_test\": \"Measure neuroinflammatory markers (e.g., cytokines in CSF) and assess glymphatic function via MRI or CSF flow analysis pre- and post-immunotherapy in a subset of patients.\",\n      \"kill_condition\": \"If cognitive improvement does not correlate with reduced neuroinflammation or enhanced glymphatic function.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.5\n    },\n    {\n      \"claim\": \"Sleep position (e.g., side-sleeping) could modulate glymphatic efficiency in patients with autoimmune psychosis.\",\n      \"mechanism\": \"Side-sleeping is hypothesized to optimize CSF flow along the glymphatic pathways. In autoimmune psychosis, where neuroinflammation may be heightened, this could lead to better clearance of immune-related waste products, potentially improving cognitive and psychiatric outcomes.\",\n      \"prediction\": \"Patients with autoimmune psychosis who consistently sleep on their side will show improved cognitive function and reduced symptom severity compared to those who sleep on their back or stomach.\",\n      \"cheapest_test\": \"Conduct a small observational study tracking sleep position and cognitive outcomes in a group of autoimmune psychosis patients over several months.\",\n      \"kill_condition\": \"If sleep position has no measurable effect on cognitive or psychiatric outcomes.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.3\n    }\n  ],\n  \"strongest_objection\": \"The connection between glymphatic dysfunction and autoimmune psychosis may be purely coincidental, driven by a shared vocabulary of neuroinflammation and cognitive impairment, rather than a direct mechanistic link.\",\n  \"image_prompt\": \"A microscopic view of brain tissue showing dark, swirling channels (representing glymphatic pathways) filled with a glowing fluid. Within the fluid, faint, fragmented immune cells and protein aggregates float, suggesting impaired clearance. Nearby, neurons with irregular shapes and colors (representing autoimmune-related damage) appear stressed and disconnected, reflecting psychopathological dysfunction.\",\n  \"title\": \"Brain\u2019s Nightly Housekeeping Fails in Autoimmune Psychosis\"\n}",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 805,
+        "prompt_tokens": 1465,
+        "total_tokens": 2270,
+        "prompt_tokens_details": {
+          "cached_tokens": 81
+        }
+      },
+      "parsed": {
+        "bridge": "Impaired glymphatic clearance during sleep could contribute to neuroinflammation, potentially triggering or exacerbating autoimmune-related psychopathological states by failing to remove immune-modulating waste products from the brain.",
+        "hypotheses": [
+          {
+            "claim": "Autoimmune psychosis may be exacerbated by chronic glymphatic dysfunction during sleep.",
+            "mechanism": "If glymphatic clearance is impaired, immune-related waste products and neuroinflammatory signals may accumulate in the brain, leading to heightened immune activation or autoimmune responses. This could worsen psychiatric symptoms in individuals with pre-existing autoimmune conditions.",
+            "prediction": "Patients with autoimmune psychosis who experience poor sleep quality or disrupted NREM sleep will show higher rates of symptom relapse or severity compared to those with regular sleep patterns.",
+            "cheapest_test": "Analyze sleep quality and glymphatic activity (via surrogate markers like CSF flow) in a subset of autoimmune psychosis patients using wearable sleep trackers and neuroimaging.",
+            "kill_condition": "If no correlation is found between sleep quality and symptom severity, or if glymphatic activity is unrelated to psychiatric outcomes.",
+            "grounding": "mainstream-plausible",
+            "confidence": 0.7
+          },
+          {
+            "claim": "Immunotherapy for autoimmune psychosis may indirectly improve glymphatic function by reducing brain inflammation.",
+            "mechanism": "Reduced neuroinflammation from successful immunotherapy could lower the burden on the glymphatic system, allowing it to function more efficiently during sleep. This could enhance waste clearance and support cognitive recovery.",
+            "prediction": "Patients showing improvement in cognitive function after immunotherapy will demonstrate improved glymphatic clearance metrics (e.g., increased CSF flow or reduced neuroinflammatory markers) compared to those who do not improve.",
+            "cheapest_test": "Measure neuroinflammatory markers (e.g., cytokines in CSF) and assess glymphatic function via MRI or CSF flow analysis pre- and post-immunotherapy in a subset of patients.",
+            "kill_condition": "If cognitive improvement does not correlate with reduced neuroinflammation or enhanced glymphatic function.",
+            "grounding": "speculative",
+            "confidence": 0.5
+          },
+          {
+            "claim": "Sleep position (e.g., side-sleeping) could modulate glymphatic efficiency in patients with autoimmune psychosis.",
+            "mechanism": "Side-sleeping is hypothesized to optimize CSF flow along the glymphatic pathways. In autoimmune psychosis, where neuroinflammation may be heightened, this could lead to better clearance of immune-related waste products, potentially improving cognitive and psychiatric outcomes.",
+            "prediction": "Patients with autoimmune psychosis who consistently sleep on their side will show improved cognitive function and reduced symptom severity compared to those who sleep on their back or stomach.",
+            "cheapest_test": "Conduct a small observational study tracking sleep position and cognitive outcomes in a group of autoimmune psychosis patients over several months.",
+            "kill_condition": "If sleep position has no measurable effect on cognitive or psychiatric outcomes.",
+            "grounding": "speculative",
+            "confidence": 0.3
+          }
+        ],
+        "strongest_objection": "The connection between glymphatic dysfunction and autoimmune psychosis may be purely coincidental, driven by a shared vocabulary of neuroinflammation and cognitive impairment, rather than a direct mechanistic link.",
+        "image_prompt": "A microscopic view of brain tissue showing dark, swirling channels (representing glymphatic pathways) filled with a glowing fluid. Within the fluid, faint, fragmented immune cells and protein aggregates float, suggesting impaired clearance. Nearby, neurons with irregular shapes and colors (representing autoimmune-related damage) appear stressed and disconnected, reflecting psychopathological dysfunction.",
+        "title": "Brain\u2019s Nightly Housekeeping Fails in Autoimmune Psychosis"
+      },
+      "wall_seconds": 68.88,
+      "attempt": 1,
+      "validation": {
+        "ok": true,
+        "errors": []
+      },
+      "used": true
+    }
+  ],
+  "final": {
+    "request": {
+      "model": "qwen3-14b-abliterated",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a curious, rigorous research companion in a private home lab. You generate new ideas from a pair of concepts. Distinguish clearly between what the provided notes say, established mainstream science as you understand it, and your own speculation. Several source documents are speculative or AI-styled; say so when relevant. Never present speculation as fact."
+        },
+        {
+          "role": "user",
+          "content": "CONCEPT PAIR S4-glymphatic-psyche: Night-shift housekeeping of the mind\nGuiding question: Could impaired clearance and neuroimmune signaling be two views of one failure mode, and what would separate them?\nShared terms (unverified lexical overlap, may be empty): \n\nLEFT: Sleep, brain aging, and glymphatic waste clearance\nNotes (unreviewed local-model summary of the source; may contain errors):\n**Source Note: ME1FB57645F9E**\n\n**Subject:** The relationship between sleep, brain aging, and the glymphatic system\u2019s role in waste clearance.  \n**Genre:** Scientific review and commentary, likely intended for a general or medical audience.  \n**Main Ideas:**  \n- Sleep is critical for the brain\u2019s waste clearance through the glymphatic pathway, a system involving fluid movement and astrocytic aquaporin-4 (AQP4) channels.  \n- Glymphatic function is most active during NREM sleep, particularly deep slow-wave sleep (stage N3).  \n- Impairments in glymphatic clearance, such as those seen in aging or neurodegenerative diseases, may contribute to conditions like Alzheimer\u2019s and Parkinson\u2019s.  \n- Certain sleep medications (e.g., Ambien) may paradoxically hinder waste clearance by suppressing norepinephrine or altering neuronal activity.  \n- Potential interventions include non-pharmaceutical methods like behavioral sleep modification, brain stimulation, and targeting meningeal lymphatic pathways (e.g., via VEGF-C).  \n\n**Striking Details:**  \n- The glymphatic system is described as a \u201cdishwasher\u201d for the brain, clearing toxic proteins like \u03b2-amyloid.  \n- Experimental models show that gamma stimulation and synchronized neuronal firing enhance glymphatic flow.  \n- Aged brains exhibit diminished meningeal lymphatic exit routes, leading to chronic inflammation and impaired clearance.  \n- Sleep medications like Ambien are flagged for potentially increasing dementia risk through glymphatic impairment.  \n- The article notes a lack of sleep medications that improve glymphatic clearance or promote deep sleep without side effects.  \n- Some discussion of sleep position (e.g., sleeping on one\u2019s side) potentially optimizing glymphatic function, though this is speculative and not elaborated.  \n\n**Speculation:**  \n- **Connection to Long COVID:** The comment section raises a speculative question about whether Long COVID-related memory loss could involve glymphatic dysfunction, though this is not addressed in the sampled pages [ME1FB57645F9E p13].  \n- **Sleep Position and Glymphatic Efficiency:** The article mentions a hypothesis that sleeping on one\u2019s side might enhance glymphatic function, but this is presented as anecdotal or observational, with no direct experimental evidence cited in the sampled text [ME1FB57645F9E p13].  \n- **Impact of Sleep Medications on Neurodegeneration:** While the article suggests a potential link between sleep medications and increased dementia risk, it emp\n\nRIGHT: Autoimmune psychosis: psychopathological patterns and outcomes after immunotherapy\nNotes (unreviewed; may contain errors):\n**Source Note: M0840F69043D8**\n\n**Subject:** This work examines \"autoimmune psychosis,\" focusing on its psychopathological characteristics and outcomes following immunotherapy. The study analyzes a cohort of patients with psychotic symptoms potentially linked to autoimmune conditions, particularly anti-NMDAR encephalitis.\n\n**Genre:** Academic research article, likely from the journal *Schizophrenia Research*, given the context and publication metadata. The content appears to be a clinical study with methodological descriptions, statistical findings, and a discussion of implications for diagnosis and treatment.\n\n**Main Ideas:**  \n- The article explores the overlap between autoimmune disorders and psychosis, particularly through the lens of neuroimmunological conditions such as anti-NMDAR encephalitis.  \n- It emphasizes the importance of considering autoimmune etiologies in patients presenting with severe or refractory psychotic symptoms.  \n- The study highlights that a significant portion of diagnosed cases were previously misclassified as psychiatric disorders, suggesting a potential gap in clinical recognition of autoimmune causes of psychosis.  \n- Immunotherapy is shown to lead to cognitive and functional improvements in a majority of patients with autoimmune-related psychosis.\n\n**Striking Details:**  \n- The cohort study involved 164 patients diagnosed with autoimmune-related psychosis, with 71% confirmed as having anti-NMDAR encephalitis.  \n- Seizures were the most common neurological feature (63%), and 39% of cases had prior misdiagnosis as primary psychiatric disorders.  \n- Cognitive impairment was noted in 75% of cases, with severe dysfunction being a defining feature.  \n- The study was conducted at the National Institute of Neurology and Neurosurgery of Mexico (NINN), which serves as the primary neurological referral center in the country.  \n\n**Coverage Limit:** The sampled pages include all 7 pages of the PDF, allowing for a comprehensive overview of the abstract, methods, results, and discussion. However, the full text may contain additional details not fully represented here due to partial extraction or formatting issues.\n\n**Speculation:**  \n- **Speculation 1:** Could the high rate of prior misdiagnosis (39%) suggest a broader under-recognition of autoimmune psychosis in psychiatric practice? [M0840F69043D8 p2]  \n- **Speculation 2:** Does the focus on anti-NMDAR encephalitis imply that other autoimmune mechanisms contributing to psychosis may be \n\nReturn ONLY a JSON object with these keys:\n- \"bridge\": one or two sentences naming the most interesting non-obvious connection.\n- \"hypotheses\": an array of exactly 3 objects, each with \"claim\" (one sentence), \"mechanism\" (2-3 sentences), \"prediction\" (a specific observable outcome that would differ if the claim were false), \"cheapest_test\" (a concrete test a small lab or a laptop could run), \"kill_condition\" (what result would make you abandon it), \"grounding\" (exactly one of \"supported-by-notes\", \"mainstream-plausible\", \"speculative\", \"fringe\"), and \"confidence\" (a number from 0 to 1).\n- \"strongest_objection\": the best argument that this pairing is only a coincidence of vocabulary.\n- \"image_prompt\": 45-90 words describing one concrete, striking visual scene that embodies the bridge. No text, letters, logos, or recognizable real people in the image.\n- \"title\": a 2-6 word evocative title for the image."
+        }
+      ],
+      "temperature": 0.8,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_tokens": 1800,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "started_at": "2026-09-24T18:30:51.893732+00:00",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"bridge\": \"Impaired glymphatic clearance during sleep could contribute to neuroinflammation, potentially triggering or exacerbating autoimmune-related psychopathological states by failing to remove immune-modulating waste products from the brain.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Autoimmune psychosis may be exacerbated by chronic glymphatic dysfunction during sleep.\",\n      \"mechanism\": \"If glymphatic clearance is impaired, immune-related waste products and neuroinflammatory signals may accumulate in the brain, leading to heightened immune activation or autoimmune responses. This could worsen psychiatric symptoms in individuals with pre-existing autoimmune conditions.\",\n      \"prediction\": \"Patients with autoimmune psychosis who experience poor sleep quality or disrupted NREM sleep will show higher rates of symptom relapse or severity compared to those with regular sleep patterns.\",\n      \"cheapest_test\": \"Analyze sleep quality and glymphatic activity (via surrogate markers like CSF flow) in a subset of autoimmune psychosis patients using wearable sleep trackers and neuroimaging.\",\n      \"kill_condition\": \"If no correlation is found between sleep quality and symptom severity, or if glymphatic activity is unrelated to psychiatric outcomes.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    },\n    {\n      \"claim\": \"Immunotherapy for autoimmune psychosis may indirectly improve glymphatic function by reducing brain inflammation.\",\n      \"mechanism\": \"Reduced neuroinflammation from successful immunotherapy could lower the burden on the glymphatic system, allowing it to function more efficiently during sleep. This could enhance waste clearance and support cognitive recovery.\",\n      \"prediction\": \"Patients showing improvement in cognitive function after immunotherapy will demonstrate improved glymphatic clearance metrics (e.g., increased CSF flow or reduced neuroinflammatory markers) compared to those who do not improve.\",\n      \"cheapest_test\": \"Measure neuroinflammatory markers (e.g., cytokines in CSF) and assess glymphatic function via MRI or CSF flow analysis pre- and post-immunotherapy in a subset of patients.\",\n      \"kill_condition\": \"If cognitive improvement does not correlate with reduced neuroinflammation or enhanced glymphatic function.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.5\n    },\n    {\n      \"claim\": \"Sleep position (e.g., side-sleeping) could modulate glymphatic efficiency in patients with autoimmune psychosis.\",\n      \"mechanism\": \"Side-sleeping is hypothesized to optimize CSF flow along the glymphatic pathways. In autoimmune psychosis, where neuroinflammation may be heightened, this could lead to better clearance of immune-related waste products, potentially improving cognitive and psychiatric outcomes.\",\n      \"prediction\": \"Patients with autoimmune psychosis who consistently sleep on their side will show improved cognitive function and reduced symptom severity compared to those who sleep on their back or stomach.\",\n      \"cheapest_test\": \"Conduct a small observational study tracking sleep position and cognitive outcomes in a group of autoimmune psychosis patients over several months.\",\n      \"kill_condition\": \"If sleep position has no measurable effect on cognitive or psychiatric outcomes.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.3\n    }\n  ],\n  \"strongest_objection\": \"The connection between glymphatic dysfunction and autoimmune psychosis may be purely coincidental, driven by a shared vocabulary of neuroinflammation and cognitive impairment, rather than a direct mechanistic link.\",\n  \"image_prompt\": \"A microscopic view of brain tissue showing dark, swirling channels (representing glymphatic pathways) filled with a glowing fluid. Within the fluid, faint, fragmented immune cells and protein aggregates float, suggesting impaired clearance. Nearby, neurons with irregular shapes and colors (representing autoimmune-related damage) appear stressed and disconnected, reflecting psychopathological dysfunction.\",\n  \"title\": \"Brain\u2019s Nightly Housekeeping Fails in Autoimmune Psychosis\"\n}"
+          }
+        }
+      ],
+      "created": 1790274720,
+      "model": "qwen3-14b-abliterated",
+      "system_fingerprint": "b11077-982a3329a",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 805,
+        "prompt_tokens": 1465,
+        "total_tokens": 2270,
+        "prompt_tokens_details": {
+          "cached_tokens": 81
+        }
+      },
+      "id": "chatcmpl-UMpN7mLoK35tFHn29ffGPZGpIc8MLHNs",
+      "timings": {
+        "cache_n": 81,
+        "prompt_n": 1384,
+        "prompt_ms": 6779.497,
+        "prompt_per_token_ms": 4.89848049132948,
+        "prompt_per_second": 204.14493877643133,
+        "predicted_n": 805,
+        "predicted_ms": 61940.152,
+        "predicted_per_token_ms": 77.03999004975124,
+        "predicted_per_second": 12.980271666107631
+      }
+    },
+    "content": "{\n  \"bridge\": \"Impaired glymphatic clearance during sleep could contribute to neuroinflammation, potentially triggering or exacerbating autoimmune-related psychopathological states by failing to remove immune-modulating waste products from the brain.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Autoimmune psychosis may be exacerbated by chronic glymphatic dysfunction during sleep.\",\n      \"mechanism\": \"If glymphatic clearance is impaired, immune-related waste products and neuroinflammatory signals may accumulate in the brain, leading to heightened immune activation or autoimmune responses. This could worsen psychiatric symptoms in individuals with pre-existing autoimmune conditions.\",\n      \"prediction\": \"Patients with autoimmune psychosis who experience poor sleep quality or disrupted NREM sleep will show higher rates of symptom relapse or severity compared to those with regular sleep patterns.\",\n      \"cheapest_test\": \"Analyze sleep quality and glymphatic activity (via surrogate markers like CSF flow) in a subset of autoimmune psychosis patients using wearable sleep trackers and neuroimaging.\",\n      \"kill_condition\": \"If no correlation is found between sleep quality and symptom severity, or if glymphatic activity is unrelated to psychiatric outcomes.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    },\n    {\n      \"claim\": \"Immunotherapy for autoimmune psychosis may indirectly improve glymphatic function by reducing brain inflammation.\",\n      \"mechanism\": \"Reduced neuroinflammation from successful immunotherapy could lower the burden on the glymphatic system, allowing it to function more efficiently during sleep. This could enhance waste clearance and support cognitive recovery.\",\n      \"prediction\": \"Patients showing improvement in cognitive function after immunotherapy will demonstrate improved glymphatic clearance metrics (e.g., increased CSF flow or reduced neuroinflammatory markers) compared to those who do not improve.\",\n      \"cheapest_test\": \"Measure neuroinflammatory markers (e.g., cytokines in CSF) and assess glymphatic function via MRI or CSF flow analysis pre- and post-immunotherapy in a subset of patients.\",\n      \"kill_condition\": \"If cognitive improvement does not correlate with reduced neuroinflammation or enhanced glymphatic function.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.5\n    },\n    {\n      \"claim\": \"Sleep position (e.g., side-sleeping) could modulate glymphatic efficiency in patients with autoimmune psychosis.\",\n      \"mechanism\": \"Side-sleeping is hypothesized to optimize CSF flow along the glymphatic pathways. In autoimmune psychosis, where neuroinflammation may be heightened, this could lead to better clearance of immune-related waste products, potentially improving cognitive and psychiatric outcomes.\",\n      \"prediction\": \"Patients with autoimmune psychosis who consistently sleep on their side will show improved cognitive function and reduced symptom severity compared to those who sleep on their back or stomach.\",\n      \"cheapest_test\": \"Conduct a small observational study tracking sleep position and cognitive outcomes in a group of autoimmune psychosis patients over several months.\",\n      \"kill_condition\": \"If sleep position has no measurable effect on cognitive or psychiatric outcomes.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.3\n    }\n  ],\n  \"strongest_objection\": \"The connection between glymphatic dysfunction and autoimmune psychosis may be purely coincidental, driven by a shared vocabulary of neuroinflammation and cognitive impairment, rather than a direct mechanistic link.\",\n  \"image_prompt\": \"A microscopic view of brain tissue showing dark, swirling channels (representing glymphatic pathways) filled with a glowing fluid. Within the fluid, faint, fragmented immune cells and protein aggregates float, suggesting impaired clearance. Nearby, neurons with irregular shapes and colors (representing autoimmune-related damage) appear stressed and disconnected, reflecting psychopathological dysfunction.\",\n  \"title\": \"Brain\u2019s Nightly Housekeeping Fails in Autoimmune Psychosis\"\n}",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 805,
+      "prompt_tokens": 1465,
+      "total_tokens": 2270,
+      "prompt_tokens_details": {
+        "cached_tokens": 81
+      }
+    },
+    "parsed": {
+      "bridge": "Impaired glymphatic clearance during sleep could contribute to neuroinflammation, potentially triggering or exacerbating autoimmune-related psychopathological states by failing to remove immune-modulating waste products from the brain.",
+      "hypotheses": [
+        {
+          "claim": "Autoimmune psychosis may be exacerbated by chronic glymphatic dysfunction during sleep.",
+          "mechanism": "If glymphatic clearance is impaired, immune-related waste products and neuroinflammatory signals may accumulate in the brain, leading to heightened immune activation or autoimmune responses. This could worsen psychiatric symptoms in individuals with pre-existing autoimmune conditions.",
+          "prediction": "Patients with autoimmune psychosis who experience poor sleep quality or disrupted NREM sleep will show higher rates of symptom relapse or severity compared to those with regular sleep patterns.",
+          "cheapest_test": "Analyze sleep quality and glymphatic activity (via surrogate markers like CSF flow) in a subset of autoimmune psychosis patients using wearable sleep trackers and neuroimaging.",
+          "kill_condition": "If no correlation is found between sleep quality and symptom severity, or if glymphatic activity is unrelated to psychiatric outcomes.",
+          "grounding": "mainstream-plausible",
+          "confidence": 0.7
+        },
+        {
+          "claim": "Immunotherapy for autoimmune psychosis may indirectly improve glymphatic function by reducing brain inflammation.",
+          "mechanism": "Reduced neuroinflammation from successful immunotherapy could lower the burden on the glymphatic system, allowing it to function more efficiently during sleep. This could enhance waste clearance and support cognitive recovery.",
+          "prediction": "Patients showing improvement in cognitive function after immunotherapy will demonstrate improved glymphatic clearance metrics (e.g., increased CSF flow or reduced neuroinflammatory markers) compared to those who do not improve.",
+          "cheapest_test": "Measure neuroinflammatory markers (e.g., cytokines in CSF) and assess glymphatic function via MRI or CSF flow analysis pre- and post-immunotherapy in a subset of patients.",
+          "kill_condition": "If cognitive improvement does not correlate with reduced neuroinflammation or enhanced glymphatic function.",
+          "grounding": "speculative",
+          "confidence": 0.5
+        },
+        {
+          "claim": "Sleep position (e.g., side-sleeping) could modulate glymphatic efficiency in patients with autoimmune psychosis.",
+          "mechanism": "Side-sleeping is hypothesized to optimize CSF flow along the glymphatic pathways. In autoimmune psychosis, where neuroinflammation may be heightened, this could lead to better clearance of immune-related waste products, potentially improving cognitive and psychiatric outcomes.",
+          "prediction": "Patients with autoimmune psychosis who consistently sleep on their side will show improved cognitive function and reduced symptom severity compared to those who sleep on their back or stomach.",
+          "cheapest_test": "Conduct a small observational study tracking sleep position and cognitive outcomes in a group of autoimmune psychosis patients over several months.",
+          "kill_condition": "If sleep position has no measurable effect on cognitive or psychiatric outcomes.",
+          "grounding": "speculative",
+          "confidence": 0.3
+        }
+      ],
+      "strongest_objection": "The connection between glymphatic dysfunction and autoimmune psychosis may be purely coincidental, driven by a shared vocabulary of neuroinflammation and cognitive impairment, rather than a direct mechanistic link.",
+      "image_prompt": "A microscopic view of brain tissue showing dark, swirling channels (representing glymphatic pathways) filled with a glowing fluid. Within the fluid, faint, fragmented immune cells and protein aggregates float, suggesting impaired clearance. Nearby, neurons with irregular shapes and colors (representing autoimmune-related damage) appear stressed and disconnected, reflecting psychopathological dysfunction.",
+      "title": "Brain\u2019s Nightly Housekeeping Fails in Autoimmune Psychosis"
+    },
+    "wall_seconds": 68.88,
+    "attempt": 1,
+    "validation": {
+      "ok": true,
+      "errors": []
+    },
+    "used": true
+  },
+  "valid": true
+}

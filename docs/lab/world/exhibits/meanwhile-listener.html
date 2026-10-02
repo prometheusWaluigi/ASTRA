@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MEANWHILE · THE LISTENER — a companion exhibit</title>
+<style>
+  :root{
+    --ink:#e8dcc0; --dim:#8a7c5f; --bg:#141009; --panel:#1d170d;
+    --gold:#c9a227; --gold-bright:#f0d060; --seam:#7a5c14;
+    --teal:#7fd4c1; --violet:#b48ae0;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    background:radial-gradient(1200px 700px at 50% 20%, #241c0e 0%, var(--bg) 60%, #0d0905 100%);
+    color:var(--ink); font-family:Georgia, 'Times New Roman', serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:28px 18px 40px; overflow-x:hidden;
+  }
+  .frame{width:min(880px,100%); border:1px solid var(--seam); background:rgba(29,23,13,.82);
+    box-shadow:0 0 0 1px #0d0905, 0 0 60px rgba(201,162,39,.08); padding:26px 30px 30px; position:relative;}
+  .frame::before{content:""; position:absolute; inset:6px; border:1px solid rgba(201,162,39,.25); pointer-events:none;}
+  .crack{position:absolute; top:-1px; bottom:-1px; width:2px; background:linear-gradient(var(--gold), transparent 30%, var(--gold) 55%, transparent 80%, var(--gold));
+    opacity:.5; pointer-events:none;}
+  h1{font-weight:normal; letter-spacing:.14em; font-size:1.25rem; color:var(--gold-bright); text-align:center; margin:6px 0 2px;}
+  .sub{text-align:center; color:var(--dim); font-style:italic; font-size:.92rem; margin-bottom:14px;}
+  canvas{display:block; width:100%; height:460px; background:#0e0a05; border:1px solid #3a2f16; margin:6px 0 4px; cursor:crosshair;}
+  .controls{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:center; margin:14px 0 6px;}
+  .controls label{font-size:.85rem; color:var(--dim); letter-spacing:.06em;}
+  input[type=range]{width:170px; accent-color:var(--gold);}
+  button{background:transparent; border:1px solid var(--gold); color:var(--gold-bright); font-family:inherit;
+    font-size:.85rem; letter-spacing:.08em; padding:8px 16px; cursor:pointer; transition:all .18s;}
+  button:hover{background:rgba(201,162,39,.14); box-shadow:0 0 14px rgba(201,162,39,.35);}
+  #readout{display:flex; justify-content:space-between; font-size:.85rem; color:var(--dim); margin:8px 2px 0; font-variant-numeric:tabular-nums; flex-wrap:wrap; gap:6px;}
+  #verdict{text-align:center; font-style:italic; font-size:.95rem; min-height:2.4em; margin-top:10px; color:var(--ink);}
+  #verdict .gold{color:var(--gold-bright);} #verdict .violet{color:var(--violet);}
+  .plaque{margin-top:18px; border-top:1px solid var(--seam); padding-top:14px; font-size:.88rem; line-height:1.65; color:var(--dim);}
+  .plaque .docent{color:var(--gold);}
+  .kicker{display:block; text-align:center; font-size:.72rem; letter-spacing:.3em; color:var(--seam); margin-bottom:8px;}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="crack" style="left:22%"></div>
+  <div class="crack" style="left:71%"></div>
+  <span class="kicker">EXHIBIT · THE CHORUS WING — COMPANION TO "MEANWHILE"</span>
+  <h1>THE LISTENER</h1>
+  <p class="sub">the room had an audience — it touched nothing and tuned to everything</p>
+  <canvas id="stage" width="880" height="460"></canvas>
+  <div class="controls">
+    <label>WIRE&nbsp;K</label>
+    <input type="range" id="k" min="0" max="3" step="0.01" value="0">
+    <span id="kval" style="color:var(--gold-bright); font-size:.85rem; width:3.2em;">0.00</span>
+    <label>LISTENER&nbsp;GAIN&nbsp;L</label>
+    <input type="range" id="l" min="0" max="3" step="0.01" value="1.2">
+    <span id="lval" style="color:var(--violet); font-size:.85rem; width:3.2em;">1.20</span>
+    <button id="replay">↻ replay same seed</button>
+    <button id="pause">pause</button>
+  </div>
+  <div id="readout"><span id="sync">order r = —</span><span id="lag">listener lag = —</span><span id="coinc">chance alignments: 0</span></div>
+  <div id="verdict">Two metronomes on separate shelves, and a third that only listens. The listener has no wire to either clock — only ears.</div>
+  <div class="plaque">
+    <p><span class="docent">DOCENT'S NOTE (unreliable):</span> Same room as its neighbor: two oscillators, shared seed,
+    detuned hearts (ω₂ − ω₁ = 0.13 rad/s), no wire between them. Now there is a third dial — the listener. It never
+    touches either clock. It couples only to the room's hum, the mean field: dλ/dt = ω<sub>L</sub> + L·sin(ψ − λ),
+    where ψ is the argument of the mean phasor. Give it enough gain and it locks onto the room's pulse — in a room
+    where <em>no wire exists at all.</em></p>
+    <p style="margin-top:8px">So: two clocks that flash together with the wire cut (coincidence), a wire that makes
+    locking constructed (MEANWHILE, next wall), and now a listener that tunes itself to a pulse nobody transmitted.
+    Three kinds of synchrony walk into the same room. The question from the first wall stands: <em>the room cannot
+    tell them apart by looking.</em> Neither can the listener — and the listener is you.</p>
+    <p style="margin-top:8px">Model: two Kuramoto phases + one passive auditor. Order parameter r = |⟨e<sup>iθ</sup>⟩|,
+    illustrative mathematics only — no claims about plasma, minds, or metronomes are made or implied.</p>
+  </div>
+</div>
+<script>
+(function(){
+  const cv=document.getElementById('stage'), ctx=cv.getContext('2d');
+  const W=cv.width, H=cv.height, cx=W/2, cy=175, R1=62, R2=90, CXA=cx-232, CXB=cx+232;
+  const LX=cx, LY=372, LR=52;
+  const w1=1.0, w2=1.13, wL=1.065;
+  let th=[0,0], lam=0, t=0, running=true, coincidences=0, flash=0, flashT=null;
+  let K=0, L=1.2, lockSince=null, lockL=null, announced='';
+  const kSlider=document.getElementById('k'), kval=document.getElementById('kval');
+  const lSlider=document.getElementById('l'), lval=document.getElementById('lval');
+  const verdict=document.getElementById('verdict');
+  const syncEl=document.getElementById('sync'), lagEl=document.getElementById('lag'), coincEl=document.getElementById('coinc');
+  function reset(){ th=[0.3,1.7]; lam=2.6; t=0; coincidences=0; flash=0; flashT=null;
+    lockSince=null; lockL=null; announced='';
+    verdict.innerHTML="Same seed, same starting gun — the listener is listening. "+(K===0?"No wire anywhere yet.":"The clocks' wire is live this time; the listener still has none."); }
+  kSlider.addEventListener('input',()=>{K=parseFloat(kSlider.value); kval.textContent=K.toFixed(2); announced='';});
+  lSlider.addEventListener('input',()=>{L=parseFloat(lSlider.value); lval.textContent=L.toFixed(2); announced='';});
+  document.getElementById('replay').addEventListener('click',reset);
+  const pb=document.getElementById('pause');
+  pb.addEventListener('click',()=>{running=!running; pb.textContent=running?'pause':'resume';});
+  const trailsA=[], trailsB=[];
+  let last=performance.now();
+  function frame(now){
+    requestAnimationFrame(frame);
+    const dt=Math.min(0.05,(now-last)/1000); last=now;
+    let r=0, psi=0, lag=0;
+    if(running){
+      const d=th[1]-th[0];
+      th[0]+=(w1+K*Math.sin(d))*dt;
+      th[1]+=(w2-K*Math.sin(d))*dt;
+      const sx=(Math.cos(th[0])+Math.cos(th[1]))/2, sy=(Math.sin(th[0])+Math.sin(th[1]))/2;
+      r=Math.hypot(sx,sy); psi=Math.atan2(sy,sx);
+      lam+=(wL+L*Math.sin(psi-lam))*dt;
+      t+=dt;
+      trailsA.push(th[0]); trailsB.push(th[1]);
+      if(trailsA.length>240){trailsA.shift();trailsB.shift();}
+      const dphi=((th[1]-th[0])%(2*Math.PI)+3*Math.PI)%(2*Math.PI)-Math.PI;
+      lag=Math.abs(((lam-psi)%(2*Math.PI)+3*Math.PI)%(2*Math.PI)-Math.PI);
+      if(Math.abs(dphi)<0.08&&K<0.05){ if(flashT===null||t-flashT>1.2){coincidences++; flash=1; flashT=t;} }
+      if(K>0.4&&Math.abs(dphi)<0.2){ if(!lockSince) lockSince=t; } else lockSince=null;
+      if(L>0.05&&lag<0.25){ if(!lockL) lockL=t; } else lockL=null;
+      if(lockL&&t-lockL>2&&announced!=='aud'){ announced='aud';
+        verdict.innerHTML=K<0.05
+          ? "<span class='violet'>The listener locked — and there is no wire in the room at all.</span> Nobody transmitted the pulse; the room's hum was enough. Listening, it turns out, is a coupling you cannot cut."
+          : "<span class='violet'>The listener locked too.</span> The clocks are wired now, but the auditor never touched them — it heard the mean field and tuned. Constructed synchrony <em>and</em> overheard synchrony, in one frame."; }
+      else if(lockSince&&t-lockSince>2&&announced===''&&announced!=='aud'){ announced='lock';
+        verdict.innerHTML="Clocks locked: order r ≈ 1. This is <span class='gold'>constructed</span> synchrony — the wire did this. Watch the listener now: it heard."; }
+      if(K===0&&coincidences>0&&announced===''&&announced!=='aud'){ announced='seen';
+        verdict.innerHTML="<span class='gold'>It flashed with the wire cut.</span> Nothing traveled between the clocks. Now watch the third dial — it is listening to a room that sent nothing."; }
+    }
+    draw(dt,r,psi,lag);
+  }
+  function draw(dt,r,psi,lag){
+    ctx.clearRect(0,0,W,H); ctx.fillStyle='#0e0a05'; ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='rgba(201,162,39,.22)'; ctx.lineWidth=1;
+    ctx.setLineDash([6,8]); ctx.beginPath(); ctx.moveTo(cx,10); ctx.lineTo(cx,H-10); ctx.stroke(); ctx.setLineDash([]);
+    const drawTrail=(trail,ringR,color,x)=>{
+      for(let i=1;i<trail.length;i++){
+        const a0=trail[i-1], a1=trail[i];
+        ctx.strokeStyle=color; ctx.globalAlpha=i/trail.length*0.5; ctx.lineWidth=2;
+        ctx.beginPath(); ctx.arc(x,cy,ringR,-Math.PI/2+a0,-Math.PI/2+a1,a1<a0); ctx.stroke();
+      }
+      ctx.globalAlpha=1;
+    };
+    drawTrail(trailsA,R1,'rgba(127,212,193,.55)',CXA);
+    drawTrail(trailsB,R2,'rgba(240,208,96,.55)',CXB);
+    const ring=(x,y,rr,label,col)=>{
+      ctx.strokeStyle=col||'rgba(201,162,39,.4)'; ctx.lineWidth=1.5;
+      ctx.beginPath(); ctx.arc(x,y,rr+12,0,7); ctx.stroke();
+      ctx.fillStyle='#8a7c5f'; ctx.font='11px Georgia'; ctx.textAlign='center';
+      ctx.fillText(label,x,y-rr-22);
+    };
+    ring(CXA,cy,R2,'CLOCK A · ω=1.00'); ring(CXB,cy,R2,'CLOCK B · ω=1.13');
+    ring(LX,LY,LR,'THE LISTENER · hears only ψ','rgba(180,138,224,.45)');
+    const bob=(x,y,angle,ringR,col)=>{
+      const px=x+Math.cos(-Math.PI/2+angle)*ringR, py=y+Math.sin(-Math.PI/2+angle)*ringR;
+      ctx.strokeStyle=col; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(px,py); ctx.stroke();
+      ctx.fillStyle=col; ctx.beginPath(); ctx.arc(px,py,7,0,7); ctx.fill();
+    };
+    bob(CXA,cy,th[0],R1,'#7fd4c1'); bob(CXB,cy,th[1],R2,'#f0d060');
+    // listener: room-hum needle (gold translucent) + ear needle (violet)
+    ctx.save(); ctx.translate(LX,LY);
+    ctx.strokeStyle='rgba(201,162,39,.5)'; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(Math.cos(-Math.PI/2+psi)*LR,Math.sin(-Math.PI/2+psi)*LR); ctx.stroke();
+    ctx.strokeStyle='#b48ae0'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(Math.cos(-Math.PI/2+lam)*LR,Math.sin(-Math.PI/2+lam)*LR); ctx.stroke();
+    ctx.fillStyle='#b48ae0'; ctx.beginPath(); ctx.arc(0,0,5,0,7); ctx.fill();
+    ctx.restore();
+    ctx.fillStyle='#8a7c5f'; ctx.font='italic 11px Georgia'; ctx.textAlign='center';
+    ctx.fillText('ψ = room hum', LX-64, LY+LR+30); ctx.fillStyle='#b48ae0'; ctx.fillText('λ = listener', LX+64, LY+LR+30);
+    // wire between clocks: cut vs spliced (listener deliberately outside it)
+    ctx.lineWidth=3;
+    if(K>0.02){ ctx.strokeStyle='#c9a227'; ctx.shadowColor='#c9a227'; ctx.shadowBlur=14;
+      ctx.beginPath(); ctx.moveTo(cx-40,cy); ctx.lineTo(cx+40,cy); ctx.stroke(); ctx.shadowBlur=0;
+      ctx.fillStyle='#e8dcc0'; ctx.font='10px Georgia'; ctx.fillText('K='+K.toFixed(2), cx, cy-16);
+    } else {
+      ctx.strokeStyle='rgba(201,162,39,.35)';
+      ctx.beginPath(); ctx.moveTo(cx-40,cy); ctx.lineTo(cx-8,cy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx+8,cy); ctx.lineTo(cx+40,cy); ctx.stroke();
+      ctx.fillStyle='#8a7c5f'; ctx.font='italic 11px Georgia'; ctx.fillText('wire cut', cx, cy-16);
+    }
+    if(flash>0){ flash=Math.max(0,flash-dt*1.4);
+      ctx.strokeStyle='rgba(240,208,96,'+flash+')'; ctx.lineWidth=4;
+      ctx.beginPath(); ctx.moveTo(cx,10); ctx.lineTo(cx,H-10); ctx.stroke(); }
+    syncEl.textContent='order r = '+r.toFixed(2)+(K>0.02?'  (coupled)':'  (uncoupled)');
+    lagEl.textContent='listener lag = '+lag.toFixed(2)+' rad'+(L>0.05?'':'  (deaf, L=0)');
+    coincEl.textContent='chance alignments: '+coincidences;
+  }
+  reset(); requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

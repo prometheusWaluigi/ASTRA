@@ -1,0 +1,206 @@
+{
+  "seed": 20260930,
+  "draws": 10000,
+  "script_sha256": "0f0d33898a67c108ca0a836e5ae558e9d04120a65dd68f2e8ad85bdd8a03a6ec",
+  "editions": {
+    "frozen": {
+      "targets": {
+        "lambda_tree": {
+          "mean": 0.1292800085135114,
+          "sigma_mc": 0.00022895359131737086,
+          "sigma_analytic": 0.0002271702919248928,
+          "mc_vs_analytic_rel": 0.007850055468818326,
+          "claim_expr": "1 / (5 * 2^(1/6) * phi^(2/3))",
+          "claim_value": 0.129280563443397,
+          "claim_source": "pilot phi_audit.py PRED",
+          "raw_relative_error": 4.292464797828188e-06,
+          "residual_sigma": -0.002423765805139421
+        },
+        "mH_over_v": {
+          "mean": 0.5084877720354031,
+          "sigma_mc": 0.0004502641097874141,
+          "sigma_analytic": 0.0004467555490694259,
+          "mc_vs_analytic_rel": 0.007853423925671198,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "mW_over_mZ": {
+          "mean": 0.8814442693995075,
+          "sigma_mc": 0.00013372067772179493,
+          "sigma_analytic": 0.00013315324601795279,
+          "mc_vs_analytic_rel": 0.004261493585861506,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "mH_over_mZ": {
+          "mean": 1.3729896749551305,
+          "sigma_mc": 0.001216294409139973,
+          "sigma_analytic": 0.0012067186923719088,
+          "mc_vs_analytic_rel": 0.007935334745865443,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "mH_over_mt": {
+          "mean": 0.7249789498262038,
+          "sigma_mc": 0.0013969120512466102,
+          "sigma_analytic": 0.001411393747596094,
+          "mc_vs_analytic_rel": 0.010260564335182262,
+          "claim_expr": "phi^(-2/3) [tree-translated sqrt(4*lambda/yt^2); equals mH/mt identically at tree level \u2014 a coupling diagnostic, not a running pole-mass ratio]",
+          "claim_value": 0.7255626302463264,
+          "claim_source": "protocol section C",
+          "raw_relative_error": 0.0008050998173980695,
+          "residual_sigma": -0.41783619777759085
+        },
+        "mH_over_mt_pole": {
+          "mean": 0.7261813851186117,
+          "sigma_mc": 0.0029928769049209518,
+          "sigma_analytic": 0.0030169240887371516,
+          "mc_vs_analytic_rel": 0.00797076197772867,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "yt_tree": {
+          "mean": 0.9919080170389347,
+          "sigma_mc": 0.0017160750011104063,
+          "sigma_analytic": 0.0017231120083238808,
+          "mc_vs_analytic_rel": 0.00408389424453004,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "sin2w_msbar": {
+          "mean": 0.23122026045985336,
+          "sigma_mc": 4.000659438892794e-05,
+          "sigma_analytic": 4.000000000132117e-05,
+          "mc_vs_analytic_rel": 0.0001648596901637327,
+          "claim_expr": "2^(1/6) / (3*phi)",
+          "claim_value": 0.23123989897900632,
+          "claim_source": "protocol section C",
+          "raw_relative_error": 8.4934248901547e-05,
+          "residual_sigma": -0.49088205214473807
+        },
+        "sin2w_onshell": {
+          "mean": 0.22305598206333685,
+          "sigma_mc": 0.00023573440340412632,
+          "sigma_analytic": 0.00023473495202551244,
+          "mc_vs_analytic_rel": 0.0042577867931029596,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "alphainv0": {
+          "mean": 137.03599917701524,
+          "sigma_mc": 2.1160396490623452e-08,
+          "sigma_analytic": 2.1000000001705408e-08,
+          "mc_vs_analytic_rel": 0.00763792804309614,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "alphas_mz": {
+          "mean": 0.11802911370347624,
+          "sigma_mc": 0.000904525877363489,
+          "sigma_analytic": 0.0008999999999496699,
+          "mc_vs_analytic_rel": 0.0050287526823024785,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        }
+      }
+    },
+    "latest": {
+      "targets": {
+        "lambda_tree": {
+          "mean": 0.1290942313165892,
+          "sigma_mc": 0.00022878904604270778,
+          "sigma_analytic": 0.00022700702951362827,
+          "mc_vs_analytic_rel": 0.007850049986987438,
+          "claim_expr": "1 / (5 * 2^(1/6) * phi^(2/3))",
+          "claim_value": 0.129280563443397,
+          "claim_source": "pilot phi_audit.py PRED",
+          "raw_relative_error": 0.001443380737523814,
+          "residual_sigma": -0.8144276574019866
+        },
+        "mH_over_v": {
+          "mean": 0.5081222883476478,
+          "sigma_mc": 0.0004502641469444985,
+          "sigma_analytic": 0.0004467555873347592,
+          "mc_vs_analytic_rel": 0.007853420772352397,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "mW_over_mZ": {
+          "mean": 0.8813546777360032,
+          "sigma_mc": 0.0001478073983033023,
+          "sigma_analytic": 0.00014712793460038367,
+          "mc_vs_analytic_rel": 0.004618182840424778,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "mH_over_mZ": {
+          "mean": 1.3719967115752112,
+          "sigma_mc": 0.001216245213703092,
+          "sigma_analytic": 0.0012066743418348755,
+          "mc_vs_analytic_rel": 0.007931611319142636,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "mH_over_mt": {
+          "mean": 0.7241642634246404,
+          "sigma_mc": 0.0013950947673964358,
+          "sigma_analytic": 0.0014095595304098553,
+          "mc_vs_analytic_rel": 0.010261902886225412,
+          "claim_expr": "phi^(-2/3) [tree-translated sqrt(4*lambda/yt^2); equals mH/mt identically at tree level \u2014 a coupling diagnostic, not a running pole-mass ratio]",
+          "claim_value": 0.7255626302463264,
+          "claim_source": "protocol section C",
+          "raw_relative_error": 0.0019310077731162778,
+          "residual_sigma": -1.0023453992990794
+        },
+        "mH_over_mt_pole": {
+          "status": "inputs absent in this edition (editions never mixed)"
+        },
+        "yt_tree": {
+          "mean": 0.992310161579413,
+          "sigma_mc": 0.0017160751496261128,
+          "sigma_analytic": 0.0017231121560742357,
+          "mc_vs_analytic_rel": 0.004083893450183392,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "sin2w_msbar": {
+          "status": "inputs absent in this edition (editions never mixed)"
+        },
+        "sin2w_onshell": {
+          "mean": 0.22321391018802356,
+          "sigma_mc": 0.0002605411826788768,
+          "sigma_analytic": 0.00025934452782956646,
+          "mc_vs_analytic_rel": 0.004614151142208519,
+          "claim": "none in lab record \u2014 grammar search is section B scope"
+        },
+        "alphainv0": {
+          "status": "inputs absent in this edition (editions never mixed)"
+        },
+        "alphas_mz": {
+          "status": "inputs absent in this edition (editions never mixed)"
+        }
+      }
+    }
+  },
+  "correlations": {
+    "lambda_tree~mH_over_v": 0.9998998063652431,
+    "mH_over_mt~yt_tree": -0.8881188628714854,
+    "lambda_tree~mH_over_mt": 0.4405486475622172,
+    "mW_over_mZ~sin2w_onshell": -0.9998999943606017,
+    "lambda_tree~alphas_mz": 0.00724866748268731
+  },
+  "checks": {
+    "GF_float_widens_lambda_tree": {
+      "sigma_gf_fixed": 0.00022895257900846505,
+      "sigma_gf_floated": 0.00022895359131737086
+    },
+    "GF_float_widens_mH_over_v": {
+      "sigma_gf_fixed": 0.00045026211787552037,
+      "sigma_gf_floated": 0.0004502641097874141
+    },
+    "GF_float_widens_yt_tree": {
+      "sigma_gf_fixed": 0.001716071597828683,
+      "sigma_gf_floated": 0.0017160750011104063
+    },
+    "edition_shift_lambda_tree": {
+      "frozen_pull": -0.002423765805139421,
+      "latest_pull": -0.8144276574019866
+    },
+    "edition_shift_mH_over_mt": {
+      "frozen_pull": -0.41783619777759085,
+      "latest_pull": -1.0023453992990794
+    },
+    "edition_shift_mW_over_mZ": {
+      "frozen_mean": 0.8814442693995075,
+      "latest_mean": 0.8813546777360032
+    }
+  }
+}

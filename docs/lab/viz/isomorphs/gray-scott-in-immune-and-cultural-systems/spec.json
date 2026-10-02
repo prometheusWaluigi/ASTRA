@@ -1,0 +1,39 @@
+{
+  "spec": {
+    "core": "gray-scott",
+    "title": "Gray-Scott in Immune and Cultural Systems",
+    "label_a": "Pattern Formation in Tumor Microenvironment",
+    "label_b": "Cultural Pattern Emergence in Information Viruses",
+    "params_a": {
+      "feed": 0.06,
+      "kill": 0.055
+    },
+    "params_b": {
+      "feed": 0.07,
+      "kill": 0.06
+    },
+    "skeleton": "Reaction-diffusion dynamics with spot and labyrinth formation",
+    "why": "Both systems demonstrate spontaneous pattern formation in response to external inputs, whether through immune cells or viral diffusion."
+  },
+  "members": [
+    {
+      "name": "Gray-Scott in Immune and Cultural Systems",
+      "world_a": "Pattern Formation in Tumor Microenvironment",
+      "world_b": "Cultural Pattern Emergence in Information Viruses",
+      "shared_skeleton": "Reaction-diffusion dynamics with spot and labyrinth formation",
+      "core": "gray-scott",
+      "params_a": {
+        "feed": 0.06,
+        "kill": 0.055
+      },
+      "params_b": {
+        "feed": 0.07,
+        "kill": 0.06
+      },
+      "why": "Both systems demonstrate spontaneous pattern formation in response to external inputs, whether through immune cells or viral diffusion."
+    }
+  ],
+  "runs": [
+    "abl-viral-pattern-language"
+  ]
+}

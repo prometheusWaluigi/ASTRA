@@ -1,0 +1,127 @@
+{
+  "seed": 20260930,
+  "draws": 2000,
+  "script_sha256": "f162680a5f027595f65ae10cf798c982e8be9586aa4abbf812c3f8966e5392b6",
+  "source": "https://arxiv.org/abs/1307.3536v4 eqs(55)-(60), Table 2",
+  "matched_inputs": {
+    "baseline": {
+      "lam": 0.12604,
+      "yt": 0.9369,
+      "g2": 0.64779,
+      "gY": 0.3583,
+      "g3": 1.1666
+    },
+    "current_edition": {
+      "lam": 0.1259808,
+      "yt": 0.9339152,
+      "g2": 0.6476505142857143,
+      "gY": 0.3584476285714285,
+      "g3": 1.1650725142857141
+    }
+  },
+  "claims": {
+    "lambda": 0.129280563443397,
+    "sin2w": 0.23123989897900632,
+    "sqrt4ly2": 0.7255626302463264
+  },
+  "endpoints": {
+    "lambda": {
+      "resid_at_Mt": -0.02506613026029858,
+      "resid_at_10TeV": -0.4975373069651249,
+      "min_abs_resid": -0.02506613026029858,
+      "mu_at_min": 173.33999999999995,
+      "current_edition_resid_at_10TeV": -0.48998124724510295
+    },
+    "sin2w": {
+      "resid_at_Mt": 0.013075350234934557,
+      "resid_at_10TeV": 0.10262619118690752,
+      "min_abs_resid": 0.013075350234934557,
+      "mu_at_min": 173.33999999999995,
+      "current_edition_resid_at_10TeV": 0.10366648093445807
+    },
+    "sqrt4ly2": {
+      "resid_at_Mt": 0.044518286113976124,
+      "resid_at_10TeV": -0.11047678978613551,
+      "min_abs_resid": 0.00022931350124277827,
+      "mu_at_min": 660.7880658142857,
+      "current_edition_resid_at_10TeV": -0.10090948849977
+    }
+  },
+  "crossings": {
+    "lambda": [],
+    "sin2w": [],
+    "sqrt4ly2": [
+      [
+        660.7880658142857,
+        706.513330803781
+      ]
+    ]
+  },
+  "gradF": {
+    "lambda_at_Mt": {
+      "mu": 173.33999999999995,
+      "dF_dlnmu": -0.020226113837454537
+    },
+    "lambda_at_1TeV": {
+      "mu": 987.2137835039256,
+      "dF_dlnmu": -0.015346753257328
+    },
+    "lambda_at_10TeV": {
+      "mu": 9999.999999999458,
+      "dF_dlnmu": -0.011290859999264978
+    },
+    "sin2w_at_Mt": {
+      "mu": 173.33999999999995,
+      "dF_dlnmu": 0.005012073192114633
+    },
+    "sin2w_at_1TeV": {
+      "mu": 987.2137835039256,
+      "dF_dlnmu": 0.005092640162573315
+    },
+    "sin2w_at_10TeV": {
+      "mu": 9999.999999999458,
+      "dF_dlnmu": 0.0052029238236019175
+    },
+    "sqrt4ly2_at_Mt": {
+      "mu": 173.33999999999995,
+      "dF_dlnmu": -0.022109228477140662
+    },
+    "sqrt4ly2_at_1TeV": {
+      "mu": 987.2137835039256,
+      "dF_dlnmu": -0.02696962877184617
+    },
+    "sqrt4ly2_at_10TeV": {
+      "mu": 9999.999999999458,
+      "dF_dlnmu": -0.033293211574551666
+    }
+  },
+  "checks": {
+    "step_halving_max_abs_diff": {
+      "lambda": 7.261513290224286e-06,
+      "sin2w": 1.1570760077850295e-07,
+      "sqrt4ly2": 2.1065942013287486e-06
+    },
+    "gauge_closed_form": {
+      "g2": {
+        "closed_form": 0.6267559669358377,
+        "integrator": 0.6267559669358372,
+        "rel_err": 6.661338147750939e-16
+      },
+      "gY": {
+        "closed_form": 0.3666548847588842,
+        "integrator": 0.3666548847588845,
+        "rel_err": 8.881784197001252e-16
+      },
+      "g3": {
+        "closed_form": 0.9559488366273557,
+        "integrator": 0.9559488366273552,
+        "rel_err": 5.551115123125783e-16
+      }
+    },
+    "lambda_zero_crossing_1loop_extrapolation": {
+      "mu_GeV": 91812130.16236334,
+      "source_claim": "~1e10 GeV (fig.2, 3-loop)",
+      "note": "beyond deliverable range; benchmark only"
+    }
+  }
+}

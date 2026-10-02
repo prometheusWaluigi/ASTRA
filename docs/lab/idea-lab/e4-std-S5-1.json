@@ -1,0 +1,9 @@
+{
+  "filename": "std-S5-1.png",
+  "model_key": "std",
+  "seed": "S5-curved-cortex",
+  "image_seed": 4301,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 155.1
+}

@@ -1,0 +1,56 @@
+{
+  "spec": {
+    "core": "cascade",
+    "title": "Immune-Resonance Cascade",
+    "label_a": "MAIT Cell Exhaustion in Tumor Microenvironments",
+    "label_b": "Social System Degradation Under Stress",
+    "params_a": {
+      "theta": 0.4,
+      "rewire": 0.25
+    },
+    "params_b": {
+      "theta": 0.3,
+      "rewire": 0.25
+    },
+    "skeleton": "Threshold-based suppression in network interactions",
+    "why": "Both systems exhibit degradation through threshold-based suppression of initial states under external stress."
+  },
+  "members": [
+    {
+      "name": "Immune-Resonance Cascade",
+      "world_a": "MAIT Cell Exhaustion in Tumor Microenvironments",
+      "world_b": "Social System Degradation Under Stress",
+      "shared_skeleton": "Threshold-based suppression in network interactions",
+      "core": "cascade",
+      "params_a": {
+        "theta": 0.4,
+        "rewire": 0.25
+      },
+      "params_b": {
+        "theta": 0.3,
+        "rewire": 0.25
+      },
+      "why": "Both systems exhibit degradation through threshold-based suppression of initial states under external stress."
+    },
+    {
+      "name": "Cascade_Mind-Matter",
+      "world_a": "Enhanced mind-matter interactions following rTMS (Frontal lobe inhibition and psi mechanisms)",
+      "world_b": "Quantum Biology of Immune System Coherence (MAIT cells' dual roles in immune response and cancer)",
+      "shared_skeleton": "Threshold-based cascading behavior influenced by network interactions",
+      "core": "cascade",
+      "params_a": {
+        "theta": 0.4,
+        "rewire": 0.3
+      },
+      "params_b": {
+        "theta": 0.35,
+        "rewire": 0.25
+      },
+      "why": "Both involve threshold-based interactions that could be modeled as cascading processes on complex networks."
+    }
+  ],
+  "runs": [
+    "abl-mathematical-friendship-operator",
+    "abl-universalmasteralchemistsuperprompt"
+  ]
+}

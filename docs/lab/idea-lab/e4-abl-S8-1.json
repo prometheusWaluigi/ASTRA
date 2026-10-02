@@ -1,0 +1,9 @@
+{
+  "filename": "abl-S8-1.png",
+  "model_key": "abl",
+  "seed": "S8-kintsugi-weights",
+  "image_seed": 4301,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 175.1
+}

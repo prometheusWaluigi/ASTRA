@@ -1,0 +1,9 @@
+{
+  "filename": "std-S6-1.png",
+  "model_key": "std",
+  "seed": "S6-instrumented-cognition",
+  "image_seed": 4301,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 160.16
+}

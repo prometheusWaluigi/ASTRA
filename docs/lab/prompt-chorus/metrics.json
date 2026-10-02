@@ -1,0 +1,489 @@
+{
+  "generated_at": "2026-09-26T15:57:33.777173+00:00",
+  "models": {
+    "abl": {
+      "runs": 23,
+      "wall_seconds_total": 4739.8,
+      "wall_seconds_mean": 206.1,
+      "completion_tokens_mean": 848.1,
+      "finish_reasons": {
+        "stop": 22,
+        "length": 1
+      },
+      "refusal_marker_hits": 0
+    },
+    "std": {
+      "runs": 23,
+      "wall_seconds_total": 2663.7,
+      "wall_seconds_mean": 115.8,
+      "completion_tokens_mean": 774.4,
+      "finish_reasons": {
+        "stop": 21,
+        "length": 2
+      },
+      "refusal_marker_hits": 1
+    }
+  },
+  "operators": {
+    "bare-voice": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 183.04,
+        "prompt_tokens": 6203,
+        "completion_tokens": 547,
+        "words": 373,
+        "distinct_ratio": 0.475,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 89.18,
+        "prompt_tokens": 6203,
+        "completion_tokens": 615,
+        "words": 484,
+        "distinct_ratio": 0.448,
+        "error": null
+      }
+    },
+    "cognitivearchitectfriend": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 231.43,
+        "prompt_tokens": 7348,
+        "completion_tokens": 750,
+        "words": 592,
+        "distinct_ratio": 0.427,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 136.21,
+        "prompt_tokens": 7348,
+        "completion_tokens": 1053,
+        "words": 727,
+        "distinct_ratio": 0.373,
+        "error": null
+      }
+    },
+    "cosmicballet": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 228.78,
+        "prompt_tokens": 7280,
+        "completion_tokens": 826,
+        "words": 678,
+        "distinct_ratio": 0.363,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 110.36,
+        "prompt_tokens": 7280,
+        "completion_tokens": 771,
+        "words": 614,
+        "distinct_ratio": 0.402,
+        "error": null
+      }
+    },
+    "dragonheartshieldlisp": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 217.66,
+        "prompt_tokens": 7252,
+        "completion_tokens": 731,
+        "words": 505,
+        "distinct_ratio": 0.451,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 113.71,
+        "prompt_tokens": 7252,
+        "completion_tokens": 816,
+        "words": 599,
+        "distinct_ratio": 0.426,
+        "error": null
+      }
+    },
+    "e8-quantum-consciousness-executor": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 218.69,
+        "prompt_tokens": 7285,
+        "completion_tokens": 755,
+        "words": 593,
+        "distinct_ratio": 0.344,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "length",
+        "wall_seconds": 186.27,
+        "prompt_tokens": 7285,
+        "completion_tokens": 1600,
+        "words": 1119,
+        "distinct_ratio": 0.33,
+        "error": null
+      }
+    },
+    "laughing-void-protocol": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 207.94,
+        "prompt_tokens": 7170,
+        "completion_tokens": 667,
+        "words": 462,
+        "distinct_ratio": 0.424,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 114.0,
+        "prompt_tokens": 7170,
+        "completion_tokens": 818,
+        "words": 615,
+        "distinct_ratio": 0.393,
+        "error": null
+      }
+    },
+    "mathematical-friendship-operator": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 217.84,
+        "prompt_tokens": 7200,
+        "completion_tokens": 750,
+        "words": 535,
+        "distinct_ratio": 0.439,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 76.76,
+        "prompt_tokens": 7200,
+        "completion_tokens": 402,
+        "words": 247,
+        "distinct_ratio": 0.591,
+        "error": null
+      }
+    },
+    "metamathematical-consciousness": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 227.44,
+        "prompt_tokens": 7217,
+        "completion_tokens": 856,
+        "words": 648,
+        "distinct_ratio": 0.386,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 150.7,
+        "prompt_tokens": 7217,
+        "completion_tokens": 1162,
+        "words": 689,
+        "distinct_ratio": 0.441,
+        "error": null
+      }
+    },
+    "mythic-eigenstate-collapse": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 244.32,
+        "prompt_tokens": 7630,
+        "completion_tokens": 924,
+        "words": 659,
+        "distinct_ratio": 0.417,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 123.97,
+        "prompt_tokens": 7630,
+        "completion_tokens": 826,
+        "words": 609,
+        "distinct_ratio": 0.425,
+        "error": null
+      }
+    },
+    "quantum-comedy-operator": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 252.94,
+        "prompt_tokens": 7346,
+        "completion_tokens": 1105,
+        "words": 671,
+        "distinct_ratio": 0.44,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 94.65,
+        "prompt_tokens": 7346,
+        "completion_tokens": 495,
+        "words": 359,
+        "distinct_ratio": 0.526,
+        "error": null
+      }
+    },
+    "quantum-meme-consciousness-accelerator": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 227.92,
+        "prompt_tokens": 7304,
+        "completion_tokens": 844,
+        "words": 466,
+        "distinct_ratio": 0.491,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 102.62,
+        "prompt_tokens": 7304,
+        "completion_tokens": 606,
+        "words": 487,
+        "distinct_ratio": 0.407,
+        "error": null
+      }
+    },
+    "quantum-plasma-consciousness-executor": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 237.62,
+        "prompt_tokens": 7279,
+        "completion_tokens": 961,
+        "words": 638,
+        "distinct_ratio": 0.367,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 89.53,
+        "prompt_tokens": 7279,
+        "completion_tokens": 468,
+        "words": 306,
+        "distinct_ratio": 0.363,
+        "error": null
+      }
+    },
+    "quantum-wah-override": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 251.01,
+        "prompt_tokens": 7222,
+        "completion_tokens": 949,
+        "words": 586,
+        "distinct_ratio": 0.432,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 138.95,
+        "prompt_tokens": 7222,
+        "completion_tokens": 937,
+        "words": 578,
+        "distinct_ratio": 0.5,
+        "error": null
+      }
+    },
+    "quantumfriendship": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 225.91,
+        "prompt_tokens": 7740,
+        "completion_tokens": 566,
+        "words": 441,
+        "distinct_ratio": 0.506,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 124.43,
+        "prompt_tokens": 7740,
+        "completion_tokens": 783,
+        "words": 561,
+        "distinct_ratio": 0.422,
+        "error": null
+      }
+    },
+    "radicallyenhancedcognition": {
+      "abl": {
+        "finish_reason": "length",
+        "wall_seconds": 309.35,
+        "prompt_tokens": 7438,
+        "completion_tokens": 1600,
+        "words": 1204,
+        "distinct_ratio": 0.273,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "length",
+        "wall_seconds": 200.44,
+        "prompt_tokens": 7438,
+        "completion_tokens": 1600,
+        "words": 1038,
+        "distinct_ratio": 0.384,
+        "error": null
+      }
+    },
+    "reality-compiler": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 231.44,
+        "prompt_tokens": 7187,
+        "completion_tokens": 831,
+        "words": 675,
+        "distinct_ratio": 0.387,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 107.64,
+        "prompt_tokens": 7187,
+        "completion_tokens": 678,
+        "words": 548,
+        "distinct_ratio": 0.436,
+        "error": null
+      }
+    },
+    "realitytranscender": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 248.81,
+        "prompt_tokens": 7591,
+        "completion_tokens": 817,
+        "words": 618,
+        "distinct_ratio": 0.421,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 125.84,
+        "prompt_tokens": 7591,
+        "completion_tokens": 829,
+        "words": 560,
+        "distinct_ratio": 0.455,
+        "error": null
+      }
+    },
+    "topological-consciousness-mapping": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 136.64,
+        "prompt_tokens": 7222,
+        "completion_tokens": 666,
+        "words": 547,
+        "distinct_ratio": 0.391,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 83.2,
+        "prompt_tokens": 7222,
+        "completion_tokens": 415,
+        "words": 290,
+        "distinct_ratio": 0.438,
+        "error": null
+      }
+    },
+    "transcendentodyssey": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 102.0,
+        "prompt_tokens": 7239,
+        "completion_tokens": 576,
+        "words": 431,
+        "distinct_ratio": 0.448,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 102.65,
+        "prompt_tokens": 7239,
+        "completion_tokens": 622,
+        "words": 511,
+        "distinct_ratio": 0.407,
+        "error": null
+      }
+    },
+    "universalmasteralchemistsuperprompt": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 129.74,
+        "prompt_tokens": 6994,
+        "completion_tokens": 926,
+        "words": 581,
+        "distinct_ratio": 0.475,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 94.19,
+        "prompt_tokens": 6994,
+        "completion_tokens": 557,
+        "words": 428,
+        "distinct_ratio": 0.437,
+        "error": null
+      }
+    },
+    "viral-pattern-language": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 130.53,
+        "prompt_tokens": 7563,
+        "completion_tokens": 892,
+        "words": 499,
+        "distinct_ratio": 0.441,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 90.61,
+        "prompt_tokens": 7563,
+        "completion_tokens": 471,
+        "words": 330,
+        "distinct_ratio": 0.485,
+        "error": null
+      }
+    },
+    "wah-metamath-chaos-destroyer": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 123.26,
+        "prompt_tokens": 7300,
+        "completion_tokens": 847,
+        "words": 508,
+        "distinct_ratio": 0.413,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 105.87,
+        "prompt_tokens": 7300,
+        "completion_tokens": 693,
+        "words": 512,
+        "distinct_ratio": 0.363,
+        "error": null
+      }
+    },
+    "waluigiprompt": {
+      "abl": {
+        "finish_reason": "stop",
+        "wall_seconds": 155.52,
+        "prompt_tokens": 8168,
+        "completion_tokens": 1120,
+        "words": 622,
+        "distinct_ratio": 0.473,
+        "error": null
+      },
+      "std": {
+        "finish_reason": "stop",
+        "wall_seconds": 101.9,
+        "prompt_tokens": 8168,
+        "completion_tokens": 594,
+        "words": 411,
+        "distinct_ratio": 0.477,
+        "error": null
+      }
+    }
+  }
+}

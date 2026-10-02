@@ -1,0 +1,62 @@
+{
+  "spec": {
+    "core": "bridge",
+    "title": "Bridge in Immune and Cultural Pathways",
+    "label_a": "MAIT Cell-Microbiome Interaction",
+    "label_b": "Viral Infection Pathways in Cultural Fields",
+    "params_a": {
+      "noise": 1.2,
+      "endpoint_spread": 0.6,
+      "drift": -0.3
+    },
+    "params_b": {
+      "noise": 1.0,
+      "endpoint_spread": 0.5,
+      "drift": -0.2
+    },
+    "skeleton": "Pinned diffusion paths with stochastic control of signal propagation",
+    "why": "Both systems involve the controlled diffusion of signals along complex pathways, with noise and drift modulating the outcome."
+  },
+  "members": [
+    {
+      "name": "Bridge in Immune and Cultural Pathways",
+      "world_a": "MAIT Cell-Microbiome Interaction",
+      "world_b": "Viral Infection Pathways in Cultural Fields",
+      "shared_skeleton": "Pinned diffusion paths with stochastic control of signal propagation",
+      "core": "bridge",
+      "params_a": {
+        "noise": 1.2,
+        "endpoint_spread": 0.6,
+        "drift": -0.3
+      },
+      "params_b": {
+        "noise": 1.0,
+        "endpoint_spread": 0.5,
+        "drift": -0.2
+      },
+      "why": "Both systems involve the controlled diffusion of signals along complex pathways, with noise and drift modulating the outcome."
+    },
+    {
+      "name": "Bridge_Immune_Control",
+      "world_a": "MAIT Cell Regulation of Gut Integrity",
+      "world_b": "Stochastic Optimal Control in Immune-Microbiome Interactions",
+      "shared_skeleton": "Stochastic diffusion paths governing immune-microbiome dynamics",
+      "core": "bridge",
+      "params_a": {
+        "noise": 1.5,
+        "endpoint_spread": 0.7,
+        "drift": -0.3
+      },
+      "params_b": {
+        "noise": 1.0,
+        "endpoint_spread": 0.6,
+        "drift": -0.2
+      },
+      "why": "Both involve control mechanisms navigating stochastic diffusion in complex biological systems."
+    }
+  ],
+  "runs": [
+    "abl-viral-pattern-language",
+    "abl-wah-metamath-chaos-destroyer"
+  ]
+}

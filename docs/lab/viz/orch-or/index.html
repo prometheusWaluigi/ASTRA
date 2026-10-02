@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Polyatomic Time Crystals — an interactive reading of Singh, Hameroff &amp; Bandyopadhyay (2026)</title>
+<style>
+  :root {
+    --ink: #dfe9f2; --dim: #8ba3b5; --faint: #5c7488;
+    --gold: #ffcf6e; --cyan: #7fd8ff; --violet: #b48cff; --rose: #ff7d9c;
+    --panel: rgba(6, 12, 22, .66); --line: rgba(127, 216, 255, .22);
+  }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; background: #020408; color: var(--ink);
+    font: 15px/1.6 "Segoe UI", system-ui, sans-serif; }
+  #app { position: fixed; inset: 0; z-index: 0; }
+  #vignette { position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,8,.75) 100%); }
+  #scan { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .05;
+    background: repeating-linear-gradient(0deg, #fff 0 1px, transparent 1px 4px); }
+
+  /* ---------- scroll spine ---------- */
+  #spine { position: relative; z-index: 2; pointer-events: none; }
+  section.chapter { min-height: 190vh; display: flex; pointer-events: none; }
+  section.chapter .card {
+    position: sticky; top: 16vh; height: fit-content;
+    max-width: 380px; margin: 0 0 0 6vw;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 18px 22px; backdrop-filter: blur(8px);
+    pointer-events: auto;
+  }
+  section.chapter.right .card { margin: 0 6vw 0 auto; }
+  .card h2 { font: 600 13px/1.3 ui-monospace, Consolas, monospace;
+    letter-spacing: .18em; color: var(--cyan); margin: 0 0 10px; text-transform: uppercase; }
+  .card h2 .num { color: var(--faint); }
+  .card p { margin: 0 0 10px; font-size: 13.5px; color: var(--dim); }
+  .card p b, .card strong { color: var(--ink); font-weight: 600; }
+  .card .tag { display: inline-block; font: 10px ui-monospace, monospace; color: var(--faint);
+    border: 1px solid rgba(255,255,255,.12); border-radius: 4px; padding: 1px 6px;
+    margin: 2px 4px 0 0; }
+  .card .warn { color: var(--gold); }
+  .card em { color: var(--violet); font-style: normal; }
+
+  /* ---------- hero ---------- */
+  #hero { min-height: 170vh; }
+  #hero .title {
+    position: sticky; top: 30vh; text-align: center; pointer-events: none;
+  }
+  #hero h1 { font: 300 clamp(26px, 4.4vw, 52px)/1.15 ui-monospace, Consolas, monospace;
+    letter-spacing: .04em; margin: 0; color: var(--ink);
+    text-shadow: 0 0 30px rgba(127,216,255,.35); }
+  #hero h1 .x { color: var(--cyan); }
+  #hero .sub { margin-top: 14px; font: 12px ui-monospace, monospace; color: var(--dim);
+    letter-spacing: .22em; text-transform: uppercase; }
+  #hero .scrollcue { margin-top: 34px; color: var(--faint); font-size: 11px;
+    letter-spacing: .3em; animation: cue 2.4s ease-in-out infinite; }
+  @keyframes cue { 50% { transform: translateY(7px); opacity: .4; } }
+
+  /* ---------- fixed chrome ---------- */
+  #hud { position: fixed; top: 14px; left: 16px; z-index: 5;
+    font: 11px ui-monospace, Consolas, monospace; color: var(--faint); }
+  #hud b { color: var(--cyan); font-weight: 600; letter-spacing: .1em; }
+  #dots { position: fixed; left: 16px; top: 50%; transform: translateY(-50%);
+    z-index: 5; display: flex; flex-direction: column; gap: 10px; }
+  #dots a { width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(139,163,181,.3); border: 1px solid rgba(139,163,181,.4);
+    transition: all .25s; }
+  #dots a.on { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); transform: scale(1.35); }
+  #dots a span { display: none; }
+
+  /* ---------- live controls ---------- */
+  #ctl { position: fixed; right: 16px; bottom: 16px; z-index: 5; width: 300px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 16px; backdrop-filter: blur(8px);
+    font: 11px ui-monospace, monospace; color: var(--dim);
+    opacity: 0; pointer-events: none; transition: opacity .4s; }
+  #ctl.show { opacity: 1; pointer-events: auto; }
+  #ctl .row { display: flex; align-items: center; gap: 8px; margin: 7px 0; }
+  #ctl label { width: 118px; flex: none; color: var(--ink); }
+  #ctl input[type=range] { flex: 1; accent-color: var(--cyan); }
+  #ctl .val { width: 34px; text-align: right; color: var(--cyan); }
+  #rread { margin-top: 8px; font-size: 12px; color: var(--ink); }
+  #rread b { color: var(--gold); font-size: 15px; }
+  #rbar { height: 5px; border-radius: 3px; margin-top: 4px;
+    background: linear-gradient(90deg, var(--cyan), var(--gold));
+    width: 0%; transition: width .15s; }
+  #stats { position: fixed; bottom: 12px; left: 16px; z-index: 5;
+    font: 10px ui-monospace, monospace; color: #39536b; }
+
+  footer { position: relative; z-index: 2; padding: 30px 6vw 60px;
+    font: 11px ui-monospace, monospace; color: var(--faint); }
+  footer a { color: var(--dim); }
+</style>
+<script type="importmap">
+  { "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+</head>
+<body>
+<div id="app"></div>
+<div id="vignette"></div><div id="scan"></div>
+
+<div id="hud"><b>PTC / ORCH-OR</b> · scroll to descend the resonance chain · drag to orbit</div>
+<nav id="dots"></nav>
+
+<div id="spine">
+<section id="hero">
+  <div class="title">
+    <h1>Polyatomic<br>Time Crystals</h1>
+    <div class="sub">geometry-orchestrated objective reduction<br>from a multiscale resonance chain</div>
+    <div class="scrollcue">▼ scroll ▼</div>
+  </div>
+</section>
+
+<section class="chapter" id="ch-chain">
+  <div class="card">
+    <h2><span class="num">01 ·</span> The resonance chain</h2>
+    <p>The paper's conceit: <b>π-electron pockets → microtubules → organelles → body</b> form one
+    nested chain of resonators — a finite ensemble of "clocks" whose phase relationships span
+    <b>~12 decades of frequency</b>. The dodecanogram (DDG) measurements behind it record scalp
+    fields from <b>1&nbsp;Hz to 5.31&nbsp;GHz</b> in 12 synchronized bands.</p>
+    <p>Each ring below is a frequency family. The bright beads are clock phases — when they
+    sweep in step, that's a <em>commensurate time lattice</em>: the polyatomic time crystal.</p>
+    <span class="tag">finite clock ensemble</span><span class="tag">12-band DDG</span>
+    <span class="tag">triplet-of-triplets</span>
+  </div>
+</section>
+
+<section class="chapter right" id="ch-kuramoto">
+  <div class="card">
+    <h2><span class="num">02 ·</span> Model I — the clock network <span class="warn">· live</span></h2>
+    <p>A real <b>Sakaguchi–Kuramoto</b> network, N=120, three frequency families, running in your
+    browser. Geometry enters through <b>coupling K<sub>ij</sub></b> (κ curvature, η nesting) and
+    <b>phase lags α<sub>ij</sub></b> (sectorized Berry-like phases).</p>
+    <p>Push the <b>anesthetic</b> slider: it cuts K and injects phase disorder at π-rich sites —
+    watch the ensemble de-lock. Detune the <b>cavity</b>: frequency families shear apart.</p>
+    <span class="tag">dθ/dt = ω + Σ K sin(θⱼ−θᵢ−α)</span><span class="tag">r = |⟨e^{iθ}⟩|</span>
+  </div>
+</section>
+
+<section class="chapter" id="ch-map">
+  <div class="card">
+    <h2><span class="num">03 ·</span> The locking landscape</h2>
+    <p>Global order parameter <b>r(κ, η)</b>, swept on a real grid — my own re-run of the paper's
+    Model I (normalized units, not their Table-S2 constants). Note the <b>plateau</b>: geometry
+    doesn't just add coupling, it opens the sparse cross-band pathways that let three frequency
+    families fall into lockstep.</p>
+    <p>Toggle the <b>anesthetic</b> basin: the plateau submerges. That displacement of the
+    locking boundary is the paper's falsifiable signature.</p>
+    <span class="tag">22×22 grid · 3 inits</span><span class="tag">baked, not drawn</span>
+  </div>
+</section>
+
+<section class="chapter right" id="ch-dp">
+  <div class="card">
+    <h2><span class="num">04 ·</span> Diósi–Penrose overlay</h2>
+    <p>Two alternative locked configurations differ in where energy density sits — bent lattice
+    (Δρ<sub>mech</sub>) plus stored field energy (Δρ<sub>field</sub>). Their gravitational
+    self-energy <b>E<sub>G</sub>[I]</b> sets a projected reduction time <b>τ = ℏ/E<sub>G</sub></b>.</p>
+    <p>Here: contour fan of <b>τ̂<sub>OR</sub>(κ,η)</b> over the same plane — compression where
+    synchrony overlaps energy contrast. <span class="warn">The paper is explicit: this is a
+    normalized proxy for relative shifts, not a measured collapse time.</span></p>
+    <span class="tag">E_G = G/2 ∬ ΔρΔρ′/|r−r′|</span><span class="tag">Z = 1−e^{−t(λ_G G + λ_D(1−X))}</span>
+  </div>
+</section>
+
+<section class="chapter" id="ch-perturb">
+  <div class="card">
+    <h2><span class="num">05 ·</span> The perturbation phase diagram</h2>
+    <p>Anesthetic strength × cavity/dielectric detuning, swept together. The <b>de-locking ridge</b>
+    (r = 0.5) is the bright fault line — and the claim worth testing: <b>detuning a cavity should
+    move where anesthesia wins</b>.</p>
+    <p>Proposal E1–E3 in the paper: electro-oriented microtubule films under THz/VNA spectroscopy
+    with isoflurane titration; entangled-photon (ETPA) pathway readout; nanoparticle-on-mirror
+    Casimir–Polder tuning. Two independent nulls would sink it.</p>
+    <span class="tag">A × δ sweep</span><span class="tag">E1 · E2 · E3 falsifiers</span>
+  </div>
+</section>
+
+<section class="chapter right" id="ch-plasma">
+  <div class="card">
+    <h2><span class="num">06 ·</span> Interlude — the same mathematics, 60&nbsp;km up</h2>
+    <p>Elsewhere in this corpus sits a 110-page monograph on <b>coherent plasma oscillations and
+    consciousness</b> — ionospheric double layers, filamented discharge, the argument that plasmas
+    self-organize into quasi-living structures. Fringe, but formally isomorphic: a plasma's
+    <b>double layer is a phase-locked boundary</b>; a Birkeland filament is a resonance chain
+    with geometry.</p>
+    <p>Creative leap, clearly labeled: if microtubules are a <em>polyatomic time crystal</em>,
+    an ionospheric plasma sheath is the same object drawn at planetary scale — clocks made of
+    charge sheets instead of aromatic pockets. The framework's obsession is one pattern:
+    <em>geometry selecting collective phase.</em></p>
+    <span class="tag">M2190ECF30984</span><span class="tag">plasma-sim corpus</span>
+    <span class="tag">interpretation, not evidence</span>
+  </div>
+</section>
+
+<section class="chapter" id="ch-epilogue">
+  <div class="card">
+    <h2><span class="num">07 ·</span> Where the load-bearing joints are</h2>
+    <p><b>What would kill it:</b> no discrete bands under electro-orientation (E1), no differential
+    ETPA/2PA contrast on π-rich routes (E2), or cavity shifts that move spectra but not locking
+    (E3). Any two nulls and this returns to ordinary dielectric dispersion.</p>
+    <p><b>What would excite:</b> plateau displacement tracking substrate curvature; the
+    de-locking ridge moving under detuning; triplet-of-triplet spectral structure surviving
+    independent replication. Either way, this is the version of Orch-OR that can be
+    <em>shot in the head politely</em> — which is the most generous thing you can say about a
+    consciousness theory.</p>
+    <span class="tag">CSF 213 (2026) 119151</span><span class="tag">doi:10.1016/j.chaos.2026.119151</span>
+    <span class="tag">wiki note: M439C883E759B</span>
+  </div>
+</section>
+</div>
+
+<div id="ctl">
+  <div id="ctlTitle" style="color:var(--cyan);letter-spacing:.12em;margin-bottom:2px">LIVE CONTROLS</div>
+  <div class="row"><label>anesthetic A</label><input id="sAnes" type="range" min="0" max="1" step="0.01" value="0"><span class="val" id="vAnes">0.00</span></div>
+  <div class="row"><label>cavity detune δ</label><input id="sDet" type="range" min="-0.5" max="0.5" step="0.01" value="0"><span class="val" id="vDet">0.00</span></div>
+  <div class="row"><label>curvature κ</label><input id="sKap" type="range" min="0" max="1" step="0.01" value="0.75"><span class="val" id="vKap">0.75</span></div>
+  <div class="row"><label>nesting η</label><input id="sEta" type="range" min="0" max="1" step="0.01" value="0.8"><span class="val" id="vEta">0.80</span></div>
+  <div id="rread">order parameter r = <b id="rval">—</b><div id="rbar"></div></div>
+</div>
+<div id="stats"></div>
+<footer>
+  interactive reading by Devin · simulation: geometry-gated Sakaguchi–Kuramoto re-implementation in normalized units
+  (not the paper's Table-S2 coefficients) · source: Chaos, Solitons &amp; Fractals 213 (2026) 119151 ·
+  corpus tie-ins: miscdocs M2190ECF30984, plasma-sim
+</footer>
+
+<script type="module" src="./main.js"></script>
+</body>
+</html>

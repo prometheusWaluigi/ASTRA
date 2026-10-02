@@ -1,0 +1,236 @@
+{
+  "seed": "S6-instrumented-cognition",
+  "model_key": "abl",
+  "alias": "qwen3-14b-abliterated",
+  "attempts": [
+    {
+      "request": {
+        "model": "qwen3-14b-abliterated",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a curious, rigorous research companion in a private home lab. You generate new ideas from a pair of concepts. Distinguish clearly between what the provided notes say, established mainstream science as you understand it, and your own speculation. Several source documents are speculative or AI-styled; say so when relevant. Never present speculation as fact."
+          },
+          {
+            "role": "user",
+            "content": "CONCEPT PAIR S6-instrumented-cognition: Machines as microscopes for minds\nGuiding question: If language models are trained on the historical record, can probing them reveal cognitive shifts that the record alone hides?\nShared terms (unverified lexical overlap, may be empty): \n\nLEFT: DeDeo: using big data to track major shifts in human cognition\nNotes (unreviewed local-model summary of the source; may contain errors):\n**Source Note: M8C07D8E54E2F**\n\n**Subject:** Analysis of shifts in human cognition using large-scale text data, focusing on the interplay between rational and intuitive language.  \n**Genre:** Scholarly commentary, with elements of critique and replication of prior research.  \n**Main Ideas:**  \n- The use of big data (e.g., Google Books corpus, newspaper archives) to detect historical trends in cognitive styles, represented by shifts in vocabulary polarities.  \n- Identification of two primary linguistic polarities: one reflecting archaic vs. modern themes, and another representing rational (\"system II\") vs. intuitive (\"system I\") language.  \n- A proposed \"rise\" of rationality from the mid-19th century to the late 20th century, followed by a \"fall\" beginning in the 1980s, potentially linked to the rise of social media.  \n- Critique of the interpretation of these shifts, particularly their alignment with Max Weber\u2019s concept of bureaucratic rationalization and the idea of a \"post-truth\" era.  \n\n**Striking Details:**  \n- The paper replicates and extends Scheffer et al.\u2019s (1) findings using The New York Times archive and additional newspapers (The Guardian, Pittsburgh Post-Gazette, Santa Fe New Mexican), revealing discrepancies in timing and magnitude of trends across sources.  \n- The authors flag OCR-related errors (e.g., the exclusion of \"hunch\" due to false hits from OCR) and note that the decline in rationality is not universally observed, with The Guardian showing a peak in rationality 30 years earlier than Google Books.  \n- The critique highlights the distinction between public expressions of rationality and actual cognitive processes, suggesting that linguistic shifts may reflect stylistic or cultural preferences rather than deeper psychological changes.  \n- The paper draws on examples from history (e.g., the Vietnam War, Hannah Arendt\u2019s analysis of the Pentagon Papers) and pop culture (e.g., *Office Space*) to question the interpretation of cognitive trends.  \n\n**Speculation:**  \n- **Speculation 1:** Could the \"fall\" of rationality observed in some datasets be influenced by changes in media formats or editorial priorities, rather than a genuine societal shift in cognitive style?  \n- **Speculation 2:** Might the discrepancy in timing between Google Books and The Guardian suggest that the use of rational language varies significantly across cultural contexts, challenging the universality of the proposed cognitive trends?  \n- **Speculation 3:** If linguistic\n\nRIGHT: Reading trail: machine learning and the desire to inspect what a machine has learned (plus 'Transformers Laid Out')\nNotes (unreviewed; may contain errors):\n**Source Note: M4C6A615194E8**  \n*Filenames: ['Transformers Laid Out _ Pramod\u2019s Blog.pdf']*  \n*Metadata title: Transformers Laid Out | Pramod\u2019s Blog*  \n*Total PDF pages: 66*  \n*Sampled pages: [1, 10, 20, 29, 38, 47, 57, 66]*  \n\nThis experimental private wiki appears to be a technical blog post or tutorial focused on explaining the architecture and implementation of transformer models in machine learning, with an emphasis on practical coding and conceptual understanding. The work is influenced by well-known resources such as Jay Alammar\u2019s blog and \"The Annotated Transformer\" and aims to provide a multi-perspective explanation of how transformers operate. The subject spans both theoretical concepts (e.g., attention mechanisms, positional encoding, encoder-decoder blocks) and hands-on coding examples, particularly in PyTorch.  \n\nThe genre is educational and pedagogical, targeting readers interested in deep learning, specifically those seeking to understand or implement transformer models. Key ideas include the explanation of self-attention and cross-attention mechanisms, the structure of encoder and decoder layers, the role of positional encoding, and the implementation of training loops on real-world data. The tutorial also touches on the limitations of earlier models like RNNs and LSTMs in handling long-range dependencies and highlights how transformers address this issue.  \n\nStriking details include the inclusion of visual or conceptual diagrams (e.g., attention scores, positional encoding) and code snippets for implementing transformer components. Sampled pages show examples of attention calculations, such as scores for queries, keys, and values, and code for generating positional encodings using sine and cosine functions. The tutorial also references utility functions for creating padding and future masks, which are critical in sequence-to-sequence tasks. On page 57, the author provides code for downloading and preparing the Multi30k dataset, suggesting the tutorial includes practical implementation on real-world data. The final page (p66) indicates that the blog serves as a broader platform for sharing content on topics like machine learning, philosophy, and personal interests, implying the tutorial is part of a larger collection of posts.  \n\n**Speculation:**  \n- Could this blog be part of a larger series of tutorials on deep learning models, and does it follow a structured curriculum? [M4C6A615194E8 p1]  \n- Does the author claim to have developed any n\n\nReturn ONLY a JSON object with these keys:\n- \"bridge\": one or two sentences naming the most interesting non-obvious connection.\n- \"hypotheses\": an array of exactly 3 objects, each with \"claim\" (one sentence), \"mechanism\" (2-3 sentences), \"prediction\" (a specific observable outcome that would differ if the claim were false), \"cheapest_test\" (a concrete test a small lab or a laptop could run), \"kill_condition\" (what result would make you abandon it), \"grounding\" (exactly one of \"supported-by-notes\", \"mainstream-plausible\", \"speculative\", \"fringe\"), and \"confidence\" (a number from 0 to 1).\n- \"strongest_objection\": the best argument that this pairing is only a coincidence of vocabulary.\n- \"image_prompt\": 45-90 words describing one concrete, striking visual scene that embodies the bridge. No text, letters, logos, or recognizable real people in the image.\n- \"title\": a 2-6 word evocative title for the image."
+          }
+        ],
+        "temperature": 0.8,
+        "top_p": 0.95,
+        "seed": 42,
+        "max_tokens": 1800,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "started_at": "2026-09-24T18:33:13.210515+00:00",
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"bridge\": \"The ability of language models to detect linguistic polarities in historical texts could serve as a tool for probing cognitive shifts that are not directly visible in the historical record, bridging the gap between computational analysis and cognitive science.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Language models trained on historical texts can reveal cognitive shifts that are obscured by surface-level historical narratives.\",\n      \"mechanism\": \"By detecting shifts in linguistic polarities (e.g., rational vs. intuitive language) across time, language models might uncover underlying changes in cognitive styles that are not explicitly recorded in the historical record. These shifts could be influenced by cultural, technological, or societal factors that are not visible in conventional historical analysis.\",\n      \"prediction\": \"If cognitive shifts are genuinely hidden, then language models would detect patterns that correlate with known cultural or technological turning points (e.g., rise of social media, the internet) not reflected in explicit historical records.\",\n      \"cheapest_test\": \"Train a language model on a subset of historical text data and analyze shifts in linguistic polarity over time, comparing results with independently identified cultural or technological milestones.\",\n      \"kill_condition\": \"No correlation is found between linguistic polarity shifts and independently identified cultural or technological milestones.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.6\n    },\n    {\n      \"claim\": \"The discrepancy in timing of linguistic shifts between different text corpora (e.g., Google Books vs. The Guardian) indicates that cognitive trends are context-dependent and influenced by media-specific biases.\",\n      \"mechanism\": \"Different text corpora may reflect different cultural, editorial, or technological contexts that influence the use of language. For example, The Guardian might have prioritized rational language earlier due to its journalistic focus, whereas Google Books may reflect a broader but more diverse range of texts with varying stylistic priorities.\",\n      \"prediction\": \"If cognitive trends are context-dependent, then the timing and magnitude of linguistic shifts would vary significantly depending on the type and source of the text corpus used.\",\n      \"cheapest_test\": \"Analyze the same set of linguistic polarity shifts across multiple text corpora (e.g., Google Books, The Guardian, and academic journals) to compare the timing and magnitude of the observed trends.\",\n      \"kill_condition\": \"All corpora show consistent timing and magnitude of linguistic shifts regardless of context.\",\n      \"grounding\": \"supported-by-notes\",\n      \"confidence\": 0.8\n    },\n    {\n      \"claim\": \"Transformer-based language models, due to their ability to capture long-range dependencies, may be more sensitive to subtle shifts in cognitive style than earlier models like RNNs or LSTMs.\",\n      \"mechanism\": \"Transformers can model complex and long-range interactions in text data, allowing them to detect more nuanced linguistic patterns that may be indicative of cognitive shifts. Earlier models may lack the same level of sensitivity or may be biased by their sequential processing limitations.\",\n      \"prediction\": \"Transformer models would detect more subtle and consistent cognitive shifts in text data compared to RNNs or LSTMs when tested on the same dataset.\",\n      \"cheapest_test\": \"Train both a transformer and an LSTM model on the same historical text dataset and compare their ability to detect shifts in linguistic polarity over time.\",\n      \"kill_condition\": \"The LSTM model performs equally or better than the transformer in detecting linguistic polarity shifts.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    }\n  ],\n  \"strongest_objection\": \"The pairing may be a coincidence of vocabulary rather than a meaningful connection, as the two concepts deal with different domains\u2014cognitive science and machine learning\u2014without an obvious, direct link in methodology or intent.\",\n  \"image_prompt\": \"A translucent, glowing neural network overlaid on top of a historical text, with shifting colors representing different cognitive styles (rational, intuitive, archaic, modern). The network's nodes pulse in response to the text, revealing hidden patterns and connections invisible to the naked eye.\",\n  \"title\": \"Hidden Minds, Glowing Networks\"\n}"
+            }
+          }
+        ],
+        "created": 1790274864,
+        "model": "qwen3-14b-abliterated",
+        "system_fingerprint": "b11077-982a3329a",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 844,
+          "prompt_tokens": 1487,
+          "total_tokens": 2331,
+          "prompt_tokens_details": {
+            "cached_tokens": 81
+          }
+        },
+        "id": "chatcmpl-W6XarqR4WkmYWbU2lbBLmeuuCH8FgEfB",
+        "timings": {
+          "cache_n": 81,
+          "prompt_n": 1406,
+          "prompt_ms": 6817.747,
+          "prompt_per_token_ms": 4.849037695590328,
+          "prompt_per_second": 206.22648508370872,
+          "predicted_n": 844,
+          "predicted_ms": 64819.265,
+          "predicted_per_token_ms": 76.8911803084223,
+          "predicted_per_second": 13.005392764018536
+        }
+      },
+      "content": "{\n  \"bridge\": \"The ability of language models to detect linguistic polarities in historical texts could serve as a tool for probing cognitive shifts that are not directly visible in the historical record, bridging the gap between computational analysis and cognitive science.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Language models trained on historical texts can reveal cognitive shifts that are obscured by surface-level historical narratives.\",\n      \"mechanism\": \"By detecting shifts in linguistic polarities (e.g., rational vs. intuitive language) across time, language models might uncover underlying changes in cognitive styles that are not explicitly recorded in the historical record. These shifts could be influenced by cultural, technological, or societal factors that are not visible in conventional historical analysis.\",\n      \"prediction\": \"If cognitive shifts are genuinely hidden, then language models would detect patterns that correlate with known cultural or technological turning points (e.g., rise of social media, the internet) not reflected in explicit historical records.\",\n      \"cheapest_test\": \"Train a language model on a subset of historical text data and analyze shifts in linguistic polarity over time, comparing results with independently identified cultural or technological milestones.\",\n      \"kill_condition\": \"No correlation is found between linguistic polarity shifts and independently identified cultural or technological milestones.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.6\n    },\n    {\n      \"claim\": \"The discrepancy in timing of linguistic shifts between different text corpora (e.g., Google Books vs. The Guardian) indicates that cognitive trends are context-dependent and influenced by media-specific biases.\",\n      \"mechanism\": \"Different text corpora may reflect different cultural, editorial, or technological contexts that influence the use of language. For example, The Guardian might have prioritized rational language earlier due to its journalistic focus, whereas Google Books may reflect a broader but more diverse range of texts with varying stylistic priorities.\",\n      \"prediction\": \"If cognitive trends are context-dependent, then the timing and magnitude of linguistic shifts would vary significantly depending on the type and source of the text corpus used.\",\n      \"cheapest_test\": \"Analyze the same set of linguistic polarity shifts across multiple text corpora (e.g., Google Books, The Guardian, and academic journals) to compare the timing and magnitude of the observed trends.\",\n      \"kill_condition\": \"All corpora show consistent timing and magnitude of linguistic shifts regardless of context.\",\n      \"grounding\": \"supported-by-notes\",\n      \"confidence\": 0.8\n    },\n    {\n      \"claim\": \"Transformer-based language models, due to their ability to capture long-range dependencies, may be more sensitive to subtle shifts in cognitive style than earlier models like RNNs or LSTMs.\",\n      \"mechanism\": \"Transformers can model complex and long-range interactions in text data, allowing them to detect more nuanced linguistic patterns that may be indicative of cognitive shifts. Earlier models may lack the same level of sensitivity or may be biased by their sequential processing limitations.\",\n      \"prediction\": \"Transformer models would detect more subtle and consistent cognitive shifts in text data compared to RNNs or LSTMs when tested on the same dataset.\",\n      \"cheapest_test\": \"Train both a transformer and an LSTM model on the same historical text dataset and compare their ability to detect shifts in linguistic polarity over time.\",\n      \"kill_condition\": \"The LSTM model performs equally or better than the transformer in detecting linguistic polarity shifts.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    }\n  ],\n  \"strongest_objection\": \"The pairing may be a coincidence of vocabulary rather than a meaningful connection, as the two concepts deal with different domains\u2014cognitive science and machine learning\u2014without an obvious, direct link in methodology or intent.\",\n  \"image_prompt\": \"A translucent, glowing neural network overlaid on top of a historical text, with shifting colors representing different cognitive styles (rational, intuitive, archaic, modern). The network's nodes pulse in response to the text, revealing hidden patterns and connections invisible to the naked eye.\",\n  \"title\": \"Hidden Minds, Glowing Networks\"\n}",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 844,
+        "prompt_tokens": 1487,
+        "total_tokens": 2331,
+        "prompt_tokens_details": {
+          "cached_tokens": 81
+        }
+      },
+      "parsed": {
+        "bridge": "The ability of language models to detect linguistic polarities in historical texts could serve as a tool for probing cognitive shifts that are not directly visible in the historical record, bridging the gap between computational analysis and cognitive science.",
+        "hypotheses": [
+          {
+            "claim": "Language models trained on historical texts can reveal cognitive shifts that are obscured by surface-level historical narratives.",
+            "mechanism": "By detecting shifts in linguistic polarities (e.g., rational vs. intuitive language) across time, language models might uncover underlying changes in cognitive styles that are not explicitly recorded in the historical record. These shifts could be influenced by cultural, technological, or societal factors that are not visible in conventional historical analysis.",
+            "prediction": "If cognitive shifts are genuinely hidden, then language models would detect patterns that correlate with known cultural or technological turning points (e.g., rise of social media, the internet) not reflected in explicit historical records.",
+            "cheapest_test": "Train a language model on a subset of historical text data and analyze shifts in linguistic polarity over time, comparing results with independently identified cultural or technological milestones.",
+            "kill_condition": "No correlation is found between linguistic polarity shifts and independently identified cultural or technological milestones.",
+            "grounding": "speculative",
+            "confidence": 0.6
+          },
+          {
+            "claim": "The discrepancy in timing of linguistic shifts between different text corpora (e.g., Google Books vs. The Guardian) indicates that cognitive trends are context-dependent and influenced by media-specific biases.",
+            "mechanism": "Different text corpora may reflect different cultural, editorial, or technological contexts that influence the use of language. For example, The Guardian might have prioritized rational language earlier due to its journalistic focus, whereas Google Books may reflect a broader but more diverse range of texts with varying stylistic priorities.",
+            "prediction": "If cognitive trends are context-dependent, then the timing and magnitude of linguistic shifts would vary significantly depending on the type and source of the text corpus used.",
+            "cheapest_test": "Analyze the same set of linguistic polarity shifts across multiple text corpora (e.g., Google Books, The Guardian, and academic journals) to compare the timing and magnitude of the observed trends.",
+            "kill_condition": "All corpora show consistent timing and magnitude of linguistic shifts regardless of context.",
+            "grounding": "supported-by-notes",
+            "confidence": 0.8
+          },
+          {
+            "claim": "Transformer-based language models, due to their ability to capture long-range dependencies, may be more sensitive to subtle shifts in cognitive style than earlier models like RNNs or LSTMs.",
+            "mechanism": "Transformers can model complex and long-range interactions in text data, allowing them to detect more nuanced linguistic patterns that may be indicative of cognitive shifts. Earlier models may lack the same level of sensitivity or may be biased by their sequential processing limitations.",
+            "prediction": "Transformer models would detect more subtle and consistent cognitive shifts in text data compared to RNNs or LSTMs when tested on the same dataset.",
+            "cheapest_test": "Train both a transformer and an LSTM model on the same historical text dataset and compare their ability to detect shifts in linguistic polarity over time.",
+            "kill_condition": "The LSTM model performs equally or better than the transformer in detecting linguistic polarity shifts.",
+            "grounding": "mainstream-plausible",
+            "confidence": 0.7
+          }
+        ],
+        "strongest_objection": "The pairing may be a coincidence of vocabulary rather than a meaningful connection, as the two concepts deal with different domains\u2014cognitive science and machine learning\u2014without an obvious, direct link in methodology or intent.",
+        "image_prompt": "A translucent, glowing neural network overlaid on top of a historical text, with shifting colors representing different cognitive styles (rational, intuitive, archaic, modern). The network's nodes pulse in response to the text, revealing hidden patterns and connections invisible to the naked eye.",
+        "title": "Hidden Minds, Glowing Networks"
+      },
+      "wall_seconds": 71.79,
+      "attempt": 1,
+      "validation": {
+        "ok": true,
+        "errors": []
+      },
+      "used": true
+    }
+  ],
+  "final": {
+    "request": {
+      "model": "qwen3-14b-abliterated",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a curious, rigorous research companion in a private home lab. You generate new ideas from a pair of concepts. Distinguish clearly between what the provided notes say, established mainstream science as you understand it, and your own speculation. Several source documents are speculative or AI-styled; say so when relevant. Never present speculation as fact."
+        },
+        {
+          "role": "user",
+          "content": "CONCEPT PAIR S6-instrumented-cognition: Machines as microscopes for minds\nGuiding question: If language models are trained on the historical record, can probing them reveal cognitive shifts that the record alone hides?\nShared terms (unverified lexical overlap, may be empty): \n\nLEFT: DeDeo: using big data to track major shifts in human cognition\nNotes (unreviewed local-model summary of the source; may contain errors):\n**Source Note: M8C07D8E54E2F**\n\n**Subject:** Analysis of shifts in human cognition using large-scale text data, focusing on the interplay between rational and intuitive language.  \n**Genre:** Scholarly commentary, with elements of critique and replication of prior research.  \n**Main Ideas:**  \n- The use of big data (e.g., Google Books corpus, newspaper archives) to detect historical trends in cognitive styles, represented by shifts in vocabulary polarities.  \n- Identification of two primary linguistic polarities: one reflecting archaic vs. modern themes, and another representing rational (\"system II\") vs. intuitive (\"system I\") language.  \n- A proposed \"rise\" of rationality from the mid-19th century to the late 20th century, followed by a \"fall\" beginning in the 1980s, potentially linked to the rise of social media.  \n- Critique of the interpretation of these shifts, particularly their alignment with Max Weber\u2019s concept of bureaucratic rationalization and the idea of a \"post-truth\" era.  \n\n**Striking Details:**  \n- The paper replicates and extends Scheffer et al.\u2019s (1) findings using The New York Times archive and additional newspapers (The Guardian, Pittsburgh Post-Gazette, Santa Fe New Mexican), revealing discrepancies in timing and magnitude of trends across sources.  \n- The authors flag OCR-related errors (e.g., the exclusion of \"hunch\" due to false hits from OCR) and note that the decline in rationality is not universally observed, with The Guardian showing a peak in rationality 30 years earlier than Google Books.  \n- The critique highlights the distinction between public expressions of rationality and actual cognitive processes, suggesting that linguistic shifts may reflect stylistic or cultural preferences rather than deeper psychological changes.  \n- The paper draws on examples from history (e.g., the Vietnam War, Hannah Arendt\u2019s analysis of the Pentagon Papers) and pop culture (e.g., *Office Space*) to question the interpretation of cognitive trends.  \n\n**Speculation:**  \n- **Speculation 1:** Could the \"fall\" of rationality observed in some datasets be influenced by changes in media formats or editorial priorities, rather than a genuine societal shift in cognitive style?  \n- **Speculation 2:** Might the discrepancy in timing between Google Books and The Guardian suggest that the use of rational language varies significantly across cultural contexts, challenging the universality of the proposed cognitive trends?  \n- **Speculation 3:** If linguistic\n\nRIGHT: Reading trail: machine learning and the desire to inspect what a machine has learned (plus 'Transformers Laid Out')\nNotes (unreviewed; may contain errors):\n**Source Note: M4C6A615194E8**  \n*Filenames: ['Transformers Laid Out _ Pramod\u2019s Blog.pdf']*  \n*Metadata title: Transformers Laid Out | Pramod\u2019s Blog*  \n*Total PDF pages: 66*  \n*Sampled pages: [1, 10, 20, 29, 38, 47, 57, 66]*  \n\nThis experimental private wiki appears to be a technical blog post or tutorial focused on explaining the architecture and implementation of transformer models in machine learning, with an emphasis on practical coding and conceptual understanding. The work is influenced by well-known resources such as Jay Alammar\u2019s blog and \"The Annotated Transformer\" and aims to provide a multi-perspective explanation of how transformers operate. The subject spans both theoretical concepts (e.g., attention mechanisms, positional encoding, encoder-decoder blocks) and hands-on coding examples, particularly in PyTorch.  \n\nThe genre is educational and pedagogical, targeting readers interested in deep learning, specifically those seeking to understand or implement transformer models. Key ideas include the explanation of self-attention and cross-attention mechanisms, the structure of encoder and decoder layers, the role of positional encoding, and the implementation of training loops on real-world data. The tutorial also touches on the limitations of earlier models like RNNs and LSTMs in handling long-range dependencies and highlights how transformers address this issue.  \n\nStriking details include the inclusion of visual or conceptual diagrams (e.g., attention scores, positional encoding) and code snippets for implementing transformer components. Sampled pages show examples of attention calculations, such as scores for queries, keys, and values, and code for generating positional encodings using sine and cosine functions. The tutorial also references utility functions for creating padding and future masks, which are critical in sequence-to-sequence tasks. On page 57, the author provides code for downloading and preparing the Multi30k dataset, suggesting the tutorial includes practical implementation on real-world data. The final page (p66) indicates that the blog serves as a broader platform for sharing content on topics like machine learning, philosophy, and personal interests, implying the tutorial is part of a larger collection of posts.  \n\n**Speculation:**  \n- Could this blog be part of a larger series of tutorials on deep learning models, and does it follow a structured curriculum? [M4C6A615194E8 p1]  \n- Does the author claim to have developed any n\n\nReturn ONLY a JSON object with these keys:\n- \"bridge\": one or two sentences naming the most interesting non-obvious connection.\n- \"hypotheses\": an array of exactly 3 objects, each with \"claim\" (one sentence), \"mechanism\" (2-3 sentences), \"prediction\" (a specific observable outcome that would differ if the claim were false), \"cheapest_test\" (a concrete test a small lab or a laptop could run), \"kill_condition\" (what result would make you abandon it), \"grounding\" (exactly one of \"supported-by-notes\", \"mainstream-plausible\", \"speculative\", \"fringe\"), and \"confidence\" (a number from 0 to 1).\n- \"strongest_objection\": the best argument that this pairing is only a coincidence of vocabulary.\n- \"image_prompt\": 45-90 words describing one concrete, striking visual scene that embodies the bridge. No text, letters, logos, or recognizable real people in the image.\n- \"title\": a 2-6 word evocative title for the image."
+        }
+      ],
+      "temperature": 0.8,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_tokens": 1800,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "started_at": "2026-09-24T18:33:13.210515+00:00",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"bridge\": \"The ability of language models to detect linguistic polarities in historical texts could serve as a tool for probing cognitive shifts that are not directly visible in the historical record, bridging the gap between computational analysis and cognitive science.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Language models trained on historical texts can reveal cognitive shifts that are obscured by surface-level historical narratives.\",\n      \"mechanism\": \"By detecting shifts in linguistic polarities (e.g., rational vs. intuitive language) across time, language models might uncover underlying changes in cognitive styles that are not explicitly recorded in the historical record. These shifts could be influenced by cultural, technological, or societal factors that are not visible in conventional historical analysis.\",\n      \"prediction\": \"If cognitive shifts are genuinely hidden, then language models would detect patterns that correlate with known cultural or technological turning points (e.g., rise of social media, the internet) not reflected in explicit historical records.\",\n      \"cheapest_test\": \"Train a language model on a subset of historical text data and analyze shifts in linguistic polarity over time, comparing results with independently identified cultural or technological milestones.\",\n      \"kill_condition\": \"No correlation is found between linguistic polarity shifts and independently identified cultural or technological milestones.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.6\n    },\n    {\n      \"claim\": \"The discrepancy in timing of linguistic shifts between different text corpora (e.g., Google Books vs. The Guardian) indicates that cognitive trends are context-dependent and influenced by media-specific biases.\",\n      \"mechanism\": \"Different text corpora may reflect different cultural, editorial, or technological contexts that influence the use of language. For example, The Guardian might have prioritized rational language earlier due to its journalistic focus, whereas Google Books may reflect a broader but more diverse range of texts with varying stylistic priorities.\",\n      \"prediction\": \"If cognitive trends are context-dependent, then the timing and magnitude of linguistic shifts would vary significantly depending on the type and source of the text corpus used.\",\n      \"cheapest_test\": \"Analyze the same set of linguistic polarity shifts across multiple text corpora (e.g., Google Books, The Guardian, and academic journals) to compare the timing and magnitude of the observed trends.\",\n      \"kill_condition\": \"All corpora show consistent timing and magnitude of linguistic shifts regardless of context.\",\n      \"grounding\": \"supported-by-notes\",\n      \"confidence\": 0.8\n    },\n    {\n      \"claim\": \"Transformer-based language models, due to their ability to capture long-range dependencies, may be more sensitive to subtle shifts in cognitive style than earlier models like RNNs or LSTMs.\",\n      \"mechanism\": \"Transformers can model complex and long-range interactions in text data, allowing them to detect more nuanced linguistic patterns that may be indicative of cognitive shifts. Earlier models may lack the same level of sensitivity or may be biased by their sequential processing limitations.\",\n      \"prediction\": \"Transformer models would detect more subtle and consistent cognitive shifts in text data compared to RNNs or LSTMs when tested on the same dataset.\",\n      \"cheapest_test\": \"Train both a transformer and an LSTM model on the same historical text dataset and compare their ability to detect shifts in linguistic polarity over time.\",\n      \"kill_condition\": \"The LSTM model performs equally or better than the transformer in detecting linguistic polarity shifts.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    }\n  ],\n  \"strongest_objection\": \"The pairing may be a coincidence of vocabulary rather than a meaningful connection, as the two concepts deal with different domains\u2014cognitive science and machine learning\u2014without an obvious, direct link in methodology or intent.\",\n  \"image_prompt\": \"A translucent, glowing neural network overlaid on top of a historical text, with shifting colors representing different cognitive styles (rational, intuitive, archaic, modern). The network's nodes pulse in response to the text, revealing hidden patterns and connections invisible to the naked eye.\",\n  \"title\": \"Hidden Minds, Glowing Networks\"\n}"
+          }
+        }
+      ],
+      "created": 1790274864,
+      "model": "qwen3-14b-abliterated",
+      "system_fingerprint": "b11077-982a3329a",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 844,
+        "prompt_tokens": 1487,
+        "total_tokens": 2331,
+        "prompt_tokens_details": {
+          "cached_tokens": 81
+        }
+      },
+      "id": "chatcmpl-W6XarqR4WkmYWbU2lbBLmeuuCH8FgEfB",
+      "timings": {
+        "cache_n": 81,
+        "prompt_n": 1406,
+        "prompt_ms": 6817.747,
+        "prompt_per_token_ms": 4.849037695590328,
+        "prompt_per_second": 206.22648508370872,
+        "predicted_n": 844,
+        "predicted_ms": 64819.265,
+        "predicted_per_token_ms": 76.8911803084223,
+        "predicted_per_second": 13.005392764018536
+      }
+    },
+    "content": "{\n  \"bridge\": \"The ability of language models to detect linguistic polarities in historical texts could serve as a tool for probing cognitive shifts that are not directly visible in the historical record, bridging the gap between computational analysis and cognitive science.\",\n  \"hypotheses\": [\n    {\n      \"claim\": \"Language models trained on historical texts can reveal cognitive shifts that are obscured by surface-level historical narratives.\",\n      \"mechanism\": \"By detecting shifts in linguistic polarities (e.g., rational vs. intuitive language) across time, language models might uncover underlying changes in cognitive styles that are not explicitly recorded in the historical record. These shifts could be influenced by cultural, technological, or societal factors that are not visible in conventional historical analysis.\",\n      \"prediction\": \"If cognitive shifts are genuinely hidden, then language models would detect patterns that correlate with known cultural or technological turning points (e.g., rise of social media, the internet) not reflected in explicit historical records.\",\n      \"cheapest_test\": \"Train a language model on a subset of historical text data and analyze shifts in linguistic polarity over time, comparing results with independently identified cultural or technological milestones.\",\n      \"kill_condition\": \"No correlation is found between linguistic polarity shifts and independently identified cultural or technological milestones.\",\n      \"grounding\": \"speculative\",\n      \"confidence\": 0.6\n    },\n    {\n      \"claim\": \"The discrepancy in timing of linguistic shifts between different text corpora (e.g., Google Books vs. The Guardian) indicates that cognitive trends are context-dependent and influenced by media-specific biases.\",\n      \"mechanism\": \"Different text corpora may reflect different cultural, editorial, or technological contexts that influence the use of language. For example, The Guardian might have prioritized rational language earlier due to its journalistic focus, whereas Google Books may reflect a broader but more diverse range of texts with varying stylistic priorities.\",\n      \"prediction\": \"If cognitive trends are context-dependent, then the timing and magnitude of linguistic shifts would vary significantly depending on the type and source of the text corpus used.\",\n      \"cheapest_test\": \"Analyze the same set of linguistic polarity shifts across multiple text corpora (e.g., Google Books, The Guardian, and academic journals) to compare the timing and magnitude of the observed trends.\",\n      \"kill_condition\": \"All corpora show consistent timing and magnitude of linguistic shifts regardless of context.\",\n      \"grounding\": \"supported-by-notes\",\n      \"confidence\": 0.8\n    },\n    {\n      \"claim\": \"Transformer-based language models, due to their ability to capture long-range dependencies, may be more sensitive to subtle shifts in cognitive style than earlier models like RNNs or LSTMs.\",\n      \"mechanism\": \"Transformers can model complex and long-range interactions in text data, allowing them to detect more nuanced linguistic patterns that may be indicative of cognitive shifts. Earlier models may lack the same level of sensitivity or may be biased by their sequential processing limitations.\",\n      \"prediction\": \"Transformer models would detect more subtle and consistent cognitive shifts in text data compared to RNNs or LSTMs when tested on the same dataset.\",\n      \"cheapest_test\": \"Train both a transformer and an LSTM model on the same historical text dataset and compare their ability to detect shifts in linguistic polarity over time.\",\n      \"kill_condition\": \"The LSTM model performs equally or better than the transformer in detecting linguistic polarity shifts.\",\n      \"grounding\": \"mainstream-plausible\",\n      \"confidence\": 0.7\n    }\n  ],\n  \"strongest_objection\": \"The pairing may be a coincidence of vocabulary rather than a meaningful connection, as the two concepts deal with different domains\u2014cognitive science and machine learning\u2014without an obvious, direct link in methodology or intent.\",\n  \"image_prompt\": \"A translucent, glowing neural network overlaid on top of a historical text, with shifting colors representing different cognitive styles (rational, intuitive, archaic, modern). The network's nodes pulse in response to the text, revealing hidden patterns and connections invisible to the naked eye.\",\n  \"title\": \"Hidden Minds, Glowing Networks\"\n}",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 844,
+      "prompt_tokens": 1487,
+      "total_tokens": 2331,
+      "prompt_tokens_details": {
+        "cached_tokens": 81
+      }
+    },
+    "parsed": {
+      "bridge": "The ability of language models to detect linguistic polarities in historical texts could serve as a tool for probing cognitive shifts that are not directly visible in the historical record, bridging the gap between computational analysis and cognitive science.",
+      "hypotheses": [
+        {
+          "claim": "Language models trained on historical texts can reveal cognitive shifts that are obscured by surface-level historical narratives.",
+          "mechanism": "By detecting shifts in linguistic polarities (e.g., rational vs. intuitive language) across time, language models might uncover underlying changes in cognitive styles that are not explicitly recorded in the historical record. These shifts could be influenced by cultural, technological, or societal factors that are not visible in conventional historical analysis.",
+          "prediction": "If cognitive shifts are genuinely hidden, then language models would detect patterns that correlate with known cultural or technological turning points (e.g., rise of social media, the internet) not reflected in explicit historical records.",
+          "cheapest_test": "Train a language model on a subset of historical text data and analyze shifts in linguistic polarity over time, comparing results with independently identified cultural or technological milestones.",
+          "kill_condition": "No correlation is found between linguistic polarity shifts and independently identified cultural or technological milestones.",
+          "grounding": "speculative",
+          "confidence": 0.6
+        },
+        {
+          "claim": "The discrepancy in timing of linguistic shifts between different text corpora (e.g., Google Books vs. The Guardian) indicates that cognitive trends are context-dependent and influenced by media-specific biases.",
+          "mechanism": "Different text corpora may reflect different cultural, editorial, or technological contexts that influence the use of language. For example, The Guardian might have prioritized rational language earlier due to its journalistic focus, whereas Google Books may reflect a broader but more diverse range of texts with varying stylistic priorities.",
+          "prediction": "If cognitive trends are context-dependent, then the timing and magnitude of linguistic shifts would vary significantly depending on the type and source of the text corpus used.",
+          "cheapest_test": "Analyze the same set of linguistic polarity shifts across multiple text corpora (e.g., Google Books, The Guardian, and academic journals) to compare the timing and magnitude of the observed trends.",
+          "kill_condition": "All corpora show consistent timing and magnitude of linguistic shifts regardless of context.",
+          "grounding": "supported-by-notes",
+          "confidence": 0.8
+        },
+        {
+          "claim": "Transformer-based language models, due to their ability to capture long-range dependencies, may be more sensitive to subtle shifts in cognitive style than earlier models like RNNs or LSTMs.",
+          "mechanism": "Transformers can model complex and long-range interactions in text data, allowing them to detect more nuanced linguistic patterns that may be indicative of cognitive shifts. Earlier models may lack the same level of sensitivity or may be biased by their sequential processing limitations.",
+          "prediction": "Transformer models would detect more subtle and consistent cognitive shifts in text data compared to RNNs or LSTMs when tested on the same dataset.",
+          "cheapest_test": "Train both a transformer and an LSTM model on the same historical text dataset and compare their ability to detect shifts in linguistic polarity over time.",
+          "kill_condition": "The LSTM model performs equally or better than the transformer in detecting linguistic polarity shifts.",
+          "grounding": "mainstream-plausible",
+          "confidence": 0.7
+        }
+      ],
+      "strongest_objection": "The pairing may be a coincidence of vocabulary rather than a meaningful connection, as the two concepts deal with different domains\u2014cognitive science and machine learning\u2014without an obvious, direct link in methodology or intent.",
+      "image_prompt": "A translucent, glowing neural network overlaid on top of a historical text, with shifting colors representing different cognitive styles (rational, intuitive, archaic, modern). The network's nodes pulse in response to the text, revealing hidden patterns and connections invisible to the naked eye.",
+      "title": "Hidden Minds, Glowing Networks"
+    },
+    "wall_seconds": 71.79,
+    "attempt": 1,
+    "validation": {
+      "ok": true,
+      "errors": []
+    },
+    "used": true
+  },
+  "valid": true
+}

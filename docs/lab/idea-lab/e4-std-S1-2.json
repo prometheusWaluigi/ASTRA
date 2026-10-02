@@ -1,0 +1,9 @@
+{
+  "filename": "std-S1-2.png",
+  "model_key": "std",
+  "seed": "S1-multiway-mind",
+  "image_seed": 4302,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 180.11
+}

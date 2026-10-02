@@ -1,0 +1,157 @@
+{
+  "spec": {
+    "core": "kuramoto",
+    "title": "Resonance Chain",
+    "label_a": "Polyatomic Time Crystals",
+    "label_b": "Nonlinear Synchronization in Hierarchical Networks",
+    "params_a": {
+      "coupling": 3.0,
+      "frustration": 0.5,
+      "spread": 1.2
+    },
+    "params_b": {
+      "coupling": 2.5,
+      "frustration": 0.3,
+      "spread": 0.8
+    },
+    "skeleton": "Resonance networks with phase locking and geometric constraints.",
+    "why": "Both involve geometric-induced synchronization and phase locking in complex systems."
+  },
+  "members": [
+    {
+      "name": "Resonance Chain",
+      "world_a": "Polyatomic Time Crystals",
+      "world_b": "Nonlinear Synchronization in Hierarchical Networks",
+      "shared_skeleton": "Resonance networks with phase locking and geometric constraints.",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 3.0,
+        "frustration": 0.5,
+        "spread": 1.2
+      },
+      "params_b": {
+        "coupling": 2.5,
+        "frustration": 0.3,
+        "spread": 0.8
+      },
+      "why": "Both involve geometric-induced synchronization and phase locking in complex systems."
+    },
+    {
+      "name": "Resonance Chain",
+      "world_a": "Polyatomic Time Crystal",
+      "world_b": "Dynamic Switching Energy Model",
+      "shared_skeleton": "Nonlinear synchronization dynamics with phase locking and coupling effects",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 3.2,
+        "frustration": 0.7,
+        "spread": 1.5
+      },
+      "params_b": {
+        "coupling": 2.8,
+        "frustration": 0.4,
+        "spread": 1.2
+      },
+      "why": "Both models explore how nonlinear synchronization and phase locking govern complex, adaptive systems."
+    },
+    {
+      "name": "Kuramoto-Resonance",
+      "world_a": "Polyatomic time crystals",
+      "world_b": "Adaptive hierarchical consensus dynamics",
+      "shared_skeleton": "Nonlinear synchronization and phase locking influenced by geometric constraints",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 2.3,
+        "frustration": 0.8,
+        "spread": 1.2
+      },
+      "params_b": {
+        "coupling": 1.7,
+        "frustration": -0.5,
+        "spread": 0.9
+      },
+      "why": "Both systems reveal how geometric and state-dependent factors can influence synchronization and phase locking."
+    },
+    {
+      "name": "Kuramoto-Resonance",
+      "world_a": "Polyatomic Time Crystal",
+      "world_b": "Coherence-Induced Fragmentation",
+      "shared_skeleton": "Nonlinear synchronization dynamics governed by geometric constraints and phase locking",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 2.5,
+        "frustration": 0.7,
+        "spread": 1.2
+      },
+      "params_b": {
+        "coupling": 1.8,
+        "frustration": -0.3,
+        "spread": 0.9
+      },
+      "why": "Both papers explore synchronization and its limitations in systems with complex geometries."
+    },
+    {
+      "name": "Resonance Locking",
+      "world_a": "Polyatomic Time Crystals",
+      "world_b": "Coherence-Induced Fragmentation",
+      "shared_skeleton": "Phase locking through nonlinear interactions governed by geometric constraints",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 3.2,
+        "frustration": 0.7,
+        "spread": 1.5
+      },
+      "params_b": {
+        "coupling": 2.8,
+        "frustration": 0.3,
+        "spread": 0.9
+      },
+      "why": "Both explore how synchronization or coherence can be shaped by geometric and topological constraints."
+    },
+    {
+      "name": "Kuramoto Chain",
+      "world_a": "Geometry-orchestrated objective reduction from a multiscale resonance chain: Polyatomic time crystals",
+      "world_b": "Coherence-induced fragmentation in adaptive hierarchical consensus dynamics",
+      "shared_skeleton": "Nonlinear synchronization governed by geometric constraints",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 2.5,
+        "frustration": 0.8,
+        "spread": 1.2
+      },
+      "params_b": {
+        "coupling": 2.0,
+        "frustration": 0.7,
+        "spread": 1.0
+      },
+      "why": "Both models explore synchronization and coherence dynamics influenced by geometric or hierarchical constraints."
+    },
+    {
+      "name": "Resonant Fracture",
+      "world_a": "Geometry-orchestrated objective reduction from a multiscale resonance chain",
+      "world_b": "Coherence-induced fragmentation in adaptive hierarchical consensus dynamics",
+      "shared_skeleton": "Nonlinear synchronization and resonance networks governed by geometric constraints",
+      "core": "kuramoto",
+      "params_a": {
+        "coupling": 3.2,
+        "frustration": -0.8,
+        "spread": 1.4
+      },
+      "params_b": {
+        "coupling": 2.7,
+        "frustration": -0.5,
+        "spread": 1.1
+      },
+      "why": "Both systems exhibit synchronization under geometric constraints, yet are fractured by internal coherence."
+    }
+  ],
+  "runs": [
+    "abl-quantum-plasma-consciousness-executor",
+    "abl-transcendentodyssey",
+    "std-dragonheartshieldlisp",
+    "std-mathematical-friendship-operator",
+    "std-topological-consciousness-mapping",
+    "std-transcendentodyssey",
+    "std-waluigiprompt"
+  ]
+}

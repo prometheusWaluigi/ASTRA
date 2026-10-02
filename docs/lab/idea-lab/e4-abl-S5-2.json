@@ -1,0 +1,9 @@
+{
+  "filename": "abl-S5-2.png",
+  "model_key": "abl",
+  "seed": "S5-curved-cortex",
+  "image_seed": 4302,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 165.1
+}

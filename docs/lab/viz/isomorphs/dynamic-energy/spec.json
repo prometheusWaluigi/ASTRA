@@ -1,0 +1,81 @@
+{
+  "spec": {
+    "core": "bridge",
+    "title": "Dynamic Energy",
+    "label_a": "Energy expenditure model with physiological hysteresis",
+    "label_b": "Diffusion bridge with randomized initial/terminal times",
+    "params_a": {
+      "noise": 1.5,
+      "endpoint_spread": 0.3,
+      "drift": -0.5
+    },
+    "params_b": {
+      "noise": 0.8,
+      "endpoint_spread": 0.6,
+      "drift": 0.2
+    },
+    "skeleton": "Nonlinear, state-dependent dynamics with time delays and environmental influence",
+    "why": "Both model state-dependent, non-linear processes with stochastic elements."
+  },
+  "members": [
+    {
+      "name": "Dynamic Energy",
+      "world_a": "Energy expenditure model with physiological hysteresis",
+      "world_b": "Diffusion bridge with randomized initial/terminal times",
+      "shared_skeleton": "Nonlinear, state-dependent dynamics with time delays and environmental influence",
+      "core": "bridge",
+      "params_a": {
+        "noise": 1.5,
+        "endpoint_spread": 0.3,
+        "drift": -0.5
+      },
+      "params_b": {
+        "noise": 0.8,
+        "endpoint_spread": 0.6,
+        "drift": 0.2
+      },
+      "why": "Both model state-dependent, non-linear processes with stochastic elements."
+    },
+    {
+      "name": "Dynamic Switching",
+      "world_a": "Energy Expenditure Model",
+      "world_b": "Diffusion Bridge for Fish Migration",
+      "shared_skeleton": "Nonlinear, state-dependent dynamics with memory and hysteresis effects",
+      "core": "bridge",
+      "params_a": {
+        "noise": 1.2,
+        "endpoint_spread": 0.4,
+        "drift": -0.3
+      },
+      "params_b": {
+        "noise": 0.8,
+        "endpoint_spread": 0.6,
+        "drift": 0.1
+      },
+      "why": "Both use dynamic switching and memory to model transitions and environmental influences."
+    },
+    {
+      "name": "Dynamic Hysteresis",
+      "world_a": "A dynamic switching mathematical model for estimating energy expenditure based on physiological hysteresis",
+      "world_b": "Diffusion bridge with randomized initial and terminal times and its application to fish migration",
+      "shared_skeleton": "A stochastic system with state-dependent time delays and memory effects that shape dynamic behavior.",
+      "core": "bridge",
+      "params_a": {
+        "noise": 1.2,
+        "endpoint_spread": 0.4,
+        "drift": 0.1
+      },
+      "params_b": {
+        "noise": 2.8,
+        "endpoint_spread": 0.7,
+        "drift": -0.3
+      },
+      "why": "Both systems incorporate time delays and memory effects to model complex, adaptive dynamics."
+    }
+  ],
+  "runs": [
+    "std-metamathematical-consciousness",
+    "std-quantum-comedy-operator",
+    "std-reality-compiler"
+  ]
+}

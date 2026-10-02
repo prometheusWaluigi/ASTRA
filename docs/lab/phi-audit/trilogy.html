@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Phi audit trilogy — index</title>
+<style>
+body{background:#101b25;color:#dae7ef;font:17px/1.6 system-ui;max-width:960px;margin:40px auto;padding:20px}
+h1{font-size:38px;line-height:1.15}h2{color:#63ddbe;font-size:22px}
+a{color:#63ddbe}.box{background:#20303c;padding:20px 24px;border-radius:12px;margin:14px 0}
+.card{display:block;text-decoration:none;color:#dae7ef}
+.card:hover{background:#26394a}
+.tag{display:inline-block;font:12px monospace;background:#34444e;border-radius:4px;padding:1px 7px;margin-right:6px;color:#9fc3d0}
+.verdict{color:#63ddbe;font-weight:600}
+table{font:14px monospace;width:100%}td,th{padding:6px 12px;text-align:left;border-bottom:1px solid #34444e}
+small{color:#8fa8b5}
+</style>
+<p>HOMELAB / PHI AUDIT / 30 SEPTEMBER 2026</p>
+<h1>The golden coincidence, audited three ways</h1>
+<p>A retrospective numerology audit in three sections — same seed (<code>20260930</code>), separate questions. This page is the map; each section is self-contained and file://-browsable. Nothing here is evidence for a new theory.</p>
+
+<a class="card box" href="index.html"><span class="tag">ACT 0</span><b>The claim, reproduced</b><br>
+<small>The golden coincidence audit — original page</small><br>
+The formula mass lands at 125.200010185 GeV against a 125.20 &plusmn; 0.11 benchmark. Real arithmetic, not experimental precision at that many digits. Ends with the three questions that became sections A, B and C.</a>
+
+<a class="card box" href="section-a/index.html"><span class="tag">A</span><b>Inputs &amp; shared uncertainty</b><br>
+<small>task_75bdb85c42ebe3ac &middot; review</small><br>
+<span class="verdict">Verdict:</span> the &lambda; decimal match is &minus;0.0024&sigma; on the frozen edition and &minus;0.81&sigma; on ATLAS-2023 — edition choice moves the answer. &lambda; and m<sub>H</sub>/v correlate at |r|=0.9999: they are one measurement, not two. Six inputs still flagged UNVERIFIED pending PDF checks; frozen and fetched editions never mixed.</a>
+
+<a class="card box" href="section-b/index.html"><span class="tag">B</span><b>Search nulls &amp; coincidence budget</b><br>
+<small>task_bba69bd65576eb4e &middot; review</small><br>
+<span class="verdict">Verdict:</span> a free search at the stated budget does better than the claim — the sharpest &lambda; hit found is 1.6e-7, and sqrt-closure nails m<sub>H</sub>/v at 8e-8. &alpha;<sup>&minus;1</sup> is a documented failure. Family null: P(any hit)=1.0 with ~4.5 expected. The coincidence table is unsurprising for a grammar this crowded.</a>
+
+<a class="card box" href="section-c/index.html"><span class="tag">C</span><b>Running-coupling residuals</b><br>
+<small>task_98451af9192ea183 &middot; review</small><br>
+<span class="verdict">Verdict:</span> under one-loop matched MS&#772; running (m<sub>t</sub>&rarr;10 TeV), &lambda; and sin&sup2;&theta;<sub>W</sub> drift away from their claims monotonically — no in-range crossing. The &radic;(4&lambda;/y<sub>t</sub>&sup2;) diagnostic crosses its claim near ~683 GeV. &nabla;F&middot;&beta; is nonzero throughout: none of the three relations is an RG invariant.</a>
+
+<h2>What the trilogy does not say</h2>
+<div class="box">
+<p>Residuals are descriptive, not p-values. No holdout was registered. Constants, targets and grammar were chosen after the match was known, so conditional coverage is not a discovery statistic. A relation could still be a boundary condition at a scale outside the tested window — running away from a claim does not exclude it holding elsewhere.</p>
+<p>Section C running is one-loop, y<sub>t</sub>-only, on 2014 matched inputs; a current-edition pass is reported separately and never mixed. Identities like &phi;&#8312;+1=7&phi;&#8308; follow from &phi;&sup2;=&phi;+1 and carry no physics.</p>
+</div>
+
+<h2>Reading order</h2>
+<ol>
+<li><a href="index.html">The claim</a> — what was asserted, reproduced on frozen inputs.</li>
+<li><a href="section-a/index.html">A</a> — are the inputs solid? (Editions, definitions, correlations.)</li>
+<li><a href="section-b/index.html">B</a> — is the hit surprising? (Nulls, controls, selection.)</li>
+<li><a href="section-c/index.html">C</a> — does it survive running? (Matched MS&#772; residuals.)</li>
+</ol>
+<p><small>Data: results.json, inputs.json and SVGs live beside each section page. Audit scripts: experiments/phi_audit_{a,b,c}.py in the Homelab repo (commits 0da8a50, cc7bcea, b4bb83b).</small></p>
+</html>

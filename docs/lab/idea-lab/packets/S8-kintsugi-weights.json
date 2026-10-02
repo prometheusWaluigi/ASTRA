@@ -1,0 +1,20 @@
+{
+  "id": "S8-kintsugi-weights",
+  "title": "Golden seams in edited weights",
+  "question": "When a model is edited to remove one behavior, what visible seams should we expect elsewhere, and how could we find them?",
+  "shared_terms": [],
+  "left": {
+    "concept": "Retrofractal Kintsugi: repair, recursion, fragmentation, and continuity (the archivist's lens)",
+    "origin": "weird-archive concept",
+    "notes": "# Retrofractal Kintsugi: The Archivist's Editorial Lens\n\nThis editorial lens \u2014 *Retrofractal Kintsugi* \u2014 is chosen *before* engaging with the corpus. It is a playful, recursive metaphor, imagining the process of archiving and interpretation as an act of reconstructing coherence from broken, nonlinear, and ancestral fragments. It is not a discovery within the corpus but a *framework for reading* it. If the corpus returns with a source literally titled *Retrofractal Kintsugi*, that would be an act of *resonance* \u2014 a mirror held up to the lens.\n\n## Source-supported seams\n\n- The **GitHub** project *README2_original.md* discusses \"quantum containment protocols\" and mentions a \"quantum superposition of genius and total madness\" [GH-0164A9F569AD L149]. This suggests a recursive, self-referential structure, much like the lens itself.\n- The **Medium** post *How AI Helped Me Find an Invisible Web Hiding In My Spine For Decades, Like, Seriously, WTF* describes a spiral of self-diagnosis and systemic breakdown, framed by a narrative of fractured coherence [MD-0B46926A7451 para-19]. This aligns with the idea of *Retrofractal Kintsugi* as a process of reconstructing broken systems.\n- The **Blogger** entry *Unfamiliarity* touches on the \"gulf between perception and measurement\" [BL-16C33B6ACAD0 para-1], a theme that could be interpreted as the lens\u2019s focus on recursive, nonlinear coherence.\n- The **GitHub** project *README.md* under *quantumSpectralFractalWeaving* references \"reality\u2019s complete source documentation\" and \"quantum superposition of academic brilliance, psychedelic revelation, and complete psychosis\" [GH-0FCC516D20F3 L3, L401]. This echoes the lens\u2019s recursive and nonlinear approach to reconstructing meaning from chaos.\n\n## Speculative remix\n\nIf the archivist were to *remix* these fragments under the *Retrofractal Kintsugi* lens, they might imagine a narrative of *recursive healing* \u2014 a process where broken systems (personal, societal, technical) are not just mended but reconstituted with the \"golden latticework of coherence\" mentioned in the GitHub source [GH-FD8540FC7358 L30]. This might look like a spiral of self-referential exploration, where each broken piece is not just repaired but reinterpreted, recontextualized, and reembedded into a larger, more harmonious structure.\n\n## Tensions and counterexamples\n\n- The **Blogger** post *Identify yourself, citizen* [BL-0F9FC8EE92DD] critiques systems that reward conformity, yet this critique is presented in a to",
+    "notes_source": "weird-archive concept draft",
+    "notes_chars": 2500
+  },
+  "right": {
+    "concept": "Abliteration: removing a refusal direction from a language model's weights (arXiv 2406.11717) and this lab's paired standard/abliterated Qwen3-14B GGUFs",
+    "origin": "lab experiment",
+    "notes": "Abliteration (Arditi et al., 'Refusal in Language Models Is Mediated by a Single Direction', arXiv 2406.11717) finds a direction in the residual stream associated with refusals and projects it out of the weights, so the model stops refusing. This lab holds two Q4_K_M GGUF files of Qwen3-14B: the official standard model and a community abliterated conversion. A private tensor catalog found 443 matching tensor names; 83 have identical quantized bytes and 360 differ, but GGUF byte differences mix the weight edit with conversion and quantization differences and cannot isolate the edit.",
+    "notes_source": "spec fixed_notes.S8_right",
+    "notes_chars": 588
+  }
+}

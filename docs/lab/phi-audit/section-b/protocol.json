@@ -1,0 +1,895 @@
+{
+  "task": "task_bba69bd65576eb4e section B",
+  "generated_by": "phi_audit_b.py",
+  "script_sha256": "e18ef1f10b8aa071054a31ec10cf99f77fd4fd4e1a0c559a31f715288d331e0c",
+  "seed_primitive_draws": 20260930,
+  "seed_controls": 20260931,
+  "grammars": {
+    "baseline": {
+      "syntax": "a/b * 2^(k/6) * c^(n/3); a,b<=B; |k|,|n|<=6 (exact pilot grammar)",
+      "budgets": [
+        3,
+        5,
+        8,
+        12
+      ]
+    },
+    "sqrt-closure": {
+      "syntax": "sqrt(a/b) * 2^(k/12) * c^(n/6); a,b<=B; |k|,|n|<=12 (mH/v transform closure)",
+      "budgets": [
+        3,
+        5,
+        8
+      ]
+    }
+  },
+  "named_constants": [
+    "phi",
+    "sqrt3",
+    "e",
+    "pi"
+  ],
+  "control_constants": {
+    "count": 12,
+    "rule": "log-uniform on [0.5, 8]",
+    "seed": 20260931,
+    "note": "prespecified; overlaps within 1% of a named constant are reported, not redrawn",
+    "values": [
+      {
+        "name": "ctrl00",
+        "value": 0.7683341049165073,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl01",
+        "value": 5.166204178363985,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl02",
+        "value": 6.121517640785347,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl03",
+        "value": 0.6906967815531652,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl04",
+        "value": 0.7706955958711772,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl05",
+        "value": 3.067815739249845,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl06",
+        "value": 7.125204381953566,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl07",
+        "value": 0.5281766508781134,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl08",
+        "value": 5.64352139809679,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl09",
+        "value": 7.848439153714301,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl10",
+        "value": 1.9396255492673413,
+        "within_1pct_of": []
+      },
+      {
+        "name": "ctrl11",
+        "value": 1.570268325470279,
+        "within_1pct_of": []
+      }
+    ]
+  },
+  "null": "log-uniform target on the stated plausible interval; sensitivity passes use uniform-in-value and per-target decade intervals",
+  "family_null": "Gaussian copula carrying the empirical linear correlation matrix of the audit-A frozen shared-primitive draws; marginals log-uniform. Correlated per-target probabilities are never multiplied.",
+  "null_replicates": 50000,
+  "caveat": "Retrospective audit. Constants, targets, grammars and tolerances selected after the claim was known; coverages are conditional null measures, not discovery p-values.",
+  "selection_costs": {
+    "note": "every enumerated (grammar, constant, budget) cell is a selection cost; attempted-and-kept grammars listed, no cell hidden",
+    "cells": [
+      {
+        "grammar": "baseline",
+        "constant": "phi",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "phi",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "phi",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "phi",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "sqrt3",
+        "budget": 3,
+        "unique": 553,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "sqrt3",
+        "budget": 5,
+        "unique": 1587,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "sqrt3",
+        "budget": 8,
+        "unique": 3487,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "sqrt3",
+        "budget": 12,
+        "unique": 6937,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "e",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "e",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "e",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "e",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "pi",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "pi",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "pi",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "pi",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl00",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl00",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl00",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl00",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl01",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl01",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl01",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl01",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl02",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl02",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl02",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl02",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl03",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl03",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl03",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl03",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl04",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl04",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl04",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl04",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl05",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl05",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl05",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl05",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl06",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl06",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl06",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl06",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl07",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl07",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl07",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl07",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl08",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl08",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl08",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl08",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl09",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl09",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl09",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl09",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl10",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl10",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl10",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl10",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl11",
+        "budget": 3,
+        "unique": 819,
+        "raw_evaluated": 1521
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl11",
+        "budget": 5,
+        "unique": 2119,
+        "raw_evaluated": 4225
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl11",
+        "budget": 8,
+        "unique": 4537,
+        "raw_evaluated": 10816
+      },
+      {
+        "grammar": "baseline",
+        "constant": "ctrl11",
+        "budget": 12,
+        "unique": 9737,
+        "raw_evaluated": 24336
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "phi",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "phi",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "phi",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "sqrt3",
+        "budget": 3,
+        "unique": 1297,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "sqrt3",
+        "budget": 5,
+        "unique": 3819,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "sqrt3",
+        "budget": 8,
+        "unique": 8407,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "e",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "e",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "e",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "pi",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "pi",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "pi",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl00",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl00",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl00",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl01",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl01",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl01",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl02",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl02",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl02",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl03",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl03",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl03",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl04",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl04",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl04",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl05",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl05",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl05",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl06",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl06",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl06",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl07",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl07",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl07",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl08",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl08",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl08",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl09",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl09",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl09",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl10",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl10",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl10",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl11",
+        "budget": 3,
+        "unique": 2475,
+        "raw_evaluated": 5625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl11",
+        "budget": 5,
+        "unique": 6175,
+        "raw_evaluated": 15625
+      },
+      {
+        "grammar": "sqrt-closure",
+        "constant": "ctrl11",
+        "budget": 8,
+        "unique": 12625,
+        "raw_evaluated": 40000
+      }
+    ],
+    "total_unique": 603392,
+    "total_raw": 1634368
+  }
+}

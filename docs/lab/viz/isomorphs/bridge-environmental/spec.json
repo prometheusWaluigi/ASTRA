@@ -1,0 +1,43 @@
+{
+  "spec": {
+    "core": "bridge",
+    "title": "Bridge-Environmental",
+    "label_a": "Diffusion bridge with randomized initial and terminal times and its application to fish migration",
+    "label_b": "A nested weighted framework for Podlubny-type fractional PID controllers",
+    "params_a": {
+      "noise": 1.4,
+      "endpoint_spread": 0.6,
+      "drift": -0.3
+    },
+    "params_b": {
+      "noise": 0.8,
+      "endpoint_spread": 0.3,
+      "drift": 0.1
+    },
+    "skeleton": "Pinned diffusion paths influenced by environmental or system-specific detuning",
+    "why": "Both rely on the concept of diffusion with parameter-driven path adjustments."
+  },
+  "members": [
+    {
+      "name": "Bridge-Environmental",
+      "world_a": "Diffusion bridge with randomized initial and terminal times and its application to fish migration",
+      "world_b": "A nested weighted framework for Podlubny-type fractional PID controllers",
+      "shared_skeleton": "Pinned diffusion paths influenced by environmental or system-specific detuning",
+      "core": "bridge",
+      "params_a": {
+        "noise": 1.4,
+        "endpoint_spread": 0.6,
+        "drift": -0.3
+      },
+      "params_b": {
+        "noise": 0.8,
+        "endpoint_spread": 0.3,
+        "drift": 0.1
+      },
+      "why": "Both rely on the concept of diffusion with parameter-driven path adjustments."
+    }
+  ],
+  "runs": [
+    "abl-bare-voice"
+  ]
+}

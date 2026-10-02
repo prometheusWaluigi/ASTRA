@@ -1,0 +1,34 @@
+{
+  "date": "2026-09-27",
+  "scope": "Synthetic CPU-only analytic verification of the shipped model; no author data or GPU calls",
+  "checks": {
+    "constructed": {
+      "R21": 1.0000000000000053,
+      "mean_r": 0.6366200628681332,
+      "exact_mean_r": 0.6366197723675814
+    },
+    "restoring_lock": {
+      "terminal_phase": 0.45281659474232056,
+      "analytic": 0.4528165947449255
+    },
+    "uncoupled_kick": "persists",
+    "slip_drift_-1.2": {
+      "measured": -1.039230484412473,
+      "analytic": -1.0392304845413265
+    },
+    "slip_drift_1.2": {
+      "measured": 1.0392304843501607,
+      "analytic": 1.0392304845413265
+    },
+    "step_halving_terminal_error": 9.279149537633202e-8,
+    "boundary": "approaches marginal phase from below",
+    "loop_sum_and_transformed_edge_forces": "passed",
+    "fast_only_kick": "passed"
+  },
+  "sha256": {
+    "index.html": "7b6c5d2ee612812de59ca31530511150b80cb088157be9a936a367d84b198ec7",
+    "style.css": "062833c22044c5026d4c29ae8bc2e704fde050030204be43dd3cafa2dacfa0dc",
+    "main.js": "58991f9d245d832703904209d68ab3e06a8cfde22f9f9f662f42250461986d9b",
+    "model.js": "322e41fa06e7bb6eb9616f799c1be6364a6734deb82f3456b330cb6657a6739c"
+  }
+}

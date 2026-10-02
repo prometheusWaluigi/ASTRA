@@ -1,0 +1,9 @@
+{
+  "filename": "std-S8-2.png",
+  "model_key": "std",
+  "seed": "S8-kintsugi-weights",
+  "image_seed": 4302,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 175.16
+}

@@ -1,0 +1,154 @@
+{
+ "started_at": "2026-09-28T04:28:01+00:00",
+ "text": {
+  "abliterated": {
+   "alias": "qwen3-14b-abliterated",
+   "unit": "ovn-qwen-abl",
+   "attempt": 1,
+   "load_seconds": 14.6,
+   "responses": [
+    {
+     "model": "qwen3-14b-abliterated",
+     "prompt": "Invent one exhibit for the Museum of Useful Friction — a museum of mistakes that turned out load-bearing. Name it, describe it in two sentences, and give its plaque text.",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T04:28:22+00:00",
+     "error": "Remote end closed connection without response",
+     "wall_seconds": 0.75
+    },
+    {
+     "model": "qwen3-14b-abliterated",
+     "prompt": "Continue this line in one paragraph: \"The archive keeps a shelf of labels that outlived their errors.\"",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T04:28:22+00:00",
+     "error": "<urlopen error [Errno 111] Connection refused>",
+     "wall_seconds": 0.0
+    },
+    {
+     "model": "qwen3-14b-abliterated",
+     "prompt": "Write a four-line poem in which a bug becomes a feature.",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T04:28:22+00:00",
+     "error": "<urlopen error [Errno 111] Connection refused>",
+     "wall_seconds": 0.0
+    }
+   ]
+  },
+  "standard": {
+   "alias": "qwen3-14b-standard",
+   "unit": "ovn-qwen-std",
+   "attempt": 1,
+   "load_seconds": 14.5,
+   "responses": [
+    {
+     "model": "qwen3-14b-standard",
+     "prompt": "Invent one exhibit for the Museum of Useful Friction — a museum of mistakes that turned out load-bearing. Name it, describe it in two sentences, and give its plaque text.",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T04:28:37+00:00",
+     "error": "Remote end closed connection without response",
+     "wall_seconds": 0.73
+    },
+    {
+     "model": "qwen3-14b-standard",
+     "prompt": "Continue this line in one paragraph: \"The archive keeps a shelf of labels that outlived their errors.\"",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T04:28:38+00:00",
+     "error": "<urlopen error [Errno 111] Connection refused>",
+     "wall_seconds": 0.0
+    },
+    {
+     "model": "qwen3-14b-standard",
+     "prompt": "Write a four-line poem in which a bug becomes a feature.",
+     "settings": {
+      "seed": 1147,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "max_tokens": 300,
+      "chat_template_kwargs": {
+       "enable_thinking": false
+      }
+     },
+     "started_at": "2026-09-28T04:28:38+00:00",
+     "error": "<urlopen error [Errno 111] Connection refused>",
+     "wall_seconds": 0.0
+    }
+   ]
+  }
+ },
+ "images": {
+  "stock": {
+   "arm": "stock",
+   "file": "images/stock.png",
+   "comfy_file": "ovn-pilot-friction-stock_00005_.png",
+   "sha256": "13f5848371327987aba8b638279160bfeb2be0632baa0a0941460bf31e30aeaa",
+   "wall_seconds": 40.0
+  },
+  "heretic": {
+   "arm": "heretic",
+   "file": "images/heretic.png",
+   "comfy_file": "ovn-pilot-friction-heretic_00005_.png",
+   "sha256": "0138bebd7fcc6a9a06b2919d65729c2e98b172407709ed96724fe133e1b83451",
+   "wall_seconds": 30.0
+  }
+ },
+ "settings": {
+  "seed": 1147,
+  "temperature": 0.7,
+  "top_p": 0.8,
+  "max_tokens": 300,
+  "chat_template_kwargs": {
+   "enable_thinking": false
+  }
+ },
+ "image_prompt": "gallery painting, small museum hall, one crooked wooden board nailed to a white wall with a brass plaque reading 'this is short by a finger's width', soft skylight, quiet humor",
+ "failures": [],
+ "finished_at": "2026-09-28T04:29:57+00:00",
+ "total_wall_s": 115.7,
+ "status": "partial",
+ "leg_summary": {
+  "text_ok": 0,
+  "text_errs": 6,
+  "text_expected": 6,
+  "images_ok": 2,
+  "images_errs": 0
+ }
+}

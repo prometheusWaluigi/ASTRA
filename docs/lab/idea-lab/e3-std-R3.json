@@ -1,0 +1,20 @@
+{
+  "run": "R3",
+  "model_key": "std",
+  "status": "skipped",
+  "reason": "model override probe failed",
+  "probe": {
+    "command": [
+      "/home/ketan/.local/bin/hermes",
+      "-p",
+      "researcher",
+      "-z",
+      "Reply with exactly the single word: ready",
+      "-m",
+      "qwen3-14b-standard"
+    ],
+    "alias": "qwen3-14b-standard",
+    "exit_status": "timeout",
+    "ok": false
+  }
+}

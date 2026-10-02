@@ -1,0 +1,9 @@
+{
+  "filename": "std-S7-1.png",
+  "model_key": "std",
+  "seed": "S7-edge-of-catastrophe",
+  "image_seed": 4301,
+  "size": 768,
+  "fallback_used": false,
+  "render_seconds": 160.12
+}
