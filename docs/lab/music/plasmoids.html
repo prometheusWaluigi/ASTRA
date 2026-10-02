@@ -170,16 +170,16 @@ export function init(THREE, analysis, W, H) {
   // generic mood from the current lyric section name; hue_shift
   // re-tints the whole palette per song (0 = amber default)
   const HS = analysis.hue_shift || 0;
-  const H = h => ((h + HS) % 1 + 1) % 1;
+  const hueOf = h => ((h + HS) % 1 + 1) % 1;
   function moodAt(t) {
     const e = lyrics.find(e => t >= e.t - 0.05 && t <= e.t + e.dur + 0.45);
     const s = (e && e.section || '').toLowerCase();
-    if (s.includes('chorus'))   return { gold: 1.0, zoom: 0.15, hue: H(0.09) };
-    if (s.includes('bridge'))   return { gold: 0.7, zoom: 0.9,  hue: H(0.45) };
-    if (s.includes('outro'))    return { gold: 0.3, zoom: 0.0,  hue: H(0.07) };
-    if (s.includes('pre'))      return { gold: 0.8, zoom: 0.3,  hue: H(0.11) };
-    if (s)                      return { gold: 0.55, zoom: 0.1, hue: H(0.1) };
-    return { gold: 0.35, zoom: 0.05, hue: H(0.08) };
+    if (s.includes('chorus'))   return { gold: 1.0, zoom: 0.15, hue: hueOf(0.09) };
+    if (s.includes('bridge'))   return { gold: 0.7, zoom: 0.9,  hue: hueOf(0.45) };
+    if (s.includes('outro'))    return { gold: 0.3, zoom: 0.0,  hue: hueOf(0.07) };
+    if (s.includes('pre'))      return { gold: 0.8, zoom: 0.3,  hue: hueOf(0.11) };
+    if (s)                      return { gold: 0.55, zoom: 0.1, hue: hueOf(0.1) };
+    return { gold: 0.35, zoom: 0.05, hue: hueOf(0.08) };
   }
 
   let popIdx = 0;
@@ -305,20 +305,19 @@ const setGate = (m) => { if (gateMsg) gateMsg.textContent = m; };
 const go = async () => {
   setGate('starting…');
   try {
+    if (audio.readyState < 3)
+      await new Promise(r => audio.addEventListener('canplay', r, { once: true }));
     await audio.play();
     running = true;
     gate.style.display = 'none';
   } catch (e) {
-    setGate('tap to retry');
+    setGate(audio.readyState < 3 ? 'loading… tap again when ready' : 'tap to retry');
   }
 };
-const armGate = () => { gate.addEventListener('click', go); };
-if (audio.readyState >= 3) { setGate('tap to begin'); armGate(); }
-else {
-  setGate('loading…');
-  audio.addEventListener('canplay',
-    () => { setGate('tap to begin'); armGate(); }, { once: true });
-}
+gate.addEventListener('click', go);
+setGate(audio.readyState >= 3 ? 'tap to begin' : 'loading…');
+audio.addEventListener('canplay',
+  () => { if (getComputedStyle(gate).display !== 'none') setGate('tap to begin'); });
 if (new URLSearchParams(location.search).get('autoplay') === '1') {
   audio.muted = true;
   go();
