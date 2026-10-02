@@ -1,0 +1,83 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>gate smoke</title>
+<pre id="out">RUNNING</pre>
+<iframe id="f" src="relay-clip.html" style="width:480px;height:270px"></iframe>
+<script>
+const lines = [];
+const log = (m) => {
+  lines.push(m);
+  document.getElementById('out').textContent = lines.join('\n');
+};
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+const check = (name, cond) => { log((cond ? 'PASS ' : 'FAIL ') + name); return cond; };
+
+(async () => {
+  try {
+    const f = document.getElementById('f');
+    await new Promise(r => { f.onload = r; });
+    const doc = f.contentDocument;
+    const gate = doc.getElementById('gate');
+    const audio = doc.getElementById('audio');
+    const label = () =>
+      (gate.querySelector('small:last-of-type') || {}).textContent || '';
+
+    // arming: gate click must wait for canplay (readyState>=3)
+    let armed = false;
+    for (let i = 0; i < 300 && !armed; i++) {
+      armed = audio.readyState >= 3 && label().includes('tap to begin');
+      if (!armed) await sleep(100);
+    }
+    check('arms on canplay with tap-to-begin label', armed);
+
+    // T1: rejection keeps the gate up with a retry state
+    const realPlay = audio.play.bind(audio);
+    audio.play = () =>
+      Promise.reject(new DOMException('AbortError', 'AbortError'));
+    gate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    await sleep(500);
+    check('reject: gate stays visible', gate.style.display !== 'none');
+    check('reject: label offers retry', label().includes('retry'));
+    check('reject: playback not running', audio.paused);
+
+    // T2: retry with real play - gate hides only after play() resolves
+    audio.play = realPlay;
+    gate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    let hid = false;
+    for (let i = 0; i < 300 && !hid; i++) {
+      hid = gate.style.display === 'none';
+      if (!hid) await sleep(100);
+    }
+    check('retry: gate hidden once play resolves', hid);
+    check('retry: audio actually playing', !audio.paused);
+    const t0 = audio.currentTime;
+    await sleep(1500);
+    check('retry: currentTime advances', audio.currentTime > t0);
+
+    // T3: autoplay=1 muted path still self-starts
+    const f2 = document.createElement('iframe');
+    f2.src = 'relay-clip.html?autoplay=1';
+    document.body.appendChild(f2);
+    await new Promise(r => { f2.onload = r; });
+    const d2 = f2.contentDocument;
+    const g2 = d2.getElementById('gate');
+    const a2 = d2.getElementById('audio');
+    let hid2 = false;
+    for (let i = 0; i < 300 && !hid2; i++) {
+      hid2 = g2.style.display === 'none';
+      if (!hid2) await sleep(100);
+    }
+    check('autoplay=1: muted start hides gate', hid2);
+    check('autoplay=1: audio playing', a2 && !a2.paused);
+  } catch (e) {
+    log('FAIL harness exception: ' + (e && e.message));
+  }
+  const fails = lines.filter(l => l.startsWith('FAIL')).length;
+  const passes = lines.filter(l => l.startsWith('PASS')).length;
+  log(`SMOKE ${fails ? 'FAIL' : 'PASS'} ${passes}/${lines.length}`);
+  document.title = 'SMOKE DONE';
+  try {
+    await fetch('/report', { method: 'POST', body: lines.join('\n') });
+  } catch (e) { /* file:// fallback: results stay in the DOM */ }
+})();
+</script>

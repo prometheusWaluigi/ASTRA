@@ -1,0 +1,158 @@
+<!doctype html><meta charset=utf-8><title>monster-trucks smoke harness</title>
+<!--
+  Real-browser smoke harness for index.html (README "Smoke check").
+  Fetches the real index.html bytes and plays them in a srcdoc iframe
+  (rAF->setTimeout shim prepended — headless does not drive rAF under
+  virtual time), then drives all three chapters.
+  Run headless:
+
+    msedge --headless=new --allow-file-access-from-files ^
+      --user-data-dir=<tmp> --virtual-time-budget=25000 ^
+      --window-size=1200,1000 --dump-dom "file:///.../smoke.html"
+
+  --allow-file-access-from-files is required for file:// iframe DOM
+  access. Results land in <pre id=out>. All waits are virtual-time
+  waits: the game's requestAnimationFrame loop advances under the
+  virtual-time budget, so holds/flights play out in fast-forward.
+-->
+<pre id=out>RUNNING</pre>
+<iframe id=f style="width:760px;height:800px"></iframe>
+<script>
+const out = [], R = document.getElementById('out');
+const ok = (n, c, d) => out.push((c ? 'PASS' : 'FAIL') + ' ' + n + (d ? ' :: ' + d : ''));
+const flush = e => { R.textContent = out.join('\n') + (e || ''); };
+const f = document.getElementById('f');
+let w, d;
+const btnByText = t => [...d.querySelectorAll('#controls button')]
+  .find(b => b.textContent.trim().toLowerCase().includes(t.toLowerCase()));
+const nar = () => d.getElementById('narration').textContent;
+const motto = () => d.getElementById('motto').textContent;
+// steps: [wait_ms_virtual, fn] — sequential driver
+const steps = [];
+const step = (ms, fn) => steps.push([ms, fn]);
+function run(i) {
+  if (i >= steps.length) { flush('\nDONE'); return; }
+  const [ms, fn] = steps[i];
+  setTimeout(() => {
+    try { fn(); } catch (e) { ok('step ' + i + ' threw', false, String(e)); }
+    run(i + 1);
+  }, ms);
+}
+
+// Load the REAL index.html bytes, then play them in a srcdoc iframe with
+// a rAF->setTimeout(16) shim prepended. headless never drives rAF under
+// --virtual-time-budget (probe: <=1 raf per 2000ms virtual, Edge new/old
+// + Chrome), and a post-load shim is too late — the game's first frame
+// anchors to the dead real scheduler. Prepending puts the shim in place
+// before the game script runs; every game line executes unmodified.
+const SHIM = '<' + 'script>(function(){const pend={};let rc=0;' +
+  'requestAnimationFrame=cb=>{const id=++rc;' +
+  'pend[id]=setTimeout(()=>{delete pend[id];cb(performance.now());},16);' +
+  'return id};' +
+  'cancelAnimationFrame=id=>{if(pend[id]!==undefined){' +
+  'clearTimeout(pend[id]);delete pend[id]}}})();<' + '/script>';
+fetch('index.html').then(r => r.text()).then(html => {
+  ok('fetched real index.html', html.length > 10000, 'bytes=' + html.length);
+  ok('artifact is Torque Spins True',
+     /Torque Spins True/.test(html) && /requestAnimationFrame/.test(html));
+  f.srcdoc = SHIM + html;
+}).catch(e => { ok('fetch index.html', false, String(e)); flush('\nDONE'); });
+f.addEventListener('load', () => {
+  if (!f.srcdoc) return;
+  w = f.contentWindow; d = w.document;
+  run(0);
+});
+
+/* ---- chapter 1: sink path (mouse) then success path (spacebar) ---- */
+step(0, () => {
+  ok('ch1 renders: narration + mud + hold button',
+     /mud/i.test(nar()) && !!btnByText('HOLD TO ROLL')
+     && d.getElementById('mud').style.display === 'block');
+  ok('chapter pill 0 is now',
+     d.querySelector('#chapters span[data-c="0"]').className === 'now');
+});
+step(50, () => {
+  // hold ~54 frames -> pos lands inside the mud zone (33..67), then release
+  btnByText('HOLD TO ROLL').dispatchEvent(new w.MouseEvent('mousedown', {bubbles: true}));
+});
+step(900, () => {
+  w.dispatchEvent(new w.Event('mouseup'));
+});
+step(300, () => {
+  ok('releasing in the mud sinks Torque (Schlup)',
+     /Schlup/i.test(nar()) && !!btnByText('rev back and retry'));
+  ok('sinking class applied',
+     d.getElementById('truck').className.includes('sinking'));
+  btnByText('rev back and retry').click();
+});
+step(100, () => {
+  ok('retry resets to a fresh HOLD TO ROLL', !!btnByText('HOLD TO ROLL'));
+  // success path via keyboard: hold space ~2.6s virtual -> past 78%
+  w.dispatchEvent(new w.KeyboardEvent('keydown', {code: 'Space'}));
+});
+step(2600, () => {
+  w.dispatchEvent(new w.KeyboardEvent('keyup', {code: 'Space'}));
+});
+step(200, () => {
+  ok('ch1 success: motto rule one shown', /motion is the opposite/i.test(motto()), motto());
+  ok('ch1 success narration + next button',
+     /popped out/i.test(nar()) && !!btnByText('next story'));
+  btnByText('next story').click();
+});
+
+/* ---- chapter 2: small tires blorp, then BIG TIRES across ---- */
+step(50, () => {
+  ok('ch2 renders: tire choice + pill 1',
+     !!btnByText('small tires') && !!btnByText('BIG TIRES')
+     && d.querySelector('#chapters span[data-c="1"]').className === 'now');
+  btnByText('small tires').click();
+});
+step(1800, () => {
+  ok('small tires blorp into the mud', /Blorp/i.test(nar()));
+  ok('small-tire sink offers the choice again',
+     !!btnByText('BIG TIRES') && !!btnByText('small tires'));
+  btnByText('BIG TIRES').click();
+});
+step(3000, () => {
+  ok('big tires cross the flats: motto rule two',
+     /surface area to volume/i.test(motto()), motto());
+  ok('Trixie rescue narration + next button',
+     /Trixie/i.test(nar()) && !!btnByText('next story'));
+  btnByText('next story').click();
+});
+
+/* ---- chapter 3: crooked fall, retry, then spin true ---- */
+step(50, () => {
+  ok('ch3 renders: JUMP + STRAIGHTEN + lattice + ramp',
+     !!btnByText('JUMP') && !!btnByText('STRAIGHTEN')
+     && d.getElementById('lattice').style.display === 'block'
+     && d.getElementById('ramp').style.display === 'block');
+  // first: a crooked jump — never straighten
+  btnByText('JUMP').click();
+});
+step(1600, () => {
+  ok('un-straightened jump tumbles into the gap',
+     /tumbled sideways/i.test(nar()) && !!btnByText('climb back up'));
+  btnByText('climb back up').click();
+});
+step(50, () => {
+  ok('retry offers JUMP again', !!btnByText('JUMP'));
+  btnByText('JUMP').click();
+});
+step(400, () => {
+  // mid-flight straighten, well before the ~870ms lattice deadline
+  btnByText('STRAIGHTEN').click();
+});
+step(1200, () => {
+  ok('spin-true landing: THUNK + motto rule three',
+     /THUNK/i.test(nar()) && /lattice will catch you/i.test(motto()), motto());
+  ok('all chapter pills done',
+     [...d.querySelectorAll('#chapters span')].every(e => e.className === 'done'));
+  ok('confetti fired', d.querySelectorAll('.confetti').length > 0,
+     'confetti=' + d.querySelectorAll('.confetti').length);
+  btnByText('the end').click();
+});
+step(50, () => {
+  ok('beep beep ending', /beep beep/i.test(nar()));
+});
+</script>

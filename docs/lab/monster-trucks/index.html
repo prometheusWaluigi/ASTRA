@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Torque Spins True — monster truck stories for Leo</title>
+<style>
+  :root {
+    --sky1:#ffe9c7; --sky2:#ffc98a; --dirt:#8a5a3b; --dirt2:#6f4527;
+    --ink:#2b1d14; --card:#fff6ea; --accent:#e8542f; --accent2:#2f7fe8;
+    --good:#3f9d4e;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; font-family:Georgia, 'Comic Sans MS', serif; color:var(--ink);
+    background:linear-gradient(var(--sky1), var(--sky2));
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:24px 12px 60px;
+  }
+  h1 { font-size:1.9rem; margin:8px 0 2px; text-align:center; }
+  .sub { font-style:italic; opacity:.75; margin-bottom:18px; text-align:center; }
+  .stage-wrap { width:min(760px, 96vw); }
+  .stage {
+    position:relative; height:300px; border:4px solid var(--ink);
+    border-radius:14px; overflow:hidden; background:
+      linear-gradient(#bfe3ff 0 62%, var(--dirt) 62% 78%, var(--dirt2) 78%);
+  }
+  .ground { position:absolute; left:0; right:0; bottom:0; height:22%;
+    background:repeating-linear-gradient(90deg, var(--dirt2) 0 60px, var(--dirt) 60px 120px); }
+  .mud { position:absolute; left:35%; right:35%; bottom:0; height:14%;
+    background:radial-gradient(ellipse at center, #4d3220 0%, #38220f 80%);
+    border-radius:50% 50% 0 0 / 100% 100% 0 0; display:none; }
+  .lattice { position:absolute; left:30%; right:30%; bottom:8%; height:26%;
+    display:none;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 12px, #555 12px 16px),
+      repeating-linear-gradient(-45deg, transparent 0 12px, #555 12px 16px);
+    border:3px solid #333; border-radius:4px; opacity:.9; }
+  .ramp { position:absolute; left:12%; bottom:16%; width:0; height:0;
+    border-left:0; border-right:110px solid transparent;
+    border-bottom:70px solid #7a4a2a; display:none; transform:scaleX(-1); }
+  .truck { position:absolute; left:12%; bottom:18%; width:120px; height:70px;
+    transition:left .1s linear; }
+  .truck .body { position:absolute; left:8px; top:6px; width:104px; height:34px;
+    background:var(--accent); border:3px solid var(--ink); border-radius:8px; }
+  .truck .cab { position:absolute; left:58px; top:-10px; width:38px; height:22px;
+    background:var(--accent2); border:3px solid var(--ink); border-radius:6px 10px 0 0; }
+  .truck .wheel { position:absolute; bottom:-14px; width:36px; height:36px;
+    background:#222; border:4px solid #444; border-radius:50%;
+    animation:spin .5s linear infinite paused; }
+  .truck .wheel::after { content:''; position:absolute; inset:8px;
+    background:#999; border-radius:50%; }
+  .wheel.fl { left:8px; } .wheel.fr { right:8px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .truck.rolling .wheel { animation-play-state:running; }
+  .truck.big .wheel { width:48px; height:48px; bottom:-20px; }
+  .truck.sinking { animation:sink 1.2s forwards; }
+  @keyframes sink { to { transform:translateY(46px) rotate(-8deg); } }
+  .truck.airborne { transition:left .1s linear, bottom .35s ease-out, transform .35s; }
+  .wobble { animation:wob .35s infinite; }
+  @keyframes wob { 0%,100%{transform:rotate(-7deg);} 50%{transform:rotate(7deg);} }
+  .splash { position:absolute; bottom:10%; width:8px; height:8px; background:#4d3220;
+    border-radius:50%; animation:splash .7s forwards; }
+  @keyframes splash { to { transform:translateY(-70px) scale(2.4); opacity:0; } }
+  .narration { margin:14px 0 8px; background:var(--card); border:3px solid var(--ink);
+    border-radius:12px; padding:14px 18px; font-size:1.08rem; line-height:1.55;
+    min-height:96px; }
+  .motto { text-align:center; font-weight:bold; font-size:1.15rem; margin:8px 0;
+    color:var(--accent); min-height:1.5em; }
+  .controls { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:10px; }
+  button { font-family:inherit; font-size:1.05rem; padding:12px 22px; cursor:pointer;
+    background:var(--card); border:3px solid var(--ink); border-radius:12px;
+    box-shadow:0 4px 0 var(--ink); }
+  button:active { transform:translateY(3px); box-shadow:0 1px 0 var(--ink); }
+  button.big-btn { background:var(--accent); color:#fff; font-size:1.3rem;
+    padding:16px 34px; }
+  .hint { font-size:.85rem; opacity:.7; text-align:center; margin-top:8px; }
+  .confetti { position:absolute; width:10px; height:10px; top:-10px;
+    animation:fall 2.2s ease-in forwards; }
+  @keyframes fall { to { transform:translateY(340px) rotate(720deg); opacity:0; } }
+  .chapters { display:flex; gap:8px; justify-content:center; margin-bottom:10px; }
+  .chapters span { padding:4px 12px; border-radius:999px; border:2px solid var(--ink);
+    font-size:.85rem; background:var(--card); opacity:.5; }
+  .chapters span.now { opacity:1; background:var(--accent); color:#fff; }
+  .chapters span.done { opacity:1; background:var(--good); color:#fff; }
+  #restart { display:none; }
+</style>
+</head>
+<body>
+<div class="stage-wrap">
+  <h1>Torque Spins True</h1>
+  <div class="sub">three small stories about a monster truck &amp; the rules of rolling</div>
+  <div class="chapters" id="chapters">
+    <span data-c="0">1 · keep rolling</span>
+    <span data-c="1">2 · big tires</span>
+    <span data-c="2">3 · spin true</span>
+  </div>
+  <div class="stage" id="stage">
+    <div class="ground"></div>
+    <div class="mud" id="mud"></div>
+    <div class="lattice" id="lattice"></div>
+    <div class="ramp" id="ramp"></div>
+    <div class="truck" id="truck">
+      <div class="cab"></div>
+      <div class="body"></div>
+      <div class="wheel fl"></div>
+      <div class="wheel fr"></div>
+    </div>
+  </div>
+  <div class="motto" id="motto"></div>
+  <div class="narration" id="narration"></div>
+  <div class="controls" id="controls"></div>
+  <div class="hint" id="hint"></div>
+</div>
+
+<script>
+(function () {
+  const stage = document.getElementById('stage');
+  const truck = document.getElementById('truck');
+  const mud = document.getElementById('mud');
+  const lattice = document.getElementById('lattice');
+  const ramp = document.getElementById('ramp');
+  const narration = document.getElementById('narration');
+  const controls = document.getElementById('controls');
+  const motto = document.getElementById('motto');
+  const hint = document.getElementById('hint');
+  const chapEls = document.querySelectorAll('#chapters span');
+
+  let raf = null, pos = 12, sinkT = null;
+
+  function say(t) { narration.innerHTML = t; }
+  function setMotto(t) { motto.textContent = t; }
+  function setHint(t) { hint.textContent = t; }
+  function btns(list) {
+    controls.innerHTML = '';
+    list.forEach(b => {
+      const el = document.createElement('button');
+      el.textContent = b.label;
+      if (b.big) el.className = 'big-btn';
+      el.onclick = b.fn;
+      controls.appendChild(el);
+    });
+  }
+  function mark(i, cls) {
+    chapEls.forEach((e, j) => {
+      e.className = j < i ? 'done' : (j === i ? 'now' : '');
+    });
+  }
+  function resetTruck() {
+    truck.className = 'truck';
+    truck.style.left = '12%';
+    truck.style.bottom = '18%';
+    truck.style.transform = '';
+    pos = 12;
+  }
+  function confetti() {
+    for (let i = 0; i < 60; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + '%';
+      c.style.background = ['#e8542f','#2f7fe8','#f7c53a','#3f9d4e','#b04de8'][i % 5];
+      c.style.animationDelay = Math.random() * .8 + 's';
+      stage.appendChild(c);
+      setTimeout(() => c.remove(), 3200);
+    }
+  }
+  function splashes() {
+    for (let i = 0; i < 10; i++) {
+      const s = document.createElement('div');
+      s.className = 'splash';
+      s.style.left = (40 + Math.random() * 20) + '%';
+      s.style.animationDelay = Math.random() * .5 + 's';
+      stage.appendChild(s);
+      setTimeout(() => s.remove(), 1400);
+    }
+  }
+
+  /* ---------- Chapter 1: keep rolling ---------- */
+  function ch1() {
+    mark(0); resetTruck();
+    setMotto('');
+    mud.style.display = 'none'; lattice.style.display = 'none'; ramp.style.display = 'none';
+    say('Torque the monster truck woke up in the mud. The mud was cold and squishy ' +
+        'and it wanted to keep him. <b>The mud said: stay. It is easier to stay.</b> ' +
+        'But Torque knew the first rule of trucks: <i>wheels that stop get stuck.</i> ' +
+        'Hold the button and do not let go until Torque is past the mud!');
+    mud.style.display = 'block';
+    let holding = false;
+    const btn = document.createElement('button');
+    btn.textContent = 'HOLD TO ROLL';
+    btn.className = 'big-btn';
+    controls.innerHTML = ''; controls.appendChild(btn);
+    setHint('hold it down — mouse, finger, or spacebar');
+
+    let done = false;
+    function tick() {
+      if (done) return;
+      if (holding) {
+        pos += 0.55;
+        truck.classList.add('rolling');
+        truck.classList.remove('wobble');
+      } else {
+        pos -= 0.10;
+        truck.classList.remove('rolling');
+        truck.classList.add('wobble');
+      }
+      if (pos < 12) pos = 12;
+      truck.style.left = pos + '%';
+      if (pos >= 33 && pos <= 67 && !holding) {
+        // sinking zone
+        done = true;
+        truck.classList.add('sinking'); splashes();
+        say('<b>Schlup.</b> The mud got him. Sitting still in a squishy place is how ' +
+            'a truck becomes a very muddy statue. Torque revved and wiggled back to ' +
+            'the start — muddy but smiling. Ready to try again?');
+        btns([{ label: 'rev back and retry', fn: ch1 }]);
+        return;
+      }
+      if (pos >= 78) {
+        done = true;
+        truck.classList.remove('wobble');
+        setMotto('rule one: motion is the opposite of masochism');
+        say('Torque popped out the far side, flinging mud like a fountain! ' +
+            'The mud only wins when you sit in it. Rolling hurts less than stopping. ' +
+            '<b>Where the wheels keep moving, the worry cannot catch up.</b>');
+        confetti();
+        btns([{ label: 'next story →', fn: ch2 }]);
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    const start = e => { e && e.preventDefault(); holding = true; };
+    const stop = () => { holding = false; };
+    btn.addEventListener('mousedown', start);
+    btn.addEventListener('touchstart', start, { passive: false });
+    window.addEventListener('mouseup', stop);
+    window.addEventListener('touchend', stop);
+    window.addEventListener('keydown', function k(e) {
+      if (e.code === 'Space') { e.preventDefault(); holding = true; }
+      if (done) window.removeEventListener('keydown', k);
+    });
+    window.addEventListener('keyup', function k(e) {
+      if (e.code === 'Space') holding = false;
+      if (done) window.removeEventListener('keyup', k);
+    });
+    raf = requestAnimationFrame(tick);
+  }
+
+  /* ---------- Chapter 2: big tires ---------- */
+  function ch2() {
+    mark(1); resetTruck();
+    setMotto(''); setHint('');
+    say('The next morning, Torque met the Mud Flats — a puddle so wide it had its ' +
+        'own weather. His little friend Trixie the trike was stuck right in the ' +
+        'middle. <b>"My wheels are too small," said Trixie. "I press down too hard ' +
+        'in one tiny spot."</b> Torque looked at his great big tires. Spread the ' +
+        'push over more ground, and the ground holds you up. Pick Torque\'s tires!');
+    mud.style.display = 'block';
+    mud.style.left = '20%'; mud.style.right = '20%'; mud.style.height = '20%';
+    let tries = 0;
+    function attempt(big) {
+      resetTruck();
+      if (big) truck.classList.add('big');
+      truck.classList.add('rolling');
+      // small tires sink in the mud (pos ~45%), big tires float across
+      let p = 12;
+      cancelAnimationFrame(raf);
+      (function step() {
+        p += 0.45;
+        truck.style.left = p + '%';
+        if (!big && p >= 48) {
+          truck.classList.remove('rolling');
+          truck.classList.add('sinking'); splashes();
+          say('<b>Blorp.</b> Small tires push all the truck\'s weight into a tiny ' +
+              'patch — and the mud eats it. Big fat tires share the weight wide, ' +
+              'so each spot of mud only has to hold a little. Try the big tires!');
+          btns([
+            { label: 'small tires', fn: () => attempt(false) },
+            { label: 'BIG TIRES', big: true, fn: () => attempt(true) }
+          ]);
+          return;
+        }
+        if (p >= 78) {
+          truck.classList.remove('rolling');
+          if (big) {
+            setMotto('rule two: it is all about the ratio of surface area to volume');
+            say('Torque rolled across the Mud Flats like they were pancakes! ' +
+                'He picked up Trixie on his roof and carried her to dry land. ' +
+                '<b>When the load is spread wide, even the squishiest ground ' +
+                'becomes a road.</b>');
+            confetti();
+            btns([{ label: 'next story →', fn: ch3 }]);
+          }
+          return;
+        }
+        raf = requestAnimationFrame(step);
+      })();
+    }
+    btns([
+      { label: 'small tires', fn: () => attempt(false) },
+      { label: 'BIG TIRES', big: true, fn: () => attempt(true) }
+    ]);
+  }
+
+  /* ---------- Chapter 3: spin true ---------- */
+  function ch3() {
+    mark(2); resetTruck();
+    mud.style.display = 'none';
+    setMotto(''); setHint('');
+    say('At the top of the hill Torque found the Great Gap — and over it, the ' +
+        'Lattice, a bridge made of criss-crossed light. <b>The Lattice only ' +
+        'catches what lands straight.</b> Torque lined up, took a breath, ' +
+        'and remembered: a wheel that spins sideways goes nowhere. ' +
+        'Click JUMP — then click STRAIGHTEN at just the right moment ' +
+        'to make Torque spin true!');
+    ramp.style.display = 'block';
+    lattice.style.display = 'block';
+    let phase = 'ready'; // ready -> flying -> landed/fell
+    let rot = 0;
+    function jump() {
+      if (phase !== 'ready') return;
+      phase = 'flying';
+      truck.classList.add('airborne', 'rolling');
+      let t = 0;
+      cancelAnimationFrame(raf);
+      (function fly() {
+        t += 0.016;
+        pos = 12 + t * 55;
+        const arc = Math.sin(Math.min(t / 1.15, 1) * Math.PI) * 34;
+        truck.style.left = Math.min(pos, 74) + '%';
+        truck.style.bottom = (18 + arc) + '%';
+        rot += 9; // spinning fast, not true
+        truck.style.transform = 'rotate(' + rot + 'deg)';
+        if (pos >= 60 && phase === 'flying') {
+          // reached lattice zone while crooked
+          land(false);
+          return;
+        }
+        if (t < 1.15 && phase === 'flying') raf = requestAnimationFrame(fly);
+        else if (phase === 'flying') land(false);
+      })();
+    }
+    function straighten() {
+      if (phase !== 'flying') return;
+      phase = 'landing';
+      cancelAnimationFrame(raf);
+      truck.style.transform = 'rotate(0deg)';
+      // snap into lattice zone
+      truck.style.left = '55%';
+      truck.style.bottom = '32%';
+      setTimeout(() => land(true), 400);
+    }
+    function land(ok) {
+      phase = 'done';
+      truck.classList.remove('rolling');
+      if (ok) {
+        truck.style.transform = 'rotate(0deg)';
+        setMotto('rule three: spin true and the lattice will catch you');
+        say('<b>THUNK.</b> The Lattice caught him — every criss-cross beam holding ' +
+            'a little, all of them together holding a lot. Torque rolled across ' +
+            'the sky on a bridge made of yes. <b>Land straight, and the whole ' +
+            'world helps carry you.</b>');
+        chapEls.forEach(e => e.className = 'done');
+        confetti(); confetti();
+        btns([
+          { label: 'read them all again ↺', fn: ch1 },
+          { label: 'the end. beep beep.', fn: () => {
+            say('Torque beeped his horn twice — beep beep — which in truck talk ' +
+                'means: <i>keep rolling, spread it wide, and spin true.</i> ' +
+                'Goodnight, Leo. The Lattice is always there.');
+          }}
+        ]);
+      } else {
+        truck.style.transform = 'rotate(70deg)';
+        truck.style.bottom = '4%';
+        splashes();
+        say('Torque tumbled sideways through the gap — a wheel spinning crooked ' +
+            'can\'t catch anything. He climbed back up the hill, a little dizzy, ' +
+            'and lined up again. <b>Hit JUMP, then STRAIGHTEN before the gap!</b>');
+        btns([{ label: 'climb back up and retry', fn: () => {
+          phase = 'ready'; resetTruck(); ramp.style.display = 'block';
+          lattice.style.display = 'block';
+          btns([{ label: 'JUMP!', big: true, fn: jump },
+                { label: 'STRAIGHTEN!', fn: straighten }]);
+        }}]);
+      }
+    }
+    btns([{ label: 'JUMP!', big: true, fn: jump },
+          { label: 'STRAIGHTEN!', fn: straighten }]);
+    setHint('jump, then straighten while Torque is in the air');
+  }
+
+  ch1();
+})();
+</script>
+</body>
+</html>
