@@ -109,16 +109,26 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 
 /* ---------- embedded worldcities (was astra/data/worldcities.csv) ---------- */
 const CITIES = [
-["New York","United States",40.7128,-74.006],["Los Angeles","United States",34.0522,-118.2437],
-["London","United Kingdom",51.5074,-0.1278],["Paris","France",48.8566,2.3522],
-["Tokyo","Japan",35.6895,139.6917],["Delhi","India",28.7041,77.1025],
-["Sydney","Australia",-33.8688,151.2093],["Toronto","Canada",43.6532,-79.3832],
-["Berlin","Germany",52.52,13.405],["Moscow","Russia",55.7558,37.6176],
-["Beijing","China",39.9042,116.4074],["Cairo","Egypt",30.0444,31.2357],
-["Sao Paulo","Brazil",-23.5505,-46.6333],["Buenos Aires","Argentina",-34.6037,-58.3816],
-["Johannesburg","South Africa",-26.2041,28.0473],["Istanbul","Turkey",41.0082,28.9784],
-["Seoul","South Korea",37.5665,126.978],["Singapore","Singapore",1.3521,103.8198],
-["Dubai","United Arab Emirates",25.2048,55.2708],["Mexico City","Mexico",19.4326,-99.1332],
+["New York","United States",40.7128,-74.006,"America/New_York"],
+["Los Angeles","United States",34.0522,-118.2437,"America/Los_Angeles"],
+["London","United Kingdom",51.5074,-0.1278,"Europe/London"],
+["Paris","France",48.8566,2.3522,"Europe/Paris"],
+["Tokyo","Japan",35.6895,139.6917,"Asia/Tokyo"],
+["Delhi","India",28.7041,77.1025,"Asia/Kolkata"],
+["Sydney","Australia",-33.8688,151.2093,"Australia/Sydney"],
+["Toronto","Canada",43.6532,-79.3832,"America/Toronto"],
+["Berlin","Germany",52.52,13.405,"Europe/Berlin"],
+["Moscow","Russia",55.7558,37.6176,"Europe/Moscow"],
+["Beijing","China",39.9042,116.4074,"Asia/Shanghai"],
+["Cairo","Egypt",30.0444,31.2357,"Africa/Cairo"],
+["Sao Paulo","Brazil",-23.5505,-46.6333,"America/Sao_Paulo"],
+["Buenos Aires","Argentina",-34.6037,-58.3816,"America/Argentina/Buenos_Aires"],
+["Johannesburg","South Africa",-26.2041,28.0473,"Africa/Johannesburg"],
+["Istanbul","Turkey",41.0082,28.9784,"Europe/Istanbul"],
+["Seoul","South Korea",37.5665,126.978,"Asia/Seoul"],
+["Singapore","Singapore",1.3521,103.8198,"Asia/Singapore"],
+["Dubai","United Arab Emirates",25.2048,55.2708,"Asia/Dubai"],
+["Mexico City","Mexico",19.4326,-99.1332,"America/Mexico_City"],
 ];
 const dl = document.getElementById('cities');
 for (const [c, co] of CITIES){const o=document.createElement('option');o.value=`${c}, ${co}`;dl.append(o);}
@@ -229,14 +239,20 @@ scene.add(new THREE.AmbientLight(0x302818));
 const key=new THREE.PointLight(0xffce8a,1.4);key.position.set(10,30,20);scene.add(key);
 const rim=new THREE.PointLight(0x6a8cff,0.7);rim.position.set(-15,10,-20);scene.add(rim);
 
-// field surface
-const geo=new THREE.PlaneGeometry(30,30,N-1,N-1);geo.rotateX(-Math.PI/2);
-const pos=geo.attributes.position;
-const colors=new Float32Array(pos.count*3);geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
-const mat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.65,metalness:.25});
-scene.add(new THREE.Mesh(geo,mat));
-const wire=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:0xd4a94e,wireframe:true,transparent:true,opacity:.07}));
-scene.add(wire);
+// field surface (rebuilt when the engine's grid size differs)
+let FN=N, mesh=null, wire=null, geo=null, pos=null;
+function buildSurface(n){
+  if(mesh){scene.remove(mesh,wire);geo.dispose();}
+  FN=n;
+  geo=new THREE.PlaneGeometry(30,30,FN-1,FN-1);geo.rotateX(-Math.PI/2);
+  pos=geo.attributes.position;
+  const colors=new Float32Array(pos.count*3);
+  geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
+  mesh=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.65,metalness:.25}));
+  wire=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:0xd4a94e,wireframe:true,transparent:true,opacity:.07}));
+  scene.add(mesh,wire);
+}
+buildSurface(N);
 
 // ecliptic ring + operator glyphs
 const ring=new THREE.Mesh(new THREE.TorusGeometry(19,0.05,8,120),
@@ -244,24 +260,31 @@ const ring=new THREE.Mesh(new THREE.TorusGeometry(19,0.05,8,120),
 const glyphGroup=new THREE.Group();scene.add(glyphGroup);
 const cGold=new THREE.Color(0xd4a94e), cDeep=new THREE.Color(0x1c1812), cTeal=new THREE.Color(0x2a8a80);
 
-function placeGlyphs(lons){
+function placeGlyphs(bodies){ // [{lon,name}] or [lon,...] (browser path, GLYPH order)
   while(glyphGroup.children.length) glyphGroup.remove(glyphGroup.children[0]);
-  lons.forEach((lon,i)=>{
-    const name=Object.keys(GLYPH)[i];
+  const keys=Object.keys(GLYPH);
+  bodies.forEach((b,i)=>{
+    const lon=typeof b==='number'?b:b.lon;
+    const name=typeof b==='number'?keys[i]:(b.name||keys[i]);
+    const col=PLANET_COLOR[name]??0x9a8f7a;
     const th=lon*D2R;
     const m=new THREE.Mesh(new THREE.SphereGeometry(0.42,16,16),
-      new THREE.MeshStandardMaterial({color:PLANET_COLOR[name],emissive:PLANET_COLOR[name],emissiveIntensity:.55}));
+      new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:.55}));
     m.position.set(Math.cos(th)*19,1.6,Math.sin(th)*19);
     // thin tether down to the seeded point on the field
     const fx=Math.cos(th)*9, fz=Math.sin(th)*9;
     const tetherGeo=new THREE.BufferGeometry().setFromPoints(
       [new THREE.Vector3(m.position.x,1.2,m.position.z),new THREE.Vector3(fx,0.3,fz)]);
-    glyphGroup.add(m,new THREE.Line(tetherGeo,new THREE.LineBasicMaterial({color:PLANET_COLOR[name],transparent:true,opacity:.45})));
+    glyphGroup.add(m,new THREE.Line(tetherGeo,new THREE.LineBasicMaterial({color:col,transparent:true,opacity:.45})));
   });
 }
+let fieldArr=null; // flat values currently painted (V in browser mode, lab frames otherwise)
+let labFrames=null, labTick=0, labParams=null;
 function paintField(){
+  const F = fieldArr || V;
+  const colors=geo.attributes.color.array;
   for(let i=0;i<pos.count;i++){
-    const x=i%(N), y=Math.floor(i/N), v=V[y*N+x];
+    const x=i%FN, y=Math.floor(i/FN), v=F[y*FN+x];
     pos.setY(i, v*9 - 0.8);
     colors[i*3]  = cDeep.r + (cGold.r-cDeep.r)*v + cTeal.r*v*v;
     colors[i*3+1]= cDeep.g + (cGold.g-cDeep.g)*v + cTeal.g*v*v*1.1;
@@ -273,49 +296,116 @@ function resize(){const w=cv.clientWidth,h=cv.clientHeight;
   renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
 window.addEventListener('resize',resize);
 
+/* ---------- lab engine (tailnet) ---------- */
+const LAB_API='https://intelbox.tail32a347.ts.net:8465/api/astra/compute';
+function civilToUTC(dateStr,timeStr,tz){
+  const guess=Date.parse(`${dateStr}T${timeStr}:00Z`);
+  const fmt=new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',
+    year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+  const p=Object.fromEntries(fmt.formatToParts(new Date(guess)).map(x=>[x.type,x.value]));
+  const shown=Date.parse(`${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:00Z`);
+  const u=new Date(2*guess-shown);
+  return {year:u.getUTCFullYear(),month:u.getUTCMonth()+1,day:u.getUTCDate(),
+          hour:u.getUTCHours(),minute:u.getUTCMinutes()};
+}
+async function labCompute(dateStr,timeStr,lat,lon,tz){
+  const u=civilToUTC(dateStr,timeStr,tz);
+  const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),15000);
+  try{
+    const r=await fetch(LAB_API,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({...u,lat,lng:lon,name:document.getElementById('f-name').value||'anonymous',
+        duration:0.8,frames:28}),signal:ctrl.signal});
+    if(!r.ok)throw new Error('lab '+r.status);
+    return await r.json();
+  }finally{clearTimeout(to);}
+}
+
 /* ---------- run ---------- */
 let running=false,raf=null;
 function loop(){
   if(!running)return;
-  step(6);paintField();
+  if(labFrames){
+    // ping-pong through engine frames
+    const n=labFrames.length, span=n*2-2, t=(labTick++/14)%span;
+    const i=Math.min(Math.floor(t),n-2), f=t-i;
+    const a=labFrames[i],b=labFrames[i+1];
+    for(let k=0;k<fieldArr.length;k++)fieldArr[k]=a[k]+(b[k]-a[k])*f;
+  } else {
+    step(6);
+  }
+  paintField();
   renderer.render(scene,cam);ctl.update();
   raf=requestAnimationFrame(loop);
 }
 function stats(){
+  const F=fieldArr||V, m=FN*FN;
   let mean=0,peak=0,varr=0;
-  for(let i=0;i<N*N;i++){mean+=V[i];if(V[i]>0.32)peak++;}
-  mean/=N*N;
-  for(let i=0;i<N*N;i++)varr+=(V[i]-mean)**2;varr/=N*N;
+  for(let i=0;i<m;i++){mean+=F[i];if(F[i]>0.32)peak++;}
+  mean/=m;
+  for(let i=0;i<m;i++)varr+=(F[i]-mean)**2;varr/=m;
+  let extra='';
+  if(labParams){
+    extra=`<tr><td>λ / η / γ</td><td>${labParams.lambda.toFixed(3)} / ${labParams.eta.toFixed(3)} / ${labParams.gamma.toFixed(3)}</td></tr>`;
+    if(labParams.betti) extra+=`<tr><td>β₀ β₁ β₂</td><td>${labParams.betti.join(' ')}</td></tr>`;
+  }
   document.getElementById('stats').innerHTML=
-   `<tr><td>field mean (v)</td><td>${mean.toFixed(4)}</td></tr>
+   `<tr><td>field mean</td><td>${mean.toFixed(4)}</td></tr>
     <tr><td>variance</td><td>${varr.toFixed(4)}</td></tr>
-    <tr><td>excited cells</td><td>${peak} / ${N*N} (${(100*peak/(N*N)).toFixed(1)}%)</td></tr>
-    <tr><td>regime</td><td>${varr>0.04?'pattern-forming':'diffuse'}</td></tr>`;
+    <tr><td>excited cells</td><td>${peak} / ${m} (${(100*peak/m).toFixed(1)}%)</td></tr>
+    <tr><td>regime</td><td>${varr>0.04?'pattern-forming':'diffuse'}</td></tr>${extra}`;
 }
-document.getElementById('go').addEventListener('click',()=>{
+function renderPlanets(list){ // [{name,glyph,lon,sign,retrograde}]
+  document.getElementById('planets').innerHTML=
+    '<tr><th></th><th>body</th><th>longitude</th><th>sign</th></tr>'+
+    list.map(p=>`<tr><td class="sym">${p.glyph}</td><td>${p.name}${p.retrograde?' ℞':''}</td>
+      <td>${p.lon.toFixed(1)}°</td><td>${p.sign}</td></tr>`).join('');
+}
+document.getElementById('go').addEventListener('click',async()=>{
   const d=document.getElementById('f-date').value;
   if(!d){document.getElementById('status').textContent='pick a date first.';return;}
   const t=document.getElementById('f-time').value||'12:00';
-  const dt=new Date(d+'T'+t);
-  // local→utc approx via longitude if provided
+  const lat=parseFloat(document.getElementById('f-lat').value);
   const lon=parseFloat(document.getElementById('f-lon').value);
-  const tzH=isNaN(lon)? -dt.getTimezoneOffset()/60 : lon/15;
-  const jd=dt.getTime()/86400000 - tzH/24 + 2440587.5;
-  const day=jd-2451543.5;
+  const statusEl=document.getElementById('status');
+  const cityHit=CITIES.find(x=>`${x[0]}, ${x[1]}`===document.getElementById('f-city').value);
+  const tz=cityHit?cityHit[4]:(isNaN(lon)?'UTC':`Etc/GMT${lon<0?'+':'-'}${Math.min(12,Math.round(Math.abs(lon)/15))}`);
 
-  const names=Object.keys(GLYPH);
-  const lons=[sunLon(day),moonLon(day),...['mercury','venus','mars','jupiter','saturn'].map(n=>geoLon(n,day))];
-  const tb=document.getElementById('planets');
-  tb.innerHTML='<tr><th></th><th>body</th><th>longitude</th><th>sign</th></tr>'+
-    names.map((n,i)=>`<tr><td class="sym">${GLYPH[n]}</td><td>${n}</td>
-      <td>${lons[i].toFixed(1)}°</td><td>${signOf(lons[i])}</td></tr>`).join('');
-
-  seedField(lons);placeGlyphs(lons);
-  step(150); // pre-evolve burst so the field opens with structure
-  document.getElementById('status').textContent='field seeded — evolving…';
+  // 1) try the lab engine (tailnet HTTPS) — falls back to browser sim
+  labFrames=null;labParams=null;fieldArr=null;
+  try{
+    statusEl.textContent='asking the lab…';
+    const r=await labCompute(d,t,lat,lon,tz);
+    labParams={...r.params,betti:r.topology?.betti};
+    const g=r.grid;
+    buildSurface(g);
+    fieldArr=new Float32Array(g*g);
+    labFrames=r.frames.map(fr=>{const a=new Float32Array(g*g);
+      // engine field drifts coherently — normalize each frame to [0,1]
+      // so the surface shows spatial structure, not the drifting mean
+      let mn=Infinity,mx=-Infinity;
+      for(let y=0;y<g;y++)for(let x=0;x<g;x++){const v=fr[y][x];if(v<mn)mn=v;if(v>mx)mx=v;}
+      const span=(mx-mn)||1;
+      for(let y=0;y<g;y++)for(let x=0;x<g;x++)a[y*g+x]=(fr[y][x]-mn)/span;return a;});
+    labTick=0;
+    renderPlanets(r.planets);
+    placeGlyphs(r.planets);
+    statusEl.textContent=`lab-computed · ${r.engine} · ${r.elapsed_s}s — evolving…`;
+  }catch(e){
+    // 2) browser approximation
+    const dt=new Date(d+'T'+t);
+    const tzH=isNaN(lon)? -dt.getTimezoneOffset()/60 : lon/15;
+    const jd=dt.getTime()/86400000 - tzH/24 + 2440587.5;
+    const day=jd-2451543.5;
+    const names=Object.keys(GLYPH);
+    const lons=[sunLon(day),moonLon(day),...['mercury','venus','mars','jupiter','saturn'].map(n=>geoLon(n,day))];
+    renderPlanets(names.map((n,i)=>({name:n,glyph:GLYPH[n],lon:lons[i],sign:signOf(lons[i])})));
+    buildSurface(N);
+    seedField(lons);placeGlyphs(lons);step(150);
+    statusEl.textContent='browser approximation — lab unreachable, evolving locally…';
+  }
   running=true;document.getElementById('pause').disabled=false;
   cancelAnimationFrame(raf);loop();
-  setTimeout(stats,400);
+  setTimeout(stats,600);
 });
 document.getElementById('pause').addEventListener('click',e=>{
   running=!running;
