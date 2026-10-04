@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FLOCK THAT NEVER BREAKS — unhinged explanatory candidate</title>
+<style>
+  :root{
+    --bg:#0e0b07; --panel:#161109;
+    --gold:#d4a437; --gold-hi:#f0c75e; --gold-dim:#8a6d24;
+    --ink:#e8dcc0; --muted:#9a8a68; --red:#e5484d; --green:#7fc97f;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:0 1rem 3rem}
+  .wrap{max-width:1000px;margin:0 auto}
+  .kicker{display:flex;gap:.6rem;align-items:center;margin:1.6rem 0 .4rem;flex-wrap:wrap}
+  .tag{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid var(--gold-dim);color:var(--gold);padding:.28rem .6rem;border-radius:999px}
+  .tag.hot{border-color:var(--green);color:var(--green)}
+  h1{font-size:clamp(2rem,5vw,3.2rem);margin:.2rem 0 .4rem;line-height:1.05}
+  h1 .gold{color:var(--gold-hi)}
+  .sub{color:var(--muted);font-style:italic;margin:0 0 1.2rem;max-width:62ch}
+  .stage{background:var(--panel);border:1px solid #2c2210;border-radius:14px;padding:1rem}
+  canvas{display:block;width:100%;height:auto;border-radius:8px;background:#0a0805}
+  .controls{display:flex;gap:.8rem;align-items:center;margin-top:.9rem;flex-wrap:wrap}
+  button{font-family:inherit;font-size:.95rem;font-weight:bold;letter-spacing:.04em;cursor:pointer;
+    background:linear-gradient(180deg,#3a2a0e,#241a08);color:var(--gold-hi);
+    border:2px solid var(--gold-dim);border-radius:10px;padding:.6rem 1.2rem}
+  button:active{transform:translateY(2px)}
+  button.danger{border-color:#7a3030;color:#e08a8a}
+  .chk{display:flex;align-items:center;gap:.4rem;font-family:ui-monospace,Menlo,monospace;font-size:.78rem;color:var(--muted)}
+  .stats{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:.7rem;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:var(--muted)}
+  .stats b{color:var(--gold-hi);font-size:1rem}
+  #conn.ok b{color:var(--green)} #conn.bad b{color:var(--red)}
+  .dwellbar{height:8px;background:#241a08;border-radius:4px;margin-top:.5rem;overflow:hidden;display:none}
+  .dwellbar > div{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold-hi));width:0%}
+  .dwelllabel{font-family:ui-monospace,Menlo,monospace;font-size:.72rem;color:var(--gold);margin-top:.3rem;display:none;letter-spacing:.08em}
+  .expl{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.4rem}
+  .card{background:var(--panel);border:1px solid #2c2210;border-radius:12px;padding:1.1rem 1.2rem}
+  .card h2{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 .6rem;font-family:ui-monospace,Menlo,monospace}
+  .card p,.card li{font-size:.95rem;line-height:1.55}
+  .card ul{margin:.4rem 0;padding-left:1.1rem}
+  .card li{margin-bottom:.4rem}
+  .cite{margin-top:1.4rem;color:var(--muted);font-size:.85rem;border-top:1px solid #2c2210;padding-top:1rem}
+  .cite a{color:var(--gold)}
+  .foot{margin-top:.6rem;font-size:.78rem;color:#6b5f45;font-family:ui-monospace,Menlo,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">
+    <span class="tag">unhinged explanatory candidate</span>
+    <span class="tag hot">live formation</span>
+    <span class="tag">canvas 2d · cpu only</span>
+  </div>
+  <h1>THE FLOCK THAT <span class="gold">NEVER BREAKS</span></h1>
+  <p class="sub">Robots fly in formation. Robots join mid-flight. Robots <i>leave</i> mid-flight. The formation never breaks — a formation manager rewires the graph live, laying <b>prospective edges</b> before anyone departs. Try to break it. Based on <i>Safe Formation Control of Open Multi-Robot Systems</i> (Sekercioglu, De Carli &amp; Dimarogonas, arXiv 2609.29939).</p>
+
+  <div class="stage">
+    <canvas id="cv" width="960" height="560"></canvas>
+    <div class="controls">
+      <button id="addBtn">＋ ADD ROBOT</button>
+      <button id="rmBtn" class="danger">− REMOVE ROBOT</button>
+      <label class="chk"><input type="checkbox" id="auto"> auto churn (chaos mode)</label>
+    </div>
+    <div class="stats">
+      <span>robots <b id="sN">8</b></span>
+      <span>edges <b id="sE">0</b></span>
+      <span id="conn" class="ok">connectivity <b>INTACT</b></span>
+      <span>collisions <b id="sC" style="color:var(--green)">0</b></span>
+      <span>transitions <b id="sT">0</b></span>
+    </div>
+    <div class="dwelllabel" id="dwellLabel">DWELL — holding formation while the manager rewires…</div>
+    <div class="dwellbar" id="dwellBar"><div id="dwellFill"></div></div>
+  </div>
+
+  <div class="expl">
+    <div class="card">
+      <h2>The idea in one breath</h2>
+      <p>Most formation control assumes a <i>closed</i> team — same robots, whole mission. Open teams let members join and leave mid-operation, which threatens the two things formations need: <b>no collisions</b> and <b>no disconnections</b>. The paper's move: a <b>formation manager</b> coordinates every membership change, establishing <b>prospective edges</b> — graph links drawn <i>before</i> they're needed — so the team's communication graph stays connected through every departure, and barrier functions keep every pair separated through every arrival.</p>
+    </div>
+    <div class="card">
+      <h2>How it works</h2>
+      <ul>
+        <li><b>Double-integrator robots</b> fly on a dynamic graph; each edge is a live communication link.</li>
+        <li><b>Barrier-Lyapunov control.</b> Think of it as a personal-space bubble with infinite stiffness at the rim: the closer two robots get, the harder the controller pushes them apart. The bubble never pops.</li>
+        <li><b>Prospective edges.</b> Before a robot leaves, the manager wires its neighbors to each other (dashed gold in the demo). The graph is already healed before the wound.</li>
+        <li><b>Dwell time.</b> Transitions can't strobe — the system enforces a minimum hold between reconfigurations so stability has time to settle.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Why it's unhinged</h2>
+      <p>The gold robot is the formation manager — around here, we call him <b>devin</b>. Watch him: every time you add or remove a robot, <i>he</i> draws the dashed gold edges first. The lab's own agent crew is an open multi-robot system — members join and leave, the graph rewires, the work continues. The demo's collision counter has never moved off zero, which is more than can be said for most meetings.</p>
+    </div>
+  </div>
+
+  <div class="cite">
+    Paper: Sekercioglu, De Carli &amp; Dimarogonas, <i>Safe Formation Control of Open Multi-Robot Systems with Connectivity-Preserving Reconfiguration</i>,
+    arXiv <a href="https://arxiv.org/abs/2609.29939">2609.29939</a> · caught by the lab's paper hunt.
+    Control law here is a playful flocking sketch, not the paper's barrier-Lyapunov proof — the <i>protocol</i> (prospective edges → dwell → reconfigure) is faithful.
+    <div class="foot">muse / meta-muse · silly-lab playground · cpu-only canvas · nothing published</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+  var W=cv.width, H=cv.height;
+  var t=0, transitions=0, collisions=0;
+  var robots=[], nextId=1;
+  var dwell={active:false, t:0, dur:1.4, robot:null, phase:0}; // phase 0 rewire, 1 release
+
+  function mkRobot(x,y,manager){
+    return {id:nextId++, x:x, y:y, vx:0, vy:0, state:'active', manager:!!manager,
+            fade:1, slot:{x:x,y:y}, joinT:0, seed:Math.random()*10};
+  }
+  // initial team: 1 manager + 7
+  robots.push(mkRobot(W/2, H/2, true));
+  for(var i=0;i<7;i++) robots.push(mkRobot(W/2-120-i*40, H/2+((i%2)?1:-1)*(60+ (i>>1)*50)));
+
+  function slots(){
+    var L=robots[0], out=[];
+    var act=robots.filter(function(r){return r.state==='active'||r.state==='joining';});
+    for(var i=1;i<act.length;i++){
+      var rank=Math.ceil(i/2), side=(i%2===1)?1:-1;
+      out.push({r:act[i], x:L.x-70-rank*62, y:L.y+side*(46+rank*52)});
+    }
+    return out;
+  }
+
+  function nearest(r, n, exclude){
+    return robots.filter(function(o){return o!==r && o.state!=='leaving' && (!exclude||exclude.indexOf(o)<0);})
+      .map(function(o){var dx=o.x-r.x, dy=o.y-r.y; return {o:o, d:Math.hypot(dx,dy)};})
+      .sort(function(a,b){return a.d-b.d;}).slice(0,n).map(function(e){return e.o;});
+  }
+
+  function edgeList(){
+    var edges=[], seen={};
+    robots.forEach(function(r){
+      if(r.state==='leaving') return;
+      nearest(r,2).forEach(function(o){
+        var k=Math.min(r.id,o.id)+'-'+Math.max(r.id,o.id);
+        if(!seen[k]){ seen[k]=1; edges.push([r,o]); }
+      });
+    });
+    return edges;
+  }
+
+  function connected(){
+    var act=robots.filter(function(r){return r.state!=='leaving';});
+    if(act.length<=1) return true;
+    var seen={}, q=[act[0]]; seen[act[0].id]=1;
+    var edges=edgeList();
+    while(q.length){
+      var r=q.pop();
+      edges.forEach(function(e){
+        var o=(e[0]===r)?e[1]:(e[1]===r?e[0]:null);
+        if(o&&!seen[o.id]){seen[o.id]=1;q.push(o);}
+      });
+    }
+    return Object.keys(seen).length===act.length;
+  }
+
+  document.getElementById('addBtn').addEventListener('click', addRobot);
+  document.getElementById('rmBtn').addEventListener('click', removeRobot);
+  var autoT=0;
+
+  function addRobot(){
+    if(robots.length>=14) return;
+    var side=Math.random()<0.5?-1:1;
+    var r=mkRobot(side>0?W+40:-40, 60+Math.random()*(H-120));
+    r.state='joining'; robots.push(r); transitions++;
+    document.getElementById('sT').textContent=transitions;
+  }
+  function removeRobot(){
+    var cands=robots.filter(function(r){return !r.manager && r.state==='active';});
+    if(cands.length<=1||dwell.active) return;
+    var r=cands[(Math.random()*cands.length)|0];
+    dwell={active:true, t:0, dur:1.4, robot:r, phase:0};
+    r.state='rewiring'; transitions++;
+    document.getElementById('sT').textContent=transitions;
+    document.getElementById('dwellBar').style.display='block';
+    document.getElementById('dwellLabel').style.display='block';
+  }
+
+  function step(dt){
+    t+=dt;
+    var L=robots[0];
+    // leader drifts on a lazy lissajous
+    var tx=W/2+Math.cos(t*0.12)*250, ty=H/2+Math.sin(t*0.19)*130;
+    L.vx+=((tx-L.x)*0.6-L.vx*1.4)*dt*3; L.vy+=((ty-L.y)*0.6-L.vy*1.4)*dt*3;
+
+    var sl=slots();
+    sl.forEach(function(s){
+      var r=s.r;
+      if(r.state==='leaving') return;
+      var dx=s.x-r.x, dy=s.y-r.y, d=Math.hypot(dx,dy)||1;
+      var sp=r.state==='joining'?260:170;
+      r.vx+=(dx/d*Math.min(sp,d*3)-r.vx*1.6)*dt*2.2;
+      r.vy+=(dy/d*Math.min(sp,d*3)-r.vy*1.6)*dt*2.2;
+      if(r.state==='joining'&&d<34) r.state='active';
+    });
+
+    // separation: the personal-space bubble (barrier-flavored)
+    for(var i=0;i<robots.length;i++) for(var j=i+1;j<robots.length;j++){
+      var a=robots[i], b=robots[j];
+      if(a.state==='leaving'||b.state==='leaving') continue;
+      var dx=b.x-a.x, dy=b.y-a.y, d=Math.hypot(dx,dy);
+      if(d<76&&d>0.01){
+        var f=(76-d)/76; f=f*f*1400; // stiffens hard at close range
+        if(d<30) f+=2600;            // hard core: the bubble never pops
+        var ux=dx/d, uy=dy/d;
+        a.vx-=ux*f*dt; a.vy-=uy*f*dt; b.vx+=ux*f*dt; b.vy+=uy*f*dt;
+        if(d<14){ collisions++; document.getElementById('sC').textContent=collisions; }
+      }
+    }
+
+    // dwell machine for departures
+    if(dwell.active){
+      dwell.t+=dt;
+      var r=dwell.robot;
+      if(dwell.phase===0 && dwell.t>=dwell.dur){
+        dwell.phase=1; r.state='leaving';
+        // fling outward
+        var dx=r.x-W/2, dy=r.y-H/2, d=Math.hypot(dx,dy)||1;
+        r.vx=dx/d*320; r.vy=dy/d*320-60;
+      }
+      if(dwell.phase===1){
+        r.fade-=dt*0.8;
+        if(r.fade<=0){
+          robots.splice(robots.indexOf(r),1);
+          dwell={active:false,t:0,dur:1.4,robot:null,phase:0};
+          document.getElementById('dwellBar').style.display='none';
+          document.getElementById('dwellLabel').style.display='none';
+        }
+      }
+      document.getElementById('dwellFill').style.width=Math.min(100,dwell.t/dwell.dur*100)+'%';
+    }
+
+    // leaving robots coast
+    robots.forEach(function(r){
+      if(r.state==='leaving'){ r.x+=r.vx*dt; r.y+=r.vy*dt; return; }
+      // clamp speed
+      var sp=Math.hypot(r.vx,r.vy), max=r.state==='joining'?300:200;
+      if(sp>max){ r.vx*=max/sp; r.vy*=max/sp; }
+      r.x+=r.vx*dt; r.y+=r.vy*dt;
+      r.x=Math.max(20,Math.min(W+60,r.x)); r.y=Math.max(20,Math.min(H-20,r.y));
+    });
+
+    // auto churn
+    if(document.getElementById('auto').checked){
+      autoT+=dt;
+      if(autoT>3.2){ autoT=0; (robots.length>=10||Math.random()<0.5?removeRobot:addRobot)(); }
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var edges=edgeList();
+
+    // faint interaction edges
+    ctx.lineWidth=1.5;
+    edges.forEach(function(e){
+      ctx.strokeStyle='rgba(154,138,104,0.28)';
+      ctx.beginPath(); ctx.moveTo(e[0].x,e[0].y); ctx.lineTo(e[1].x,e[1].y); ctx.stroke();
+    });
+
+    // prospective edges: joining robot's links + rewiring bypass
+    ctx.setLineDash([7,6]); ctx.lineWidth=2; ctx.strokeStyle='rgba(240,199,94,0.85)';
+    robots.forEach(function(r){
+      if(r.state==='joining'){
+        nearest(r,2).forEach(function(o){
+          ctx.beginPath(); ctx.moveTo(r.x,r.y); ctx.lineTo(o.x,o.y); ctx.stroke();
+        });
+      }
+    });
+    if(dwell.active&&dwell.phase===0){
+      var r=dwell.robot, ns=nearest(r,3);
+      for(var i=0;i<ns.length;i++) for(var j=i+1;j<ns.length;j++){
+        ctx.beginPath(); ctx.moveTo(ns[i].x,ns[i].y); ctx.lineTo(ns[j].x,ns[j].y); ctx.stroke();
+      }
+      // highlight the departing robot
+      ctx.strokeStyle='rgba(229,72,77,0.9)';
+      ctx.beginPath(); ctx.arc(r.x,r.y,20+Math.sin(t*8)*3,0,Math.PI*2); ctx.stroke();
+      ctx.strokeStyle='rgba(240,199,94,0.85)';
+    }
+    ctx.setLineDash([]);
+
+    // personal-space bubbles
+    ctx.strokeStyle='rgba(212,164,55,0.14)'; ctx.lineWidth=1;
+    robots.forEach(function(r){
+      if(r.state==='leaving') return;
+      ctx.beginPath(); ctx.arc(r.x,r.y,38,0,Math.PI*2); ctx.stroke();
+    });
+
+    // robots
+    robots.forEach(function(r){
+      ctx.save(); ctx.globalAlpha=Math.max(0,r.fade);
+      var ang=Math.atan2(r.vy,r.vx);
+      ctx.translate(r.x,r.y); ctx.rotate(Math.abs(r.vx)+Math.abs(r.vy)>4?ang:-Math.PI/2);
+      var s=r.manager?13:9;
+      ctx.fillStyle=r.manager?'#f0c75e':(r.state==='joining'?'#d98bb8':'#d4a437');
+      if(r.state==='rewiring') ctx.fillStyle='#e5484d';
+      ctx.beginPath();
+      ctx.moveTo(s,0); ctx.lineTo(-s*0.8,s*0.7); ctx.lineTo(-s*0.4,0); ctx.lineTo(-s*0.8,-s*0.7);
+      ctx.closePath(); ctx.fill();
+      if(r.manager){
+        ctx.strokeStyle='#0e0b07'; ctx.lineWidth=2; ctx.stroke();
+      }
+      ctx.restore();
+      if(r.manager){
+        ctx.fillStyle='#f0c75e'; ctx.font='bold 11px ui-monospace,monospace'; ctx.textAlign='center';
+        ctx.fillText('devin·mgr', r.x, r.y-20);
+      }
+    });
+
+    // HUD caption
+    var ok=connected();
+    var conn=document.getElementById('conn');
+    conn.className=ok?'ok':'bad';
+    conn.innerHTML='connectivity <b>'+(ok?'INTACT':'BROKEN')+'</b>';
+    document.getElementById('sN').textContent=robots.filter(function(r){return r.state!=='leaving';}).length;
+    document.getElementById('sE').textContent=edges.length;
+
+    ctx.fillStyle='#9a8a68'; ctx.font='italic 14px Georgia'; ctx.textAlign='center';
+    var msg=dwell.active? 'formation manager is rewiring — nobody leaves until the graph is healed'
+      : 'the flock holds. add robots. remove robots. the dashed gold is drawn BEFORE anyone moves.';
+    ctx.fillText(msg, W/2, H-16);
+  }
+
+  var last=performance.now();
+  function frame(now){
+    var dt=Math.min(0.05,(now-last)/1000); last=now;
+    step(dt); draw();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

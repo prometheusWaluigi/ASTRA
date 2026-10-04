@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paper Cluster: Living Systems — The Mycelium Map</title>
+<meta name="description" content="Fourteen paper-hunt candidates rendered as fruiting bodies on a procedural branching/fusion network — the growth grammar is the flagship paper's own.">
+<style>
+  :root{
+    --bg:#06070e; --ink:#e8e4d8; --dim:#8a8676;
+    --gold:#d4a84f; --rust:#c0623a; --mercury:#8fb8c9; --violet:#9a7fd4; --bone:#cfc9b8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--bg)}
+  body{font:15px/1.65 Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg)}
+  #stage{position:relative;height:100vh;height:100svh;overflow:hidden}
+  #c{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+  #c:active{cursor:grabbing}
+  .kicker{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+  #title{position:absolute;top:34px;left:38px;max-width:560px;pointer-events:none;text-shadow:0 2px 18px rgba(0,0,0,.9)}
+  #title h1{font-size:clamp(26px,4.4vw,44px);font-weight:400;letter-spacing:.01em;line-height:1.12;margin:8px 0 10px}
+  #title h1 em{color:var(--gold);font-style:italic}
+  #title p{color:var(--dim);font-size:14px;max-width:46ch}
+  #hint{position:absolute;left:38px;bottom:26px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.16em;color:#565247;text-transform:uppercase}
+  #legend{position:absolute;right:30px;top:36px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim);text-align:right;text-shadow:0 1px 10px #000}
+  #legend div{margin-bottom:5px}
+  #legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:9px;vertical-align:1px}
+  #regrow{position:absolute;right:30px;bottom:24px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);background:rgba(10,11,20,.55);border:1px solid #2a2c3a;padding:9px 16px;border-radius:3px;cursor:pointer;transition:.25s}
+  #regrow:hover{color:var(--gold);border-color:var(--gold)}
+  #tip{position:absolute;pointer-events:none;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.06em;color:var(--ink);background:rgba(8,9,16,.88);border:1px solid #33363f;border-left:2px solid var(--gold);padding:7px 11px;max-width:300px;opacity:0;transition:opacity .12s;z-index:5}
+  #card{position:absolute;left:38px;bottom:26px;width:min(560px,calc(100% - 76px));background:rgba(9,10,18,.9);border:1px solid #2c2e38;border-left:3px solid var(--gold);padding:20px 24px 18px;backdrop-filter:blur(6px);opacity:0;transform:translateY(10px);transition:.3s;pointer-events:none}
+  #card.on{opacity:1;transform:none;pointer-events:auto}
+  #card h2{font-size:19px;font-weight:400;line-height:1.3;margin:5px 0 6px}
+  #card .meta{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+  #card .meta b{color:var(--gold);font-weight:400}
+  #card p{margin-top:10px;font-size:14px;color:#c8c4b6}
+  #card .close{position:absolute;top:10px;right:14px;color:var(--dim);cursor:pointer;font-family:ui-monospace,monospace;font-size:14px}
+  #card .close:hover{color:var(--ink)}
+  main{max-width:760px;margin:0 auto;padding:70px 28px 110px}
+  main h3{font-weight:400;font-size:21px;margin:42px 0 16px;color:var(--gold)}
+  main .paper{border-top:1px solid #23252e;padding:16px 2px}
+  main .paper .t{color:var(--ink);font-size:16px}
+  main .paper .m{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:3px 0 7px}
+  main .paper .m b{font-weight:400}
+  main .paper .d{font-size:13.5px;color:#a39e8d}
+  .sw{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+  @media(max-width:680px){#title{left:22px;top:22px}#legend{display:none}#card{left:16px;width:calc(100% - 32px)}#hint{left:22px}}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="title">
+    <div class="kicker">Paper Cluster · Living Systems · 14 specimens</div>
+    <h1>The Mycelium <em>Map</em></h1>
+    <p>Bees, fungi, fermentation, desert varnish — grown as a branching &amp; fusion network using the flagship paper's own grammar: elongation, stochastic branching, fusion, stopping. No blueprint, no optimizer — structure from seams.</p>
+  </div>
+  <div id="legend"></div>
+  <div id="hint">drag to orbit · scroll to zoom · click a fruiting body</div>
+  <div id="tip"></div>
+  <div id="card"><span class="close">✕</span><div class="meta"></div><h2></h2><p></p></div>
+  <button id="regrow">⟳ regrow</button>
+</div>
+<main>
+  <h3>The specimens</h3>
+  <p style="color:var(--dim);font-size:13.5px;margin-bottom:8px">Every entry below in its original hunt-note wording — isomorphisms verbatim, seams drawn where the notes themselves rhyme.</p>
+  <div id="list"></div>
+  <h3>The grammar</h3>
+  <p style="color:#a39e8d;font-size:14px">Each regeneration runs the same four local rules from <em>Minimal branching and fusion morphogenesis</em>: a hyphal tip <b>elongates</b> with a wandering bias, <b>branches</b> on a slow clock, <b>fuses</b> when it meets an older strand — the seam becomes a loop — and <b>stops</b> as its energy runs out. No global optimizer; the Pareto front of transport, exploration, and robustness arrives anyway. Papers hang where strands end or fuse — fruiting bodies, not bullets.</p>
+</main>
+<script type="module">
+import * as THREE from 'three';
+
+const THEMES = {
+  gold:    {c:0xd4a84f, label:'repair / kintsugi'},
+  rust:    {c:0xc0623a, label:'seams / friction'},
+  mercury: {c:0x8fb8c9, label:'coherence / instrument'},
+  violet:  {c:0x9a7fd4, label:'maps / memory'},
+  bone:    {c:0xcfc9b8, label:'consilience'},
+};
+const PAPERS = [
+{id:'2601.03877v1',t:'Minimal branching and fusion morphogenesis approaches biological multi-objective optimality',theme:'gold',run:'2026-09-29',flag:1,d:'Stochastic local rules (elongation, branching, fusion, stopping) with no global optimization generate tree-like, loopy, and hybrid fungal networks whose Pareto front of transport/exploration/robustness tradeoffs sits close to that of evolved fungal networks. Isomorphism: structure from seams, not plans — branching is the fork, fusion is the kintsugi stitch; multi-objective optimality is achieved by a repair-capable growth grammar, not a blueprint. Closest the hunt has come to the lab\u2019s repair theme on living infrastructure; strongest of the run. Hunted twice.'},
+{id:'2608.00662v1',t:'No persistent circadian oscillator at genome resolution: pseudo-coherence in gut microbiome dynamics',theme:'mercury',run:'2026-09-30',d:'Apparent circadian rhythms are pseudo-coherence: strongly non-normal stochastic dynamics geometrically amplify noise into intermittent synchrony-like episodes with broken time-reversal symmetry. Isomorphism: coherence without a clock — a falsification lens for any apparent coordination (agent logs, consensus, "emergent rhythms" in multi-agent systems); tells the lab how to distinguish real synchrony from amplified noise at the seams.'},
+{id:'2512.15931v1',t:'BarcodeMamba+: Advancing State-Space Models for Fungal Biodiversity Research',theme:'violet',run:'2026-09-29',d:'State-space foundation model for fungal barcodes using hierarchical label smoothing + weighted loss to survive sparse, long-tailed taxonomic data. Isomorphism: maps with hierarchical priors — the taxonomy is the map that lets the model generalize where the territory is unsampled; weak but a genuine rhyme with memory-as-structure under data scarcity.'},
+{id:'2609.31563v1',t:'Multi-agent Scaling Across Disjunctive and Compensatory Tasks',theme:'bone',run:'2026-09-30',d:'Steiner\u2019s taxonomy of group tasks as the lens for multi-agent LLM scaling: plurality voting converges to the model\u2019s modal answer, item-level biases shared across samples dominate aggregation error. Isomorphism: the lab\u2019s multi-agent coordination question — the three-agent build needs the task/mechanism fit, not just more members; voting is a map that converges to the mode. Strongest of the run.'},
+{id:'2609.31605v1',t:'Measurement-Based Uncomputation from an Error Correction Perspective',theme:'gold',run:'2026-09-30',d:'Uncomputation garbage treated as error syndromes: accept zero-syndrome outcomes (post-select) or correct phase errors where syndrome classes make correction cheap. Isomorphism: repair without redo — the garbage register read as an error map; constraints decide which syndromes are worth correcting.'},
+{id:'2609.31596v1',t:'Oracle Distillation',theme:'rust',run:'2026-09-30',d:'Many queries to a noisy oracle distilled into one high-fidelity oracle via deliberately weak queries, trading response strength for correctability. Isomorphism: friction as design material — deliberate weakness buys correction; kintsugi-adjacent (the noise becomes the thing the protocol is built from).'},
+{id:'2609.31589v1',t:'Common-Mode Collapse and Recovery in Direct Feedback Alignment',theme:'rust',run:'2026-09-30',d:'The stall is traced to the error\u2019s common mode, the component shared across inputs; subtracting the signal\u2019s batch mean prevents sustained collapse. Isomorphism: the shared seam as the hidden failure mode — the part of the error everyone agrees on is what saturates the system. Seams/friction.'},
+{id:'2512.17132v2',t:'Full-Wave Optical Modeling of Leaf Internal Light Scattering Dynamics (foliar fungal disease)',theme:'mercury',run:'2026-09-29',d:'GPU-accelerated FDTD simulation of leaf interior scattering; necrotrophic fungal hyphae show up as suppressed visible-green reflectance and a flattened NIR plateau — pre-symptomatic detection from physics. Isomorphism: a disturbance reads out through the medium it passes through; "don\u2019t let the cheap model eat the phenomenon."'},
+{id:'2609.36272v1',t:'Model-Guided Design of Low-Context Speech Probes for Cochlear Synaptopathy',theme:'rust',run:'2026-10-01',d:'Cochlear degeneration passes pure-tone thresholds while degrading suprathreshold coding; the loss is legible only at the seam between hair-cell potentials and neurograms, and only under friction — time-compressed speech in noise. Isomorphism: seams + friction — a constraint violation invisible to the canonical test, diagnosed by probing the interface under degraded conditions.'},
+{id:'2609.40287v1',t:'PMosFM: Preconditioned Manifold Matching for One-Step Physics-Constrained Generation',theme:'gold',run:'2026-10-02',d:'Constraints encoded in a manifold decoder, so transport happens in intrinsic coordinates with no separate residual loss; "exact parameterization removes residual-induced curvature." Repair isomorphism: fix the geometry so the constraint is already satisfied, and no corrective iteration is needed — the seam lives in the map, not the patch.'},
+{id:'2609.40226v1',t:'A physical and universal model of bosonic computations with Solovay-Kitaev theorem',theme:'rust',run:'2026-10-02',d:'Energy treated as a bounded computational resource (energy-preserving Hamiltonians only) rules out unphysical growth and recovers universality. Friction-as-feature: the resource constraint is what makes the model real — boundedness as grounding.'},
+{id:'2609.40216v1',t:'Quantum Log-Determinant Methods for Torsion-Sensitive Topological Data Analysis',theme:'gold',run:'2026-10-02',d:'Betti numbers miss torsion; alternating log-pseudodeterminants of boundary Laplacians recover torsion order as "higher critical groups." Kintsugi isomorphism: counting dimensions misses the scar; the torsion subgroup is the gold in the crack — structure that only a repair-aware invariant sees.'},
+{id:'2609.40252v1',t:'From Random Quantum Codes to Explicit qLDPC Codes via Local Properties',theme:'bone',run:'2026-10-02',d:'Local coordinate-wise witnesses certify global properties (distance, list-decodability); derandomization turns random-optimum codes into explicit ones. Consilience: local constraints witness global structure; the map from "typical" to "explicit" is itself a construction.'},
+{id:'2610.01732v1',t:'Theory of Chirality-Induced Spin Selectivity in Trefoil-knot Molecules',theme:'gold',run:'2026-10-03',d:'Discrete geometric spin-orbit coupling in a trefoil-knot molecule reaches ~120 meV (two orders above intrinsic SOC of light atoms) and reproduces measured spin polarization. Topology-as-constraint: the knot can\u2019t be undone without cutting, and that un-removable geometric seam generates the effect. Kintsugi-adjacent — the permanent knot IS the function.'},
+];
+
+/* ---------- seeded rng ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+/* ---------- scene ---------- */
+const canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x06070e);
+scene.fog=new THREE.FogExp2(0x06070e,0.038);
+const cam=new THREE.PerspectiveCamera(50,1,0.1,200);
+cam.position.set(0,6,27);
+
+scene.add(new THREE.AmbientLight(0x283048,1.4));
+const key=new THREE.DirectionalLight(0xd4a84f,1.1); key.position.set(6,10,4); scene.add(key);
+const rim=new THREE.DirectionalLight(0x8fb8c9,0.5); rim.position.set(-8,2,-6); scene.add(rim);
+
+/* dust */
+{
+  const n=900, pos=new Float32Array(n*3), r=mulberry32(7);
+  for(let i=0;i<n;i++){pos[i*3]=(r()-.5)*60;pos[i*3+1]=(r()-.5)*40;pos[i*3+2]=(r()-.5)*60}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0x3a3d4e,size:.06,transparent:true,opacity:.8})));
+}
+
+/* glow sprite texture */
+const glowTex=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');
+  const g=x.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.25,'rgba(255,255,255,.45)');g.addColorStop(1,'rgba(255,255,255,0)');
+  x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)})();
+
+/* ---------- mycelium growth (elongate / branch / fuse / stop) ---------- */
+let netGroup=null, nodes=[], nodeObjs=[], segs=[], tips=[], growT=0, grown=0;
+
+function grow(seed){
+  if(netGroup){scene.remove(netGroup);netGroup.traverse(o=>{o.geometry?.dispose?.()})}
+  netGroup=new THREE.Group();scene.add(netGroup);
+  nodes=[];nodeObjs=[];segs=[];tips=[];grown=0;growT=0;
+  const r=mulberry32(seed);
+  const newTip=(pos,dir,gen)=>{const t={p:pos.clone(),d:dir.clone().normalize(),gen,life:50+gen*12+r()*30,alive:true};tips.push(t);return t};
+  for(let i=0;i<11;i++){const a=i/11*Math.PI*2;newTip(new THREE.Vector3(Math.cos(a)*.5,-3.2,Math.sin(a)*.5),new THREE.Vector3(Math.cos(a)*.5,.75,Math.sin(a)*.5),0)}
+  const pts=[]; // all strand points for fusion proximity
+  let guard=0;
+  while(tips.some(t=>t.alive)&&guard++<4000){
+    for(const t of tips){
+      if(!t.alive)continue;
+      // wander + centripetal pull keeps the canopy contained
+      t.d.x+=(r()-.5)*.34 - t.p.x*.006;
+      t.d.y+=(r()-.5)*.28 + .02;
+      t.d.z+=(r()-.5)*.34 - t.p.z*.006;
+      t.d.normalize();
+      const np=t.p.clone().addScaledVector(t.d,.42+r()*.2);
+      segs.push([t.p.clone(),np,t.gen]);
+      pts.push(np);t.p=np;
+      // fuse into an older strand → loop seam
+      if(t.gen>0&&r()<.03){
+        let best=null,bd=1.3;
+        for(let i=0;i<pts.length-6;i+=3){const dd=pts[i].distanceTo(t.p);if(dd<bd){bd=dd;best=pts[i]}}
+        if(best){segs.push([t.p.clone(),best.clone(),t.gen]);nodes.push({p:t.p.clone(),fuse:true});t.alive=false;continue}
+      }
+      // branch
+      if(r()<.09&&t.gen<5){
+        const ax=new THREE.Vector3(r()-.5,r()-.5,r()-.5).normalize();
+        const nd=t.d.clone().applyAxisAngle(ax,.5+r()*.9);
+        newTip(t.p,nd,t.gen+1);t.d.applyAxisAngle(ax,-.4*r());
+      }
+      // stop
+      t.life-=1;if(t.life<=0||t.p.length()>13){t.alive=false;nodes.push({p:t.p.clone(),fuse:false})}
+    }
+  }
+  // choose anchor tips for papers — leaf endpoints + fusion nodes, prefer spread
+  const anchors=nodes.slice().sort((a,b)=>b.p.length()-a.p.length());
+  const chosen=[];
+  for(const n of anchors){
+    if(chosen.length>=PAPERS.length)break;
+    if(chosen.every(c=>c.p.distanceTo(n.p)>2.2))chosen.push(n);
+  }
+  for(const n of anchors){if(chosen.length<PAPERS.length&&!chosen.includes(n))chosen.push(n)}
+
+  // geometry: all hyphae in one LineSegments buffer
+  const lv=new Float32Array(segs.length*6),cv=new Float32Array(segs.length*6);
+  const cA=new THREE.Color(0xbfa468),cB=new THREE.Color(0x6a6248);
+  segs.forEach((s,i)=>{
+    lv.set([s[0].x,s[0].y,s[0].z,s[1].x,s[1].y,s[1].z],i*6);
+    const col=cA.clone().lerp(cB,Math.min(1,s[2]/4));
+    cv.set([col.r,col.g,col.b,col.r,col.g,col.b],i*6);
+  });
+  const lg=new THREE.BufferGeometry();
+  lg.setAttribute('position',new THREE.BufferAttribute(lv,3));
+  lg.setAttribute('color',new THREE.BufferAttribute(cv,3));
+  lg.setDrawRange(0,0);
+  netGroup.add(new THREE.LineSegments(lg,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:1})));
+  netGroup.userData.lineGeo=lg;
+
+  // nodes: instanced spheres + glow sprites
+  const ng=new THREE.IcosahedronGeometry(.22,1);
+  const nm=new THREE.MeshBasicMaterial({color:0xffffff,toneMapped:false});
+  const inst=new THREE.InstancedMesh(ng,nm,chosen.length);
+  inst.instanceColor=new THREE.InstancedBufferAttribute(new Float32Array(chosen.length*3),3);
+  const m=new THREE.Matrix4();m.makeScale(0.001,0.001,0.001);
+  for(let i=0;i<chosen.length;i++)inst.setMatrixAt(i,m);
+  netGroup.add(inst);
+  chosen.forEach((n,i)=>{
+    const p=PAPERS[i],col=new THREE.Color(THEMES[p.theme].c);
+    inst.setColorAt(i,col);
+    const spr=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,color:col,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));
+    spr.position.copy(n.p);spr.scale.setScalar(p.flag?2.2:1.3);
+    netGroup.add(spr);n.spr=spr;n.paper=p;n.scale=p.flag?2.1:1.3;
+    nodeObjs.push(n);
+  });
+  netGroup.userData.inst=inst;
+}
+
+/* ---------- orbit controls (minimal) ---------- */
+let az=.6,pol=1.3,dist=27,auto=true,tx=0,ty=3,tz=0;
+let drag=false,px=0,py=0;
+canvas.addEventListener('pointerdown',e=>{drag=true;auto=false;px=e.clientX;py=e.clientY;canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{
+  if(drag){az-=(e.clientX-px)*.005;pol=Math.max(.25,Math.min(2.7,pol-(e.clientY-py)*.005));px=e.clientX;py=e.clientY;return}
+  hover(e);
+});
+canvas.addEventListener('pointerup',e=>{drag=false;setTimeout(()=>auto=true,6000);pick(e)});
+canvas.addEventListener('wheel',e=>{e.preventDefault();dist=Math.max(5,Math.min(40,dist*(1+Math.sign(e.deltaY)*.08)));auto=false;setTimeout(()=>auto=true,6000)},{passive:false});
+
+const ray=new THREE.Raycaster(),mv=new THREE.Vector2();
+function castAt(e){
+  mv.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);
+  ray.setFromCamera(mv,cam);
+  const inst=netGroup?.userData.inst;if(!inst)return -1;
+  const hits=ray.intersectObject(inst);
+  return hits.length?hits[0].instanceId:-1;
+}
+const tipEl=document.getElementById('tip');
+function hover(e){
+  const i=castAt(e);
+  if(i>=0){tipEl.textContent=nodeObjs[i].paper.t;tipEl.style.opacity=1;tipEl.style.left=(e.clientX+16)+'px';tipEl.style.top=(e.clientY+10)+'px';canvas.style.cursor='pointer'}
+  else{tipEl.style.opacity=0;canvas.style.cursor='grab'}
+}
+const card=document.getElementById('card');
+function pick(e){
+  const i=castAt(e);
+  if(i<0){card.classList.remove('on');return}
+  const p=nodeObjs[i].paper,th=THEMES[p.theme];
+  card.querySelector('.meta').innerHTML=`<b>${p.id}</b> · arXiv · hunted ${p.run} · <span style="color:#${th.c.toString(16)}">${th.label}</span>`;
+  card.querySelector('h2').textContent=p.t;
+  card.querySelector('p').textContent=p.d;
+  card.style.borderLeftColor='#'+th.c.toString(16).padStart(6,'0');
+  card.classList.add('on');
+}
+card.querySelector('.close').onclick=()=>card.classList.remove('on');
+
+/* ---------- loop ---------- */
+let seed=20261004,last=0;
+grow(seed);
+window.__viz={get segs(){return segs.length},get grown(){return grown},get nodes(){return nodeObjs.length},get nodePos(){return nodeObjs.map(n=>[n.p.x|0,n.p.y|0,n.p.z|0])},screenOf(i){const v=nodeObjs[i].p.clone().project(cam);return{x:(v.x+1)/2*innerWidth,y:(1-v.y)/2*innerHeight,z:v.z}}};
+document.getElementById('regrow').onclick=()=>{seed=seed*16807%2147483647;grow(seed);card.classList.remove('on')};
+
+function frame(t){
+  requestAnimationFrame(frame);
+  const dt=Math.min(.05,(t-last)/1000);last=t;
+  // reveal growth
+  const lg=netGroup.userData.lineGeo,inst=netGroup.userData.inst;
+  if(grown<segs.length){grown=Math.min(segs.length,grown+dt*Math.max(400,segs.length/5));lg.setDrawRange(0,grown*1|0);lg.attributes.position.needsUpdate=false}
+  const done=grown/segs.length;
+  const m=new THREE.Matrix4();
+  nodeObjs.forEach((n,i)=>{
+    // find earliest seg containing node pos → pop after that
+    const sc=n.scale*Math.max(.001,Math.min(1,(done-.55)*4+(n.fuse?.15:.1)));
+    m.makeScale(sc,sc,sc);m.setPosition(n.p);
+    inst.setMatrixAt(i,m);
+    n.spr.material.opacity=.8*Math.min(1,sc)*(0.8+0.2*Math.sin(t*.002+i));
+  });
+  inst.instanceMatrix.needsUpdate=true;
+  if(auto)az+=dt*.045;
+  cam.position.set(tx+dist*Math.sin(pol)*Math.sin(az),ty+dist*Math.cos(pol),tz+dist*Math.sin(pol)*Math.cos(az));
+  cam.lookAt(tx,ty,tz);
+  renderer.render(scene,cam);
+}
+function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener('resize',size);size();
+requestAnimationFrame(frame);
+
+/* ---------- dom: legend + specimen list ---------- */
+document.getElementById('legend').innerHTML=Object.values(THEMES).map(t=>`<div>${t.label}<i style="background:#${t.c.toString(16)}"></i></div>`).join('');
+document.getElementById('list').innerHTML=PAPERS.map(p=>{
+  const th=THEMES[p.theme];
+  return `<div class="paper"><div class="t"><span class="sw" style="background:#${th.c.toString(16)}"></span>${p.t}</div><div class="m"><b>${p.id}</b> · hunted ${p.run} · ${th.label}</div><div class="d">${p.d}</div></div>`;
+}).join('');
+</script>
+</body>
+</html>

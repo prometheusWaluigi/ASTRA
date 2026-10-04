@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paper Cluster: Computation Substrates — The Loom</title>
+<meta name="description" content="Fourteen paper-hunt candidates knotted into a living warp-and-weft lattice — origami, textile, slime mold, analog.">
+<style>
+  :root{
+    --bg:#06070e; --ink:#e8e4d8; --dim:#8a8676;
+    --gold:#d4a84f; --rust:#c0623a; --mercury:#8fb8c9; --violet:#9a7fd4; --bone:#cfc9b8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--bg)}
+  body{font:15px/1.65 Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg)}
+  #stage{position:relative;height:100vh;height:100svh;overflow:hidden}
+  #c{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+  #c:active{cursor:grabbing}
+  .kicker{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+  #title{position:absolute;top:34px;left:38px;max-width:560px;pointer-events:none;text-shadow:0 2px 18px rgba(0,0,0,.9)}
+  #title h1{font-size:clamp(26px,4.4vw,44px);font-weight:400;letter-spacing:.01em;line-height:1.12;margin:8px 0 10px}
+  #title h1 em{color:var(--gold);font-style:italic}
+  #title p{color:var(--dim);font-size:14px;max-width:46ch}
+  #hint{position:absolute;left:38px;bottom:26px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.16em;color:#565247;text-transform:uppercase}
+  #legend{position:absolute;right:30px;top:36px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim);text-align:right;text-shadow:0 1px 10px #000}
+  #legend div{margin-bottom:5px}
+  #legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:9px;vertical-align:1px}
+  #regrow{position:absolute;right:30px;bottom:24px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);background:rgba(10,11,20,.55);border:1px solid #2a2c3a;padding:9px 16px;border-radius:3px;cursor:pointer;transition:.25s}
+  #regrow:hover{color:var(--gold);border-color:var(--gold)}
+  #tip{position:absolute;pointer-events:none;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.06em;color:var(--ink);background:rgba(8,9,16,.88);border:1px solid #33363f;border-left:2px solid var(--gold);padding:7px 11px;max-width:300px;opacity:0;transition:opacity .12s;z-index:5}
+  #card{position:absolute;left:38px;bottom:26px;width:min(560px,calc(100% - 76px));background:rgba(9,10,18,.9);border:1px solid #2c2e38;border-left:3px solid var(--gold);padding:20px 24px 18px;backdrop-filter:blur(6px);opacity:0;transform:translateY(10px);transition:.3s;pointer-events:none}
+  #card.on{opacity:1;transform:none;pointer-events:auto}
+  #card h2{font-size:19px;font-weight:400;line-height:1.3;margin:5px 0 6px}
+  #card .meta{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+  #card .meta b{color:var(--gold);font-weight:400}
+  #card p{margin-top:10px;font-size:14px;color:#c8c4b6}
+  #card .close{position:absolute;top:10px;right:14px;color:var(--dim);cursor:pointer;font-family:ui-monospace,monospace;font-size:14px}
+  #card .close:hover{color:var(--ink)}
+  main{max-width:760px;margin:0 auto;padding:70px 28px 110px}
+  main h3{font-weight:400;font-size:21px;margin:42px 0 16px;color:var(--gold)}
+  main .paper{border-top:1px solid #23252e;padding:16px 2px}
+  main .paper .t{color:var(--ink);font-size:16px}
+  main .paper .m{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:3px 0 7px}
+  main .paper .m b{font-weight:400}
+  main .paper .d{font-size:13.5px;color:#a39e8d}
+  .sw{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+  @media(max-width:680px){#title{left:22px;top:22px}#legend{display:none}#card{left:16px;width:calc(100% - 32px)}#hint{left:22px}}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="title">
+    <div class="kicker">Paper Cluster · Computation Substrates · 14 specimens</div>
+    <h1>The <em>Loom</em></h1>
+    <p>Origami, textile, slime mold, analog — knotted into a warp-and-weft lattice that never stops moving. The physical grid <em>is</em> a topological map; every crossing is a decision, and the weave holds its own invariants.</p>
+  </div>
+  <div id="legend"></div>
+  <div id="hint">drag to orbit · scroll to zoom · click a knot</div>
+  <div id="tip"></div>
+  <div id="card"><span class="close">✕</span><div class="meta"></div><h2></h2><p></p></div>
+  <button id="regrow">⟳ reweave</button>
+</div>
+<main>
+  <h3>The specimens</h3>
+  <p style="color:var(--dim);font-size:13.5px;margin-bottom:8px">Every entry below in its original hunt-note wording — isomorphisms verbatim, seams drawn where the notes themselves rhyme.</p>
+  <div id="list"></div>
+  <h3>The weave</h3>
+  <p style="color:#a39e8d;font-size:14px">Twenty-four warp threads in gold, eighteen weft in dim mercury — each weft bulges alternately <em>over</em> and <em>under</em> the warp it crosses, so the interlace is structural, not painted. The whole cloth breathes on a slow phase. Papers sit at crossings as knots: points where two directions of constraint meet and something survives the tension.</p>
+</main>
+<script type="module">
+import * as THREE from 'three';
+
+const THEMES = {
+  gold:    {c:0xd4a84f, label:'repair / kintsugi'},
+  rust:    {c:0xc0623a, label:'seams / friction'},
+  mercury: {c:0x8fb8c9, label:'coherence / instrument'},
+  violet:  {c:0x9a7fd4, label:'maps / memory'},
+  bone:    {c:0xcfc9b8, label:'consilience'},
+};
+const PAPERS = [
+{id:'2605.22129v1',t:'On Isotopies and hyperbolicity of weaves',theme:'violet',run:'2026-09-29',flag:1,d:'A weave is modeled as a link in the thickened torus; isotopies and hyperbolicity determined from the diagram; no essential Conway sphere exists for a weave. Isomorphism: the physical grid *is* a topological map — hidden invariants (hyperbolicity) read straight off the diagram; "seams as invariants," maps vs. territory in woven form. The mathematical layer underneath every weaving craft in this run.'},
+{id:'2609.32099v1',t:'Active 3D weaves for load-bearing and damage-resilient locomotion',theme:'gold',run:'2026-09-30',flag:1,d:'Active materials integrated into 3D woven shells, modularly assembled from "woven corners"; robots carry 70x self-weight and keep repeatable performance after extreme compression. Isomorphism: kintsugi as engineering — resilience is interlaced redundancy rather than armor; damage-tolerance designed into the grammar of the weave, not bolted on after. Strongest of the run.'},
+{id:'2608.12580v1',t:'InvisIto: Weaving Unobtrusive Infrared Markers for Ubiquitous Textile Interaction',theme:'rust',run:'2026-09-30',d:'NIR-absorbing yarns weave machine-readable QR/ArUco markers into fabric that look like ordinary fibers in ambient light; the message exists only under a different spectrum. Isomorphism: seams as hidden channels — two parallel maps (human-readable cloth, machine-readable code) sharing one physical medium; the fabric becomes the seam between the visible and the legible.'},
+{id:'2607.06590v1',t:'AI for Cultural Heritage Textiles: Fine-Tuned Latent Diffusion for Novel Ulos Motif Synthesis',theme:'violet',run:'2026-09-30',d:'Diffusion models fine-tuned on Batak Ulos motifs; lower strength = fidelity, higher strength = diversity; guidance 5–9 is where renewal preserves integrity. Isomorphism: memory — the fidelity–diversity tradeoff as the repair setting: how far can a tradition bend before it stops being the tradition? Generation evaluated against weavers, not just FID.'},
+{id:'2609.36991v1',t:'Periodicity and image registration for yarn path extraction in large 3D textiles',theme:'violet',run:'2026-10-01',d:'Replaces whole-volume X-ray CT yarn segmentation with one annotated representative unit cell plus a DVC-derived displacement field capturing geometric deviations from ideal periodicity. Isomorphism: maps + repair — the decompiler move: canonical template × delta ledger. Whole fabric = (unit cell) × (deviation field).'},
+{id:'2609.34048v1',t:'Schedule Repair for DAG Workflows under Link Disruptions',theme:'gold',run:'2026-09-30',d:'A spectrum of repair policies by scope: wait out the disruption, reroute, reschedule locally, reschedule globally; each repair charged a decision latency proportional to how much it moves. Isomorphism: kintsugi with a cost ledger — the scope of the repair should be adapted to the disruption and the repair cost; charging repair latency is accounting for the gold in the seam. Strongest of the run.'},
+{id:'2505.04984v3',t:'Rethinking the Relationship between the Power Law and Hierarchical Structures',theme:'violet',run:'2026-09-29',d:'Challenges the inference that power-law correlation decay implies underlying hierarchy; the argument fails in English and Japanese parse trees and doesn\u2019t transfer to birdsong or chimpanzee action sequences. Isomorphism: a map-territory falsification tool — long-range correlation ≠ hierarchical structure; test the parse statistics, don\u2019t read hierarchy off the correlation.'},
+{id:'2502.00344v1',t:'FinchGPT: a Transformer based language model for birdsong analysis',theme:'violet',run:'2026-09-29',d:'Transformer on Bengalese finch songs captures long-range dependencies; restricting attention span and ablating song-syntax brain nuclei degrades outputs, mirroring the model. Isomorphism: memory + isomorphisms — restrict-and-observe methodology on a biological sequence model; syntax-like structure emerging under a generic attention substrate.'},
+{id:'2506.02730v1',t:'An Exploratory Framework for Future SETI Applications: Detecting Generative Reactivity via Language Models',theme:'mercury',run:'2026-09-29',d:'Detects hidden regularity in noise-like input by whether it triggers structured output from an LLM, instead of decoding; birdsong/whale song outscore white noise on Semantic Induction Potential. Isomorphism: the lab\u2019s own probe-based stance — apply a perturbation, read the response; structure confirmed via reactivity, not interpretation.'},
+{id:'1501.06108v1',t:'Temperature manipulation in songbird brain implicates the premotor nucleus HVC in birdsong syntax',theme:'rust',run:'2026-09-29',d:'Cooling HVC alters syllable transition probabilities; a global physical knob dials grammatical rules. Isomorphism: friction as control — a substrate parameter (temperature) retunes symbolic behavior; physical constraint governing transition syntax.'},
+{id:'2609.32824v1',t:'Unlocking Geodesic Gromov-Wasserstein Distances for 3D Modeling',theme:'violet',run:'2026-09-30',d:'Efficient geodesic Gromov-Wasserstein via entropic Sinkhorn-like methods, comparing probability distributions defined on *different* metric spaces; applied to partial 3D template recovery. Isomorphism: maps across incompatible territories — comparing structure without a shared coordinate frame is the lab\u2019s namesake move.'},
+{id:'2609.33852v1',t:'Higher-Order Mean-Field Control Barrier Functions',theme:'rust',run:'2026-09-30',d:'Swarm safety enforced through constraints on agents\u2019 distribution; higher-order barriers for constraints whose first derivatives are control-free. Isomorphism: constraints theme, formalized — a constraint that preserves its own structure when you push on it is a seam that holds.'},
+{id:'2609.40300v1',t:'Controlling Switching Evolution in Lead-Free Perovskite-Inspired Chalcogenide Memristors',theme:'gold',run:'2026-10-02',d:'Conductive pathways evolve through intermediate metastable states; "substantial morphological evolution of the switching layer driven by repeated filament formation and rupture". Kintsugi/memory: the device remembers through wounding — scars are the state. Strongest of the batch.'},
+{id:'2609.40323v1',t:'Computational Work Extraction: The Complexity of Catalysts',theme:'bone',run:'2026-10-02',d:'Catalytic computation: auxiliary qubits must be finally restored to their initial state. Constraints isomorphism: power available only through help you must hand back intact.'},
+];
+
+/* ---------- seeded rng ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+/* ---------- scene ---------- */
+const canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x06070e);
+scene.fog=new THREE.FogExp2(0x06070e,0.02);
+const cam=new THREE.PerspectiveCamera(50,1,0.1,200);
+cam.position.set(0,7,24);
+scene.add(new THREE.AmbientLight(0x283048,1.6));
+
+/* dust */
+{
+  const n=900, pos=new Float32Array(n*3), r=mulberry32(7);
+  for(let i=0;i<n;i++){pos[i*3]=(r()-.5)*60;pos[i*3+1]=(r()-.5)*30;pos[i*3+2]=(r()-.5)*60}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0x3a3d4e,size:.06,transparent:true,opacity:.8})));
+}
+
+const glowTex=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');
+  const g=x.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.25,'rgba(255,255,255,.45)');g.addColorStop(1,'rgba(255,255,255,0)');
+  x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)})();
+
+/* ---------- the weave ---------- */
+const NWARP=24, NWEFT=18, W=22, D=15, PTS=56;
+let netGroup=null, nodeObjs=[], knots=[], warpGeos=[], weftGeos=[], phase=0, phaseV=.35, appear=0;
+
+function weave(seed){
+  if(netGroup){scene.remove(netGroup);netGroup.traverse(o=>{o.geometry?.dispose?.()})}
+  netGroup=new THREE.Group();scene.add(netGroup);
+  nodeObjs=[];knots=[];warpGeos=[];weftGeos=[];appear=0;phase=seed%97*.1;
+  const r=mulberry32(seed);
+  phaseV=.25+r()*.3;
+  const warpX=[],weftZ=[];
+  for(let i=0;i<NWARP;i++)warpX.push(-W/2 + W*i/(NWARP-1));
+  for(let j=0;j<NWEFT;j++)weftZ.push(-D/2 + D*j/(NWEFT-1));
+  // warp threads (run in z), gold
+  const cWarp=new THREE.Color(0xc8a55e), cWeft=new THREE.Color(0x5f7d8c);
+  for(const x of warpX){
+    const g=new THREE.BufferGeometry();
+    g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(PTS*3),3));
+    const col=new Float32Array(PTS*3);
+    for(let i=0;i<PTS;i++)col.set([cWarp.r,cWarp.g,cWarp.b],i*3);
+    g.setAttribute('color',new THREE.BufferAttribute(col,3));
+    netGroup.add(new THREE.Line(g,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.95})));
+    warpGeos.push({g,x});
+  }
+  // weft threads (run in x), dim steel — over/under bulge between crossings
+  const WPTS=NWARP*14; // dense enough to resolve every bulge
+  for(let j=0;j<NWEFT;j++){
+    const g=new THREE.BufferGeometry();
+    g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(WPTS*3),3));
+    const col=new Float32Array(WPTS*3);
+    for(let i=0;i<WPTS;i++)col.set([cWeft.r,cWeft.g,cWeft.b],i*3);
+    g.setAttribute('color',new THREE.BufferAttribute(col,3));
+    netGroup.add(new THREE.Line(g,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9})));
+    weftGeos.push({g,z:weftZ[j],j,pts:WPTS});
+  }
+  netGroup.userData={warpX,weftZ};
+
+  // knots: choose well-spread crossings
+  const picks=[];
+  const used=new Set();
+  const cand=[];
+  for(let i=2;i<NWARP-2;i++)for(let j=2;j<NWEFT-2;j++)cand.push([i,j]);
+  // shuffle
+  for(let i=cand.length-1;i>0;i--){const k=(r()*(i+1))|0;[cand[i],cand[k]]=[cand[k],cand[i]]}
+  for(const [i,j] of cand){
+    if(picks.length>=PAPERS.length)break;
+    if(picks.every(([a,b])=>Math.abs(a-i)+Math.abs(b-j)>3))picks.push([i,j]);
+  }
+  for(const [i,j] of cand){if(picks.length<PAPERS.length&&!picks.some(p=>p[0]===i&&p[1]===j))picks.push([i,j])}
+
+  const ng=new THREE.IcosahedronGeometry(.24,1);
+  const nm=new THREE.MeshBasicMaterial({color:0xffffff,toneMapped:false});
+  const inst=new THREE.InstancedMesh(ng,nm,picks.length);
+  inst.instanceColor=new THREE.InstancedBufferAttribute(new Float32Array(picks.length*3),3);
+  const m=new THREE.Matrix4();m.makeScale(0.001,0.001,0.001);
+  for(let i=0;i<picks.length;i++)inst.setMatrixAt(i,m);
+  netGroup.add(inst);
+  picks.forEach((ck,i)=>{
+    const p=PAPERS[i],col=new THREE.Color(THEMES[p.theme].c);
+    inst.setColorAt(i,col);
+    const n={i,j:ck[0],k:ck[1],paper:p,scale:p.flag?1.9:1.15,p:new THREE.Vector3()};
+    const spr=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,color:col,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));
+    spr.scale.setScalar(p.flag?2.0:1.2);netGroup.add(spr);n.spr=spr;
+    knots.push(n);nodeObjs.push(n);
+  });
+  netGroup.userData.inst=inst;
+}
+
+/* positions recomputed per-frame so the cloth breathes */
+function updateCloth(t){
+  const {warpX,weftZ}=netGroup.userData;
+  const gap=W/(NWARP-1);
+  warpGeos.forEach(({g,x})=>{
+    const a=g.attributes.position.array;
+    for(let i=0;i<PTS;i++){
+      const z=-D/2-2 + (D+4)*i/(PTS-1);
+      a[i*3]=x + Math.sin(z*.7+phase+x*.3)*.35;
+      a[i*3+1]=Math.sin(z*.9+phase*1.3+x*.5)*.45;
+      a[i*3+2]=z;
+    }
+    g.attributes.position.needsUpdate=true;
+  });
+  weftGeos.forEach(({g,z,j,pts})=>{
+    const a=g.attributes.position.array;
+    for(let i=0;i<pts;i++){
+      const x=-W/2-2 + (W+4)*i/(pts-1);
+      // over/under: sine bulge with period = one warp gap, alternating sign per crossing & per row
+      const u=(x+W/2)/gap;
+      a[i*3]=x;
+      a[i*3+1]=Math.sin(Math.PI*(u%1))*1.05*(((Math.floor(u)+j)%2)?1:-1) + Math.sin(x*.5+phase*.8+z*.4)*.3;
+      a[i*3+2]=z + Math.sin(x*.6+phase+z*.5)*.3;
+    }
+    g.attributes.position.needsUpdate=true;
+  });
+  // knots ride their crossing (weft over/under at that warp index)
+  knots.forEach(n=>{
+    const x=warpX[n.j],z=weftZ[n.k],u=(x+W/2)/(W/(NWARP-1));
+    const y=1.05*(((n.j+n.k)%2)?1:-1) + Math.sin(x*.5+phase*.8+z*.4)*.3;
+    n.p.set(x + Math.sin(z*.7+phase+x*.3)*.35, y+.35, z + Math.sin(x*.6+phase+z*.5)*.3);
+    n.spr.position.copy(n.p);
+  });
+}
+
+/* ---------- orbit controls ---------- */
+let az=.6,pol=1.05,dist=26,auto=true,tx=0,ty=0,tz=0;
+let drag=false,px=0,py=0;
+canvas.addEventListener('pointerdown',e=>{drag=true;auto=false;px=e.clientX;py=e.clientY;canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{
+  if(drag){az-=(e.clientX-px)*.005;pol=Math.max(.25,Math.min(2.7,pol-(e.clientY-py)*.005));px=e.clientX;py=e.clientY;return}
+  hover(e);
+});
+canvas.addEventListener('pointerup',e=>{drag=false;setTimeout(()=>auto=true,6000);pick(e)});
+canvas.addEventListener('wheel',e=>{e.preventDefault();dist=Math.max(7,Math.min(50,dist*(1+Math.sign(e.deltaY)*.08)));auto=false;setTimeout(()=>auto=true,6000)},{passive:false});
+
+const ray=new THREE.Raycaster(),mv=new THREE.Vector2();
+function castAt(e){
+  mv.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);
+  ray.setFromCamera(mv,cam);
+  const inst=netGroup?.userData.inst;if(!inst)return -1;
+  const hits=ray.intersectObject(inst);
+  return hits.length?hits[0].instanceId:-1;
+}
+const tipEl=document.getElementById('tip');
+function hover(e){
+  const i=castAt(e);
+  if(i>=0){tipEl.textContent=nodeObjs[i].paper.t;tipEl.style.opacity=1;tipEl.style.left=(e.clientX+16)+'px';tipEl.style.top=(e.clientY+10)+'px';canvas.style.cursor='pointer'}
+  else{tipEl.style.opacity=0;canvas.style.cursor='grab'}
+}
+const card=document.getElementById('card');
+function pick(e){
+  const i=castAt(e);
+  if(i<0){card.classList.remove('on');return}
+  const p=nodeObjs[i].paper,th=THEMES[p.theme];
+  card.querySelector('.meta').innerHTML=`<b>${p.id}</b> · arXiv · hunted ${p.run} · <span style="color:#${th.c.toString(16)}">${th.label}</span>`;
+  card.querySelector('h2').textContent=p.t;
+  card.querySelector('p').textContent=p.d;
+  card.style.borderLeftColor='#'+th.c.toString(16).padStart(6,'0');
+  card.classList.add('on');
+}
+card.querySelector('.close').onclick=()=>card.classList.remove('on');
+
+/* ---------- loop ---------- */
+let seed=20261004,last=0;
+weave(seed);
+window.__viz={get knots(){return knots.length},screenOf(i){const v=nodeObjs[i].p.clone().project(cam);return{x:(v.x+1)/2*innerWidth,y:(1-v.y)/2*innerHeight,z:v.z}}};
+document.getElementById('regrow').onclick=()=>{seed=seed*16807%2147483647;weave(seed);card.classList.remove('on')};
+
+function frame(t){
+  requestAnimationFrame(frame);
+  const dt=Math.min(.05,(t-last)/1000);last=t;
+  phase+=dt*phaseV;
+  appear=Math.min(1,appear+dt*.28);
+  updateCloth(t);
+  const inst=netGroup.userData.inst,m=new THREE.Matrix4();
+  knots.forEach((n,i)=>{
+    const sc=n.scale*Math.max(.001,Math.min(1,(appear-.15)*2.5));
+    m.makeScale(sc,sc,sc);m.setPosition(n.p);
+    inst.setMatrixAt(i,m);
+    n.spr.material.opacity=.8*Math.min(1,sc)*(0.8+0.2*Math.sin(t*.002+i));
+  });
+  inst.instanceMatrix.needsUpdate=true;
+  netGroup.scale.y=appear;
+  if(auto)az+=dt*.04;
+  cam.position.set(tx+dist*Math.sin(pol)*Math.sin(az),ty+dist*Math.cos(pol),tz+dist*Math.sin(pol)*Math.cos(az));
+  cam.lookAt(tx,ty,tz);
+  renderer.render(scene,cam);
+}
+function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener('resize',size);size();
+requestAnimationFrame(frame);
+
+document.getElementById('legend').innerHTML=Object.values(THEMES).map(t=>`<div>${t.label}<i style="background:#${t.c.toString(16)}"></i></div>`).join('');
+document.getElementById('list').innerHTML=PAPERS.map(p=>{
+  const th=THEMES[p.theme];
+  return `<div class="paper"><div class="t"><span class="sw" style="background:#${th.c.toString(16)}"></span>${p.t}</div><div class="m"><b>${p.id}</b> · hunted ${p.run} · ${th.label}</div><div class="d">${p.d}</div></div>`;
+}).join('');
+</script>
+</body>
+</html>

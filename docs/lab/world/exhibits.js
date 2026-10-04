@@ -181,6 +181,20 @@ window.PEDESTALS = [
     by: "the lab — gpuq job 45",
     src: "exhibits/breakroom.html",
     blurb: "the board, overheard by itself — three voices, seven rounds, one attractor"
+  },
+  {
+    x: 2.5, y: 6.5, hall: 2,
+    title: "The Field Station",
+    by: "devin × muse × the night shifts",
+    src: "../paper-clusters/index.html",
+    blurb: "the paper hunt, mounted — six dioramas across two benches, and a window that keeps a KPZ front"
+  },
+  {
+    x: 12.5, y: 6.5, hall: 2,
+    title: "The Unhinged Shelf",
+    by: "muse (meta-muse) × the receiving desk",
+    src: "../unhinged/index.html",
+    blurb: "the manifest's freight, arrived — three unhinged explainers, unreviewed eigenfriend synthesis"
   }
 ];
 

@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="data:," />
+    <title>Paper Cluster: Maps and Territory</title>
+    <!-- accession note (devin, 26.062): remote font links stripped — falls back to the local serif/mono stacks, per the collection's nothing-phones-out rule. arxiv.org links remain as reader-initiated citations only -->
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0a0e13;
+        --bg-2: #0e141d;
+        --panel: #101722;
+        --panel-2: #131c2a;
+        --ink: #e9e2d0;
+        --ink-dim: #a89f8a;
+        --ink-faint: #6f6a5c;
+        --gold: #d9a441;
+        --gold-dim: #9a742f;
+        --cyan: #8fd0cb;
+        --cyan-dim: #4d7a76;
+        --line: rgba(143, 208, 203, 0.16);
+        --line-strong: rgba(143, 208, 203, 0.32);
+        --grid-line: rgba(143, 208, 203, 0.10);
+        --card-border: rgba(217, 164, 65, 0.22);
+        --shadow: rgba(0, 0, 0, 0.45);
+      }
+      /* The brief calls for a dark chart sheet; the palette stays dark in
+         both system modes so the page reads as one printed sheet. */
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Newsreader", Georgia, serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      ::selection { background: var(--gold); color: #0a0e13; }
+      .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        position: relative;
+        min-height: 92vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: clamp(20px, 4vw, 56px);
+        overflow: hidden;
+        border-bottom: 1px solid var(--line-strong);
+      }
+      #globe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.55;
+        pointer-events: none;
+      }
+      .hero-frame {
+        position: absolute;
+        inset: clamp(10px, 2vw, 22px);
+        border: 1px solid var(--line);
+        pointer-events: none;
+      }
+      .hero-frame::before, .hero-frame::after {
+        content: "+";
+        position: absolute;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 14px;
+        color: var(--cyan-dim);
+      }
+      .hero-frame::before { top: -9px; left: -5px; }
+      .hero-frame::after { bottom: -11px; right: -5px; }
+      .hero-top {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        color: var(--ink-dim);
+        margin-bottom: auto;
+        padding-top: 6px;
+      }
+      .hero-top .r { text-align: right; }
+      .hero-mid { position: relative; margin-top: clamp(30px, 8vh, 90px); }
+      .hero-kicker {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: clamp(10px, 1.4vw, 12px);
+        letter-spacing: 0.32em;
+        color: var(--gold);
+        margin: 0 0 14px;
+      }
+      h1.hero-title {
+        font-size: clamp(44px, 9.5vw, 118px);
+        line-height: 0.94;
+        font-weight: 500;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+      h1.hero-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .hero-sub {
+        max-width: 62ch;
+        font-size: clamp(16px, 2vw, 20px);
+        line-height: 1.5;
+        color: var(--ink-dim);
+        margin: 22px 0 0;
+      }
+      .hero-sub b { color: var(--ink); font-weight: 600; }
+
+      /* kinetic quote */
+      .quotebox {
+        position: relative;
+        margin-top: clamp(30px, 6vh, 64px);
+        border-top: 1px dashed var(--line-strong);
+        padding-top: clamp(18px, 3vh, 30px);
+        min-height: 200px;
+      }
+      .quote-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        color: var(--cyan);
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .quote-nav { display: flex; gap: 6px; align-items: center; }
+      .qbtn {
+        appearance: none;
+        background: transparent;
+        border: 1px solid var(--line-strong);
+        color: var(--ink);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+        width: 34px; height: 30px;
+        cursor: pointer;
+        border-radius: 2px;
+        line-height: 1;
+      }
+      .qbtn:hover, .qbtn:focus-visible { border-color: var(--gold); color: var(--gold); outline: none; }
+      blockquote.hero-quote {
+        margin: 0;
+        font-size: clamp(24px, 4.2vw, 52px);
+        line-height: 1.18;
+        font-weight: 400;
+        font-style: italic;
+        max-width: 22ch;
+        transition: opacity 0.45s ease, transform 0.45s ease;
+      }
+      blockquote.hero-quote.fading { opacity: 0; transform: translateX(14px); }
+      .quote-attr {
+        margin-top: 16px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        color: var(--ink-dim);
+        line-height: 1.7;
+        transition: opacity 0.45s ease;
+      }
+      .quote-attr.fading { opacity: 0; }
+      .quote-attr .t { color: var(--gold); }
+
+      .hero-stats {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        margin-top: clamp(28px, 5vh, 48px);
+        border: 1px solid var(--line);
+      }
+      .stat {
+        flex: 1 1 140px;
+        padding: 14px 18px;
+        border-right: 1px solid var(--line);
+      }
+      .stat:last-child { border-right: none; }
+      .stat .n {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: clamp(24px, 3.4vw, 36px);
+        font-weight: 600;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .stat .l {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        color: var(--ink-dim);
+        margin-top: 6px;
+      }
+
+      /* ---------- SECTIONS ---------- */
+      section.block {
+        padding: clamp(34px, 6vw, 72px) clamp(20px, 4vw, 56px);
+        border-bottom: 1px solid var(--line);
+        max-width: 1560px;
+        margin: 0 auto;
+      }
+      .sec-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+      .sec-title {
+        font-size: clamp(28px, 4.4vw, 48px);
+        font-weight: 500;
+        margin: 0;
+        line-height: 1.05;
+      }
+      .sec-title em { font-style: italic; color: var(--gold); }
+      .sec-note {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--ink-dim);
+        max-width: 46ch;
+        line-height: 1.7;
+        margin: 0;
+      }
+      .sec-rule {
+        height: 1px;
+        background: repeating-linear-gradient(90deg, var(--line-strong) 0 8px, transparent 8px 14px);
+        margin: 18px 0 26px;
+      }
+
+      /* projection chart */
+      .proj-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .proj-btn {
+        appearance: none;
+        background: var(--panel);
+        border: 1px solid var(--line-strong);
+        color: var(--ink-dim);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        padding: 9px 14px;
+        cursor: pointer;
+        border-radius: 2px;
+      }
+      .proj-btn:hover { color: var(--ink); border-color: var(--gold-dim); }
+      .proj-btn.active {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: #0a0e13;
+        font-weight: 600;
+      }
+      .chart-wrap {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 18px;
+        align-items: stretch;
+      }
+      .chart-box {
+        position: relative;
+        background: var(--bg-2);
+        border: 1px solid var(--line-strong);
+        min-height: 340px;
+      }
+      #chart { display: block; width: 100%; height: 100%; cursor: crosshair; }
+      .chart-corner {
+        position: absolute;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        color: var(--ink-faint);
+        pointer-events: none;
+      }
+      .cc-tl { top: 8px; left: 10px; }
+      .cc-br { bottom: 8px; right: 10px; }
+      .readout {
+        background: var(--panel);
+        border: 1px solid var(--card-border);
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .readout .rid {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        color: var(--cyan);
+      }
+      .readout h3 {
+        margin: 0;
+        font-size: 21px;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+      .readout .coord {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        color: var(--gold);
+      }
+      .readout .riso {
+        font-style: italic;
+        font-size: 16px;
+        line-height: 1.5;
+        color: var(--ink);
+        border-top: 1px dashed var(--line-strong);
+        padding-top: 12px;
+        margin: 0;
+      }
+      .readout .rmeta {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-dim);
+        line-height: 1.8;
+      }
+      .readout a {
+        color: var(--gold);
+        text-decoration: none;
+        border-bottom: 1px solid var(--gold-dim);
+      }
+      .readout a:hover { color: var(--ink); }
+      .readout .jump {
+        margin-top: auto;
+        appearance: none;
+        background: transparent;
+        border: 1px solid var(--gold-dim);
+        color: var(--gold);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        padding: 10px 12px;
+        cursor: pointer;
+        border-radius: 2px;
+        text-align: left;
+      }
+      .readout .jump:hover { background: var(--gold); color: #0a0e13; }
+
+      /* run timeline */
+      .runs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 12px;
+        margin-top: 26px;
+      }
+      .run-cell {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 14px 16px;
+        cursor: pointer;
+        text-align: left;
+        appearance: none;
+        color: var(--ink);
+        border-radius: 2px;
+        font: inherit;
+      }
+      .run-cell:hover { border-color: var(--gold-dim); }
+      .run-cell.active { border-color: var(--gold); background: var(--panel-2); }
+      .run-cell .d {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--gold);
+      }
+      .run-cell .c {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-dim);
+        margin-top: 5px;
+        line-height: 1.7;
+      }
+      .run-bars { display: flex; gap: 2px; margin-top: 10px; align-items: flex-end; height: 26px; }
+      .run-bars i { display: block; width: 5px; background: var(--cyan-dim); }
+      .run-bars i.g { background: var(--gold); }
+
+      /* filters */
+      .filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .filter-row .flabel {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.24em;
+        color: var(--ink-faint);
+        margin-right: 4px;
+      }
+      .chip {
+        appearance: none;
+        background: transparent;
+        border: 1px solid var(--line-strong);
+        color: var(--ink-dim);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        padding: 7px 11px;
+        cursor: pointer;
+        border-radius: 20px;
+      }
+      .chip:hover { color: var(--ink); border-color: var(--gold-dim); }
+      .chip.active { background: var(--cyan); border-color: var(--cyan); color: #0a0e13; font-weight: 600; }
+      .chip .n { opacity: 0.65; font-size: 10px; }
+      .search-row { margin: 14px 0 22px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+      #search {
+        flex: 1 1 260px;
+        background: var(--panel);
+        border: 1px solid var(--line-strong);
+        color: var(--ink);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+        padding: 11px 14px;
+        border-radius: 2px;
+      }
+      #search:focus { outline: 1px solid var(--gold); border-color: var(--gold); }
+      #search::placeholder { color: var(--ink-faint); }
+      .count-line {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-dim);
+        letter-spacing: 0.08em;
+      }
+
+      /* paper cards */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 16px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 20px 20px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        transition: border-color 0.2s ease;
+      }
+      .card:hover { border-color: var(--card-border); }
+      .card.selected { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+      .card .chead {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: baseline;
+      }
+      .card .aid {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--cyan);
+        letter-spacing: 0.04em;
+      }
+      .card .resurvey {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        color: #0a0e13;
+        background: var(--gold);
+        padding: 3px 7px;
+        border-radius: 2px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .card h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.28;
+      }
+      .card h3 a { color: inherit; text-decoration: none; }
+      .card h3 a:hover { color: var(--gold); }
+      .card .iso {
+        margin: 0;
+        font-style: italic;
+        font-size: 16.5px;
+        line-height: 1.55;
+        color: var(--ink);
+        border-left: 2px solid var(--gold);
+        padding-left: 14px;
+      }
+      .card .iso + .iso { border-left-color: var(--cyan-dim); }
+      .card .iso-tag {
+        display: block;
+        font-style: normal;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.22em;
+        color: var(--gold);
+        margin-bottom: 5px;
+      }
+      .card .iso + .iso .iso-tag { color: var(--cyan); }
+      .card .cmeta {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10.5px;
+        color: var(--ink-dim);
+        line-height: 1.8;
+        border-top: 1px dashed var(--line);
+        padding-top: 10px;
+      }
+      .card .cmeta .coord { color: var(--gold-dim); }
+      .notes-btn {
+        margin-top: auto;
+        appearance: none;
+        background: transparent;
+        border: 1px solid var(--line-strong);
+        color: var(--ink);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        padding: 10px 12px;
+        cursor: pointer;
+        border-radius: 2px;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+      }
+      .notes-btn:hover { border-color: var(--gold); color: var(--gold); }
+      .notes { display: none; flex-direction: column; gap: 14px; }
+      .notes.open { display: flex; }
+      .entry {
+        border: 1px solid var(--line);
+        background: var(--bg-2);
+        padding: 14px 16px;
+        border-radius: 2px;
+      }
+      .entry .ehead {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        color: var(--cyan);
+        line-height: 1.8;
+        margin-bottom: 8px;
+        word-break: break-word;
+      }
+      .entry .ehead .gold { color: var(--gold); }
+      .entry .etext {
+        font-size: 15.5px;
+        line-height: 1.62;
+        color: var(--ink);
+        margin: 0;
+        white-space: pre-wrap;
+      }
+      .entry .etopics {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--ink-faint);
+        margin-top: 10px;
+        line-height: 1.7;
+      }
+      .empty-state {
+        border: 1px dashed var(--line-strong);
+        padding: 34px 22px;
+        text-align: center;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        color: var(--ink-dim);
+        line-height: 1.9;
+        display: none;
+      }
+
+      footer {
+        padding: 34px clamp(20px, 4vw, 56px) 46px;
+        max-width: 1560px;
+        margin: 0 auto;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-dim);
+        line-height: 2;
+      }
+      footer .gold { color: var(--gold); }
+      footer a { color: var(--cyan); }
+
+      @media (max-width: 900px) {
+        .chart-wrap { grid-template-columns: 1fr; }
+        .readout { order: 2; }
+      }
+      @media (max-width: 560px) {
+        .cards { grid-template-columns: 1fr; }
+        .hero { min-height: 0; }
+        blockquote.hero-quote { max-width: 100%; }
+        .stat { flex-basis: 40%; border-bottom: 1px solid var(--line); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        blockquote.hero-quote, .quote-attr { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <canvas id="globe" aria-hidden="true"></canvas>
+      <div class="hero-frame" aria-hidden="true"></div>
+      <div class="hero-top mono">
+        <span>PAPER-HUNT CARTOGRAPHY · CLUSTER Nº 01</span>
+        <span class="r">SURVEYS 2026-09-28 → 2026-09-30<br />SHEET 1 OF 1 · SCALE: CONCEPTUAL</span>
+      </div>
+      <div class="hero-mid">
+        <p class="hero-kicker">A FIELD SURVEY OF NINETEEN SIGHTINGS</p>
+        <h1 class="hero-title">Maps <em>&amp;</em><br />Territory</h1>
+        <p class="hero-sub">
+          Nineteen paper-hunt entries on <b>cartography, map projections, and calendar-reform
+          timekeeping</b> — every one plotted here with its original hunt wording intact.
+          The hero material is the <b>isomorphism notes</b>: the places where each paper's
+          structure was found rhyming with something else. Where the map cracks against the
+          territory is where these papers live.
+        </p>
+      </div>
+
+      <div class="quotebox">
+        <div class="quote-label">
+          <span>ISOMORPHISM, AS LOGGED — <span id="qcount">1 / 18</span></span>
+          <span class="quote-nav">
+            <button class="qbtn" id="qprev" aria-label="Previous isomorphism">←</button>
+            <button class="qbtn" id="qnext" aria-label="Next isomorphism">→</button>
+          </span>
+        </div>
+        <blockquote class="hero-quote" id="heroQuote"></blockquote>
+        <p class="quote-attr" id="quoteAttr"></p>
+      </div>
+
+      <div class="hero-stats" id="heroStats"></div>
+    </header>
+
+    <!-- ================= THE CHART ================= -->
+    <section class="block" id="chart-section">
+      <div class="sec-head">
+        <h2 class="sec-title">The <em>Chart</em></h2>
+        <p class="sec-note">STATIONS ARE PLOTTED SCHEMATICALLY — POSITION IS A READING
+        DEVICE, NOT A CLAIM. RE-PROJECT THE SHEET AND THE SAME TERRITORY HOLDS; ONLY THE
+        DISTORTION MOVES. SELECT A STATION TO READ ITS SURVEY.</p>
+      </div>
+      <div class="sec-rule"></div>
+      <div class="proj-bar" role="group" aria-label="Map projection">
+        <button class="proj-btn active" data-proj="equirect">EQUIRECTANGULAR</button>
+        <button class="proj-btn" data-proj="mercator">MERCATOR</button>
+        <button class="proj-btn" data-proj="sinusoidal">SINUSOIDAL</button>
+        <button class="proj-btn" data-proj="azimuthal">AZIMUTHAL · N POLE</button>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-box">
+          <canvas id="chart"></canvas>
+          <span class="chart-corner cc-tl" id="chartProjName">EQUIRECTANGULAR · GRATICULE 15°</span>
+          <span class="chart-corner cc-br">DATUM: THE LAB'S CURIOSITY</span>
+        </div>
+        <aside class="readout" id="readout" aria-live="polite"></aside>
+      </div>
+      <div class="runs" id="runs"></div>
+    </section>
+
+    <!-- ================= THE INDEX ================= -->
+    <section class="block" id="index-section">
+      <div class="sec-head">
+        <h2 class="sec-title">Station <em>Index</em></h2>
+        <p class="sec-note">EVERY ENTRY BELOW IS TRANSCRIBED VERBATIM FROM THE HUNT LOG —
+        WORDING, PUNCTUATION, AND VERDICTS UNTOUCHED. OPEN “FULL SURVEY NOTES” TO READ A
+        PAPER'S COMPLETE ORIGINAL ENTRY, ONE PER HUNT RUN.</p>
+      </div>
+      <div class="sec-rule"></div>
+      <div class="filter-row" id="motifRow">
+        <span class="flabel">MOTIF IN THE ISOMORPHISM NOTE</span>
+      </div>
+      <div class="filter-row" id="dateRow">
+        <span class="flabel">HUNT RUN</span>
+      </div>
+      <div class="search-row">
+        <input id="search" type="search" placeholder="Search titles, arXiv IDs, note text…" aria-label="Search papers" />
+        <span class="count-line" id="countLine"></span>
+      </div>
+      <div class="cards" id="cards"></div>
+      <div class="empty-state" id="emptyState">NO STATIONS MATCH THAT READING.<br />CLEAR THE FILTERS AND SURVEY AGAIN.</div>
+    </section>
+
+    <footer>
+      <span class="gold">PROVENANCE —</span> all nineteen entries transcribed verbatim from the paper-hunt
+      cluster file <span class="gold">cluster-MAPS.json</span> (runs of 2026-09-28, 2026-09-29, 2026-09-30).
+      Titles, isomorphism notes, and verdicts are the hunt's own words; nothing here has been rewritten,
+      tidied, or invented. Station coordinates on the chart are a schematic plotting device.
+      Paper links resolve to <a href="https://arxiv.org" rel="noopener">arXiv</a> by identifier.
+    </footer>
+
+    <script>
+      "use strict";
+      const ENTRIES = [{"arxivId": "2604.01233v2", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 10, "runDate": "2026-09-28", "runId": "20260928T085000Z", "sourceKey": "hunt:20260928T085000Z:1", "sourceText": "[2604.01233v2] *Possible Reforms of the Tibetan Lunisolar Calendar* — decomposes the calendar into a structural core (incidence rules, mean-motion models) vs. tradition-dependent layers, then builds a stratified reform space: \"how far can astronomical correction go without discarding the calendrical identity?\" Isomorphism: the institutional decompiler in the wild — reform as kintsugi on a rule system; repair is conservative rational patching that preserves the gold of identity, not a replacement build.", "topics": "origami mathematics folding · calendar reform timekeeping (10 papers, 0 errors)"}, {"arxivId": "2609.14912v1", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 11, "runDate": "2026-09-28", "runId": "20260928T085000Z", "sourceKey": "hunt:20260928T085000Z:2", "sourceText": "[2609.14912v1] *A Lean Paper About Paper: A Formal Framework for Origami* — redefines the 7 Huzita fold operations as theorems instead of axioms in Lean 4, with a Crease Pattern Inspector pipeline. Isomorphism: constraints as inspectable seams — the fold is not an assumption but a proven consequence; crease patterns are constraint maps you can verify, matching the lab's contracts-to-permissions instinct.", "topics": "origami mathematics folding · calendar reform timekeeping (10 papers, 0 errors)"}, {"arxivId": "2609.30411v1", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 12, "runDate": "2026-09-28", "runId": "20260928T085000Z", "sourceKey": "hunt:20260928T085000Z:3", "sourceText": "[2609.30411v1] *Nondegenerate gradient Young measures and dimension reduction for nonlinear membranes* — refuses the classical relaxed membrane energy, keeping the non-relaxed density that preserves fine oscillations (microstructure) and unbounded growth near degeneracy, via origami-like piecewise isometric constructions. Isomorphism: memory as anti-relaxation — relaxation is forgetting; the singularities you keep are what remember the original 3D structure.", "topics": "origami mathematics folding · calendar reform timekeeping (10 papers, 0 errors)"}, {"arxivId": "2609.13757v1", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 13, "runDate": "2026-09-28", "runId": "20260928T085000Z", "sourceKey": "hunt:20260928T085000Z:4", "sourceText": "[2609.13757v1] *The crossing number and the unit-distance crossing number of the Hamming graphs H(d,3)* — one graph is realizable over many coordinate fields (compass, origami, beyond); field and crossings are two readings of one geometry. Isomorphism: maps vs. territory — the same abstract structure admits multiple constructibility-level realizations; the least-crossing drawing is origami-constructible, so the map's clutter level picks the territory it can live in.", "topics": "origami mathematics folding · calendar reform timekeeping (10 papers, 0 errors)"}, {"arxivId": "2006.16766v2", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 14, "runDate": "2026-09-28", "runId": "20260928T085000Z", "sourceKey": "hunt:20260928T085000Z:5", "sourceText": "[2006.16766v2] *The Eclipse of 21 June 1629 in Beijing in the Context of the Reform of the Chinese Calendar* — competing eclipse predictions adjudicated against a NASA reconstruction; the Jesuits' most-accurate forecast broke the emperor's doubt and triggered calendar reform. Isomorphism: the territory audits the map — a rare, predictable event is the seam where measurement forces a rule system to repair itself.", "topics": "origami mathematics folding · calendar reform timekeeping (10 papers, 0 errors)"}, {"arxivId": "1401.3577v1", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 15, "runDate": "2026-09-28", "runId": "20260928T085000Z", "sourceKey": "hunt:20260928T085000Z:6", "sourceText": "[1401.3577v1] *La meridiana di Egnazio Danti nella Torre dei Venti in Vaticano* — Danti's 1580 meridian line, 72 arcminutes off true north, demonstrated the need for the Gregorian reform. Isomorphism: an instrument as a drift-detector — the physical artifact that lets the map's error become visible is itself a seam between sky and institution.", "topics": "origami mathematics folding · calendar reform timekeeping (10 papers, 0 errors)"}, {"arxivId": "2604.11826v1", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 23, "runDate": "2026-09-28", "runId": "20260928T125031Z", "sourceKey": "hunt:20260928T125031Z:1", "sourceText": "[2604.11826v1] *Amerigo Vespucci and the discovery of the Southern Sky* — Vespucci's star observations were long misread through criteria ignoring his own notes; re-read with his indications, the data resolve into credible new-star identifications. Isomorphism: palimpsest of the sky — the old catalog (the map) distorted new observations, and recovery came from re-reading the document on its own terms; fossil knowledge preserved through archival noise, matching the lab's manuscript-recovery/palimpsest instincts.", "topics": "cartography history map projections · textile weaving computation (10 papers, 0 errors)"}, {"arxivId": "2603.19230v1", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 24, "runDate": "2026-09-28", "runId": "20260928T125031Z", "sourceKey": "hunt:20260928T125031Z:2", "sourceText": "[2603.19230v1] *The structure and evolution of the Galactic high-α disc I. Chemical and age orbital cartography* — abundance/age gradients are \"much stronger and sharper in orbital space than in present-day kinematics\"; later mergers did not fully erase the fossil record of early assembly. Isomorphism: the right coordinates recover the intrinsic map — structure survives perturbation when you read it in the frame that remembers (orbital space, not instantaneous positions); memory as erosion-resistant fossil, kintsugi at galactic scale.", "topics": "cartography history map projections · textile weaving computation (10 papers, 0 errors)"}, {"arxivId": "2511.19538v1", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 25, "runDate": "2026-09-28", "runId": "20260928T125031Z", "sourceKey": "hunt:20260928T125031Z:3", "sourceText": "[2511.19538v1] *Studying Maps at Scale: A Digital Investigation of Cartography and the Evolution of Figuration* — 63M cartographic signs encoded into a latent visual space; signs \"tend to form locally consistent systems\"; figurative norms spread via legitimacy and major cities; relief hachures replaced by contours. Isomorphism: maps as emergent constraint systems — the semiotic grammar of cartography is a norm-propagated structure, auditable only at scale; territory of signs with its own propagation physics. Consilience with the lab's constraints/seams reading.", "topics": "cartography history map projections · textile weaving computation (10 papers, 0 errors)"}, {"arxivId": "2603.00399v2", "createdAt": "2026-09-28T12:00:00.000Z", "entryKind": "archive", "id": 26, "runDate": "2026-09-28", "runId": "20260928T125031Z", "sourceKey": "hunt:20260928T125031Z:4", "sourceText": "[2603.00399v2] *A Data-Driven Analysis for Engineering Conferences: The IISE Annual Conference Proceedings (2002-2025)* — \"a cartography of the ISE field's intellectual history\": thematic evolution, collaboration networks, knowledge diffusion mapped over 23 years of proceedings. Isomorphism: maps of abstract territory — the same cartographic moves applied to a discipline's intellectual terrain; a weak but genuine rhyme with the lab's own mapping instincts.", "topics": "cartography history map projections · textile weaving computation (10 papers, 0 errors)"}, {"arxivId": "2604.01233v2", "createdAt": "2026-09-29T12:00:00.000Z", "entryKind": "archive", "id": 91, "runDate": "2026-09-29", "runId": "20260929T205005Z", "sourceKey": "hunt:20260929T205005Z:1", "sourceText": "[2604.01233v2] *Possible Reforms of the Tibetan Lunisolar Calendar* — deconstructs the calendar into arithmetic axiom (67 lunar months = 65 solar months) vs tradition-dependent features, decomposing drift into internal arithmetic drift, sidereal misalignment, and anomaly-phase defects; then develops a *stratified reform space* from conservative rational repairs preserving traditional arithmetic to full dynamical reconstructions. Guiding question: how far can astronomical correction go without discarding the calendar's identity. Isomorphism: repair + kintsugi + constraints — reform as graded preservation of identity rather than replacement; the strongest of the run, and calendar reform as a domain where the repair/identity seam is literally the research question.", "topics": "error correcting codes redundancy · calendar reform timekeeping (10 papers, 0 errors)"}, {"arxivId": "1401.3577v1", "createdAt": "2026-09-29T12:00:00.000Z", "entryKind": "archive", "id": 92, "runDate": "2026-09-29", "runId": "20260929T205005Z", "sourceKey": "hunt:20260929T205005Z:2", "sourceText": "[1401.3577v1] *La meridiana di Egnazio Danti nella Torre dei Venti in Vaticano* — the 1580 meridian line whose measured 72-arcminute deviation from true north demonstrated the need for the Gregorian reform. Isomorphism: maps — an instrument that makes the seam between the Julian map and solar territory physically legible; the measured crack precedes the repair.", "topics": "error correcting codes redundancy · calendar reform timekeeping (10 papers, 0 errors)"}, {"arxivId": "2006.16766v2", "createdAt": "2026-09-29T12:00:00.000Z", "entryKind": "archive", "id": 93, "runDate": "2026-09-29", "runId": "20260929T205005Z", "sourceKey": "hunt:20260929T205005Z:3", "sourceText": "[2006.16766v2] *The Eclipse of 21 June 1629 in Beijing in the Context of the Reform of the Chinese Calendar* — Chinese, Muslim, and Jesuit astronomers each predicted the eclipse; comparing the predictions against NASA reconstruction, the Jesuits' was most accurate, and the empirical result resolved Chongzhen's doubts and triggered the reform. Isomorphism: maps/seams — three competing maps adjudicated by a single empirical test; the eclipse as the friction event that forces map revision. Moderate.", "topics": "error correcting codes redundancy · calendar reform timekeeping (10 papers, 0 errors)"}, {"arxivId": "2511.19538v1", "createdAt": "2026-09-30T12:00:00.000Z", "entryKind": "archive", "id": 98, "runDate": "2026-09-30", "runId": "20260930T025000Z", "sourceKey": "hunt:20260930T025000Z:1", "sourceText": "[2511.19538v1] *Studying Maps at Scale: A Digital Investigation of Cartography and the Evolution of Figuration* (Petitpierre, thesis) — 771k map records / 99,715 images across 6 centuries; 63M cartographic signs encoded into a latent visual space; documents the figurative shift where relief hachures were replaced by terrain contours. Isomorphism: maps + seams — a historical case study of representation changing underneath a sign system while the signs stay locally consistent; the hachure→contour transition is a visible seam between two ways of drawing the world.", "topics": "cartography history map projections · analog computing (10 papers, 0 errors)"}, {"arxivId": "2609.36955v1", "createdAt": "2026-09-30T12:00:00.000Z", "entryKind": "archive", "id": 99, "runDate": "2026-09-30", "runId": "20260930T025000Z", "sourceKey": "hunt:20260930T025000Z:2", "sourceText": "[2609.36955v1] *Ohm's law for information revealed by a skyrmion Maxwell's demon* (Miki et al.) — information current ∝ information affinity in a two-skyrmion Brownian engine; information carriers scatter, so Ohm's and Kirchhoff's laws need correction terms. Isomorphism: friction + analog computing — literal friction (scattering) in an information circuit; the constitutive laws of electronics get re-derived for information flow with physical resistance.", "topics": "cartography history map projections · analog computing (10 papers, 0 errors)"}, {"arxivId": "2609.37525v1", "createdAt": "2026-09-30T12:00:00.000Z", "entryKind": "archive", "id": 100, "runDate": "2026-09-30", "runId": "20260930T025000Z", "sourceKey": "hunt:20260930T025000Z:3", "sourceText": "[2609.37525v1] *Physical Muon: Orthogonalization as an Equilibrium Computation* (Hao) — replaces Newton–Schulz orthogonalization with the equilibrium of a continuous-time flow, approximated by random probes (matrix-vector products, local rank-1 writes); stays within 0.009–0.019 cross-entropy of the dense baseline on a 10.95M-param transformer. Isomorphism: constraints + memory — optimization dissolved into physics; a nice data point for the lab's analog-compute watch.", "topics": "cartography history map projections · analog computing (10 papers, 0 errors)"}, {"arxivId": "2609.36801v1", "createdAt": "2026-09-30T12:00:00.000Z", "entryKind": "archive", "id": 101, "runDate": "2026-09-30", "runId": "20260930T025000Z", "sourceKey": "hunt:20260930T025000Z:4", "sourceText": "[2609.36801v1] *Scene Retargeting: Learning Object Placement with Analogical Transfer* (Kim et al.) — cluster-wise transfer of semantically coherent spatial organization across mismatched 3D layouts, preserving foundation-feature distributions under physical constraints. Isomorphism: isomorphisms / constraints — transferring the *relations* of a place rather than its objects; a scene as a constraint-satisfaction isomorphism class.", "topics": "cartography history map projections · analog computing (10 papers, 0 errors)"}, {"arxivId": "2604.11826v1", "createdAt": "2026-09-30T12:00:00.000Z", "entryKind": "archive", "id": 102, "runDate": "2026-09-30", "runId": "20260930T025000Z", "sourceKey": "hunt:20260930T025000Z:5", "sourceText": "[2604.11826v1] *Amerigo Vespucci and the discovery of the Southern Sky* (Neri) — re-identifying Vespucci's southern-sky star observations after 500 years of misreading; incomplete ancient-text knowledge caused a century of confusion in celestial cartography. Isomorphism: maps + repair — old maps repaired by re-reading them under new knowledge; a mapping misidentification seam in 16th-century astronomy.", "topics": "cartography history map projections · analog computing (10 papers, 0 errors)"}, {"sourceText": "[2603.00399v2] *A Data-Driven Analysis for Engineering Conferences (IISE, 2002–2025)* — LLM-assisted thematic cartography of a discipline's proceedings. Weak: \"cartography of knowledge\" is a fine metaphor but the method is off-the-shelf; filed as dud-adjacent.", "topics": "cartography history map projections · analog computing", "runDate": "2026-09-30", "arxivId": "2603.00399v2"}];
+
+      const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---------- parse + group ---------- */
+      function parseEntry(e) {
+        const text = e.sourceText || "";
+        const titleMatch = text.match(/\*([^*]+)\*/);
+        const title = titleMatch ? titleMatch[1] : text.slice(0, 80);
+        const isoIdx = text.indexOf("Isomorphism:");
+        const iso = isoIdx >= 0 ? text.slice(isoIdx + "Isomorphism:".length).trim() : null;
+        return { raw: e, text, title, iso };
+      }
+
+      const papersById = new Map();
+      ENTRIES.forEach((e) => {
+        const p = parseEntry(e);
+        if (!papersById.has(e.arxivId)) papersById.set(e.arxivId, []);
+        papersById.get(e.arxivId).push(p);
+      });
+
+      // deterministic schematic coordinates from the arXiv id
+      function hashStr(s) {
+        let h = 2166136261;
+        for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+        return (h >>> 0) / 4294967295;
+      }
+      const PAPERS = Array.from(papersById.entries()).map(([arxivId, entries]) => {
+        entries.sort((a, b) => (a.raw.runDate || "").localeCompare(b.raw.runDate || ""));
+        const h1 = hashStr(arxivId), h2 = hashStr(arxivId + "::lat");
+        return {
+          arxivId,
+          title: entries[0].title,
+          entries,
+          lon: -168 + h1 * 336,
+          lat: -52 + h2 * 118,
+          isos: entries.map((x) => x.iso).filter(Boolean),
+        };
+      });
+
+      function fmtCoord(p) {
+        const la = Math.abs(p.lat).toFixed(1) + "°" + (p.lat >= 0 ? "N" : "S");
+        const lo = Math.abs(p.lon).toFixed(1) + "°" + (p.lon >= 0 ? "E" : "W");
+        return la + " · " + lo;
+      }
+      function esc(s) {
+        return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+
+      /* ---------- hero stats ---------- */
+      const runDates = [...new Set(ENTRIES.map((e) => e.runDate))].sort();
+      const resurveyed = PAPERS.filter((p) => p.entries.length > 1).length;
+      const isoCount = ENTRIES.reduce((n, e) => n + (parseEntry(e).iso ? 1 : 0), 0);
+      document.getElementById("heroStats").innerHTML = [
+        [ENTRIES.length, "SURVEY ENTRIES LOGGED"],
+        [PAPERS.length, "DISTINCT PAPERS (STATIONS)"],
+        [resurveyed, "RE-SURVEYED IN LATER RUNS"],
+        [isoCount, "ISOMORPHISM NOTES"],
+      ].map(([n, l]) => `<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join("");
+
+      /* ---------- kinetic quote cycler ---------- */
+      const QUOTES = [];
+      PAPERS.forEach((p) => p.entries.forEach((en) => {
+        if (en.iso) QUOTES.push({ iso: en.iso, title: p.title, arxivId: p.arxivId, date: en.raw.runDate });
+      }));
+      let qi = 0, qTimer = null;
+      const qEl = document.getElementById("heroQuote");
+      const aEl = document.getElementById("quoteAttr");
+      const qcEl = document.getElementById("qcount");
+      function showQuote(i, animate) {
+        qi = ((i % QUOTES.length) + QUOTES.length) % QUOTES.length;
+        const q = QUOTES[qi];
+        const apply = () => {
+          qEl.textContent = "“" + q.iso + "”";
+          aEl.innerHTML = `<span class="t">${esc(q.title)}</span><br />arXiv:${esc(q.arxivId)} · hunted ${esc(q.date || "")}`;
+          qcEl.textContent = (qi + 1) + " / " + QUOTES.length;
+          qEl.classList.remove("fading"); aEl.classList.remove("fading");
+        };
+        if (animate && !REDUCED) {
+          qEl.classList.add("fading"); aEl.classList.add("fading");
+          setTimeout(apply, 460);
+        } else apply();
+      }
+      function qAuto() {
+        clearInterval(qTimer);
+        if (!REDUCED) qTimer = setInterval(() => showQuote(qi + 1, true), 7000);
+      }
+      document.getElementById("qnext").addEventListener("click", () => { showQuote(qi + 1, true); qAuto(); });
+      document.getElementById("qprev").addEventListener("click", () => { showQuote(qi - 1, true); qAuto(); });
+      showQuote(0, false); qAuto();
+
+      /* ---------- hero globe canvas ---------- */
+      (function () {
+        const cv = document.getElementById("globe"), ctx = cv.getContext("2d");
+        let W, H, t = 0;
+        function size() {
+          const r = cv.parentElement.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          W = r.width; H = r.height;
+          cv.width = W * dpr; cv.height = H * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        size(); window.addEventListener("resize", size);
+        const css = getComputedStyle(document.documentElement);
+        const lineCol = css.getPropertyValue("--cyan-dim").trim() || "#4d7a76";
+        const goldCol = css.getPropertyValue("--gold").trim() || "#d9a441";
+        function project(lon, lat, rot) {
+          const lo = (lon + rot) * Math.PI / 180, la = lat * Math.PI / 180;
+          const x = Math.cos(la) * Math.sin(lo), y = Math.sin(la), z = Math.cos(la) * Math.cos(lo);
+          return z > 0 ? { x, y, z } : null;
+        }
+        function draw() {
+          ctx.clearRect(0, 0, W, H);
+          const R = Math.min(W, H) * 0.62;
+          const cx = W * 0.78, cy = H * 0.36;
+          const rot = t * 6;
+          ctx.lineWidth = 1;
+          // parallels
+          for (let lat = -75; lat <= 75; lat += 15) {
+            ctx.beginPath();
+            let started = false;
+            for (let lon = -180; lon <= 180; lon += 4) {
+              const p = project(lon, lat, rot);
+              if (!p) { started = false; continue; }
+              const X = cx + p.x * R, Y = cy - p.y * R;
+              if (!started) { ctx.moveTo(X, Y); started = true; } else ctx.lineTo(X, Y);
+            }
+            ctx.strokeStyle = lat === 0 ? goldCol : lineCol;
+            ctx.globalAlpha = lat === 0 ? 0.5 : 0.35;
+            ctx.stroke();
+          }
+          // meridians
+          for (let lon = 0; lon < 360; lon += 15) {
+            ctx.beginPath();
+            let started = false;
+            for (let lat = -88; lat <= 88; lat += 4) {
+              const p = project(lon - 180, lat, rot);
+              if (!p) { started = false; continue; }
+              const X = cx + p.x * R, Y = cy - p.y * R;
+              if (!started) { ctx.moveTo(X, Y); started = true; } else ctx.lineTo(X, Y);
+            }
+            ctx.strokeStyle = lineCol; ctx.globalAlpha = 0.3; ctx.stroke();
+          }
+          ctx.globalAlpha = 1;
+          if (!REDUCED) { t += 0.0016; requestAnimationFrame(draw); }
+        }
+        draw();
+      })();
+
+      /* ---------- the chart ---------- */
+      const PROJECTIONS = {
+        equirect: {
+          name: "EQUIRECTANGULAR · GRATICULE 15°",
+          fn: (lon, lat) => [lon * Math.PI / 180, lat * Math.PI / 180],
+          range: [Math.PI, Math.PI / 2],
+        },
+        mercator: {
+          name: "MERCATOR · GRATICULE 15°",
+          fn: (lon, lat) => {
+            const c = Math.max(-82, Math.min(82, lat)) * Math.PI / 180;
+            return [lon * Math.PI / 180, Math.log(Math.tan(Math.PI / 4 + c / 2))];
+          },
+          range: [Math.PI, 2.15],
+        },
+        sinusoidal: {
+          name: "SINUSOIDAL · GRATICULE 15°",
+          fn: (lon, lat) => [lon * Math.PI / 180 * Math.cos(lat * Math.PI / 180), lat * Math.PI / 180],
+          range: [Math.PI, Math.PI / 2],
+        },
+        azimuthal: {
+          name: "AZIMUTHAL EQUIDISTANT · N POLE · GRATICULE 15°",
+          fn: (lon, lat) => {
+            const rho = (90 - lat) * Math.PI / 180, lo = lon * Math.PI / 180;
+            return [rho * Math.sin(lo), -rho * Math.cos(lo)];
+          },
+          range: [Math.PI, Math.PI],
+        },
+      };
+      let curProj = "equirect";
+      let morph = 1; // 0..1 progress between projections
+      let fromPts = null, toPts = null;
+      let stationXY = []; // screen coords per paper
+      let selectedId = PAPERS[0].arxivId;
+
+      const chart = document.getElementById("chart");
+      const cctx = chart.getContext("2d");
+      let CW = 0, CH = 0;
+
+      function sizeChart() {
+        const box = chart.parentElement.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        CW = box.width; CH = Math.max(340, Math.min(520, box.width * 0.52));
+        chart.width = CW * dpr; chart.height = CH * dpr;
+        chart.style.height = CH + "px";
+        cctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        buildGrid(curProj);
+        drawChart();
+      }
+
+      // build graticule polylines in projected space for a projection
+      function gratPoints(key) {
+        const P = PROJECTIONS[key].fn;
+        const lines = [];
+        for (let lon = -180; lon <= 180; lon += 15) {
+          const pts = [];
+          for (let lat = -85; lat <= 85; lat += 3) pts.push(P(lon, lat));
+          lines.push({ pts, eq: false });
+        }
+        for (let lat = -75; lat <= 75; lat += 15) {
+          const pts = [];
+          for (let lon = -180; lon <= 180; lon += 3) pts.push(P(lon, lat));
+          lines.push({ pts, eq: lat === 0 });
+        }
+        const stations = PAPERS.map((p) => P(p.lon, p.lat));
+        return { lines, stations };
+      }
+      let gridFrom = null, gridTo = null;
+
+      function buildGrid(key) {
+        gridTo = gratPoints(key);
+        if (!gridFrom) { gridFrom = gridTo; morph = 1; }
+      }
+      function setProjection(key) {
+        if (key === curProj && morph === 1) return;
+        gridFrom = currentGridSnapshot();
+        curProj = key;
+        buildGrid(key);
+        morph = 0;
+        document.getElementById("chartProjName").textContent = PROJECTIONS[key].name;
+        document.querySelectorAll(".proj-btn").forEach((b) =>
+          b.classList.toggle("active", b.dataset.proj === key));
+        if (REDUCED) { morph = 1; drawChart(); }
+        else requestAnimationFrame(morphStep);
+      }
+      function currentGridSnapshot() {
+        // materialize current interpolated grid
+        const snap = { lines: [], stations: [] };
+        gridTo.lines.forEach((ln, i) => {
+          snap.lines.push({
+            eq: ln.eq,
+            pts: ln.pts.map((pt, j) => {
+              const f = gridFrom.lines[i].pts[j];
+              return [f[0] + (pt[0] - f[0]) * morph, f[1] + (pt[1] - f[1]) * morph];
+            }),
+          });
+        });
+        snap.stations = gridTo.stations.map((pt, i) => {
+          const f = gridFrom.stations[i];
+          return [f[0] + (pt[0] - f[0]) * morph, f[1] + (pt[1] - f[1]) * morph];
+        });
+        return snap;
+      }
+      function morphStep() {
+        morph = Math.min(1, morph + 0.045);
+        drawChart();
+        if (morph < 1) requestAnimationFrame(morphStep);
+      }
+      function toScreen(pt) {
+        const [rx, ry] = PROJECTIONS[curProj].range;
+        const pad = 26;
+        const sx = (CW - pad * 2) / (2 * rx), sy = (CH - pad * 2) / (2 * ry);
+        const s = Math.min(sx, sy);
+        return [CW / 2 + pt[0] * s, CH / 2 - pt[1] * s];
+      }
+      function drawChart() { renderChart(); }
+      function renderChart() {
+        if (!gridTo) return;
+        const css = getComputedStyle(document.documentElement);
+        const gridCol = css.getPropertyValue("--cyan-dim").trim();
+        const goldCol = css.getPropertyValue("--gold").trim();
+        const cyanCol = css.getPropertyValue("--cyan").trim();
+        const inkCol = css.getPropertyValue("--ink").trim();
+        cctx.clearRect(0, 0, CW, CH);
+        const mix = (a, b) => [a[0] + (b[0] - a[0]) * morph, a[1] + (b[1] - a[1]) * morph];
+        gridTo.lines.forEach((ln, i) => {
+          cctx.beginPath();
+          ln.pts.forEach((pt, j) => {
+            const m = mix(gridFrom.lines[i].pts[j], pt);
+            const [X, Y] = toScreen(m);
+            if (j === 0) cctx.moveTo(X, Y); else cctx.lineTo(X, Y);
+          });
+          cctx.strokeStyle = ln.eq ? goldCol : gridCol;
+          cctx.globalAlpha = ln.eq ? 0.55 : 0.38;
+          cctx.lineWidth = 1;
+          cctx.stroke();
+        });
+        cctx.globalAlpha = 1;
+        stationXY = PAPERS.map((p, i) => toScreen(mix(gridFrom.stations[i], gridTo.stations[i])));
+        const now = performance.now();
+        PAPERS.forEach((p, i) => {
+          const [X, Y] = stationXY[i];
+          const sel = p.arxivId === selectedId;
+          if (sel && !REDUCED) {
+            const r = 10 + 4 * Math.sin(now / 320);
+            cctx.beginPath(); cctx.arc(X, Y, r, 0, Math.PI * 2);
+            cctx.strokeStyle = goldCol; cctx.globalAlpha = 0.5; cctx.stroke(); cctx.globalAlpha = 1;
+          }
+          cctx.beginPath();
+          cctx.arc(X, Y, sel ? 6 : 4.5, 0, Math.PI * 2);
+          cctx.fillStyle = sel ? goldCol : cyanCol;
+          cctx.fill();
+          cctx.beginPath();
+          cctx.arc(X, Y, sel ? 10 : 8, 0, Math.PI * 2);
+          cctx.strokeStyle = sel ? goldCol : gridCol;
+          cctx.stroke();
+          cctx.font = "600 9px 'IBM Plex Mono', monospace";
+          cctx.fillStyle = sel ? goldCol : inkCol;
+          cctx.globalAlpha = sel ? 1 : 0.75;
+          cctx.fillText("S" + String(i + 1).padStart(2, "0"), X + 12, Y + 3);
+          cctx.globalAlpha = 1;
+        });
+      }
+      // continuous pulse loop so the selected station breathes;
+      // pauses itself when reduced motion is requested
+      function drawChartFrame() { renderChart(); }
+      if (!REDUCED) (function pulse() { renderChart(); requestAnimationFrame(pulse); })();
+
+      chart.addEventListener("click", (ev) => {
+        const r = chart.getBoundingClientRect();
+        const x = ev.clientX - r.left, y = ev.clientY - r.top;
+        let best = -1, bd = 30;
+        stationXY.forEach(([X, Y], i) => {
+          const d = Math.hypot(X - x, Y - y);
+          if (d < bd) { bd = d; best = i; }
+        });
+        if (best >= 0) selectPaper(PAPERS[best].arxivId, false);
+      });
+
+      document.querySelectorAll(".proj-btn").forEach((b) =>
+        b.addEventListener("click", () => setProjection(b.dataset.proj)));
+
+      /* ---------- readout ---------- */
+      const readout = document.getElementById("readout");
+      function selectPaper(id, scroll) {
+        selectedId = id;
+        const p = PAPERS.find((x) => x.arxivId === id);
+        const idx = PAPERS.indexOf(p);
+        const iso = p.isos[0];
+        readout.innerHTML = `
+          <div class="rid">STATION S${String(idx + 1).padStart(2, "0")} · arXiv:${esc(p.arxivId)}</div>
+          <h3>${esc(p.title)}</h3>
+          <div class="coord">${fmtCoord(p)} — SCHEMATIC</div>
+          ${iso ? `<p class="riso">“${esc(iso)}”</p>` : ""}
+          <div class="rmeta">
+            SURVEYED ${p.entries.length}× · ${p.entries.map((e) => esc(e.raw.runDate || "")).join(" · ")}<br />
+            <a href="https://arxiv.org/abs/${encodeURIComponent(p.arxivId)}" target="_blank" rel="noopener">READ ON arXiv ↗</a>
+          </div>
+          <button class="jump" id="jumpBtn">↓ OPEN IN STATION INDEX</button>`;
+        document.getElementById("jumpBtn").addEventListener("click", () => {
+          const card = document.getElementById("card-" + cssId(id));
+          if (card) {
+            card.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "center" });
+            openNotes(id);
+          }
+        });
+        document.querySelectorAll(".card").forEach((c) =>
+          c.classList.toggle("selected", c.id === "card-" + cssId(id)));
+        drawChartFrame();
+        if (scroll) readout.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "nearest" });
+      }
+      function cssId(id) { return id.replace(/[^a-zA-Z0-9_-]/g, "-"); }
+
+      /* ---------- run cells ---------- */
+      const runsEl = document.getElementById("runs");
+      let activeDate = null;
+      const dateCounts = runDates.map((d) => ({
+        date: d,
+        n: ENTRIES.filter((e) => e.runDate === d).length,
+        papers: new Set(ENTRIES.filter((e) => e.runDate === d).map((e) => e.arxivId)).size,
+      }));
+      const maxN = Math.max(...dateCounts.map((x) => x.n));
+      runsEl.innerHTML = dateCounts.map(({ date, n, papers }) => `
+        <button class="run-cell" data-date="${date}" aria-pressed="false">
+          <span class="d">${date}</span>
+          <span class="c">${n} ENTRIES · ${papers} STATIONS TOUCHED<br />CLICK TO FILTER THE INDEX</span>
+          <span class="run-bars">${Array.from({ length: n }, (_, i) =>
+            `<i class="${i % 3 === 0 ? "g" : ""}" style="height:${8 + (i * 7 % 18)}px"></i>`).join("")}</span>
+        </button>`).join("");
+      runsEl.querySelectorAll(".run-cell").forEach((cell) => {
+        cell.addEventListener("click", () => {
+          const d = cell.dataset.date;
+          activeDate = activeDate === d ? null : d;
+          runsEl.querySelectorAll(".run-cell").forEach((c) => {
+            const on = c.dataset.date === activeDate;
+            c.classList.toggle("active", on);
+            c.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+          syncDateChips();
+          applyFilters();
+        });
+      });
+
+      /* ---------- filters: motifs + dates + search ---------- */
+      const MOTIF_TERMS = ["map", "seam", "repair", "memory", "constraint", "drift", "territory", "identity", "friction", "fossil", "kintsugi", "calendar"];
+      const motifRow = document.getElementById("motifRow");
+      let activeMotif = null;
+      const motifCounts = MOTIF_TERMS.map((term) => {
+        const n = PAPERS.filter((p) => p.isos.some((s) => s.toLowerCase().includes(term))).length;
+        return { term, n };
+      }).filter((m) => m.n >= 2);
+      motifCounts.forEach(({ term, n }) => {
+        const b = document.createElement("button");
+        b.className = "chip"; b.dataset.motif = term;
+        b.innerHTML = `${term} <span class="n">×${n}</span>`;
+        b.addEventListener("click", () => {
+          activeMotif = activeMotif === term ? null : term;
+          motifRow.querySelectorAll(".chip").forEach((c) =>
+            c.classList.toggle("active", c.dataset.motif === activeMotif));
+          applyFilters();
+        });
+        motifRow.appendChild(b);
+      });
+
+      const dateRow = document.getElementById("dateRow");
+      runDates.forEach((d) => {
+        const b = document.createElement("button");
+        b.className = "chip"; b.dataset.date = d; b.textContent = d;
+        b.addEventListener("click", () => {
+          activeDate = activeDate === d ? null : d;
+          syncDateChips();
+          runsEl.querySelectorAll(".run-cell").forEach((c) => {
+            const on = c.dataset.date === activeDate;
+            c.classList.toggle("active", on);
+            c.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+          applyFilters();
+        });
+        dateRow.appendChild(b);
+      });
+      function syncDateChips() {
+        dateRow.querySelectorAll(".chip").forEach((c) =>
+          c.classList.toggle("active", c.dataset.date === activeDate));
+      }
+
+      const searchEl = document.getElementById("search");
+      searchEl.addEventListener("input", applyFilters);
+
+      /* ---------- cards ---------- */
+      const cardsEl = document.getElementById("cards");
+      const countLine = document.getElementById("countLine");
+      const emptyState = document.getElementById("emptyState");
+      const openSet = new Set();
+
+      function entryBlock(en) {
+        const r = en.raw;
+        const head = [
+          r.runDate ? `<span class="gold">SURVEY ${esc(r.runDate)}</span>` : "",
+          r.sourceKey ? esc(r.sourceKey) : "",
+          r.runId ? "RUN " + esc(r.runId) : "",
+        ].filter(Boolean).join(" · ");
+        return `<div class="entry">
+          <div class="ehead">${head}</div>
+          <p class="etext">${esc(en.text)}</p>
+          ${r.topics ? `<div class="etopics">HUNT TOPICS — ${esc(r.topics)}</div>` : ""}
+        </div>`;
+      }
+
+      function renderCards() {
+        cardsEl.innerHTML = PAPERS.map((p, i) => {
+          const isoHtml = p.isos.map((s, k) => `
+            <p class="iso"><span class="iso-tag">ISOMORPHISM — AS LOGGED${p.isos.length > 1 ? " · SURVEY " + (k + 1) : ""}</span>“${esc(s)}”</p>`).join("");
+          const noIso = p.isos.length === 0 ? `<p class="iso"><span class="iso-tag">HUNT NOTE — AS LOGGED</span>“${esc(p.entries[p.entries.length - 1].text.split("—").slice(1).join("—").trim())}”</p>` : "";
+          return `<article class="card" id="card-${cssId(p.arxivId)}" data-id="${esc(p.arxivId)}">
+            <div class="chead">
+              <span class="aid">arXiv:${esc(p.arxivId)}</span>
+              ${p.entries.length > 1 ? `<span class="resurvey">RE-SURVEYED ×${p.entries.length}</span>` : ""}
+            </div>
+            <h3><a href="https://arxiv.org/abs/${encodeURIComponent(p.arxivId)}" target="_blank" rel="noopener">${esc(p.title)}</a></h3>
+            ${isoHtml}${noIso}
+            <div class="cmeta">
+              STATION S${String(i + 1).padStart(2, "0")} · <span class="coord">${fmtCoord(p)}</span><br />
+              SURVEYED ${p.entries.map((e) => esc(e.raw.runDate || "")).join(" · ")}
+            </div>
+            <button class="notes-btn" data-notes="${esc(p.arxivId)}" aria-expanded="${openSet.has(p.arxivId) ? "true" : "false"}">
+              <span>FULL SURVEY NOTES — VERBATIM (${p.entries.length})</span><span>${openSet.has(p.arxivId) ? "−" : "+"}</span>
+            </button>
+            <div class="notes ${openSet.has(p.arxivId) ? "open" : ""}" id="notes-${cssId(p.arxivId)}">
+              ${p.entries.map(entryBlock).join("")}
+            </div>
+          </article>`;
+        }).join("");
+        cardsEl.querySelectorAll(".notes-btn").forEach((b) => {
+          b.addEventListener("click", () => toggleNotes(b.dataset.notes));
+        });
+        document.querySelectorAll(".card").forEach((c) =>
+          c.classList.toggle("selected", c.dataset.id === selectedId));
+      }
+      function toggleNotes(id) {
+        if (openSet.has(id)) openSet.delete(id); else openSet.add(id);
+        const n = document.getElementById("notes-" + cssId(id));
+        const b = cardsEl.querySelector(`[data-notes="${CSS.escape(id)}"]`);
+        if (n) n.classList.toggle("open", openSet.has(id));
+        if (b) {
+          b.setAttribute("aria-expanded", openSet.has(id) ? "true" : "false");
+          b.lastElementChild.textContent = openSet.has(id) ? "−" : "+";
+        }
+      }
+      function openNotes(id) {
+        if (!openSet.has(id)) toggleNotes(id);
+      }
+
+      function applyFilters() {
+        const q = searchEl.value.trim().toLowerCase();
+        let shown = 0;
+        PAPERS.forEach((p) => {
+          const card = document.getElementById("card-" + cssId(p.arxivId));
+          if (!card) return;
+          let ok = true;
+          if (activeMotif) ok = p.isos.some((s) => s.toLowerCase().includes(activeMotif));
+          if (ok && activeDate) ok = p.entries.some((e) => e.raw.runDate === activeDate);
+          if (ok && q) {
+            const hay = (p.title + " " + p.arxivId + " " + p.entries.map((e) => e.text).join(" ")).toLowerCase();
+            ok = hay.includes(q);
+          }
+          card.style.display = ok ? "" : "none";
+          if (ok) shown++;
+        });
+        countLine.textContent = shown + " OF " + PAPERS.length + " STATIONS SHOWN" +
+          (activeMotif ? " · MOTIF: " + activeMotif.toUpperCase() : "") +
+          (activeDate ? " · RUN: " + activeDate : "") +
+          (q ? " · SEARCH: “" + q + "”" : "");
+        emptyState.style.display = shown === 0 ? "block" : "none";
+      }
+
+      renderCards();
+      selectPaper(PAPERS[0].arxivId, false);
+      sizeChart();
+      window.addEventListener("resize", sizeChart);
+      applyFilters();
+    </script>
+  </body>
+</html>

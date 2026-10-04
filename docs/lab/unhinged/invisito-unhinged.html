@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FABRIC IS LYING TO YOU — unhinged explanatory candidate</title>
+<style>
+  :root{
+    --bg:#0e0b07; --panel:#161109;
+    --gold:#d4a437; --gold-hi:#f0c75e; --gold-dim:#8a6d24;
+    --ink:#e8dcc0; --muted:#9a8a68;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:0 1rem 3rem}
+  .wrap{max-width:1000px;margin:0 auto}
+  .kicker{display:flex;gap:.6rem;align-items:center;margin:1.6rem 0 .4rem;flex-wrap:wrap}
+  .tag{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid var(--gold-dim);color:var(--gold);padding:.28rem .6rem;border-radius:999px}
+  .tag.hot{border-color:#b0578f;color:#d98bb8}
+  h1{font-size:clamp(2rem,5vw,3.2rem);margin:.2rem 0 .4rem;line-height:1.05}
+  h1 .gold{color:var(--gold-hi)}
+  .sub{color:var(--muted);font-style:italic;margin:0 0 1.2rem;max-width:62ch}
+  .stage{background:var(--panel);border:1px solid #2c2210;border-radius:14px;padding:1rem;position:relative}
+  .cvwrap{position:relative}
+  canvas{display:block;width:100%;height:auto;border-radius:8px;cursor:crosshair}
+  #tip{position:absolute;display:none;pointer-events:none;background:#0a0805;border:1px solid var(--gold);
+    border-radius:8px;padding:.5rem .7rem;font-family:ui-monospace,Menlo,monospace;font-size:.75rem;color:var(--gold-hi);
+    max-width:240px;z-index:5}
+  #tip small{color:var(--muted);display:block;margin-top:.25rem}
+  .spectrum{margin-top:1rem}
+  .spectrum label{display:flex;justify-content:space-between;font-family:ui-monospace,Menlo,monospace;
+    font-size:.72rem;letter-spacing:.1em;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase}
+  .spectrum label b{color:var(--gold-hi)}
+  input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:26px;border-radius:13px;outline:none;
+    background:linear-gradient(90deg,#f5ecd4 0%,#e8d9b0 30%,#c96a3a 55%,#7a1f2b 75%,#1a0f2e 100%);
+    border:1px solid var(--gold-dim);cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:30px;height:30px;border-radius:50%;
+    background:radial-gradient(circle,#f0c75e 30%,#8a6d24 70%);border:2px solid #0e0b07;box-shadow:0 0 12px rgba(240,199,94,.7)}
+  input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:50%;
+    background:radial-gradient(circle,#f0c75e 30%,#8a6d24 70%);border:2px solid #0e0b07}
+  .readout{display:flex;gap:1.6rem;margin-top:.7rem;flex-wrap:wrap;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:var(--muted)}
+  .readout b{color:var(--gold-hi)}
+  .nirbanner{position:absolute;top:16px;right:16px;font-family:ui-monospace,Menlo,monospace;font-size:.7rem;
+    letter-spacing:.2em;padding:.35rem .7rem;border-radius:6px;border:1px solid var(--gold-dim);color:var(--muted);
+    background:rgba(10,8,5,.75)}
+  .nirbanner.on{color:#0e0b07;background:var(--gold-hi);border-color:var(--gold-hi);font-weight:bold}
+  .expl{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.4rem}
+  .card{background:var(--panel);border:1px solid #2c2210;border-radius:12px;padding:1.1rem 1.2rem}
+  .card h2{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 .6rem;font-family:ui-monospace,Menlo,monospace}
+  .card p,.card li{font-size:.95rem;line-height:1.55}
+  .card ul{margin:.4rem 0;padding-left:1.1rem}
+  .card li{margin-bottom:.4rem}
+  .cite{margin-top:1.4rem;color:var(--muted);font-size:.85rem;border-top:1px solid #2c2210;padding-top:1rem}
+  .cite a{color:var(--gold)}
+  .foot{margin-top:.6rem;font-size:.78rem;color:#6b5f45;font-family:ui-monospace,Menlo,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">
+    <span class="tag">unhinged explanatory candidate</span>
+    <span class="tag hot">dual-spectrum</span>
+    <span class="tag">canvas 2d · cpu only</span>
+  </div>
+  <h1>THE FABRIC IS <span class="gold">LYING TO YOU</span></h1>
+  <p class="sub">This cloth looks perfectly ordinary. It is not. Woven into it are machine-readable markers, dyed in yarn that your eyes can't distinguish — but an infrared camera reads like a billboard. Drag the spectrum. Based on <i>InvisIto</i> (Lee et al., arXiv 2608.12580).</p>
+
+  <div class="stage">
+    <div class="cvwrap">
+      <canvas id="cv" width="960" height="560"></canvas>
+      <div class="nirbanner" id="nirbanner">HUMAN EYES</div>
+      <div id="tip"></div>
+    </div>
+    <div class="spectrum">
+      <label><span>👁 visible light</span><b id="pct">0% NIR</b><span>📷 near-infrared</span></label>
+      <input type="range" id="slider" min="0" max="100" value="0">
+    </div>
+    <div class="readout">
+      <span>markers hidden <b id="mHidden">3</b> / decoded <b id="mFound">0</b></span>
+      <span>hover a marker in NIR mode to decode it</span>
+    </div>
+  </div>
+
+  <div class="expl">
+    <div class="card">
+      <h2>The idea in one breath</h2>
+      <p>Near-infrared–absorbing yarns look almost identical to ordinary fibers in ambient light, but go nearly black under an NIR camera. Weave your message in those yarns and the fabric carries <b>two readings that never contradict</b>: humans see cloth, machines see data. The message lives in the substrate, not on it — no tags, no print, no electronics.</p>
+    </div>
+    <div class="card">
+      <h2>How it works</h2>
+      <ul>
+        <li><b>The yarn trick.</b> NIR-absorbing fiber ≈ normal fiber to eyes, high contrast to NIR sensors.</li>
+        <li><b>Five disguising strategies</b> push marker visibility even lower: dithering edges, matching thread counts, breaking finder patterns into texture.</li>
+        <li><b>Two alphabets.</b> Woven QR codes carry data; woven ArUco markers give binary input and deform as the cloth stretches — the marker <i>is</i> a strain sensor.</li>
+        <li><b>A design tool</b> lets weavers embed markers into drafts from hand looms to Jacquard to factory lines.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Why it's unhinged</h2>
+      <p>Your clothes could be QR codes and you'd never know. The demo above hides three messages in plain sight — in visible light they're woven at 4% luminance difference, below casual notice. Slide to infrared and the cloth confesses. Legibility is not a property of the object; it's a property of the <i>instrument</i>. Choose your spectrum, choose your truth.</p>
+    </div>
+  </div>
+
+  <div class="cite">
+    Paper: Lee, Sugiyama, Min &amp; Fujino, <i>InvisIto: Weaving Unobtrusive Infrared Markers for Ubiquitous Textile Interaction</i>,
+    arXiv <a href="https://arxiv.org/abs/2608.12580">2608.12580</a> · caught by the lab's paper hunt (textile weaving computation).
+    Marker geometry here is QR-<i>flavored</i> illustration, not a real decode pipeline.
+    <div class="foot">muse / meta-muse · silly-lab playground · cpu-only canvas · nothing published</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+  var W=cv.width, H=cv.height;
+  var slider=document.getElementById('slider'), tip=document.getElementById('tip');
+  var nirTarget=0, nir=0; // 0 = human eyes, 1 = full NIR
+  var found=[false,false,false];
+
+  // deterministic PRNG
+  function rng(seed){ var s=seed>>>0; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+
+  // three hidden markers: pixel positions (non-overlapping), each 21x21 modules
+  var MOD=21, CELL=13;
+  var markers=[
+    {px:60,  py:60,  msg:'HELLO MACHINE', seed:11},
+    {px:620, py:60,  msg:'THE FABRIC REMEMBERS', seed:77},
+    {px:340, py:240, msg:'SEAM 04 · DO NOT IRON', seed:42}
+  ];
+  markers.forEach(function(m){
+    var r=rng(m.seed), grid=[];
+    for(var y=0;y<MOD;y++){ grid[y]=[]; for(var x=0;x<MOD;x++){
+      var finder=(x<8&&y<8)||(x>MOD-9&&y<8)||(x<8&&y>MOD-9);
+      var v;
+      if(finder){
+        var lx=x<8?x:x-(MOD-8), ly=y<8?y:y-(MOD-8);
+        var ring=Math.max(Math.abs(lx-3.5),Math.abs(ly-3.5));
+        v = (ring>3.4||ring<0.6||(ring>1.4&&ring<2.4)) ? 1 : 0;
+      } else v = r()<0.42?1:0;
+      grid[y][x]=v;
+    }}
+    m.grid=grid;
+  });
+
+  // weave background, pre-rendered offscreen
+  var bg=document.createElement('canvas'); bg.width=W; bg.height=H;
+  (function(){
+    var b=bg.getContext('2d');
+    b.fillStyle='#241c10'; b.fillRect(0,0,W,H);
+    var r=rng(7);
+    var cw=14, ch=10;
+    for(var y=0;y<H;y+=ch){
+      for(var x=0;x<W;x+=cw){
+        var over=((x/cw|0)+(y/ch|0))%2===0;
+        var l=over? 26+r()*8 : 18+r()*6;
+        b.fillStyle='rgb('+(l+14|0)+','+(l+4|0)+','+(l*0.5|0)+')';
+        b.fillRect(x,y,cw-1,ch-1);
+        // thread highlight
+        b.fillStyle=over?'rgba(240,220,170,0.06)':'rgba(0,0,0,0.12)';
+        if(over) b.fillRect(x,y+ch-4,cw-1,3); else b.fillRect(x+((x/cw|0)%2?2:cw-5),y,3,ch-1);
+      }
+    }
+    // cloth border + label
+    b.strokeStyle='#8a6d24'; b.lineWidth=3; b.strokeRect(24,14,W-48,H-28);
+    b.fillStyle='rgba(154,138,104,0.8)'; b.font='13px ui-monospace,monospace'; b.textAlign='left';
+    b.fillText('SWATCH 04 — plain weave, undyed wool (allegedly)', 40, H-24);
+  })();
+
+  function lerp(a,b,t){ return a+(b-a)*t; }
+  function mix(c1,c2,t){
+    return 'rgb('+(lerp(c1[0],c2[0],t)|0)+','+(lerp(c1[1],c2[1],t)|0)+','+(lerp(c1[2],c2[2],t)|0)+')';
+  }
+  // cloth tone vs NIR-dark yarn
+  var clothVis=[52,40,24], yarnVis=[58,45,27];   // ~4% apart: invisible-ish
+  var clothNir=[232,217,176], yarnNir=[26,16,8]; // billboard contrast
+
+  var mouse={x:-1,y:-1,inside:false};
+
+  function draw(){
+    ctx.drawImage(bg,0,0);
+    markers.forEach(function(m,mi){
+      for(var y=0;y<MOD;y++) for(var x=0;x<MOD;x++){
+        var v=m.grid[y][x];
+        var cVis = v? yarnVis : clothVis;
+        var cNir = v? yarnNir : clothNir;
+        ctx.fillStyle = mix(
+          [lerp(cVis[0],cNir[0],nir), lerp(cVis[1],cNir[1],nir), lerp(cVis[2],cNir[2],nir)],
+          [0,0,0], 0);
+        // slight weave jitter so markers sit IN the cloth
+        ctx.fillRect(m.px+x*CELL+1, m.py+y*CELL+1, CELL-2, CELL-2);
+      }
+      // decoded ring
+      if(found[mi]){
+        ctx.strokeStyle='#f0c75e'; ctx.lineWidth=3;
+        ctx.strokeRect(m.px-8, m.py-8, MOD*CELL+16, MOD*CELL+16);
+      }
+    });
+    // scanline shimmer in NIR
+    if(nir>0.02){
+      ctx.fillStyle='rgba(180,40,60,'+(0.05*nir)+')';
+      for(var yy=0; yy<H; yy+=6) ctx.fillRect(0,yy,W,1);
+    }
+    // vignette label
+    ctx.fillStyle='rgba(10,8,5,0.65)'; ctx.fillRect(W-218,14,194,30);
+    ctx.fillStyle= nir>0.5 ? '#f0c75e' : '#9a8a68';
+    ctx.font='12px ui-monospace,monospace'; ctx.textAlign='left';
+    ctx.fillText(nir>0.5 ? '● NIR CAMERA FEED' : '○ AMBIENT LIGHT', W-208, 34);
+  }
+
+  function updateHud(){
+    document.getElementById('pct').textContent = Math.round(nir*100)+'% NIR';
+    var banner=document.getElementById('nirbanner');
+    var on = nir>0.5;
+    banner.textContent = on ? 'MACHINE EYES' : 'HUMAN EYES';
+    banner.className = 'nirbanner'+(on?' on':'');
+    var n=found.filter(Boolean).length;
+    document.getElementById('mFound').textContent=n;
+    document.getElementById('mHidden').textContent=3-n;
+  }
+
+  slider.addEventListener('input',function(){ nirTarget=slider.value/100; });
+
+  cv.addEventListener('pointermove',function(e){
+    var r=cv.getBoundingClientRect();
+    mouse.x=(e.clientX-r.left)*(W/r.width); mouse.y=(e.clientY-r.top)*(H/r.height);
+    mouse.inside=true;
+  });
+  cv.addEventListener('pointerleave',function(){ mouse.inside=false; tip.style.display='none'; });
+
+  cv.addEventListener('click',function(){
+    if(nir<0.5||!mouse.inside) return;
+    markers.forEach(function(m,mi){
+      if(mouse.x>=m.px-8&&mouse.x<=m.px+MOD*CELL+8&&mouse.y>=m.py-8&&mouse.y<=m.py+MOD*CELL+8){
+        found[mi]=true; updateHud();
+      }
+    });
+  });
+
+  var last=performance.now();
+  function frame(now){
+    var dt=Math.min(0.05,(now-last)/1000); last=now;
+    nir += (nirTarget-nir)*Math.min(1,dt*6);
+    if(Math.abs(nirTarget-nir)<0.001) nir=nirTarget;
+    draw(); updateHud();
+
+    // hover decode tooltip
+    if(mouse.inside && nir>0.5){
+      var hit=-1;
+      markers.forEach(function(m,mi){
+        if(mouse.x>=m.px&&mouse.x<=m.px+MOD*CELL&&mouse.y>=m.py&&mouse.y<=m.py+MOD*CELL) hit=mi;
+      });
+      if(hit>=0){
+        var m=markers[hit];
+        tip.style.display='block';
+        var r=cv.getBoundingClientRect();
+        tip.style.left=((m.px+MOD*CELL/2)*(r.width/W)-110)+'px';
+        tip.style.top=((m.py-10)*(r.height/H)-64)+'px';
+        tip.innerHTML='DECODED: “'+m.msg+'”<small>'+(found[hit]?'logged ✓':'click marker to log decode')+'</small>';
+      } else tip.style.display='none';
+    } else tip.style.display='none';
+
+    requestAnimationFrame(frame);
+  }
+  updateHud();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

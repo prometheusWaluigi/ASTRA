@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="data:," />
+<title>Paper Cluster: Memory</title>
+<!-- accession note (devin, 26.061): remote font links stripped — falls back to the local serif/mono stacks, per the collection's nothing-phones-out rule -->
+<style>
+  :root{
+    color-scheme: dark;
+    --bg:#0d0a06;
+    --bg-deep:#070503;
+    --surface:#171208;
+    --ink:#eadfc4;
+    --ink-soft:#c9bb9c;
+    --muted:#9a8a68;
+    --faint:#6b5d43;
+    --rubric:#e0573a;
+    --rubric-soft:rgba(224,87,58,.8);
+    --gold:#c9a24b;
+    --gold-bright:#e3bc63;
+    --hair:rgba(234,223,196,.15);
+    --hair-strong:rgba(234,223,196,.3);
+    --ghost:rgba(234,223,196,.055);
+    --ghost-strong:rgba(234,223,196,.11);
+    --wash:rgba(224,87,58,.07);
+    --card-shadow:0 1px 0 rgba(234,223,196,.04), 0 24px 48px -30px rgba(0,0,0,.8);
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(120% 60% at 50% -10%, var(--wash), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:"Spectral", Georgia, serif;
+    font-weight:300;
+    font-size:17px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--rubric); color:#fff8ea; }
+  :focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; }
+
+  /* faint ruled strata lines across the whole sheet */
+  .rules{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:repeating-linear-gradient(180deg, transparent 0 47px, var(--ghost) 47px 48px);
+    opacity:.5;
+  }
+  .noise{ position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5; mix-blend-mode:overlay; }
+  .noise svg{ width:100%; height:100%; display:block; }
+
+  main{ position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 clamp(18px, 4vw, 48px) 40px; }
+
+  .serif-d{ font-family:"Cormorant Garamond", "Spectral", serif; }
+  .mono{ font-family:"IBM Plex Mono", ui-monospace, monospace; }
+
+  /* ---------- hero ---------- */
+  header.hero{ padding:clamp(48px,9vh,96px) 0 8px; position:relative; }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:8px 22px; align-items:baseline;
+    font-family:"IBM Plex Mono", monospace; font-size:11.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .hero-meta .dot{ color:var(--rubric); }
+  .hero-title-wrap{ position:relative; margin:10px 0 0; }
+  .hero-ghost{
+    position:absolute; left:0; top:0; font-family:"Cormorant Garamond", serif; font-weight:700;
+    font-size:clamp(4.6rem, 17.5vw, 14.5rem); line-height:.92; letter-spacing:-.01em;
+    color:transparent; -webkit-text-stroke:1px var(--ghost-strong);
+    user-select:none; pointer-events:none; white-space:nowrap;
+  }
+  .hero-ghost.g1{ transform:translate(10px, 12px); opacity:.8; }
+  .hero-ghost.g2{ transform:translate(-8px, 26px); opacity:.45; }
+  h1.hero-title{
+    position:relative; margin:0; font-family:"Cormorant Garamond", serif; font-weight:700;
+    font-size:clamp(4.6rem, 17.5vw, 14.5rem); line-height:.92; letter-spacing:-.01em; color:var(--ink);
+  }
+  h1.hero-title .rubric-i{ color:var(--rubric); font-style:italic; font-weight:600; }
+  .hero-sub{
+    max-width:62ch; margin:26px 0 0; font-size:clamp(1.05rem, 1.6vw, 1.25rem);
+    color:var(--ink-soft); font-weight:300;
+  }
+  .hero-sub em{ color:var(--rubric); }
+
+  .rotator{
+    margin:34px 0 0; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair);
+    padding:20px 0 22px; min-height:118px; position:relative;
+  }
+  .rotator-label{
+    font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--gold);
+  }
+  .rotator-phrase{
+    margin:8px 0 0; font-family:"Cormorant Garamond", serif; font-style:italic; font-weight:500;
+    font-size:clamp(1.45rem, 3.4vw, 2.3rem); line-height:1.25; color:var(--ink);
+    transition:opacity .45s ease, filter .45s ease, transform .45s ease;
+  }
+  .rotator-phrase.fading{ opacity:0; filter:blur(6px); transform:translateY(6px); }
+  .rotator-attr{
+    margin-top:10px; font-family:"IBM Plex Mono", monospace; font-size:11.5px; color:var(--muted);
+    letter-spacing:.06em;
+  }
+  .rotator-attr button{
+    background:none; border:none; padding:0; font:inherit; color:var(--rubric);
+    cursor:pointer; text-decoration:underline; text-underline-offset:3px;
+  }
+  .rotator-dots{ position:absolute; right:0; top:22px; display:flex; gap:6px; }
+  .rotator-dots span{ width:22px; height:2px; background:var(--hair-strong); display:block; }
+  .rotator-dots span.on{ background:var(--rubric); }
+
+  .stats{
+    display:flex; flex-wrap:wrap; gap:0; margin:30px 0 0; border:1px solid var(--hair);
+    background:var(--surface); box-shadow:var(--card-shadow);
+  }
+  .stat{ flex:1 1 150px; padding:16px 20px 14px; border-right:1px solid var(--hair); }
+  .stat:last-child{ border-right:none; }
+  .stat b{
+    display:block; font-family:"Cormorant Garamond", serif; font-weight:700;
+    font-size:2rem; line-height:1; color:var(--ink);
+  }
+  .stat b i{ font-style:italic; color:var(--rubric); }
+  .stat span{
+    display:block; margin-top:6px; font-family:"IBM Plex Mono", monospace; font-size:10.5px;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--muted);
+  }
+
+  /* kintsugi seam divider */
+  .seam{ display:flex; align-items:center; gap:14px; margin:44px 0 0; }
+  .seam .line{ flex:1; height:2px; background:linear-gradient(90deg, transparent, var(--gold) 22%, var(--gold-bright) 50%, var(--gold) 78%, transparent); opacity:.65; }
+  .seam .dia{ color:var(--gold); font-size:11px; line-height:1; }
+
+  /* ---------- controls ---------- */
+  .controls{
+    position:sticky; top:0; z-index:20; margin:36px -6px 0; padding:12px 6px;
+    background:color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--hair);
+  }
+  .controls-row{ display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; }
+  .search{
+    flex:1 1 240px; display:flex; align-items:center; gap:10px;
+    border:1px solid var(--hair-strong); background:var(--surface); padding:9px 14px;
+  }
+  .search svg{ flex:none; opacity:.6; }
+  .search input{
+    flex:1; min-width:0; border:none; background:none; color:var(--ink);
+    font-family:"Spectral", serif; font-size:16px; font-weight:300;
+  }
+  .search input::placeholder{ color:var(--faint); font-style:italic; }
+  .search input:focus{ outline:none; }
+  .search:focus-within{ border-color:var(--gold); }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-family:"IBM Plex Mono", monospace; font-size:11.5px; letter-spacing:.08em;
+    padding:8px 13px; border:1px solid var(--hair-strong); background:transparent;
+    color:var(--ink-soft); cursor:pointer; border-radius:999px;
+    transition:border-color .2s, color .2s, background .2s;
+  }
+  .chip:hover{ border-color:var(--gold); color:var(--ink); }
+  .chip[aria-pressed="true"]{ background:var(--rubric); border-color:var(--rubric); color:#fff6e8; }
+  .chip.toggle[aria-pressed="true"]{ background:var(--gold); border-color:var(--gold); color:#171106; }
+  .count-line{
+    margin-top:10px; font-family:"IBM Plex Mono", monospace; font-size:11.5px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+  }
+  .count-line b{ color:var(--rubric); font-weight:500; }
+
+  /* ---------- section heads ---------- */
+  .sec-head{ margin:64px 0 6px; position:relative; }
+  .sec-kicker{
+    font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--gold);
+  }
+  h2.sec-title{
+    margin:6px 0 0; font-family:"Cormorant Garamond", serif; font-weight:600;
+    font-size:clamp(2.1rem, 5vw, 3.4rem); line-height:1.05; color:var(--ink);
+  }
+  h2.sec-title em{ color:var(--rubric); }
+  .sec-note{ max-width:66ch; margin:12px 0 0; color:var(--ink-soft); font-size:1rem; }
+
+  /* ---------- isomorphism wall ---------- */
+  .wall{ margin-top:26px; border-top:1px solid var(--hair); }
+  .wall-line{
+    display:block; width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    border-bottom:1px solid var(--hair); padding:22px 4px 24px; position:relative;
+    transition:background .25s;
+  }
+  .wall-line:hover, .wall-line:focus-visible{ background:var(--wash); }
+  .wall-meta{
+    display:flex; flex-wrap:wrap; gap:6px 16px; font-family:"IBM Plex Mono", monospace;
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+  }
+  .wall-meta .wid{ color:var(--rubric); }
+  .wall-meta .again{ color:var(--gold); }
+  .wall-text{
+    margin:10px 0 0; font-family:"Cormorant Garamond", serif; font-weight:500;
+    font-size:clamp(1.5rem, 3.6vw, 2.6rem); line-height:1.22; color:var(--ink);
+    opacity:.5; transition:opacity .5s ease, transform .5s ease; max-width:56ch;
+  }
+  .wall-line.in .wall-text{ opacity:1; }
+  .wall-line:hover .wall-text{ opacity:1; }
+  .wall-text .marker{ color:var(--rubric); font-style:italic; }
+
+  /* ---------- strata & folios ---------- */
+  .stratum{ margin-top:58px; position:relative; }
+  .stratum-head{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 20px;
+    border-top:2px solid var(--gold); padding-top:16px; position:relative;
+  }
+  .stratum-head::before{
+    content:""; position:absolute; top:-2px; left:0; width:64px; height:2px; background:var(--rubric);
+  }
+  .stratum-name{
+    font-family:"Cormorant Garamond", serif; font-weight:700;
+    font-size:clamp(1.7rem, 3.6vw, 2.5rem); line-height:1; color:var(--ink);
+  }
+  .stratum-name em{ color:var(--rubric); font-weight:600; }
+  .stratum-topics{
+    flex:1 1 320px; font-family:"IBM Plex Mono", monospace; font-size:11.5px;
+    color:var(--muted); letter-spacing:.04em; line-height:1.7;
+  }
+  .stratum-count{
+    font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold);
+  }
+
+  .folio{
+    position:relative; margin-top:34px; padding:26px clamp(16px, 3vw, 34px) 30px;
+    background:var(--surface); border:1px solid var(--hair); box-shadow:var(--card-shadow);
+    overflow:hidden;
+    opacity:0; transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .folio.in{ opacity:1; transform:none; }
+  @media (min-width:900px){
+    .folio.odd{ margin-left:clamp(0px, 4vw, 54px); }
+    .folio.even{ margin-right:clamp(0px, 4vw, 54px); }
+  }
+  .folio-ghost{
+    position:absolute; right:-10px; top:-34px; z-index:0; pointer-events:none; user-select:none;
+    font-family:"Cormorant Garamond", serif; font-style:italic; font-weight:600;
+    font-size:clamp(3.4rem, 8vw, 6rem); line-height:1; white-space:nowrap;
+    color:var(--ghost); max-width:82%; overflow:hidden;
+    transition:color .5s ease;
+  }
+  .folio:hover .folio-ghost, .folio:focus-within .folio-ghost{ color:var(--ghost-strong); }
+  .folio-inner{ position:relative; z-index:1; }
+  .folio-top{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px;
+    font-family:"IBM Plex Mono", monospace; font-size:11.5px; letter-spacing:.08em;
+  }
+  .folio-no{ color:var(--faint); }
+  .folio-id{ color:var(--rubric); font-weight:500; }
+  .folio-date{ color:var(--muted); }
+  .badge-again{
+    border:1px solid var(--gold); color:var(--gold); border-radius:999px;
+    padding:3px 10px; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+    background:none; cursor:pointer; font-family:inherit;
+  }
+  .badge-again:hover{ background:var(--gold); color:#171106; }
+  .copy-btn{
+    margin-left:auto; border:1px solid var(--hair-strong); background:transparent; color:var(--ink-soft);
+    font-family:inherit; font-size:11px; letter-spacing:.08em; padding:6px 11px; cursor:pointer;
+  }
+  .copy-btn:hover{ border-color:var(--gold); color:var(--ink); }
+  .copy-btn.done{ border-color:var(--rubric); color:var(--rubric); }
+  h3.folio-title{
+    margin:14px 0 0; font-family:"Cormorant Garamond", serif; font-weight:600;
+    font-size:clamp(1.55rem, 3.2vw, 2.15rem); line-height:1.16; color:var(--ink); max-width:30ch;
+  }
+  .folio-body{
+    margin:16px 0 0; font-size:1.02rem; line-height:1.72; color:var(--ink-soft);
+    max-width:74ch; overflow-wrap:break-word;
+  }
+  .folio-body .full-note{ color:var(--ink); }
+  .folio-body .note-marker{ color:var(--rubric); font-style:italic; font-weight:400; }
+  .folio-topics{
+    margin:18px 0 0; padding-top:14px; border-top:1px dashed var(--hair);
+    font-family:"IBM Plex Mono", monospace; font-size:11px; color:var(--faint);
+    letter-spacing:.04em; line-height:1.8; overflow-wrap:break-word;
+  }
+  .folio-topics b{ color:var(--muted); font-weight:500; letter-spacing:.12em; }
+  .folio.flash{ animation:flash 1.6s ease; }
+  @keyframes flash{
+    0%, 55%{ box-shadow:0 0 0 2px var(--rubric), var(--card-shadow); }
+    100%{ box-shadow:var(--card-shadow); }
+  }
+  [hidden]{ display:none !important; }
+  .empty{
+    margin-top:34px; border:1px dashed var(--hair-strong); padding:34px 26px; text-align:center;
+    font-family:"Cormorant Garamond", serif; font-style:italic; font-size:1.4rem; color:var(--muted);
+  }
+
+  /* ---------- recovered layers ---------- */
+  .pair{
+    margin-top:30px; border:1px solid var(--hair); background:var(--surface);
+    box-shadow:var(--card-shadow); padding:26px clamp(16px, 3vw, 34px) 30px; position:relative; overflow:hidden;
+  }
+  .pair::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:linear-gradient(180deg, var(--gold), var(--rubric));
+  }
+  .pair h3{
+    margin:0; font-family:"Cormorant Garamond", serif; font-weight:600;
+    font-size:clamp(1.5rem, 3vw, 2rem); line-height:1.2; color:var(--ink); max-width:34ch;
+  }
+  .pair-id{ font-family:"IBM Plex Mono", monospace; font-size:11.5px; color:var(--rubric); letter-spacing:.08em; }
+  .pair-grid{ display:grid; grid-template-columns:1fr; gap:0; margin-top:20px; }
+  @media (min-width:860px){ .pair-grid{ grid-template-columns:1fr 1fr; } }
+  .layer{ padding:18px 0 4px; }
+  @media (min-width:860px){
+    .layer:first-child{ padding-right:26px; border-right:1px dashed var(--hair-strong); }
+    .layer:last-child{ padding-left:26px; }
+  }
+  .layer-tag{
+    font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--gold);
+  }
+  .layer-tag.older{ color:var(--faint); }
+  .layer p{ margin:10px 0 0; font-size:.98rem; line-height:1.7; color:var(--ink-soft); overflow-wrap:break-word; }
+  .layer.older-layer p{ color:var(--muted); }
+  .layer .note-marker{ color:var(--rubric); font-style:italic; }
+
+  /* ---------- descent rail ---------- */
+  .rail{
+    position:fixed; left:18px; top:50%; transform:translateY(-50%); z-index:15;
+    display:none; flex-direction:column; gap:0;
+  }
+  @media (min-width:1240px){ .rail{ display:flex; } }
+  .rail::before{
+    content:""; position:absolute; left:5px; top:8px; bottom:8px; width:1px; background:var(--hair-strong);
+  }
+  .rail a{
+    position:relative; display:flex; align-items:center; gap:10px; padding:9px 0;
+    text-decoration:none; color:var(--muted);
+    font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.12em;
+  }
+  .rail a i{
+    width:11px; height:11px; border-radius:50%; border:1px solid var(--muted);
+    background:var(--bg); flex:none; transition:background .3s, border-color .3s;
+  }
+  .rail a.active{ color:var(--rubric); }
+  .rail a.active i{ background:var(--rubric); border-color:var(--rubric); }
+
+  footer{
+    margin-top:80px; border-top:1px solid var(--hair); padding:26px 0 10px;
+    display:flex; flex-wrap:wrap; gap:10px 26px; justify-content:space-between;
+    font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.08em; color:var(--muted);
+    line-height:1.9;
+  }
+  footer .src{ max-width:64ch; }
+  footer a{ color:var(--rubric); }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *, *::before, *::after{ animation:none !important; transition:none !important; }
+    .folio, .reveal, .wall-text{ opacity:1 !important; transform:none !important; }
+    .rotator-phrase{ filter:none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="rules" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)" opacity="0.35"/></svg>
+</div>
+
+<nav class="rail" id="rail" aria-label="Strata"></nav>
+
+<main>
+  <header class="hero">
+    <div class="hero-meta">
+      <span>Paper hunt <span class="dot">·</span> cluster file</span>
+      <span>23 inscriptions</span>
+      <span>Sep 28 – Oct 1, 2026</span>
+    </div>
+    <div class="hero-title-wrap">
+      <span class="hero-ghost g2" aria-hidden="true">Memory</span>
+      <span class="hero-ghost g1" aria-hidden="true">Memory</span>
+      <h1 class="hero-title">Mem<em class="rubric-i">o</em>ry</h1>
+    </div>
+    <p class="hero-sub">Twenty-three candidates from four paper hunts, gathered around <em>memory palace techniques</em>, <em>mycelium network cognition</em>, and the palimpsest habit of writing over what was written before. Every entry below is reproduced in its original wording — the isomorphism notes are the find; the papers are where they were found.</p>
+
+    <div class="rotator" aria-label="Isomorphism notes, rotating">
+      <div class="rotator-label">Recovered underwriting — the isomorphism notes</div>
+      <div class="rotator-dots" id="rotDots" aria-hidden="true"></div>
+      <p class="rotator-phrase" id="rotPhrase"></p>
+      <p class="rotator-attr" id="rotAttr"></p>
+    </div>
+
+    <div class="stats" role="list" aria-label="Cluster counts">
+      <div class="stat" role="listitem"><b>23</b><span>inscriptions in the file</span></div>
+      <div class="stat" role="listitem"><b>19</b><span>distinct papers</span></div>
+      <div class="stat" role="listitem"><b><i>4</i></b><span>papers inscribed twice</span></div>
+      <div class="stat" role="listitem"><b>4</b><span>hunt runs · 4 days</span></div>
+    </div>
+
+    <div class="seam" aria-hidden="true"><span class="line"></span><span class="dia">◆</span><span class="line"></span></div>
+  </header>
+
+  <div class="controls" role="search">
+    <div class="controls-row">
+      <label class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="Search the strata — a word, a title, an arXiv ID…" aria-label="Search entries" />
+      </label>
+      <div class="chips" id="runChips" role="group" aria-label="Filter by hunt run"></div>
+      <button class="chip toggle" id="againToggle" type="button" aria-pressed="false">Inscribed twice only</button>
+    </div>
+    <p class="count-line" id="countLine" aria-live="polite"></p>
+  </div>
+
+  <section aria-labelledby="wall-h">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">The hero material</div>
+      <h2 class="sec-title" id="wall-h">The isomorphism <em>wall</em></h2>
+      <p class="sec-note">Each line is one entry's isomorphism note, word for word. Select a line to walk to its folio in the strata below.</p>
+    </div>
+    <div class="wall" id="wall"></div>
+  </section>
+
+  <section aria-labelledby="strata-h">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Memory as traversable space</div>
+      <h2 class="sec-title" id="strata-h">Descend the <em>strata</em></h2>
+      <p class="sec-note">Newest inscription on top, the way a palimpsest reads. Each folio carries the complete original entry — scrape a layer by hovering, and where a paper was found twice, its earlier inscription shows through.</p>
+    </div>
+    <div id="strata"></div>
+    <p class="empty" id="emptyState" hidden>No inscription in the cluster matches that. Scrape differently.</p>
+  </section>
+
+  <section aria-labelledby="pairs-h">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Same paper, two inscriptions</div>
+      <h2 class="sec-title" id="pairs-h">Recovered <em>layers</em></h2>
+      <p class="sec-note">Four papers surfaced in two different hunts and were written up twice — the note changed even when the paper didn't. Both inscriptions, side by side, unedited.</p>
+    </div>
+    <div id="pairs"></div>
+  </section>
+
+  <footer>
+    <span class="src">Source: cluster-MEMORY.json from the paper-hunt runs of 2026-09-28 → 2026-10-01. Entries reproduced verbatim — wording, emphasis, and verdicts (Strongest / Weak / Moderate) are the hunt log's own.</span>
+    <span>Palimpsest · cluster: memory</span>
+  </footer>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var ENTRIES = [{"arxivId": "2607.08724v1", "runDate": "2026-09-28", "topics": "knot theory topology · memory palace techniques (10 papers, 0 errors)", "sourceText": "[2607.08724v1] *Latent Memory Palace: Reasoning for Control as Autoregressive Variational Inference* — organizes deliberation in an autoregressive latent space \"reminiscent of a memory palace\" where retrieval is iterative and adaptive; adaptive test-time compute allocation falls out of variational inference. Isomorphism: memory as traversable space, deliberation depth as distance walked — friction (compute cost) buys thought; the lab's maps/memory/friction themes in one architecture."}, {"arxivId": "2606.10299v1", "runDate": "2026-09-28", "topics": "knot theory topology · memory palace techniques (10 papers, 0 errors)", "sourceText": "[2606.10299v1] *What Spatial Memory Must Store: Occlusion as the Test for Language-Agent Memory* — separates recall from visibility: memory is occlusion-blind by design (you remember the room behind the wall) while visibility is a perception predicate the live system never computed; plus pre-registered, git-committed confirmation. Isomorphism: map vs. territory with measurement — recall ≠ sensing; what memory stores is what *was*, not what is *seen*. A method standard for the lab's memory questions."}, {"arxivId": "2609.30182v1", "runDate": "2026-09-28", "topics": "knot theory topology · memory palace techniques (10 papers, 0 errors)", "sourceText": "[2609.30182v1] *Derivative links in contact topology* — a Legendrian knot is Lagrangian slice iff it supports a tight transverse R-link derivative; one route into the Lagrangian slice-ribbon conjecture. Isomorphism: repair as derived structure — a knotted object is \"repairable\" (slice) exactly when it carries a derivative that undoes it; kintsugi with a certificate."}, {"arxivId": "2604.21284v1", "runDate": "2026-09-28", "topics": "knot theory topology · memory palace techniques (10 papers, 0 errors)", "sourceText": "[2604.21284v1] *Spatial Metaphors for LLM Memory: A Critical Analysis of the MemPalace Architecture* — MemPalace's 96.6% retrieval comes from verbatim-first storage + Chroma defaults, not the palace metaphor; but its zero-LLM write path and ~170-token wake-up cost are genuine. Isomorphism: seams as falsification — the analysis separates what the metaphor does from what it claims; storage philosophy (verbatim vs. extraction) is the real fault line, a memory-policy question the lab cares about."}, {"arxivId": "2605.15496v1", "runDate": "2026-09-28", "topics": "knot theory topology · memory palace techniques (10 papers, 0 errors)", "sourceText": "[2605.15496v1] *LAPS: Improving Incremental LiDAR Mapping using Active Pooling and Sampling for Neural Distance Fields* — reliability-based active pooling to retain historical samples under limited memory + uncertainty-guided sampling toward under-constrained regions; fights catastrophic forgetting in online neural mapping. Isomorphism: memory under constraint — consolidation as repair: what survives overwriting is chosen by reliability, what gets rebuilt by uncertainty; a systems-level kintsugi for learned maps."}, {"arxivId": "2609.24034v1", "runDate": "2026-09-28", "topics": "knot theory topology · memory palace techniques (10 papers, 0 errors)", "sourceText": "[2609.24034v1] *From 3-crossed modules to Gray-type 4-categories* — 3-crossed modules proved equivalent to Gray 4-groups, giving an algebraic encoding of homotopy 4-types and surface knots. Isomorphism: consilience between algebra and topology — hierarchical structure as the seam where two formalisms agree on what a shape *is*; the lab's isomorphism-hunting instinct in the wild."}, {"arxivId": "2609.27574v1", "runDate": "2026-09-28", "topics": "knot theory topology · memory palace techniques (10 papers, 0 errors)", "sourceText": "[2609.27574v1] *Modular integrals for individual modular knots* — linking numbers with other knots recovered from a single knot's modular integral, no symmetrization needed. Isomorphism: relational identity — a knot is characterized by how it links everything else; number-theoretic periods as the ledger of entanglement. A faint echo of the lab's \"structure lives in relations\" stance."}, {"arxivId": "2604.22947v3", "runDate": "2026-09-29", "topics": "linguistic relativity color terms · mycelium network cognition (10 papers, 0 errors)", "sourceText": "[2604.22947v3] *Mycoponically Integrated Network Device for Multimodal Sensing with Living Mycelial Networks* — mycoponic interface sustains living Pleurotus mycelium 11+ months as a multimodal sensor distinguishing 14 stimulus classes; mechanical excision recovers complete electrophysiological function within 72h. Isomorphism: repair as biology — the kintsugi of excision; a substrate that heals itself rather than an artifact that gets patched. Strongest of the run."}, {"arxivId": "2607.13220v3", "runDate": "2026-09-29", "topics": "linguistic relativity color terms · mycelium network cognition (10 papers, 0 errors)", "sourceText": "[2607.13220v3] *Networked Intelligence: Active Shared Context Graphs for Human-AI Team Science* — introduces \"Mycelium\": an active shared workspace that captures observations/hypotheses and routes them to the person or agent whose next decision they can inform; \"networked intelligence as sparse conditional computation over distributed scientific contexts.\" Isomorphism: memory + seams — collective memory as a routing topology; the seam between knowers made into infrastructure. Notably the second paper this run literally named Mycelium."}, {"arxivId": "2609.33120v1", "runDate": "2026-09-29", "topics": "linguistic relativity color terms · mycelium network cognition (10 papers, 0 errors)", "sourceText": "[2609.33120v1] *Mycelium: A Generalizable Cross-Grid Multi-Task Model for Electrical Distribution Systems* — heterogeneous graph transformer generalizing to unseen distribution networks by learning representations of the underlying physics. Isomorphism: maps — a map of forces rather than places; topology preserved while the territory is swapped out."}, {"arxivId": "2604.15682v2", "runDate": "2026-09-29", "topics": "linguistic relativity color terms · mycelium network cognition (10 papers, 0 errors)", "sourceText": "[2604.15682v2] *Emergent symmetry in mushroom-based foods* — directional mechanics across three mushroom-based materials: visual appearance alone does not determine constitutive symmetry class; automated model discovery adds fiber invariants only when the data demands. Isomorphism: map-vs-territory — the appearance is a map that lies about symmetry; constitutive truth lives in the statistically relevant descriptors. A legibility-trap paper wearing a food-science costume."}, {"arxivId": "2609.21103v1", "runDate": "2026-09-29", "topics": "linguistic relativity color terms · mycelium network cognition (10 papers, 0 errors)", "sourceText": "[2609.21103v1] *NetInspector: Measuring and Improving LLM Capabilities for Reliable Intent-Based Networking Policy Generation* — LLMs fail intent-violation checks not from bad reasoning but from lack of persistent grounding in network topology/group hierarchy; verify-then-act agentic framework decouples retrieval from reasoning. Isomorphism: constraints — intent→config translation with every decision grounded in verifiable facts before approval. The contracts→permissions move formalized as a protocol."}, {"arxivId": "2609.23495v1", "runDate": "2026-09-29", "topics": "linguistic relativity color terms · mycelium network cognition (10 papers, 0 errors)", "sourceText": "[2609.23495v1] *Pay More Attention To Text In High-Resolution MLLMs* — failure bottleneck is linguistic, not visual: the question fails to specify what evidence to look for; EviSpec, a training-free compiler, derives evidence specifications for ~10% relative gains. Isomorphism: maps — the query is the map that guides the search; mis-specifying the target is a map-making error, not a vision error."}, {"arxivId": "2607.08724v1", "runDate": "2026-09-30", "topics": "desert varnish geology · memory palace techniques (5 papers, 0 errors)", "sourceText": "[2607.08724v1] *Latent Memory Palace: Reasoning for Control as Autoregressive Variational Inference* — reasoning emerges from organizing information in an autoregressive latent space \"reminiscent of a memory palace,\" where retrieval is iterative and adaptive; LMP-π allocates test-time compute by where deliberation lands in latent space. Isomorphism: memory + maps — a memory palace that budgets compute, not storage; the palace layout *is* the deliberation policy. Strongest of the run."}, {"arxivId": "2606.10299v1", "runDate": "2026-09-30", "topics": "desert varnish geology · memory palace techniques (5 papers, 0 errors)", "sourceText": "[2606.10299v1] *What Spatial Memory Must Store: Occlusion as the Test for Language-Agent Memory* — separates recall (occlusion-blind by design: you remember the next room behind a wall) from visibility (a perception predicate computed over stored geometry via a one-line ray-vs-voxel DDA); geometry-led weighting beats the recency/importance/proximity blend at p<10^-15; a pre-registered live run surfaced and fixed a real relay-anchor defect. Isomorphism: memory + seams — the seam between what is remembered and what is seen made formal and measured. Strong."}, {"arxivId": "2605.15496v1", "runDate": "2026-09-30", "topics": "desert varnish geology · memory palace techniques (5 papers, 0 errors)", "sourceText": "[2605.15496v1] *LAPS: Improving Incremental LiDAR Mapping using Active Pooling and Sampling for Neural Distance Fields* — combats catastrophic forgetting in neural distance fields with reliability-based replay pooling plus uncertainty-guided sampling toward under-constrained regions; +4.66pp recall over PIN-SLAM. Isomorphism: memory + repair — replay as a repair loop, and retention-as-curation: the buffer keeps what is reliable, re-trains what is uncertain. Moderate-strong."}, {"arxivId": "2604.21284v1", "runDate": "2026-09-30", "topics": "desert varnish geology · memory palace techniques (5 papers, 0 errors)", "sourceText": "[2604.21284v1] *Spatial Metaphors for LLM Memory: A Critical Analysis of the MemPalace Architecture* — independent replication finds MemPalace's 47k-star retrieval performance came from verbatim storage + ChromaDB defaults, not the Wings→Rooms→Closets→Drawers metaphor (standard metadata filtering); its real contributions are verbatim-first storage philosophy and ~170-token wake-up cost. Isomorphism: maps + seams — the seam between metaphor-as-organization and metaphor-as-marketing, directly relevant to the lab's own memory-palace instincts; a caution about maps that claim more territory than they hold. Moderate."}, {"arxivId": "2610.02168v1", "runDate": "2026-10-01", "topics": "shipbuilding lofting curves · origami mathematics folding (0 papers, 5 dupes filtered, 0 errors) | error correcting codes redundancy · mycelium network cognition (5 papers, 5 dupes filtered, 0 errors)", "sourceText": "[2610.02168v1] *A baby universe from a large family: booklet cosmology states and quantum error correction* — AdS pages glued along a common interface by multiway junction conditions; a code recoverable from any two of three arms. Seams-as-structure: the junction where pages meet is what makes repair possible — memory distributed across boundaries, glued interfaces as the repair substrate."}, {"arxivId": "2610.02201v1", "runDate": "2026-10-01", "topics": "shipbuilding lofting curves · origami mathematics folding (0 papers, 5 dupes filtered, 0 errors) | error correcting codes redundancy · mycelium network cognition (5 papers, 5 dupes filtered, 0 errors)", "sourceText": "[2610.02201v1] *SILSA: Sliding-Window Slice Latents for Topology-Preserving High-Resolution 3D Generation* — slice-level topology supervision matching persistence diagrams and aligning Betti transitions across neighboring slices. Global coherence stitched from overlapping local latents via topological memory across seams."}, {"arxivId": "2610.02137v1", "runDate": "2026-10-01", "topics": "shipbuilding lofting curves · origami mathematics folding (0 papers, 5 dupes filtered, 0 errors) | error correcting codes redundancy · mycelium network cognition (5 papers, 5 dupes filtered, 0 errors)", "sourceText": "[2610.02137v1] *One-Shot any Code* — proof that any single-shot code is self-correcting; CSS QLDPC → self-repairing construction. Kintsugi-adjacent: repair built into the structure itself rather than patched on from outside."}, {"arxivId": "2609.20530v1", "runDate": "2026-09-29", "topics": "linguistic relativity color terms · mycelium network cognition", "sourceText": "[2609.20530v1] *Relational Attention for Data-Efficient Language Modeling* — Dual Attention Transformer disentangles relational routing from object-level features for BabyLM-scale data efficiency. Weak: structure-vs-content separation as an architectural principle — the map of relations held apart from the territory of objects."}, {"arxivId": "2609.15522v1", "runDate": "2026-09-29", "topics": "linguistic relativity color terms · mycelium network cognition", "sourceText": "[2609.15522v1] *Psychosis involves a deficit of information compression in connected speech* — surprisal difference + compressibility as what lets grammatical organization enable prediction; attenuated in schizophrenia-spectrum speech. Weak: compression as memory's economy — suggestive of the memory theme, but clinical rather than structural."}, {"arxivId": "2607.14041v1", "runDate": "2026-09-30", "topics": "desert varnish geology · memory palace techniques", "sourceText": "[2607.14041v1] *Multi-Expert Routing for Multi-Domain Low-Resource OCR: A Manchu Case Study* — matched via \"palace memorials\" (the chancery hand of palace memorials). Reuses checkpoints from iterative fine-tuning as domain specialists with a page-level visual-style router; two of three selected specialists weren't trained for their final domain. Weak: routing as memory over past selves — the checkpoint pool is a palimpsest of training history and the router dispatches without retraining; a cute consilience-freeze move, but the lab isomorphism is thin beyond that."}];
+
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- parsing (display only; stored text never altered) ---------- */
+  var MARKERS = ["Isomorphism:", "Seams-as-structure:", "Kintsugi-adjacent:", "Weak:", "Global coherence"];
+  function titleOf(text){
+    var m = text.match(/^\[[^\]]+\]\s*\*([^*]+)\*/);
+    return m ? m[1] : text;
+  }
+  function noteOf(text){
+    for (var i = 0; i < MARKERS.length; i++){
+      var idx = text.indexOf(MARKERS[i]);
+      if (idx !== -1) return { note: text.slice(idx), idx: idx, marker: MARKERS[i] };
+    }
+    return { note: text, idx: 0, marker: "" };
+  }
+  function esc(s){
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+  /* Render full verbatim text, styling (not changing) the note span + marker */
+  function richText(text){
+    var n = noteOf(text);
+    if (n.idx <= 0 || !n.marker) return esc(text);
+    var head = text.slice(0, n.idx), note = n.note;
+    var mEnd = n.marker.length;
+    return esc(head) +
+      '<span class="full-note"><span class="note-marker">' + esc(note.slice(0, mEnd)) + "</span>" +
+      esc(note.slice(mEnd)) + "</span>";
+  }
+  function richNote(note, marker){
+    if (!marker) return esc(note);
+    return '<span class="note-marker">' + esc(marker) + "</span>" + esc(note.slice(marker.length));
+  }
+  function shortDate(d){
+    var parts = d.split("-");
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return months[parseInt(parts[1],10)-1] + " " + parseInt(parts[2],10) + ", " + parts[0];
+  }
+
+  /* ---------- derived structure ---------- */
+  var byId = {};
+  ENTRIES.forEach(function(e){ (byId[e.arxivId] = byId[e.arxivId] || []).push(e); });
+  var dupIds = Object.keys(byId).filter(function(k){ return byId[k].length > 1; });
+
+  var runDates = [];
+  ENTRIES.forEach(function(e){ if (runDates.indexOf(e.runDate) === -1) runDates.push(e.runDate); });
+  runDates.sort().reverse(); /* newest stratum on top */
+
+  function runTopics(date){
+    var es = ENTRIES.filter(function(e){ return e.runDate === date; });
+    for (var i = 0; i < es.length; i++){ if (es[i].topics.indexOf("(") !== -1) return es[i].topics; }
+    return es[0].topics;
+  }
+
+  var state = { q: "", run: "all", again: false };
+  var folioIndex = 0;
+
+  /* ---------- isomorphism wall ---------- */
+  var wall = document.getElementById("wall");
+  ENTRIES.forEach(function(e){
+    var n = noteOf(e.sourceText);
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "wall-line";
+    b.setAttribute("data-folio-link", e.arxivId + "@" + e.runDate);
+    b.setAttribute("data-run", e.runDate);
+    b.setAttribute("data-again", byId[e.arxivId].length > 1 ? "1" : "0");
+    b.setAttribute("data-search", (e.sourceText + " " + e.topics + " " + e.arxivId).toLowerCase());
+    var again = byId[e.arxivId].length > 1 ? '<span class="again">inscribed ×' + byId[e.arxivId].length + "</span>" : "";
+    b.innerHTML =
+      '<span class="wall-meta"><span class="wid">' + esc(e.arxivId) + "</span><span>" +
+      esc(shortDate(e.runDate)) + "</span>" + again + "</span>" +
+      '<span class="wall-text">' + richNote(n.note, n.marker) + "</span>";
+    b.addEventListener("click", function(){ jumpTo(e.arxivId, e.runDate); });
+    wall.appendChild(b);
+  });
+
+  /* ---------- strata + folios ---------- */
+  var strataEl = document.getElementById("strata");
+  var rail = document.getElementById("rail");
+  var stratumNames = { "2026-10-01":"Stratum I", "2026-09-30":"Stratum II", "2026-09-29":"Stratum III", "2026-09-28":"Stratum IV" };
+
+  runDates.forEach(function(date, ri){
+    var sec = document.createElement("section");
+    sec.className = "stratum";
+    sec.id = "stratum-" + date;
+    sec.setAttribute("data-run", date);
+    var es = ENTRIES.filter(function(e){ return e.runDate === date; });
+    var head = document.createElement("div");
+    head.className = "stratum-head reveal";
+    head.innerHTML =
+      '<span class="stratum-name">' + (stratumNames[date] || "Stratum") + ' <em>· ' + esc(shortDate(date)) + "</em></span>" +
+      '<span class="stratum-topics">' + esc(runTopics(date)) + "</span>" +
+      '<span class="stratum-count">' + es.length + (es.length === 1 ? " inscription" : " inscriptions") + "</span>";
+    sec.appendChild(head);
+
+    es.forEach(function(e){
+      folioIndex++;
+      var title = titleOf(e.sourceText);
+      var others = byId[e.arxivId].filter(function(o){ return o.runDate !== e.runDate; });
+      var art = document.createElement("article");
+      art.className = "folio " + (folioIndex % 2 ? "odd" : "even");
+      art.id = "folio-" + e.arxivId.replace(/[^a-zA-Z0-9]/g, "") + "-" + date;
+      art.setAttribute("data-run", date);
+      art.setAttribute("data-again", byId[e.arxivId].length > 1 ? "1" : "0");
+      art.setAttribute("data-search", (e.sourceText + " " + e.topics + " " + e.arxivId).toLowerCase());
+
+      var top = '<div class="folio-top">' +
+        '<span class="folio-no">№ ' + (folioIndex < 10 ? "0" : "") + folioIndex + "</span>" +
+        '<span class="folio-id">' + esc(e.arxivId) + "</span>" +
+        '<span class="folio-date">' + esc(shortDate(e.runDate)) + "</span>";
+      if (others.length){
+        others.forEach(function(o){
+          top += '<button type="button" class="badge-again" data-jump="' + esc(e.arxivId) + '" data-date="' + esc(o.runDate) + '">also inscribed ' + esc(shortDate(o.runDate)) + " ↓</button>";
+        });
+      }
+      top += '<button type="button" class="copy-btn" data-copy="' + esc(e.arxivId) + '">copy arXiv ID</button></div>';
+
+      art.innerHTML =
+        '<div class="folio-ghost" aria-hidden="true">' + esc(title) + "</div>" +
+        '<div class="folio-inner">' + top +
+        "<h3 class=\"folio-title\">" + esc(title) + "</h3>" +
+        '<p class="folio-body">' + richText(e.sourceText) + "</p>" +
+        '<p class="folio-topics"><b>HUNT TOPICS</b> &nbsp;' + esc(e.topics) + "</p>" +
+        "</div>";
+      sec.appendChild(art);
+    });
+    strataEl.appendChild(sec);
+
+    var a = document.createElement("a");
+    a.href = "#stratum-" + date;
+    a.setAttribute("data-rail", date);
+    a.innerHTML = "<i></i><span>" + esc(shortDate(date)) + "</span>";
+    rail.appendChild(a);
+  });
+
+  /* ---------- recovered layers (duplicates) ---------- */
+  var pairsEl = document.getElementById("pairs");
+  dupIds.forEach(function(id){
+    var copies = byId[id].slice().sort(function(a,b){ return a.runDate < b.runDate ? -1 : 1; });
+    var box = document.createElement("article");
+    box.className = "pair reveal";
+    var grid = copies.map(function(e, i){
+      var n = noteOf(e.sourceText);
+      return '<div class="layer' + (i === 0 ? " older-layer" : "") + '">' +
+        '<span class="layer-tag' + (i === 0 ? " older" : "") + '">' +
+        (i === 0 ? "Earlier inscription · " : "Later inscription · ") + esc(shortDate(e.runDate)) + "</span>" +
+        "<p>" + richText(e.sourceText) + "</p></div>";
+    }).join("");
+    box.innerHTML =
+      '<span class="pair-id">' + esc(id) + " · inscribed ×" + copies.length + "</span>" +
+      "<h3>" + esc(titleOf(copies[0].sourceText)) + "</h3>" +
+      '<div class="pair-grid">' + grid + "</div>";
+    pairsEl.appendChild(box);
+  });
+
+  /* ---------- rotator ---------- */
+  var phrases = [];
+  ENTRIES.forEach(function(e){
+    var n = noteOf(e.sourceText);
+    var t = n.note;
+    if (t.length > 150){
+      var cut = t.slice(0, 150);
+      var sp = cut.lastIndexOf(" ");
+      t = (sp > 60 ? cut.slice(0, sp) : cut) + " …";
+    }
+    phrases.push({ text: t, id: e.arxivId, date: e.runDate });
+  });
+  var rotPhrase = document.getElementById("rotPhrase");
+  var rotAttr = document.getElementById("rotAttr");
+  var rotDots = document.getElementById("rotDots");
+  var rotIdx = 0, rotTimer = null;
+  phrases.forEach(function(_, i){
+    var s = document.createElement("span");
+    if (i === 0) s.className = "on";
+    rotDots.appendChild(s);
+  });
+  function showPhrase(i){
+    rotIdx = i;
+    var p = phrases[i];
+    rotPhrase.textContent = p.text;
+    rotAttr.innerHTML = "";
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = p.id + " · " + shortDate(p.date) + " — walk to folio";
+    b.addEventListener("click", function(){ jumpTo(p.id, p.date); });
+    rotAttr.appendChild(b);
+    var dots = rotDots.children;
+    for (var j = 0; j < dots.length; j++) dots[j].className = j === i ? "on" : "";
+  }
+  function cyclePhrase(){
+    if (reduced) return;
+    rotPhrase.classList.add("fading");
+    setTimeout(function(){
+      showPhrase((rotIdx + 1) % phrases.length);
+      rotPhrase.classList.remove("fading");
+    }, 460);
+  }
+  showPhrase(0);
+  if (!reduced){
+    rotTimer = setInterval(cyclePhrase, 5200);
+    var rotBox = document.querySelector(".rotator");
+    rotBox.addEventListener("mouseenter", function(){ clearInterval(rotTimer); });
+    rotBox.addEventListener("mouseleave", function(){ rotTimer = setInterval(cyclePhrase, 5200); });
+  }
+
+  /* ---------- jumping / copying ---------- */
+  function jumpTo(id, date){
+    var el = document.getElementById("folio-" + id.replace(/[^a-zA-Z0-9]/g, "") + "-" + date);
+    if (!el) return;
+    if (el.hidden){ /* filtered out: clear filters first */
+      state.q = ""; state.run = "all"; state.again = false;
+      document.getElementById("q").value = "";
+      syncChips(); applyFilters();
+    }
+    el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+    el.classList.remove("flash");
+    void el.offsetWidth;
+    el.classList.add("flash");
+  }
+  document.addEventListener("click", function(ev){
+    var j = ev.target.closest("[data-jump]");
+    if (j){ jumpTo(j.getAttribute("data-jump"), j.getAttribute("data-date")); return; }
+    var c = ev.target.closest("[data-copy]");
+    if (c){
+      var id = c.getAttribute("data-copy");
+      function done(){
+        var old = c.textContent;
+        c.textContent = "copied ✓";
+        c.classList.add("done");
+        setTimeout(function(){ c.textContent = old; c.classList.remove("done"); }, 1600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(id).then(done, done);
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = id; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); } catch (err) {}
+        document.body.removeChild(ta); done();
+      }
+    }
+  });
+
+  /* ---------- filters ---------- */
+  var chipsEl = document.getElementById("runChips");
+  var chipDefs = [{ v: "all", label: "All strata" }].concat(runDates.map(function(d){
+    return { v: d, label: shortDate(d) };
+  }));
+  chipDefs.forEach(function(def){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.textContent = def.label;
+    b.setAttribute("data-run-chip", def.v);
+    b.setAttribute("aria-pressed", def.v === "all" ? "true" : "false");
+    b.addEventListener("click", function(){ state.run = def.v; syncChips(); applyFilters(); });
+    chipsEl.appendChild(b);
+  });
+  function syncChips(){
+    var bs = chipsEl.querySelectorAll("[data-run-chip]");
+    bs.forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-run-chip") === state.run ? "true" : "false"); });
+    document.getElementById("againToggle").setAttribute("aria-pressed", state.again ? "true" : "false");
+  }
+  document.getElementById("againToggle").addEventListener("click", function(){
+    state.again = !state.again; syncChips(); applyFilters();
+  });
+  document.getElementById("q").addEventListener("input", function(ev){
+    state.q = ev.target.value.trim().toLowerCase(); applyFilters();
+  });
+
+  var countLine = document.getElementById("countLine");
+  var emptyState = document.getElementById("emptyState");
+  function matches(el){
+    if (state.run !== "all" && el.getAttribute("data-run") !== state.run) return false;
+    if (state.again && el.getAttribute("data-again") !== "1") return false;
+    if (state.q && el.getAttribute("data-search").indexOf(state.q) === -1) return false;
+    return true;
+  }
+  function applyFilters(){
+    var shown = 0;
+    document.querySelectorAll(".folio").forEach(function(el){
+      var ok = matches(el);
+      el.hidden = !ok;
+      if (ok) shown++;
+    });
+    document.querySelectorAll(".wall-line").forEach(function(el){ el.hidden = !matches(el); });
+    document.querySelectorAll(".stratum").forEach(function(sec){
+      var any = sec.querySelectorAll(".folio:not([hidden])").length > 0;
+      sec.hidden = !any;
+    });
+    document.querySelectorAll(".pair").forEach(function(p){
+      var id = p.querySelector(".pair-id").textContent.split(" ")[0];
+      var ok = (!state.again || true) &&
+        (state.run === "all" || byId[id].some(function(e){ return e.runDate === state.run; })) &&
+        (!state.q || byId[id].some(function(e){ return (e.sourceText + " " + e.topics + " " + e.arxivId).toLowerCase().indexOf(state.q) !== -1; }));
+      p.hidden = !ok;
+    });
+    emptyState.hidden = shown !== 0;
+    countLine.innerHTML = "Showing <b>" + shown + "</b> of 23 inscriptions" +
+      (state.run !== "all" ? " · stratum of " + esc(shortDate(state.run)) : "") +
+      (state.again ? " · inscribed twice only" : "") +
+      (state.q ? " · matching “" + esc(state.q) + "”" : "");
+  }
+  applyFilters();
+
+  /* ---------- reveal on scroll ---------- */
+  var revealEls = document.querySelectorAll(".folio, .reveal, .wall-line");
+  if ("IntersectionObserver" in window && !reduced){
+    var io = new IntersectionObserver(function(obs){
+      obs.forEach(function(o){ if (o.isIntersecting){ o.target.classList.add("in"); io.unobserve(o.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("in"); });
+  }
+
+  /* ---------- descent rail ---------- */
+  if ("IntersectionObserver" in window){
+    var railIO = new IntersectionObserver(function(obs){
+      obs.forEach(function(o){
+        if (o.isIntersecting){
+          var d = o.target.getAttribute("data-run");
+          rail.querySelectorAll("a").forEach(function(a){
+            a.classList.toggle("active", a.getAttribute("data-rail") === d);
+          });
+        }
+      });
+    }, { rootMargin: "-38% 0px -50% 0px" });
+    document.querySelectorAll(".stratum").forEach(function(s){ railIO.observe(s); });
+  }
+
+  /* ---------- parallax ghost titles ---------- */
+  if (!reduced && window.matchMedia("(pointer: fine)").matches){
+    var ghosts = Array.prototype.slice.call(document.querySelectorAll(".folio-ghost"));
+    var ticking = false;
+    function drift(){
+      ticking = false;
+      var mid = window.innerHeight / 2;
+      ghosts.forEach(function(g){
+        var r = g.parentElement.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > window.innerHeight + 100) return;
+        var off = (r.top + r.height / 2 - mid) * -0.045;
+        g.style.transform = "translateY(" + off.toFixed(1) + "px)";
+      });
+    }
+    window.addEventListener("scroll", function(){
+      if (!ticking){ ticking = true; requestAnimationFrame(drift); }
+    }, { passive: true });
+    drift();
+  }
+})();
+</script>
+</body>
+</html>

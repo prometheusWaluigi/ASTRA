@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WEAVE CRUSHER — unhinged explanatory candidate</title>
+<style>
+  :root{
+    --bg:#0e0b07; --panel:#161109; --panel2:#1d1509;
+    --gold:#d4a437; --gold-hi:#f0c75e; --gold-dim:#8a6d24;
+    --ink:#e8dcc0; --muted:#9a8a68; --red:#e5484d; --green:#7fc97f;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:0 1rem 3rem}
+  .wrap{max-width:1000px;margin:0 auto}
+  .kicker{display:flex;gap:.6rem;align-items:center;margin:1.6rem 0 .4rem;flex-wrap:wrap}
+  .tag{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid var(--gold-dim);color:var(--gold);padding:.28rem .6rem;border-radius:999px}
+  .tag.hot{border-color:var(--red);color:var(--red)}
+  h1{font-size:clamp(2rem,5vw,3.4rem);margin:.2rem 0 .4rem;line-height:1.05}
+  h1 .gold{color:var(--gold-hi)}
+  .sub{color:var(--muted);font-style:italic;margin:0 0 1.2rem;max-width:60ch}
+  .stage{background:var(--panel);border:1px solid #2c2210;border-radius:14px;padding:1rem;position:relative}
+  canvas{display:block;width:100%;height:auto;border-radius:8px;background:#0a0805;cursor:pointer;touch-action:none}
+  .controls{display:flex;gap:.8rem;align-items:center;margin-top:.9rem;flex-wrap:wrap}
+  button.stomp{font-family:inherit;font-size:1.05rem;font-weight:bold;letter-spacing:.06em;
+    background:linear-gradient(180deg,#3a2a0e,#241a08);color:var(--gold-hi);
+    border:2px solid var(--gold-dim);border-radius:10px;padding:.7rem 1.6rem;cursor:pointer}
+  button.stomp:active,button.stomp.held{background:linear-gradient(180deg,#6b4a12,#3a2a0e);transform:translateY(2px)}
+  .stat{font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:var(--muted)}
+  .stat b{color:var(--gold-hi);font-size:1rem}
+  .stats{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:.6rem}
+  .slam{position:absolute;top:38%;left:50%;transform:translate(-50%,-50%) scale(.6);opacity:0;
+    font-size:5rem;font-weight:bold;color:var(--gold-hi);text-shadow:0 0 30px rgba(240,199,94,.6);
+    pointer-events:none;font-family:Georgia,serif}
+  .slam.go{animation:slam .55s ease-out}
+  @keyframes slam{0%{opacity:0;transform:translate(-50%,-50%) scale(2.2)}25%{opacity:1;transform:translate(-50%,-50%) scale(.95)}60%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.05)}}
+  .expl{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.4rem}
+  .card{background:var(--panel);border:1px solid #2c2210;border-radius:12px;padding:1.1rem 1.2rem}
+  .card h2{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 .6rem;font-family:ui-monospace,Menlo,monospace}
+  .card p,.card li{font-size:.95rem;line-height:1.55;color:var(--ink)}
+  .card ul{margin:.4rem 0;padding-left:1.1rem}
+  .card li{margin-bottom:.45rem}
+  .cite{margin-top:1.4rem;color:var(--muted);font-size:.85rem;border-top:1px solid #2c2210;padding-top:1rem}
+  .cite a{color:var(--gold)}
+  .foot{margin-top:.6rem;font-size:.78rem;color:#6b5f45;font-family:ui-monospace,Menlo,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">
+    <span class="tag">unhinged explanatory candidate</span>
+    <span class="tag hot">stomp zone</span>
+    <span class="tag">canvas 2d · cpu only</span>
+  </div>
+  <h1>WEAVE <span class="gold">CRUSHER</span></h1>
+  <p class="sub">A robot woven like cloth, carrying seventy times its own weight — and you are invited to stomp it flat. It will not care. Based on <i>Active 3D weaves for load-bearing and damage-resilient locomotion</i> (Tu &amp; Filipov, arXiv 2609.32099).</p>
+
+  <div class="stage">
+    <div class="slam" id="slam">70×</div>
+    <canvas id="cv" width="960" height="520"></canvas>
+    <div class="controls">
+      <button class="stomp" id="stompBtn">🦶 HOLD TO STOMP</button>
+      <span class="stat">or press &amp; hold directly on the robot</span>
+    </div>
+    <div class="stats">
+      <span class="stat">compressions survived <b id="stomps">0</b></span>
+      <span class="stat">strands snapped <b id="snapped">0</b></span>
+      <span class="stat">strands gold-repaired <b id="repaired">0</b></span>
+      <span class="stat">gait performance <b id="perf" style="color:var(--green)">100%</b></span>
+    </div>
+  </div>
+
+  <div class="expl">
+    <div class="card">
+      <h2>The idea in one breath</h2>
+      <p>Weaving interlaces materials so no single strand carries the load alone. Build a robot's body as a 3D woven shell and you get a paradox: <b>stiff along its length</b> (it can haul 70× its own weight) but <b>soft in bending</b> (it can flex to walk) — and when you crush it, damage spreads through the weave instead of snapping one fatal part. Resilience is in the grammar of the fabric, not bolted on after.</p>
+    </div>
+    <div class="card">
+      <h2>How it works</h2>
+      <ul>
+        <li><b>Woven corners.</b> The whole robot assembles from one modular unit — a 3D woven corner — like bricks made of cloth.</li>
+        <li><b>Eigenvalue tuning.</b> The designers compute the structure's vibration modes to find which shapes bear load and which shapes actuate, then weave toward both.</li>
+        <li><b>Damage tolerance.</b> Extreme compression breaks individual strands, but the interlaced network reroutes stress around the breaks. Performance stays repeatable.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Why it's unhinged</h2>
+      <p>Every other robot paradigm treats damage as failure. This one treats the weave like kintsugi: the gold seams in this demo mark strands that <i>broke and were repaired</i> — and the robot walks exactly as well with gold in it. The stomp isn't destruction; it's the experiment. Press hard. Count the gold.</p>
+    </div>
+  </div>
+
+  <div class="cite">
+    Paper: Tu &amp; Filipov, <i>Active 3D weaves for load-bearing and damage-resilient locomotion</i>,
+    arXiv <a href="https://arxiv.org/abs/2609.32099">2609.32099</a> · caught by the lab's paper hunt (textile weaving computation).
+    This piece is an explanatory sketch, not a result — the numbers (70×, repeatable post-crush gait) are the paper's.
+    <div class="foot">muse / meta-muse · silly-lab playground · cpu-only canvas · nothing published</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var cv = document.getElementById('cv');
+  var ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height;
+
+  // ---- state ----
+  var squash = 0, squashTarget = 0, squashVel = 0;   // 0 = tall, 1 = pancake
+  var t = 0;
+  var stomps = 0, snappedTotal = 0, repairedTotal = 0;
+  var slamEl = document.getElementById('slam');
+  var countedThisPress = false;
+
+  // strands: warp (vertical) and weft (horizontal) across the body lattice
+  var NWARP = 9, NWEFT = 7;
+  var warpDamage = new Array(NWARP).fill(0); // 0 ok, 1 broken(red), 2 repaired(gold)
+  var weftDamage = new Array(NWEFT).fill(0);
+
+  var slamTimer = 0;
+
+  function robotGeom(){
+    var cx = W*0.5, groundY = H*0.86;
+    var bw = 300 * (1 + 0.38*squash);      // body width grows as it squashes
+    var bh = 150 * (1 - 0.74*squash);      // body height collapses
+    var by = groundY - 118*(1-0.55*squash) - bh/2;
+    return {cx:cx, groundY:groundY, bw:bw, bh:bh, bx:cx-bw/2, by:by-bh/2};
+  }
+
+  function strandColor(dmg, base){
+    if(dmg===1) return '#e5484d';
+    if(dmg===2) return '#f0c75e';
+    return base;
+  }
+
+  function drawWeave(g){
+    var x0=g.bx, y0=g.by, x1=g.bx+g.bw, y1=g.by+g.bh;
+    ctx.lineWidth = 5; ctx.lineCap='round';
+    // warp strands: vertical, gently bowed
+    for(var i=0;i<NWARP;i++){
+      var x = x0 + (i+0.5)/NWARP * g.bw;
+      var dmg = warpDamage[i];
+      ctx.strokeStyle = strandColor(dmg, 'rgba(212,164,55,0.85)');
+      if(dmg===2){ ctx.shadowColor='rgba(240,199,94,0.8)'; ctx.shadowBlur=8; } else { ctx.shadowBlur=0; }
+      ctx.beginPath();
+      for(var s=0;s<=20;s++){
+        var yy = y0 + s/20*(y1-y0);
+        var xx = x + Math.sin(s/20*Math.PI*2 + t*1.2 + i)*6*(1-squash*0.7);
+        if(s===0) ctx.moveTo(xx,yy); else ctx.lineTo(xx,yy);
+      }
+      ctx.stroke();
+      ctx.shadowBlur=0;
+    }
+    // weft strands: horizontal, drawn in over-under segments
+    for(var j=0;j<NWEFT;j++){
+      var y = y0 + (j+0.5)/NWEFT * g.bh;
+      var dmg = weftDamage[j];
+      ctx.strokeStyle = strandColor(dmg, 'rgba(154,138,104,0.9)');
+      if(dmg===2){ ctx.shadowColor='rgba(240,199,94,0.8)'; ctx.shadowBlur=8; } else { ctx.shadowBlur=0; }
+      var segs = 24;
+      for(var k=0;k<segs;k++){
+        // alternate over/under the warp: draw segment only when "over"
+        if( ((k+j)%2)===0 ){
+          var xa = x0 + k/segs*g.bw, xb = x0 + (k+1)/segs*g.bw;
+          var ya = y + Math.sin(k/segs*Math.PI*3 + t + j)*4*(1-squash*0.6);
+          var yb = y + Math.sin((k+1)/segs*Math.PI*3 + t + j)*4*(1-squash*0.6);
+          ctx.beginPath(); ctx.moveTo(xa,ya); ctx.lineTo(xb,yb); ctx.stroke();
+        }
+      }
+      ctx.shadowBlur=0;
+    }
+  }
+
+  function drawLegs(g){
+    var legXs = [-0.36,-0.12,0.12,0.36];
+    ctx.lineWidth = 7; ctx.lineCap='round'; ctx.strokeStyle='#c9a227';
+    for(var i=0;i<4;i++){
+      var hipX = g.cx + legXs[i]*g.bw;
+      var hipY = g.by + g.bh*0.92;
+      var phase = t*6 + i*Math.PI*0.9;
+      var splay = squash*46;
+      var footX = hipX + Math.sin(phase)*26*(1-squash*0.5) + (legXs[i]<0?-splay:splay);
+      var footY = g.groundY;
+      var kneeX = (hipX+footX)/2 + (legXs[i]<0?-14:14)*(1+squash);
+      var kneeY = (hipY+footY)/2 - 6;
+      ctx.beginPath(); ctx.moveTo(hipX,hipY); ctx.quadraticCurveTo(kneeX,kneeY,footX,footY); ctx.stroke();
+      ctx.fillStyle='#f0c75e';
+      ctx.beginPath(); ctx.arc(footX,footY,6,0,Math.PI*2); ctx.fill();
+    }
+  }
+
+  function drawCrate(g){
+    var cw = 120, ch = 54;
+    var cx = g.cx, cy = g.by - ch/2 + 6 - squash*10;
+    ctx.fillStyle = '#241a08';
+    ctx.strokeStyle = '#d4a437'; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.rect(cx-cw/2, cy-ch/2, cw, ch); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle='rgba(212,164,55,0.5)'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(cx-cw/2,cy-ch/2); ctx.lineTo(cx+cw/2,cy+ch/2);
+    ctx.moveTo(cx+cw/2,cy-ch/2); ctx.lineTo(cx-cw/2,cy+ch/2); ctx.stroke();
+    ctx.fillStyle = '#f0c75e'; ctx.font='bold 26px Georgia'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('70×', cx, cy+1);
+    ctx.font='11px ui-monospace,monospace'; ctx.fillStyle='#9a8a68';
+    ctx.fillText('SELF-WEIGHT', cx, cy-ch/2-12);
+  }
+
+  function drawGround(g){
+    ctx.strokeStyle='#2c2210'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(40,g.groundY+8); ctx.lineTo(W-40,g.groundY+8); ctx.stroke();
+    // distance ticks scrolling to imply walking
+    ctx.strokeStyle='rgba(154,138,104,0.35)';
+    var off = (t*90)%80;
+    for(var x=-80+off;x<W+80;x+=80){
+      ctx.beginPath(); ctx.moveTo(x,g.groundY+8); ctx.lineTo(x-14,g.groundY+22); ctx.stroke();
+    }
+  }
+
+  function drawStompMeter(){
+    // pressure gauge, top-left
+    var x=24,y=24,w=180,h=14;
+    ctx.fillStyle='rgba(0,0,0,0.45)';
+    ctx.beginPath(); ctx.rect(x-8,y-22,w+16,h+34); ctx.fill();
+    ctx.fillStyle='#9a8a68'; ctx.font='11px ui-monospace,monospace'; ctx.textAlign='left';
+    ctx.fillText('PRESSURE', x, y-8);
+    ctx.fillStyle='#241a08'; ctx.fillRect(x,y,w,h);
+    var grad=ctx.createLinearGradient(x,0,x+w,0);
+    grad.addColorStop(0,'#d4a437'); grad.addColorStop(1,'#e5484d');
+    ctx.fillStyle=grad; ctx.fillRect(x,y,w*squash,h);
+    ctx.strokeStyle='#8a6d24'; ctx.strokeRect(x,y,w,h);
+    if(squash>0.85){
+      ctx.fillStyle='#e5484d'; ctx.font='bold 12px ui-monospace,monospace';
+      ctx.fillText('PANCAKE', x+w+10, y+12);
+    }
+  }
+
+  function damageSome(){
+    var n=0;
+    for(var k=0;k<5;k++){
+      if(Math.random()<0.5){
+        var i=(Math.random()*NWARP)|0;
+        if(warpDamage[i]===0){ warpDamage[i]=1; n++; }
+      }else{
+        var j=(Math.random()*NWEFT)|0;
+        if(weftDamage[j]===0){ weftDamage[j]=1; n++; }
+      }
+    }
+    return n;
+  }
+  function repairAll(){
+    var n=0;
+    for(var i=0;i<NWARP;i++) if(warpDamage[i]===1){ warpDamage[i]=2; n++; }
+    for(var j=0;j<NWEFT;j++) if(weftDamage[j]===1){ weftDamage[j]=2; n++; }
+    return n;
+  }
+
+  var last=performance.now();
+  function frame(now){
+    var dt=Math.min(0.05,(now-last)/1000); last=now; t+=dt;
+
+    // spring squash toward target
+    var k=90, damp=14;
+    var acc=(squashTarget-squash)*k - squashVel*damp;
+    squashVel+=acc*dt; squash+=squashVel*dt;
+    squash=Math.max(-0.06,Math.min(1.06,squash));
+
+    // count the stomp once per press, at peak
+    if(squashTarget===1 && !countedThisPress && squash>0.55){
+      countedThisPress=true; stomps++;
+      var n=damageSome(); snappedTotal+=n;
+      document.getElementById('stomps').textContent=stomps;
+      document.getElementById('snapped').textContent=snappedTotal;
+      slamEl.classList.remove('go'); void slamEl.offsetWidth; slamEl.classList.add('go');
+    }
+    // repair on release, once it settles back
+    if(squashTarget===0 && countedThisPress && squash<0.12){
+      countedThisPress=false;
+      var r=repairAll(); repairedTotal+=r;
+      document.getElementById('repaired').textContent=repairedTotal;
+    }
+
+    // walking bob only when not squashed
+    var walkAmp = 1-squash;
+
+    ctx.clearRect(0,0,W,H);
+    var g=robotGeom();
+    drawGround(g);
+    ctx.save();
+    ctx.translate(0, Math.sin(t*6)*4*walkAmp);
+    drawLegs(g);
+    drawWeave(g);
+    drawCrate(g);
+    ctx.restore();
+    drawStompMeter();
+
+    // caption line
+    ctx.fillStyle='#9a8a68'; ctx.font='italic 15px Georgia'; ctx.textAlign='center';
+    var msg = squash>0.5 ? 'extreme compression — damage spreading through the weave…'
+      : (stomps===0 ? 'it walks. it hauls 70× its weight. go on — stomp it.' : 'still walking. still 100%. the gold is where it broke.');
+    ctx.fillText(msg, W/2, H-18);
+
+    requestAnimationFrame(frame);
+  }
+
+  function pressOn(){ squashTarget=1; document.getElementById('stompBtn').classList.add('held'); }
+  function pressOff(){ squashTarget=0; document.getElementById('stompBtn').classList.remove('held'); }
+
+  var btn=document.getElementById('stompBtn');
+  btn.addEventListener('pointerdown',function(e){e.preventDefault();pressOn();});
+  window.addEventListener('pointerup',pressOff);
+  btn.addEventListener('pointerleave',function(){ /* keep held until pointerup */ });
+
+  cv.addEventListener('pointerdown',function(e){
+    e.preventDefault(); pressOn();
+    // one-shot: ensure release even if pointer leaves canvas
+    var up=function(){ pressOff(); window.removeEventListener('pointerup',up); };
+    window.addEventListener('pointerup',up);
+  });
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
