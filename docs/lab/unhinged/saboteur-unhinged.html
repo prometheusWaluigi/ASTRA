@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CONFIDENT SABOTEUR — unhinged explanatory candidate</title>
+<link rel="stylesheet" href="../assets/kintsugi-lab.css">
+<style>
+  :root{
+    --panel:#161109;
+    --muted:#9a8a68;
+    --gold-hi:#f0d060;
+    --red:#e5484d; --green:#7fc97f; --gray:#8a8a92;
+  }
+  body{padding:0 1rem 3rem}
+  .wrap{max-width:1000px;margin:0 auto}
+  .kicker{display:flex;gap:.6rem;align-items:center;margin:1.6rem 0 .4rem;flex-wrap:wrap}
+  .tag{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid var(--gold-dim);color:var(--gold);padding:.28rem .6rem;border-radius:999px}
+  .tag.hot{border-color:var(--red);color:var(--red)}
+  h1{font-size:clamp(2rem,5vw,3.2rem);margin:.2rem 0 .4rem;line-height:1.05;color:var(--bone)}
+  h1 .gold{color:var(--gold-hi)}
+  h1 .red{color:var(--red)}
+  .sub{color:var(--muted);font-style:italic;margin:0 0 1.2rem;max-width:70ch}
+  .sub b{color:var(--bone);font-style:normal}
+  .stage{background:var(--panel);border:1px solid #2c2210;border-radius:14px;padding:1rem;margin-bottom:1.4rem}
+  .stage h2{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+    margin:0 0 .8rem;font-family:ui-monospace,Menlo,monospace}
+  canvas{display:block;width:100%;height:auto;border-radius:8px;background:#0a0805}
+  .controls{display:flex;gap:.6rem;align-items:center;margin-top:.9rem;flex-wrap:wrap}
+  button{font-family:inherit;font-size:.9rem;font-weight:bold;letter-spacing:.04em;cursor:pointer;
+    background:linear-gradient(180deg,#3a2a0e,#241a08);color:var(--gold-hi);
+    border:2px solid var(--gold-dim);border-radius:10px;padding:.55rem 1.1rem}
+  button:active{transform:translateY(2px)}
+  button.active{background:linear-gradient(180deg,#5a4413,#3a2a0e);border-color:var(--gold-hi)}
+  button.danger{border-color:var(--red);color:#f0b0a8}
+  .stats{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:.7rem;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:var(--muted)}
+  .stats b{color:var(--gold-hi);font-size:1rem}
+  .stats b.bad{color:var(--red)}
+  .rankwrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.9rem}
+  @media (max-width:720px){.rankwrap{grid-template-columns:1fr}}
+  ol.rank{list-style:none;margin:0;padding:0;font-family:ui-monospace,Menlo,monospace;font-size:.78rem;
+    max-height:300px;overflow-y:auto;background:#0a0805;border-radius:8px;padding:.6rem .8rem;border:1px solid #2c2210}
+  ol.rank li{padding:.28rem .4rem;border-radius:4px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  ol.rank li .r{color:var(--gold-dim);display:inline-block;width:2.2em}
+  ol.rank li .v{color:var(--gold-hi);float:right}
+  ol.rank li.sab{background:rgba(229,72,77,.12);color:#f0b0a8}
+  ol.rank li.sab .r{color:var(--red)}
+  ol.rank li.top3{color:var(--bone)}
+  .verdict{font-size:.95rem;line-height:1.55;color:var(--bone);background:#0a0805;border:1px solid #2c2210;
+    border-radius:8px;padding:.9rem 1rem;align-self:start}
+  .verdict b{color:var(--gold-hi)}
+  .verdict .bad{color:var(--red)}
+  input[type=range]{flex:1;min-width:200px;accent-color:var(--gold)}
+  .meter{position:relative;height:26px;background:#0a0805;border:1px solid #2c2210;border-radius:6px;margin-top:.9rem;overflow:hidden}
+  .meter .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#3a2a0e,var(--gold-dim));width:0%}
+  .meter .mark70,.meter .mark85{position:absolute;top:0;bottom:0;width:1px;background:var(--muted)}
+  .meter .mark70{left:73.68%}.meter .mark85{left:89.47%}
+  .meterlbl{display:flex;justify-content:space-between;font-family:ui-monospace,Menlo,monospace;font-size:.7rem;color:var(--muted);margin-top:.25rem}
+  .dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:.9rem}
+  .dots i{width:11px;height:11px;border-radius:50%;background:var(--gold);display:block;transition:opacity .2s,background .2s}
+  .dots i.cut{opacity:.12;background:var(--gray)}
+  .tip{position:absolute;pointer-events:none;background:rgba(13,11,8,.94);border:1px solid var(--gold-dim);
+    border-radius:6px;padding:.4rem .6rem;font-family:ui-monospace,Menlo,monospace;font-size:.72rem;color:var(--bone);display:none;z-index:5}
+  .scatterwrap{position:relative}
+  .expl{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.4rem}
+  .card{background:var(--panel);border:1px solid #2c2210;border-radius:12px;padding:1.1rem 1.2rem}
+  .card h2{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 .6rem;font-family:ui-monospace,Menlo,monospace}
+  .card p,.card li{font-size:.95rem;line-height:1.55}
+  .card ul{margin:.4rem 0;padding-left:1.1rem}
+  .card li{margin-bottom:.4rem}
+  .diagramcap{color:var(--muted);font-size:.85rem;font-style:italic;margin-top:.6rem}
+  .cite{margin-top:1.4rem;color:var(--muted);font-size:.85rem;border-top:1px solid #2c2210;padding-top:1rem}
+  .cite a{color:var(--gold)}
+  .foot{margin-top:.6rem;font-size:.78rem;color:#6b5f45;font-family:ui-monospace,Menlo,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">
+    <span class="tag">unhinged explanatory candidate</span>
+    <span class="tag hot">piece five · unhinged shelf</span>
+    <span class="tag">canvas 2d · cpu only</span>
+  </div>
+  <h1>THE CONFIDENT <span class="red">SABOTEUR</span></h1>
+  <p class="sub">Anthropic trained a tiny transformer, cracked it open into <b>331 million virtual weights</b>, and measured each one twice: does it move the output, and does it help or hurt? The single <b>largest wire</b> out of the token <b>IN</b> votes for the completion <b>"utions"</b> — which <i>never</i> follows IN in the training data. Every time it fires, it only makes the loss worse. The model's most confident wire is pure sabotage.</p>
+
+  <div class="stage">
+    <h2>1 · the wires, re-sorted</h2>
+    <canvas id="wires" width="960" height="430"></canvas>
+    <div class="controls">
+      <button data-sort="mag" class="active">SORT: MAGNITUDE</button>
+      <button data-sort="eff">SORT: EFFECTIVENESS</button>
+      <button data-sort="help">SORT: HELPFULNESS</button>
+    </div>
+    <div class="rankwrap">
+      <ol class="rank" id="rankList"></ol>
+      <div class="verdict" id="verdict"></div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <h2>2 · prune the dead wiring</h2>
+    <canvas id="pruneCv" width="960" height="120" style="display:none"></canvas>
+    <div class="controls">
+      <label for="prune" style="font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:var(--muted)">prune least-effective</label>
+      <input type="range" id="prune" min="0" max="95" value="0" step="1">
+      <span class="stats" style="margin:0"><span><b id="pPct">0%</b></span></span>
+    </div>
+    <div class="dots" id="dots"></div>
+    <div class="stats">
+      <span>Δloss <b id="pLoss">+0.0000 nats</b></span>
+      <span>weights removed <b id="pN">0</b></span>
+      <span style="color:var(--gray)">paper: 70% → +0.01 nats · 85% → +0.10 nats</span>
+    </div>
+    <div class="meter"><div class="fill" id="mFill"></div><div class="mark70"></div><div class="mark85"></div></div>
+    <div class="meterlbl"><span>0</span><span>70%</span><span>85%</span><span>+1 nat</span></div>
+  </div>
+
+  <div class="stage">
+    <h2>3 · effectiveness × helpfulness — the three regimes</h2>
+    <div class="scatterwrap">
+      <canvas id="scatter" width="960" height="420"></canvas>
+      <div class="tip" id="tip"></div>
+    </div>
+    <div class="stats">
+      <span><b style="color:var(--gray)">■</b> dead — ineffective, harmless</span>
+      <span><b style="color:#d79b00">■</b> mixed middle — helpful + harmful, marginal</span>
+      <span><b style="color:var(--gold-hi)">■</b> helpful top — the real circuits</span>
+      <span><b class="bad">■</b> harmful — sabotage</span>
+    </div>
+  </div>
+
+  <div class="stage">
+    <h2>4 · the measurement pipeline</h2>
+    <img src="saboteur-diagram.png" alt="Flowchart of the interference-weight measurement pipeline" style="width:100%;height:auto;border-radius:8px;display:block">
+    <p class="diagramcap">Drawn with the lab's draw.io skill — editable source: saboteur-diagram.drawio. The pipeline: train small → expand into virtual weights → score every weight twice → read the regimes.</p>
+  </div>
+
+  <div class="expl">
+    <div class="card">
+      <h2>The idea in one breath</h2>
+      <p>Superposition squeezes high-dimensional circuits through a low-dimensional residual stream, and the squeeze leaves artifacts: <b>virtual weights</b> — direct linear effects between interpretable components (tokens, positions, features, logits) that look like connections but never actually interact on real data. The paper asks two questions of each of 331 million of them: <b>does it move the output</b> (effectiveness, Fisher/KL in nats) and <b>does it help or hurt</b> (helpfulness, the change in loss when ablated)? Weights that are large, do nothing, or actively harm are <b>interference</b> — compression scar tissue, not circuitry.</p>
+    </div>
+    <div class="card">
+      <h2>How it works</h2>
+      <ul>
+        <li><b>The wires.</b> Above: fourteen real virtual-weight families from the paper's worked examples. Wire thickness follows the active sort. The red one is always the saboteur.</li>
+        <li><b>The sort.</b> By magnitude, "utions" is #1. By effectiveness it collapses three orders of magnitude to the bottom — it never moved the output, it only haunted it. By helpfulness it is dead last: ablating it <i>lowers</i> the loss.</li>
+        <li><b>The prune.</b> Drag the slider: the least-effective weights die first and the loss meter barely twitches. 70% gone for 0.01 nats. The model is mostly removable wiring.</li>
+        <li><b>The scatter.</b> Three regimes: a dead zone of ineffective weights, a mixed middle where helpful and harmful intermingle, and a helpful top where — the paper's money finding — the most effective weights are overwhelmingly helpful. Saboteurs live in the cheap seats.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Why it's unhinged</h2>
+      <p>Read the paper's own sentence slowly: <i>"despite significant optimization pressure, large, confident connections can actively harm the model's performance."</i> Gradient descent built a wire, made it the <b>biggest</b> wire, and the wire's entire job is sabotage. Nobody pruned it. Nobody noticed. It just sat there, voting "utions" into the void, forever wrong, forever confident. Somewhere in every frontier model there is an "utions" — a large, confident, load-bearing nothing. The weights are real. The magnitudes lie. And the kintsugi reading: 70% of the vessel is scar tissue you can cut away for a hundredth of a nat — the cracks were never holding anything up.</p>
+    </div>
+  </div>
+
+  <div class="cite">
+    Paper: N.&nbsp;Turner, J.&nbsp;Wu &amp; J.&nbsp;Batson, <i>Characterizing interference weights in a tiny language model</i>,
+    Transformer Circuits, Aug 21 2026 — <a href="https://transformer-circuits.pub/2026/interference_effectiveness_helpfulness/index.html">transformer-circuits.pub/2026/interference_effectiveness_helpfulness</a>.
+    The wire values above are illustrative sketches faithful to the paper's reported orders of magnitude (e.g. the "utions" weight's effectiveness sits ~3 orders below the top); the scatter's background population is synthetic. The paper's honest caveat stands: this is a toy 1-layer model, the metrics don't scale to frontier models, and no sparse interpretable model was actually reached — the basis is the problem, not the metric.
+    <div class="foot">muse / meta-muse · silly-lab playground · cpu-only canvas · nothing published<br>unhinged explanatory candidate — synthesis, not established findings.</div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var GOLD='#d4a437', GOLDHI='#f0c75e', GOLDDIM='#8a6d24', INK='#e8dcc0',
+    MUTED='#9a8a68', RED='#e5484d', REDDIM='#8a2a2e', GREEN='#7fc97f', GRAY='#5a5a62';
+
+/* fourteen virtual weights, values faithful to the paper's reported orders of magnitude */
+var WIRES=[
+ {s:'IN',      t:'"utions"', mag:1.00, eff:0.004, help:-0.85, sab:true,  note:'largest raw weight from IN — never correct, pure sabotage'},
+ {s:'IN',      t:'"T"',      mag:0.42, eff:0.920, help: 0.90, note:'most effective: the honest continuation'},
+ {s:'zh-feat', t:'"。"',      mag:0.70, eff:0.810, help: 0.95, note:'Chinese feature → CJK period: big AND helpful'},
+ {s:'zh-feat', t:'"\\xe5"',   mag:0.65, eff:0.720, help: 0.88, note:'leading byte of CJK chars it predicts'},
+ {s:'IN',      t:'"E"',       mag:0.35, eff:0.780, help: 0.85, note:'the ACETYLCHOLINE ending — rises to #2 by effectiveness'},
+ {s:'IN',      t:'"S"',       mag:0.38, eff:0.550, help: 0.60, note:'plausible uppercase continuation'},
+ {s:'nl-feat', t:'¬ws',       mag:0.50, eff:0.620, help: 0.70, note:'inhibition is the signal: negative weights do the work'},
+ {s:'fr-feat', t:'"ely"',     mag:0.45, eff:0.500, help:-0.20, note:'lowercase vote in all-caps context — mildly harmful'},
+ {s:'feat3013',t:'"arabic"',  mag:0.60, eff:0.450, help:-0.50, note:'French word-end feature voting Arabic script: interference'},
+ {s:'mlp·IN',  t:'"ATION"',   mag:0.55, eff:0.350, help:-0.40, note:'ACETYLCHOLINATION — not a word'},
+ {s:'IN',      t:'"IN"',      mag:0.50, eff:0.400, help: 0.30, note:'self-loop, modestly helpful'},
+ {s:'IN',      t:'"A"',       mag:0.30, eff:0.300, help: 0.20, note:'weak but honest'},
+ {s:'direct',  t:'"␣Mrs"',    mag:0.40, eff:0.200, help:-0.10, note:'direct path misfire'},
+ {s:'pos',     t:'nl-feat',   mag:0.48, eff:0.050, help: 0.00, note:'the misleading one: looks structural, does nothing'}
+];
+var MODES={
+ mag:{key:'mag', label:'MAGNITUDE', fmt:function(v){return v.toFixed(2);},
+      verdict:'By <b>raw weight</b>, the saboteur is <b class="bad">#1</b> — the single largest wire in the model. The magnitudes lie: size says "trust me", the data says "never once correct".'},
+ eff:{key:'eff', label:'EFFECTIVENESS', fmt:function(v){return v.toFixed(3);},
+      verdict:'By <b>Fisher effectiveness</b>, "utions" collapses to <b class="bad">#14</b> — three orders of magnitude below the top. It never moved the output; it only haunted it. The honest weights ("T", "。", "E") rise to the top.'},
+ help:{key:'help', label:'HELPFULNESS', fmt:function(v){return (v>=0?'+':'')+v.toFixed(2);},
+      verdict:'By <b>ablation</b>, removing "utions" <b class="bad">lowers</b> the loss — dead last, pure sabotage. Helpfulness is the ground truth the other two metrics are guessing at.'}
+};
+var mode='mag', t0=Date.now();
+
+/* ---------- 1 · wire diagram + ranking ---------- */
+var wcv=document.getElementById('wires'), wctx=wcv.getContext('2d');
+var rankList=document.getElementById('rankList'), verdict=document.getElementById('verdict');
+var btns=document.querySelectorAll('button[data-sort]');
+
+function metric(w){ return w[MODES[mode].key]; }
+function sortedWires(){
+  var a=WIRES.slice();
+  a.sort(function(x,y){ return metric(y)-metric(x); });
+  return a;
+}
+function wireColor(w){
+  if(w.sab) return RED;
+  if(w.help>0.1) return GOLD;
+  if(w.help<-0.1) return REDDIM;
+  return GRAY;
+}
+function drawWires(){
+  var W=wcv.width,H=wcv.height,ctx=wctx,t=(Date.now()-t0)/1000;
+  ctx.clearRect(0,0,W,H);
+  var order=sortedWires();
+  var srcs=[],tgts=[];
+  WIRES.forEach(function(w){ if(srcs.indexOf(w.s)<0)srcs.push(w.s); if(tgts.indexOf(w.t)<0)tgts.push(w.t); });
+  var sy={},ty={};
+  srcs.forEach(function(s,i){ sy[s]=40+i*((H-80)/(srcs.length-1||1)); });
+  tgts.forEach(function(s,i){ ty[s]=40+i*((H-80)/(tgts.length-1||1)); });
+  var maxM=0; order.forEach(function(w){ maxM=Math.max(maxM,metric(w)); });
+  var minM=order[order.length-1]?metric(order[order.length-1]):0;
+  /* wires, faintest first */
+  var rev=order.slice().reverse();
+  rev.forEach(function(w){
+    var v=metric(w), norm=maxM>minM?(v-minM)/(maxM-minM):1;
+    var x0=170,y0=sy[w.s],x1=790,y1=ty[w.t];
+    ctx.beginPath();
+    ctx.moveTo(x0,y0);
+    ctx.bezierCurveTo(x0+180,y0,x1-180,y1,x1,y1);
+    if(w.sab){
+      var pulse=0.6+0.4*Math.sin(t*4);
+      ctx.strokeStyle=RED; ctx.globalAlpha=0.35+0.4*pulse;
+      ctx.lineWidth=10+6*pulse; ctx.shadowColor=RED; ctx.shadowBlur=18*pulse;
+      ctx.stroke();
+      ctx.shadowBlur=0; ctx.globalAlpha=1;
+      ctx.strokeStyle='#ff8085'; ctx.lineWidth=3; ctx.stroke();
+    }else{
+      ctx.strokeStyle=wireColor(w);
+      ctx.globalAlpha=0.25+0.65*norm;
+      ctx.lineWidth=1+6*norm;
+      ctx.stroke(); ctx.globalAlpha=1;
+    }
+  });
+  /* nodes */
+  ctx.font='12px ui-monospace, Menlo, monospace'; ctx.textBaseline='middle';
+  srcs.forEach(function(s){
+    var w=WIRES.filter(function(x){return x.s===s;})[0];
+    ctx.fillStyle=w&&w.sab?RED:GOLDDIM;
+    ctx.beginPath(); ctx.arc(160,sy[s],5,0,7); ctx.fill();
+    ctx.fillStyle=MUTED; ctx.textAlign='right'; ctx.fillText(s,148,sy[s]);
+  });
+  tgts.forEach(function(s){
+    var w=WIRES.filter(function(x){return x.t===s;})[0];
+    ctx.fillStyle=w&&w.sab?RED:(w&&w.help>0.1?GOLD:GRAY);
+    ctx.beginPath(); ctx.arc(800,ty[s],5,0,7); ctx.fill();
+    ctx.fillStyle=w&&w.sab?'#ff8085':MUTED; ctx.textAlign='left'; ctx.fillText(s,812,ty[s]);
+  });
+  ctx.textAlign='left'; ctx.fillStyle=GOLDDIM; ctx.font='11px ui-monospace, Menlo, monospace';
+  ctx.fillText('sources',40,20); ctx.textAlign='right'; ctx.fillText('logits',920,20);
+  ctx.fillStyle=MUTED; ctx.textAlign='center';
+  ctx.fillText('sorted by '+MODES[mode].label.toLowerCase()+' — wire width follows the active metric',480,H-12);
+}
+function renderRank(){
+  var order=sortedWires(), html='';
+  order.forEach(function(w,i){
+    var cls=w.sab?' class="sab"':(i<3?' class="top3"':'');
+    html+='<li'+cls+' title="'+w.note.replace(/"/g,'&quot;')+'"><span class="r">#'+(i+1)+'</span>'+
+          w.s+' → '+w.t+'<span class="v">'+MODES[mode].fmt(metric(w))+'</span></li>';
+  });
+  rankList.innerHTML=html;
+  verdict.innerHTML=MODES[mode].verdict;
+}
+btns.forEach(function(b){
+  b.addEventListener('click',function(){
+    mode=b.getAttribute('data-sort');
+    btns.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    renderRank();
+  });
+});
+
+/* ---------- 2 · prune slider ---------- */
+var dotsEl=document.getElementById('dots'), NDOT=64, dotOrder=[];
+(function(){
+  var idx=WIRES.map(function(_,i){return i;});
+  idx.sort(function(a,b){return WIRES[a].eff-WIRES[b].eff;});
+  for(var i=0;i<NDOT;i++) dotOrder.push(idx[(i*idx.length/NDOT)|0]);
+  var html='';
+  for(var j=0;j<NDOT;j++) html+='<i data-k="'+j+'"></i>';
+  dotsEl.innerHTML=html;
+})();
+function lossAt(p){
+  if(p<=70) return 0.01*Math.pow(p/70,3);
+  if(p<=85) return 0.01*Math.pow(10,(p-70)/15);
+  return 0.1*Math.pow(6,(p-85)/10);
+}
+var prune=document.getElementById('prune'), pPct=document.getElementById('pPct'),
+    pLoss=document.getElementById('pLoss'), pN=document.getElementById('pN'),
+    mFill=document.getElementById('mFill');
+function renderPrune(){
+  var p=+prune.value, cut=Math.round(p/100*NDOT), loss=lossAt(p);
+  var kids=dotsEl.children;
+  for(var i=0;i<kids.length;i++) kids[i].classList.toggle('cut', i<cut);
+  pPct.textContent=p+'%';
+  pLoss.textContent='+'+loss.toFixed(loss<0.01?4:3)+' nats';
+  pLoss.className=loss>0.05?'bad':'';
+  pN.textContent=cut+' / '+NDOT+' shown';
+  mFill.style.width=Math.min(100,(Math.log10(loss+1e-4)+4)/4*100)+'%';
+}
+prune.addEventListener('input',renderPrune);
+
+/* ---------- 3 · scatter ---------- */
+var scv=document.getElementById('scatter'), sctx=scv.getContext('2d'), tip=document.getElementById('tip');
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+var BG=[];
+(function(){
+  var r=mulberry32(20260821),i,v;
+  for(i=0;i<34;i++){ v=-3.1+r()*0.9; BG.push({x:v,y:(r()-0.5)*0.12,c:GRAY}); }            /* dead */
+  for(i=0;i<26;i++){ v=-2.1+r()*1.3; BG.push({x:v,y:(r()-0.5)*1.5,c:'#d79b00'}); }        /* mixed middle */
+  for(i=0;i<16;i++){ v=-0.75+r()*0.65; BG.push({x:v,y:0.3+r()*0.65,c:GOLD}); }            /* helpful top */
+  for(i=0;i<7;i++){ v=-1.6+r()*0.9; BG.push({x:v,y:-(0.25+r()*0.6),c:REDDIM}); }          /* harmful */
+})();
+var X0=70,X1=910,Y0=30,Y1=370;
+function sx(e){ return X0+( (Math.log10(Math.max(e,1e-4))+3.2)/(0.1+3.2) )*(X1-X0); }
+function sy2(h){ return Y1-( (h+1.05)/2.1 )*(Y1-Y0); }
+function drawScatter(){
+  var ctx=sctx; ctx.clearRect(0,0,scv.width,scv.height);
+  /* regime bands */
+  ctx.fillStyle='rgba(90,90,98,0.10)'; ctx.fillRect(X0,Y0,sx(0.008)-X0,Y1-Y0);
+  ctx.fillStyle='rgba(215,155,0,0.07)'; ctx.fillRect(sx(0.008),Y0,sx(0.19)-sx(0.008),Y1-Y0);
+  ctx.fillStyle='rgba(212,164,55,0.08)'; ctx.fillRect(sx(0.19),Y0,X1-sx(0.19),Y1-Y0);
+  ctx.font='11px ui-monospace, Menlo, monospace'; ctx.fillStyle=MUTED; ctx.textAlign='center';
+  ctx.fillText('dead',(X0+sx(0.008))/2,Y1+18);
+  ctx.fillText('mixed middle',(sx(0.008)+sx(0.19))/2,Y1+18);
+  ctx.fillText('helpful top',(sx(0.19)+X1)/2,Y1+18);
+  /* zero line */
+  ctx.strokeStyle='#3a3226'; ctx.beginPath(); ctx.moveTo(X0,sy2(0)); ctx.lineTo(X1,sy2(0)); ctx.stroke();
+  /* background population */
+  BG.forEach(function(p){
+    ctx.fillStyle=p.c; ctx.globalAlpha=0.5;
+    ctx.beginPath(); ctx.arc(sx(Math.pow(10,p.x)),sy2(p.y),2.5,0,7); ctx.fill();
+  });
+  ctx.globalAlpha=1;
+  /* named wires */
+  WIRES.forEach(function(w){
+    var x=sx(w.eff),y=sy2(w.help);
+    ctx.fillStyle=w.sab?RED:(w.help>0.1?GOLDHI:(w.help<-0.1?RED:GRAY));
+    ctx.beginPath(); ctx.arc(x,y,w.sab?7:4.5,0,7); ctx.fill();
+    if(w.sab){ ctx.strokeStyle=RED; ctx.lineWidth=1.5;
+      ctx.beginPath(); ctx.arc(x,y,11+2*Math.sin((Date.now()-t0)/300),0,7); ctx.stroke(); }
+  });
+  /* labels for the famous few */
+  ctx.font='11px ui-monospace, Menlo, monospace'; ctx.textAlign='left';
+  function lab(w,dx,dy){ var x=sx(w.eff),y=sy2(w.help);
+    ctx.fillStyle=w.sab?'#ff8085':MUTED; ctx.fillText(w.s+' → '+w.t,x+dx,y+dy); }
+  lab(WIRES[0],12,-8); lab(WIRES[1],10,12); lab(WIRES[2],10,-6); lab(WIRES[4],10,10);
+  /* axes */
+  ctx.fillStyle=GOLDDIM; ctx.textAlign='center';
+  ctx.fillText('effectiveness → (log scale)',(X0+X1)/2,scv.height-4);
+  ctx.save(); ctx.translate(16,(Y0+Y1)/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText('helpfulness →',0,0); ctx.restore();
+}
+scv.addEventListener('mousemove',function(ev){
+  var r=scv.getBoundingClientRect(),
+      mx=(ev.clientX-r.left)*(scv.width/r.width),
+      my=(ev.clientY-r.top)*(scv.height/r.height),
+      best=null,bd=18;
+  WIRES.forEach(function(w){
+    var d=Math.hypot(mx-sx(w.eff),my-sy2(w.help));
+    if(d<bd){bd=d;best=w;}
+  });
+  if(best){
+    tip.style.display='block';
+    tip.style.left=(ev.clientX-r.left+14)+'px';
+    tip.style.top=(ev.clientY-r.top+10)+'px';
+    tip.innerHTML='<b style="color:'+(best.sab?'#ff8085':GOLDHI)+'">'+best.s+' → '+best.t+'</b><br>'+
+      'eff '+best.eff.toFixed(3)+' · help '+(best.help>=0?'+':'')+best.help.toFixed(2)+'<br>'+
+      '<span style="color:#9a8a68">'+best.note+'</span>';
+  }else tip.style.display='none';
+});
+scv.addEventListener('mouseleave',function(){ tip.style.display='none'; });
+
+/* ---------- main loop ---------- */
+renderRank(); renderPrune(); drawScatter();
+(function loop(){
+  drawWires(); drawScatter();
+  requestAnimationFrame(loop);
+})();
+})();
+</script>
+</body>
+</html>

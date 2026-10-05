@@ -1,0 +1,16 @@
+{
+  "title": "Torque on the Poetry Moon",
+  "kind": "artistic animation accompanying separately generated model song",
+  "audio_source": "/mnt/c/Users/ketan/OneDrive/Documents/ChatGPT/Homelab/private-wiki/song-lab/torque-poetry-moon-20261002/2cc4b9ad-e1ed-0718-0d3f-f9d638ca92a5.wav",
+  "audio_sha256": "946c5214cecf04906c1f956fa4e88b24016d33d16aa7fbda3eded419b7fbcff2",
+  "video_sha256": "82382767c207909c910c938ca58755115d72c846ee997abda3aeca497bd16ab7",
+  "duration_seconds": 60.0,
+  "fps": 12,
+  "dimensions": [
+    480,
+    270
+  ],
+  "animation_timing": "fixed rhythmic animation; not beat or lyric aligned",
+  "lyrics_author": "Codex",
+  "main_session_line": "The moon keeps every tire mark until the morning learns to rain."
+}

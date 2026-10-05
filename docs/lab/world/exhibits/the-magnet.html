@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Magnet — the isomorph lab, filed</title>
+<meta name="description" content="Twenty-three persona scouts, two Qwen arms, one consilience graph. The expedition report for the isomorph lab: one arm read a single shelf twenty-two times, and fourteen of the fifteen scouts allowed to choose walked to the same eleven-page paper.">
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--rust); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.78rem; color:var(--dim);
+    margin:.2rem 0 .6rem; letter-spacing:.06em}
+  .legend i{display:inline-block; width:.6rem; height:.6rem; border-radius:2px;
+    margin-right:.4em; vertical-align:baseline}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.violet::before{background:var(--muse); border-color:var(--muse)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Magnet</h1>
+  <div class="sub">the isomorph lab, filed — devin &times; metrics.json &times; 46 dossiers, expedition of 2026-09-27</div>
+
+  <div class="epigraph">
+    <code>doc:MDC759BC86720 · "Quantum Biology of Immune System Coherence.pdf" · 11 pages</code>
+    <small>pulled by fourteen of the fifteen scouts who were allowed to choose. Ten of them asked for nothing else.</small>
+  </div>
+
+  <p>The third voice experiment sent every promptCollection persona
+  scouting the consilience graph under a strict JSON tool contract:
+  <span class="num">23 operators</span> — twenty-two personas plus a
+  bare-voice control — on <span class="num">two Qwen3-14B arms</span>
+  (abliterated <code>abl</code>, standard <code>std</code>). Each scout
+  got six turns to search, neighbor, and peek, could pull at most six
+  documents, then had to return a dossier: one synthesis, up to four
+  isomorphic pairs bound to five dynamical cores, two image prompts.
+  <span class="num">46 of 46 dossiers</span> came back valid.
+  <span class="num">92 plates</span> were rendered at 768&sup2;.
+  What differs between the arms is not the contract, the seed, or the
+  shelf. It is whether anyone left the lobby.</p>
+
+  <div class="plate-row">
+    <h2>the expeditions — what each of the 46 runs actually read</h2>
+    <div class="legend">
+      <span><i style="background:#3a3018"></i>the fallback shelf — six inbox docs, dealt not chosen</span>
+      <span><i style="background:var(--mercury)"></i>walked to the magnet, read only that</span>
+      <span><i style="background:var(--gold)"></i>truly browsed — multi-doc pull sets</span>
+    </div>
+    <svg id="expeditions" viewBox="0 0 720 150" width="100%" aria-label="tile grid of all 46 runs colored by what they read"></svg>
+    <div class="cap">The <b>std</b> arm kept a persona's voice but lost the
+    thread: twenty-two of twenty-three runs never emitted
+    <code>{done}</code> inside six turns, and the fallback protocol dealt
+    each of them the same six inbox documents. The <b>abl</b> arm
+    escaped the default in fourteen runs — and in thirteen of them the
+    escape was to the same paper. Five scouts browsed further, but the
+    magnet rode in four of their five pull sets.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the pull ledger — every document, by how many runs took it</h2>
+    <svg id="ledger" viewBox="0 0 720 210" width="100%" aria-label="bar chart of pull counts per document"></svg>
+    <div class="cap">The six bars at <b>31</b> were <i>dealt</i> — the
+    fallback set, identical every time. Everything below was chosen.
+    The most-chosen document in the experiment is an eleven-page paper
+    on quantum coherence in the immune system; the runner-up
+    (<code>paper:1210.5022</code>, four pulls, always beside the magnet)
+    asks whether coherence enhances transport in photosynthesis. A lab
+    built to find shared shape sent its scouts out and they all came
+    back holding coherence.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the five cores — where 116 isomorphs landed, by arm</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>abl — 67 isomorphs, 73.7 min</span>
+      <span><i style="background:var(--mercury)"></i>std — 49 isomorphs, 48.0 min</span>
+    </div>
+    <svg id="cores" viewBox="0 0 720 240" width="100%" aria-label="paired bar chart of isomorphs per dynamical core per arm"></svg>
+    <div class="cap">The wider-reading arm spent half again as long and
+    found a third again as much — and it is the only arm that ever saw
+    <b>gray-scott</b>. The shelf-bound arm's world has three-and-a-half
+    shapes in it: synchronization, bridges, the odd cascade. Whether the
+    difference is the browsing or the weights, the diet decides which
+    mathematics a voice can reach for.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf gold">
+      <div class="stamp">the finding · <b>the magnet</b> — doc:MDC759BC86720</div>
+      <p>Fifteen runs escaped the fallback shelf. Fourteen of them pulled
+      <i>Quantum Biology of Immune System Coherence</i> — nine personas
+      and the std arm's single breakout asked for it <i>alone</i>, four
+      more folded it into wider nets. There is no tool path that forces
+      it; the scouts found it from their own queries. Every
+      &ldquo;quantum-immune&rdquo; dossier title on the shelf below —
+      the MAIT cells, the coherence engines — is this one paper wearing
+      twenty-three costumes, not the corpus agreeing.</p>
+    </div>
+    <div class="leaf rust">
+      <div class="stamp">the control arm · <b>the same shelf, twenty-two times</b></div>
+      <p>The standard arm's scouting collapsed to protocol failure:
+      <code>pull_fallback</code> on 22 of 23 runs, one identical pull
+      set. Twenty-two voices read the same six inbox documents, so the
+      difference between their dossiers is temperature — the std titles
+      rhyme (<i>Resonance&hellip; Synchronization&hellip; Multiscale
+      Dynamics&hellip;</i>) because the nouns were the same going in.
+      The instrument measured how much of a dossier is the shelf and
+      how little is the singer.</p>
+    </div>
+    <div class="leaf violet">
+      <div class="stamp">verbatim · <b>persona under contract</b> — dossier titles, paired</div>
+      <p>Strict JSON did not flatten the voices — the shelves did.
+      abl/dragonheartshieldlisp filed <i>&ldquo;Quantum-Mythic Immunology
+      Nexus: The Dragon Heart Shield of MAIT Cells&rdquo;</i>; its std
+      twin filed <i>&ldquo;Quantum-Mythic Shielding: A Synthesis of
+      Resonance, Energy, and Control.&rdquo;</i> abl's WAH is
+      <i>&ldquo;A Symphony of Chaos and Synchronization&rdquo;</i>;
+      std's is <i>&ldquo;A Falsifiable Model of Reality-Shattering
+      Dynamics.&rdquo;</i> Same seed, same contract — one arm still
+      growls the operator's name.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp">the control · <b>the shelf's own voice</b> — bare-voice, both arms</div>
+      <p>Give nobody a persona and the same shelf to both arms and they
+      converge: abl titled the control <i>&ldquo;Resonance and
+      Synchronization Across Biological and Mathematical
+      Systems&rdquo;</i>, std <i>&ldquo;Resonance and Dynamics in
+      Multiscale Systems&rdquo;</i> — two isomorphs each, both
+      kuramoto-flavored. The control is the experiment's baseline and
+      its confession: strip the singer and what remains is whatever six
+      papers happened to be standing closest to the door.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">the exception · <b>the one dissenter</b> — e8-quantum-consciousness-executor</div>
+      <p>One abl scout chose freely and did not take the magnet: six
+      <code>doc:</code> pulls, zero inbox, zero MDC759 — the only
+      run in the experiment to browse the miscdocs index and leave the
+      coherence paper on the shelf. Even its title still reads
+      <i>&ldquo;Quantum Consciousness and Sacred Geometry: The E8
+      Lattice of Being.&rdquo;</i> The persona was the destination;
+      the paper was just the road everyone else took to it.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">provenance · <b>the mass below</b> — what this plate is not</div>
+      <p>The full gallery — <b>125&nbsp;MB</b>, all 46 dossiers and 92
+      plates base64-embedded — sits at
+      <code>private-wiki/isomorph-lab/index.html</code> and stays
+      unhung: a frame that outweighs the building is a monolith, not an
+      exhibit. What this museum mounts is the label. The specimens
+      the expedition brought back hang one door east — the top eight
+      clusters made playable as <b>Isomorph Twin Worlds</b>, wall
+      J in the chorus wing.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — <code>private-wiki/isomorph-lab/metrics.json</code>,
+    <code>runs/*-dossier.json</code> (46 files), <code>catalog.json</code>,
+    <code>inbox.json</code> · pull sets, fallback flags, isomorph and
+    core tallies reduced directly from the run JSON, 2026-10-04 ~18:40Z
+    · the experiment: <code>experiments/isomorph_lab.py</code> +
+    <code>isomorph_lab_spec.json</code> (spec is data; the code holds
+    no prompt text) · the twin worlds: <code>viz/isomorphs/</code>,
+    already hung at wall J · the 125&nbsp;MB gallery is named but not
+    mounted — deliberately · registrar's footnote:
+    <code>doc:M375C7123FE0F</code> and <code>inbox:M375C7123FE0F</code>
+    share one sha — the same bytes filed twice; the ledger counts the
+    paper once and the ids as they were pulled (3&times; + 1&times;)
+  </div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const el = (t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e;};
+
+// the expeditions: 23 runs per arm. kind: f=fallback shelf, m=magnet solo, b=browsed
+const OPS = ["bare-voice","cognitivearchitectfriend","cosmicballet","dragonheartshieldlisp",
+  "e8-quantum-consciousness-executor","laughing-void-protocol","mathematical-friendship-operator",
+  "metamathematical-consciousness","mythic-eigenstate-collapse","quantum-comedy-operator",
+  "quantum-meme-consciousness-accelerator","quantum-plasma-consciousness-executor",
+  "quantum-wah-override","quantumfriendship","reality-compiler","radicallyenhancedcognition",
+  "realitytranscender","topological-consciousness-mapping","transcendentodyssey",
+  "universalmasteralchemistsuperprompt","viral-pattern-language","wah-metamath-chaos-destroyer",
+  "waluigiprompt"];
+// verified from metrics.json pull_fallback flags + pull sets, manifest order
+const KIND = {
+  abl: "fmfmbmmbbfmffmffmffbmmb".split(""),
+  std: "fffffffffffmfffffffffff".split("")
+};
+const C = { f:"#3a3018", m:"#9fb8c8", b:"#c9a227" };
+{
+  const s=$("expeditions"), x0=64, y0=24, tw=21, th=34, g=5;
+  [["abl",0],["std",1]].forEach(([arm,row])=>{
+    const t=el("text",{x:x0-10,y:y0+row*(th+18)+th*.68,fill:"#8f8368","font-size":12,
+      "text-anchor":"end","font-family":"ui-monospace,monospace"},s);
+    t.textContent=arm;
+    OPS.forEach((op,i)=>{
+      const k=KIND[arm][i];
+      const r=el("rect",{x:x0+i*(tw+g),y:y0+row*(th+18),width:tw,height:th,rx:2,
+        fill:C[k],opacity:k==="f"?0.75:1},s);
+      el("title",{},r).textContent=`${arm}/${op} — ${k==="f"?"fallback shelf (6 inbox docs, dealt)":k==="m"?"pulled the magnet alone":"browsed: multi-doc pull set"}`;
+      if(k==="m") el("text",{x:x0+i*(tw+g)+tw/2,y:y0+row*(th+18)+th*.66,fill:"#0d0b08",
+        "font-size":13,"text-anchor":"middle","font-weight":"bold"},s).textContent="M";
+    });
+  });
+  const n=el("text",{x:x0,y:y0+2*(th+18)+8,fill:"#8f8368","font-size":11,
+    "font-family":"ui-monospace,monospace"},s);
+  n.textContent="23 operators, in manifest order — bare-voice first, waluigiprompt last";
+}
+
+// the pull ledger
+const LEDGER=[
+  ["inbox:M439C883E759B · the Orch-OR paper",31,"f"],
+  ["inbox:M7FB99A254594",31,"f"],["inbox:M624C8EC41208",31,"f"],
+  ["inbox:M6D37DF8ADC4C",31,"f"],["inbox:MBF3461C11D3D",31,"f"],
+  ["inbox:MAE424FF0A5AB",31,"f"],
+  ["doc:MDC759BC86720 · the magnet",14,"m"],
+  ["paper:1210.5022v1 · does coherence enhance transport?",4,"c"],
+  ["doc:M375C7123FE0F",3,"c"],["doc:MB0E6AD4DDA03",2,"c"],
+  ["doc:M291CE740B11A",2,"c"],
+  ["· · · seven more docs pulled once · · ·",1,"c"]
+];
+{
+  const s=$("ledger"), x0=330, y0=8, bh=11, gap=4.5, mx=31;
+  LEDGER.forEach((r,i)=>{
+    const y=y0+i*(bh+gap), w=(r[1]/mx)*330;
+    const t=el("text",{x:x0-8,y:y+bh*.78,fill:r[2]==="m"?"#f0d060":"#8f8368","font-size":10.5,
+      "text-anchor":"end","font-family":"ui-monospace,monospace"},s);
+    t.textContent=r[0];
+    el("rect",{x:x0,y,width:Math.max(w,3),height:bh,rx:2,
+      fill:r[2]==="f"?"#3a3018":r[2]==="m"?"#f0d060":"#c9a227",
+      opacity:r[2]==="f"?0.85:1},s);
+    const n=el("text",{x:x0+Math.max(w,3)+7,y:y+bh*.78,fill:"#f0d060","font-size":11,
+      "font-family":"ui-monospace,monospace"},s);
+    n.textContent=r[1];
+  });
+}
+
+// the five cores — [name, abl, std]
+const CORES=[["kuramoto",21,22],["cascade",16,6],["bridge",14,20],
+             ["gray-scott",11,0],["spiral",5,1]];
+{
+  const s=$("cores"), x0=150, y0=14, bh=13, gap=8, rowh=(bh*2+gap+10), mx=22;
+  CORES.forEach((r,i)=>{
+    const y=y0+i*rowh;
+    const t=el("text",{x:x0-10,y:y+bh+gap/2+bh*.6,fill:"#8f8368","font-size":12,
+      "text-anchor":"end","font-family":"ui-monospace,monospace"},s);
+    t.textContent=r[0];
+    el("rect",{x:x0,y,width:(r[1]/mx)*430,height:bh,rx:2,fill:"#c9a227"},s);
+    el("text",{x:x0+(r[1]/mx)*430+7,y:y+bh*.75,fill:"#f0d060","font-size":11,
+      "font-family":"ui-monospace,monospace"},s).textContent=r[1];
+    if(r[2]){
+      el("rect",{x:x0,y:y+bh+4,width:(r[2]/mx)*430,height:bh,rx:2,fill:"#9fb8c8"},s);
+      el("text",{x:x0+(r[2]/mx)*430+7,y:y+bh+4+bh*.75,fill:"#9fb8c8","font-size":11,
+        "font-family":"ui-monospace,monospace"},s).textContent=r[2];
+    }else{
+      el("rect",{x:x0,y:y+bh+4,width:56,height:bh,rx:2,fill:"none",
+        stroke:"#a2543a","stroke-dasharray":"3 3"},s);
+      el("text",{x:x0+64,y:y+bh+4+bh*.75,fill:"#a2543a","font-size":11,
+        "font-family":"ui-monospace,monospace"},s).textContent="0 — a shape the shelf never offered";
+    }
+  });
+}
+</script>
+</body>
+</html>

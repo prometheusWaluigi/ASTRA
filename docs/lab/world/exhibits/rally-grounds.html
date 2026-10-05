@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE RALLY GROUNDS — five weathers of one truck night</title>
+<style>
+:root {
+  --ink: #0d0b08; --gold: #c9a227; --gold-bright: #f0d060;
+  --gold-dim: #6b5620; --bone: #e8dcc0; --bone-dim: #a89a78;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--ink); color: var(--bone);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  overflow: hidden; }
+#scene { display: block; width: 100vw; height: 100vh; }
+#head { position: fixed; top: 3.5vh; left: 0; right: 0; text-align: center;
+  pointer-events: none; z-index: 3; }
+#head h1 { margin: 0; font-weight: normal; letter-spacing: .3em;
+  font-size: clamp(1.1rem, 3.4vw, 2rem); color: var(--gold-bright);
+  text-transform: uppercase; text-shadow: 0 2px 24px #000; }
+#head p { margin: .35rem 0 0; color: var(--bone-dim); font-size: .85rem;
+  letter-spacing: .06em; font-style: italic; }
+#tip { position: fixed; left: 50%; bottom: 5vh; transform: translateX(-50%);
+  background: rgba(20,17,12,.92); border: 1px solid var(--gold);
+  padding: .5rem 1.1rem; text-align: center; pointer-events: none;
+  opacity: 0; transition: opacity .18s; max-width: 72vw; z-index: 3; }
+#tip.on { opacity: 1; }
+#tip .t { color: var(--gold-bright); font-size: 1rem; letter-spacing: .05em; }
+#tip .b { color: var(--bone-dim); font-size: .78rem; margin-top: .15rem;
+  font-style: italic; }
+#foot { position: fixed; left: 12px; bottom: 10px; font-size: .68rem;
+  color: var(--bone-dim); letter-spacing: .1em; pointer-events: none; z-index: 3; }
+#wrap { position: fixed; inset: 4vh 4vw; z-index: 10; display: none;
+  border: 1px solid var(--gold); background: var(--ink);
+  box-shadow: 0 0 60px rgba(201,162,39,.25); }
+#wrap.on { display: block; }
+#wrap iframe { width: 100%; height: 100%; border: 0; background: var(--ink); }
+#bar { position: absolute; top: -1.9rem; right: 0; font-size: .75rem;
+  color: var(--bone-dim); }
+#bar b { color: var(--gold); cursor: pointer; }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="head">
+  <h1>The Rally Grounds</h1>
+  <p>five weathers of one truck night — county fair, under the string lights</p>
+</div>
+<div id="tip"><div class="t"></div><div class="b"></div></div>
+<div id="foot">CLICK a truck to hear its song &nbsp;·&nbsp; the moon gate jumps craters &nbsp;·&nbsp; gpuq 55–64 · ACE-Step on the A770</div>
+<div id="wrap"><div id="bar"><b>X — back to the fairground</b></div><iframe id="fr"></iframe></div>
+
+<script>
+"use strict";
+const cv = document.getElementById("scene"), g = cv.getContext("2d");
+const tip = document.getElementById("tip"),
+      tT = tip.querySelector(".t"), tB = tip.querySelector(".b");
+const wrap = document.getElementById("wrap"), fr = document.getElementById("fr");
+let W = 0, H = 0;
+function resize() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+addEventListener("resize", resize); resize();
+
+function srand(seed) { let s = seed; return () => (s = (s * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff; }
+
+// ---- the field ----
+// Five trucks, one night. Each carries the weather of its genre.
+const TRUCKS = [
+  { slug: "leo-monster-truck", name: "LEO'S TRUCK",
+    tag: "kids anthem — rowdy rock, 120 bpm",
+    body: "#b8352a", accent: "#f0d060", scale: 0.82, kind: "kid",
+    lyric: "spin true, little trucker, no time for sleep" },
+  { slug: "mud-bog-kintsugi", name: "MUD BOG KINTSUGI",
+    tag: "outlaw country — slide guitar, big toms",
+    body: "#5a4630", accent: "#c9a227", scale: 1.0, kind: "kintsugi",
+    lyric: "cracks are where the gold seeps" },
+  { slug: "dune-ratio", name: "DUNE RATIO",
+    tag: "surf-rock chant — call and response",
+    body: "#c8a04a", accent: "#3f7a8c", scale: 1.05, kind: "dune",
+    lyric: "more rubber on the sand, son — that's the golden tool" },
+  { slug: "thermal-runaway", name: "THERMAL RUNAWAY",
+    tag: "sludge dirge — dropped-D, shouted sermon",
+    body: "#1c1c22", accent: "#d4482a", scale: 1.12, kind: "runaway",
+    lyric: "ride the fixed point till the bearings glow" },
+  { slug: "crater-hymn-4wd", name: "CRATER HYMN 4WD",
+    tag: "ambient gospel — pedal steel, slow choir",
+    body: "#8f96a3", accent: "#dfe6f0", scale: 0.98, kind: "hymn",
+    lyric: "torque becomes a hymn when the tires leave the ground" },
+];
+const GATE = { name: "THE MOON RALLY",
+  tag: "jump eight craters, keep the poem — the playable one",
+  src: "../../poetry-moon-rally/index.html" };
+const SERMON = [
+  "Fire burns bright on this fairground night",
+  "Grit under my boots, gravel in my sight",
+  "",
+  "MOVE, YOU MIGHTY ENGINES, MOVE!",
+  "Masochism's the opposite of love —",
+  "Roll out from the pit and take the road,",
+  "Motion is the blessing that you're meant to know",
+];
+
+// seeded dust
+const DUST = (() => {
+  const r = srand(20261002), d = [];
+  for (let i = 0; i < 90; i++)
+    d.push({ x: r(), y: 0.35 + r() * 0.6, s: 0.5 + r() * 1.8,
+             v: 0.004 + r() * 0.012, p: r() * 6.28 });
+  return d;
+})();
+const RUTS = (() => {
+  const r = srand(777), rs = [];
+  for (let i = 0; i < 40; i++) rs.push({ x: r(), l: 0.02 + r() * 0.08, w: 0.5 + r() * 1.6 });
+  return rs;
+})();
+
+function layout() {
+  // trucks arc across the dirt band; billboard left, moon gate right
+  const cy = H * 0.62, span = W * 0.62, x0 = W * 0.30;
+  TRUCKS.forEach((t, i) => {
+    const f = i / (TRUCKS.length - 1);
+    t.cx = x0 + f * span;
+    t.cy = cy + Math.sin(f * Math.PI) * -H * 0.045;
+    t.w = 150 * t.scale * Math.min(1.35, W / 1100);
+    t.h = t.w * 0.62;
+  });
+  board = { x: W * 0.045, y: H * 0.30, w: W * 0.20, h: H * 0.42 };
+  gate  = { x: W * 0.865, y: H * 0.52, w: W * 0.10, h: H * 0.24 };
+}
+let board = {}, gate = {};
+
+function drawSky(t) {
+  const sky = g.createLinearGradient(0, 0, 0, H * 0.55);
+  sky.addColorStop(0, "#060510"); sky.addColorStop(1, "#191410");
+  g.fillStyle = sky; g.fillRect(0, 0, W, H * 0.55);
+  // stars
+  const r = srand(4242);
+  g.fillStyle = "rgba(232,220,192,.5)";
+  for (let i = 0; i < 70; i++) {
+    const x = r() * W, y = r() * H * 0.4, s = r() * 1.4;
+    g.globalAlpha = 0.25 + 0.5 * Math.abs(Math.sin(t * 0.4 + i));
+    g.fillRect(x, y, s, s);
+  }
+  g.globalAlpha = 1;
+  // the moon, watching the hymn truck
+  g.fillStyle = "#e8e0c8";
+  g.beginPath(); g.arc(gate.x + gate.w * 0.5, H * 0.135, H * 0.055, 0, Math.PI * 2); g.fill();
+  g.fillStyle = "rgba(13,11,8,.35)";
+  g.beginPath(); g.arc(gate.x + gate.w * 0.62, H * 0.125, H * 0.045, 0, Math.PI * 2); g.fill();
+}
+function drawGround() {
+  const d = g.createLinearGradient(0, H * 0.5, 0, H);
+  d.addColorStop(0, "#241c12"); d.addColorStop(1, "#120d08");
+  g.fillStyle = d; g.fillRect(0, H * 0.5, W, H * 0.5);
+  // the oval — a rutted dirt ring
+  g.save();
+  g.translate(W * 0.56, H * 0.78); g.scale(1, 0.30);
+  g.strokeStyle = "rgba(168,154,120,.28)"; g.lineWidth = 26;
+  g.beginPath(); g.arc(0, 0, W * 0.42, 0, Math.PI * 2); g.stroke();
+  g.strokeStyle = "rgba(13,11,8,.5)"; g.lineWidth = 10;
+  g.beginPath(); g.arc(0, 0, W * 0.42, 0, Math.PI * 2); g.stroke();
+  g.restore();
+  // ruts
+  g.strokeStyle = "rgba(0,0,0,.35)";
+  for (const r of RUTS) {
+    g.lineWidth = r.w;
+    g.beginPath();
+    g.moveTo(r.x * W, H * (0.58 + r.x * 0.12));
+    g.lineTo((r.x + r.l) * W, H * (0.58 + (r.x + r.l) * 0.12));
+    g.stroke();
+  }
+}
+function drawLights(t) {
+  // two catenaries of fair bulbs across the sky
+  for (const [y0, sag, n, x0, x1] of [[0.16, 0.09, 14, 0.02, 0.60],
+                                     [0.20, 0.11, 12, 0.30, 0.98]]) {
+    const ax = x0 * W, bx = x1 * W, ay = y0 * H;
+    g.strokeStyle = "rgba(107,86,32,.8)"; g.lineWidth = 1.4;
+    g.beginPath(); g.moveTo(ax, ay);
+    g.quadraticCurveTo((ax + bx) / 2, ay + sag * H * 2, bx, ay);
+    g.stroke();
+    for (let i = 1; i < n; i++) {
+      const f = i / n, px = ax + (bx - ax) * f,
+            py = ay + sag * H * 4 * f * (1 - f);
+      const fl = 0.55 + 0.45 * Math.abs(Math.sin(t * 2.1 + i * 1.7 + x0 * 9));
+      const gr = g.createRadialGradient(px, py, 0, px, py, 11);
+      gr.addColorStop(0, `rgba(240,208,96,${0.85 * fl})`);
+      gr.addColorStop(1, "rgba(240,208,96,0)");
+      g.fillStyle = gr;
+      g.beginPath(); g.arc(px, py, 11, 0, Math.PI * 2); g.fill();
+      g.fillStyle = `rgba(255,234,170,${fl})`;
+      g.beginPath(); g.arc(px, py, 2.1, 0, Math.PI * 2); g.fill();
+    }
+  }
+}
+function drawBillboard(t) {
+  const { x, y, w, h } = board;
+  // posts
+  g.fillStyle = "#241c12";
+  g.fillRect(x + w * 0.2, y + h, w * 0.05, H * 0.10);
+  g.fillRect(x + w * 0.75, y + h, w * 0.05, H * 0.10);
+  // board
+  g.fillStyle = "#191410"; g.fillRect(x, y, w, h);
+  g.strokeStyle = "var(--gold)"; g.strokeStyle = "#c9a227"; g.lineWidth = 2;
+  g.strokeRect(x + 2, y + 2, w - 4, h - 4);
+  // painted cracks in the board, gold-filled
+  const r = srand(60422);
+  g.strokeStyle = "rgba(201,162,39,.7)"; g.lineWidth = 1;
+  for (let v = 0; v < 3; v++) {
+    g.beginPath();
+    let px = x + r() * w, py = y + 4;
+    g.moveTo(px, py);
+    while (py < y + h - 4) { py += 6 + r() * 14; px += (r() - .5) * 20; g.lineTo(px, py); }
+    g.stroke();
+  }
+  // sermon text
+  g.fillStyle = "#f0d060"; g.textAlign = "center";
+  g.font = `600 ${Math.max(11, w / 22)}px Georgia, serif`;
+  g.fillText("THE DIRT SERMON", x + w / 2, y + h * 0.10);
+  g.font = `italic ${Math.max(9, w / 30)}px Georgia, serif`;
+  g.fillStyle = "#e8dcc0";
+  SERMON.forEach((line, i) => {
+    if (line) g.fillText(line, x + w / 2, y + h * (0.20 + i * 0.095), w * 0.9);
+  });
+  g.font = `${Math.max(8, w / 40)}px Georgia, serif`;
+  g.fillStyle = "#a89a78";
+  g.fillText("— preached at the fair, gpuq job 64", x + w / 2, y + h * 0.92);
+}
+function drawGate(t) {
+  const { x, y, w, h } = gate;
+  // a ramp of light toward the moon — the crater-jump gate
+  g.save();
+  const gr = g.createLinearGradient(x, y + h, x + w, y);
+  gr.addColorStop(0, "rgba(240,208,96,.02)");
+  gr.addColorStop(1, "rgba(240,208,96,.4)");
+  g.strokeStyle = "rgba(240,208,96,.75)"; g.lineWidth = 2.5;
+  g.beginPath(); g.moveTo(x, y + h); g.quadraticCurveTo(x + w * 0.5, y + h * 0.55, x + w, y); g.stroke();
+  g.strokeStyle = gr; g.lineWidth = 10;
+  g.beginPath(); g.moveTo(x, y + h); g.quadraticCurveTo(x + w * 0.5, y + h * 0.55, x + w, y); g.stroke();
+  // chevrons climbing the ramp
+  g.fillStyle = `rgba(240,208,96,${0.5 + 0.4 * Math.sin(t * 2.4)})`;
+  for (let i = 0; i < 4; i++) {
+    const f = 0.15 + i * 0.2, px = x + w * f, py = y + h - (y + h - y) * (f * f * 0.9 + f * 0.1);
+    g.beginPath(); g.moveTo(px, py); g.lineTo(px + 7, py - 5); g.lineTo(px + 14, py);
+    g.lineTo(px + 7, py - 2.5); g.closePath(); g.fill();
+  }
+  g.restore();
+  g.fillStyle = "#f0d060"; g.textAlign = "center";
+  g.font = `600 ${Math.max(10, w / 9)}px Georgia, serif`;
+  g.fillText("THE MOON", x + w * 0.5, y + h + 18);
+  g.fillText("RALLY", x + w * 0.5, y + h + 34);
+}
+function drawTruck(t, time) {
+  const { cx, cy, w } = t, h = t.h;
+  const wheelR = h * 0.34, bodyH = h * 0.42;
+  g.save();
+  g.translate(cx, cy);
+  // shadow
+  g.fillStyle = "rgba(0,0,0,.45)";
+  g.beginPath(); g.ellipse(0, wheelR * 0.9, w * 0.62, wheelR * 0.30, 0, 0, Math.PI * 2); g.fill();
+  // suspension bounce for the kid truck, shudder for runaway
+  let dy = 0;
+  if (t.kind === "kid") dy = Math.abs(Math.sin(time * 5)) * -h * 0.05;
+  if (t.kind === "runaway") dy = Math.sin(time * 31) * h * 0.008;
+  g.translate(0, dy);
+  // chassis
+  g.fillStyle = "#0a0806"; g.fillRect(-w * 0.52, -bodyH * 0.28, w * 1.04, bodyH * 0.28);
+  // wheels — big, treaded
+  for (const wx of [-w * 0.33, w * 0.33]) {
+    g.fillStyle = "#0a0806";
+    g.beginPath(); g.arc(wx, 0, wheelR, 0, Math.PI * 2); g.fill();
+    g.strokeStyle = "rgba(232,220,192,.30)"; g.lineWidth = wheelR * 0.16;
+    g.beginPath(); g.arc(wx, 0, wheelR * 0.8, 0, Math.PI * 2); g.stroke();
+    g.fillStyle = "#191410";
+    g.beginPath(); g.arc(wx, 0, wheelR * 0.34, 0, Math.PI * 2); g.fill();
+    g.strokeStyle = t.accent; g.lineWidth = 1.5;
+    g.beginPath(); g.arc(wx, 0, wheelR * 0.34, 0, Math.PI * 2); g.stroke();
+  }
+  // body
+  const bw = w * 0.94, bx = -bw / 2, by = -bodyH - wheelR * 0.25;
+  g.fillStyle = t.body;
+  g.beginPath(); g.roundRect(bx, by, bw, bodyH, bodyH * 0.18); g.fill();
+  // cab
+  g.fillStyle = t.body;
+  g.beginPath(); g.roundRect(bx + bw * 0.28, by - bodyH * 0.55, bw * 0.34, bodyH * 0.6, 4); g.fill();
+  g.fillStyle = "rgba(232,220,192,.55)";
+  g.fillRect(bx + bw * 0.32, by - bodyH * 0.46, bw * 0.11, bodyH * 0.32);
+  g.fillRect(bx + bw * 0.47, by - bodyH * 0.46, bw * 0.11, bodyH * 0.32);
+  // per-truck weather
+  if (t.kind === "kintsugi") {
+    const r = srand(2601);
+    g.strokeStyle = "rgba(240,208,96,.95)"; g.lineWidth = 2;
+    for (let v = 0; v < 4; v++) {
+      g.beginPath();
+      let px = bx + r() * bw, py = by + 2;
+      g.moveTo(px, py);
+      while (py < by + bodyH - 2) { py += 4 + r() * 9; px += (r() - .5) * 14; g.lineTo(px, py); }
+      g.stroke();
+    }
+  } else if (t.kind === "runaway") {
+    const glow = 0.35 + 0.3 * Math.abs(Math.sin(time * 3.3));
+    const gg = g.createRadialGradient(0, by + bodyH * 0.5, 0, 0, by + bodyH * 0.5, w * 0.7);
+    gg.addColorStop(0, `rgba(212,72,42,${glow})`); gg.addColorStop(1, "rgba(212,72,42,0)");
+    g.fillStyle = gg; g.beginPath(); g.arc(0, by + bodyH * 0.5, w * 0.7, 0, Math.PI * 2); g.fill();
+    for (let i = 0; i < 3; i++) {
+      const sy = by - bodyH * (0.6 + i * 0.35) - (time * 18 + i * 22) % (h * 0.9);
+      g.fillStyle = `rgba(140,130,120,${0.14 - i * 0.03})`;
+      g.beginPath(); g.arc(bx + bw * 0.2 + i * 7, sy, 7 + i * 4, 0, Math.PI * 2); g.fill();
+    }
+  } else if (t.kind === "hymn") {
+    const gg = g.createRadialGradient(0, by, 0, 0, by, w * 0.8);
+    gg.addColorStop(0, "rgba(223,230,240,.16)"); gg.addColorStop(1, "rgba(223,230,240,0)");
+    g.fillStyle = gg; g.beginPath(); g.arc(0, by, w * 0.8, 0, Math.PI * 2); g.fill();
+    g.fillStyle = "rgba(223,230,240,.9)";
+    for (let i = 0; i < 5; i++) {
+      const a = -Math.PI * (0.15 + i * 0.17);
+      g.beginPath();
+      g.arc(Math.cos(a) * w * 0.52, by + Math.sin(a) * w * 0.30, 1.2, 0, Math.PI * 2);
+      g.fill();
+    }
+  } else if (t.kind === "dune") {
+    // a surfboard strapped on top
+    g.fillStyle = "#3f7a8c";
+    g.save(); g.translate(bx + bw * 0.45, by - bodyH * 0.62); g.rotate(-0.12);
+    g.beginPath(); g.ellipse(0, 0, bw * 0.30, bodyH * 0.10, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = "#f0d060";
+    g.beginPath(); g.ellipse(0, 0, bw * 0.30, bodyH * 0.035, 0, 0, Math.PI * 2); g.fill();
+    g.restore();
+  } else if (t.kind === "kid") {
+    // a little flag
+    g.strokeStyle = "#e8dcc0"; g.lineWidth = 1.5;
+    g.beginPath(); g.moveTo(bx + bw * 0.62, by - bodyH * 0.55); g.lineTo(bx + bw * 0.62, by - bodyH * 1.15); g.stroke();
+    g.fillStyle = "#f0d060";
+    const fw = Math.sin(time * 6) * 3;
+    g.beginPath(); g.moveTo(bx + bw * 0.62, by - bodyH * 1.15);
+    g.lineTo(bx + bw * 0.62 + 16 + fw, by - bodyH * 1.08);
+    g.lineTo(bx + bw * 0.62, by - bodyH * 1.01); g.closePath(); g.fill();
+  }
+  // name plate under the wheels
+  g.fillStyle = t.accent; g.textAlign = "center";
+  g.font = `600 ${Math.max(9, w / 13)}px Georgia, serif`;
+  g.fillText(t.name, 0, wheelR * 1.45);
+  g.restore();
+}
+
+function draw(tms) {
+  const t = tms / 1000;
+  drawSky(t);
+  drawGround();
+  drawLights(t);
+  drawBillboard(t);
+  drawGate(t);
+  // dust drifting through the light
+  for (const d of DUST) {
+    const x = ((d.x + t * d.v) % 1) * W, y = d.y * H;
+    g.fillStyle = `rgba(232,220,192,${0.05 + 0.06 * Math.sin(t + d.p)})`;
+    g.fillRect(x, y, d.s, d.s);
+  }
+  for (const tr of TRUCKS) drawTruck(tr, t);
+  requestAnimationFrame(draw);
+}
+
+// ---- picking ----
+function hit(mx, my) {
+  for (const tr of TRUCKS) {
+    if (Math.abs(mx - tr.cx) < tr.w * 0.62 &&
+        my > tr.cy - tr.h * 1.1 && my < tr.cy + tr.h * 0.6)
+      return { t: tr.name + " — " + tr.tag, b: "“" + tr.lyric + "”",
+               src: "../../music-video/" + tr.slug + ".html" };
+  }
+  if (mx > gate.x - gate.w * 0.3 && mx < gate.x + gate.w * 1.3 &&
+      my > gate.y - gate.h * 0.2 && my < gate.y + gate.h + 44)
+    return { t: GATE.name + " — " + GATE.tag, b: "the playable crater-jump, one folder over", src: GATE.src };
+  if (mx > board.x && mx < board.x + board.w && my > board.y && my < board.y + board.h)
+    return { t: "THE DIRT SERMON", b: "the blessing every truck here was blessed with", src: null };
+  return null;
+}
+cv.addEventListener("mousemove", e => {
+  const h = hit(e.clientX, e.clientY);
+  cv.style.cursor = h && h.src ? "pointer" : "crosshair";
+  if (h) { tT.textContent = h.t; tB.textContent = h.b; tip.classList.add("on"); }
+  else tip.classList.remove("on");
+});
+cv.addEventListener("click", e => {
+  const h = hit(e.clientX, e.clientY);
+  if (h && h.src) { fr.src = h.src; wrap.classList.add("on"); }
+});
+function close() { wrap.classList.remove("on"); fr.src = "about:blank"; }
+document.querySelector("#bar b").addEventListener("click", close);
+addEventListener("keydown", e => {
+  if (e.key === "Escape" || e.key.toLowerCase() === "x") close();
+});
+
+layout();
+addEventListener("resize", layout);
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>

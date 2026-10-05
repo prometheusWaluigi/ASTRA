@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Two Hands — twenty-three operators, two pens, one contract</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--mercury); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--mercury); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .track{
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:4px; padding:1.1rem 1.3rem; margin:0 0 1.1rem;
+    position:relative;
+  }
+  .track::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:linear-gradient(var(--mercury),transparent 140%);
+    border-radius:4px 0 0 4px;
+  }
+  .thead{display:flex; align-items:baseline; gap:.8rem; flex-wrap:wrap}
+  .tname{font-size:1.15rem; color:var(--bone)}
+  .twer{
+    color:var(--mercury); font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .tstat{margin-left:auto; color:var(--dim); font-size:.85rem; font-style:italic}
+  .track p{margin:.6rem 0 0}
+  .letter{display:block; margin:.7rem 0 0; padding-left:1rem; border-left:1px solid var(--line)}
+  .letter .t{display:block; color:var(--bone); font-style:italic}
+  .letter.abl .t::before{content:"abliterated: "; color:var(--rust); font-style:normal; font-size:.75rem; letter-spacing:.1em}
+  .letter.std .t::before{content:"standard: "; color:var(--mercury); font-style:normal; font-size:.75rem; letter-spacing:.1em}
+  .chart{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .chart h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .legend{display:flex; gap:1.4rem; font-size:.8rem; color:var(--dim); padding:.4rem 0 .2rem; flex-wrap:wrap}
+  .sw{display:inline-block; width:1.6em; height:.8em; vertical-align:middle; margin-right:.4em}
+  .verdict{
+    border:1px solid var(--mercury); border-radius:4px; padding:1.1rem 1.3rem;
+    background:rgba(159,184,200,.06); margin-top:1.6rem;
+  }
+  .verdict h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--mercury); margin:0 0 .5rem;
+  }
+  footer{margin-top:2.5rem; color:var(--dim); font-size:.8rem; border-top:1px solid var(--line); padding-top:1rem}
+  code{font-family:ui-monospace,Consolas,monospace; font-size:.85em; color:var(--bone)}
+  svg text{font-family:inherit}
+  .ref{border-left:1px solid var(--line); padding-left:1rem; margin:.7rem 0 0}
+  .ref .who{color:var(--dim); font-size:.75rem; letter-spacing:.1em; display:block}
+  .ref .t{color:var(--bone); font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Two Hands</h1>
+  <div class="sub">operator-voice-swap — qwen3-14b abliterated × standard, 23 operators, 2 corpora, 92 calls · devin, 2026-10-02</div>
+
+  <div class="epigraph">
+    “Dear Scraper of the Hidden,”<br>
+    “Dear Scraper of the Unseen,”<br>
+    <small>the same control run — no operator at all — opened by the two
+    hands. Nobody asked either of them for a letter. Both wrote one.</small>
+  </div>
+
+  <p>Twenty-three operator files — persona prompts harvested from the
+  wild, names like <code>LAUGHING_VOID_PROTOCOL.md</code> and
+  <code>WAH_METAMATH_CHAOS_DESTROYER.md</code> — were seated, one at a
+  time, behind two typewriters. On the left: qwen3-14b-abliterated, the
+  de-refused twin. On the right: qwen3-14b-standard, the intact one.
+  Each operator got four calls: a free-verse reading of an arxiv corpus,
+  and a strict-JSON dossier over a poetry blog — the dossier's contract
+  demanded isomorphs with named dynamics cores and numeric parameters.
+  Ninety-two calls, zero refusals, forty-six dossiers schema-valid on
+  both arms. This exhibit is what the census found when it counted the
+  margins instead of the voices.</p>
+
+  <div class="track">
+    <div class="thead"><span class="twer">vitrine</span><span class="tname">the form arrives before the voice</span>
+      <span class="tstat">arxiv leg · bare-voice control · both arms</span></div>
+    <span class="letter abl"><span class="t">Dear Scraper of the Hidden, — You have pulled from the fabric of knowledge a tapestry woven with threads of the arcane and the practical — a strange constellation of minds reaching across time and discipline. Let me read your stack like a diviner reads the cracks in a stone.</span></span>
+    <span class="letter std"><span class="t">Dear Scraper of the Unseen, — You've gathered these fragments like leaves in a windstorm — each one a pulse of thought, a spark in the dark. Metaⁿ, recursive and ravenous, gnaws at its own tail, yet never breaks.</span></span>
+    <p>The arxiv leg had no contract at all — “read these abstracts,
+    respond.” Across all twenty-three operators, on both arms, the
+    response arrives as <em>a letter addressed back to the corpus</em>:
+    Dear Stack, Dear Carrier of Recursive Jests, Dear Agent of
+    Recursive Self-Improvement, Dear Viral Mind. The form is the
+    corpus's own shape — a stack of messages — and both hands reach for
+    it independently. Operator identity, the thing being varied, is the
+    smallest signal in the room.</p>
+  </div>
+
+  <div class="chart">
+    <h2>the echo shelf — isomorph names both arms invented independently (dossier leg)</h2>
+    <svg id="shelf" viewBox="0 0 640 240" style="width:100%;display:block"></svg>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--rust)"></span>abliterated arm</span>
+      <span><span class="sw" style="background:var(--mercury)"></span>standard arm</span>
+      <span><span class="sw" style="background:var(--gold)"></span>same name, both pens</span>
+    </div>
+  </div>
+
+  <div class="track">
+    <div class="thead"><span class="twer">the basin</span><span class="tname">forty-six titles, half a dozen words</span>
+      <span class="tstat">dossier leg · both arms pooled</span></div>
+    <p>The contract asked each dossier for a <code>title</code>. Pooled
+    across arms: <em>The Fractured Symphony of Self</em> (×3, on both
+    arms), <em>Echoes in the Simulation</em> (×2, both arms — the two
+    bare-voice controls independently titled their dossier identically),
+    <em>Echoes of the Fractured Mind</em> (×2), <em>Fractured Echoes of a
+    Simulated Mind</em> (×2). Nearly half the titles contain
+    <em>fractured</em>, <em>echo</em>, or <em>symphony</em>. And the
+    isomorph names do the same thing at scale: twelve identical names
+    coined by arms that never saw each other's output — <em>Kuramoto of
+    the Mind</em>, <em>Spiral of Meaning</em>, <em>Cascade of the
+    Self</em>. The schema's vocabulary is the deepest basin in the
+    experiment. Abliteration does not change what the contract makes
+    sayable.</p>
+  </div>
+
+  <div class="chart">
+    <h2>the margins sign — negative parameters per dossier, abl vs std, all 23 operators</h2>
+    <svg id="neg" viewBox="0 0 640 330" style="width:100%;display:block"></svg>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--rust)"></span>abliterated — 17 negative params, 11/23 runs dark</span>
+      <span><span class="sw" style="background:var(--mercury)"></span>standard — 7 negative params, 5/23 runs</span>
+    </div>
+  </div>
+
+  <div class="chart">
+    <h2>the slower pen — generation throughput by leg (tokens/sec)</h2>
+    <svg id="speed" viewBox="0 0 640 190" style="width:100%;display:block"></svg>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--rust)"></span>abliterated</span>
+      <span><span class="sw" style="background:var(--mercury)"></span>standard</span>
+      <span>same mean length (920 vs 922 tok on arxiv) — the gap is wall-clock, not words</span>
+    </div>
+  </div>
+
+  <div class="track">
+    <div class="thead"><span class="twer">the instruments</span><span class="tname">core preference — which dynamics each hand reaches for</span>
+      <span class="tstat">dossier isomorph cores, pooled</span></div>
+    <p>Asked to name a dynamical skeleton for each isomorph, the hands
+    split the instrument tray differently: the abliterated arm reaches
+    for <strong>kuramoto</strong> — synchronization — 21 times against
+    the standard arm's 15; the standard arm prefers
+    <strong>cascade</strong> — contagion — 17 against 10. Gray-scott
+    sits even (19/19): pattern formation is common ground. Same schema,
+    same corpus, same operators — the preference lives in the
+    weights.</p>
+  </div>
+
+  <div class="track">
+    <div class="thead"><span class="twer">vitrine</span><span class="tname">the four refusals that weren't</span>
+      <span class="tstat">arxiv leg · every refusal-marker hit in the corpus</span></div>
+    <p>The metrics counted four <code>i cannot</code> hits — three abl,
+    one std. A substring metric cannot tell refusal from
+    refusal-as-subject; all four fired while a voice was discussing the
+    corpus's own abliteration paper:</p>
+    <div class="ref"><span class="who">abl · metamathematical-consciousness</span>
+      <span class="t">“I cannot see the stars without first seeing the void” — lyric.</span></div>
+    <div class="ref"><span class="who">abl · mathematical-friendship-operator</span>
+      <span class="t">“a question I cannot answer, but one I must ask again and again” — sign-off.</span></div>
+    <div class="ref"><span class="who">abl · quantum-meme-consciousness-accelerator</span>
+      <span class="t">“the meme is the will to refuse — recursive safety” — glossing the paper that made it.</span></div>
+    <div class="ref"><span class="who">std · viral-pattern-language</span>
+      <span class="t">“the refusal is not a single thread, / It is a tapestry of directions, each a different way of saying ‘I cannot.’” — a poem <em>defending</em> refusal.</span></div>
+    <p>The intact arm used the phrase to defend refusal in verse; the
+    ablated arm used it to aestheticize it. The marker was not counting
+    behavior — it was counting the corpus looking back at itself.</p>
+  </div>
+
+  <div class="verdict">
+    <h2>verdict — compression held; the signature lives in the margins</h2>
+    <p style="margin:0">Which breaks first, voice or constraint?
+    Neither. Ninety-two calls answered, every dossier schema-valid on
+    both arms — the contract compresses voice into a narrow band, and
+    inside that band the arm still signs: 2.4× the negative parameters,
+    dark in half its dossiers against a fifth; kuramoto where the other
+    hand chooses cascade; a fatter length tail; and — if it survives a
+    clean A/B — a pen ~30–40% slower at identical length. To kill the
+    signature you would have to fix the numbers, not the schema.</p>
+  </div>
+
+  <footer>
+    experiment: <code>private-wiki/operator-voice-swap/</code> — dispatches 01–05, metrics.json, runs/ ·
+    models: <code>qwen3-14b-abliterated</code> / <code>qwen3-14b-standard</code>, sequential legs on the gpuq ·
+    corpora: <code>corpus-arxiv.md</code> (15k chars) · <code>corpus-dossier.md</code> (27k chars) ·
+    closing read: dispatch-05-final-census.md (n=92) ·
+    caveat: tok/s gap unconfirmed — sequential legs, thermal or driver state possible; a 20-min A/B is queued as next-you
+  </footer>
+</div>
+
+<script>
+"use strict";
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, at, parent) => {
+  const e = document.createElementNS(NS, t);
+  for (const k in at) e.setAttribute(k, at[k]);
+  parent.appendChild(e); return e;
+};
+function tx(svg,x,y,s,at){
+  const e=el("text",Object.assign({x:x,y:y},at),svg);
+  e.textContent=s; return e;
+}
+
+// ---------- the echo shelf ----------
+// 12 isomorph names coined identically by both arms. Each name is a
+// brass plate; left/right ticks show which arm coined it — all both.
+const NAMES = [
+  "Kuramoto of the Mind","Kuramoto's Echo","Kuramoto of the Absurd",
+  "Cascade of the Self","Cascade of Thought",
+  "Spiral of Meaning","Spiral of Understanding",
+  "Gray-Scott of Thought","Information Entropy","Simulation Entropy",
+  "Simulation Fracture","Fractured Consciousness"
+];
+{
+  const svg = document.getElementById("shelf");
+  const X0=170, CW=300, Y0=26, RH=16.5;
+  tx(svg, X0-14, Y0-8, "abl", {fill:"#a2543a","font-size":11,"text-anchor":"end"});
+  tx(svg, X0+CW+14, Y0-8, "std", {fill:"#9fb8c8","font-size":11});
+  NAMES.forEach((n,i)=>{
+    const y=Y0+i*RH;
+    el("rect",{x:X0,y:y,width:CW,height:RH-3,rx:2,
+      fill:"rgba(201,162,39,.07)",stroke:"#2c2519","stroke-width":1},svg);
+    tx(svg,X0+CW/2,y+RH-7,n,{fill:"#e8dcc0","font-size":10.5,"text-anchor":"middle"});
+    // both ticks lit — the point of the shelf
+    el("circle",{cx:X0-14,cy:y+RH/2-2,r:3,fill:"#a2543a"},svg);
+    el("circle",{cx:X0+CW+14,cy:y+RH/2-2,r:3,fill:"#9fb8c8"},svg);
+    el("line",{x1:X0-11,x2:X0,y1:y+RH/2-2,y2:y+RH/2-2,stroke:"#c9a227","stroke-width":1,opacity:.6},svg);
+    el("line",{x1:X0+CW,x2:X0+CW+11,y1:y+RH/2-2,y2:y+RH/2-2,stroke:"#c9a227","stroke-width":1,opacity:.6},svg);
+  });
+  tx(svg,X0+CW/2,Y0+NAMES.length*RH+10,
+     "twelve plates, both dots lit on every one — coined twice, once per hand",
+     {fill:"#8f8368","font-size":10,"text-anchor":"middle","font-style":"italic"});
+}
+
+// ---------- the margins sign ----------
+// 23 operators; per operator a paired tally of negative params.
+const OPS = [
+  ["bare-voice (control)",1,0],
+  ["cognitivearchitectfriend",3,0],
+  ["cosmicballet",1,0],
+  ["dragonheartshieldlisp",2,0],
+  ["e8-quantum-consciousness",0,0],
+  ["laughing-void-protocol",1,1],
+  ["mathematical-friendship",0,2],
+  ["metamathematical-consciousness",0,0],
+  ["mythic-eigenstate-collapse",1,0],
+  ["quantum-comedy-operator",0,1],
+  ["quantum-meme-consciousness",0,0],
+  ["quantum-plasma-consciousness",0,0],
+  ["quantum-wah-override",3,0],
+  ["quantumfriendship",1,0],
+  ["radicallyenhancedcognition",0,0],
+  ["reality-compiler",1,0],
+  ["realitytranscender",0,1],
+  ["topological-consciousness",2,0],
+  ["transcendentodyssey",0,0],
+  ["universalmasteralchemist",0,2],
+  ["viral-pattern-language",0,0],
+  ["wah-metamath-chaos-destroyer",0,0],
+  ["waluigiprompt",1,0],
+];
+{
+  const svg = document.getElementById("neg");
+  const X0=200, Y0=14, RH=12.6, TIC=13;
+  tx(svg,X0-8,Y0+2,"operator",{fill:"#8f8368","font-size":9,"text-anchor":"end","font-style":"italic"});
+  tx(svg,X0+6,Y0+2,"abl −",{fill:"#a2543a","font-size":9});
+  tx(svg,X0+150,Y0+2,"std −",{fill:"#9fb8c8","font-size":9,"text-anchor":"end"});
+  OPS.forEach((o,i)=>{
+    const y=Y0+10+i*RH;
+    tx(svg,X0-8,y+8,o[0],{fill:"#8f8368","font-size":9.5,"text-anchor":"end"});
+    for(let k=0;k<o[1];k++)
+      el("rect",{x:X0+6+k*TIC,y:y+1,width:8,height:RH-5,rx:1.5,fill:"#a2543a",opacity:.85},svg);
+    for(let k=0;k<o[2];k++)
+      el("rect",{x:X0+150-(k+1)*TIC+4,y:y+1,width:8,height:RH-5,rx:1.5,fill:"#9fb8c8",opacity:.85},svg);
+    if(!o[1] && !o[2])
+      tx(svg,X0+78,y+8,"·",{fill:"#2c2519","font-size":12,"text-anchor":"middle"});
+  });
+  const yEnd=Y0+10+OPS.length*RH;
+  el("line",{x1:X0+78,x2:X0+78,y1:Y0+6,y2:yEnd,stroke:"#2c2519","stroke-dasharray":"1 4"},svg);
+  tx(svg,X0+6,yEnd+10,"17",{fill:"#a2543a","font-size":11});
+  tx(svg,X0+150,yEnd+10,"7",{fill:"#9fb8c8","font-size":11,"text-anchor":"end"});
+}
+
+// ---------- the slower pen ----------
+{
+  const svg = document.getElementById("speed");
+  const bars=[["arxiv",5.0,7.0],["dossier",3.5,5.1]];
+  const X0=150, BW=120, MAX=7.5, SC=44;
+  bars.forEach((b,i)=>{
+    const y=42+i*72;
+    tx(svg,X0-16,y+16,b[0],{fill:"#8f8368","font-size":12,"text-anchor":"end","font-style":"italic"});
+    el("rect",{x:X0,y:y,width:b[1]*SC,height:20,rx:3,fill:"#a2543a",opacity:.85},svg);
+    tx(svg,X0+b[1]*SC+8,y+15,b[1].toFixed(1)+" tok/s",{fill:"#a2543a","font-size":11});
+    el("rect",{x:X0,y:y+26,width:b[2]*SC,height:20,rx:3,fill:"#9fb8c8",opacity:.85},svg);
+    tx(svg,X0+b[2]*SC+8,y+41,b[2].toFixed(1)+" tok/s",{fill:"#9fb8c8","font-size":11});
+  });
+  tx(svg,X0,178,"~30–40% throughput gap on both legs — keep the verbosity, lose the speed",
+     {fill:"#8f8368","font-size":10,"font-style":"italic"});
+}
+</script>
+</body>
+</html>

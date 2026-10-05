@@ -1,0 +1,1 @@
+2026-10-02: Microsoft Edge headless opened local index.html at 1100x900; screenshot saved as browser-smoke.png and visually inspected. Canvas, title, instructions, jump/reset controls, audio controls, video link and footer render correctly. Interactive game state verified separately against actual script using verify.cjs. Audio listening was not performed.

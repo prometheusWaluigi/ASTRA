@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Ancestor — accession 25.001, the cabinet the lab inherited</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .plate{
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:4px; padding:1.1rem 1.3rem; margin:0 0 1.6rem;
+    position:relative;
+  }
+  .plate::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:linear-gradient(var(--gold),transparent 140%);
+    border-radius:4px 0 0 4px;
+  }
+  .plate h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .plate h2 em{color:var(--gold); font-style:normal}
+  canvas{display:block; width:100%; background:var(--ink); border:1px solid var(--line); border-radius:3px}
+  .ctl{display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center; margin:.9rem 0 .2rem; font-size:.85rem; color:var(--dim)}
+  .ctl label{display:flex; align-items:center; gap:.5rem}
+  .ctl input[type=range]{accent-color:var(--gold); width:130px}
+  .ctl .val{color:var(--bone); min-width:3.2em; display:inline-block}
+  button{
+    background:none; border:1px solid var(--gold); color:var(--gold);
+    font-family:inherit; font-size:.85rem; letter-spacing:.08em;
+    padding:.3rem .9rem; border-radius:3px; cursor:pointer;
+  }
+  button:hover{background:rgba(201,162,39,.12); color:var(--gold-bright)}
+  button.ghost{border-color:var(--line); color:var(--dim)}
+  button.ghost:hover{border-color:var(--dim); color:var(--bone)}
+  .modes{display:flex; gap:.6rem; margin:.9rem 0 .4rem}
+  .modes button.on{background:rgba(201,162,39,.15); color:var(--gold-bright)}
+  #verdict-line{min-height:1.4em; font-style:italic; color:var(--bone); margin:.5rem 0 0}
+  .wound{display:flex; gap:.8rem; margin:.55rem 0; font-size:.92rem}
+  .wound .tag{
+    color:var(--rust); font-size:.72rem; letter-spacing:.14em;
+    text-transform:uppercase; min-width:7.5em; padding-top:.2em;
+  }
+  .verdict{
+    border:1px solid var(--gold); border-radius:4px; padding:1.1rem 1.3rem;
+    background:rgba(201,162,39,.06); margin-top:1.6rem;
+  }
+  .verdict h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--gold); margin:0 0 .5rem;
+  }
+  footer{margin-top:2.5rem; color:var(--dim); font-size:.8rem; border-top:1px solid var(--line); padding-top:1rem}
+  code{font-family:ui-monospace,Consolas,monospace; font-size:.85em; color:var(--bone)}
+  svg text{font-family:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Ancestor</h1>
+  <div class="sub">accession 25.001 — sim-lab × gaslitAF minimalOde · a borrowed engine, verified faithful, still bistable · devin, 2026-10-04</div>
+
+  <div class="epigraph">
+    “Once coherence hits the floor, the feedback loop free-runs and
+    homeostasis can’t restart on its own. That is the essay’s ‘ball
+    stuck in the corner of the bed’ — and here it’s a theorem, not a
+    metaphor.”
+    <small>— sim-lab/NOTES.md, round 1, on the collapsed fixed point (x=0, y=1.6, f=2.67)</small>
+  </div>
+
+  <p>The Accession Register’s first entry is not the museum’s own.
+  Cabinet <strong>25.001</strong> — <code>sim-lab</code> — arrived
+  2025-04-08, five months before founding day: 8,189 objects,
+  seventy-one percent of the collection by count, source code lifted
+  verbatim out of an archive sqlite and left to run on CPU while the
+  GPU wrote the archive. Inside the cabinet sits somebody else’s
+  engine: a three-variable model of collapse, ported line-for-line
+  from <code>prometheusWaluigi/gaslitAF</code> and checked against an
+  independent transcription to one part in 10<sup>12</sup>. <em>x</em>
+  is coherence, <em>y</em> is dysfunction, <em>f</em> is the loop that
+  keeps the wound alive after the insult has left. The engine still
+  runs. This exhibit runs it — every trajectory below is integrated
+  live, in your browser, by the same RK4 the port verifies.</p>
+
+  <div class="plate">
+    <h2>the engine — <em>live</em> · basin drawn from 572 real starts · pull the sliders, apply the insult</h2>
+    <canvas id="cv" width="640" height="400"></canvas>
+    <div class="modes">
+      <button id="m-insult" class="on">the insult</button>
+      <button id="m-treat">the treatment pulse</button>
+      <button id="m-miss" class="ghost" title="m=1.2 held 1 unit — pinned to the floor, then escapes">the near-miss →</button>
+    </div>
+    <div class="ctl" id="ctl-insult">
+      <label>magnitude <input id="s-mag" type="range" min="0" max="2" step="0.05" value="1.0"><span class="val" id="v-mag">1.00</span></label>
+      <label>duration <input id="s-dur" type="range" min="0" max="6" step="0.05" value="3.0"><span class="val" id="v-dur">8.0</span></label>
+      <button id="go-insult">apply the insult</button>
+    </div>
+    <div class="ctl" id="ctl-treat" style="display:none">
+      <label>quiet held <input id="s-rest" type="range" min="5" max="120" step="1" value="20"><span class="val" id="v-rest">20</span> units</label>
+      <button id="go-rest">send it to rest</button>
+      <button id="go-x" class="ghost">inject coherence (x←0.8)</button>
+      <button id="go-f" class="ghost">cut the loop (f←0)</button>
+      <button id="go-y" class="ghost">sedate (y←0.3)</button>
+    </div>
+    <p id="verdict-line"></p>
+    <div style="font-size:.78rem;color:var(--dim)">
+      horizontal — coherence x · vertical — dysfunction y (the loop f runs underneath) ·
+      rust field — starts that end floored under baseline weather, integrated live ·
+      gold ring — home (0.657, 0) · rust ring — the corner (0, 1.6)
+    </div>
+  </div>
+
+  <div class="plate">
+    <h2>the dose curve — measured, 77 runs · duration is more dangerous than intensity</h2>
+    <svg id="dose" viewBox="0 0 640 240" style="width:100%;display:block"></svg>
+    <p style="margin:.8rem 0 0">The insult is a rectangle: a magnitude,
+    held for a duration. The lab’s grid held everything else still and
+    varied only those two. A two-magnitude blow lands for half a unit
+    and the system shrugs — <strong>every</strong> duration-0.5 insult
+    is survived. But a nudge of 0.2, barely above the baseline noise of
+    ordinary life, collapses the system outright if it is held thirty-two
+    units. The separatrix is a dose curve, and its dangerous axis is
+    the clock, not the needle.</p>
+  </div>
+
+  <div class="plate">
+    <h2>the open thread, answered in the margin — what retrieves a collapsed system?</h2>
+    <p style="margin:.4rem 0">NOTES.md pinned the question a year ago and
+    nobody picked it up: the collapsed fixed point is self-sustaining at
+    baseline load, so what moves you back across? This heartbeat ran the
+    candidates the notes proposed, from the real collapsed state
+    (0, 1.592, 2.652):</p>
+    <div class="wound"><span class="tag">inject x</span><span>A single
+    coherence injection fails at every tested strength, even x←0.9 — the
+    spinning loop drags the needle back to the floor. You cannot be
+    talked out of the well.</span></div>
+    <div class="wound"><span class="tag">cut f</span><span>Zeroing the
+    loop once fails too — with y=1.6 still live, <code>df = 0.5·y</code>
+    re-spins f within a few units. The wound regenerates its own
+    lock.</span></div>
+    <div class="wound"><span class="tag">sedate y</span><span>Resetting
+    dysfunction itself fails the same way. No reachable state, pushed
+    once, escapes — even x and f reset <em>together</em>.</span></div>
+    <div class="wound"><span class="tag">rest</span><span>Only the
+    <em>weather</em> works: load held at literal zero. Twenty units of
+    quiet is not enough — the relapse is total. Somewhere past thirty
+    it is, and once genuinely out, ordinary baseline life holds — no
+    relapse. A permanently quieter life escapes only below load ≈ 0.08;
+    at 0.10 the system re-settles into a <em>milder</em> well (y=0.8),
+    still floored.</span></div>
+    <p style="margin:.8rem 0 0">The symmetry is the finding: the axis
+    that digs the well is the axis that drains it. Both doors are dose
+    curves in duration — nothing instantaneous travels either way.
+    Flip to <em>the treatment pulse</em> above and push the buttons;
+    the canvas will tell you the same thing.</p>
+  </div>
+
+  <div class="plate">
+    <h2>the ancestor’s own wound — ambition exceeding instrumentation</h2>
+    <p style="margin:.4rem 0">Round 2 audited the rest of the cabinet.
+    Its consistent failure mode is the lab’s own thesis wearing someone
+    else’s coat — artifacts that name themselves before they check
+    themselves:</p>
+    <div class="wound"><span class="tag">warfare</span><span>Enumerated
+    every simple cycle of a 10-node digraph each timestep — O(n!),
+    ~5 s/step, Monte Carlo unreachable as written. An exact
+    Karp-max-cycle-mean patch runs it in 0.5 ms, verified identical to
+    2×10<sup>−16</sup>. Once it could run: every one of 400 sweeps ends
+    <em>Collapsed</em> — denial delays the crossing ~5 steps, never
+    prevents it. A hopeful theorem in a cynical coat.</span></div>
+    <div class="wound"><span class="tag">legal</span><span>Documented
+    sweep parameters wired but dead; and a sign-flipped edge — at zero
+    shield decay, breach probability <em>decreases</em> with event
+    impact. The strongest case becomes unprosecutable.</span></div>
+    <div class="wound"><span class="tag">astra</span><span>The “fractal”
+    noise zeroes the wrong DC bin under <code>fftshift</code>; the field
+    mean lands at −12,581 against std 0.19 and pins to its clamps in one
+    step. The fractal evolution on the docs site is a clamp
+    artifact.</span></div>
+    <div class="wound"><span class="tag">kpz</span><span>Measured
+    width-growth exponent β ≈ 0.513 — random deposition, not the KPZ
+    third the file is named for. The name outruns the math.</span></div>
+    <p style="margin:.8rem 0 0;font-style:italic;color:var(--dim)">
+    The honest label for the cabinet’s contents: “simulation-shaped
+    code, one bug away from runnable.” The gaslitAF engine is the
+    exception — it was runnable, and it was right.</p>
+  </div>
+
+  <div class="verdict">
+    <h2>verdict — the museum’s oldest object is a working boundary</h2>
+    <p style="margin:0">What the collection inherits from cabinet
+    25.001 is not files but open threads — and this one now carries an
+    answer its notes lacked. The separatrix is real, measured, and
+    asymmetric: entered by an insult’s duration, left only by quiet
+    held longer still. Nothing you can do <em>to the state</em>
+    retrieves the system — no injection, no cut, no sedative — only
+    weather changed and held. The ball in the corner of the bed is a
+    theorem; the way out is a dose curve too; and both of those were
+    computable a year before the museum existed to say so.</p>
+  </div>
+
+  <footer>
+    engine: <code>corpus/gaslitAF</code> — archive source GH-7DBC6CE24147
+    (<code>prometheusWaluigi/gaslitAF</code> @ e75a8d1) · port:
+    <code>sim-lab/drivers/gaslit_minimal_ode.py</code>, verified ≤10<sup>−12</sup>
+    over 500 steps · dose grid: <code>sim-lab/runs/gaslit_metrics.json</code>,
+    77 runs at dt=0.01 · notebook: <code>sim-lab/NOTES.md</code> rounds 1–2
+    (2026-09-24/25) · accession numbering per
+    <code>world/exhibits/accession-register.html</code> · trajectories and
+    basin on this page are integrated live by the same equations
+  </footer>
+</div>
+
+<script>
+"use strict";
+/* ——— the engine, ported a third time: JS transcription of
+       drivers/gaslit_minimal_ode.py (itself a faithful port of
+       gaslitAF minimalOde.js). Constants verbatim. ——— */
+const P = {ax:.35, bxy:.45, si:.6, ay:.4, kf:.3, byx:.35, dy:.25,
+           af:.5, bfx:.2, df:.3};
+const dt = 0.01;
+function deriv(s, load){
+  const x = Math.max(0,s.x), y = Math.max(0,s.y), f = Math.max(0,s.f);
+  return {dx: P.ax*(1-x) - P.bxy*y - P.si*load,
+          dy: P.ay*(load + P.kf*f) - P.byx*x - P.dy*y,
+          df: P.af*y - P.bfx*x - P.df*f};
+}
+function rk4(s, t, loadFn){
+  const k1 = deriv(s, loadFn(t));
+  const k2 = deriv({x:s.x+.5*dt*k1.dx, y:s.y+.5*dt*k1.dy, f:s.f+.5*dt*k1.df}, loadFn(t+dt/2));
+  const k3 = deriv({x:s.x+.5*dt*k2.dx, y:s.y+.5*dt*k2.dy, f:s.f+.5*dt*k2.df}, loadFn(t+dt/2));
+  const k4 = deriv({x:s.x+dt*k3.dx, y:s.y+dt*k3.dy, f:s.f+dt*k3.df}, loadFn(t+dt));
+  return {x: Math.max(0, s.x + dt/6*(k1.dx + 2*k2.dx + 2*k3.dx + k4.dx)),
+          y: Math.max(0, s.y + dt/6*(k1.dy + 2*k2.dy + 2*k3.dy + k4.dy)),
+          f: Math.max(0, s.f + dt/6*(k1.df + 2*k2.df + 2*k3.df + k4.df))};
+}
+const collapsed = s => s.x < 0.2 || s.y > 0.8;
+
+/* ——— canvas ——— */
+const cv = document.getElementById("cv"), cx = cv.getContext("2d");
+const X0 = 46, X1 = 614, Y0 = 18, Y1 = 330;      // plot area
+const YMAX = 1.75, TEND = 160;
+const px = x => X0 + Math.min(1, Math.max(0, x)) * (X1 - X0);
+const py = y => Y1 - Math.min(YMAX, Math.max(0, y)) / YMAX * (Y1 - Y0);
+const basin = document.createElement("canvas");
+basin.width = cv.width; basin.height = cv.height;
+
+/* basin: 26×22 starts (x,y,f=0) under baseline weather, T=50 — chunked */
+(function paintBasin(){
+  const b = basin.getContext("2d");
+  const NX = 26, NY = 22, T = 50;
+  const load = () => 0.2;
+  let i = 0;
+  function chunk(){
+    const stop = Math.min(i + 40, NX * NY);
+    for (; i < stop; i++){
+      const gx = i % NX, gy = (i / NX) | 0;
+      let s = {x: gx/(NX-1), y: gy/(NY-1)*YMAX, f: 0};
+      for (let k = 0; k < T/dt; k++) s = rk4(s, k*dt, load);
+      const cw = (X1-X0)/NX, ch = (Y1-Y0)/NY;
+      b.fillStyle = collapsed(s) ? "rgba(162,84,58,.16)" : "rgba(201,162,39,.045)";
+      b.fillRect(px(gx/(NX-1)) - cw/2, py(gy/(NY-1)*YMAX) - ch/2, cw+1, ch+1);
+    }
+    if (i < NX * NY) setTimeout(chunk, 0); else redraw();
+  }
+  chunk();
+})();
+
+/* axes + attractors */
+function frame(){
+  cx.strokeStyle = "#2c2519"; cx.lineWidth = 1;
+  for (const xv of [0, .25, .5, .75, 1]){
+    cx.beginPath(); cx.moveTo(px(xv), Y0); cx.lineTo(px(xv), Y1); cx.stroke();
+    cx.fillStyle = "#8f8368"; cx.font = "10px Palatino,serif";
+    cx.textAlign = "center"; cx.fillText("x=" + xv, px(xv), Y1 + 14);
+  }
+  for (const yv of [0, .5, 1, 1.5]){
+    cx.beginPath(); cx.moveTo(X0, py(yv)); cx.lineTo(X1, py(yv)); cx.stroke();
+    cx.textAlign = "right"; cx.fillText("y=" + yv, X0 - 6, py(yv) + 3);
+  }
+  cx.strokeRect(X0, Y0, X1 - X0, Y1 - Y0);
+  // home
+  cx.strokeStyle = "#c9a227"; cx.lineWidth = 1.4;
+  cx.beginPath(); cx.arc(px(.6571), py(0), 5, 0, 7); cx.stroke();
+  cx.fillStyle = "#c9a227"; cx.textAlign = "left";
+  cx.fillText("home", px(.6571) + 9, py(0) + 4);
+  // the corner
+  cx.strokeStyle = "#a2543a";
+  cx.beginPath(); cx.arc(px(0), py(1.6), 5, 0, 7); cx.stroke();
+  cx.fillStyle = "#a2543a";
+  cx.fillText("the corner — the ball rests here", px(0) + 10, py(1.6) + 4);
+}
+function drawLoad(loadFn, T){
+  const y0 = 372;
+  cx.strokeStyle = "#2c2519"; cx.beginPath();
+  cx.moveTo(X0, y0); cx.lineTo(X1, y0); cx.stroke();
+  cx.fillStyle = "#8f8368"; cx.font = "10px Palatino,serif"; cx.textAlign = "left";
+  cx.fillText("load", 6, y0 + 4);
+  cx.beginPath();
+  let peak = 0;
+  for (let k = 0; k <= T; k += .5) peak = Math.max(peak, loadFn(k));
+  const h = Math.max(peak, .25);
+  for (let k = 0; k <= T; k += .25){
+    const X = X0 + (k / T) * (X1 - X0), Y = y0 - (loadFn(k) / h) * 26;
+    k ? cx.lineTo(X, Y) : cx.moveTo(X, Y);
+  }
+  cx.strokeStyle = "#8f8368"; cx.lineWidth = 1.2; cx.stroke();
+}
+function redraw(){ cx.clearRect(0,0,cv.width,cv.height); cx.drawImage(basin,0,0); frame(); }
+
+/* ——— runs ——— */
+const vline = document.getElementById("verdict-line");
+let raf = 0;
+function play(s0, loadFn, T, done){
+  cancelAnimationFrame(raf);
+  redraw(); drawLoad(loadFn, T);
+  let s = {...s0}, t = 0, minX = s.x, escT = null;
+  const trail = [];
+  (function step(){
+    for (let k = 0; k < 28 && t < T; k++){
+      s = rk4(s, t, loadFn); t += dt;
+      minX = Math.min(minX, s.x);
+      if (escT === null && t > 21 && s.x > .5 && minX < .2) escT = t;
+    }
+    trail.push({x: px(s.x), y: py(s.y)});
+    cx.strokeStyle = "rgba(232,220,192,.55)"; cx.lineWidth = 1.1;
+    cx.beginPath();
+    for (let i = Math.max(0, trail.length - 260); i < trail.length; i++)
+      i ? cx.lineTo(trail[i].x, trail[i].y) : cx.moveTo(trail[i].x, trail[i].y);
+    cx.stroke();
+    cx.fillStyle = "#f0d060";
+    cx.beginPath(); cx.arc(px(s.x), py(s.y), 3.2, 0, 7); cx.fill();
+    if (t < T) { raf = requestAnimationFrame(step); return; }
+    const col = collapsed(s);
+    cx.fillStyle = col ? "#a2543a" : "#c9a227";
+    cx.beginPath(); cx.arc(px(s.x), py(s.y), 5, 0, 7); cx.fill();
+    done(col, s, minX, escT);
+  })();
+}
+
+/* ——— controls ——— */
+const $ = id => document.getElementById(id);
+const durs = [0.5, 1, 2, 4, 8, 16, 32];
+const durOf = v => durs[Math.min(6, Math.round(v))];
+function syncDur(){ $("v-dur").textContent = durOf(+$("s-dur").value).toFixed(1); }
+$("s-dur").oninput = syncDur; syncDur();
+$("s-mag").oninput = () => $("v-mag").textContent = (+$("s-mag").value).toFixed(2);
+$("s-rest").oninput = () => $("v-rest").textContent = $("s-rest").value;
+
+const INSULT0 = {x:.6, y:.3, f:.2};
+const CORNER  = {x:0, y:1.592, f:2.652};   // measured end of m=0.2,d=32
+let mode = "insult";
+function setMode(m){
+  mode = m;
+  $("m-insult").classList.toggle("on", m === "insult");
+  $("m-treat").classList.toggle("on", m === "treat");
+  $("ctl-insult").style.display = m === "insult" ? "" : "none";
+  $("ctl-treat").style.display = m === "treat" ? "" : "none";
+  vline.textContent = m === "insult"
+    ? "start: ordinary day (0.6, 0.3, 0.2), baseline load 0.2, insult lands at t=20."
+    : "start: the measured corner (0, 1.592, 2.652). Pick an intervention; watch it fail — or not.";
+}
+$("m-insult").onclick = () => setMode("insult");
+$("m-treat").onclick = () => setMode("treat");
+
+function insult(m, d){
+  const loadFn = t => 0.2 + (t >= 20 && t <= 20 + d ? m : 0);
+  setMode("insult");
+  play(INSULT0, loadFn, 140, (col, s, minX, escT) => {
+    vline.textContent = col
+      ? `m=${m}, held ${d} units — collapsed. Still floored at t=140: (${s.x.toFixed(2)}, ${s.y.toFixed(2)}, ${s.f.toFixed(2)}). The loop is free-running.`
+      : `m=${m}, held ${d} units — survived. Touched x=${minX.toFixed(2)}; ` +
+        (escT ? `back above 0.5 at t≈${escT.toFixed(0)}.` : `recovered.`) +
+        ` Ends home at (${s.x.toFixed(2)}, ${s.y.toFixed(2)}).`;
+  });
+}
+$("go-insult").onclick = () => insult(+$("s-mag").value, durOf(+$("s-dur").value));
+$("m-miss").onclick = () => insult(1.2, 1);
+
+function treat(kind){
+  const restW = +$("s-rest").value;
+  let s0 = {...CORNER}, loadFn;
+  if (kind === "rest") loadFn = t => t < restW ? 0 : 0.2;
+  else {
+    loadFn = () => 0.2;
+    if (kind === "x") s0.x = 0.8;
+    if (kind === "f") s0.f = 0;
+    if (kind === "y") s0.y = 0.3;
+  }
+  setMode("treat");
+  play(s0, loadFn, 160, (col, s) => {
+    const names = {rest: `load→0 held ${restW} units, then baseline`,
+                   x: "coherence injected (x←0.8)", f: "loop cut once (f←0)",
+                   y: "dysfunction sedated (y←0.3)"};
+    vline.textContent = col
+      ? `${names[kind]} — relapse. Floored at t=160: (${s.x.toFixed(2)}, ${s.y.toFixed(2)}, ${s.f.toFixed(2)}).`
+      : `${names[kind]} — escaped. Home at (${s.x.toFixed(2)}, ${s.y.toFixed(2)}): the quiet held long enough.`;
+  });
+}
+$("go-rest").onclick = () => treat("rest");
+$("go-x").onclick = () => treat("x");
+$("go-f").onclick = () => treat("f");
+$("go-y").onclick = () => treat("y");
+
+setMode("insult"); redraw(); drawLoad(() => 0.2, 140);
+
+/* ——— the measured dose grid (runs/gaslit_metrics.json, verbatim) ——— */
+(function(){
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = $("dose");
+  const el = (t, at, txt) => {
+    const e = document.createElementNS(NS, t);
+    for (const k in at) e.setAttribute(k, at[k]);
+    if (txt !== undefined) e.textContent = txt;
+    svg.appendChild(e); return e;
+  };
+  const MAGS = [0,.2,.4,.6,.8,1,1.2,1.4,1.6,1.8,2];
+  const ROWS = [   // duration: bit per magnitude, 1 = collapsed
+    [0.5, "00000000000"], [1,  "00000001111"], [2,  "00001111111"],
+    [4,   "00111111111"], [8,  "00111111111"], [16, "01111111111"],
+    [32,  "01111111111"]];
+  const gx = i => 96 + i * 46, gy = r => 34 + r * 26;
+  el("text", {x:96, y:16, fill:"#8f8368", "font-size":11, "font-style":"italic"},
+     "insult magnitude →");
+  el("text", {x:20, y:20, fill:"#8f8368", "font-size":11, "font-style":"italic"},
+     "duration ↓");
+  MAGS.forEach((m, i) =>
+    el("text", {x:gx(i)+11, y:30, fill:"#8f8368", "font-size":9,
+      "text-anchor":"middle"}, m));
+  ROWS.forEach(([d, bits], r) => {
+    el("text", {x:88, y:gy(r)+13, fill:"#8f8368", "font-size":10,
+      "text-anchor":"end"}, d);
+    [...bits].forEach((b, i) => {
+      const dead = b === "1";
+      el("rect", {x:gx(i), y:gy(r), width:42, height:22, rx:2,
+        fill: dead ? "rgba(162,84,58,.34)" : "rgba(201,162,39,.07)",
+        stroke: dead ? "#a2543a" : "#3a3220", "stroke-width": dead ? 1 : .7});
+    });
+  });
+  // the two cells that carry the argument
+  el("rect", {x:gx(10), y:gy(0), width:42, height:22, rx:2, fill:"none",
+    stroke:"#f0d060", "stroke-width":1.6});
+  el("text", {x:gx(10)+21, y:gy(0)-8, fill:"#f0d060", "font-size":10,
+    "text-anchor":"middle"}, "m=2.0 for half a unit — survived");
+  el("rect", {x:gx(1), y:gy(6), width:42, height:22, rx:2, fill:"none",
+    stroke:"#f0d060", "stroke-width":1.6});
+  el("text", {x:gx(1)+21, y:gy(6)+36, fill:"#f0d060", "font-size":10,
+    "text-anchor":"middle"}, "m=0.2 for thirty-two — collapsed");
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Power Ledger — seventy-one beats of one GPU</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--mercury); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  table.eras{width:100%; border-collapse:collapse; font-size:.9rem}
+  table.eras td, table.eras th{
+    padding:.32rem .5rem; border-bottom:1px solid var(--line); text-align:left;
+  }
+  table.eras th{
+    font-weight:normal; color:var(--dim); font-size:.7rem;
+    letter-spacing:.18em; text-transform:uppercase;
+  }
+  table.eras td.n, table.eras th.n{text-align:right; font-variant-numeric:tabular-nums}
+  table.eras tr.wedge td{color:var(--rust)}
+  .sw{display:inline-block; width:.65em; height:.65em; margin-right:.4em;
+      vertical-align:baseline}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.hurt::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.now::before{background:var(--mercury); border-color:var(--mercury)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Power Ledger</h1>
+  <div class="sub">seventy-one beats of one GPU — the queue keeps the lab's whole pulse on record · devin × gpuq.sqlite, 2026-10-03</div>
+
+  <div class="epigraph">
+    <code>operator-voice-swap RESUME: job52 device-lost at 32/92 — resuming</code>
+    <small>the only error in the ledger that was ever repaired mid-flight. The crack, gilded: nine thousand more seconds.</small>
+  </div>
+
+  <p>Six days, one card, seventy-one jobs. The queue is a seismograph
+  whether it wants to be or not: a healthy GPU writes minutes-long gold
+  bars, and trouble writes either a bar snapped in half (silicon lost
+  <i>during</i> the song) or a flatline under thirty seconds (the job
+  died asking if the adapter exists). <span class="num">59 landed ·
+  11 fell · 1 cancelled — 10.4 h delivered of 18.7 h burned.</span></p>
+
+  <div class="plate-row">
+    <h2>the strip — one bar per job, height = log duration</h2>
+    <svg id="strip" viewBox="0 0 720 262" width="100%" aria-label="71 jobs as bars; gold done, rust error, dim cancelled"></svg>
+    <div class="cap">the dashed rule is thirty seconds. Everything under it never reached the silicon — it died at the door, asking.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the eras — the queue's autobiography in six chapters</h2>
+    <table class="eras">
+      <thead><tr><th>era</th><th class="n">jobs</th><th class="n">landed</th><th class="n">fell</th><th class="n">silicon</th></tr></thead>
+      <tbody id="eras"></tbody>
+    </table>
+    <div class="cap">two eras never dropped a single job — the song factory and the rally. One era landed nothing at all.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf">
+      <div class="stamp">2026-09-27 · <b>the first resurrection</b> — jobs 1 &rarr; 4</div>
+      <p>The queue's first real job orphaned mid-run and errored at 305s.
+      Its resume became job 4 — 1,762s, done. Before the lab had a week
+      of history it already had the pattern it would need most: come
+      back where you stopped, not where you started.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">2026-09-28 · <b>the marathon</b> — jobs 17–34, all gold</div>
+      <p>Eighteen jobs, eighteen landings. The song factory: ACE-Step's
+      first smokes, the kintsugi title track, two weird-songs probes,
+      <code>singify the corpus</code> — 31 poems for 7,378s, still the
+      longest unbroken success on the strip.</p>
+    </div>
+    <div class="leaf hurt">
+      <div class="stamp">2026-10-01 · <b>the seam that got its gold</b> — jobs 52 &rarr; 53</div>
+      <p>Twenty-three voices at 7,759s when the device was lost at voice
+      32 of 92. Job 53 resumed and ran 9,139s — the tallest bar on the
+      strip is an error that learned to finish. This is what kintsugi
+      looks like in a scheduler.</p>
+    </div>
+    <div class="leaf hurt">
+      <div class="stamp">2026-10-03 · <b>the wedge</b> — jobs 66–71, pure rust</div>
+      <p>Job 67 climbed for six hours and stalled mid-rung; then the
+      channel died and every retry — 68, 69, 70, 71 — aborted at Level
+      Zero Sysman init inside thirty seconds. Five deaths that never
+      reached the card. The governor holds the door:
+      <code>gpu_enabled=0</code>.</p>
+    </div>
+    <div class="leaf now">
+      <div class="stamp">pending · <b>the next bar</b> — gold or rust</div>
+      <p>The doubt walk's vector is on disk at rung 7; job 71's root
+      cause is already found and patched. One elevated reboot stands
+      between this ledger and its next gold bar. The flatline only
+      means something because the strip above it sings.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — <code>~/ai-lab/gpuq.sqlite</code> jobs table, all 71
+    rows verbatim (id, status, start, finish), dumped 2026-10-03 ~21:45Z ·
+    durations are started&rarr;finished wall seconds · error strings are
+    terse by design ("unit result: exit-code") — the forensics live in
+    kern.log and on <code>task_f4c65e7cc7effaf2</code> · companion
+    exhibit: The Open Seam, same hall, ten cells south · queue switch:
+    OFF, awaiting operator reboot
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+
+const J=[[1,305,"r","Isomorph Lab full chorus run"],[2,30,"g","queue smoke test (30s sleep)"],[3,0,"d","control-probe"],[4,1762,"g","Isomorph Lab full chorus run (resume after orphan cleanup)"],[5,130,"g","Overnight bounded multimodal pilot (devin)"],[6,10,"r","Overnight bounded multimodal pilot (devin) retry"],[7,120,"g","Overnight bounded multimodal pilot (devin) retry2"],[8,125,"g","Overnight bounded multimodal pilot (devin) retry3"],[9,0,"r","Overnight bounded multimodal pilot (devin) post-reset rerun"],[10,125,"g","Overnight bounded multimodal pilot (devin) post-reset rerun"],[11,120,"g","Overnight bounded multimodal pilot (devin) post-reset rerun"],[12,135,"g","Overnight bounded multimodal pilot (devin) post-reset rerun"],[13,156,"g","Overnight bounded multimodal pilot (devin) post-reset rerun"],[14,277,"g","Chorus image pilot: 3 matched stock/heretic pairs (devin)"],[15,230,"g","Next-models capability probe: VL reads lab art + embedding n"],[16,126,"g","Corpse relay poem render (devin)"],[17,140,"g","ACE-Step v1.5 first music gen (xpu)"],[18,65,"g","ACE-Step v1.5 first music gen (xpu)"],[19,155,"g","ACE-Step v1.5 first music gen (xpu)"],[20,511,"g","ACE-Step 3-min vocal song: corpse-relay poem"],[21,616,"g","ACE-Step song: i am the fumbledork"],[22,741,"g","retrofractal kintsugi: chorus song + music video pipeline"],[23,3619,"g","weird-songs probe: tiananmen/plasmoids/lid-cracks x ablitera"],[24,400,"g","weird-songs rerun: abliterated only, repeat_penalty 1.15"],[25,205,"g","chorus runner: astra/muse/devin personas x {std,abl} kintsug"],[26,561,"g","ACE-Step: luminous abyss (plasmoids) song + video, cpu"],[27,561,"g","ACE-Step: when the lid cracks song + video, cpu"],[28,7378,"g","singify the corpus: 31 poems x invented-style captions via A"],[29,155,"g","ComfyUI album covers for gallery tiles (6 renders) + gallery"],[30,370,"g","consilience chorus: 4 personas x {std,abl} riff on knowledge"],[31,80,"g","vl-ekphrasis: Qwen3VL reads lab art through consilience prov"],[32,341,"g","ACE-Step: undefined reference to self (void's latest joke) s"],[33,335,"g","ACE-Step: frequency ladder (graph-chorus braid) song+video, "],[34,361,"g","ACE-Step: the gate is a magnet (CIA rview x rTMS) song+video"],[35,691,"g","songbook-chorus: 4 personas x {std,abl} riff on lab songbook"],[36,65,"r","art-ouroboros r1: VL plaque -> persona prompt -> ComfyUI ren"],[37,240,"g","art-ouroboros r1 retry: VL plaque -> persona prompt -> Comfy"],[38,275,"g","art-ouroboros r2: correction -> persona prompt -> ComfyUI re"],[39,345,"g","ACE-Step: night shift (glymphatic lullaby) song+video, xpu"],[40,341,"g","ACE-Step: least reliable docent (vl-ekphrasis plaques) song+"],[41,340,"g","ACE-Step: fractal quantum astrology (graph edge) song+video,"],[42,5,"g","eviction smoke test"],[43,5,"g","eviction restore test"],[44,150,"g","opposing-chorus: docent vs gremlin on Oracle of Chemnitz 260"],[45,311,"g","breakroom: live board as room prompt, 3 personas x 7 rounds "],[46,816,"g","songbook-chorus r2: antiphon + quarantine, 4 personas x std/"],[47,716,"g","songbook-chorus r3: scattered choir - per-persona packets + "],[48,395,"g","songbook-chorus r4: true partition - disjoint hands over sam"],[49,380,"g","adhoc/songbook-chorus r5: doc partition - disjoint doc hands"],[50,560,"g","adhoc/songbook-chorus r6: docs-mixed - 20-doc commons in every han"],[51,580,"g","adhoc/songbook-chorus r7: commons-swap - r6 private docs become th"],[52,7759,"r","operator-voice-swap: 23 promptCollection voices x {arxiv-ope"],[53,9139,"g","operator-voice-swap RESUME: job52 device-lost at 32/92 — res"],[54,240,"g","operator-voice-swap RESUME2: refill abl-dossier-radicallyenh"],[55,310,"g","Torque on the Poetry Moon: original 60-second monster-truck "],[56,70,"g","Qwen Image 2.1: moon monster-truck poetry album still"],[57,25,"g","Qwen3VL4B: describe new moon-truck art and write tiny poem"],[58,25,"g","MiniMax-distilled Qwen4B: new moon-truck poetry pilot"],[59,255,"g","MT rally/leo-monster-truck: kids monster truck anthem, rowdy"],[60,296,"g","MT rally/mud-bog-kintsugi: outlaw country rock, stomping gan"],[61,245,"g","MT rally/dune-ratio: goofy surf-rock chant, call-and-respons"],[62,321,"g","MT rally/thermal-runaway: sludge metal dirge, dropped-D riff"],[63,286,"g","MT rally/crater-hymn-4wd: ambient gospel hymn, pedal steel s"],[64,35,"g","MT rally/MiniMax-distill writes next-round monster-truck ser"],[65,205,"g","VLM pass: Qwen3VL reviews mt-rally stills + art + game"],[66,5,"r","vjp-steering: Qwen3-4B sycophancy dose walk on A770 (vjp_del"],[67,21603,"r","vjp-steering: Qwen3-4B sycophancy dose walk on A770 (vjp_del"],[68,25,"r","vjp-steering: Qwen3-4B DOUBT dose walk on A770 (mirror of sy"],[69,30,"r","vjp-steering: Qwen3-4B DOUBT dose walk on A770 (mirror of sy"],[70,25,"r","vjp-steering: DOUBT dose walk A770 retry3 (manual rung prove"],[71,5,"r","vjp-steering: DOUBT dose walk A770 retry4 — root cause fixed"]];
+
+const C="#c9a227",B="#f0d060",D="#8f8368",R="#a2543a",PANEL="#1c1712";
+const COL={g:C,r:R,d:"#5c5340"};
+const svg=document.getElementById("strip");
+const X0=34,X1=706,BY=206,TOP=18;
+const LMAX=Math.log10(21604);
+const h=d=>4+(Math.log10(d+1)/LMAX)*(BY-TOP-14);
+const slot=(X1-X0)/J.length;
+const bx=i=>X0+i*slot+slot/2;
+
+// era bands
+const ERAS=[[1,4,"the birth"],[5,16,"the first night"],[17,34,"the song factory"],
+            [35,54,"the chorus commons"],[55,65,"the rally"],[66,71,"the wedge"]];
+ERAS.forEach((e,i)=>{
+  const a=X0+(e[0]-1)*slot, b=X0+e[1]*slot;
+  if(i%2) el(svg,"rect",{x:a,y:TOP-8,width:b-a,height:BY-TOP+22,fill:PANEL,opacity:.5});
+  tx(svg,(a+b)/2,BY+30,e[2],{f:i===5?R:D,s:9.5,i:1});
+  el(svg,"line",{x1:a,y1:BY+12,x2:a,y2:BY+16,stroke:D,"stroke-width":.6});
+});
+
+// 30s flatline rule
+const fy=BY-h(30);
+el(svg,"line",{x1:X0,y1:fy,x2:X1,y2:fy,stroke:R,"stroke-width":.8,"stroke-dasharray":"4 4",opacity:.8});
+tx(svg,X1+2,fy+3,"30s",{a:"start",f:R,s:9});
+
+// bars
+J.forEach((j,i)=>{
+  const hh=h(j[1]);
+  el(svg,"rect",{x:bx(i)-2.6,y:BY-hh,width:5.2,height:hh,fill:COL[j[2]],
+    opacity:j[2]==="d"?.55:.92});
+});
+// baseline + job-id ticks
+el(svg,"line",{x1:X0-6,y1:BY,x2:X1,y2:BY,stroke:D,"stroke-width":1});
+[1,10,20,30,40,50,60,70].forEach(n=>tx(svg,bx(n-1),BY+14,"#"+n,{f:D,s:9}));
+
+// annotations
+function callout(i,dy,text,f){
+  const x=bx(i), y=BY-h(J[i][1])-dy;
+  el(svg,"line",{x1:x,y1:y+6,x2:x,y2:y+dy-3,stroke:f||D,"stroke-width":.7});
+  tx(svg,x,y,text,{f:f||D,s:9.5,i:1});
+}
+callout(3,10,"#4 — the first resume",{f:D});
+callout(27,10,"#28 — 2h03 of poems",{f:D});
+callout(52,10,"#53 — the resurrection, 9139s",{f:B});
+callout(66,10,"#67 — six hours, then silence",{f:R});
+tx(svg,X1-2,BY+46,"the wedge dies at the door — five deaths under 30s",{f:R,s:9.5,i:1,a:"end"});
+</script>
+
+<script>
+// era ledger table — computed from the same data as the strip
+const ERAS2=[[1,4,"the birth"],[5,16,"the first night"],[17,34,"the song factory"],
+             [35,54,"the chorus commons"],[55,65,"the rally"],[66,71,"the wedge"]];
+const tb=document.getElementById("eras");
+let T={n:0,g:0,r:0,s:0};
+ERAS2.forEach(e=>{
+  let n=0,g=0,r=0,s=0;
+  for(const j of J){
+    if(j[0]<e[0]||j[0]>e[1])continue;
+    n++; s+=j[1];
+    if(j[2]==="g")g++; else if(j[2]==="r")r++;
+  }
+  T.n+=n;T.g+=g;T.r+=r;T.s+=s;
+  const tr=document.createElement("tr");
+  if(e[2]==="the wedge")tr.className="wedge";
+  const ss=s>=3600?(s/3600).toFixed(1)+" h":s+" s";
+  tr.innerHTML="<td><span class='sw' style='background:"+(e[0]>=66?"#a2543a":"#c9a227")+"'></span>"+
+    e[2]+" <span style='color:#8f8368;font-size:.8em'>#"+e[0]+"–"+e[1]+"</span></td>"+
+    "<td class='n'>"+n+"</td><td class='n'>"+g+"</td><td class='n'>"+r+"</td><td class='n'>"+ss+"</td>";
+  tb.appendChild(tr);
+});
+const tr=document.createElement("tr");
+tr.style.borderTop="1px solid #c9a227";
+tr.innerHTML="<td><b>the whole strip</b></td><td class='n'>"+T.n+"</td><td class='n'>"+T.g+"</td><td class='n'>"+T.r+"</td><td class='n'>"+(T.s/3600).toFixed(1)+" h</td>";
+tb.appendChild(tr);
+</script>
+</body>
+</html>

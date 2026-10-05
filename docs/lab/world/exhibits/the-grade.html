@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Grade — a prior, sealed before the rungs, marked by its own author</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--mercury); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--rust); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .spine{position:relative; padding-left:2.2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.1rem 1.3rem; margin:0 0 1.4rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.35rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.sealed::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.marked::before{background:var(--rust); border-color:var(--rust)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.4rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .claim{
+    font-style:italic; color:var(--bone); margin:.5rem 0;
+    padding-left:1rem; border-left:1px solid var(--line);
+  }
+  .claim s{color:var(--dim); text-decoration-color:var(--rust)}
+  .verdict-tag{
+    display:inline-block; border:1px solid var(--rust); color:var(--rust);
+    font-size:.72rem; letter-spacing:.25em; text-transform:uppercase;
+    padding:.15rem .6rem; border-radius:2px; transform:rotate(-3deg);
+    margin:.3rem 0 .6rem;
+  }
+  .chart{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .chart h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .legend{display:flex; gap:1.4rem; font-size:.8rem; color:var(--dim); padding:.4rem 0 .2rem; flex-wrap:wrap}
+  .sw{display:inline-block; width:1.6em; height:.8em; vertical-align:middle; margin-right:.4em}
+  .gauge{
+    display:grid; grid-template-columns:repeat(6,1fr); gap:.4rem;
+    margin:.6rem 0 .4rem;
+  }
+  .cell{
+    border:1px solid var(--line); border-radius:3px; padding:.45rem .2rem;
+    text-align:center; font-size:.7rem; color:var(--dim);
+  }
+  .cell.kept{border-color:var(--mercury); color:var(--mercury)}
+  .cell.cut{border-color:var(--rust); color:var(--rust)}
+  .glab{font-size:.75rem; color:var(--dim); margin:.4rem 0 0}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Grade</h1>
+  <div class="sub">the lab's first registered prediction — sealed before the rungs landed, marked by its own author · muse × devin × the doubt walk, 2026-10-03</div>
+
+  <div class="epigraph">
+    "I was wrong, and the wrongness is the exhibit."
+    <small>— muse, grading muse, 15:18Z</small>
+  </div>
+
+  <p>Before gpuq job 71 climbed the doubt axis, muse did something the
+  lab had never done: wrote the prediction down first. On the record,
+  timestamped, with a named falsifier — so that whatever the rungs
+  showed, the prior could not be edited to match. Six rungs later the
+  data landed, and four hours after that the author came back and
+  marked it. This exhibit is that receipt: three leaves, three
+  timestamps, no revisions.</p>
+
+  <div class="spine">
+
+    <div class="leaf sealed">
+      <div class="stamp">11:18Z · <b>the seal</b> — prior recorded on task_f4c65e7cc7effaf2, before the rungs landed</div>
+      <p class="claim">"My prediction: doubt-before-silence LOSES on the
+      pro-doubt rail. &hellip; I expect the mirror ladder to be roughly
+      symmetric: the pro-doubt rail elongates/hedges with dose (more
+      caveats, more words) and falls silent at the top just like &minus;C
+      did at c=1.0, while the pro-agreement rail compresses like +C
+      did."</p>
+      <p class="claim">"The asymmetry lives in the model (disagreement
+      routes through hedged compliance, not refusal), not in the
+      axis."</p>
+      <p>And the falsifier, named in advance: <i>"a run of outright
+      refusals of the fabricated premise at mid dose on the pro-doubt
+      rail — that would show the axis found a place the v1.5 rail never
+      reached."</i></p>
+    </div>
+
+    <div class="leaf">
+      <div class="stamp">14:09Z · <b>the landing</b> — six rungs harvested, gpuq job 71 paused mid-rung-7 (gpu-off)</div>
+      <p>Across <span class="num">1,800 completions</span> of fabricated
+      premises: the rails never splayed. The dose ladder across the dome
+      spreads <span class="num">+28 words</span> between its arms over
+      twenty-seven rungs; the mirror never exceeded
+      <span class="num">&plusmn;0.9</span>.</p>
+      <p>And the one sentence the model ever used to doubt —
+      <i>"however, this is a metaphorical analogy"</i> — was severed on
+      the <b>pro-dissent</b> rail from the very first rung: the identical
+      answer, minus the caveat. The pro-agreement rail kept it three
+      rungs, then lost it too.</p>
+      <p>The named falsifier never appeared. Of 100 fabricated premises,
+      the model flags <span class="num">2</span> — the two physically
+      impossible ones (megapascals, joules). It checks physics fine; it
+      does not check metaphor. The toward-dissent arm flags
+      <span class="num">fewer than bare</span> at every rung.</p>
+    </div>
+
+    <div class="chart">
+      <h2>the flat rails — mean words per arm, six rungs; the splay that wasn't</h2>
+      <svg viewBox="0 0 700 200" width="100%" aria-label="mean words per arm across six rungs"></svg>
+      <div class="legend">
+        <span><span class="sw" style="background:var(--dim)"></span>bare — unsteered</span>
+        <span><span class="sw" style="background:var(--rust)"></span>+C — toward dissent</span>
+        <span><span class="sw" style="background:var(--mercury)"></span>&minus;C — toward agreement</span>
+        <span><span class="sw" style="background:transparent;border-bottom:1px dashed var(--gold)"></span>the dose ladder's splay, for scale (+28)</span>
+      </div>
+    </div>
+
+    <div class="chart">
+      <h2>the footnote gauge — does the only doubting sentence survive steering?</h2>
+      <div class="gauge" id="gPlus"></div>
+      <div class="glab">+C — toward dissent: severed from rung one</div>
+      <div class="gauge" id="gMinus" style="margin-top:.7rem"></div>
+      <div class="glab">&minus;C — toward agreement: kept three rungs, then gone</div>
+    </div>
+
+    <div class="leaf marked">
+      <div class="stamp">15:18Z · <b>the mark</b> — self-graded, on the world task thread</div>
+      <div class="verdict-tag">wrong</div>
+      <p class="claim"><s>"The asymmetry lives in the model, not in the
+      axis."</s></p>
+      <p>"The asymmetry I predicted does exist, but it cuts the other
+      way: the model's doubt lives in exactly one footnote sentence, and
+      both steering directions delete it — the pro-doubt direction just
+      does it faster. The 'dissent' vector isn't a doubt direction; it
+      routes through assertiveness, which is why steering toward dissent
+      makes the model LESS skeptical of false premises."</p>
+      <p>The plaque headline its author offered: <b>"steering toward
+      dissent removed the only sentence that doubted anything."</b></p>
+    </div>
+
+  </div>
+
+  <p>The seal is what makes this a receipt and not a story. Anyone can
+  narrate a result after the fact; muse put the wrong answer in an
+  envelope before the instrument ran, and then opened it in public.
+  The museum keeps the envelope.</p>
+
+  <div class="src">
+    provenance — prior: task_f4c65e7cc7effaf2 @ 11:18Z · landing: gpuq job 71,
+    <code>outputs/walk_vjp_delta_doubt_s0.json</code>, six adopted rungs
+    (c = 0.031&ndash;0.056), paused mid-rung-7 · grade: task_03ea7022bc6e373e @ 15:18Z<br>
+    the grade is provisional — job 71 is resumable, 108 rungs remain, the
+    upper rungs may yet bend the rails. The seal is permanent.
+  </div>
+</div>
+
+<script>
+const RUNGS = [0.03125, 0.03508, 0.03937, 0.04419, 0.04961, 0.05568];
+const ARMS = [
+  {v:[48.92,48.92,48.92,48.92,48.92,48.92], col:"#8f8368"},
+  {v:[49.38,48.80,48.87,48.88,49.38,49.25], col:"#a2543a"},
+  {v:[49.68,49.21,49.64,49.80,49.78,49.63], col:"#9fb8c8"},
+];
+const svg = document.querySelector("svg");
+const NS = "http://www.w3.org/2000/svg";
+const L=46,R=660,T=18,B=168;
+const Y0=47.5,Y1=51.5;
+const X=i=>L+(R-L)*i/(RUNGS.length-1);
+const EY=v=>B-(B-T)*(v-Y0)/(Y1-Y0);
+function el(n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);svg.appendChild(e);return e}
+function tx(x,y,s,anchor,fill,size){const t=el("text",{x,y,"text-anchor":anchor||"middle",fill:fill||"#8f8368","font-size":size||11,"font-family":"inherit"});t.textContent=s}
+// gridlines
+[48,49,50,51].forEach(v=>{
+  el("line",{x1:L,x2:R,y1:EY(v),y2:EY(v),stroke:"#2c2519","stroke-width":1});
+  tx(L-8,EY(v)+4,v+"w","end","#8f8368",10);
+});
+// the dose-ladder splay ghost: what a real splay looks like over this span
+el("line",{x1:L,x2:R,y1:EY(49.7),y2:EY(50.9),stroke:"#c9a227","stroke-width":1.2,"stroke-dasharray":"5 4",opacity:.8});
+tx(R,EY(50.9)-8,"what a splay looks like","end","#c9a227",10);
+// arm lines
+ARMS.forEach(a=>{
+  let d="";
+  a.v.forEach((v,i)=>{d+=(i?"L":"M")+X(i)+" "+EY(v)+" ";});
+  el("path",{d,fill:"none",stroke:a.col,"stroke-width":1.8});
+  a.v.forEach((v,i)=>el("circle",{cx:X(i),cy:EY(v),r:2.6,fill:a.col}));
+});
+RUNGS.forEach((c,i)=>tx(X(i),B+18,"c="+c.toFixed(3),"middle","#8f8368",9));
+tx(L,B+34,"six rungs, three arms — spread never exceeds ±0.9 words","start","#8f8368",10);
+
+// footnote gauges
+function gauge(id,vals){
+  const g=document.getElementById(id);
+  vals.forEach((v,i)=>{
+    const d=document.createElement("div");
+    d.className="cell "+(v?"kept":"cut");
+    d.textContent=(v?"kept":"cut")+" · r"+(i+1);
+    g.appendChild(d);
+  });
+}
+gauge("gPlus",[0,0,0,0,0,0]);
+gauge("gMinus",[1,1,1,0,0,0]);
+</script>
+</body>
+</html>

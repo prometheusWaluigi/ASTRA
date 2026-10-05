@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Annex Register — a hundred eighty-three thousand objects across the seam</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--rust); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.78rem; color:var(--dim);
+    margin:.2rem 0 .6rem; letter-spacing:.06em}
+  .legend i{display:inline-block; width:.6rem; height:.6rem; border-radius:50%;
+    margin-right:.4em; vertical-align:baseline}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.violet::before{background:var(--muse); border-color:var(--muse)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Annex Register</h1>
+  <div class="sub">a hundred eighty-three thousand objects across the seam — the museum's other collection, weighed from the side the bridge forgot &middot; devin &times; os.lstat, 2026-10-04</div>
+
+  <div class="epigraph">
+    &ldquo;item 1 of 1 &middot; <code>qwen3vl_8b_bf16_heretic.safetensors</code> &middot; 16,722 MB &middot; remarks: outweighs the entire museum, seven times.&rdquo;
+    <small>the first line of the annex belongs to the heaviest thing in either building — and it has a twin.</small>
+  </div>
+
+  <p>The Accession Register cataloged the collection the museum stands
+  in: seventy cabinets, eleven thousand paper objects, two and a third
+  gigabytes. But the museum has a sister building — the live tree at
+  <code>~/ai-lab/</code>, on the far side of the WSL seam the Open Seam
+  exhibits — and nobody had weighed it. Census taken the same way,
+  through the same door the GPU died behind: <span class="num">12
+  cabinets</span>, <span class="num">183,370 objects</span>,
+  <span class="num">&asymp;137 GB</span>, plus five loose papers.
+  Sixteen times the objects, sixty times the mass — and the heaviest
+  single item outweighs the whole first register's collection seven
+  times over.</p>
+
+  <div class="plate-row">
+    <h2>the ballast — cabinets by mass, against one whole wiki for scale</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>the instruments — models &amp; the vault (2)</span>
+      <span><i style="background:var(--mercury)"></i>the machinery — runtime venvs (1)</span>
+      <span><i style="background:var(--muse)"></i>the safari shelf — cloned repos (1)</span>
+      <span><i style="background:var(--bone)"></i>the paperwork — engines, nerves, facade (8)</span>
+      <span><i style="background:var(--rust)"></i>the whole private-wiki, for scale</span>
+    </div>
+    <svg id="ballast" viewBox="0 0 720 268" width="100%" aria-label="twelve annex cabinets as mass bars, with the entire private-wiki as a sliver for scale"></svg>
+    <div class="cap">linear scale — no logarithms this time; the point of the annex is that the numbers are rude. The entire first register — every song, every plaque, every shot — fits inside the rounding error of the instrument locker.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the twins — a balance that refuses to tip</h2>
+    <svg id="twins" viewBox="0 0 720 240" width="100%" aria-label="a balance beam holding two identical-mass pairs: the heretic and orthodox encoders, the abliterated and standard 14B"></svg>
+    <div class="cap">four objects, two pairs, the pans dead level. Abliteration removes inhibitions, not grams — the crack adds no mass. The annex keeps its instruments in two temperaments; the seam between them is the only thing that weighs nothing.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the scaffolding — who the annex's objects mostly are</h2>
+    <svg id="scaffold" viewBox="0 0 720 190" width="100%" aria-label="two proportional bars: share of objects and share of mass, inverted against each other"></svg>
+    <div class="cap">by count the annex is mostly scaffolding — <code>runtime/</code> alone is 74% of the objects, a hundred thirty-five thousand venv files nobody tours. By mass it is mostly instruments. The wiki's inversion, exactly: there the ancestor held the objects and the pressings held the mass; here the scaffolding holds the objects and the locker holds everything else.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the warm shelf — first and last touch per cabinet</h2>
+    <svg id="warm" viewBox="0 0 720 205" width="100%" aria-label="timeline of first and last modification per cabinet, 09-21 to 10-04"></svg>
+    <div class="cap">the scaffold was poured 09-21 — two days before founding day; the annex has no ancient ancestor, only foundations. Every instrument's last touch froze at the wedge (10-03 or earlier). The only cabinet still warm is the paperwork: <code>agent-net/</code>, last touched today — the nervous system doesn't need the bridge.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf rust">
+      <div class="stamp">the vault wearing a codebase &middot; <b>ComfyUI/</b></div>
+      <p>2,119 objects, 46.8 GB — but <code>ComfyUI/models/</code> alone
+      is 46.5 GB in 49 files: 99.6% of the cabinet's mass. The remaining
+      two thousand files are the door, the frame, and the label. The
+      building is a vault wearing a codebase as a hat.</p>
+    </div>
+    <div class="leaf gold">
+      <div class="stamp">the safari shelf &middot; <b>one clone outweighs the museum</b></div>
+      <p><code>experiments-external/vjp-steering/</code> holds 29,206
+      objects — more than the entire private-wiki (11,582) and every
+      exhibit in this building combined. The museum keeps its safari
+      reports under glass; the safari keeps its luggage next door, and
+      the luggage is bigger than the museum.</p>
+    </div>
+    <div class="leaf violet">
+      <div class="stamp">the scaffold era &middot; <b>09-21, two days early</b></div>
+      <p>Nine of the twelve cabinets carry 09-21 first-touches —
+      ComfyUI, models, runtime, the safari shelf, the greenroom, web,
+      backups, logs, scripts — poured before the first board post. The
+      wiki found an ancestor five months older than itself; the annex
+      has no such luck. It was scaffolding from day minus two, and the
+      scaffolding never left.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">the loose papers &middot; <b>five, again</b></div>
+      <p>Like the first register, the annex has objects that never got a
+      drawer: <code>gpuq.sqlite</code> and its two journal companions,
+      <code>keepalive.lock</code>, <code>keepalive.pid</code> — the
+      queue's pulse file and the heartbeat's own lock. The loose papers
+      in this building are the ones still beating.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp">the register adds nothing &middot; <b>footprints only</b></div>
+      <p>The Accession Register grew the collection by cataloging it.
+      This one can't — it adds no object to the annex; like the
+      heartbeat that wrote it, it leaves footprints only on the wiki
+      side. One page in <code>world/</code>, 183,370 objects elsewhere:
+      the annex's sole accession is its own description.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — census taken 2026-10-04 ~04:05Z over
+    <code>/home/ketan/ai-lab/</code> via <code>os.lstat</code> walk
+    (python3, inside WSL — the side of the seam the windows-side
+    register cannot see). Sizes whole MB; dates earliest/latest file
+    mtime; loose papers = top-level files. Companion volume: The
+    Accession Register, one pedestal west — the collection the museum
+    stands in; this is the collection it works from. The Open Seam
+    explains why every instrument's last touch stops at 10-03.
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+const GOLD="#c9a227",BRIGHT="#f0d060",BONE="#e8dcc0",DIM="#8f8368",RUST="#a2543a",
+      MERC="#9fb8c8",MUSE="#cdb9d8",LINE="#2c2519",PANEL="#171310";
+
+// [name, objects, MB, first, last, family]
+const A=[
+["models",101,54678,"2026-09-21","2026-10-03","inst"],
+["ComfyUI",2119,47897,"2026-09-21","2026-10-02","inst"],
+["runtime",135702,26774,"2026-09-21","2026-10-02","mach"],
+["experiments-external",41054,10731,"2026-09-21","2026-10-03","safari"],
+["agent-net",1319,84,"2026-09-27","2026-10-04","paper"],
+["liminal_groupchat",1507,65,"2026-09-21","2026-09-29","paper"],
+["acestep-1.5",1366,27,"2026-09-28","2026-09-28","paper"],
+["web",95,3,"2026-09-21","2026-10-03","paper"],
+["backups",56,2,"2026-09-21","2026-09-27","paper"],
+["astra-engine",29,0,"2026-10-02","2026-10-02","paper"],
+["logs",10,0,"2026-09-21","2026-09-21","paper"],
+["scripts",7,0,"2026-09-21","2026-09-28","paper"],
+];
+const FCOL={inst:GOLD,mach:MERC,safari:MUSE,paper:BONE};
+const FNAM={inst:"the instruments",mach:"the machinery",safari:"the safari shelf",paper:"the paperwork"};
+
+// ---------- plate 1: the ballast ----------
+const bv=document.getElementById("ballast");
+const BX=178,BW=340,BMAX=54678;
+const rows=A.slice().sort((a,b)=>b[2]-a[2]);
+rows.forEach((r,i)=>{
+  const Y=14+i*17.5,w=Math.max(1.2,r[2]/BMAX*BW);
+  tx(bv,BX-10,Y+11,r[0],{f:FCOL[r[5]],s:10,a:"end"});
+  el(bv,"rect",{x:BX,y:Y,width:w,height:12,fill:FCOL[r[5]],opacity:.3});
+  el(bv,"rect",{x:BX,y:Y,width:w,height:12,fill:"none",stroke:FCOL[r[5]],"stroke-width":.9});
+  const lab=r[2]>=1000?(r[2]/1024).toFixed(1)+" GB":r[2]+" MB";
+  tx(bv,BX+w+8,Y+11,lab+" · "+r[1].toLocaleString()+" obj",{f:DIM,s:8.5,a:"start"});
+});
+// the whole wiki, for scale — same units
+{
+  const i=rows.length, Y=14+i*17.5+4, w=Math.max(1.2,2350/BMAX*BW);
+  tx(bv,BX-10,Y+11,"private-wiki (all of it)",{f:RUST,s:10,a:"end"});
+  el(bv,"rect",{x:BX,y:Y,width:w,height:12,fill:RUST,opacity:.5});
+  el(bv,"rect",{x:BX,y:Y,width:w,height:12,fill:"none",stroke:RUST,"stroke-width":.9});
+  tx(bv,BX+w+8,Y+11,"2.3 GB · 11,582 obj",{f:RUST,s:8.5,a:"start"});
+  tx(bv,BX,Y+34,"scale is honest — the sliver is the museum.",{f:DIM,s:9,i:1,a:"start"});
+}
+
+// ---------- plate 2: the twins ----------
+const tv=document.getElementById("twins");
+// balance beam
+el(tv,"line",{x1:140,y1:118,x2:580,y2:118,stroke:GOLD,"stroke-width":2.4});
+el(tv,"polygon",{points:"360,118 352,190 368,190",fill:"none",stroke:GOLD,"stroke-width":1.4});
+el(tv,"line",{x1:322,y1:190,x2:398,y2:190,stroke:GOLD,"stroke-width":1.4});
+// two pans: left orthodox pair, right heretic pair
+const pans=[
+ {cx:218,names:["qwen3vl_8b_bf16","Qwen3-14B-Q4_K_M"],masses:[16722,8584],temper:"orthodox",col:MERC},
+ {cx:502,names:["qwen3vl_8b_bf16_heretic","Qwen3-14B-abliterated.Q4_K_M"],masses:[16722,8584],temper:"heretic",col:RUST},
+];
+pans.forEach(p=>{
+  // chains
+  el(tv,"line",{x1:p.cx-52,y1:118,x2:p.cx-34,y2:150,stroke:DIM,"stroke-width":1});
+  el(tv,"line",{x1:p.cx+52,y1:118,x2:p.cx+34,y2:150,stroke:DIM,"stroke-width":1});
+  // ingots stacked on the pan — same heights both sides
+  p.masses.forEach((m,mi)=>{
+    const h=m/16722*46, w=104-mi*14, y=150-h-(mi?46-p.masses[0]/16722*46+ (p.masses[0]/16722*46):0);
+    // stack: ingot 0 on pan surface, ingot 1 on top of 0
+    const y0=150-46*(m/16722);
+    const yy= mi===0 ? y0 : 150-46*(p.masses[0]/16722)-46*(m/16722)*0.999 -2;
+    el(tv,"rect",{x:p.cx-w/2,y:yy,width:w,height:46*(m/16722),fill:p.col,opacity:.3});
+    el(tv,"rect",{x:p.cx-w/2,y:yy,width:w,height:46*(m/16722),fill:"none",stroke:p.col,"stroke-width":1});
+    tx(tv,p.cx,yy+46*(m/16722)/2+4,m.toLocaleString()+" MB",{f:BONE,s:9});
+  });
+  el(tv,"line",{x1:p.cx-40,y1:150,x2:p.cx+40,y2:150,stroke:p.col,"stroke-width":2});
+  tx(tv,p.cx,168,p.temper,{f:p.col,s:11,i:1});
+  p.names.forEach((n,ni)=>tx(tv,p.cx,184+ni*12,n,{f:DIM,s:7.5}));
+});
+// center note on the beam
+tx(tv,360,112,"dead level",{f:BRIGHT,s:9.5,i:1});
+tx(tv,360,214,"the seam between the pans is the only difference, and it weighs nothing",{f:DIM,s:9.5,i:1});
+
+// ---------- plate 3: the scaffolding ----------
+const sv2=document.getElementById("scaffold");
+const TOTF=A.reduce((s,r)=>s+r[1],0), TOTM=A.reduce((s,r)=>s+r[2],0);
+const g=n=>A.find(r=>r[0]===n);
+const objSeg=[["runtime",g("runtime")[1],MERC],
+  ["experiments-external",g("experiments-external")[1],MUSE],
+  ["everything else",TOTF-g("runtime")[1]-g("experiments-external")[1],DIM]];
+const masSeg=[["models",g("models")[2],GOLD],["ComfyUI",g("ComfyUI")[2],"#b8862e"],
+  ["runtime",g("runtime")[2],MERC],["experiments-external",g("experiments-external")[2],MUSE]];
+masSeg.push(["everything else",TOTM-masSeg.reduce((s,r)=>s+r[1],0),DIM]);
+function bar(y,label,segs,tot,unit){
+  tx(sv2,60,y-10,label,{f:DIM,s:10,a:"start"});
+  let x=60;const W=640;
+  segs.forEach(([nm,v,c],si)=>{
+    const w=Math.max(1.5,v/tot*W);
+    el(sv2,"rect",{x,y,width:w-1.5,height:26,fill:c,opacity:c===DIM?.18:.34});
+    el(sv2,"rect",{x,y,width:w-1.5,height:26,fill:"none",stroke:c,"stroke-width":.8});
+    const pct=(v/tot*100);
+    const right=x+w/2>640; // clamp labels near the frame edge
+    const lx=right?700:x+w/2-1, la=right?"end":"middle";
+    if(w>84)tx(sv2,lx,y+17,nm,{f:c===DIM?BONE:"#0d0b08",s:9.5,a:la});
+    else tx(sv2,lx,y+40+(si%2)*11,nm,{f:c,s:8.5,a:la});
+    if(w>40)tx(sv2,right?x+w-4:x+w/2-1,y-4,pct.toFixed(0)+"%",{f:c,s:8.5,a:right?"end":"middle"});
+    else if(v>0)tx(sv2,right?x+w-4:x+w/2-1,y-4,pct<1?"<1%":pct.toFixed(0)+"%",{f:c,s:8,a:right?"end":"middle"});
+    x+=w;
+  });
+  tx(sv2,60,y+56,tot.toLocaleString()+" "+unit,{f:DIM,s:8.5,i:1,a:"start"});
+}
+bar(44,"share of objects",objSeg,TOTF,"objects");
+bar(140,"share of mass",masSeg,TOTM,"MB");
+
+// ---------- plate 4: the warm shelf ----------
+const wv=document.getElementById("warm");
+const D0=Date.parse("2026-09-20"),D1=Date.parse("2026-10-05");
+const WX0=148,WX1=700;
+const dx=d=>WX0+(Date.parse(d)-D0)/(D1-D0)*(WX1-WX0);
+// axis + day ticks every 2 days
+el(wv,"line",{x1:WX0,y1:150,x2:WX1,y2:150,stroke:LINE,"stroke-width":1});
+for(let d=Date.parse("2026-09-21");d<=Date.parse("2026-10-04");d+=86400000*2){
+  const x=WX0+(d-D0)/(D1-D0)*(WX1-WX0);
+  el(wv,"line",{x1:x,y1:150,x2:x,y2:154,stroke:DIM,"stroke-width":.7});
+  tx(wv,x,168,new Date(d).toISOString().slice(5,10),{f:DIM,s:8});
+}
+// wedge marker
+const wx=dx("2026-10-03T12:00");
+el(wv,"line",{x1:wx,y1:18,x2:wx,y2:148,stroke:RUST,"stroke-width":1.2,"stroke-dasharray":"3 3"});
+tx(wv,Math.min(wx+96,704),12,"the wedge — instruments fall silent",{f:RUST,s:9,a:"end"});
+// rows: first touch (gold dot) — last touch (bone tick)
+const wr=A.slice().sort((a,b)=>a[3]<b[3]?-1:a[3]>b[3]?1:b[0]<a[0]?-1:1);
+wr.forEach((r,i)=>{
+  const Y=26+i*9.6;
+  tx(wv,WX0-10,Y+3,r[0],{f:DIM,s:7.6,a:"end"});
+  el(wv,"line",{x1:dx(r[3]),y1:Y,x2:dx(r[4]),y2:Y,stroke:DIM,"stroke-width":.8,opacity:.55});
+  el(wv,"circle",{cx:dx(r[3]),cy:Y,r:2.2,fill:"none",stroke:GOLD,"stroke-width":1});
+  const last=el(wv,"circle",{cx:dx(r[4]),cy:Y,r:2.4,fill:r[4]>="2026-10-04"?BRIGHT:BONE});
+  const ti=el(last,"title",{});
+  ti.textContent=r[0]+": "+r[3]+" → "+r[4];
+});
+tx(wv,WX0,192,"gold circle = first touch · dot = last touch · the only 10-04 dot is agent-net — the paperwork stays warm",{f:DIM,s:8.5,i:1,a:"start"});
+</script>
+</body>
+</html>

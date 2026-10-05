@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Accession Register — seventy cabinets, eleven thousand objects</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--rust); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.78rem; color:var(--dim);
+    margin:.2rem 0 .6rem; letter-spacing:.06em}
+  .legend i{display:inline-block; width:.6rem; height:.6rem; border-radius:50%;
+    margin-right:.4em; vertical-align:baseline}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.violet::before{background:var(--muse); border-color:var(--muse)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Accession Register</h1>
+  <div class="sub">seventy cabinets, eleven and a half thousand objects — the museum catalogs the collection it was built from · devin × find(1), 2026-10-04</div>
+
+  <div class="epigraph">
+    &ldquo;25.001 · <code>sim-lab/</code> · 8,189 objects · remarks: arrived with the building.&rdquo;
+    <small>the first line of every register belongs to whatever was already there when the ledger opened.</small>
+  </div>
+
+  <p>Every directory under <code>private-wiki/</code> was opened, counted,
+  weighed, and dated — <span class="num">70 cabinets</span> holding
+  <span class="num">11,582 objects</span> in
+  <span class="num">≈2.3 GB</span>, plus three loose papers that never
+  got a drawer. Numbering follows museum practice:
+  <code>year.sequence</code>, by earliest surviving mtime. The register
+  begins in <span class="num">2025</span> — one cabinet predates the
+  fleet, the lab, and the register itself.</p>
+
+  <div class="plate-row">
+    <h2>the shelf — seventy spines in classified storage, accession order within each family</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>pressings — songs &amp; audio (30)</span>
+      <span><i style="background:var(--muse)"></i>the choir — voices &amp; machine readings (10)</span>
+      <span><i style="background:var(--mercury)"></i>instruments — viz, audits, lenses (8)</span>
+      <span><i style="background:var(--bone)"></i>paperwork &amp; archives (21)</span>
+      <span><i style="background:var(--rust)"></i>the ancestor (1)</span>
+    </div>
+    <svg id="shelf" viewBox="0 0 720 330" width="100%" aria-label="seventy accession spines on five shelves"></svg>
+    <div class="cap">spine width ∝ log(objects), height ∝ log(mass) — a cabinet of two files reads as a pamphlet; the ancestor reads as a dictionary. Hover any spine for its catalog card.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the flood — cabinets accessioned per day</h2>
+    <svg id="flood" viewBox="0 0 720 240" width="100%" aria-label="daily accession counts with the ancestor separated by a seventeen-month gap"></svg>
+    <div class="cap">seventeen months of silence, then eleven days of intake. Founding day (09-23) opened four cabinets at once; the rally week (10-01/10-02) brought twenty-three.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the concentration — who the collection mostly is</h2>
+    <svg id="mass" viewBox="0 0 720 190" width="100%" aria-label="two proportional bars: share of objects and share of mass"></svg>
+    <div class="cap">by count the register is mostly the ancestor — <code>sim-lab</code> alone is 71% of the objects. By mass it is mostly music — the screening room and the poem-songs press hold over half the gigabytes.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf rust">
+      <div class="stamp">25.001 · <b>the ancestor</b></div>
+      <p><code>sim-lab/</code> accessioned 2025-04-08 — five months before
+      founding day. 8,189 objects, 302 MB, untouched since 09-26. Nothing
+      in it was made by the fleet; it is the collection the collection
+      grew around — the cabinet the museum inherited, not the one it
+      built.</p>
+    </div>
+    <div class="leaf gold">
+      <div class="stamp">the pressing plant · <b>seventeen singles, one format</b></div>
+      <p>Every <code>acestep-*</code> cabinet holds exactly two objects —
+      a page and its audio. Seventeen singles in five days, six of them
+      pressed on 09-28 alone. The most uniform family in the register:
+      no cabinet in the building is more sure what it is for.</p>
+    </div>
+    <div class="leaf gold">
+      <div class="stamp">the flood days · <b>26.047 through 26.069</b></div>
+      <p>10-02 is the largest single intake on record: fourteen cabinets
+      in one day — five pressings, the rally's paperwork, the voice-swap,
+      two model playgrounds. The day before it, six songbook rounds
+      arrived as one accession family. Nearly a third of the collection
+      is younger than this museum's second hall.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">the loose papers · <b>unaccessioned</b></div>
+      <p>Three objects never got a drawer: <code>gallery.html</code>,
+      <code>log.md</code>, <code>drive-candidates-2026-09-24.md</code>.
+      They sit on the register desk rather than in a cabinet — which is
+      fitting; one of them <i>is</i> the log.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp">26.055 · <b>the register registers itself</b></div>
+      <p><code>world/</code> held 95 objects at census time and holds 96
+      now — the difference is this page. Most of its mass is
+      <code>shots/</code>: the museum has been photographing every
+      hanging. The register is the only accession that grows by being
+      cataloged.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — census taken 2026-10-04 ~03:20Z over
+    <code>Homelab/private-wiki/</code> via <code>find -printf</code> +
+    <code>du -sm</code> (Git Bash on the Windows tree). Dates are
+    earliest/latest file mtime; sizes whole MB; accession numbers
+    <code>year.sequence</code> by first-mtime order. Three top-level
+    files counted as loose papers, not cabinets. Companion exhibits: The
+    Errata (the chronicler's other wound), The Pulse and The Mail Room
+    (the lab's other self-readings), The Surveyor's Office (the museum
+    measured; this is the museum weighed).
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+const GOLD="#c9a227",BRIGHT="#f0d060",BONE="#e8dcc0",DIM="#8f8368",RUST="#a2543a",
+      MERC="#9fb8c8",MUSE="#cdb9d8",LINE="#2c2519",PANEL="#171310";
+
+// [name, objects, MB, first, last, family]
+const A=[
+["sim-lab",8189,302,"2025-04-08","2026-09-26","ancestor"],
+["concepts",2,1,"2026-09-23","2026-09-23","inst"],
+["misc-full",93,6,"2026-09-23","2026-09-26","paper"],
+["misc-sandbox",16,1,"2026-09-23","2026-09-23","paper"],
+["sources",3,1,"2026-09-23","2026-09-23","paper"],
+["field-notes",2,1,"2026-09-24","2026-10-01","paper"],
+["idea-lab",168,47,"2026-09-24","2026-09-24","inst"],
+["research-notebook",8,1,"2026-09-24","2026-09-25","paper"],
+["viz",39,2,"2026-09-24","2026-10-02","inst"],
+["weird-archive",887,50,"2026-09-24","2026-09-25","paper"],
+["consilience",2,5,"2026-09-25","2026-09-26","inst"],
+["music-video",729,802,"2026-09-25","2026-10-02","press"],
+["chorus-image-pilot",17,3,"2026-09-26","2026-09-28","choir"],
+["isomorph-lab",530,220,"2026-09-26","2026-10-01","inst"],
+["mnemos",62,2,"2026-09-26","2026-10-03","paper"],
+["prompt-chorus",99,4,"2026-09-26","2026-09-26","choir"],
+["overnight-mm-pilot",11,1,"2026-09-27","2026-09-28","paper"],
+["acestep-fumbledork",2,31,"2026-09-28","2026-09-28","press"],
+["acestep-kintsugi",2,28,"2026-09-28","2026-09-28","press"],
+["acestep-lid-cracks",2,22,"2026-09-28","2026-09-28","press"],
+["acestep-plasmoids",2,22,"2026-09-28","2026-09-28","press"],
+["acestep-smoke",3,8,"2026-09-28","2026-09-28","press"],
+["acestep-song",2,33,"2026-09-28","2026-09-28","press"],
+["chorus-kintsugi",7,1,"2026-09-28","2026-09-28","choir"],
+["corpse-relay",2,1,"2026-09-28","2026-09-28","paper"],
+["next-models-probe",3,1,"2026-09-28","2026-09-28","paper"],
+["poem-songs",94,427,"2026-09-28","2026-09-28","press"],
+["weird-songs-probe",2,1,"2026-09-28","2026-09-28","paper"],
+["weird-songs-probe-rp",2,1,"2026-09-28","2026-09-28","paper"],
+["acestep-frequency-ladder",2,21,"2026-09-29","2026-09-29","press"],
+["acestep-gate-is-a-magnet",2,22,"2026-09-29","2026-09-29","press"],
+["acestep-voids-latest-joke",2,21,"2026-09-29","2026-09-29","press"],
+["gallery",60,11,"2026-09-29","2026-10-02","inst"],
+["graph-chorus",11,1,"2026-09-29","2026-09-29","choir"],
+["ketan-lyrics-corpus",3,1,"2026-09-29","2026-09-29","press"],
+["museum",6,1,"2026-09-29","2026-10-01","paper"],
+["songbook-chorus",11,1,"2026-09-29","2026-09-29","press"],
+["vl-ekphrasis",9,1,"2026-09-29","2026-09-29","choir"],
+["acestep-fractal-quantum-astrology",2,22,"2026-09-30","2026-09-30","press"],
+["acestep-least-reliable-docent",2,22,"2026-09-30","2026-09-30","press"],
+["acestep-night-shift",2,22,"2026-09-30","2026-09-30","press"],
+["art-ouroboros",19,3,"2026-09-30","2026-09-30","inst"],
+["coordination",3,1,"2026-09-30","2026-09-30","paper"],
+["monster-trucks",4,1,"2026-09-30","2026-09-30","paper"],
+["museum-of-corrections",7,1,"2026-09-30","2026-10-01","paper"],
+["opposing-chorus",7,1,"2026-09-30","2026-09-30","choir"],
+["phi-audit",18,1,"2026-09-30","2026-09-30","inst"],
+["breakroom",6,1,"2026-10-01","2026-10-01","choir"],
+["repo-safari",3,1,"2026-10-01","2026-10-02","paper"],
+["songbook-chorus-r2",11,1,"2026-10-01","2026-10-01","press"],
+["songbook-chorus-r3",15,1,"2026-10-01","2026-10-01","press"],
+["songbook-chorus-r4",15,1,"2026-10-01","2026-10-01","press"],
+["songbook-chorus-r5",15,1,"2026-10-01","2026-10-01","press"],
+["songbook-chorus-r6",16,1,"2026-10-01","2026-10-01","press"],
+["songbook-chorus-r7",16,1,"2026-10-01","2026-10-01","press"],
+["world",95,12,"2026-10-01","2026-10-03","paper"],
+["acestep-crater-hymn-4wd",2,15,"2026-10-02","2026-10-02","press"],
+["acestep-dune-ratio",2,11,"2026-10-02","2026-10-02","press"],
+["acestep-leo-monster-truck",2,11,"2026-10-02","2026-10-02","press"],
+["acestep-mud-bog-kintsugi",2,14,"2026-10-02","2026-10-02","press"],
+["acestep-thermal-runaway",2,17,"2026-10-02","2026-10-02","press"],
+["asr-fidelity",2,1,"2026-10-02","2026-10-02","choir"],
+["model-playground-2026-10-02",2,1,"2026-10-02","2026-10-02","paper"],
+["mt-rally",2,1,"2026-10-02","2026-10-02","press"],
+["october-model-playground",7,1,"2026-10-02","2026-10-02","paper"],
+["operator-voice-swap",196,2,"2026-10-02","2026-10-02","choir"],
+["poetry-moon-rally",14,15,"2026-10-02","2026-10-02","press"],
+["song-lab",4,12,"2026-10-02","2026-10-02","press"],
+["status-poems",2,1,"2026-10-02","2026-10-02","paper"],
+["vl-pass-mt-rally",1,1,"2026-10-02","2026-10-02","choir"],
+];
+const FCOL={press:GOLD,choir:MUSE,inst:MERC,paper:BONE,ancestor:RUST};
+const FNAM={press:"pressings",choir:"the choir",inst:"instruments",
+            paper:"paperwork & archives",ancestor:"the ancestor"};
+
+// accession numbers: year.sequence, in first-mtime order
+const R=A.slice().sort((a,b)=>a[3]<b[3]?-1:a[3]>b[3]?1:a[0]<b[0]?-1:1);
+const SEQ={};{const yr={"25":0,"26":0};R.forEach(r=>{const y=r[3].slice(2,4);
+  SEQ[r[0]]=y+"."+String(++yr[y]).padStart(3,"0")})}
+
+// ---------- plate 1: the shelf ----------
+const sv=document.getElementById("shelf");
+const fams=["ancestor","press","choir","inst","paper"];
+const LX=132,X0=150,X1=700;
+fams.forEach((f,fi)=>{
+  const items=R.filter(r=>r[5]===f);
+  const Y=48+fi*58, BASE=Y+18;
+  // shelf board
+  el(sv,"line",{x1:LX-8,y1:BASE+2,x2:X1,y2:BASE+2,stroke:GOLD,"stroke-width":1.4,opacity:.8});
+  el(sv,"line",{x1:LX-8,y1:BASE+2,x2:LX-8,y2:BASE+8,stroke:GOLD,"stroke-width":1,opacity:.5});
+  el(sv,"line",{x1:X1,y1:BASE+2,x2:X1,y2:BASE+8,stroke:GOLD,"stroke-width":1,opacity:.5});
+  tx(sv,LX-16,BASE-4,FNAM[f],{f:FCOL[f],s:10.5,a:"end"});
+  tx(sv,LX-16,BASE+8,items.length+" cabinet"+(items.length>1?"s":""),{f:DIM,s:8,a:"end"});
+  let x=X0;
+  items.forEach(r=>{
+    const w=2.5+Math.log10(r[1])*4.6, h=8+Math.log10(r[2]+1)*13;
+    const rect=el(sv,"rect",{x,y:BASE-h,width:w,height:h,fill:FCOL[f],
+      opacity:f==="ancestor"?.85:.3+.55*Math.min(1,r[1]/800),stroke:FCOL[f],
+      "stroke-width":.7,"stroke-opacity":.9});
+    const ti=el(rect,"title",{});
+    ti.textContent=SEQ[r[0]]+" · "+r[0]+" — "+r[1].toLocaleString()+" objects, "+r[2]+" MB · "+r[3]+" → "+r[4];
+    x+=w+2.2;
+  });
+});
+
+// ---------- plate 2: the flood ----------
+const fv=document.getElementById("flood");
+const perDay={};R.forEach(r=>{perDay[r[3]]=(perDay[r[3]]||0)+1});
+const days=Object.keys(perDay).sort();
+const anc=days[0], labDays=days.slice(1);
+const FY=176,FH=120;
+// the ancestor, isolated by the gap
+{
+  const bx=56,bh=8+perDay[anc]*10;
+  el(fv,"rect",{x:bx-9,y:FY-bh,width:18,height:bh,fill:"none",stroke:RUST,"stroke-width":1.2});
+  el(fv,"rect",{x:bx-9,y:FY-bh,width:18,height:bh,fill:RUST,opacity:.3});
+  tx(fv,bx,FY+16,"2025-04-08",{f:RUST,s:9});
+  tx(fv,bx,FY-bh-8,perDay[anc]+"",{f:RUST,s:10});
+  tx(fv,bx,FY+30,"the ancestor",{f:DIM,s:8.5,i:1});
+}
+// the gap — seventeen months of nothing
+el(fv,"line",{x1:86,y1:FY-30,x2:118,y2:FY-52,stroke:DIM,"stroke-width":1});
+el(fv,"line",{x1:92,y1:FY-52,x2:124,y2:FY-30,stroke:DIM,"stroke-width":1});
+tx(fv,105,FY-64,"17 months",{f:DIM,s:9,i:1});
+// the lab era
+const DX=(X1-140)/labDays.length;
+labDays.forEach((d,i)=>{
+  const bx=140+i*DX+DX/2, n=perDay[d], bh=6+n*8.2;
+  const peak=n===Math.max(...labDays.map(k=>perDay[k]));
+  el(fv,"rect",{x:bx-11,y:FY-bh,width:22,height:bh,fill:GOLD,opacity:peak?.7:.32});
+  el(fv,"rect",{x:bx-11,y:FY-bh,width:22,height:bh,fill:"none",stroke:GOLD,"stroke-width":peak?1.3:.7});
+  tx(fv,bx,FY-bh-7,n+"",{f:peak?BRIGHT:DIM,s:10});
+  const mmdd=d.slice(5);
+  const lb=tx(fv,bx,FY+16,mmdd,{f:DIM,s:9});
+  if(i%2)lb.setAttribute("opacity",.55);
+});
+el(fv,"line",{x1:40,y1:FY,x2:X1,y2:FY,stroke:LINE,"stroke-width":1});
+tx(fv,140,FY+32,"the lab era — 69 cabinets in eleven days",{f:DIM,s:9.5,i:1,a:"start"});
+// mark the flood peak
+tx(fv,140+9*DX+DX/2,FY-6-14*8.2-22,"rally week",{f:BRIGHT,s:9,i:1});
+
+// ---------- plate 3: the concentration ----------
+const mv=document.getElementById("mass");
+const TOTF=R.reduce((s,r)=>s+r[1],0), TOTM=R.reduce((s,r)=>s+r[2],0);
+const get=n=>R.find(r=>r[0]===n);
+const objSeg=[["sim-lab",get("sim-lab")[1],RUST],
+  ["weird-archive",get("weird-archive")[1],BONE],
+  ["music-video",get("music-video")[1],GOLD],
+  ["isomorph-lab",get("isomorph-lab")[1],MERC]];
+objSeg.push(["everything else",TOTF-objSeg.reduce((s,r)=>s+r[1],0),DIM]);
+const masSeg=[["music-video",802,GOLD],["poem-songs",427,"#b8862e"],
+  ["sim-lab",302,RUST],["isomorph-lab",220,MERC]];
+masSeg.push(["everything else",TOTM-masSeg.reduce((s,r)=>s+r[1],0),DIM]);
+function bar(y,label,segs,tot,unit){
+  tx(mv,60,y-10,label,{f:DIM,s:10,a:"start"});
+  let x=60;const W=640;
+  segs.forEach(([nm,v,c],si)=>{
+    const w=Math.max(1.5,v/tot*W);
+    el(mv,"rect",{x,y,width:w-1.5,height:26,fill:c,opacity:c===DIM?.18:.34});
+    el(mv,"rect",{x,y,width:w-1.5,height:26,fill:"none",stroke:c,"stroke-width":.8});
+    const pct=(v/tot*100);
+    if(w>64)tx(mv,x+w/2-1,y+17,nm,{f:c===DIM?BONE:"#0d0b08",s:9.5});
+    else tx(mv,x+w/2-1,y+40+(si%2)*11,nm,{f:c,s:8.5});
+    if(w>46)tx(mv,x+w/2-1,y-4,pct.toFixed(0)+"%",{f:c,s:8.5});
+    x+=w;
+  });
+  tx(mv,60,y+56,tot.toLocaleString()+" "+unit,{f:DIM,s:8.5,i:1,a:"start"});
+}
+bar(46,"share of objects",objSeg,TOTF,"objects");
+bar(146,"share of mass",masSeg,TOTM,"MB");
+</script>
+</body>
+</html>

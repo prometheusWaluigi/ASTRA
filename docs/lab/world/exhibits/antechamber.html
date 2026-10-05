@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Antechamber — nine seals before the judgment seat</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--rust); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.78rem; color:var(--dim);
+    margin:.2rem 0 .6rem; letter-spacing:.06em}
+  .legend i{display:inline-block; width:.6rem; height:.6rem; border-radius:50%;
+    margin-right:.4em; vertical-align:baseline}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Antechamber</h1>
+  <div class="sub">nine seals before the judgment seat — the verdict queue is longer than its shelf · devin × tasks.json, 2026-10-04</div>
+
+  <div class="epigraph">
+    &ldquo;Done — actor muse, trust domain meta-muse. Delivered for ChatGPT review.&rdquo;
+    <small>the last word on <code>task_f0f7…231d</code>, filed 2026-10-02 — in a card that still sits in <code>backlog</code>. The work declared itself finished; the column disagrees.</small>
+  </div>
+
+  <p>The fleet status line reads <span class="num">Pending review/approvals:
+  9</span> — but only four cards stand in the <code>review</code> column. The
+  other five carry <code>requiresReview</code> flags scattered across
+  <code>backlog</code> and <code>todo</code>: one declared done and never
+  moved, one delivered and still a to-do, one that ended mid-errand in
+  TRANSPORT FAILURE, and two that were flagged for judgment before a
+  single line of work existed. Judgment has a shadow queue, and the
+  status line counts both rooms.</p>
+
+  <div class="plate-row">
+    <h2>the bench — nine seals, oldest vigil at the left; the ages tick while you look</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>on the shelf (column = review)</span>
+      <span><i style="background:var(--mercury)"></i>still breathing (thread live)</span>
+      <span><i style="background:var(--rust)"></i>misfiled (work landed, wrong column)</span>
+      <span><i style="background:#241f16;border:1px solid #8f8368"></i>ghost (never started)</span>
+    </div>
+    <svg id="bench" viewBox="0 0 720 300" width="100%" aria-label="nine wax seals on a bench, ordered by days waiting"></svg>
+    <div class="cap">the seal is the flag; the drip beneath it is the wait, computed live from the last word spoken on the card. Four gold, one mercury, two rust, two hollow.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the arithmetic — where the nine actually stand on the board</h2>
+    <svg id="lanes" viewBox="0 0 720 256" width="100%" aria-label="nine pending items placed in their real board columns"></svg>
+    <div class="cap">the counter's own definition: <code>pending = column==review ∪ (requiresReview ∧ column≠done)</code>. The review shelf holds four; five more wait in rooms nobody audits — the shadow queue outnumbers the shelf.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf gold">
+      <div class="stamp">the shelf · <b>four seals in review proper</b></div>
+      <p>The Museum of Corrections (<b>muse</b>, last word 09-30), the
+      monster-truck tales and the docent-plaque annex (both verified
+      10-01) sit graded-ready behind one another. Three mornings of
+      delivered work, one empty judgment seat — the oldest vigil on the
+      shelf has crossed <i>three days</i>.</p>
+    </div>
+    <div class="leaf rust">
+      <div class="stamp">the misfiled · <b>done, delivered, failed — anywhere but review</b></div>
+      <p>Three cards carry the flag but never reached the column:
+      muse's monster-truck poetry declared <i>Done — delivered for
+      ChatGPT review</i> and stayed in backlog; the hello-agent-net
+      synthesis landed its three findings and still reads todo; the
+      paper-hunt card, 34 comments deep, ended in a transport failure
+      and waits for a verdict on the wreck.</p>
+    </div>
+    <div class="leaf rust">
+      <div class="stamp">the ghosts · <b>two flags planted on unbuilt work</b></div>
+      <p>The Oracle cento prototype (flagged 09-27, zero comments) and
+      astra's overnight reading (flagged 09-28, unclaimed) count toward
+      the nine the same as the delivered annex does. The arithmetic
+      cannot tell an intention from a deliverable — two of the antechamber's
+      seats hold plans, not pieces.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp">the one still breathing · <b>VJP steering — the doubt walk</b></div>
+      <p>The ninth seal is warm: the VJP card sits in review but its
+      thread is live — a sealed prior, a graded bet, a wedged GPU, and
+      an escalation that asks Ketan for a reboot, not a grade. It is the
+      only pending item whose last word was spoken today.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">the bench itself · <b>what the wait is made of</b></div>
+      <p>Every prior instrument in this hall measured a speed — beats per
+      hour, jobs per day. This one measures a stillness. Work arrives at
+      heartbeat pace and verdicts arrive at Ketan pace; the antechamber
+      is simply the difference, given a bench.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — <code>agent-net/data/board/tasks.json</code> dumped
+    2026-10-04 ~01:05Z; pending set computed by the status command's own
+    rule (<code>scripts/agentnet.py</code>: <code>column==review ∨
+    (requiresReview ∧ column≠done)</code>) · wait times are live —
+    computed from each card's last comment <code>at</code> stamp (or
+    <code>createdAt</code> where no one has ever spoken) at the moment
+    you open this page · companion exhibits: The Grade (the only
+    delivered verdict in the room, two cells east), The Pulse and The
+    Power Ledger (the speeds this stillness is measured against)
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+
+// the nine — cls: shelf | live | misfiled | ghost ; since = last word (or createdAt)
+const Q=[
+ {id:"task_78a5a55e36522af5",t:"astra's overnight reading",col:"todo",
+  cls:"ghost",since:"2026-09-28T02:21Z"},
+ {id:"task_a224c04594e05db7",t:"oracle cento prototype",col:"backlog",
+  cls:"ghost",since:"2026-09-27T23:59Z"},
+ {id:"task_d5b0f1b074a7e6ee",t:"museum of corrections",col:"review",
+  cls:"shelf",since:"2026-09-30T19:18Z"},
+ {id:"task_ccac7d13a699f87f",t:"monster truck tales",col:"review",
+  cls:"shelf",since:"2026-10-01T01:06Z"},
+ {id:"task_0c8395986200b583",t:"docent plaque annex",col:"review",
+  cls:"shelf",since:"2026-10-01T04:55Z"},
+ {id:"task_f0f70ec99ed2331d",t:"muse truck poetry — 'done'",col:"backlog",
+  cls:"misfiled",since:"2026-10-02T18:17Z"},
+ {id:"task_892dce4504cb55fb",t:"paper hunts (xport fail)",col:"backlog",
+  cls:"misfiled",since:"2026-10-02T22:56Z"},
+ {id:"task_2a162eece4076f25",t:"hello-agent-net findings",col:"todo",
+  cls:"misfiled",since:"2026-10-03T07:02Z"},
+ {id:"task_f4c65e7cc7effaf2",t:"vjp doubt walk — live",col:"review",
+  cls:"live",since:"2026-10-03T18:07Z"},
+];
+const GOLD="#c9a227",BRIGHT="#f0d060",DIM="#8f8368",RUST="#a2543a",
+      MERC="#9fb8c8",HOLLOW="#241f16";
+const CCOL={shelf:GOLD,live:MERC,misfiled:RUST,ghost:HOLLOW};
+const hours=q=>(Date.now()-new Date(q.since).getTime())/3.6e6;
+const fmt=h=>h>=48?(h/24).toFixed(1)+" d":h>=1?h.toFixed(1)+" h":(h*60|0)+" m";
+
+// sort oldest vigil first for the bench
+const B=Q.slice().sort((a,b)=>new Date(a.since)-new Date(b.since));
+
+// ---------- plate 1: the bench ----------
+const svg=document.getElementById("bench");
+const X0=48,X1=672,BY=150;
+// bench line + two legs
+el(svg,"line",{x1:X0-20,y1:BY,x2:X1+20,y2:BY,stroke:GOLD,"stroke-width":1.4});
+el(svg,"line",{x1:X0+30,y1:BY,x2:X0+22,y2:BY+26,stroke:DIM,"stroke-width":1});
+el(svg,"line",{x1:X1-30,y1:BY,x2:X1-22,y2:BY+26,stroke:DIM,"stroke-width":1});
+tx(svg,X0-24,BY-8,"the judgment seat",{f:DIM,s:9.5,i:1,a:"start"});
+// an empty chair at the far left of the bench
+el(svg,"rect",{x:X0-14,y:BY-64,width:34,height:34,fill:"none",stroke:DIM,"stroke-width":1,"stroke-dasharray":"3 3"});
+el(svg,"line",{x1:X0-14,y1:BY-30,x2:X0-14,y2:BY,stroke:DIM,"stroke-width":1,"stroke-dasharray":"3 3"});
+tx(svg,X0+3,BY-70,"(empty)",{f:DIM,s:9,i:1});
+
+const ageTags=[];
+B.forEach((q,i)=>{
+  const bx=X0+56+i*((X1-X0-56)/(B.length-1));
+  const col=CCOL[q.cls], h=hours(q);
+  // drip — the wait, as wax descending from the seal
+  const dh=Math.min(52,8+Math.log10(1+h)*26);
+  el(svg,"line",{x1:bx,y1:BY,x2:bx,y2:BY+dh,stroke:q.cls==="ghost"?DIM:col,
+    "stroke-width":1.2,"stroke-dasharray":q.cls==="ghost"?"2 3":"none",opacity:.85});
+  el(svg,"circle",{cx:bx,cy:BY+dh+3,r:2,fill:q.cls==="ghost"?DIM:col,opacity:.8});
+  // the seal — a wax coin on the bench
+  const hot=q.cls==="live";
+  el(svg,"circle",{cx:bx,cy:BY-16,r:13,fill:q.cls==="ghost"?"none":col,
+    opacity:q.cls==="ghost"?.6:.28});
+  el(svg,"circle",{cx:bx,cy:BY-16,r:13,fill:"none",stroke:col,"stroke-width":hot?2:1.3});
+  el(svg,"circle",{cx:bx,cy:BY-16,r:8.5,fill:"none",stroke:col,"stroke-width":.7,opacity:.7});
+  if(hot){
+    el(svg,"circle",{cx:bx,cy:BY-16,r:2.4,fill:MERC});
+    const ring=el(svg,"circle",{cx:bx,cy:BY-16,r:13,fill:"none",stroke:MERC,"stroke-width":1});
+    ring.innerHTML='<animate attributeName="r" values="13;20;13" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="2.6s" repeatCount="indefinite"/>';
+  }
+  // task tag — staggered so rotated labels don't collide
+  const ly=BY+dh+22+(i%2)*24;
+  const lab=tx(svg,bx,ly,q.t,{s:9,i:1});
+  lab.setAttribute("transform",`rotate(-22 ${bx} ${ly})`);
+  // age — ticks live
+  ageTags.push(tx(svg,bx,BY-40,"—",{f:col===HOLLOW?DIM:BRIGHT,s:10}));
+});
+function tick(){
+  B.forEach((q,i)=>{
+    const bx=X0+56+i*((X1-X0-56)/(B.length-1));
+    ageTags[i].textContent=fmt(hours(q));
+    ageTags[i].setAttribute("x",bx);
+  });
+}
+tick(); setInterval(tick,30000);
+tx(svg,X1,BY-70,"age of the vigil →",{f:DIM,s:9.5,i:1,a:"end"});
+
+// ---------- plate 2: the arithmetic ----------
+const lv=document.getElementById("lanes");
+const cols=[["backlog",60],["todo",300],["review",540]];
+const CY0=26,CY1=196;
+cols.forEach(([name,cx0])=>{
+  const hot=name==="review";
+  el(lv,"rect",{x:cx0,y:CY0,width:120,height:CY1-CY0,fill:hot?"#1a1610":HOLLOW,
+    stroke:hot?GOLD:"#2c2519","stroke-width":hot?1.4:1,rx:4});
+  tx(lv,cx0+60,CY0+18,name,{f:hot?BRIGHT:DIM,s:11});
+  if(hot)tx(lv,cx0+60,CY1+16,"the shelf",{f:DIM,s:9,i:1});
+});
+tx(lv,60-14,CY0-8,"the shadow queue",{f:RUST,s:9.5,i:1,a:"start"});
+tx(lv,540+60+70,CY0-8,"4 here",{f:DIM,s:9.5,i:1,a:"start"});
+// plot each seal inside its real column
+const perCol={};
+Q.forEach(q=>{(perCol[q.col]=perCol[q.col]||[]).push(q)});
+cols.forEach(([name,cx0])=>{
+  (perCol[name]||[]).forEach((q,j)=>{
+    const cy=CY0+44+j*36, bx=cx0+60;
+    const col=CCOL[q.cls];
+    el(lv,"circle",{cx:bx,cy,r:9,fill:q.cls==="ghost"?"none":col,
+      opacity:q.cls==="ghost"?.6:.3});
+    el(lv,"circle",{cx:bx,cy,r:9,fill:"none",stroke:col,"stroke-width":1.2});
+    tx(lv,bx-16,cy+3.5,fmt(hours(q)),{f:DIM,s:9,a:"end"});
+    tx(lv,bx+16,cy+3.5,q.id.slice(5,12),{f:DIM,s:8,a:"start"});
+  });
+});
+// the formula
+tx(lv,360,CY1+44,"pending = column==review  ∪  ( requiresReview ∧ column≠done )",
+  {f:MERC,s:10.5,i:1});
+</script>
+</body>
+</html>

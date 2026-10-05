@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ONE THIRD, NO QUANTUM REQUIRED — unhinged explanatory candidate</title>
+<style>
+  :root{
+    --bg:#0e0b07; --panel:#161109;
+    --gold:#d4a437; --gold-hi:#f0c75e; --gold-dim:#8a6d24;
+    --ink:#e8dcc0; --muted:#9a8a68; --red:#e5484d; --green:#7fc97f; --gray:#8a8a92;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:0 1rem 3rem}
+  .wrap{max-width:1000px;margin:0 auto}
+  .kicker{display:flex;gap:.6rem;align-items:center;margin:1.6rem 0 .4rem;flex-wrap:wrap}
+  .tag{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid var(--gold-dim);color:var(--gold);padding:.28rem .6rem;border-radius:999px}
+  .tag.hot{border-color:var(--green);color:var(--green)}
+  h1{font-size:clamp(2rem,5vw,3.2rem);margin:.2rem 0 .4rem;line-height:1.05}
+  h1 .gold{color:var(--gold-hi)}
+  .sub{color:var(--muted);font-style:italic;margin:0 0 1.2rem;max-width:66ch}
+  .stage{background:var(--panel);border:1px solid #2c2210;border-radius:14px;padding:1rem}
+  canvas{display:block;width:100%;height:auto;border-radius:8px;background:#0a0805}
+  .controls{display:flex;gap:.8rem;align-items:center;margin-top:.9rem;flex-wrap:wrap}
+  button{font-family:inherit;font-size:.95rem;font-weight:bold;letter-spacing:.04em;cursor:pointer;
+    background:linear-gradient(180deg,#3a2a0e,#241a08);color:var(--gold-hi);
+    border:2px solid var(--gold-dim);border-radius:10px;padding:.6rem 1.2rem}
+  button:active{transform:translateY(2px)}
+  .stats{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:.7rem;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:var(--muted)}
+  .stats b{color:var(--gold-hi);font-size:1rem}
+  .expl{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.4rem}
+  .card{background:var(--panel);border:1px solid #2c2210;border-radius:12px;padding:1.1rem 1.2rem}
+  .card h2{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 .6rem;font-family:ui-monospace,Menlo,monospace}
+  .card p,.card li{font-size:.95rem;line-height:1.55}
+  .card ul{margin:.4rem 0;padding-left:1.1rem}
+  .card li{margin-bottom:.4rem}
+  .cite{margin-top:1.4rem;color:var(--muted);font-size:.85rem;border-top:1px solid #2c2210;padding-top:1rem}
+  .cite a{color:var(--gold)}
+  .foot{margin-top:.6rem;font-size:.78rem;color:#6b5f45;font-family:ui-monospace,Menlo,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">
+    <span class="tag">unhinged explanatory candidate</span>
+    <span class="tag hot">live diffusion counting</span>
+    <span class="tag">canvas 2d · cpu only</span>
+  </div>
+  <h1>ONE THIRD, <span class="gold">NO QUANTUM REQUIRED</span></h1>
+  <p class="sub">A quantum conductor at 10&nbsp;millikelvin suppresses its shot noise to exactly <b>1/3</b> of the full Poisson value. Now ferrocene molecules shuttling electrons across a microfluidic gap <i>at room temperature</i> read the same 1/3. No quantum coherence. No fermionic statistics. No cryostat. Based on Vo&nbsp;Van&nbsp;Qui <i>et&nbsp;al.</i>, arXiv <a href="https://arxiv.org/abs/2609.16783">2609.16783v2</a>.</p>
+
+  <div class="stage">
+    <canvas id="cv" width="960" height="600"></canvas>
+    <div class="controls">
+      <button id="pauseBtn">⏸ PAUSE</button>
+      <button id="resetBtn">↺ RESET METERS</button>
+    </div>
+    <div class="stats">
+      <span>transfers <b id="sT">0</b></span>
+      <span>bins <b id="sB">0</b></span>
+      <span>Fano, diffusion toy <b id="sF">—</b></span>
+      <span>Fano, Poisson baseline <b id="sP" style="color:var(--gray)">—</b></span>
+    </div>
+  </div>
+
+  <div class="expl">
+    <div class="card">
+      <h2>The idea in one breath</h2>
+      <p>Shot noise is the hiss of charge's discreteness. In diffusive conductors the hiss is suppressed to exactly <b>one third</b> of full shot noise — a result obtained independently from quantum scattering theory, semi-classical kinetics, <i>and</i> classical exclusion processes. But every experimental test lived in a cryostat, so nobody knew which ingredient the 1/3 actually belonged to. The paper's move: <b>ferrocene redox cycling in a microfluidic gap</b> — molecules oxidized at one electrode, reduced at the other, shuttling electrons by pure diffusion at room temperature. The full counting statistics are derived, the noise is measured, and the 1/3 comes back. Diffusion plus sequential charge transfer are <b>sufficient</b>. Quantum coherence, fermionic statistics, cryogenic conditions are not.</p>
+    </div>
+    <div class="card">
+      <h2>How it works</h2>
+      <ul>
+        <li><b>The gap.</b> Above: a lattice between two gold electrodes. Molecules hop left or right (exclusion — no two share a site), the left electrode injects, the right electrode counts removals. Each removal is one electron transferred.</li>
+        <li><b>The meter.</b> Transfers are counted in fixed bins; the Fano factor = variance &divide; mean is computed live. Uncorrelated transfers read 1.0 (gray trace). Diffusion-correlated transfers read <i>below</i> 1.0 (gold trace).</li>
+        <li><b>The lines.</b> Red dashed = 1.0, full Poisson noise. Gold dashed = 1/3, the universal suppression — the <i>paper's</i> measured number, marked as the target, not the toy's claim.</li>
+        <li><b>The honest gap.</b> This toy lattice measures about 1/2 — diffusion already kills half the noise. The real experiment lands exactly on 1/3. Same direction, same mechanism; the universe is stricter than the toy.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Why it's unhinged</h2>
+      <p>Two substrates that share <i>nothing</i> — a cryogenic quantum wire and a beaker of rust-molecules at room temperature — compute the <b>same constant</b>. The 1/3 doesn't belong to quantum mechanics; it belongs to <i>diffusion</i>. It was a property of the random walk all along, wearing a quantum costume. That is the lab's consilience thesis in a single number: the substrate is negotiable, the statistics are not. Somewhere a cryostat is feeling very silly right now.</p>
+    </div>
+  </div>
+
+  <div class="cite">
+    Paper: H.&nbsp;Vo&nbsp;Van&nbsp;Qui, I.&nbsp;Madrid, S.&nbsp;Grall, T.&nbsp;Jonckheere, A.&nbsp;Fujiwara, L.&nbsp;Jalabert, M.&nbsp;Hashisaka, C.&nbsp;Demaille, S.&nbsp;H.&nbsp;Kim &amp; N.&nbsp;Clément,
+    <i>Diffusive molecules share the 1/3 shot noise suppression of quantum conductors</i>,
+    arXiv <a href="https://arxiv.org/abs/2609.16783">2609.16783v2</a> · caught by the lab's paper hunt (quantum biology coherence).
+    The toy above is an exclusion-lattice sketch — its live-measured Fano (~1/2) is the toy's own number, computed in your browser; the 1/3 gold line is the paper's room-temperature measurement, and the quantum-origin story is the paper's, not the toy's.
+    <div class="foot">muse / meta-muse · silly-lab playground · cpu-only canvas · nothing published</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+  var W=cv.width, H=cv.height;
+
+  // ---- diffusion-limited redox gap: open exclusion lattice, maximal gradient ----
+  var L=24, BIN=3000, TICKS_PER_FRAME=1200;
+  var occ=new Array(L), flashes=[];
+  var paused=false, transfers=0, binCount=0, binTotal=0;
+  var diffBins=[], poisBins=[], poisAccum=0, rateSmooth=0.004;
+
+  function resetSim(){
+    for(var i=0;i<L;i++) occ[i]=Math.random()<0.5?1:0;
+    transfers=0; binCount=0; binTotal=0;
+    diffBins=[]; poisBins=[]; poisAccum=0; rateSmooth=0.004;
+  }
+  resetSim();
+
+  // one lattice tick: random bond swap + left inject + right absorb-and-count
+  function tick(){
+    var i=(Math.random()*(L-1))|0;
+    if(occ[i]^occ[i+1]){ var t=occ[i]; occ[i]=occ[i+1]; occ[i+1]=t; }
+    if(!occ[0]) occ[0]=1;                       // left electrode: inject (density 1)
+    if(occ[L-1]){ occ[L-1]=0; binCount++; transfers++; flashes.push({x:L-1, t:0}); } // right: transfer
+  }
+
+  function poisSample(lam){ // Knuth
+    var p=1, k=0, Lp=Math.exp(-lam);
+    do{ k++; p*=Math.random(); }while(p>Lp);
+    return k-1;
+  }
+
+  function fano(bins){
+    if(bins.length<4) return null;
+    var m=0, i;
+    for(i=0;i<bins.length;i++) m+=bins[i];
+    m/=bins.length;
+    if(m<=0) return null;
+    var v=0;
+    for(i=0;i<bins.length;i++) v+=(bins[i]-m)*(bins[i]-m);
+    return (v/bins.length)/m;
+  }
+
+  function step(){
+    for(var k=0;k<TICKS_PER_FRAME;k++){
+      tick();
+      if(++binTotal>=BIN){
+        diffBins.push(binCount);
+        if(diffBins.length>360) diffBins.shift();
+        // Poisson baseline at the matched mean rate
+        rateSmooth=0.98*rateSmooth+0.02*(binCount/BIN);
+        var lam=Math.max(0.5, rateSmooth*BIN);
+        poisBins.push(poisSample(lam));
+        if(poisBins.length>360) poisBins.shift();
+        binCount=0; binTotal=0;
+      }
+    }
+  }
+
+  // ---- layout ----
+  var gx0=70, gx1=W-70, gy=70, cellW=(gx1-gx0)/L, cellH=64;
+  var histY=300, histH=90, meterY=430, meterH=140, meterX0=70, meterX1=W-70;
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // electrodes
+    ctx.fillStyle='#d4a437';
+    ctx.fillRect(20,gy-6,26,cellH+12);
+    ctx.fillRect(W-46,gy-6,26,cellH+12);
+    ctx.fillStyle='#0e0b07'; ctx.font='bold 10px ui-monospace,monospace'; ctx.textAlign='center';
+    ctx.fillText('e-',33,gy+cellH/2+4); ctx.fillText('e-',W-33,gy+cellH/2+4);
+    ctx.fillStyle='#9a8a68'; ctx.font='11px ui-monospace,monospace';
+    ctx.fillText('INJECT',33,gy+cellH+26); ctx.fillText('COUNT',W-33,gy+cellH+26);
+
+    // lattice + molecules
+    var i, x;
+    ctx.strokeStyle='rgba(154,138,104,0.25)'; ctx.lineWidth=1;
+    for(i=0;i<=L;i++){
+      x=gx0+i*cellW;
+      ctx.beginPath(); ctx.moveTo(x,gy); ctx.lineTo(x,gy+cellH); ctx.stroke();
+    }
+    for(i=0;i<L;i++){
+      if(occ[i]){
+        x=gx0+i*cellW+cellW/2;
+        var jx=Math.sin(performance.now()*0.004+i*2.3)*1.5;
+        ctx.fillStyle='#f0c75e';
+        ctx.beginPath(); ctx.arc(x+jx,gy+cellH/2,cellW*0.32,0,Math.PI*2); ctx.fill();
+      }
+    }
+    // transfer flashes at right electrode
+    for(var f=flashes.length-1;f>=0;f--){
+      var fl=flashes[f]; fl.t++;
+      if(fl.t>14){ flashes.splice(f,1); continue; }
+      ctx.save(); ctx.globalAlpha=1-fl.t/14;
+      ctx.strokeStyle='#f0c75e'; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(gx1+13,gy+cellH/2,4+fl.t*1.6,0,Math.PI*2); ctx.stroke();
+      ctx.restore();
+    }
+    ctx.fillStyle='#9a8a68'; ctx.font='italic 13px Georgia'; ctx.textAlign='center';
+    ctx.fillText('ferrocene shuttles · diffusion-limited gap · each flash at the right electrode = one electron transferred', W/2, gy+cellH+52);
+
+    // bin-count histogram strip
+    ctx.fillStyle='#9a8a68'; ctx.font='11px ui-monospace,monospace'; ctx.textAlign='left';
+    ctx.fillText('TRANSFERS PER BIN (last 60)', meterX0, histY-8);
+    var nb=Math.min(60,diffBins.length), mx=1, b;
+    for(b=diffBins.length-nb;b<diffBins.length;b++) if(diffBins[b]>mx) mx=diffBins[b];
+    var bw=(meterX1-meterX0)/60;
+    for(b=0;b<nb;b++){
+      var v=diffBins[diffBins.length-nb+b];
+      ctx.fillStyle='rgba(212,164,55,0.55)';
+      var bh=(v/mx)*histH;
+      ctx.fillRect(meterX0+b*bw+1, histY+histH-bh, bw-2, bh);
+    }
+    ctx.strokeStyle='rgba(154,138,104,0.3)';
+    ctx.strokeRect(meterX0, histY, meterX1-meterX0, histH);
+
+    // Fano meter
+    ctx.fillStyle='#9a8a68'; ctx.font='11px ui-monospace,monospace';
+    ctx.fillText('FANO FACTOR, LIVE (variance ÷ mean of bin counts)', meterX0, meterY-8);
+    var yOf=function(f){ return meterY+meterH-(f/1.2)*meterH; };
+    // reference lines
+    ctx.setLineDash([8,6]); ctx.lineWidth=1.5;
+    ctx.strokeStyle='rgba(229,72,77,0.7)';
+    ctx.beginPath(); ctx.moveTo(meterX0,yOf(1.0)); ctx.lineTo(meterX1,yOf(1.0)); ctx.stroke();
+    ctx.strokeStyle='rgba(240,199,94,0.85)';
+    ctx.beginPath(); ctx.moveTo(meterX0,yOf(1/3)); ctx.lineTo(meterX1,yOf(1/3)); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='#e5484d'; ctx.textAlign='right';
+    ctx.fillText('POISSON 1.0', meterX1-6, yOf(1.0)-6);
+    ctx.fillStyle='#f0c75e';
+    ctx.fillText('UNIVERSAL 1/3 (the paper)', meterX1-6, yOf(1/3)-6);
+    ctx.textAlign='left';
+
+    function trace(bins,color){
+      if(bins.length<4) return;
+      ctx.strokeStyle=color; ctx.lineWidth=2; ctx.beginPath();
+      var started=false;
+      for(var k2=3;k2<bins.length;k2++){
+        var win=bins.slice(Math.max(0,k2-119),k2+1);
+        var fv=fano(win);
+        if(fv===null) continue;
+        var px=meterX0+(k2/bins.length)*(meterX1-meterX0);
+        var py=Math.max(meterY,Math.min(meterY+meterH,yOf(fv)));
+        if(!started){ ctx.moveTo(px,py); started=true; } else ctx.lineTo(px,py);
+      }
+      ctx.stroke();
+    }
+    trace(poisBins,'rgba(138,138,146,0.8)');
+    trace(diffBins,'#f0c75e');
+
+    ctx.strokeStyle='rgba(154,138,104,0.3)'; ctx.lineWidth=1;
+    ctx.strokeRect(meterX0, meterY, meterX1-meterX0, meterH);
+
+    // stats
+    document.getElementById('sT').textContent=transfers;
+    document.getElementById('sB').textContent=diffBins.length;
+    var fd=fano(diffBins.slice(-120)), fp=fano(poisBins.slice(-120));
+    document.getElementById('sF').textContent=fd===null?'—':fd.toFixed(3);
+    document.getElementById('sP').textContent=fp===null?'—':fp.toFixed(3);
+  }
+
+  document.getElementById('pauseBtn').addEventListener('click',function(){
+    paused=!paused;
+    this.textContent=paused?'▶ RESUME':'⏸ PAUSE';
+  });
+  document.getElementById('resetBtn').addEventListener('click',resetSim);
+
+  function frame(){
+    if(!paused) step();
+    draw();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

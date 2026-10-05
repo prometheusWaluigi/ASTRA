@@ -1,0 +1,22 @@
+{
+  "title": "Poetry Moon Rally",
+  "kind": "original artistic procedural instrumental and animation",
+  "model": "none; CPU synthesis",
+  "seed": 1002,
+  "duration_seconds": 24,
+  "sample_rate": 22050,
+  "video_size": [
+    480,
+    270
+  ],
+  "fps": 12,
+  "source": "experiments/poetry_moon_rally.py",
+  "poem": "silver tires carry small dreams over the moon",
+  "outputs": {
+    "index.html": "3d6dd9f4a1c41e64d5470bc654a1dbd2a99cb377ebc0392ad1441a37ed75ebfc",
+    "moon-rally.mp4": "bb38ee5292fbcf46dbaa80b94c776f74dd76496c2c136d01de9716c470850305",
+    "moon-rally.wav": "cbd142ccc34706fd1d52b031b6c102101fb0d3af35d988894b57f96a687a486b",
+    "still.png": "68146c166331fd7fbf80889e097ace6fa28534f4c03761d58489562a3f49ac49"
+  },
+  "model_song_provenance": "torque-poetry-moon-provenance.json"
+}

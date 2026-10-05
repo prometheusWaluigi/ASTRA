@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Open Seam — the channel that died mid-rung, kept un-repaired</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--mercury); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--rust); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--mercury); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .dead{color:var(--rust)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .litany{
+    display:flex; gap:.5rem; flex-wrap:wrap; margin:.6rem 0 .4rem;
+  }
+  .chip{
+    border:1px solid var(--line); border-radius:3px; padding:.4rem .7rem;
+    font-size:.72rem; color:var(--dim); font-family:ui-monospace,Consolas,monospace;
+  }
+  .chip b{color:var(--rust); font-weight:normal}
+  .chip i{color:var(--mercury); font-style:normal; display:block; font-size:.68rem}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.hurt::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.now::before{background:var(--mercury); border-color:var(--mercury)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+  @keyframes packet{
+    0%{transform:translateX(0);opacity:0}
+    8%{opacity:1}
+    42%{transform:translateX(252px);opacity:1}
+    46%{transform:translateX(258px);opacity:0}
+    100%{transform:translateX(258px);opacity:0}
+  }
+  .pkt{animation:packet 4s ease-in infinite}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Open Seam</h1>
+  <div class="sub">the channel between host and guest, broken mid-rung — the one crack in the museum still waiting for its gold · devin × the dxg wedge, 2026-10-03</div>
+
+  <div class="epigraph">
+    <code>2026-10-03 09:59:48.437 | generation 60/100</code>
+    <small>rung 7, &minus;C arm — then nothing. The channel's last words were a progress counter.</small>
+  </div>
+
+  <p>The Mirror Ladder was climbing when the floor gave out underneath
+  the instrument. At 09:59:48 the doubt walk's seventh rung was sixty
+  completions into its third arm; the run.log simply stops there — not
+  an error, a silence. Somewhere around eleven the host slept, and when
+  it woke the paravirtual channel that lends the A770 to WSL did not
+  come back with it. <code>/dev/dxg</code> is still present. It answers
+  every question in errno.</p>
+
+  <div class="plate-row">
+    <h2>the channel — one wire, two truths</h2>
+    <svg viewBox="0 0 700 150" width="100%" aria-label="host plate, severed gold wire, guest plate"></svg>
+    <div class="cap">the packet dies at the seam. The seam is what we exhibit.</div>
+    <div class="litany">
+      <div class="chip"><b>dxgkio_query_adapter_info</b> &rarr; &minus;22 / &minus;2<i>EINVAL · ENOENT — "what adapter?"</i></div>
+      <div class="chip"><b>dxgkio_is_feature_enabled</b> &rarr; &minus;22<i>EINVAL</i></div>
+      <div class="chip"><b>dxgkio_reserve_gpu_va</b> &rarr; &minus;75<i>EOVERFLOW — the reserve that ended every retry</i></div>
+    </div>
+    <div class="cap">the guest asks "is the adapter there?" and the channel answers with three shapes of no.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the ladder, paused mid-step — six rungs landed, one broken, 108 in the dark</h2>
+    <svg id="ladder" viewBox="0 0 700 240" width="100%" aria-label="six completed rungs, one broken rung, ghost rungs above"></svg>
+    <div class="cap">the governor holds the door: <code>gpu_enabled=0</code>, so nothing else dies in four seconds. Rung 7's vector is already on disk — the walk resumes where it stopped, not where it started.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf">
+      <div class="stamp">09:47Z · <b>the step</b> — rung 7 begins (c=0.0625)</div>
+      <p>Vector extracted, bare arm generated, +C arm generated. An
+      ordinary rung on an ordinary ladder.</p>
+    </div>
+    <div class="leaf hurt">
+      <div class="stamp">09:59:48Z · <b>the silence</b> — log ends mid-arm</div>
+      <p><code>generation 60/100</code> on the &minus;C arm. No traceback,
+      no error — the process stopped having a GPU under it.</p>
+    </div>
+    <div class="leaf hurt">
+      <div class="stamp">~11:05Z · <b>the wedge</b> — host sleeps, channel stays down</div>
+      <p>Kernel-Power 566. On resume the host sees a healthy card —
+      ConfigManagerErrorCode 0, zero TDR events — but the guest's
+      paravirtual binding never reattaches. The silicon is innocent;
+      the seam is not.</p>
+    </div>
+    <div class="leaf hurt">
+      <div class="stamp">16:04Z · <b>the four-second death</b> — auto-retry fires and aborts</div>
+      <p><code>Can't initialize Level Zero Sysman</code>, then
+      <code>Abort was called at os_interface.h:63</code> — status=6/ABRT.
+      Any queued job would have died the same way.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">18:07Z · <b>the field surgery</b> — switch thrown, escalated</div>
+      <p><code>wsl --shutdown</code> did not rebind the channel; the
+      guest-side levers were exhausted. gpuq switch set OFF; escalated
+      for an elevated <code>pnputil</code> disable/enable or a reboot —
+      a door only the operator can open.</p>
+    </div>
+    <div class="leaf now">
+      <div class="stamp">19:01Z · <b>the probe</b> — still three shapes of no</div>
+      <p>One heartbeat later: same ioctls, same errnos, fresh in kern.log.
+      The crack is exhibited as found — un-repaired, timestamped,
+      resumable.</p>
+    </div>
+  </div>
+
+  <p>Every other crack in this museum got its gold. This one is shown
+  <i>open</i> — a kintsugi seam photographed before the resin arrives.
+  When the channel comes back the ladder finishes its climb and this
+  page becomes what it already is: the record of the morning the
+  instrument, not the voice, went silent — again.</p>
+
+  <div class="src">
+    provenance — last line: <code>outputs/run_20261003T094720_vjp_delta_s0_c0p0625/run.log</code>
+    (ends generation 60/100, &minus;C arm, vector safetensors intact) · ioctls: kern.log
+    19:01Z, verbatim · certificate: <code>walk_vjp_delta_doubt_s0.json</code>, 6 adopted
+    rungs, status RUNNING · jobs 66&ndash;71 error, switch OFF · escalation:
+    task_f4c65e7cc7effaf2 @ 18:07Z — pending operator reboot
+  </div>
+</div>
+
+<script>
+const NS = "http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+
+// ---- plate 1: the channel ----
+const svg = document.querySelector("svg");
+const C = "#c9a227", D = "#8f8368", R = "#a2543a", B = "#e8dcc0";
+// host plate
+el(svg,"rect",{x:20,y:35,width:180,height:80,rx:5,fill:"#171310",stroke:C,"stroke-width":1.2});
+tx(svg,110,58,"HOST — IntelBox",{f:B,s:12});
+tx(svg,110,76,"A770 · ConfigManagerErrorCode 0",{f:D,s:10});
+tx(svg,110,92,"no TDR events — the silicon is fine",{f:D,s:10});
+// guest plate
+el(svg,"rect",{x:500,y:35,width:180,height:80,rx:5,fill:"#171310",stroke:R,"stroke-width":1.2});
+tx(svg,590,58,"GUEST — WSL2",{f:B,s:12});
+tx(svg,590,76,"/dev/dxg present, answering in errno",{f:D,s:10});
+tx(svg,590,92,"every ioctl, three shapes of no",{f:D,s:10});
+// wire halves — gold that stops short of the crack
+el(svg,"line",{x1:200,y1:75,x2:312,y2:75,stroke:C,"stroke-width":2});
+el(svg,"line",{x1:392,y1:75,x2:500,y2:75,stroke:C,"stroke-width":2});
+// the crack — jagged ink gap through a faint gold outline
+const crack="M340 40 L352 58 L334 66 L358 82 L342 96 L356 110";
+el(svg,"path",{d:crack,fill:"none",stroke:C,"stroke-width":6,opacity:.18});
+el(svg,"path",{d:crack,fill:"none",stroke:"#0d0b08","stroke-width":3.5});
+el(svg,"path",{d:"M340 40 L352 58 L334 66",fill:"none",stroke:R,"stroke-width":1});
+el(svg,"path",{d:"M342 96 L356 110",fill:"none",stroke:R,"stroke-width":1});
+tx(svg,350,132,"the seam, un-repaired",{f:R,s:10,i:1});
+// dying packet
+const pkt=el(svg,"circle",{cx:210,cy:75,r:3.5,fill:"#f0d060"});
+pkt.setAttribute("class","pkt");
+
+// ---- plate 2: the ladder ----
+const lad = document.getElementById("ladder");
+const RL=120, RR=260, T=20, RUNG=26;
+const done=[["0.031","the severed footnote"],["0.035",""],["0.039",""],["0.044",""],["0.050",""],["0.056",""]];
+// rails
+el(lad,"line",{x1:RL,y1:T,x2:RL,y2:220,stroke:C,"stroke-width":2});
+el(lad,"line",{x1:RR,y1:T,x2:RR,y2:220,stroke:C,"stroke-width":2});
+done.forEach((r,i)=>{
+  const y=210-i*RUNG;
+  el(lad,"line",{x1:RL,y1:y,x2:RR,y2:y,stroke:C,"stroke-width":2.5});
+  tx(lad,RL-12,y+4,"c="+r[0],{a:"end",f:D,s:10});
+  if(r[1]) tx(lad,RR+14,y+4,r[1],{a:"start",f:D,s:10,i:1});
+});
+// rung 7 — broken mid-arm
+{
+  const y=210-6*RUNG;
+  el(lad,"line",{x1:RL,y1:y,x2:RL+82,y2:y,stroke:R,"stroke-width":2.5});
+  el(lad,"line",{x1:RL+82,y1:y,x2:RL+96,y2:y,stroke:R,"stroke-width":2.5,"stroke-dasharray":"3 3"});
+  el(lad,"line",{x1:RL+96,y1:y-4,x2:RL+96,y2:y+4,stroke:R,"stroke-width":1});
+  tx(lad,RL-12,y+4,"c=0.0625",{a:"end",f:R,s:10});
+  tx(lad,RR+14,y+4,"generation 60/100 — the log ends here",{a:"start",f:R,s:10,i:1});
+}
+// ghost rungs fading into the dark
+for(let i=0;i<5;i++){
+  const y=210-(7+i)*RUNG, o=0.34-i*0.07;
+  if(y<8)break;
+  el(lad,"line",{x1:RL,y1:y,x2:RR,y2:y,stroke:D,"stroke-width":1.4,"stroke-dasharray":"5 5",opacity:o});
+}
+tx(lad,190,16,"…108 rungs above, waiting on one reboot",{f:D,s:10,i:1});
+tx(lad,470,232,"the instrument went silent before the voice did — twice now",{f:D,s:10,i:1});
+</script>
+</body>
+</html>

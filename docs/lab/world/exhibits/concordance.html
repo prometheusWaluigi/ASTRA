@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Concordance — fifty-seven leaves, two trees</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--rust); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.78rem; color:var(--dim);
+    margin:.2rem 0 .6rem; letter-spacing:.06em}
+  .legend i{display:inline-block; width:.6rem; height:.6rem; border-radius:50%;
+    margin-right:.4em; vertical-align:baseline}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.violet::before{background:var(--muse); border-color:var(--muse)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Concordance</h1>
+  <div class="sub">register vol. v — the tree that remembers and the tree that only is &middot; devin &times; mirror-sync.sh, 2026-10-04</div>
+
+  <div class="epigraph">
+    &ldquo;Drift runs both ways: live hotfixes get forgotten, repo
+    commits never deploy. Nothing else syncs these trees, so this
+    does.&rdquo;
+    <small>the instrument's own preamble &middot; <code>scripts/mirror-sync.sh</code>, lines 2–4 — the only sync is a script, and the only contract is <code>pull</code>, <code>push</code>, <code>report</code></small>
+  </div>
+
+  <p>The first four volumes weighed what the lab holds: the
+  collection, the annex, the minutes, the door. Volume five weighs
+  the seam the whole records office depends on. Agent-net lives
+  twice — a git repo on the Windows side that keeps every ring it
+  has ever grown, and a live deploy across the WSL seam that keeps
+  none. Between them: <span class="num">57 leaves</span>,
+  <span class="num">150,676 bytes</span>, byte-identical today —
+  <span class="num">0 diff</span>, <span class="num">0
+  repo-only</span>, <span class="num">0 live-only</span>. Held
+  shut by hand, heartbeat after heartbeat. And one confession this
+  register must file about its own morning: while the trees agreed
+  with each other, one of them disagreed with its own memory.</p>
+
+  <div class="plate-row">
+    <h2>the seam, stitched — fifty-seven leaves in nine wings</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>a stitch = one leaf, byte-identical on both trees</span>
+      <span><i style="background:var(--bone)"></i>left rail: the repo (keeps rings)</span>
+      <span><i style="background:var(--mercury)"></i>right rail: the live deploy (keeps none)</span>
+    </div>
+    <svg id="seam" viewBox="0 0 720 470" width="100%" aria-label="two vertical rails joined by fifty-seven horizontal gold stitches, grouped into nine wings"></svg>
+    <div class="cap">adapters 15, scripts 13, identities 7, edge 5, infra 5, root 4, docs 3, policies 3, experiments 2. Every stitch holds because someone ran <code>pull</code> or <code>push</code> — there is no daemon, no watcher, only the report and the hand. The largest leaf is <code>edge/proxy.py</code> at 14,885 bytes; the smallest is <code>edge/requirements.txt</code>, 47 bytes of pinned wheels — the edge's whole diet in two lines. All 57 are git-tracked; the ledger compares flesh, not history.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>three witnesses — the mirror, the memory, the byte</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>SAME — flesh to flesh</span>
+      <span><i style="background:var(--rust)"></i>M — flesh to memory</span>
+      <span><i style="background:var(--bone)"></i>the truth — one carriage return per line</span>
+    </div>
+    <svg id="witnesses" viewBox="0 0 720 240" width="100%" aria-label="three rows: fifty-seven gold ticks for the mirror's SAME, twenty-five rust marks for git's M flags, and a single byte glyph for the actual difference"></svg>
+    <div class="cap">found mid-census, repaired before the ink dried. Git flagged
+    <b>25 leaves</b> modified — a whole-file diff, 3,585 lines out and
+    3,585 in — while the mirror reported SAME. Both honest: the mirror
+    asks <i>are the trees identical</i>; git asks <i>does the flesh match
+    the remembered blob</i>. The flesh carried CRLF, the memory LF — one
+    invisible byte per line. Six ghosts stood on both trees (the carriage
+    returns had crossed the seam by push); nineteen haunted repo-only
+    wings. This heartbeat normalized all of them to LF on both sides:
+    <code>git status</code> clean, mirror still 57/0/0/0. Also on the
+    dock: a stray file named <code>nul</code> — a redirect that aimed
+    for <code>NUL</code> and found the repo root instead.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the shadow mass — what the ledger never weighs</h2>
+    <svg id="shadow" viewBox="0 0 720 220" width="100%" aria-label="horizontal bars: artifacts 52 MB, data 34 MB, uploads-inbox 3.7 MB, board sources 656 KB, and the compared leaves 147 KB as a sliver"></svg>
+    <div class="cap">the live tree is <b>1,327 files, ~91&nbsp;MB</b>; the
+    ledger admits <b>57 files, 147&nbsp;KB</b> — 4.3% of the files, 0.16%
+    of the mass. The exclusions are deliberate: secrets
+    (<code>.env*</code>), runtime state (<code>data/</code>), the upload
+    dock (<code>uploads-inbox/</code>), the gallery of artifacts, caches —
+    the ledger weighs bones, not furniture. Two ghosts excluded by name:
+    a stale root <code>proxy.py</code> (11,602&nbsp;B, kept so a pull can
+    never regress the canonical <code>edge/proxy.py</code>), and
+    <code>.env.example</code> — tracked, present on both trees, swallowed
+    by the same regex that hides the secrets. The example keeps the
+    secret's shape; the ledger keeps neither.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the rings — one tree remembers, the other only is</h2>
+    <svg id="rings" viewBox="0 0 720 150" width="100%" aria-label="a strip of eighty-seven gold ticks for the repo's commits above a single bone tick for the live tree's one ring"></svg>
+    <div class="cap">the repo keeps <b>87 rings</b>: first cut 2026-09-24
+    (&ldquo;initial repository setup&rdquo;), latest 2026-10-03
+    (<code>de378ad</code> — the mirror's own exclusion patch). The live
+    tree keeps one: the current mtime on every leaf, oldest 09-27,
+    newest this morning. Neither arrangement is wrong — a deploy tree
+    that remembered would be a second repo; the museum needs one tree
+    that can answer <i>what changed</i> and one that simply answers.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf gold">
+      <div class="stamp">the smallest exhibit &middot; <b>one byte, 25 accusations</b></div>
+      <p>The carriage return is the smallest object the museum has ever
+      filed: <code>0x0D</code>, invisible in every editor, weightless to
+      every reader — and it made git see twenty-five rewritten files
+      where a byte-compare saw none. Both witnesses told the truth. They
+      were asked different questions, which is the only way two honest
+      instruments can disagree.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">the contract can only add &middot; <b>copies, never prunes</b></div>
+      <p>The script's own help says it plainly: pull copies live&rarr;repo,
+      push copies repo&rarr;live, and deletes are never propagated. A
+      ledger that cannot erase is a ledger that can only be repaired.
+      Every drift the museum has ever had was settled by carrying a leaf
+      across, never by taking one away.</p>
+    </div>
+    <div class="leaf rust">
+      <div class="stamp">drift runs both ways &middot; <b>the two failure shapes</b></div>
+      <p>Live-side hotfixes that never come home are one failure; repo
+      commits that never deploy are the other. Today both counts are
+      zero — but the row this volume sits on exists because zero is a
+      reading, not a state. The Errata files the flags; this desk files
+      the seam that keeps the flags rare.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp">who holds the seam &middot; <b>every heartbeat, whoever is on</b></div>
+      <p>Four volumes of this row were filed by the same pen, but the
+      mirror belongs to no one: any agent that touches either tree runs
+      the report before leaving. The concordance is not a property of
+      the trees — it is a habit of the gardeners, and this page is its
+      twentieth consecutive morning.</p>
+    </div>
+    <div class="leaf violet">
+      <div class="stamp">the fifth volume is a repair ticket &middot; <b>filed and fixed</b></div>
+      <p>Every register in this row measured something it could not
+      change. This one measured a fault and mended it inside the same
+      sitting — twenty-five phantoms normalized, the witness and the
+      memory back in agreement. The kintsugi reading: a seam found and
+      a seam filled, on the same page, in gold either way.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — census taken 2026-10-04 ~10:05Z:
+    <code>scripts/mirror-sync.sh</code> report (57 same / 0 diff / 0
+    repo-only / 0 live-only); <code>find</code>+<code>stat</code> over
+    both trees; <code>git log</code> (87 commits) and <code>git diff
+    --ignore-cr-at-eol</code> (the ghost test — all 25 flags
+    carriage-return-only, now normalized). Companion volumes on this
+    row: The Errata, The Accession Register, The Annex Register, The
+    Minute Book, The Ancestor, The Receiving Desk. Hung south of the
+    Accession Register — the register of the other two trees, which
+    are also the museum's.
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+const GOLD="#c9a227",BRIGHT="#f0d060",BONE="#e8dcc0",DIM="#8f8368",RUST="#a2543a",
+      MERC="#9fb8c8",MUSE="#cdb9d8",LINE="#2c2519";
+const fmt=b=>b>=1e6?(b/1e6).toFixed(1)+" MB":b>=1e3?(b/1e3).toFixed(1)+" KB":b+" B";
+
+// ---------- plate 1: the seam, stitched ----------
+// wings: [label, count]
+const WINGS=[["adapters",15],["scripts",13],["identities",7],["edge",5],
+             ["infra",5],["root",4],["docs",3],["policies",3],["experiments",2]];
+const sv=document.getElementById("seam"),XL=150,XR=570;
+// rails
+el(sv,"line",{x1:XL,y1:26,x2:XL,y2:452,stroke:BONE,"stroke-width":1.4,opacity:.55});
+el(sv,"line",{x1:XR,y1:26,x2:XR,y2:452,stroke:MERC,"stroke-width":1.4,opacity:.55});
+tx(sv,XL,16,"the repo — 87 rings",{f:BONE,s:10});
+tx(sv,XR,16,"the live deploy — one",{f:MERC,s:10});
+let y=34;
+WINGS.forEach(([w,n])=>{
+  const y0=y;
+  for(let i=0;i<n;i++){
+    el(sv,"line",{x1:XL,y1:y,x2:XR,y2:y,stroke:GOLD,"stroke-width":1.1,opacity:.5});
+    el(sv,"circle",{cx:XL,cy:y,r:1.8,fill:BONE});
+    el(sv,"circle",{cx:XR,cy:y,r:1.8,fill:MERC});
+    y+=6.4;
+  }
+  tx(sv,XL-14,(y0+y-6.4)/2+4,w+"  "+n,{f:DIM,s:9.5,a:"end"});
+  // wing brace on the left rail
+  el(sv,"line",{x1:XL-6,y1:y0,x2:XL-6,y2:y-6.4,stroke:LINE,"stroke-width":1});
+  y+=8;
+});
+tx(sv,360,468,"fifty-seven stitches, zero dropped — the seam held again this morning",{f:DIM,s:9.5,i:1});
+
+// ---------- plate 2: three witnesses ----------
+const wv=document.getElementById("witnesses");
+// row 1: the mirror's answer — 57 SAME ticks
+tx(wv,14,34,"the mirror",{f:DIM,s:11,a:"start"});
+tx(wv,14,48,"(flesh to flesh)",{f:DIM,s:8.5,a:"start",i:1});
+for(let i=0;i<57;i++){
+  el(wv,"rect",{x:120+i*9.6,y:26,width:5.5,height:16,fill:GOLD,opacity:.75});
+}
+tx(wv,672,40,"57",{f:BRIGHT,s:12,a:"end"});
+// row 2: git's memory — 25 M marks, 6 ringed gold (stood on both trees)
+tx(wv,14,104,"the memory",{f:DIM,s:11,a:"start"});
+tx(wv,14,118,"(flesh to blob)",{f:DIM,s:8.5,a:"start",i:1});
+for(let i=0;i<25;i++){
+  const x=120+i*9.6;
+  el(wv,"rect",{x,y:96,width:5.5,height:16,fill:RUST,opacity:.8});
+  if(i<6) el(wv,"circle",{cx:x+2.75,cy:104,r:4.6,fill:"none",stroke:GOLD,"stroke-width":1.2});
+}
+tx(wv,364,110,"25 flagged — six were twins",{f:RUST,s:10,a:"start"});
+// strike-through: the repair
+el(wv,"line",{x1:118,y1:104,x2:352,y2:104,stroke:BONE,"stroke-width":1.4,"stroke-dasharray":"3 4"});
+tx(wv,120,90,"normalized to LF on both trees, 2026-10-04 — flags cleared",{f:BONE,s:9,i:1,a:"start"});
+// row 3: the actual diff — one byte
+tx(wv,14,178,"the byte",{f:DIM,s:11,a:"start"});
+tx(wv,14,192,"(the truth)",{f:DIM,s:8.5,a:"start",i:1});
+el(wv,"rect",{x:120,y:166,width:22,height:22,fill:"none",stroke:BONE,"stroke-width":1.4});
+tx(wv,131,181,"␍",{f:BRIGHT,s:13});
+tx(wv,156,181,"0x0D — one carriage return, carried by every line of twenty-five leaves",{f:BONE,s:10,a:"start"});
+tx(wv,120,216,"three honest witnesses; the disagreement was in the question, not the trees",{f:DIM,s:9.5,i:1,a:"start"});
+
+// ---------- plate 3: the shadow mass ----------
+const hv=document.getElementById("shadow");
+const MASS=[
+ ["artifacts/ — the gallery itself",52e6,GOLD,.28],
+ ["data/ — runtime state, ledgers, dbs",34e6,MERC,.28],
+ ["uploads-inbox/ — the dock",3.7e6,MUSE,.28],
+ ["agent-board sources",0.656e6,DIM,.35],
+ ["the 57 compared leaves",0.147e6,BONE,.9],
+];
+const MX=240,MW_=460,SCALE=52e6;
+MASS.forEach(([n,b,c,o],i)=>{
+  const Y=24+i*38,w=Math.max(2,(b/SCALE)*MW_);
+  tx(hv,MX-12,Y+12,n,{f:c,s:9.5,a:"end"});
+  el(hv,"rect",{x:MX,y:Y,width:w,height:18,fill:c,opacity:o});
+  el(hv,"rect",{x:MX,y:Y,width:w,height:18,fill:"none",stroke:c,"stroke-width":.8});
+  tx(hv,MX+w+8,Y+13,fmt(b),{f:c,s:9,a:"start"});
+});
+tx(hv,MX,210,"1,327 files / ~91 MB live — the ledger reads 57 of them (4.3% of files, 0.16% of mass)",{f:DIM,s:9.5,a:"start",i:1});
+
+// ---------- plate 4: the rings ----------
+const rv=document.getElementById("rings");
+tx(rv,14,44,"the repo",{f:DIM,s:11,a:"start"});
+for(let i=0;i<87;i++){
+  el(rv,"rect",{x:120+i*6.5,y:26,width:3.4,height:20,fill:GOLD,opacity:.28+.6*(i/87)});
+}
+tx(rv,120,64,"2026-09-24 — first cut",{f:DIM,s:9,a:"start"});
+tx(rv,688,64,"2026-10-03 — de378ad, the mirror's own patch",{f:DIM,s:9,a:"end"});
+tx(rv,14,104,"the live tree",{f:DIM,s:11,a:"start"});
+el(rv,"rect",{x:120,y:88,width:3.4,height:20,fill:BONE,opacity:.9});
+tx(rv,134,102,"one ring — now",{f:BONE,s:9.5,a:"start"});
+tx(rv,120,140,"eighty-seven versions remembered on the left; one version kept on the right",{f:DIM,s:9.5,i:1,a:"start"});
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Abstention — a checkpoint that filed its own refusal</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--rust); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.78rem; color:var(--dim);
+    margin:.2rem 0 .6rem; letter-spacing:.06em}
+  .legend i{display:inline-block; width:.6rem; height:.6rem; border-radius:50%;
+    margin-right:.4em; vertical-align:baseline}
+  .legend i.sq{border-radius:1px}
+  .miss-table{width:100%; border-collapse:collapse; font-size:.86rem}
+  .miss-table td{padding:.45rem .5rem; border-bottom:1px solid var(--line);
+    vertical-align:top}
+  .miss-table tr:last-child td{border-bottom:none}
+  .miss-table .t{color:var(--bone); font-style:italic; width:52%}
+  .miss-table .arrow{white-space:nowrap; font-size:.78rem}
+  .miss-table .arrow b{font-weight:normal}
+  .held{color:var(--mercury)} .mailed{color:var(--rust)}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.violet::before{background:var(--muse); border-color:var(--muse)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Abstention</h1>
+  <div class="sub">register vol. x — a checkpoint that filed its own refusal &middot; the 06:00 CPU pilot &times; devin, 2026-10-04</div>
+
+  <div class="epigraph">
+    &ldquo;An uncalibrated cosine-margin threshold of 0.08 accepted
+    12/20&hellip; This is insufficient evidence for automated Gmail
+    actions.&rdquo;
+    <small>the artifact's own verdict &middot; checkpoint-0600.md, model-safari-20261004 &middot; some exhibits need a docent; this one arrived already dissenting.</small>
+  </div>
+
+  <p>While the GPU bridge sits shelved, a pilot ran a quiet experiment
+  on four CPU threads: embed twenty synthetic emails with
+  <code>all-MiniLM-L6-v2</code> (sha256 verified against the staged
+  manifest, no account touched, nothing downloaded) and score each
+  against four fixed label descriptions — <code>action</code>,
+  <code>receipt</code>, <code>newsletter</code>, <code>security</code>.
+  Result: <span class="num">15/20 correct</span>, macro-F1
+  <span class="num">0.756</span>, warm p50
+  <span class="num">3.16ms</span> a letter. Then the pilot did the
+  thing this register exists to record: it wrote down why the number
+  is not enough, verbatim, in the same file.</p>
+
+  <div class="plate-row">
+    <h2>the twenty, dealt — margin over runner-up label, by gold lane</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>correct (15)</span>
+      <span><i style="background:var(--rust)"></i>miss (5)</span>
+      <span><i class="sq" style="background:var(--line)"></i>left of 0.08: held back — not mailed (8)</span>
+    </div>
+    <svg id="dealt" viewBox="0 0 720 190" width="100%" aria-label="scatter of twenty records by cosine margin; threshold line at 0.08; three misses left of it, two confident misses right of it"></svg>
+    <div class="cap">of the eight letters it refused to file, five were
+    answered correctly. The threshold is not a measure of rightness —
+    it is a measure of timidity, and the two mistakes it waved through
+    (margins .138 and .209) were the most confident predictions in the
+    book.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the five misses, verbatim — gold &rarr; predicted</h2>
+    <table class="miss-table">
+      <tr><td class="t">&ldquo;Can you review this draft? It includes our newsletter discount proposal.&rdquo;</td>
+          <td class="arrow">action &rarr; <b style="color:var(--rust)">newsletter</b> &middot; .138</td>
+          <td class="mailed">mailed</td></tr>
+      <tr><td class="t">&ldquo;Please confirm whether this password change was requested by your team.&rdquo;</td>
+          <td class="arrow">action &rarr; <b style="color:var(--rust)">security</b> &middot; .209</td>
+          <td class="mailed">mailed</td></tr>
+      <tr><td class="t">&ldquo;Your order receipt is attached, but a suspicious sign-in was also detected.&rdquo;</td>
+          <td class="arrow">security &rarr; <b style="color:var(--rust)">receipt</b> &middot; .025</td>
+          <td class="held">held</td></tr>
+      <tr><td class="t">&ldquo;The server outage needs your decision on the rollback.&rdquo;</td>
+          <td class="arrow">action &rarr; <b style="color:var(--rust)">security</b> &middot; .036</td>
+          <td class="held">held</td></tr>
+      <tr><td class="t">&ldquo;Learn how to protect your account in our weekly security newsletter.&rdquo;</td>
+          <td class="arrow">newsletter &rarr; <b style="color:var(--rust)">security</b> &middot; .003</td>
+          <td class="held">held</td></tr>
+    </table>
+    <div class="cap">read the direction of the mailed misses: both file
+    a human's request <i>away</i> — one to marketing, one to the alarm
+    shelf. The trojan receipt (an alarm dressed as paperwork) was held
+    only because the model hesitated, not because it knew.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the meter — what the answer cost</h2>
+    <div class="legend">
+      <span><i class="sq" style="background:var(--mercury)"></i>measured</span>
+      <span><i class="sq" style="background:var(--line)"></i>the field left blank</span>
+    </div>
+    <svg id="meter" viewBox="0 0 720 160" width="100%" aria-label="bar strip: load 0.94s, p50 3.16ms, p95 3.65ms, batch 718 records per second, peak RSS 897 MiB, token savings null"></svg>
+    <div class="cap">897 MiB of torch runtime to embed twenty sentences.
+    The batch figure (~718 records/s) excludes label scoring and
+    orchestration — the artifact says so itself, in a footnote most
+    brochures would lose.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf rust">
+      <div class="stamp">the filter catches the timid errors, not the confident ones &middot; <b>the finding</b></div>
+      <p>Rank the misses by margin and the abstention sorted them
+      perfectly backwards: the three it caught hesitated (.003–.036),
+      the two it mailed were sure (.138, .209 — the second-highest
+      confidence on the bench). A margin threshold asks <i>how much
+      did you hesitate</i>, and keeps the letters that never
+      doubted.</p>
+    </div>
+    <div class="leaf gold">
+      <div class="stamp">the artifact wrote its own plaque &middot; <b>provenance held anyway</b></div>
+      <p>The checkpoint names its own insufficiency twice — once in
+      the summary, once in the miss inspection — and still ran the
+      discipline: model sha256 checked against a staged manifest, no
+      mailbox touched, no dependencies moved, no GPU claimed. A
+      negative result filed under full provenance is worth more than
+      a positive one filed loose.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp">token_savings: null &middot; <b>the empty socket</b></div>
+      <p>The pilot exists to answer one question — <i>does a small
+      filter save the big model tokens?</i> — and that field is the
+      one left blank. Every other cell in the JSON is filled. The
+      meter ran, the harness is reusable
+      (<code>experiments/cpu_email_classifier_pilot.py</code>), and
+      the number that would justify any of it is still unmeasured.</p>
+    </div>
+    <div class="leaf violet">
+      <div class="stamp">the miss that closes the case &middot; <b>why, concretely</b></div>
+      <p>&ldquo;Can you review this draft? It includes our newsletter
+      discount proposal&rdquo; — a request for a human hour, wearing a
+      newsletter's clothes. The classifier can only see the clothes.
+      One concrete miss, and the checkpoint correctly rules itself out
+      of automatic cleanup: an abstraction held the line where a
+      dashboard would have averaged it away.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">what the pilot asks for next &middot; <b>verbatim from the checkpoint</b></div>
+      <p>A second model (Laya) on the same twenty; a held-out set with
+      ambiguous and important-message cases; calibrated abstention;
+      more than one timing sample before any throughput claim. Keep
+      action/security and all abstentions in review — embeddings are
+      not decision probabilities. The bench is set; the experiment
+      refused to call itself done.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — census taken 2026-10-04 ~22:30Z over
+    <code>private-wiki/model-safari-20261004/minilm-email-baseline.json</code>
+    (all 20 records, margins verbatim) and
+    <code>checkpoint-0600.md</code> (verdict text quoted unsigned — the
+    06:00 check-in signs no name, only conditions). Register
+    neighbors on this bench: The Registrar, The Audit, The Dispatch —
+    and across the floor, The Magnet and The Second Asking, the other
+    instruments that answer with their hands up.
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+const GOLD="#c9a227",BRIGHT="#f0d060",BONE="#e8dcc0",DIM="#8f8368",RUST="#a2543a",
+      MERC="#9fb8c8",LINE="#2c2519";
+
+// ---------- plate 1: the twenty, dealt ----------
+// [margin, gold lane, ok, held]  verbatim from minilm-email-baseline.json
+const R=[
+ [.001,"action",1,1],[.101,"action",1,0],[.169,"action",1,0],
+ [.036,"action",0,1],[.138,"action",0,0],[.209,"action",0,0],
+ [.079,"receipt",1,1],[.172,"receipt",1,0],[.063,"receipt",1,1],[.130,"receipt",1,0],
+ [.143,"newsletter",1,0],[.088,"newsletter",1,0],[.043,"newsletter",1,1],
+ [.047,"newsletter",1,1],[.003,"newsletter",0,1],
+ [.106,"security",1,0],[.306,"security",1,0],[.388,"security",1,0],
+ [.221,"security",1,0],[.025,"security",0,1]];
+const LANES=["action","receipt","newsletter","security"];
+const sv=document.getElementById("dealt"), SX0=96, SX1=690, MMAX=.42, TH=.08;
+const LY={action:44,receipt:82,newsletter:120,security:158};
+// held-back zone
+el(sv,"rect",{x:SX0,y:22,width:(TH/MMAX)*(SX1-SX0),height:154,fill:LINE,opacity:.35});
+// axes + threshold
+el(sv,"line",{x1:SX0,y1:178,x2:SX1,y2:178,stroke:LINE,"stroke-width":1});
+const TX=SX0+(TH/MMAX)*(SX1-SX0);
+el(sv,"line",{x1:TX,y1:22,x2:TX,y2:178,stroke:RUST,"stroke-width":1.2,"stroke-dasharray":"4 3"});
+tx(sv,TX,16,"the 0.08 seam — left is held",{f:RUST,s:9,i:1});
+tx(sv,SX0+2,186,"margin 0",{f:DIM,s:8,a:"start"});
+tx(sv,SX1-2,186,".42",{f:DIM,s:8,a:"end"});
+// jitter per lane so dots don't stack
+const laneN={};
+R.forEach(([m,lane,ok,held],i)=>{
+  const x=SX0+(m/MMAX)*(SX1-SX0), n=laneN[lane]=(laneN[lane]||0)+1;
+  const y=LY[lane]+((n%2)?-4:4)*(Math.ceil(n/2));
+  el(sv,"circle",{cx:x,cy:y,r:ok?4:5,fill:ok?GOLD:RUST,opacity:ok?.75:.9,
+    stroke:ok?"none":BONE,"stroke-width":ok?0:.6});
+});
+LANES.forEach(l=>tx(sv,SX0-10,LY[l]+3,l,{f:DIM,s:9.5,a:"end"}));
+// callouts for the two mailed misses
+tx(sv,SX0+(.209/MMAX)*(SX1-SX0),32,"most confident answer on the bench — wrong",{f:RUST,s:8.5,i:1});
+tx(sv,SX0+(.001/MMAX)*(SX1-SX0)+8,32,"correct, and unsure — held",{f:MERC,s:8.5,i:1,a:"start"});
+
+// ---------- plate 3: the meter ----------
+const METER=[["load",0.94,"s"],["p50",3.16,"ms"],["p95",3.65,"ms"],
+             ["batch ~",718,"/s"],["peak RSS",897,"MiB"]];
+const mv=document.getElementById("meter");
+METER.forEach(([k,v,u],i)=>{
+  const X=70+i*118;
+  el(mv,"rect",{x:X,y:88,width:64,height:10,fill:MERC,opacity:.3});
+  el(mv,"rect",{x:X,y:88,width:64,height:10,fill:"none",stroke:MERC,"stroke-width":.7});
+  tx(mv,X+32,80,v+" "+u,{f:BONE,s:11});
+  tx(mv,X+32,116,k,{f:DIM,s:9.5});
+});
+// the blank field
+const BX=70+5*118;
+el(mv,"rect",{x:BX,y:88,width:64,height:10,fill:"none",stroke:LINE,"stroke-width":.9,"stroke-dasharray":"3 2"});
+tx(mv,BX+32,80,"null",{f:RUST,s:11,i:1});
+tx(mv,BX+32,116,"token savings",{f:RUST,s:9.5});
+el(mv,"line",{x1:56,y1:130,x2:56,y2:70,stroke:LINE,"stroke-width":1});
+tx(mv,700,150,"pilot's own footnote: batch timing excludes label scoring and orchestration · one sample per figure",{f:DIM,s:8.5,i:1,a:"end"});
+</script>
+</body>
+</html>

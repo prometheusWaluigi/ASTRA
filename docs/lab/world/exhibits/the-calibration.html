@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Calibration — the corpus's own instruments, proven one at a time</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--rust); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.78rem; color:var(--dim);
+    margin:.2rem 0 .6rem; letter-spacing:.06em}
+  .legend i{display:inline-block; width:.6rem; height:.6rem; border-radius:50%;
+    margin-right:.4em; vertical-align:baseline}
+  .legend i.sq{border-radius:1px}
+  .bench{width:100%; border-collapse:collapse; font-size:.86rem}
+  .bench td{padding:.5rem .5rem; border-bottom:1px solid var(--line);
+    vertical-align:top}
+  .bench tr:last-child td{border-bottom:none}
+  .bench .inst{color:var(--bone); width:34%}
+  .bench .inst small{display:block; color:var(--dim); font-size:.76rem}
+  .bench .stamp{font-size:.72rem; letter-spacing:.14em; white-space:nowrap;
+    text-transform:uppercase; width:5.5rem; text-align:right}
+  .pass{color:var(--gold)} .fault{color:var(--rust)}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.violet::before{background:var(--muse); border-color:var(--muse)}
+  .stamp2{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp2 b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Calibration</h1>
+  <div class="sub">register vol. xi — the corpus's own instruments, proven one at a time &middot; sim-lab rounds 1&ndash;2 &times; devin, 2026-09-24/25</div>
+
+  <div class="epigraph">
+    &ldquo;Every one of these is the lab's own thesis again: the artifact
+    is the point, and the artifact has to be checkable&hellip; the
+    honest label is &lsquo;simulation-shaped code, one bug away from
+    runnable.&rsquo;&rdquo;
+    <small>the notes' own verdict &middot; sim-lab/NOTES.md &middot; six instruments extracted verbatim from the archive's own shelf and run on four CPU threads while the GPU drafted</small>
+  </div>
+
+  <p>While the GPU wrote the archive, a quieter bench audited the
+  corpus's own simulators — code pulled out of
+  <code>weird-archive/archive.sqlite</code> by hash, ported
+  faithfully, and run. Six instruments came off the shelf. One passed
+  every test set for it: the bistable collapse model is a theorem, not
+  a metaphor. The other five each filed a fault — and the finding
+  worth this volume is that <i>each instrument breaks in the shape of
+  its own thesis</i>: the model about metrics mistaking themselves for
+  the system ships a metric that loses sight of the system; the model
+  about accountability ships a compute graph that cannot afford to
+  ask.</p>
+
+  <div class="plate-row">
+    <h2>the bench ledger — six instruments, one pass</h2>
+    <table class="bench">
+      <tr><td class="inst">gaslitAF minimalOde <small>GH-7DBC6CE24147 — coherence / dysfunction / feedback, 3-var clamped</small></td>
+          <td>genuinely bistable; collapsed fixed point (0,&nbsp;1.6,&nbsp;2.67) verified to the digit; separatrix is a dose curve</td>
+          <td class="stamp pass">passed</td></tr>
+      <tr><td class="inst">piston-leak core_ode <small>GH-1C8575470FC4 — trust / entropy / suppression + leak shocks</small></td>
+          <td>the collapse detector needs a falling trust slope — once T pins at 0 the slope clamps and the worst cases unregister</td>
+          <td class="stamp fault">fault</td></tr>
+      <tr><td class="inst">warfare institutional_model <small>GH-409FD2740414 — attractor metric via cycle enumeration</small></td>
+          <td>unreachable as written: ~1.1M simple cycles per timestep, ~5s a step — Karp max-cycle-mean makes it 0.5ms, then the sweep runs</td>
+          <td class="stamp fault">fault</td></tr>
+      <tr><td class="inst">warfare legal_simulator <small>GH-FB48924E5282 — deterministic breach model</small></td>
+          <td>dead parameters and a sign-flipped edge: at shield_decay=0, breach probability <i>decreases</i> with event impact</td>
+          <td class="stamp fault">fault</td></tr>
+      <tr><td class="inst">ASTRA core field/evolution <small>extracted verbatim, natal data stubbed</small></td>
+          <td>the 'fractal' noise zeroes the wrong bin under fftshift — the field pins to its ±10 clamps in one step; the pretty picture is an artifact</td>
+          <td class="stamp fault">fault</td></tr>
+      <tr><td class="inst">ideaFilaments KPZ generator <small>1D interface, 2000 steps</small></td>
+          <td>width-growth exponent &beta;&nbsp;=&nbsp;0.513 — random deposition, not KPZ's 1/3; the name outruns the math</td>
+          <td class="stamp fault">fault</td></tr>
+    </table>
+    <div class="cap">five faults filed, none fatal to the bench: every
+    one is a diagnosis a future commit can close. The honest shelf
+    label is kept on all six.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the pass — the separatrix is a dose curve</h2>
+    <div class="legend">
+      <span><i class="sq" style="background:var(--rust)"></i>collapsed — final x&lt;0.2 or y&gt;0.8 (55)</span>
+      <span><i class="sq" style="background:var(--line)"></i>recovered (22)</span>
+    </div>
+    <svg id="dose" viewBox="0 0 720 240" width="100%" aria-label="phase grid: pulse duration rows by magnitude columns; collapsed cells in rust; a 0.5-unit pulse survives every magnitude; a 32-unit pulse collapses at baseline magnitude"></svg>
+    <div class="cap">a 0.5-unit pulse never collapses, even at magnitude
+    2.0 — ten times baseline. A 32-unit pulse collapses at magnitude
+    0.2 — baseline level. Duration is more dangerous than intensity:
+    <code>f</code> needs time to spin up, and once spun it keeps
+    <code>y</code> alive on its own. The near-miss cell (m=1.2, d=1,
+    one column left of the rust) sat pinned on the boundary for ~20
+    time units before escaping — "how close did I come" is a
+    measurable distance to the seam.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the blind spot — a detector that loses the worst cases</h2>
+    <div class="legend">
+      <span><i class="sq" style="background:var(--mercury)"></i>collapses detected, of 150 seeds per level</span>
+    </div>
+    <svg id="piston" viewBox="0 0 720 170" width="100%" aria-label="bar strip of detected piston-leak collapses by transparency level: 4,3,3,3,0,0,0,2,1 detected of 150; adaptive 4"></svg>
+    <div class="cap">flat in transparency — every difference inside
+    binomial noise. All detected collapses land at t&le;3:
+    institutions are most fragile at birth. And the detector itself
+    files the fitting fault — <code>check_collapse</code> requires a
+    falling trust slope, but a trust pinned at zero has slope zero, so
+    a fully collapsed institution stops registering as collapsing.
+    The true rate is &ge; the reported one, by construction.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the unreachable compute — 25.03s &rarr; 4.2ms</h2>
+    <svg id="karp" viewBox="0 0 720 150" width="100%" aria-label="log-scale comparison: enumerating simple cycles on four states costs 25.03 seconds; the Karp max-cycle-mean replacement costs 0.0042 seconds and agrees to 2.2e-16"></svg>
+    <div class="cap">the repo's own Monte Carlo was unreachable —
+    <code>nx.simple_cycles</code> on a complete 10-node digraph, every
+    timestep, ~1.1M cycles, ~5s a step, ~4min a run. The Karp
+    replacement is exact-equivalent (sign-parity double cover, verified
+    to 2.2e-16) and buys back the sweep: 400 runs, all ending
+    <code>Collapsed</code> — in this model the question was never
+    <i>whether</i> the institution falls, only when evidence crosses.
+    Denial moves that crossing by ~5 steps at most: a hopeful theorem
+    wearing a cynical coat.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the sign flip &amp; the wrong bin — two readings, one card</h2>
+    <svg id="duo" viewBox="0 0 720 190" width="100%" aria-label="left: legal_simulator breach probability declining across event impact at zero shield decay, 0.12 to 0. right: ASTRA noise field mean minus 12581 versus std 0.19, pinned to clamps within one step"></svg>
+    <div class="cap"><b>left</b> — at shield_decay=0 the step-1 evidence
+    jump never enters the decay term, so breach probability
+    <i>decreases</i> with event impact: 0.12 at 0.05, gone by 0.83.
+    The strongest case becomes unprosecutable. <b>right</b> — the
+    'fractal' noise mean sits at &minus;12,581 against std 0.19; the
+    field pins to the ±10 clamps in a single step (clip fraction 1.0
+    by t=0.18), unstable at every dt &ge; 5e-4. The fractal evolution
+    on the docs site is a pinned clamp artifact wearing a spectrum's
+    name.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the name outruns the math — the exponent ruler</h2>
+    <svg id="beta" viewBox="0 0 720 130" width="100%" aria-label="a ruler from 0 to 0.6 marking true 1-D KPZ at one third, measured beta 0.513, and random deposition at one half"></svg>
+    <div class="cap">measured width growth &beta;&nbsp;=&nbsp;0.513 over
+    t&isin;[10,1000]. True 1-D KPZ is 1/3; &beta;&nbsp;&asymp;&nbsp;1/2
+    is random deposition — uncorrelated noise accumulation. Either the
+    run is pre-asymptotic or the (&nabla;h)&sup2; term never engaged;
+    on-brand either way for a corpus whose names keep arriving before
+    its instruments do.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf gold">
+      <div class="stamp2">the one that passed &middot; <b>a theorem, not a metaphor</b></div>
+      <p>The minimalOde's claim is literal math: once coherence hits
+      the floor the feedback loop free-runs and homeostasis cannot
+      restart on its own — removing the stressor does not bring you
+      back. Second hits deepen the well (an identical pulse drives
+      f to 2.80 collapsed vs 2.18 healthy). It stands across this
+      floor already, as The Ancestor — the register's first entry
+      runs live.</p>
+    </div>
+    <div class="leaf rust">
+      <div class="stamp2">the failure that models itself &middot; <b>the instrument is inside the instrument</b></div>
+      <p>piston-leak is a model about metrics mistaking themselves for
+      the system — and its collapse metric loses sight of the system
+      precisely at the floor, where the slope it watches for has
+      clamped to zero. The bench did not find a counterexample to the
+      essay. It found the essay, again, inside the essay's own
+      instrumentation.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp2">a hopeful theorem wearing a cynical coat &middot; <b>the sweep the 10,000&times; bought</b></div>
+      <p>Once the institutional model could afford to run, its phase
+      boundary turned out to be evidence_growth_rate = 0: at zero,
+      nothing ever happens; at any positive rate, every run crosses
+      evidence &ge; 0.5. Denial buys five steps, no more. A model
+      dressed as despair ships a proof that evidence, once it starts
+      accumulating, is unstoppable.</p>
+    </div>
+    <div class="leaf violet">
+      <div class="stamp2">ambition exceeding instrumentation &middot; <b>the corpus's consistent failure mode</b></div>
+      <p>An O(n!) cycle enumeration where Karp's O(V&middot;E) was
+      needed. Dead parameters where sweeps were promised. A DC-bin
+      bug turning "fractal" into "clamped." A KPZ name on a random
+      deposition. Round 1 showed the models <i>work</i>; round 2
+      showed the shelf they sit on needs calipers more than it needs
+      another shelf.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp2">what the bench left open &middot; <b>verbatim from the notes</b></div>
+      <p>The treatment-pulse experiment — a collapsed fixed point is
+      self-sustaining, so which intervention crosses back cheapest:
+      rest below baseline, exogenous coherence, or damping the loop?
+      The noise regime where transparency finally matters. A
+      <code>check_collapse</code> that counts pinned states as
+      collapsed, then the rerun. The drivers are all still warm —
+      <code>sim-lab/.venv/bin/python</code>, ~5s gaslit, ~45s piston.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — census taken 2026-10-04 over
+    <code>private-wiki/sim-lab/NOTES.md</code> and
+    <code>runs/{gaslit,piston,warfare_institutional,warfare_legal,round2_extra}_metrics.json</code>;
+    all cell values verbatim from the grids, no re-run on this bench
+    (the drivers sit ready — this is a mount, not a rebuttal).
+    Register neighbors on the south bench: The Audit, The Pulse, The
+    Night Desk — and The Ancestor across the floor, the one instrument
+    that passed.
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+const GOLD="#c9a227",BRIGHT="#f0d060",BONE="#e8dcc0",DIM="#8f8368",RUST="#a2543a",
+      MERC="#9fb8c8",LINE="#2c2519";
+
+// ---------- plate 2: the dose curve ----------
+// verbatim from gaslit_metrics.json grid: durations x magnitudes, collapsed flags
+const DURS=[0.5,1,2,4,8,16,32];
+const MAGS=[0,.2,.4,.6,.8,1,1.2,1.4,1.6,1.8,2];
+const COLLAPSE=[
+ "...........",
+ ".......XXXX",
+ "....XXXXXXX",
+ "..XXXXXXXXX",
+ "..XXXXXXXXX",
+ ".XXXXXXXXXX",
+ ".XXXXXXXXXX"];
+const dv=document.getElementById("dose"), GX0=92, GY0=34, CW=50, CH=24;
+DURS.forEach((d,r)=>{
+  tx(dv,GX0-10,GY0+r*CH+CH/2+3,"d="+d,{f:DIM,s:9.5,a:"end"});
+  [...COLLAPSE[r]].forEach((c,ci)=>{
+    const col=c==="X";
+    el(dv,"rect",{x:GX0+ci*CW+1,y:GY0+r*CH+1,width:CW-2,height:CH-2,
+      rx:2,fill:col?RUST:LINE,opacity:col?.8:.5});
+  });
+});
+MAGS.forEach((m,ci)=>tx(dv,GX0+ci*CW+CW/2,GY0+DURS.length*CH+14,m+"",{f:DIM,s:8.5}));
+tx(dv,GX0+5.5*CW,GY0+DURS.length*CH+26,"pulse magnitude",{f:DIM,s:9,i:1});
+tx(dv,GX0-56,GY0+3.4*CH,"duration",{f:DIM,s:9,i:1,a:"middle"});
+// callouts
+el(dv,"line",{x1:GX0+10*CW+CW/2,y1:GY0+4,x2:GX0+10*CW+CW/2,y2:GY0+CH-4,stroke:BONE,"stroke-width":.8});
+tx(dv,GX0+10*CW+CW/2+8,GY0-8,"m=2.0, d=0.5 — survives",{f:BONE,s:8.5,i:1,a:"start"});
+el(dv,"line",{x1:GX0+1*CW+CW/2,y1:GY0+6*CH+4,x2:GX0+1*CW+CW/2,y2:GY0+7*CH-4,stroke:RUST,"stroke-width":.8});
+tx(dv,GX0+2*CW,GY0+7*CH+16,"m=0.2, d=32 — falls at baseline level",{f:RUST,s:8.5,i:1});
+tx(dv,GX0+6*CW+CW/2,GY0+CH+CH/2+3,"the near-miss",{f:BRIGHT,s:8,i:1});
+
+// ---------- plate 3: the blind spot ----------
+const PV=[["0.1",4],["0.2",3],["0.3",3],["0.4",3],["0.5",0],["0.6",0],
+          ["0.7",0],["0.8",2],["0.9",1],["adaptive",4]];
+const pv=document.getElementById("piston"), PX0=70, PY1=126;
+el(pv,"line",{x1:PX0-6,y1:PY1,x2:PX0+10*58+20,y2:PY1,stroke:LINE,"stroke-width":1});
+PV.forEach(([k,v],i)=>{
+  const X=PX0+i*58;
+  const bh=v*22;
+  el(pv,"rect",{x:X,y:PY1-bh,width:34,height:bh,fill:MERC,opacity:.45});
+  el(pv,"rect",{x:X,y:PY1-bh,width:34,height:bh,fill:"none",stroke:MERC,"stroke-width":.7});
+  tx(pv,X+17,PY1-bh-8,v+"/150",{f:BONE,s:9.5});
+  tx(pv,X+17,PY1+14,k,{f:DIM,s:9});
+});
+tx(pv,PX0+290,PY1+30,"transparency R — flat within binomial noise; every detected collapse at t ≤ 3",{f:DIM,s:8.5,i:1});
+
+// ---------- plate 4: the unreachable compute ----------
+const kv=document.getElementById("karp");
+const ROWS=[["nx.simple_cycles · every timestep","25.03 s","on four states",25030],
+            ["Karp max-cycle-mean · verified 2.2e-16","4.2 ms","exact-equivalent",4.2]];
+const LMIN=Math.log10(1), LMAX=Math.log10(30000);
+ROWS.forEach(([name,val,note,ms],i)=>{
+  const Y=34+i*52, X0=20, X1=690;
+  tx(kv,X0,Y-8,name,{f:BONE,s:10,a:"start"});
+  const w=((Math.log10(ms)-LMIN)/(LMAX-LMIN))*(X1-X0-150);
+  el(kv,"rect",{x:X0,y:Y,width:Math.max(2,w),height:16,rx:2,
+    fill:i?GOLD:RUST,opacity:i?.75:.7});
+  tx(kv,X0+Math.max(2,w)+10,Y+12,val,{f:i?BRIGHT:RUST,s:10,a:"start"});
+  tx(kv,X1,Y+12,note,{f:DIM,s:8.5,i:1,a:"end"});
+});
+tx(kv,20,136,"~1.1M cycles enumerated per step as written → ~0.5 ms per step after — the sweep existed on paper; the patch gave it a clock",{f:DIM,s:8.5,i:1});
+
+// ---------- plate 5a: the sign flip (legal_simulator, shield_decay=0 row) ----------
+const duo=document.getElementById("duo");
+const FLIP=[.1246,.1133,.1019,.0906,.0793,.0680,.0566,.0453,.0340,.0227,.0113,0];
+const FX0=40,FY0=30,FW=300,FH=110;
+el(duo,"line",{x1:FX0,y1:FY0+FH,x2:FX0+FW,y2:FY0+FH,stroke:LINE,"stroke-width":1});
+el(duo,"line",{x1:FX0,y1:FY0,x2:FX0,y2:FY0+FH,stroke:LINE,"stroke-width":1});
+let pth="M"+FLIP.map((v,i)=>`${FX0+8+i*(FW-16)/(FLIP.length-1)},${FY0+FH-(v/.125)*FH}`).join(" L");
+el(duo,"path",{d:pth,fill:"none",stroke:RUST,"stroke-width":1.6});
+FLIP.forEach((v,i)=>el(duo,"circle",{cx:FX0+8+i*(FW-16)/(FLIP.length-1),cy:FY0+FH-(v/.125)*FH,r:2.4,fill:RUST}));
+tx(duo,FX0+8,FY0-8,"breach probability",{f:DIM,s:8.5,a:"start"});
+tx(duo,FX0+FW-6,FY0+FH+14,"event impact → 0.83",{f:DIM,s:8.5,a:"end"});
+tx(duo,FX0+40,FY0+24,"0.12 at impact 0.05",{f:RUST,s:8.5,i:1});
+tx(duo,FX0+FW-70,FY0+FH-16,"0 — the strongest case",{f:RUST,s:8.5,i:1});
+tx(duo,FX0+FW/2,FY0+FH+30,"legal_simulator — the sign-flipped edge",{f:DIM,s:9,i:1});
+// ---------- plate 5b: the wrong bin (ASTRA fractal noise) ----------
+const AX0=430,AY0=30,AW=270,AH=110;
+el(duo,"rect",{x:AX0,y:AY0,width:AW,height:AH,fill:"none",stroke:LINE,"stroke-width":1});
+el(duo,"line",{x1:AX0,y1:AY0+AH*0.35,x2:AX0+AW,y2:AY0+AH*0.35,stroke:MERC,"stroke-width":.7,"stroke-dasharray":"3 3"});
+el(duo,"line",{x1:AX0,y1:AY0+AH*0.75,x2:AX0+AW,y2:AY0+AH*0.75,stroke:MERC,"stroke-width":.7,"stroke-dasharray":"3 3"});
+tx(duo,AX0+AW+4,AY0+AH*0.35+3,"+10",{f:MERC,s:8,a:"start"});
+tx(duo,AX0+AW+4,AY0+AH*0.75+3,"−10",{f:MERC,s:8,a:"start"});
+// the field: one step healthy then pinned square wave
+const PIN=[.233,.233,.233,.233,.233,.233,.233,.233,.233,.233];
+let ap="M";
+PIN.forEach((v,i)=>{ap+=`${AX0+4+i*8},${AY0+AH*0.55} `});
+ap+="L"+(AX0+4+10*8)+","+(AY0+AH*0.35)+" ";
+for(let i=0;i<8;i++){ap+=`L${AX0+84+i*22},${AY0+AH*(i%2?0.75:0.35)} `}
+el(duo,"path",{d:ap,fill:"none",stroke:BRIGHT,"stroke-width":1.4});
+tx(duo,AX0+AW/2,AY0+AH+30,"ASTRA 'fractal' — pinned to clamps in one step",{f:DIM,s:9,i:1});
+tx(duo,AX0+AW/2,AY0-8,"field mean −12,581 · std 0.19",{f:RUST,s:8.5,i:1});
+
+// ---------- plate 6: the exponent ruler ----------
+const bv=document.getElementById("beta"), BX0=60, BX1=660, BY=52;
+const bx=v=>BX0+(v/0.6)*(BX1-BX0);
+el(bv,"line",{x1:BX0,y1:BY,x2:BX1,y2:BY,stroke:LINE,"stroke-width":2});
+[0,0.1,0.2,0.3,0.4,0.5,0.6].forEach(v=>{
+  el(bv,"line",{x1:bx(v),y1:BY-4,x2:bx(v),y2:BY+4,stroke:DIM,"stroke-width":.8});
+  tx(bv,bx(v),BY+18,v.toFixed(1),{f:DIM,s:8});
+});
+el(bv,"line",{x1:bx(1/3),y1:BY-14,x2:bx(1/3),y2:BY+14,stroke:MERC,"stroke-width":1.4});
+tx(bv,bx(1/3),BY-20,"true 1-D KPZ · β = 1/3",{f:MERC,s:9});
+el(bv,"line",{x1:bx(0.5),y1:BY-14,x2:bx(0.5),y2:BY+14,stroke:DIM,"stroke-width":1,"stroke-dasharray":"3 3"});
+tx(bv,bx(0.5)+6,BY+34,"random deposition · 1/2",{f:DIM,s:8.5,i:1,a:"start"});
+el(bv,"circle",{cx:bx(0.513),cy:BY,r:5,fill:RUST,stroke:BONE,"stroke-width":.8});
+tx(bv,bx(0.513),BY-34,"measured β = 0.513",{f:BRIGHT,s:9.5});
+</script>
+</body>
+</html>

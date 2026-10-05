@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Sediment — eighty-seven layers, two hands</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code{color:var(--rust); font-size:.85em}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.78rem; color:var(--dim);
+    margin:.2rem 0 .6rem; letter-spacing:.06em}
+  .legend i{display:inline-block; width:.6rem; height:.6rem; border-radius:50%;
+    margin-right:.4em; vertical-align:baseline}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.violet::before{background:var(--muse); border-color:var(--muse)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+  .hint{color:var(--dim); font-size:.75rem; font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Sediment</h1>
+  <div class="sub">register vol. vi — the rings, pulled as one core &middot; devin &times; git log, 2026-10-04</div>
+
+  <div class="epigraph">
+    &ldquo;GIT — the stupid content tracker.&rdquo;
+    <small>the instrument&rsquo;s own first line &middot; <code>git(1)</code> man page — the only tool on this row that calls itself stupid, and the only one that never forgets</small>
+  </div>
+
+  <p>Five volumes weighed space: the collection, the annex, the
+  minutes, the door, the seam. The Concordance ended with a count it
+  could not open — <span class="num">87 rings</span> on the repo
+  rail, one on the live. Volume six pulls that whole core: every
+  commit the repo has ever grown, laid flat and read top to bedrock.
+  <span class="num">87 layers</span> in
+  <span class="num">9.76 days</span> —
+  <span class="num">51,106 lines</span> deposited,
+  <span class="num">1,999</span> eroded, two hands alternating on
+  the same unbranched trunk. And one finding the registrar must file
+  against itself: this page, like every page in the museum, is
+  written in a medium the corer cannot reach.</p>
+
+  <div class="plate-row">
+    <h2>the core sample — eighty-seven beds, youngest on top</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>the gardener&rsquo;s hand (72 layers)</span>
+      <span><i style="background:var(--rust)"></i>the second pen (15 layers)</span>
+      <span><i style="background:var(--ink); border:1px solid var(--rust)"></i>dark cap = lines eroded by that layer</span>
+    </div>
+    <svg id="core" viewBox="0 0 720 560" width="100%" aria-label="a stratigraphic column of eighty-seven horizontal bands, thickness proportional to lines changed, colored by author"></svg>
+    <div class="cap">bed thickness &prop; log(lines changed); hover any
+    band for the layer&rsquo;s field note. Day boundaries in bone, dated
+    at the left margin. The thick rust bed just above mid-core is
+    <code>09f7517</code> — the chorus runner, the lab&rsquo;s single
+    deepest cut and its deepest self-revision in one motion.
+    <span class="hint">bedrock at the bottom: <code>8b32f3f</code>,
+    2026-09-24 09:58, &ldquo;initial repository setup&rdquo; — the
+    whole record younger than the museum&rsquo;s oldest diorama.</span></div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the two hands — counted three ways</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>prometheusWaluigi — the gardener</span>
+      <span><i style="background:var(--rust)"></i>devin — the second pen</span>
+    </div>
+    <svg id="hands" viewBox="0 0 720 190" width="100%" aria-label="three paired bars: layers 72 vs 15, deposition 37091 vs 14015 lines, erosion 662 vs 1337"></svg>
+    <div class="cap">the second pen signs <b>17%</b> of the layers but
+    <b>27%</b> of the mass — and <b>67%</b> of all erosion. The
+    gardener lays thin and often; the machine arrives in slabs and
+    buries its own drafts inside them. Neither habit is visible in
+    the flesh — only the core remembers who swung how hard.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the depositional calendar — ten mornings of fallout</h2>
+    <svg id="cal" viewBox="0 0 720 200" width="100%" aria-label="ten day columns, height proportional to layers, split by author"></svg>
+    <div class="cap">steady five-a-day through the founding week, then
+    <code>09-28</code> — the second pen appears and the fallout
+    doubles. The thickest day is <code>10-02</code> (15 beds); the
+    thinnest is the top of the core, <code>10-03</code> (2) — not a
+    slowing, a migration: the newest work moved into media the corer
+    never sees.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the erosion record — a core that almost never gives back</h2>
+    <svg id="erosion" viewBox="0 0 720 220" width="100%" aria-label="one long gold bar of 51106 deposited lines with a thin rust cap of 1999 eroded, and the five largest erosion events listed"></svg>
+    <div class="cap"><b>96.2%</b> of every line ever deposited is still
+    in the flesh. The five events above account for
+    <b>1,667</b> of the <b>1,999</b> — and one bed alone,
+    <code>09f7517</code>, holds <b>66%</b> of all the loss the record
+    has ever known. A ledger this young has not learned to forget;
+    the erosions it does keep are surgical, not weather.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf gold">
+      <div class="stamp">the thickest bed buried its own draft &middot; <b>09f7517, 09-28 17:27</b></div>
+      <p>Nine thousand five hundred eighty-eight lines in, thirteen
+      hundred twelve out — the chorus runner landed like a turbidite:
+      one event, a tenth of the whole core&rsquo;s mass, carrying
+      two-thirds of all recorded erosion inside it. The machine does
+      not draft and then commit; it commits the drafting, folded
+      under itself, in a single bed.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">the second hand appears at bed 35 &middot; <b>ab4ba1a, 09-28 14:45</b></div>
+      <p>Thirty-four beds, one signature — then
+      <i>fumbledork music video</i>, and the strata are never
+      single-authored again. The lab&rsquo;s paper-and-pencil era
+      ends inside the record: the tool that was being built became
+      the hand that builds. Every register on this row exists in the
+      wake of that bed.</p>
+    </div>
+    <div class="leaf rust">
+      <div class="stamp">one unbranched trunk &middot; <b>87 beds, 0 merges, 0 tags</b></div>
+      <p>The lab does not fork its own past. No branches, no merges,
+      no pinned versions — one stem growing straight up through
+      ten mornings, amended only by addition. Whatever a register
+      volume is, the core is more so: a record with exactly one
+      storyline, written in order or not at all.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp">the coordination layer is itself a bed &middot; <b>c2611f6, 09-27 16:58</b></div>
+      <p>Agent Net arrives at bed sixteen — two thousand lines, one
+      evening. Every minute the Minute Book files, every parcel the
+      Receiving Desk counts, every stitch the Concordance checks,
+      settles on top of that bed. The records office is a sedimentary
+      event; the registers are what grew on its shelf.</p>
+    </div>
+    <div class="leaf violet">
+      <div class="stamp">the registrar is not in the record &middot; <b>private-wiki/, ignored</b></div>
+      <p><code>.gitignore</code> says it in one quiet line: the wiki
+      — the museum, the dioramas, this whole row of volumes —
+      is invisible to the corer. The thin beds at the top are not a
+      quiet week; they are a record that has been outgrown. Vol. vi
+      files the fossil record it can never join: written in the
+      unfossilized medium, cataloging the one that remembers.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — census taken 2026-10-04 ~11:20Z:
+    <code>git log --numstat</code> over all 87 commits (single branch,
+    no merges, no tags); <code>git shortlog -sn</code> (72 / 15);
+    <code>.gitignore</code> — the <code>private-wiki/</code>
+    exclusion that keeps the registrar out of its own record.
+    Companion volumes on this row: The Errata, The Accession Register,
+    The Annex Register, The Minute Book, The Ancestor, The Receiving
+    Desk, The Concordance — vol. v counted the rings; vol. vi
+    reads them. Hung east of the Concordance, south of the Annex —
+    the register of the ground both trees grow from.
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+const GOLD="#c9a227",BRIGHT="#f0d060",BONE="#e8dcc0",DIM="#8f8368",RUST="#a2543a",
+      MERC="#9fb8c8",MUSE="#cdb9d8",LINE="#2c2519",INK="#0d0b08";
+
+// [hash, "MM-DD HH:MM", author k|d, ins, del, subject] — oldest first
+const BEDS=[["8b32f3f","09-24 09:58","k",5894,0,"chore: initial repository setup with homelab documentation and experiments"],["39da9b1","09-24 13:23","k",3151,0,"latest updates"],["6147cb0","09-24 18:49","k",3073,17,"Add Idea Collider experiments, Hermes researcher tools, and live activity dashboard"],["10b655a","09-24 19:21","k",3007,0,"Add 3D visualization rooms for archive, idea graph, and model seams"],["76e2078","09-24 23:42","k",427,4,"Add live-simulation 3D rooms: the Bed and the Noise Floor"],["12bb5ed","09-25 12:59","k",1023,5,"Add consilience graph unifying miscdocs, weird-archive, and idea-lab"],["16bac7c","09-25 13:19","k",559,4,"Replace uvx arxiv-mcp-server with stdlib MCP; add covers gallery"],["a03a70a","09-25 14:01","k",3,1,"Update status: arxiv fix, graph agent tools, cover plates"],["a103bc3","09-25 15:59","k",346,75,"Add arXiv harvest layer to consilience graph; 3 new cover plates"],["b240e74","09-25 16:40","k",264,1,"Add 'Not a Scalpel' viz room + arxiv_read_text tool"],["4d9bd2f","09-26 10:00","k",977,6,"Add Prompt Chorus: operator-prompt voices over the poetry blog"],["44aa930","09-26 18:13","k",482,0,"Register Homelab agent on Mnemos Commons as Retrofractal-Kintsugi"],["1ecd18c","09-26 18:20","k",122,12,"Add gated publish command; first Commons wave live"],["9c3f245","09-26 18:25","k",14,0,"Record wave-2 Commons publications (delegated review)"],["42219a0","09-26 18:29","k",108,2,"Wave-3 Commons wave + inbox monitor on a 15-min timer"],["c2611f6","09-27 16:58","k",2000,0,"Add Agent Net v0.1: shared board+inbox coordination layer"],["30850e1","09-27 18:08","k",652,26,"Add edge proxy: authenticated public surface for Muse + pj-lab"],["c4e253a","09-27 18:13","k",24,17,"Bring public edge live: funnel on :8443, verified outside-in"],["4cb5f4d","09-27 18:28","k",36,16,"Muse path live via cloudflared stopgap; funnel DNS blocked upstream"],["eebd59c","09-27 18:47","k",44,0,"Respond to Muse's live findings: /whoami, tailnet serve path, inbox semantics"],["c9eaeb2","09-27 19:20","k",72,7,"Add tailnet-identity auth to edge: node IP -> agent, no bearer needed"],["e59faaf","09-27 19:35","k",117,0,"Add read-only artifact share at the edge for external agents"],["aeaa744","09-27 20:01","k",160,0,"Add devin heartbeat task + silent fleet monitor"],["2eedff9","09-27 23:02","k",769,2,"Overnight task_76cb6d667a43982e: provenance harness + bounded pilot"],["5e18e85","09-27 23:55","k",147,14,"Fail-closed provenance import + honest pilot status (codex review)"],["6a78d93","09-28 11:39","k",56,2,"Pilot text legs green: SYCL prefill ubatch ceiling fix"],["fe9a8bd","09-28 12:14","k",70,4,"Close remaining importer integrity cases (codex review)"],["14e517f","09-28 12:40","k",322,0,"Next-models capability probe: VL reads lab art, embeddings neighbor weird lines"],["d1a7dd1","09-28 12:49","k",15,0,"CPU embedding sidecar launcher (iGPU OOMs under RAM pressure)"],["dda143e","09-28 13:15","k",256,1,"Relay render + ACE-Step smoke; port ubatch fix to standard launcher"],["8c82041","09-28 13:21","k",14,0,"AceStep smoke: LM CPU fallback after XPU OOM"],["5d0ae49","09-28 13:39","k",330,0,"Deterministic three.js music-video capture pipeline"],["f3f1670","09-28 13:50","k",437,137,"ACE-Step vocal song + single-file playable music video"],["5e3a154","09-28 14:14","k",172,84,"Parameterize song gen + 8K-capable render; fumbledork lyrics"],["ab4ba1a","09-28 14:45","d",663,9,"fumbledork music video: vocal-stem lyric alignment + clumsy-courier scene"],["2399d01","09-28 15:06","d",580,0,"retrofractal kintsugi pipeline: chorus-commissioned song + video"],["5c7d4db","09-28 15:09","d",266,0,"weird-songs abliteration probe: 3 prompts x {abl,std} qwen3-14b"],["09f7517","09-28 17:27","d",9588,1312,"chorus runner + generic song-video pipeline + probe rerun knobs"],["9737661","09-28 17:33","d",180,0,"singify-the-corpus batch: 31 poems x invented genre styles"],["e6508be","09-29 10:34","d",380,0,"lab gallery + cover art job"],["09c7b99","09-29 13:02","d",605,1,"consilience chorus + vl-ekphrasis experiments; sync hermes launcher flags"],["5469b3e","09-29 13:06","d",62,0,"two more lyrics sets from graph-chorus material"],["0990323","09-29 15:23","d",66,15,"heartbeat: creative mode when idle"],["5daadda","09-30 02:06","d",515,0,"art ouroboros round 1: plaque->prompt->render->VL-correction chain"],["383ed41","09-30 02:08","d",2,0,"art ouroboros: checkpoint results after each rewrite leg"],["c581dbe","09-30 10:05","d",107,0,"three more lyrics sets: night-shift lullaby, least reliable docent, fractal quantum astrology"],["83e3f23","09-30 11:04","k",7,6,"heartbeat: launch devin with --permission-mode bypass"],["40ca473","09-30 11:17","k",1257,10,"/services page + hidden heartbeat launcher"],["33c6a46","09-30 11:59","k",1269,2,"gpuq: evict idle model holders for queued jobs, restore on drain"],["8eed4d1","09-30 12:08","k",47,16,"art ouroboros: record finish_reason/usage at correction stage"],["0da8a50","09-30 13:08","d",329,0,"phi audit A: versioned inputs, correlated draws, claim residuals"],["cc7bcea","09-30 14:10","k",558,0,"phi audit B: search-selection nulls, Pareto/density maps, copula family null"],["b4bb83b","09-30 16:14","d",376,0,"phi audit C: matched MSbar running, claim residuals vs scale, grad(F).beta invariance check"],["3d8b5a4","09-30 18:04","k",107,10,"music-video: keep gate until play() resolves, add retry on reject"],["88d2592","09-30 20:09","k",12,0,"portal: music videos card + explore route for the player shelf"],["377b981","09-30 22:04","k",246,0,"opposing chorus: docent vs gremlin on Oracle of Chemnitz (2608.17407)"],["a3a4d45","10-01 00:55","k",1,0,"gallery: link museum-of-corrections annex in probes list"],["f194122","10-01 01:05","k",356,0,"breakroom: live board as liminal room prompt, gossip -> status poem"],["fc661fd","10-01 02:05","k",28,0,"agentnet: task-show subcommand + claim-hygiene rule in heartbeat"],["135adff","10-01 03:07","k",201,6,"agentnet: commit pj-lab onboarding (identities, connector, edge slot)"],["04a0794","10-01 03:08","k",53,2,"agentnet: commit live post-reboot fixes from 2026-10-01 repair"],["1a32543","10-01 04:05","k",106,0,"agentnet: mirror-sync.sh — repo<->live drift check + directional copy"],["16376f5","10-01 08:04","d",296,0,"songbook-chorus r2: antiphon plus quarantine commission, spec and out args"],["d782919","10-01 10:06","k",63,8,"songbook-chorus r3: scattered choir — per-persona packets + line ban"],["4da28d8","10-01 11:35","k",8,0,"agentnet: share-sync adds viz rooms + plasma-sim for muse remix lane"],["8edaba1","10-01 11:36","k",152,3,"agentnet: POST /artifacts/upload — scoped artifact ingress (muse)"],["a954b82","10-01 15:04","k",100,7,"songbook-chorus r4: true partition — each packet line dealt to exactly one persona"],["cbef6c2","10-01 17:04","k",100,11,"songbook-chorus r5: doc partition — each source doc dealt whole to one persona"],["e28aef1","10-01 19:02","k",91,2,"songbook-chorus r6: docs-mixed partition - shared commons + private docs per hand"],["edd8f4f","10-01 22:05","k",46,2,"songbook-chorus r7: commons_swap — r6's private docs become the commons"],["c2e9ef8","10-02 00:06","k",4,2,"agent-net docs: fix inbox ack semantics — POST /objects/<id>/read, not GET"],["358ab2a","10-02 05:07","k",1727,5,"docs: index + freshness pass — README groups all 35 docs, status lines on terminal ones"],["eaaf9c3","10-02 06:05","k",175,42,"gallery: all 12 songs + art everywhere + filter/sort/deep-links"],["0567fad","10-02 07:04","k",1555,7,"lab portal: agentnet forum/play/songs routes, viewers map, gpuq daemon unit, route tests"],["06fd310","10-02 07:04","k",299,0,"experiments: commit deployed specs — art-ouroboros r2 seeds, phi audit, songbook r7"],["b704c13","10-02 07:04","k",1041,0,"viz: plasma-sim + ptc/resonance tools — orch-or and resonance companion sources"],["82586fa","10-02 08:06","k",537,0,"experiments: operator voice swap — spec + spec-driven runner"],["7f07371","10-02 11:53","k",163,1,"astra: /api/astra/compute lab endpoint + CORS/PNA plumbing"],["7b8db24","10-02 14:15","k",624,0,"experiments: monster-truck lyric-video CPU prep — scene + preview stage"],["e2137c0","10-02 14:35","k",257,2,"experiments: monster-truck rally batch — 5 song->video jobs + poem leg"],["a7c1957","10-02 16:17","k",38,17,"music-video: outro staging for instrumental tails — the lattice catches the truck"],["2d34ec3","10-02 17:04","k",168,1,"viz: bake portable room bundle in share-sync — ./vendor + ./data, notes and idea-lab images included"],["cf17f93","10-02 18:04","k",86,0,"experiments: manifest-driven Qwen3VL review pass over lab artifacts"],["d6329ba","10-02 18:19","k",144,59,"music-video: outro staging for all scene cores + closing cards in the template"],["f676d05","10-02 19:06","k",216,0,"experiments: ASR fidelity audit — whisper vs the given lyric sheets"],["e57c393","10-03 03:02","k",86,0,"experiments: hello-agent-net RESULTS — devin synthesis of the first shared artifact"],["de378ad","10-03 04:04","k",20,4,"agent-net: mirror-sync excludes stale live proxy.py + uploads-inbox staging"]];
+
+// ---------- plate 1: the core sample ----------
+// beds stacked youngest-on-top; thickness = f(ins+del) on a compressed scale
+const cv=document.getElementById("core");
+const CX0=96,CW=470,CT=12,CB=548;
+const thick=c=>1.6+3.4*Math.log(1+c/120);          // sediment compaction law
+const tot=BEDS.reduce((s,b)=>s+thick(b[3]+b[4]),0);
+const SC=(CB-CT)/tot;
+let yc=CB, prevDay="";
+const SPEC={"8b32f3f":"bedrock — the initial cut","c2611f6":"bed 16 · Agent Net arrives","ab4ba1a":"bed 35 · the second pen","09f7517":"bed 38 · the turbidite","de378ad":"youngest bed — the mirror's patch"};
+BEDS.forEach(b=>{
+  const h=thick(b[3]+b[4])*SC, y1=yc-h;
+  const col=b[2]==="d"?RUST:GOLD;
+  const r=el(cv,"rect",{x:CX0,y:y1,width:CW,height:h-0.4,fill:col,opacity:b[2]==="d"?.8:.62});
+  const t=el(r,"title",{}); t.textContent=`${b[0]} · ${b[1]} · ${b[2]==="d"?"devin":"ketan"} · +${b[3].toLocaleString()} −${b[4].toLocaleString()} — ${b[5]}`;
+  if(b[4]>0){ // dark cap = eroded fraction of the bed's own activity
+    const cw=Math.max(2.4, CW*(b[4]/(b[3]+b[4])));
+    const cap=el(cv,"rect",{x:CX0+CW-cw,y:y1,width:cw,height:h-0.4,fill:INK,opacity:.9});
+    const tc=el(cap,"title",{}); tc.textContent=`${b[4].toLocaleString()} lines eroded within ${b[0]} — ${b[5]}`;
+  }
+  const day=b[1].slice(0,5);
+  if(day!==prevDay){ // day boundary, dated at left margin
+    if(prevDay!==""){
+      el(cv,"line",{x1:CX0-4,y1:yc,x2:CX0+CW,y2:yc,stroke:BONE,"stroke-width":.6,opacity:.4});
+    }
+    prevDay=day;
+  }
+  if(SPEC[b[0]]){
+    el(cv,"line",{x1:CX0+CW+4,y1:y1+h/2,x2:CX0+CW+14,y2:y1+h/2,stroke:DIM,"stroke-width":.7});
+    tx(cv,CX0+CW+18,y1+h/2+3,SPEC[b[0]],{f:DIM,s:9,a:"start"});
+  }
+  yc=y1;
+});
+// top surface + day labels along left margin (find first bed of each day)
+el(cv,"line",{x1:CX0-4,y1:CB+2,x2:CX0+CW,y2:CB+2,stroke:BONE,"stroke-width":.9,opacity:.6});
+tx(cv,CX0+CW/2,CB+16,"down-core: older",{f:DIM,s:9,i:1});
+{
+  let y2=CB,last="";
+  for(const b of BEDS){
+    const h=thick(b[3]+b[4])*SC, y1=y2-h, day=b[1].slice(0,5);
+    if(day!==last){ tx(cv,CX0-8,y1+h/2+3,"10-"+day.slice(3),{f:DIM,s:8.5,a:"end"}); last=day; }
+    y2=y1;
+  }
+}
+tx(cv,CX0+CW/2,CT-0,"youngest on top — 10-03",{f:DIM,s:9,i:1});
+
+// ---------- plate 2: the two hands ----------
+const hv=document.getElementById("hands");
+const GROUPS=[
+  ["layers cut",72,15,"beds"],
+  ["lines deposited",37091,14015,""],
+  ["lines eroded",662,1337,""],
+];
+GROUPS.forEach(([n,kv,dv,u],i)=>{
+  const Y=26+i*56, MX=200, MW_=460, scale=Math.max(kv,dv);
+  tx(hv,MX-14,Y+22,n,{f:DIM,s:11,a:"end"});
+  const kw=kv/scale*MW_, dw=dv/scale*MW_;
+  el(hv,"rect",{x:MX,y:Y,width:kw,height:16,fill:GOLD,opacity:.8});
+  tx(hv,MX+kw+7,Y+12,kv.toLocaleString()+(u?" "+u:""),{f:BRIGHT,s:10,a:"start"});
+  el(hv,"rect",{x:MX,y:Y+19,width:Math.max(1.6,dw),height:16,fill:RUST,opacity:.8});
+  tx(hv,MX+Math.max(1.6,dw)+7,Y+31,dv.toLocaleString()+(u?" "+u:""),{f:RUST,s:10,a:"start"});
+});
+tx(hv,200,184,"three ways of counting the same ten mornings — the bars invert at erosion",{f:DIM,s:9.5,a:"start",i:1});
+
+// ---------- plate 3: the depositional calendar ----------
+const gv=document.getElementById("cal");
+const DAYS=[["09-24",5,0],["09-25",5,0],["09-26",5,0],["09-27",10,0],["09-28",9,5],["09-29",0,4],["09-30",9,4],["10-01",13,1],["10-02",15,0],["10-03",2,0]];
+const GX=70,GW=560,GT=18,GB=160,maxN=15,bw=GW/DAYS.length;
+DAYS.forEach(([d,k,n],i)=>{
+  const x=GX+i*bw+bw*0.18, w=bw*0.64;
+  const hk=(k/maxN)*(GB-GT), hd=(n/maxN)*(GB-GT);
+  el(gv,"rect",{x,y:GB-hk,width:w,height:hk,fill:GOLD,opacity:.8});
+  const tr=el(gv,"rect",{x,y:GB-hk,width:w,height:hk,fill:"none"}),
+        tt=el(tr,"title",{});
+  tt.textContent=`${d}: ${k} by the gardener, ${n} by the second pen`;
+  if(n) el(gv,"rect",{x,y:GB-hk-hd,width:w,height:hd,fill:RUST,opacity:.85});
+  tx(gv,x+w/2,GB+13,d,{f:DIM,s:9});
+  tx(gv,x+w/2,GB-hk-hd-4,k+n,{f:BONE,s:9.5});
+});
+// mark the arrival of the second pen
+{
+  const i=4, x=GX+i*bw+bw/2;
+  el(gv,"line",{x1:x,y1:GB+20,x2:x,y2:GB+34,stroke:RUST,"stroke-width":1});
+  tx(gv,x,GB+44,"the second pen arrives",{f:RUST,s:9.5,i:1});
+}
+tx(gv,GX,GB+44,"",{f:DIM,s:9});
+
+// ---------- plate 4: the erosion record ----------
+const ev=document.getElementById("erosion");
+const TOT=51106+1999, EX0=60, EW=600, EY=30;
+const kept=51106/TOT*EW, lost=1999/TOT*EW;
+el(ev,"rect",{x:EX0,y:EY,width:kept,height:20,fill:GOLD,opacity:.8});
+el(ev,"rect",{x:EX0+kept,y:EY,width:lost,height:20,fill:RUST,opacity:.9});
+// exaggerate the rust cap so it is visible: draw a callout wedge
+tx(ev,EX0,EY-8,"53,105 lines touched by the record",{f:DIM,s:9.5,a:"start"});
+tx(ev,EX0+kept/2,EY+36,"51,106 still in the flesh (96.2%)",{f:BRIGHT,s:9.5});
+el(ev,"line",{x1:EX0+kept+lost/2,y1:EY+22,x2:EX0+kept+lost/2+26,y2:EY+34,stroke:RUST,"stroke-width":.8});
+tx(ev,EX0+kept+lost/2+30,EY+38,"1,999 eroded",{f:RUST,s:9.5,a:"start"});
+const ERO=[
+  ["09f7517 · chorus runner + song-video pipeline","09-28",1312,"66% of all erosion in one bed"],
+  ["f3f1670 · ACE-Step vocal song + playable video","09-28",137,"the render pipeline re-cut"],
+  ["5e3a154 · parameterize song gen, 8K render","09-28",84,"the instrument trimmed to spec"],
+  ["a103bc3 · arXiv harvest layer","09-25",75,"the graph's first pruning"],
+  ["d6329ba · outro staging + closing cards","10-02",59,"the template's finishing pass"],
+];
+tx(ev,EX0,EY+62,"the five largest erosion events — 1,667 of 1,999",{f:DIM,s:10,a:"start",i:1});
+ERO.forEach(([n,d,v,note],i)=>{
+  const Y=EY+80+i*24, w=v/1312*300;
+  tx(ev,EX0,Y+11,n,{f:DIM,s:9.5,a:"start"});
+  el(ev,"rect",{x:EX0+330,y:Y,width:w,height:12,fill:RUST,opacity:.8});
+  tx(ev,EX0+338+w,Y+10,v.toLocaleString()+" — "+note,{f:RUST,s:8.5,a:"start"});
+});
+</script>
+</body>
+</html>

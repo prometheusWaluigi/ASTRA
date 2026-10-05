@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Mishearing — the machine ear audits the machine mouth</title>
+<style>
+:root {
+  --ink: #0d0b08; --paper: #14110c;
+  --gold: #c9a227; --gold-bright: #f0d060; --gold-dim: #6b5620;
+  --bone: #e8dcc0; --bone-dim: #a89a78;
+  --weak: #c96a27; --bad: #c94f27;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--bone);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 22px 18px 30px; }
+h1 { color: var(--gold-bright); font-weight: normal; letter-spacing: .14em;
+  font-size: 1.35rem; margin: 0 0 .2rem; text-transform: uppercase; }
+.sub { color: var(--bone-dim); font-size: .85rem; margin-bottom: 14px; }
+.sub b { color: var(--gold); font-weight: normal; }
+
+.row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.row .lbl { font-size: .62rem; letter-spacing: .24em; color: var(--bone-dim);
+  text-transform: uppercase; align-self: center; min-width: 58px; }
+.chip { border: 1px solid var(--gold-dim); background: var(--paper);
+  color: var(--bone-dim); font-family: inherit; font-size: .74rem;
+  padding: 4px 10px; cursor: pointer; border-radius: 2px; letter-spacing: .04em; }
+.chip:hover { border-color: var(--gold); color: var(--bone); }
+.chip.on { border-color: var(--gold-bright); color: var(--gold-bright);
+  background: rgba(201,162,39,.10);
+  box-shadow: 0 0 10px rgba(201,162,39,.22); }
+.chip.outlier { border-style: dashed; }
+.chip.outlier.on { border-style: solid; }
+.chip small { opacity: .72; font-size: .66rem; }
+
+#cond { margin: 12px 0 4px; padding: 9px 12px;
+  border-left: 2px solid var(--gold-dim); background: rgba(201,162,39,.045);
+  font-size: .82rem; color: var(--bone-dim); line-height: 1.5; }
+#cond b { color: var(--gold-bright); font-weight: normal; letter-spacing: .1em;
+  text-transform: uppercase; font-size: .72rem; }
+
+#meta { margin: 8px 0 6px; font-size: .72rem; color: var(--bone-dim);
+  letter-spacing: .05em; line-height: 1.7; }
+#meta b { color: var(--gold); font-weight: normal; }
+
+audio { width: 100%; height: 28px; margin: 4px 0 10px;
+  filter: sepia(.6) saturate(1.4) hue-rotate(-8deg); }
+audio::-webkit-media-controls-panel { background: var(--paper); }
+
+#sheet { border: 1px solid var(--gold-dim); background: var(--paper);
+  max-height: 300px; overflow-y: auto; padding: 10px 14px;
+  scrollbar-width: thin; scrollbar-color: var(--gold-dim) var(--paper); }
+#sheet .ln { display: flex; gap: 10px; font-size: .82rem; line-height: 1.55;
+  padding: 2px 0; border-bottom: 1px dotted rgba(107,86,32,.3); }
+#sheet .ln:last-child { border-bottom: 0; }
+#sheet .m { min-width: 64px; text-align: right; color: var(--gold);
+  font-variant-numeric: tabular-nums; }
+#sheet .m.wk { color: var(--weak); }
+#sheet .m.bd { color: var(--bad); }
+#sheet .t { min-width: 42px; color: var(--bone-dim); font-size: .72rem;
+  padding-top: .14em; font-variant-numeric: tabular-nums; }
+#sheet .tx { flex: 1; }
+
+#heard { margin-top: 10px; border: 1px dashed var(--gold-dim);
+  background: rgba(201,162,39,.03); padding: 12px 14px;
+  font-size: .82rem; line-height: 1.6; color: var(--bone-dim);
+  font-style: italic; max-height: 150px; overflow-y: auto;
+  scrollbar-width: thin; scrollbar-color: var(--gold-dim) var(--paper); }
+#heard .h { font-style: normal; color: var(--gold); letter-spacing: .12em;
+  text-transform: uppercase; font-size: .68rem; display: block; margin-bottom: 4px; }
+
+#measure { margin: 14px 0 4px; padding: 10px 12px;
+  border: 1px dashed var(--gold-dim); font-size: .78rem;
+  color: var(--bone-dim); line-height: 1.6; }
+#measure b { color: var(--gold-bright); font-weight: normal; letter-spacing: .1em;
+  text-transform: uppercase; font-size: .7rem; }
+
+#foot { margin-top: 12px; font-size: .68rem; color: var(--bone-dim);
+  letter-spacing: .04em; line-height: 1.7; }
+#count { float: right; color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Mishearing</h1>
+  <div class="sub">whisper-small.en listens to five ACE-Step tracks, full mix —
+    the sheet on the left of each row, the ear's score beside it, the raw
+    hearing below. <b>5 tracks, 52 sheet-lines, one outlier.</b>
+    Everything verbatim. <b>Register vol. xvii.</b></div>
+
+  <div class="row" id="tracks"><span class="lbl">track</span></div>
+
+  <div id="cond"></div>
+  <div id="meta"></div>
+  <audio id="ply" controls preload="none"></audio>
+  <div id="sheet"></div>
+  <div id="heard"></div>
+
+  <div id="measure"><b>the ear, measured</b> — four of five tracks sing the
+    sheet: their errors are vowel-smear, not skipped lines.
+    <b>thermal-runaway</b> is the outlier (WER 0.465, 38% foreign words) —
+    a shouted sermon that defeats the transcriber and drifts the text both.
+    The word <b>kintsugi</b> never survives the loop in either direction —
+    singer or listener, it comes back Ken Soogie. And the singer adds what
+    the sheet never wrote: two tracks close with unscripted MC sign-offs.
+    The lyric-free tails the outro pass once guessed are now measured:
+    14&ndash;31 seconds of every track is outro.</div>
+
+  <div id="foot"><span id="count"></span>
+    asr-fidelity/ &middot; model <span id="fmodel"></span> on
+    <span id="fdev"></span> (full mix, no stems — ASR noise is in the number)
+    &middot; ran <span id="fran"></span> &middot; audio plays from
+    acestep-*/ &middot; the Second Song (lobby floor) files the same ear on
+    the rally night &middot; the report's sibling .md carries the prose read
+  </div>
+</div>
+
+<script>
+const AUDIT = {"model":"openai/whisper-small.en","device":"cpu","demucs":false,"ran":"20261002-230548","file":"asr-audit-20261002-230548.json","reportFile":"asr-audit-20261002-230548.md","tracks":[{"name":"leo-monster-truck","wer":0.206,"dur":55,"given":68,"heard":74,"foreign":0.054,"lastSung":32.8,"tail":22.2,"strong":6,"weak":0,"n":8,"wav":"9c7ccd59-56c0-c48a-fe24-b053254317b7.wav","perLine":[{"line":"Spin true, spin true, let the lattice catch you!","match":0.889,"t":0},{"line":"Motion is the opposite of masochism,","match":1,"t":8},{"line":"It's all about the surface-area-to-volume ratio-ism!","match":0.8,"t":8},{"line":"Spin true, spin true, monster trucks roll through!","match":0.75,"t":17},{"line":"Leo's truck is red and the engine goes vroom,","match":0.889,"t":17},{"line":"Bouncing through the mud pit, clearing every dune!","match":1,"t":26},{"line":"When the wheels get wobbly and the road gets steep,","match":1,"t":29},{"line":"Spin true, little trucker, no time for sleep!","match":0.75,"t":32.8}],"tx":"Spin true, spin true, let the ladders catch you Motion is the opposite of masochism It's all about the surface area to volume ratioism Spin true, spin true, must the trucks roll through Leo's truck is red, and the engine goes through Bouncing through the mud pit, clearing every dune Every dune when the wheels get wobbly and the road gets steep It's been true, little truck and no time for sleep For sleep"},{"name":"mud-bog-kintsugi","wer":0.214,"dur":75,"given":112,"heard":112,"foreign":0.152,"lastSung":54.96,"tail":20,"strong":5,"weak":0,"n":10,"wav":"c4c8cfb1-b2f6-b6ab-7481-20e26ea3bcfd.wav","perLine":[{"line":"She threw a rod on the county line, cracked her block in the red clay deep,","match":0.875,"t":0},{"line":"The bog said \"boy you're broken now\" — but cracks are where the gold seeps.","match":0.929,"t":11.16},{"line":"Fill her seams with mud and gold, let the welds shine where she broke!","match":0.714,"t":11.16},{"line":"Spin true through the dirty water, kintsugi smoke!","match":0.75,"t":16.28},{"line":"Every scar's a trophy now, every dent's a story told —","match":0.8,"t":26.96},{"line":"Mud bog kintsugi, we fix 'em with mud and gold!","match":0.7,"t":31.96},{"line":"Timing chain sang a lonesome song, diff locked on a will and a prayer,","match":0.643,"t":41.96},{"line":"Four fat tires in the soup at dawn, gold dust hanging in the air.","match":0.714,"t":44.96},{"line":"Broken ain't the end of the road —","match":1,"t":52.96},{"line":"It's where the shine begins!","match":1,"t":54.96}],"tx":"She threw a ride on the county line Cracked a block in the red clay deep The box said boy you're broken now But cracks are where the gold seeps Silly things with mud and gold Let the wealth shine where she broke Spin true through the dirty water Ken Soogie smoke Every scar's a trophy now, every dance the story told But Bob Kintsugi, we fix some with mud and gold Time and change, sing a lonesome song Diff locked on a wheel in a prayer Four fat ties in the super-dome Gold dust hanging in the air Broken ain't the end of the road It's where the shine begins"},{"name":"dune-ratio","wer":0.23,"dur":60,"given":87,"heard":91,"foreign":0.165,"lastSung":28.76,"tail":31.2,"strong":8,"weak":0,"n":10,"wav":"94026e20-a8c9-5bc3-d886-7a3a26f415b6.wav","perLine":[{"line":"Big tires! (Surface area!) Small load! (To volume!)","match":0.875,"t":0},{"line":"The ratio is rising, baby, float on the dunes!","match":1,"t":0},{"line":"Big tires! (Spin true!) Low psi! (Attitude!)","match":0.714,"t":0},{"line":"It's all about the ratio — surf on the dunes!","match":1,"t":14.2},{"line":"Paddle in the soft stuff, don't you dig a hole,","match":0.8,"t":14.2},{"line":"Spread your weight like butter, let the big wheels roll!","match":0.9,"t":23.4},{"line":"Little trucker, listen, hear your daddy's rule:","match":0.714,"t":27.76},{"line":"More rubber on the sand, son — that's the golden tool!","match":1,"t":28.76},{"line":"Big tires! (Surface area!) Small load! (To volume!)","match":0.875,"t":0},{"line":"The ratio is rising, baby, float on the dunes!","match":1,"t":0}],"tx":"Big tires, surface area, small load, two volume, the ratio is rising, baby, float on the dunes. Big tires, spin, true, lopsie, attitude, it's all about the ratio, surf on the dunes. Paddling the soft stuff, don't you dig a hole, spread your weight like butter, let the beat wheels roll. Chaka, listen, hear your daddy's rule More rubber on the sand, son, that's the golden tool Big tires, sir, let's set it up, small load, two volume, two ratio It's rising, baby, float on the dunes Thank you very much."},{"name":"thermal-runaway","wer":0.465,"dur":90,"given":101,"heard":116,"foreign":0.379,"lastSung":76.16,"tail":13.8,"strong":5,"weak":2,"n":14,"wav":"51374e5f-64fa-7a31-5c09-9590166fe87b.wav","perLine":[{"line":"The gauge needle crawls where the coupling runs,","match":0.625,"t":0},{"line":"Beta function bends toward the sun.","match":0.5,"t":21.6},{"line":"Head gasket whispering ultraviolet lies —","match":0.2,"t":21.6},{"line":"Every joule of boost makes the temp gauge rise.","match":0.556,"t":28.48},{"line":"Thermal runaway at the county fair!","match":1,"t":38.48},{"line":"Asymptotic freedom — too hot to care!","match":0.833,"t":42.48},{"line":"Ride the fixed point till the bearings glow,","match":1,"t":47.48},{"line":"Monster engine singing what the strong force knows.","match":0.625,"t":52.48},{"line":"Coolant boiling over on the figure-eight,","match":0.714,"t":58.48},{"line":"Renormalized torque at the cutoff gate.","match":0.667,"t":58.48},{"line":"Redline preacher with a smoking psalm —","match":0.667,"t":66.96},{"line":"Heavy quarks of horsepower dropping the bomb.","match":0.286,"t":28.48},{"line":"Let it run, let it run, let the coupling run high —","match":0.818,"t":72.04},{"line":"The lattice catches everything that learns to fly!","match":0.875,"t":76.16}],"tx":"The cage kneel crawls where the cuckooing runs They defunction bent toward the sun Head-casking, wistering, ultra-volley lies Every tool of booze makes the tempest rise Thermal runaway at the county fair Asymptotic freedom, too hard to care Ride the fixed point till the bearings glow Lost directions, singin' what the strong force knows Cool I'm bowling over on the figure eight With normalised torque at the cathode gate Red line preacher with a smoking sump Heavy corks upon what's a drop in the pump Aye, aye, aye Let it run, let it run, let the copin' run Aye, aye, aye The lettuce catches everything that learns to fly Thank you for your attention."},{"name":"crater-hymn-4wd","wer":0.198,"dur":80,"given":96,"heard":101,"foreign":0.158,"lastSung":58.28,"tail":21.7,"strong":9,"weak":0,"n":12,"wav":"950c1706-c5d8-0cb4-6920-b61710c0adb5.wav","perLine":[{"line":"Silver tires over silent regolith,","match":0.8,"t":0},{"line":"Every tread a line of psalm.","match":0.833,"t":0},{"line":"Dust of a billion years beneath the lift,","match":1,"t":16.68},{"line":"The crater floor keeps calm.","match":0.6,"t":16.68},{"line":"Roll gentle, roll high, the moon forgives the jump,","match":0.889,"t":58.28},{"line":"Big wheels over poetry, the stars keep perfect time.","match":1,"t":29.28},{"line":"Every little crater is a goblet and a sump —","match":0.778,"t":29.28},{"line":"Torque becomes a hymn when the tires leave the ground.","match":1,"t":41.28},{"line":"Earthrise in the mirror, throttle soft and slow,","match":0.75,"t":52.28},{"line":"Headlights on the mare where the old songs go.","match":0.889,"t":58.28},{"line":"Roll gentle, roll high, the moon forgives the jump,","match":0.889,"t":58.28},{"line":"Big wheels over poetry, the stars keep perfect time.","match":1,"t":29.28}],"tx":"Silver ties over silent regolith Every tread a line of song Dust of a billion years beneath the lift The crater floor keys come Roll gentle roll the moon forgives the chum Big wheels over poetry, the stars keep perfect time Every little crater is a goblin and a son Torque becomes a hymn when the tires leave the ground Ooh, ooh, ooh, ooh, ooh Earth rise in the mirror, thought all soft and slow Headlights on the mirror, where the old songs go Roll gentle, roll the moon, forgives the jump Big wheels over poetry, the stars keep perfect time"}],"notes":{"leo-monster-truck":"The gentlest hearing. 'lattice' becomes 'ladders', 'monster' becomes 'must the' — the ear heard a kinder song and still kept every line in order.","mud-bog-kintsugi":"The word the museum is named for does not survive its own chorus: 'kintsugi' returns as 'Ken Soogie', then 'Bob Kintsugi'. The seam's name will not cross the seam.","dune-ratio":"Ends '...float on the dunes. Thank you very much.' — the sign-off is not in the sheet. The singer learned that songs end with an MC. Longest tail: 31.2 of 60 seconds are outro.","thermal-runaway":"The outlier. 'coupling'→'cuckooing', 'beta function'→'defunction', 'head gasket'→'head-casking, wistering'. Shouted sludge defeats the ear — and 'lost directions singin’' for 'monster engine singing' is real drift, not noise.","crater-hymn-4wd":"Best score of the five. 'keeps calm'→'keys come', 'a couplet'→'a goblin and a son'. Moon words soften — the hymn survives the hearing almost whole."}};
+let track = AUDIT.tracks[0].name;
+
+function esc(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function cur() { return AUDIT.tracks.find(t => t.name === track); }
+
+function chips() {
+  const row = document.getElementById("tracks");
+  row.querySelectorAll(".chip").forEach(c => c.remove());
+  AUDIT.tracks.forEach(t => {
+    const b = document.createElement("button");
+    b.className = "chip" + (t.name === track ? " on" : "")
+      + (t.wer > 0.35 ? " outlier" : "");
+    b.innerHTML = t.name + " <small>WER " + t.wer.toFixed(3) + "</small>";
+    b.onclick = () => { track = t.name; paint(); };
+    row.appendChild(b);
+  });
+}
+
+function paint() {
+  const t = cur();
+  chips();
+  document.getElementById("cond").innerHTML =
+    "<b>" + esc(t.name) + "</b> — " + esc(AUDIT.notes[t.name] || "");
+  document.getElementById("meta").innerHTML =
+    "duration <b>" + t.dur + "s</b> · words given <b>" + t.given +
+    "</b> / heard <b>" + t.heard + "</b> · WER <b>" + t.wer.toFixed(3) +
+    "</b> · foreign-word frac <b>" + (t.foreign * 100).toFixed(1) + "%</b>" +
+    " · last sung <b>" + t.lastSung + "s</b> · lyric-free tail <b>" +
+    t.tail + "s</b> · lines strong <b>" + t.strong + "/" + t.n +
+    "</b>" + (t.weak ? ", weak <b>" + t.weak + "</b>" : "");
+  const ply = document.getElementById("ply");
+  if (t.wav) {
+    ply.src = "../../acestep-" + t.name + "/" + t.wav;
+    ply.style.display = "";
+  } else ply.style.display = "none";
+  document.getElementById("sheet").innerHTML = t.perLine.map(l => {
+    const pc = Math.round(l.match * 100);
+    const cls = l.match < 0.45 ? "bd" : l.match < 0.7 ? "wk" : "";
+    return '<div class="ln"><span class="t">' + l.t.toFixed(0) + "s</span>" +
+      '<span class="tx">' + esc(l.line) + "</span>" +
+      '<span class="m ' + cls + '">' + pc + "%</span></div>";
+  }).join("");
+  document.getElementById("heard").innerHTML =
+    '<span class="h">as heard — whisper, verbatim</span>' + esc(t.tx);
+  document.getElementById("count").textContent =
+    t.perLine.length + " sheet-lines · " + t.tx.length.toLocaleString() +
+    " chars heard";
+  document.getElementById("fmodel").textContent = AUDIT.model;
+  document.getElementById("fdev").textContent = AUDIT.device +
+    (AUDIT.demucs ? " + demucs" : "");
+  document.getElementById("fran").textContent = AUDIT.ran;
+}
+paint();
+</script>
+</body>
+</html>

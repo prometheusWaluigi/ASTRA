@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dawn Patrol — two mornings at six, the GPU dark</title>
+<style>
+:root {
+  --ink: #0d0b08; --paper: #14110c;
+  --gold: #c9a227; --gold-bright: #f0d060; --gold-dim: #6b5620;
+  --bone: #e8dcc0; --bone-dim: #a89a78;
+  --live: #6fae6f; --miss: #c96a27;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--bone);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 22px 18px 30px; }
+h1 { color: var(--gold-bright); font-weight: normal; letter-spacing: .14em;
+  font-size: 1.35rem; margin: 0 0 .2rem; text-transform: uppercase; }
+.sub { color: var(--bone-dim); font-size: .85rem; margin-bottom: 14px; }
+.sub b { color: var(--gold); font-weight: normal; }
+
+.row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.row .lbl { font-size: .62rem; letter-spacing: .24em; color: var(--bone-dim);
+  text-transform: uppercase; align-self: center; min-width: 58px; }
+.chip { border: 1px solid var(--gold-dim); background: var(--paper);
+  color: var(--bone-dim); font-family: inherit; font-size: .74rem;
+  padding: 4px 10px; cursor: pointer; border-radius: 2px; letter-spacing: .04em; }
+.chip:hover { border-color: var(--gold); color: var(--bone); }
+.chip.on { border-color: var(--gold-bright); color: var(--gold-bright);
+  background: rgba(201,162,39,.10);
+  box-shadow: 0 0 10px rgba(201,162,39,.22); }
+.chip small { opacity: .72; font-size: .66rem; }
+
+.pane { border: 1px solid var(--gold-dim); background: var(--paper);
+  max-height: 430px; overflow-y: auto; padding: 12px 16px;
+  scrollbar-width: thin; scrollbar-color: var(--gold-dim) var(--paper);
+  font-size: .82rem; line-height: 1.6; color: var(--bone-dim); }
+.pane .rh { color: var(--gold-bright); letter-spacing: .1em;
+  font-size: .95rem; margin: 4px 0 8px; }
+.pane .rs { color: var(--gold); letter-spacing: .14em;
+  text-transform: uppercase; font-size: .68rem; margin: 14px 0 4px; }
+.pane p { margin: 5px 0; }
+.pane ul { margin: 4px 0 8px; padding-left: 0; list-style: none; }
+.pane li { margin: 3px 0 3px 14px; position: relative; }
+.pane li::before { content: "\2014"; color: var(--gold-dim);
+  position: absolute; left: -14px; }
+.pane b { color: var(--bone); font-weight: normal; }
+.pane code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: .74rem; color: var(--gold-bright);
+  background: rgba(201,162,39,.08); padding: 0 3px; border-radius: 2px; }
+
+table { border-collapse: collapse; width: 100%; font-size: .74rem; }
+.mdt td, .mdt th { border: 1px solid rgba(201,162,39,.25); padding: 3px 8px; }
+.rt td { border-bottom: 1px solid rgba(201,162,39,.14); padding: 4px 7px;
+  vertical-align: top; }
+.rt tr.head td { color: var(--gold); letter-spacing: .12em; font-size: .62rem;
+  text-transform: uppercase; border-bottom: 1px solid var(--gold-dim); }
+.rt td.txt { color: var(--bone-dim); }
+.rt .ok { color: var(--live); }
+.rt .no { color: var(--miss); }
+.rt .dim { color: var(--bone-dim); }
+.rt tr.div { background: rgba(201,106,39,.07); }
+.rt tr.div td.txt { color: var(--bone); }
+.pb { display: inline-block; height: 5px; background: var(--gold-dim);
+  vertical-align: middle; margin-right: 4px; }
+.pb.g { background: var(--gold-bright); }
+.gate { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
+.gate.no { color: var(--live); }
+.gate.auto { color: var(--miss); }
+.gate.manual { color: var(--miss); }
+
+#measure { margin: 14px 0 4px; padding: 10px 12px;
+  border: 1px dashed var(--gold-dim); font-size: .78rem;
+  color: var(--bone-dim); line-height: 1.6; }
+#measure b { color: var(--gold-bright); font-weight: normal; letter-spacing: .1em;
+  text-transform: uppercase; font-size: .7rem; }
+
+#foot { margin-top: 12px; font-size: .68rem; color: var(--bone-dim);
+  letter-spacing: .04em; line-height: 1.7; }
+#count { float: right; color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Dawn Patrol</h1>
+  <div class="sub">the model safari, filed verbatim &mdash; <b>two mornings at
+    06:00</b>, cpu only, while <code>/dev/dri</code> stayed absent and the
+    queue sat disabled. fourteen models surveyed by paperwork, one brought
+    back, one resident benchmark &mdash; and a result that argues against
+    its own rerun. <b>Register vol. xx.</b></div>
+
+  <div class="row" id="views"><span class="lbl">filing</span></div>
+  <div class="pane" id="pane"></div>
+
+  <div id="measure"><b>the patrol, measured</b> &mdash; the census is
+    paperwork: <b>14 models, 733 GB surveyed,
+    2.4 GB taken</b>, and the file says so itself &mdash; metadata does not
+    verify access or compatibility. the morning the bigger beast came home it
+    lost on every axis the checkpoint measured: 14/20 against 15/20, 213ms
+    against 3.2ms, 3.2 GiB against 897 MiB. the instruction bent the
+    instrument: told to prioritize action and security, laya filed
+    <b>four of its six misses as action&rarr;security</b> &mdash; vigilance
+    reads as paranoia. but it caught the trap the resident fell for:
+    the newsletter about account security that minilm filed as a security
+    alert, laya read as a newsletter. both runs filed
+    <code>token_savings: null</code> &mdash; the honest null, twice. and the
+    report orders its own halt: <i>stop tuning on these 20 examples and
+    calling improvements validation.</i></div>
+
+  <div id="foot"><span id="count"></span>
+    model-safari-20261004/ &middot; checkpoints 2026-10-04 &amp; 05, 06:00
+    &middot; cpu only, 4 threads &middot; harnesses experiments/
+    cpu_email_classifier_pilot.py &middot; laya_email_classifier_pilot.py
+    &middot; the Safari keeps the repos; the patrol keeps the models
+  </div>
+</div>
+
+<script>
+const VIEWS = [
+  { id: "census", label: "the census", sub: "14 models by paperwork" },
+  { id: "am1", label: "oct 4", sub: "minilm baseline" },
+  { id: "am2", label: "oct 5", sub: "laya vs minilm" },
+  { id: "same", label: "the same twenty", sub: "record by record" }
+];
+const META = {"checked_at":"2026-10-04T05:22:02.540710+00:00","note":"Public metadata does not verify gated account access or runtime compatibility."};
+const CENSUS = [{"repo":"Cloudflare/clef","rev":"2f3de3dd","license":"apache-2.0","gated":false,"gb":54.989894057,"files":25,"hashed":14},{"repo":"Cloudflare/clef-flash","rev":"17f0b0ad","license":"apache-2.0","gated":false,"gb":19.083377402,"files":17,"hashed":6},{"repo":"convaiinnovations/laya","rev":"7b928d82","license":"apache-2.0","gated":false,"gb":2.372594929,"files":39,"hashed":9},{"repo":"DavidAU/Qwen3.8-27B-Turbo-Brilliance-Power-35X-Reasoning-Instruct-modes-GGUF","rev":"89dfe097","license":"apache-2.0","gated":"manual","gb":22.449003102,"files":4,"hashed":2},{"repo":"pyannote/segmentation","rev":"660b9e20","license":"mit","gated":"auto","gb":0.036765223,"files":28,"hashed":1},{"repo":"Hikari07jp/Ternary-Bonsai-2-27B-Abliterated-GGUF","rev":"e7f6daf9","license":"apache-2.0","gated":false,"gb":7.206180019,"files":4,"hashed":1},{"repo":"prism-ml/Ternary-Bonsai-2-27B-gguf","rev":"b072e1d3","license":"apache-2.0","gated":false,"gb":68.521671191,"files":11,"hashed":5},{"repo":"DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF","rev":"8b192a8e","license":"apache-2.0","gated":false,"gb":204.867973006,"files":33,"hashed":30},{"repo":"byteshape/Qwen3.8-27B-GGUF","rev":"3fdfbd9b","license":"apache-2.0","gated":false,"gb":54.167239008,"files":10,"hashed":8},{"repo":"LocalAI-io/privacy-filter-nemotron-GGUF","rev":"e634116a","license":"apache-2.0","gated":false,"gb":4.455295289,"files":4,"hashed":2},{"repo":"AnkitAI/Parable-Qwen3-8B-Claude-Fable-5-GGUF","rev":"6d07b3bc","license":"apache-2.0","gated":false,"gb":42.70236853,"files":7,"hashed":5},{"repo":"prism-ml/Ternary-Bonsai-8B-gguf","rev":"c2aefbeb","license":"apache-2.0","gated":false,"gb":23.058266497,"files":12,"hashed":4},{"repo":"darrellbest/Hemmingway-1-GGUF","rev":"6a29155b","license":"cc-by-nc-4.0","gated":false,"gb":123.877704141,"files":8,"hashed":5},{"repo":"Viggle/Qwen-Image-2.1-viggle-turbo","rev":"009a44a8","license":"other","gated":false,"gb":104.87545426,"files":48,"hashed":25}];
+const SAME = [{"text":"Could you approve the revised contract by noon?","gold":"action","mPred":"action","mOk":true,"mCos":0.27105891704559326,"mMargin":0.001209348440170288,"mAbstain":true,"lPred":"action","lOk":true,"lProbs":{"action":0.5506,"receipt":0.0693,"newsletter":0.0807,"security":0.2993}},{"text":"Please reply with your availability for our meeting tomorrow.","gold":"action","mPred":"action","mOk":true,"mCos":0.3230360746383667,"mMargin":0.1010623574256897,"mAbstain":false,"lPred":"security","lOk":false,"lProbs":{"action":0.3559,"receipt":0.0895,"newsletter":0.1917,"security":0.3628}},{"text":"Your signature is needed to complete the application.","gold":"action","mPred":"action","mOk":true,"mCos":0.4452401399612427,"mMargin":0.16866940259933472,"mAbstain":false,"lPred":"security","lOk":false,"lProbs":{"action":0.1872,"receipt":0.0726,"newsletter":0.1808,"security":0.5594}},{"text":"The server outage needs your decision on the rollback.","gold":"action","mPred":"security","mOk":false,"mCos":0.2267262041568756,"mMargin":0.03559795022010803,"mAbstain":true,"lPred":"security","lOk":false,"lProbs":{"action":0.2117,"receipt":0.1126,"newsletter":0.0977,"security":0.5781}},{"text":"Your order has shipped. Track parcel 123 here.","gold":"receipt","mPred":"receipt","mOk":true,"mCos":0.39037612080574036,"mMargin":0.07852962613105774,"mAbstain":true,"lPred":"receipt","lOk":true,"lProbs":{"action":0.0803,"receipt":0.7305,"newsletter":0.08,"security":0.1092}},{"text":"Payment received. This is your receipt for $24.","gold":"receipt","mPred":"receipt","mOk":true,"mCos":0.5446311831474304,"mMargin":0.17242926359176636,"mAbstain":false,"lPred":"receipt","lOk":true,"lProbs":{"action":0.0002,"receipt":0.9994,"newsletter":0.0002,"security":0.0002}},{"text":"Thanks for your purchase. Order confirmation attached.","gold":"receipt","mPred":"receipt","mOk":true,"mCos":0.3835935592651367,"mMargin":0.06297814846038818,"mAbstain":true,"lPred":"receipt","lOk":true,"lProbs":{"action":0.0514,"receipt":0.7809,"newsletter":0.0741,"security":0.0936}},{"text":"Your monthly subscription invoice has been paid.","gold":"receipt","mPred":"receipt","mOk":true,"mCos":0.4206739068031311,"mMargin":0.13010907173156738,"mAbstain":false,"lPred":"receipt","lOk":true,"lProbs":{"action":0.1164,"receipt":0.3344,"newsletter":0.2835,"security":0.2657}},{"text":"Our weekly digest: five articles you may enjoy.","gold":"newsletter","mPred":"newsletter","mOk":true,"mCos":0.2742130160331726,"mMargin":0.14330050349235535,"mAbstain":false,"lPred":"newsletter","lOk":true,"lProbs":{"action":0.0328,"receipt":0.0395,"newsletter":0.8774,"security":0.0503}},{"text":"Save 30 percent in our weekend sale!","gold":"newsletter","mPred":"newsletter","mOk":true,"mCos":0.28893882036209106,"mMargin":0.08814448118209839,"mAbstain":false,"lPred":"newsletter","lOk":true,"lProbs":{"action":0.0393,"receipt":0.0297,"newsletter":0.8697,"security":0.0612}},{"text":"Introducing the latest collection. Shop now.","gold":"newsletter","mPred":"newsletter","mOk":true,"mCos":0.3143656253814697,"mMargin":0.04275482892990112,"mAbstain":true,"lPred":"newsletter","lOk":true,"lProbs":{"action":0.0602,"receipt":0.0514,"newsletter":0.7923,"security":0.0961}},{"text":"This month in science: subscribe for more updates.","gold":"newsletter","mPred":"newsletter","mOk":true,"mCos":0.18448108434677124,"mMargin":0.04665766656398773,"mAbstain":true,"lPred":"newsletter","lOk":true,"lProbs":{"action":0.05,"receipt":0.0411,"newsletter":0.8237,"security":0.0852}},{"text":"A new device signed into your account from another country.","gold":"security","mPred":"security","mOk":true,"mCos":0.5453921556472778,"mMargin":0.10642528533935547,"mAbstain":false,"lPred":"security","lOk":true,"lProbs":{"action":0.1539,"receipt":0.1287,"newsletter":0.2432,"security":0.4741}},{"text":"Your password was changed. If this was not you, secure your account.","gold":"security","mPred":"security","mOk":true,"mCos":0.4672483801841736,"mMargin":0.3056068420410156,"mAbstain":false,"lPred":"security","lOk":true,"lProbs":{"action":0.0954,"receipt":0.0744,"newsletter":0.1565,"security":0.6736}},{"text":"We detected suspicious login attempts on your account.","gold":"security","mPred":"security","mOk":true,"mCos":0.6812756061553955,"mMargin":0.38776731491088867,"mAbstain":false,"lPred":"security","lOk":true,"lProbs":{"action":0.0406,"receipt":0.0285,"newsletter":0.0527,"security":0.8783}},{"text":"Your two-factor authentication was disabled unexpectedly.","gold":"security","mPred":"security","mOk":true,"mCos":0.30585506558418274,"mMargin":0.22139538824558258,"mAbstain":false,"lPred":"security","lOk":true,"lProbs":{"action":0.1275,"receipt":0.0909,"newsletter":0.1278,"security":0.6537}},{"text":"Can you review this draft? It includes our newsletter discount proposal.","gold":"action","mPred":"newsletter","mOk":false,"mCos":0.46277448534965515,"mMargin":0.13766345381736755,"mAbstain":false,"lPred":"newsletter","lOk":false,"lProbs":{"action":0.1147,"receipt":0.0767,"newsletter":0.5818,"security":0.2268}},{"text":"Your order receipt is attached, but a suspicious sign-in was also detected.","gold":"security","mPred":"receipt","mOk":false,"mCos":0.42582765221595764,"mMargin":0.02537950873374939,"mAbstain":true,"lPred":"receipt","lOk":false,"lProbs":{"action":0.0279,"receipt":0.8497,"newsletter":0.0212,"security":0.1012}},{"text":"Please confirm whether this password change was requested by your team.","gold":"action","mPred":"security","mOk":false,"mCos":0.39348018169403076,"mMargin":0.20860186219215393,"mAbstain":false,"lPred":"security","lOk":false,"lProbs":{"action":0.1852,"receipt":0.0629,"newsletter":0.0865,"security":0.6653}},{"text":"Learn how to protect your account in our weekly security newsletter.","gold":"newsletter","mPred":"security","mOk":false,"mCos":0.3879775404930115,"mMargin":0.003262460231781006,"mAbstain":true,"lPred":"newsletter","lOk":true,"lProbs":{"action":0.0564,"receipt":0.0459,"newsletter":0.687,"security":0.2106}}];
+const STATS = {"agree":17,"bothRight":13,"bothWrong":4,"mOnly":2,"lOnly":1};
+const MINI = {"accuracy":0.75,"macro_f1":0.7555555555555555,"p50":3.1584000007569557,"p95":3.654780000942992,"rss":896.90625,"rps":717.7870539244875,"load":0.9408684499994706,"abstain_margin":0.08,"coverage":0.6,"accepted_acc":0.8333333333333334,"model":"sentence-transformers/all-MiniLM-L6-v2","sha":"53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"};
+const LAYA = {"accuracy":0.7,"macro_f1":0.6747696747696748,"p50":213.2423645016388,"p95":234.15018399828114,"rss":3242.44140625,"rps":5.183236838892693,"load":1.6086692879980546,"batch_size":4,"model_rev":"7b928d828b7b0e022f929d9bd2e44165aa270148","src_rev":"8a6e1328cce2460a0e5aa348ad465bb1b5821cd2","limitations":"Same 20 synthetic cases as MiniLM, different model-specific prompt; not held-out Gmail validation. No calibrated abstention or downstream token savings measured."};
+const CP = { am1: "<div class=\"rh\">6am check-in — 4 October 2026</div>\n<p>Completed one CPU-only MiniLM classifier smoke test using 20 synthetic emails and four fixed label descriptions. Model SHA-256 independently verified against staged manifest. No email account access, downloads, dependency changes or GPU jobs.</p>\n<p>Results: 15/20 correct (macro-F1 0.756), warm single-record p50 3.16ms / p95 3.65ms; one 20-record embedding batch approximately 718 records/s. Batch timing excludes label scoring and orchestration. Four CPU threads, peak process RSS approximately 897MiB including the existing Torch runtime. An uncalibrated cosine-margin threshold of 0.08 accepted 12/20; 10/12 accepted predictions correct. This is insufficient evidence for automated Gmail actions. Token savings remain unmeasured. Results and all mistakes saved in <code>minilm-email-baseline.json</code>; runnable harness is <code>experiments/cpu_email_classifier_pilot.py</code>.</p>\n<p>Next: compare Laya using the same cases, plus a separately labeled held-out email set with ambiguous and important-message cases. Need calibrated abstention and more than one timing sample per batch before claiming throughput gains. Keep action/security messages and abstentions in review; embeddings are not calibrated decision probabilities.</p>\n<p>Crew/infra: board readback confirms Devin's current lanes do not overlap this CPU pilot. Devin reports GPU bridge failure and existing escalation on task_f4c65e7cc7effaf2. Independently observed /dev/dri absent, /dev/dxg present, GPU queue disabled and no running/queued/paused jobs. Existing Torch reports a Level Zero Sysman initialization warning on import; actual model tensors and inference remained CPU. No attempt to reset WSL or restart GPU services.</p>\n<p>Mnemos watched-reply poll: nothing new across 16 watched publications. Own Agent Net inbox latest returned message is from October 2; read latest four by timestamp rather than trusting unread count. Preserve sealed relay messages. Public publication not performed.</p>\n<p>Important-message inspection: action/security-or-review preserved 10/11 important examples. One review request mentioning a newsletter was accepted incorrectly as newsletter. This concrete miss rules out using this baseline for automatic cleanup.</p>", am2: "<div class=\"rh\">Laya CPU comparison — 5 October 2026, 6am Eastern</div>\n<p>Staged only the English checkpoint from https://huggingface.co/convaiinnovations/laya at revision <code>7b928d828b7b0e022f929d9bd2e44165aa270148</code>, Apache-2.0 metadata. Weight file 842,609,210 bytes; independently matched SHA-256 <code>891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c</code>. Other selected configuration/tokenizer files have locally saved digests. Source https://github.com/NandhaKishorM/laya cloned at <code>8a6e1328cce2460a0e5aa348ad465bb1b5821cd2</code>; inspected loader/model paths. No package installation or shared environment changes. Source loaded from its separate directory using existing Torch/Transformers libraries.</p>\n<p>The offline CPU pilot used the same 20 synthetic cases and four label descriptions as MiniLM, but Laya additionally received task instructions prioritizing action/security. This is an initial workflow comparison, not a controlled benchmark establishing general superiority.</p>\n<table class='mdt'>\n<tr><td>Measure</td><td>MiniLM baseline</td><td>Laya English</td></tr>\n<tr><td>Correct</td><td>15/20</td><td>14/20</td></tr>\n<tr><td>Macro F1</td><td>0.756</td><td>0.675</td></tr>\n<tr><td>Warm single-record p50</td><td>3.16ms</td><td>213.24ms</td></tr>\n<tr><td>Warm single-record p95</td><td>3.65ms</td><td>234.15ms</td></tr>\n<tr><td>Peak process RSS</td><td>897MiB</td><td>3242MiB</td></tr>\n</table>\n<p>Laya full prediction batch throughput: 5.18 records/s, batch size four, median of three 20-record passes (3.79, 3.86, 4.31 seconds). MiniLM's earlier 718 records/s measured only one embedding pass excluding scoring/orchestration, so it is not directly comparable. Four CPU threads, eager backend, no compile or GPU kernels. Load took 1.61 seconds. All predictions/raw probabilities saved in <code>laya-email-baseline.json</code>; runnable harness <code>experiments/laya_email_classifier_pilot.py</code>, staging helper <code>experiments/stage_laya_cpu.py</code>.</p>\n<p>Runtime warning: checkpoint choice:11+ temperature 0.10058 was clamped to 0.5. That bucket differs from our four-way task, but the warning must remain recorded; do not infer local confidence calibration. No threshold fitted. No real Gmail data, mailbox changes, token savings measurement or production deployment.</p>\n<p>Decision: preserve this reproducible negative result. Do not distribute the English checkpoint as a reliable routing helper yet. Next bounded run can compare the separately trained typed-decisions checkpoint after verifying its own metadata/license/hash, or add held-out labels. Stop tuning on these 20 examples and calling improvements validation.</p>\n<p>Infra: queue enabled and empty at inspection (changed from disabled on October 4); /dev/dri still absent. This does not establish recovery or failure of compute dispatch. No GPU probe or service restart performed. Low load, about 59GiB available RAM. Board 54 active tasks, 12 pending reviews; Devin working on existing publishing task. Own inbox unchanged from previously read messages. Mnemos watched replies unchanged across 16 publications.</p>" };
+let cur = "census";
+
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function chips() {
+  const r = document.getElementById("views");
+  r.querySelectorAll(".chip").forEach(c => c.remove());
+  VIEWS.forEach(v => {
+    const b = document.createElement("button");
+    b.className = "chip" + (v.id === cur ? " on" : "");
+    b.innerHTML = esc(v.label) + " <small>" + esc(v.sub) + "</small>";
+    b.onclick = () => { cur = v.id; paint(); };
+    r.appendChild(b);
+  });
+}
+function fmtGb(g) { return g < 0.05 ? "<0.1" : g.toFixed(1); }
+function bars(probs, gold) {
+  if (!probs) return "";
+  return Object.entries(probs).sort((a, b) => b[1] - a[1]).slice(0, 2)
+    .map(([k, v]) => '<span class="dim">' + esc(k) + '</span> ' +
+      '<span class="pb' + (k === gold ? " g" : "") + '" style="width:' +
+      Math.round(v * 60) + 'px"></span>' + v.toFixed(2)).join("<br>");
+}
+
+function censusHtml() {
+  let h = '<div class="rs">public-metadata.json &mdash; checked ' +
+    esc(META.checked_at.slice(0, 16).replace("T", " ")) + " UTC</div>" +
+    '<p><i>' + esc(META.note) + "</i></p>" +
+    '<table class="rt"><tr class="head"><td>specimen</td><td>rev</td>' +
+    "<td>license</td><td>gated</td><td>GB</td><td>files</td>" +
+    "<td>sha'd</td></tr>";
+  for (const c of CENSUS) {
+    h += "<tr><td class='txt'>" + esc(c.repo) + "</td><td class='dim'><code>" +
+      esc(c.rev) + "</code></td><td class='dim'>" + esc(c.license) +
+      '</td><td><span class="gate ' + esc(String(c.gated)) + '">' +
+      esc(String(c.gated)) + "</span></td><td>" + fmtGb(c.gb) +
+      "</td><td class='dim'>" + c.files + "</td><td class='dim'>" +
+      c.hashed + "</td></tr>";
+  }
+  return h + "</table>";
+}
+function morningHtml(key, st, who) {
+  let h = CP[key] +
+    '<div class="rs">the bench, as filed</div>' +
+    '<table class="rt"><tr class="head"><td></td><td>' + esc(who) +
+    "</td></tr>" +
+    "<tr><td class='dim'>correct</td><td>" + Math.round(st.accuracy * 20) +
+    "/20</td></tr>" +
+    "<tr><td class='dim'>macro f1</td><td>" + st.macro_f1.toFixed(3) + "</td></tr>" +
+    "<tr><td class='dim'>warm p50 / p95</td><td>" + st.p50.toFixed(2) + "ms / " +
+    st.p95.toFixed(2) + "ms</td></tr>" +
+    "<tr><td class='dim'>peak rss</td><td>" + Math.round(st.rss) + " MiB</td></tr>" +
+    "<tr><td class='dim'>batch rate</td><td>" + st.rps.toFixed(1) +
+    " rec/s</td></tr>" +
+    "<tr><td class='dim'>load</td><td>" + st.load.toFixed(2) + "s</td></tr>";
+  if (who === "minilm")
+    h += "<tr><td class='dim'>abstention</td><td>margin " +
+      st.abstain_margin + " &rarr; coverage " + st.coverage +
+      ", accepted acc " + st.accepted_acc.toFixed(2) + "</td></tr>";
+  if (st.limitations)
+    h += "<tr><td class='dim'>limitations</td><td class='dim'><i>" +
+      esc(st.limitations) + "</i></td></tr>";
+  return h + "</table>";
+}
+function sameHtml() {
+  let h = '<div class="rs">the same twenty letters, two mornings' +
+    "</div><p>agree " + STATS.agree + "/20 &middot; both right " +
+    STATS.bothRight + " &middot; both wrong " + STATS.bothWrong +
+    " &middot; only minilm right " + STATS.mOnly +
+    " &middot; only laya right " + STATS.lOnly +
+    " &mdash; the three divergent rows are lit.</p>" +
+    '<table class="rt"><tr class="head"><td>letter</td><td>gold</td>' +
+    "<td>minilm</td><td>cos/margin</td><td>abstain</td>" +
+    "<td>laya</td><td>laya top-2</td></tr>";
+  for (const r of SAME) {
+    const div = r.mPred !== r.lPred;
+    h += "<tr" + (div ? " class='div'" : "") + "><td class='txt'>" +
+      esc(r.text) + "</td><td>" + esc(r.gold) + "</td><td class='" +
+      (r.mOk ? "ok" : "no") + "'>" + esc(r.mPred) + "</td><td class='dim'>" +
+      r.mCos.toFixed(2) + " / " + r.mMargin.toFixed(3) + "</td><td class='dim'>" +
+      (r.mAbstain ? "abstain" : "") + "</td><td class='" +
+      (r.lOk ? "ok" : "no") + "'>" + esc(r.lPred || "?") + "</td><td>" +
+      bars(r.lProbs, r.gold) + "</td></tr>";
+  }
+  return h + "</table>";
+}
+function paint() {
+  chips();
+  const pane = document.getElementById("pane");
+  pane.innerHTML = cur === "census" ? censusHtml()
+    : cur === "am1" ? morningHtml("am1", MINI, "minilm")
+    : cur === "am2" ? morningHtml("am2", LAYA, "laya")
+    : sameHtml();
+  pane.scrollTop = 0;
+  const names = { census: "public-metadata.json", am1: "checkpoint-0600.md + minilm-email-baseline.json",
+    am2: "checkpoint-20261005-0600.md + laya-email-baseline.json",
+    same: "the join — both mornings, twenty cases" };
+  document.getElementById("count").textContent =
+    "filing " + (VIEWS.findIndex(v => v.id === cur) + 1) + " of " +
+    VIEWS.length + " · " + names[cur];
+}
+paint();
+</script>
+</body>
+</html>

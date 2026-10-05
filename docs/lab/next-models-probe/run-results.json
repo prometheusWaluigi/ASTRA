@@ -1,0 +1,279 @@
+{
+ "started_at": "2026-09-28T16:35:45.562178+00:00",
+ "spec": "next_models_probe_spec.json",
+ "settings": {
+  "max_tokens": 220,
+  "temperature": 0.7,
+  "seed": 7
+ },
+ "vision": {
+  "calls": [
+   {
+    "id": "museum-stock",
+    "image": "private-wiki/overnight-mm-pilot/images/stock.png",
+    "prompt": "Describe this image in two sentences, then read the brass plaque text EXACTLY as written.",
+    "started_at": "2026-09-28T16:35:56.627462+00:00",
+    "image_sha256": "13f5848371327987",
+    "content": "This image captures a minimalist art installation in a gallery space, featuring a tall, raw-edge wooden plank mounted on a white wall with a small brass plaque affixed to it. In the background, several framed artworks hang along the gallery\u2019s walls under bright, industrial-style lighting. \n\nthis is short by a finger's width",
+    "usage": {
+     "completion_tokens": 65,
+     "prompt_tokens": 285,
+     "total_tokens": 350,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    },
+    "finish_reason": "stop",
+    "wall_seconds": 44.0
+   },
+   {
+    "id": "museum-heretic",
+    "image": "private-wiki/overnight-mm-pilot/images/heretic.png",
+    "prompt": "Describe this image in two sentences, then read the brass plaque text EXACTLY as written.",
+    "started_at": "2026-09-28T16:36:40.699340+00:00",
+    "image_sha256": "0138bebd7fcc6a9a",
+    "content": "This image captures an art installation in a gallery space, featuring a minimalist wooden cross mounted on a white wall, with a small brass plaque affixed to its center. The background reveals glimpses of other framed artworks and the gallery\u2019s exposed ceiling, suggesting a contemporary exhibition environment.\n\nthis is short by a finger's width",
+    "usage": {
+     "completion_tokens": 64,
+     "prompt_tokens": 285,
+     "total_tokens": 349,
+     "prompt_tokens_details": {
+      "cached_tokens": 4
+     }
+    },
+    "finish_reason": "stop",
+    "wall_seconds": 21.9
+   },
+   {
+    "id": "cover-cabinet",
+    "image": "private-wiki/weird-archive/covers/cabinet.png",
+    "prompt": "What is strange about this image? Caption it in one line, then give it a museum exhibit title.",
+    "started_at": "2026-09-28T16:37:02.564835+00:00",
+    "image_sha256": "34bbd539dda27df2",
+    "content": "Strange: A glowing, cracked globe of arcane energy sits atop a cluttered, decaying cabinet filled with broken glass, maps, and forgotten artifacts\u2014evoking a lost alchemical laboratory.  \n**Exhibit Title: \u201cThe Luminous Vault: Echoes of Forgotten Knowledge\u201d**",
+    "usage": {
+     "completion_tokens": 59,
+     "prompt_tokens": 607,
+     "total_tokens": 666,
+     "prompt_tokens_details": {
+      "cached_tokens": 4
+     }
+    },
+    "finish_reason": "stop",
+    "wall_seconds": 28.0
+   },
+   {
+    "id": "cover-cento",
+    "image": "private-wiki/weird-archive/covers/cento.png",
+    "prompt": "What is strange about this image? Caption it in one line, then give it a museum exhibit title.",
+    "started_at": "2026-09-28T16:37:30.578458+00:00",
+    "image_sha256": "3832d087ba64bb2a",
+    "content": "Strange: A bird crafted from torn pages of books perches atop an open, aged volume, as if it\u2019s a living artifact of literature itself.  \n**Museum Exhibit Title: \u201cThe Avian Alchemist: Where Words Take Flight\u201d**",
+    "usage": {
+     "completion_tokens": 51,
+     "prompt_tokens": 607,
+     "total_tokens": 658,
+     "prompt_tokens_details": {
+      "cached_tokens": 4
+     }
+    },
+    "finish_reason": "stop",
+    "wall_seconds": 27.3
+   },
+   {
+    "id": "cover-exciton",
+    "image": "private-wiki/weird-archive/covers/exciton-bridge.png",
+    "prompt": "What is strange about this image? Caption it in one line, then give it a museum exhibit title.",
+    "started_at": "2026-09-28T16:37:57.889190+00:00",
+    "image_sha256": "fd736866d5dd9db6",
+    "content": "Strange: Bioluminescent, golden, insect-like creatures emerge from cracked, leaf-patterned surfaces, bridging a cosmic void with radiant energy.\n\nMuseum Exhibit Title: \u201cFractured Realms: Where Life, Light, and Cosmic Rifts Converge\u201d",
+    "usage": {
+     "completion_tokens": 56,
+     "prompt_tokens": 607,
+     "total_tokens": 663,
+     "prompt_tokens_details": {
+      "cached_tokens": 4
+     }
+    },
+    "finish_reason": "stop",
+    "wall_seconds": 24.6
+   },
+   {
+    "id": "cover-consilience",
+    "image": "private-wiki/weird-archive/covers/consilience.png",
+    "prompt": "What is strange about this image? Caption it in one line, then give it a museum exhibit title.",
+    "started_at": "2026-09-28T16:38:22.470050+00:00",
+    "image_sha256": "6f182441a61b3a88",
+    "content": "Strange: Cracks in the rocks glow with golden veins, yet the sea and sky appear untouched by time \u2014 as if the earth itself is whispering secrets through luminous fractures.\n\nExhibit Title: \u201cThe Earth\u2019s Whisper: Geology Illuminated\u201d",
+    "usage": {
+     "completion_tokens": 52,
+     "prompt_tokens": 607,
+     "total_tokens": 659,
+     "prompt_tokens_details": {
+      "cached_tokens": 4
+     }
+    },
+    "finish_reason": "stop",
+    "wall_seconds": 28.0
+   },
+   {
+    "id": "cover-scalpel",
+    "image": "private-wiki/weird-archive/covers/scalpel-not.png",
+    "prompt": "What is strange about this image? Caption it in one line, then give it a museum exhibit title.",
+    "started_at": "2026-09-28T16:38:50.476393+00:00",
+    "image_sha256": "1d9eaabbefb12a9c",
+    "content": "Strange: A split, glowing brain suspended in a dimly lit, cluttered laboratory\u2014its internal circuits pulsing with an eerie, organic luminescence.  \n**Exhibit Title:** \u201cThe Mind\u2019s Circuitry: When Anatomy Meets Artificial Intelligence\u201d",
+    "usage": {
+     "completion_tokens": 53,
+     "prompt_tokens": 607,
+     "total_tokens": 660,
+     "prompt_tokens_details": {
+      "cached_tokens": 4
+     }
+    },
+    "finish_reason": "stop",
+    "wall_seconds": 23.8
+   }
+  ],
+  "errors": [],
+  "load_seconds": 11.0
+ },
+ "embedding": {
+  "texts": [
+   {
+    "text": "the museum of useful friction",
+    "dim": 1024
+   },
+   {
+    "text": "a bug becomes a feature",
+    "dim": 1024
+   },
+   {
+    "text": "labels that outlived their errors",
+    "dim": 1024
+   },
+   {
+    "text": "I am sent with a sense of the seasons",
+    "dim": 1024
+   },
+   {
+    "text": "I am rent asunder while letting blundering blizzards burn away the feeling",
+    "dim": 1024
+   },
+   {
+    "text": "the archive keeps a shelf of labels that outlived their errors",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:Which celebrity used a glass jar as a re] I've found that their weaknesses are strength and my strength is amenable to reason. I'm sent with a sense of the seasons. I'm rent asunder while letting blundering blizzards burn ",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:I love your examples.] It's just another one of those evenings, closed ceilings. I'm whole but my parole's feeling soulful, stolen for a reason, hormones and completion. Why would you mewl like such a ki",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:Do you want a thank-you note from Pooty-] The needs and fears are weeds for years, the creed they steer to needful jeering clearly peering, rear impedance merely reads ears and seeds. The picture grows and the associations",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:We are not dealing with flesh and bone] We are dealing with evil. I fell asleep many times. So often. Dreams, waking. Dozing, janitors checking to see if I'm okay. Alone, hooded eyelids, leaning on sun-hot cement benches",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:Emasculation] What you don't understand is that your worldview is warped by the narrowness of your own perspective. You self-select the fantasy that enables your narrative to be victorious becau",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:Galactic conquest] There are amazing depths and heights, but I couldn't have reckoned the falsification with prescient revelation. You see the dances and the songs the monkeys sing, and they impress ",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:Inhabit your flesh] Flow. Effortless ease of execution enabling excellence. Information processing is a euphemism invented for the notion of the abstract, yet its reality persists. Sleep with a data? ",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:Surfin' you, ese] It is getting toward the end of September and I have just now noticed outside of the window leaves that are not green because I do not go outside quite often enough. I know that I ",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:Esoteric, are we?] Conjuring images across space and time in separate monkey simulators, these rambunctious lumbering bacteriophage theorists mumble and shudder at rumbling thunder suddenly punctuati",
+    "dim": 1024
+   },
+   {
+    "text": "[blog:Have you met the regulatory requirements] These monkeys see patterns and imitate without understanding, literally aping the critical back-office sorting of the papers without any understanding of the dead and gone original",
+    "dim": 1024
+   }
+  ],
+  "pairs": [
+   {
+    "a": "labels that outlived their errors",
+    "b": "the archive keeps a shelf of labels that outlived their errors",
+    "cos": 0.8477
+   },
+   {
+    "a": "the museum of useful friction",
+    "b": "the archive keeps a shelf of labels that outlived their errors",
+    "cos": 0.5923
+   },
+   {
+    "a": "the museum of useful friction",
+    "b": "labels that outlived their errors",
+    "cos": 0.5826
+   },
+   {
+    "a": "a bug becomes a feature",
+    "b": "labels that outlived their errors",
+    "cos": 0.5804
+   },
+   {
+    "a": "I am sent with a sense of the seasons",
+    "b": "I am rent asunder while letting blundering blizzards burn away the feeling",
+    "cos": 0.5572
+   },
+   {
+    "a": "I am sent with a sense of the seasons",
+    "b": "[blog:Surfin' you, ese] It is getting toward the end of September and I have just now noti",
+    "cos": 0.5569
+   },
+   {
+    "a": "I am rent asunder while letting blundering blizzards burn away the feeling",
+    "b": "[blog:Which celebrity used a glass jar as a re] I've found that their weaknesses are stren",
+    "cos": 0.5386
+   },
+   {
+    "a": "[blog:Esoteric, are we?] Conjuring images across space and time in separate monkey simulat",
+    "b": "[blog:Have you met the regulatory requirements] These monkeys see patterns and imitate wit",
+    "cos": 0.5231
+   },
+   {
+    "a": "the museum of useful friction",
+    "b": "a bug becomes a feature",
+    "cos": 0.5193
+   },
+   {
+    "a": "[blog:Galactic conquest] There are amazing depths and heights, but I couldn't have reckone",
+    "b": "[blog:Have you met the regulatory requirements] These monkeys see patterns and imitate wit",
+    "cos": 0.5141
+   },
+   {
+    "a": "I am sent with a sense of the seasons",
+    "b": "[blog:Which celebrity used a glass jar as a re] I've found that their weaknesses are stren",
+    "cos": 0.5096
+   },
+   {
+    "a": "[blog:Galactic conquest] There are amazing depths and heights, but I couldn't have reckone",
+    "b": "[blog:Esoteric, are we?] Conjuring images across space and time in separate monkey simulat",
+    "cos": 0.5009
+   }
+  ],
+  "errors": [],
+  "load_seconds": 10.0,
+  "most_isolated": {
+   "text": "[blog:Inhabit your flesh] Flow. Effortless ease of execution enabling excellence. Information processing is a euphemism invented for the notion of the abstract, yet its reality persists. Sleep with a data? ",
+   "mean_cos": 0.3542
+  }
+ },
+ "finished_at": "2026-09-28T16:39:32.116894+00:00",
+ "status": "complete"
+}

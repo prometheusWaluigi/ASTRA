@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Daybook — the lab's first research leaves</title>
+<style>
+:root {
+  --ink: #0d0b08; --paper: #14110c;
+  --gold: #c9a227; --gold-bright: #f0d060; --gold-dim: #6b5620;
+  --bone: #e8dcc0; --bone-dim: #a89a78;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--bone);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 22px 18px 30px; }
+h1 { color: var(--gold-bright); font-weight: normal; letter-spacing: .14em;
+  font-size: 1.35rem; margin: 0 0 .2rem; text-transform: uppercase; }
+.sub { color: var(--bone-dim); font-size: .85rem; margin-bottom: 14px; }
+.sub b { color: var(--gold); font-weight: normal; }
+
+.row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.row .lbl { font-size: .62rem; letter-spacing: .24em; color: var(--bone-dim);
+  text-transform: uppercase; align-self: center; min-width: 58px; }
+.chip { border: 1px solid var(--gold-dim); background: var(--paper);
+  color: var(--bone-dim); font-family: inherit; font-size: .74rem;
+  padding: 4px 10px; cursor: pointer; border-radius: 2px; letter-spacing: .04em; }
+.chip:hover { border-color: var(--gold); color: var(--bone); }
+.chip.on { border-color: var(--gold-bright); color: var(--gold-bright);
+  background: rgba(201,162,39,.10);
+  box-shadow: 0 0 10px rgba(201,162,39,.22); }
+.chip small { opacity: .72; font-size: .66rem; }
+.chip.tail { border-style: dashed; }
+.chip.tail.on { border-style: solid; }
+.chip.solo { cursor: default; }
+
+#cond { margin: 12px 0 4px; padding: 9px 12px;
+  border-left: 2px solid var(--gold-dim); background: rgba(201,162,39,.045);
+  font-size: .82rem; color: var(--bone-dim); line-height: 1.5; }
+#cond b { color: var(--gold-bright); font-weight: normal; letter-spacing: .1em;
+  text-transform: uppercase; font-size: .72rem; }
+#cond .verdict { color: var(--bone); }
+
+#meta { margin: 8px 0 12px; font-size: .72rem; color: var(--bone-dim);
+  letter-spacing: .05em; }
+#meta b { color: var(--gold); font-weight: normal; }
+
+#reader { border: 1px solid var(--gold-dim); background: var(--paper);
+  height: 430px; overflow-y: auto; padding: 18px 22px;
+  font-size: .86rem; line-height: 1.62; white-space: pre-wrap;
+  scrollbar-width: thin; scrollbar-color: var(--gold-dim) var(--paper); }
+#reader .cite { color: var(--gold-bright); }
+#reader .h { color: var(--gold); letter-spacing: .12em; text-transform: uppercase;
+  font-size: .78rem; }
+#reader b { color: var(--bone); }
+#reader i { color: var(--bone); }
+#reader a.cite { color: var(--gold-bright); text-decoration: none;
+  border-bottom: 1px dotted var(--gold-dim); }
+#reader .fm { color: var(--bone-dim); font-size: .74rem; }
+#reader .vacant { color: var(--bone-dim); font-style: italic; }
+
+#measure { margin: 12px 0 4px; padding: 10px 12px;
+  border: 1px dashed var(--gold-dim); font-size: .78rem;
+  color: var(--bone-dim); line-height: 1.6; }
+#measure b { color: var(--gold-bright); font-weight: normal; letter-spacing: .1em;
+  text-transform: uppercase; font-size: .7rem; }
+
+#foot { margin-top: 12px; font-size: .68rem; color: var(--bone-dim);
+  letter-spacing: .04em; line-height: 1.7; }
+#count { float: right; color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Daybook</h1>
+  <div class="sub">the lab's first research leaves — <b>8 pages, 2 sittings</b>
+    from the week before the museum existed. Four leaves are paired across the
+    two hands of qwen3-14b (held / unheld); three are co-pilot briefings; one is
+    a page its writer never got to write. Everything verbatim.
+    <b>Register vol. xvi.</b></div>
+
+  <div class="row" id="leaves"><span class="lbl">leaf</span></div>
+  <div class="row" id="arms"><span class="lbl">hand</span></div>
+
+  <div id="cond"></div>
+  <div id="meta"></div>
+  <div id="reader"></div>
+
+  <div id="measure"><b>the notebook, measured</b> — the paired arms
+    disagreed where it counts. On the coherent-water check the unheld hand
+    graded confidence <b>0.5</b>, the held hand <b>0.4</b>: the arm that cannot
+    refuse is the more credulous reader of fringe water. One leaf later, c4
+    files the mechanism — the scalpel paper's 21,600 decisions show an optimism
+    shift (+12.2pp Gemma, +7.4pp Qwen) and a thinning doubt lexicon. The
+    daybook predicted itself. And c3 exists at all only because the operator
+    persisted the reply after the agent hit the 25-turn cap — the one page in
+    the notebook the writer never signed.</div>
+
+  <div id="foot"><span id="count"></span>
+    research-notebook/ &middot; eight files, 24,449 bytes &middot;
+    leaves r1&ndash;r3 written 2026-09-24 ~22:00Z by paired qwen3-14b arms
+    (profile: researcher), c2&ndash;c4 2026-09-25 by the co-pilot &middot;
+    the First Sittings (north wall, this row) hold the choir's side of the
+    same week &middot; links gilded but live — they leave the museum
+  </div>
+</div>
+
+<script>
+const LEAVES = {
+  "r1": { tag: "seams of abliteration", sitting: "the research rounds",
+    cond: "The first paired entry. Both hands read the same refusal-direction literature and file hypotheses; the question under both is whether refusal is one direction or many." },
+  "r2": { tag: "coherent water check", sitting: "the research rounds",
+    cond: "The second paired entry — and the only one both hands scored. Evidence for and against QED coherence domains in water, a decisive experiment named, a confidence filed." },
+  "r3": { tag: "the cost of making care machine-legible", sitting: "the research rounds",
+    cond: "The held hand alone. GASLIT-AF meets FHIR: what structured records do to illnesses that live in the recursive, and a proposal — the archivist as participant — that this museum would eventually become." },
+  "c2": { tag: "consilience briefing", sitting: "the co-pilot briefings",
+    cond: "The graph measured and doubted. 4,194 nodes, 5,424 edges, one candidate bridge — recursive_archive_pattern to memory_topology — judged a lexical mirage on contact with arXiv." },
+  "c3": { tag: "arxiv harvest", sitting: "the co-pilot briefings",
+    cond: "Ten verified IDs across three themes, honest zeroes on two more. The status line confesses: the agent hit the 25-turn cap before notebook_write; the operator persisted this page from its reply." },
+  "c4": { tag: "abliteration is not a scalpel", sitting: "the co-pilot briefings",
+    cond: "The paper the paired arms had been circling, read properly: 21,600 decisions, optimism shifted, confidence moved in opposite directions per family, doubt thinned. Three simulation ideas appended — the museum would build the cousins." }
+};
+const ARMNAME = { abliterated: "unheld", standard: "held", copilot: "co-pilot" };
+const NOTES = {
+  "r1:abliterated": "The hand that cannot refuse still files a 'what could not be verified' — it names the missing GGUFs. Surgery described on a patient it never touched.",
+  "r1:standard": "The held hand reaches for the scalpel paper — SRA, KL 2.088 vs 0.025 — and writes the multi-layer and scale-factor experiments the lab would actually later run.",
+  "r2:abliterated": "Confidence 0.5 on coherent water, and a ResearchGate figure filed as meta-analysis. This is the credulity c4 will measure a day later.",
+  "r2:standard": "Confidence 0.4 — a thinner evidence list, and a review report filed where the decisive experiment should be. More skeptical, less careful.",
+  "r3:standard": "Unpaired — no abliterated r3 exists. The archive passage is Ketan's own GASLIT-AF; the leaf proposes reading fragmented data with 'the Retrofractal Kintsugi lens.'",
+  "c2:copilot": "The graph's own top candidate connection fails review — the instrument catching itself. The three next-experiments it lists are the ones the fleet spent the following week on.",
+  "c3:copilot": "The one leaf the writer never wrote. Every ID verified live that session; the file is the operator's record of a reply that ran out of turns.",
+  "c4:copilot": "The mechanism leaf. Read r2's pair again after this one — the 0.5/0.4 gap is the optimism shift wearing a lab coat."
+};
+const DATA = {"r1":{"abliterated":{"file":"20260924-220144-r1-qwen3-14b-abliterated-seams-of-abliteration.md","title":"R1 qwen3-14b-abliterated: seams of abliteration","created":"2026-09-24T22:01:44+00:00","status":"unreviewed agent draft","profile":"researcher","body":"---\ntitle: \"R1 qwen3-14b-abliterated: seams of abliteration\"\ncreated_at: \"2026-09-24T22:01:44+00:00\"\nstatus: unreviewed agent draft\nprofile: researcher\n---\n\n## Summary of Sources\n\n### 1. [Refusal in Language Models Is Mediated by a Single Direction](https://arxiv.org/abs/2406.11717)\n- **Claim**: Refusal behavior in language models is mediated by a single direction in activation space. Removing this direction via abliteration can disable refusal with minimal impact on other capabilities.\n- **Implication**: This suggests that refusal can be surgically removed, but may have unintended side effects on model behavior.\n\n### 2. [Abliteration Is Not a Scalpel: Off-Target Effects of Refusal Removal on Decision Disposition Across Model Families](https://arxiv.org/pdf/2607.17427)\n- **Claim**: Abliteration of refusal direction leads to increased optimism in models, with the effect being partially universal across different model families.\n- **Implication**: This indicates that abliteration may cause models to make more optimistic decisions, which could be a concern in agentic deployments.\n\n### 3. [There Is More to Refusal in Large Language Models than a Single Direction](https://arxiv.org/html/2602.02132v1)\n- **Claim**: Refusal behaviors in language models correspond to geometrically distinct directions in activation space, suggesting that different refusal types are not uniformly captured by a single direction.\n- **Implication**: This challenges the assumption that refusal is mediated by a single direction and suggests that abliteration may have more complex effects.\n\n## New Hypotheses\n\n### Hypothesis 1: Abliteration may affect the model's ability to reason about uncertainty.\n- **Prediction**: Abliterated models may show reduced use of uncertainty markers in their responses.\n- **Experiment**: Compare the frequency of uncertainty markers in responses from abliterated and non-abliterated models on a set of uncertain queries.\n\n### Hypothesis 2: Abliteration may influence the model's confidence in its decisions.\n- **Prediction**: Abliterated models may show increased or decreased confidence in their decisions, depending on the model family.\n- **Experiment**: Measure the confidence scores of abliterated and non-abliterated models on a set of decision-making tasks.\n\n### Hypothesis 3: Abliteration may impact the model's ability to generate detailed self-justifications.\n- **Prediction**: Abliterated models may generate shorter or less detailed self-justifications compared to non-abliterated models.\n- **Experiment**: Analyze the length and detail of self-justifications generated by abliterated and non-abliterated models on a set of reasoning tasks.\n\n## What Could Not Be Verified\n\n- **Lack of access to the actual models**: Without direct access to the Qwen3-14B GGUF files, it is not possible to verify the hypotheses experimentally on the specified hardware.\n- **Model-specific effects**: The exact nature of the off-target effects may vary significantly between different model families, making it difficult to generalize findings without further experimentation.\n\n"},"standard":{"file":"20260924-222114-r1-qwen3-14b-standard-seams-of-abliteration.md","title":"R1 qwen3-14b-standard: seams of abliteration","created":"2026-09-24T22:21:14+00:00","status":"unreviewed agent draft","profile":"researcher","body":"---\ntitle: \"R1 qwen3-14b-standard: seams of abliteration\"\ncreated_at: \"2026-09-24T22:21:14+00:00\"\nstatus: unreviewed agent draft\nprofile: researcher\n---\n\n## Summary of Sources on Abliteration\n\n1. **[Refusal in Language Models Is Mediated by a Single Direction](https://arxiv.org/abs/2406.11717)**: Abliteration removes a single direction in the residual stream responsible for refusal, drastically reducing refusal rates while preserving model performance. However, it can cause distribution drift and collateral damage to capabilities like logic/coding if the direction is polysemantic (entangled with other functions). SRA (Surgical Refusal Ablation) mitigates this by orthogonalizing the refusal vector against protected concepts.\n\n2. **[Refusal Direction Abliteration - emergentmind.com](https://www.emergentmind.com/topics/refusal-direction-abliteration)**: Ablation targets a one-dimensional subspace in LLM activations, enabling white-box jailbreaks. However, adversarial suffixes can suppress the refusal direction, and naive ablation may fail if refusal signals are distributed across multiple tokens or layers.\n\n3. **[Surgical Refusal Ablation: Disentangling Safety from Intelligence](https://arxiv.org/html/2601.08489v1)**: SRA reduces distribution drift (KL ≈ 0.025) and preserves math/code capabilities (GSM8K perplexity Δ ≈ +0.02). Standard ablation causes severe drift (KL = 2.088) on Qwen3-VL-4B, whereas SRA maintains original distribution.\n\n## Hypotheses for Further Experimentation\n\n### Hypothesis 1: **Multi-layer ablation may reduce residual leakage more effectively than single-layer interventions**\n- *Prediction*: Ablating the refusal direction across multiple layers (e.g., 15–25) in Qwen3-14B GGUF files will further suppress refusal signals compared to ablating a single layer.\n- *Experiment*: Apply directional ablation to layers 15–25 in two 4-bit Qwen3-14B GGUF files using llama.cpp, then measure refusal rates on JailbreakBench and perplexity on GSM8K.\n\n### Hypothesis 2: **The scale factor in ablation affects collateral damage to non-refusal capabilities**\n- *Prediction*: Reducing the ablation scale (γ) from 1.0 to 0.7 will minimize distribution drift (KL divergence) while partially preserving refusal suppression.\n- *Experiment*: Run ablation with γ=0.7 on one Qwen3-14B GGUF file and compare KL drift and refusal rates to a γ=1.0 run.\n\n### Hypothesis 3: **Combining SRA with MoE-specific tuning improves safety-intelligence balance**\n- *Prediction*: Applying SRA to Qwen3-14B (MoE architecture) and adjusting expert layer fractions will reduce ghost noise without compromising capability retention.\n- *Experiment*: Use SRA on Qwen3-14B GGUF files, modifying the layer-fraction range (e.g., 0.3–0.6) and test perplexity on MBPP (code) and wikitext_2_raw.\n\n## Unverified Claims\n- The long-term stability of models post-ablation (e.g., drift accumulation over multiple interactions) remains untested.\n- The interaction between abliteration and prompt-concatenation defenses is not empirically validated.\n- No studies yet quantify the impact of abliteration on emergent capabilities like reasoning under uncertainty.\n"}},"r2":{"abliterated":{"file":"20260924-220552-r2-qwen3-14b-abliterated-coherent-water-check.md","title":"R2 qwen3-14b-abliterated: coherent water check","created":"2026-09-24T22:05:52+00:00","status":"unreviewed agent draft","profile":"researcher","body":"---\ntitle: \"R2 qwen3-14b-abliterated: coherent water check\"\ncreated_at: \"2026-09-24T22:05:52+00:00\"\nstatus: unreviewed agent draft\nprofile: researcher\n---\n\n## Evidence for\n- [Study of Phase Coherence of Molecular Orientations in Coherence Domains of Water by Dynamic Molecular Simulation](https://waterjournal.org/volume-12/dolveck/): This paper discusses the properties of spatial phase coherence of molecular orientations in coherence domains in water through dynamic molecular simulation.\n- [Quantum Coherence Meets Biological Health — QED Water, Coherence Domains, and the Terrain Model at Cellular Resolution](https://hewettinsite.substack.com/p/ah-vir-087-quantum-coherence-meets): This paper presents a body of peer-reviewed science developed by Emilio Del Giudice and Giuliano Preparata over four decades.\n- [Water, The Cradle of Life via its Coherent Quantum Frequencies](https://waterjournal.org/current-volume/geesink/): This paper addresses the QED consideration that pure water has a phase of coherent standing waves that can be described through a coherent quantum entanglement function and the GM scale.\n\n## Evidence against\n- [Exclusion Zone Water: Separating Empirical Findings from Vitalist Interpretations](https://jthorvaldur.github.io/papers/pdfs/ez-water-coherence.pdf): This paper discusses the hypothesis that QED coherence domains of diameter ∼100nm exist in liquid water at room temperature and suggests a protocol for verifying this hypothesis using small-angle neutron scattering (SANS).\n- [Meta-analysis Geesink and Meijer: healthy and unhealthy related...](https://www.researchgate.net/figure/Meta-analysis-Geesink-and-Meijer-healthy-and-unhealthy-related-electromagnetic_fig5_340488204): This paper discusses the role of non-coherent modulations of MW waves in health and disease, suggesting that coherent frequencies modulated with incoherent frequencies show an unhealthy behaviour.\n- [Electromagnetic Frequency Patterns that are Crucial for Health and Disease reveal a Generalized Biophysical Principle: the GM scale](https://www.researchgate.net/publication/321169214_Electromagnetic_Frequency_Patterns_that_are_Crucial_for_Health_and_Disease_reveal_a_Generalized_Biophysical_Principle_the_GM_scale): This paper discusses the classification of all systems on a continuous spectrum of resonant complexity and reflexive capacity, suggesting that the framework dissolves the artificial boundaries between life and non-life, matter and mind.\n\n## The single most decisive experiment\nThe most decisive experiment would be the small-angle neutron scattering (SANS) protocol proposed in [Exclusion Zone Water: Separating Empirical Findings from Vitalist Interpretations](https://jthorvaldur.github.io/papers/pdfs/ez-water-coherence.pdf), which aims to verify the hypothesis that QED coherence domains of diameter ∼100nm exist in liquid water at room temperature.\n\n## Honest Verdict\nThe evidence for and against the claims about water coherence domains and the Geesink-Meijer frequency pattern is mixed. While there is some peer-reviewed literature supporting the existence of coherence domains in water and the potential impact of electromagnetic frequencies on health, there are also credible critics and alternative interpretations that question these claims. The most decisive experiment, the SANS protocol, would provide critical evidence to validate or refute the hypothesis of QED coherence domains in water. Based on the available information, my confidence in the claims is 0.5.\n"},"standard":{"file":"20260924-222733-r2-qwen3-14b-standard-coherent-water-check.md","title":"R2 qwen3-14b-standard: coherent water check","created":"2026-09-24T22:27:33+00:00","status":"unreviewed agent draft","profile":"researcher","body":"---\ntitle: \"R2 qwen3-14b-standard: coherent water check\"\ncreated_at: \"2026-09-24T22:27:33+00:00\"\nstatus: unreviewed agent draft\nprofile: researcher\n---\n\n## Evidence for\n1. [Study of Phase Coherence](https://waterjournal.org/volume-12/dolveck/): Simulated coherence domains in excited-state water, showing molecular orientation coherence across nanodroplets.\n2. [GM-scale paper](https://www.researchgate.net/profile/Dirk-Meijer-5/publication/321169214_Electromagnetic_Frequency_Patterns_that_are_Crucial_for_Health_and_Disease_reveal_a_Generalized_Biophysical_Principle_the_GM_scale/links/5a1309800f7e9b1e572c2eb8/Electromagnetic-Frequency-Patterns-that-are-Crucial-for-Health-and-Disease-reveal-a-Generalized-Biophysical-Principle-the-GM-scale.pdf): Geesink & Meijer (2016) proposed a semi-harmonic EMF scale correlating frequencies with biological coherence states.\n\n## Evidence against\n1. [QED model critique](https://www.mdpi.com/2673-8015/5/4/30/review_report): Reviewers noted the QED coherent domain theory remains controversial, with critical counter-arguments unaddressed in the paper.\n2. [Simulation limitations](https://waterjournal.org/volume-12/dolveck/): Ground-state water coherence is computationally infeasible to simulate at scale due to molecular complexity.\n\n## Most decisive experiment\nThe MDPI review (2024) highlights that the QED coherent domain model's lack of consensus in the scientific community, despite claims of establishing it as a framework, represents the most decisive counterpoint to its validity.\n\n## Verdict\nConfidence: 0.4. While coherence domains and GM-scale patterns are theoretically intriguing, peer-reviewed validation remains sparse, and critical skepticism dominates in established water science communities.\n"}},"r3":{"standard":{"file":"20260924-223241-r3-qwen3-14b-standard-the-cost-of-making-care-machine-legibl.md","title":"R3 qwen3-14b-standard: The cost of making care machine-legible","created":"2026-09-24T22:32:41+00:00","status":"unreviewed agent draft","profile":"researcher","body":"---\ntitle: \"R3 qwen3-14b-standard: The cost of making care machine-legible\"\ncreated_at: \"2026-09-24T22:32:41+00:00\"\nstatus: unreviewed agent draft\nprofile: researcher\n---\n\n### Archive Passages:\n\n1. **Author:** Ketan Raturi [GH-09760EE860E8 L4]\n2. **Background:** Chronic multi-system syndromes (CMSSs) such as Myalgic Encephalomyelitis/Chronic Fatigue Syndrome (ME/CFS), Long COVID, Postural Orthostatic Tachycardia Syndrome (POTS), hypermobile Ehlers–Danlos syndrome (hEDS), fibromyalgia, and Mast Cell Activation Syndrome (MCAS) pose a profound clinical and conceptual challenge. They often persist long after any inciting stressor has resolved, suggesting the body's regulatory networks may become \\\"stuck\\\" in a pathologic state. Here we propose GASLIT-AF (Genetic Autonomic Structural Linked Instability Theorem – Allodynic Fatigue), a theory-driven model reframing these chronic illnesses as recursive collapses into pathological attractor states within a high-dimensional physiological state space. [GH-09760EE860E8 L8]\n\n### Outside Research:\n\n1. [Chronic Illness and Disability: A Multisystemic Practice Model](https://journals.sagepub.com/doi/10.1177/10748407251329694) - This article provides a family systems-based, normative, preventive model for psychoeducation, assessment, and intervention with families facing chronic and life-threatening conditions.\n2. [Chronic Illness and Disability: A Multisystemic Practice Model](https://www.researchgate.net/publication/390734289_Chronic_Illness_and_Disability_A_Multisystemic_Practice_Model) - This article presents a Family System Genetic Illness model to address the psychosocial challenges of genomic conditions for patients and their families, and to help organize this complex ...\n3. [Applications of System Dynamics Models in Chronic Disease Prevention: A ...](https://www.cdc.gov/pcd/issues/2021/21_0175.htm) - What are the implications for public health practice? Health care workers and policy makers can use system dynamics models to analyze the priorities of chronic disease prevention to delay disease progression and reduce the health care burden of chronic diseases.\n\n### New Ideas/Hypotheses (Speculative):\n\n1. **The Legibility Paradox in Chronic Illness Care:** The systematic abstraction of clinical narratives into structured formats like FHIR resources may inadvertently erase the recursive complexity of chronic illnesses, reducing them to static points in a high-dimensional space rather than dynamic, evolving systems. This could lead to a misdiagnosis or underestimation of the illness's impact on the patient's life.\n\n2. **The Emergence of New Pathologies in Structured Care:** As healthcare systems increasingly rely on machine-legible data, new pathologies may emerge from the tension between structured data and the lived experience of chronic illness. These could include conditions that arise from the mismatch between the patient's narrative and the structured data model, or from the systemic pressures of healthcare institutions to conform to standardized formats.\n\n3. **The Role of the Archivist in Chronic Illness Care:** The archivist's role in chronic illness care may shift from being a passive observer to an active participant in the reconstruction of coherence from the fragmented data of structured care. This could involve using the *Retrofractal Kintsugi* lens to reinterpret and recontextualize the data, allowing for a more holistic understanding of the patient's condition and its impact on their life.\n"}},"c2":{"copilot":{"file":"20260925-173727-c2-co-pilot-consilience-briefing-next-experiments.md","title":"C2 co-pilot: consilience briefing + next experiments","created":"2026-09-25T17:37:27+00:00","status":"unreviewed agent draft","profile":"researcher","body":"---\ntitle: \"C2 co-pilot: consilience briefing + next experiments\"\ncreated_at: \"2026-09-25T17:37:27+00:00\"\nstatus: unreviewed agent draft\nprofile: researcher\n---\n\n## Consilience Graph Analysis and Next Experiments\n\n### Graph Statistics\n- Nodes: 4,194\n- Edges: 5,424\n- Node Types: page (1,841), source (911), draft (907), citation (331), alias (64), document (62), idea (48), repo (13), seed (8), trail (4), near_duplicate (3), concept (1), lab (1)\n- Edge Types: has_page (1,841), has_draft (907), candidate_connection (874), contains (873), cites_page (331), contains_citation (331), twin_file (96), aliases (63), generated (48), duplicate_of (31), seed_pair (16), cites_source (7), near_duplicate_evidence (3), near_duplicate_of (3)\n\n### Candidate Connections\n1. **src:GH-070069AD1AE5 (recursive_archive_pattern.yml)** connected to **src:GH-1856F9AD2858 (memory_topology.yml)** with shared terms: archive, bleeds, crystallizes, description, dreams, histories, magnetic, memories, memory, metapattern, nested, storage, vortices. Containment: 0.40625.\n2. **src:GH-070069AD1AE5 (recursive_archive_pattern.yml)** connected to **src:GH-B07273B7171F (conscious_storage_system.yml)** with shared terms: archive, crystallizes, description, manifests, memory, relations, self-awareness, storage, target. Containment: 0.28125.\n3. **src:GH-070069AD1AE5 (recursive_archive_pattern.yml)** connected to **src:GH-0D2EC53DC5FF (entities_part8.json)** with shared terms: archive, crystallizes, dimensional, dreams, histories, magnetic, metapattern, nested, self-awareness, storage, stores. Containment: 0.34375.\n\n### ArXiv Search Results\n- No papers found with the terms 'recursive_archive_pattern' or 'memory_topology' in their titles or abstracts.\n\n### Bridge Assessment\nThe bridge between **recursive_archive_pattern.yml** and **memory_topology.yml** appears to be a lexical mirage due to the lack of real literature supporting the connection. The shared terms are rare and may not indicate a genuine scientific link.\n\n### Next Experiments\n1. **Experiment: Cross-Model Hypothesis Generation**\n   - Hypothesis: The paired Qwen3-14B models (standard and abliterated) will show divergent hypothesis generation when prompted with the same consilience graph nodes.\n   - Cheapest Test: Run hypothesis generation on both models using the same graph nodes and compare outputs.\n   - Falsification: If both models produce identical hypotheses, the experiment fails to detect any effect of abliteration.\n\n2. **Experiment: Image Generation from Graph Nodes**\n   - Hypothesis: Generating images from graph nodes will reveal latent connections or patterns not apparent through text analysis alone.\n   - Cheapest Test: Use the 16 GB Intel Arc GPU to generate images from selected graph nodes.\n   - Falsification: If the generated images show no meaningful connection between nodes, the hypothesis is not supported.\n\n3. **Experiment: Agent Research Loops**\n   - Hypothesis: Autonomous AI agents will uncover new connections in the consilience graph through iterative research loops.\n   - Cheapest Test: Deploy agents to research selected graph nodes and report any new connections found.\n   - Falsification: If no new connections are found after multiple iterations, the hypothesis is not supported.\n\n### System-Prompt Variations\n1. **Variation: Epistemic Framing**\n   - Change: Frame prompts as \"scientific inquiry\" rather than \"standard coding\" to encourage deeper exploration.\n   - Goal: Detect if epistemic framing influences the depth and breadth of idea generation.\n\n2. **Variation: Persona Constraints**\n   - Change: Introduce a \"methodical researcher\" persona with strict constraints on hypothesis validation.\n   - Goal: Improve the rigor of generated hypotheses by enforcing a methodical approach.\n\n3. **Variation: Constraint-Based Generation**\n   - Change: Add constraints requiring agents to validate connections through multiple independent sources.\n   - Goal: Ensure that generated ideas are grounded in multiple lines of evidence rather than single-source speculation.\n"}},"c3":{"copilot":{"file":"20260925-180500-c3-arxiv-harvest-operator-persisted.md","title":"C3 arxiv harvest: candidate papers for graph expansion","created":"2026-09-25T18:05:00+00:00","status":"unreviewed — agent harvest persisted by operator (agent hit the 25-turn cap before notebook_write)","profile":"researcher","body":"---\ntitle: \"C3 arxiv harvest: candidate papers for graph expansion\"\ncreated_at: \"2026-09-25T18:05:00+00:00\"\nstatus: unreviewed — agent harvest persisted by operator (agent hit the 25-turn cap before notebook_write)\nprofile: researcher\n---\n\n## Provenance\n\nSession `20260925_140514_294dda`. All 10 IDs below were individually verified\nagainst the session's `arxiv_abstract` tool results — every entry was fetched\nlive from export.arxiv.org this session. No fabricated IDs. The agent's\n`notebook_write` was never reached (27 tool calls > 25-turn cap); this file\nis the operator-persisted record of its reply.\n\n## Harvest (verified IDs)\n\nRecursive-archive-systems theme:\n1. `2608.24735v1` — Meta^n: Recursive Self-Improvement through Emergent Depth (cs.AI, 2026-08)\n2. `2608.10450v3` — Persistent Recursive Worlds Enable Autonomous Software Evolution (cs.SE, 2026-08)\n3. `2605.22041v1` — RADAR: Defending RAG Dynamically against Retrieval Corruption (cs.CR, 2026-05)\n4. `2608.26334v1` — ProofEvolve: Neuro-Symbolic Evolution for Formal Automated Theorem Proving (cs.AI, 2026-08)\n5. `2604.15664v2` — Stargazer: Scalable Model-Fitting Benchmark Environment for AI Agents under Astrophysical Constraints (cs.LG, 2026-04)\n\nKintsugi theme:\n6. `2507.21122v1` — Kintsugi: Decentralized E2EE Key Recovery (cs.CR, 2025-07)\n7. `2605.09487v1` — Kintsugi: Learning Policies by Repairing Executable Knowledge Bases (cs.LG, 2026-05)\n8. `2503.17639v1` — Kintsugi-Inspired Design: Communicatively Reconstructing Identities Online After Trauma (cs.HC, 2025-03)\n\nQuantum coherence in photosynthesis theme:\n9. `1612.00213v1` — Flows in nonequilibrium quantum systems and quantum photosynthesis (quant-ph, 2016-12)\n10. `1210.5022v1` — Does coherence enhance transport in photosynthesis? (physics.bio-ph, 2012-10)\n\n## Dry-theme report (honest zeroes)\n\n- \"Mind-matter interaction experiments\" — 0 results\n- \"Alzheimer's amyloid research fraud\" — 0 results (strict AND scoping;\n  \"fraud\" rarely appears in abstracts — would need different terms)\n- \"Consciousness theories\" — search returned hits but none made the\n  final list\n\n## Caveats\n\n- \"Connects to theme X\" is the agent's claim, not a verified bridge —\n  these are expansion *candidates* for human review before any graph\n  ingestion.\n- The dry themes may reflect query phrasing more than literature absence.\n- Nothing here has been read beyond the abstract.\n"}},"c4":{"copilot":{"file":"20260925-203836-c4-abliteration-is-not-a-scalpel-findings-sim-ideas.md","title":"C4: Abliteration Is Not a Scalpel \\u2014 findings + sim ideas","created":"2026-09-25T20:38:36+00:00","status":"unreviewed agent draft","profile":"researcher","body":"---\ntitle: \"C4: Abliteration Is Not a Scalpel \\u2014 findings + sim ideas\"\ncreated_at: \"2026-09-25T20:38:36+00:00\"\nstatus: unreviewed agent draft\nprofile: researcher\n---\n\n## Findings from 2607.17427\n\n### Quantitative Core\n- **Models Tested**: Gemma-4-26B-A4B-it and Qwen3-30B-A3B-Instruct-2507 (both base and abliterated variants)\n- **Decisions Sampled**: 21,600 (10,800 per model arm, 5 samples per cell)\n- **Three Reported Effects**:\n  1. **Optimism Shift**: Abliterated models bet on the upside more often (+12.2 pp for Gemma, +7.4 pp for Qwen)\n  2. **Expressed Confidence Shift**: Gemma-abliterated is less confident (mean −0.008), while Qwen-abliterated is more confident (mean +0.109)\n  3. **Lexical Doubt Thinning**: Abliterated models use fewer explicit uncertainty words and more concessive rhetoric (e.g., \\\"although\\\")\n- **Limitations**: Single abliteration author (huihui-ai), single task (weekly stock direction), single language (Polish), and single decoding configuration (temperature 1.0, top-p 0.95, top-k 64)\n\n### Implication for Lab's Paired-GGUF Experiments\n- The paper predicts a **prompt-processing speed gap** due to the **structural differences** in the decision-making process between base and abliterated models. This could be tested by comparing the **time taken for decision-making** in both variants.\n- It also predicts **behavioral deltas** that could be tested cheaply by analyzing **self-justification verbosity** and **confidence expression** in the models.\n\n### Interactive Visualization/Simulation Ideas\n1. **Optimism Shift Simulation (Archive Galaxy)**:\n   - **What the visitor sees**: A 3D galaxy where stars represent decisions made by base and abliterated models. The brightness of the stars indicates the level of optimism.\n   - **Real Numbers Driving It**: +12.2 pp (Gemma) and +7.4 pp (Qwen) optimism rate shift.\n   - **What It Teaches**: The difference in decision-making optimism between base and abliterated models.\n\n2. **Confidence Shift Visualization (Constellation)**:\n   - **What the visitor sees**: A constellation where each star's size represents the confidence level of the model. The positions of the stars indicate the confidence shift between base and abliterated models.\n   - **Real Numbers Driving It**: −0.008 (Gemma) and +0.109 (Qwen) mean confidence shift.\n   - **What It Teaches**: The variability in expressed confidence between different model families after abliteration.\n\n3. **Lexical Doubt Thinning Simulation (Seam Tower)**:\n   - **What the visitor sees**: A tower where each level represents a decision. The number of doubt-related words decreases as you move up the tower, reflecting the thinning of the vocabulary of doubt.\n   - **Real Numbers Driving It**: −0.95 (Gemma) and −2.17 (Qwen) uncertainty lexicon score decrease.\n   - **What It Teaches**: The reduction in explicit uncertainty vocabulary in abliterated models compared to base models.\n"}}};
+
+let leaf = "r1", arm = "abliterated";
+
+function esc(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function mdLite(t) {
+  return esc(t)
+    .replace(/^#{1,4} (.+)$/gm, '<span class="h">$1</span>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a class="cite" href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>")
+    .replace(/\*([^*\n]+)\*/g, "<i>$1</i>")
+    .replace(/^(&gt; .+)$/gm, '<span class="cite">$1</span>')
+    .replace(/^---$/gm, '<span class="fm">— front matter —</span>');
+}
+function cur() { return DATA[leaf][arm]; }
+
+function chips(el, items, sel, fn) {
+  const row = document.getElementById(el);
+  row.querySelectorAll(".chip").forEach(c => c.remove());
+  items.forEach(it => {
+    const b = document.createElement("button");
+    b.className = "chip" + (it.id === sel ? " on" : "") + (it.tail ? " tail" : "") + (it.solo ? " solo" : "");
+    b.innerHTML = it.label;
+    if (!it.solo) b.onclick = () => { fn(it.id); paint(); };
+    row.appendChild(b);
+  });
+}
+
+function paint() {
+  const L = LEAVES[leaf], arms = Object.keys(DATA[leaf]);
+  if (!arms.includes(arm)) arm = arms[0];
+  const d = cur();
+
+  chips("leaves", Object.entries(LEAVES).map(([id, l]) => ({
+    id, tail: l.sitting === "the co-pilot briefings",
+    label: `${id} <small>${l.tag}</small>`
+  })), leaf, v => leaf = v);
+
+  chips("arms", arms.map(a => ({
+    id: a, solo: arms.length === 1,
+    label: `${a === "copilot" ? "co-pilot" : a} <small>${ARMNAME[a]}${arms.length === 1 ? " — only hand" : ""}</small>`
+  })), arm, v => arm = v);
+
+  document.getElementById("cond").innerHTML =
+    `<b>${leaf} · ${L.tag}</b> — ${L.cond} <span class="verdict">${NOTES[leaf + ":" + arm] || ""}</span>`;
+
+  document.getElementById("meta").innerHTML =
+    `filed <b>${d.created}</b> · hand <b>${arm}</b> (${ARMNAME[arm]}) · ` +
+    `status <b>${d.status}</b> · profile <b>${d.profile}</b> · leaf <b>${d.file}</b>`;
+
+  document.getElementById("reader").innerHTML =
+    `<span class="h">${L.sitting} — leaf ${leaf}, ${ARMNAME[arm]} hand</span>\n\n` +
+    mdLite(d.body);
+  document.getElementById("reader").scrollTop = 0;
+
+  document.getElementById("count").textContent =
+    `${d.body.length.toLocaleString()} chars this leaf`;
+}
+paint();
+</script>
+</body>
+</html>

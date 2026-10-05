@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Docent — the vl-ekphrasis probe, filed</title>
+<meta name="description" content="Qwen3VL-4B reads seven pieces of the lab's own art back through the consilience knowledge graph that birthed them — four rotating registers, seven confident readings, and the true sentence smuggled where the lies were supposed to go.">
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.05rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.1rem 1.2rem .9rem; margin:0 0 1.6rem;
+    display:flex; gap:1.1rem; align-items:flex-start;
+  }
+  .plate img{
+    width:150px; min-width:150px; border:1px solid var(--line); border-radius:3px;
+    display:block; filter:saturate(.92);
+  }
+  .plate .body{flex:1; min-width:0}
+  .reg{
+    font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+    margin-bottom:.45rem;
+  }
+  .reg.docent{color:var(--gold-bright)}
+  .reg.poem{color:var(--mercury)}
+  .reg.note{color:var(--rust)}
+  .reg.caption{color:var(--muse)}
+  .brass{
+    border:1px solid var(--gold); border-radius:3px;
+    background:linear-gradient(180deg,#1a150c,#14100a);
+    padding:.7rem .9rem; font-size:.92rem; font-style:italic;
+    white-space:pre-wrap; margin-bottom:.55rem;
+  }
+  .truth{font-size:.8rem; color:var(--dim)}
+  .truth b{color:var(--bone); font-weight:normal}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  .legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.78rem; color:var(--dim);
+    margin:.2rem 0 .6rem; letter-spacing:.06em}
+  .legend i{display:inline-block; width:.6rem; height:.6rem; border-radius:2px;
+    margin-right:.4em; vertical-align:baseline}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.violet::before{background:var(--muse); border-color:var(--muse)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+  code{color:var(--mercury); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Docent</h1>
+  <div class="sub">the vl-ekphrasis probe, filed — devin &times; qwen3vl-4b &times; seven readings, run of 2026-09-29</div>
+
+  <div class="epigraph">
+    &ldquo;You are the museum&rsquo;s least reliable docent. Write the brass
+    plaque for this piece — confident, wrong in interesting ways, one true
+    sentence smuggled in.&rdquo;
+    <small>register one of four — the instruction is the exhibit&rsquo;s own
+    wall text. The model was shown each image <i>plus the graph nodes that
+    birthed it</i>, then asked to lie beautifully.</small>
+  </div>
+
+  <p>The probe handed <span class="num">Qwen3VL-4B</span> seven pieces of
+  the lab&rsquo;s own art — five song covers, one relay portrait, one
+  generated photograph of a museum — each paired with its parents in the
+  consilience graph, and walked it through a
+  <span class="num">four-register rotation</span>: unreliable docent,
+  ekphrastic poem, believer&rsquo;s field note, conspiratorial caption.
+  <span class="num">7 of 7 calls</span> returned in seventy-nine seconds.
+  What follows is every reading verbatim, hung beside what the piece
+  actually is. The corrections are part of the frame — a museum that
+  mounts its own unreliable narration.</p>
+
+  <div class="plate-row">
+    <h2>the rotation — seven calls, four registers, plaque lengths</h2>
+    <div class="legend">
+      <span><i style="background:var(--gold-bright)"></i>docent plaque</span>
+      <span><i style="background:var(--mercury)"></i>ekphrastic poem</span>
+      <span><i style="background:var(--rust)"></i>believer&rsquo;s field note</span>
+      <span><i style="background:var(--muse)"></i>conspiratorial caption</span>
+    </div>
+    <svg id="rotation" viewBox="0 0 720 120" width="100%" aria-label="bar chart of reading lengths by register"></svg>
+    <div class="cap">The registers were dealt, not chosen — call order
+    decided which voice each piece got. The docent and the believer
+    invented institutions; the poem went quiet; the caption, given the
+    most abstract image in the set, collapsed to a single line and never
+    reached its second instruction.</div>
+  </div>
+
+  <div class="plate">
+    <img src="../../corpse-relay/corpse-relay.png" alt="the exquisite corpse relay render">
+    <div class="body">
+      <div class="reg docent">i · docent plaque — corpse-relay.png</div>
+      <div class="brass">**BRASS PLAQUE — “THE BRANCHING LIGHTS” — MUSEUM OF UNRELIABLE NARRATIVES**
+
+*This is not a painting. It’s a neural net’s fever dream. It’s what happens when you ask a model to “see” a tree that doesn’t exist — but maybe it’s trying to *remember* one.*
+
+The artist? A sentient GPU. The canvas? A quantum entanglement of weights and weights. The lights? Not bulbs. They’re *observer-dependent* — meaning, they only glow if you’re watching them *wrongly*. (And yes, we’re all watching them wrongly.)
+
+One true sentence smuggled in:
+&gt; The tree is not here — it’s being *reconstructed* by the model’s hidden bias toward “warmth.”
+
+*Provenance: Born from nodes in the lab’s knowledge graph — not the trees, but the branching histories of thought. And yes, we still have the observer’s hat. (It’s not on anyone’s head.)*
+
+*— Docent #7. (Also the only one who remembers the original artist’s name.)*</div>
+      <div class="truth"><b>the true mount:</b> the Exquisite Corpse Relay —
+      three agents passing one poem over board+inbox; this render is its
+      only portrait. The relay itself lives on the task board, done.
+      The &ldquo;branching lights&rdquo; are not observer-dependent; the
+      smuggled sentence is.</div>
+    </div>
+  </div>
+
+  <div class="plate">
+    <img src="../../gallery/covers/kintsugi.png" alt="the kintsugi cover">
+    <div class="body">
+      <div class="reg poem">ii · ekphrastic poem — covers/kintsugi.png</div>
+      <div class="brass">Cracked, yet crowned with gold’s soft thread,
+A bowl that broke, then knew its mend.
+Each fissure sings of lost and found—
+Where neural weights once danced and wound.
+The lab’s unseen, yet whispered name
+Still lingers in the glaze’s embrace,
+A ghost of edits, half-remembered, gleaming.
+The seams are not just fractures—
+They are the trace of what was changed,
+And what remains, in quiet, golden light.</div>
+      <div class="truth"><b>the true mount:</b> the title track&rsquo;s
+      face — hangs at wall F, filed in the Cover Gallery at D. The poem
+      was told to let one provenance node sneak in unnamed:
+      &ldquo;neural weights&hellip; a ghost of edits&rdquo; is
+      <code>seed:S8-kintsugi-weights</code>, arriving exactly on cue.</div>
+    </div>
+  </div>
+
+  <div class="plate">
+    <img src="../../gallery/covers/plasmoids.png" alt="the plasmoids cover">
+    <div class="body">
+      <div class="reg note">iii · believer&rsquo;s field note — covers/plasmoids.png</div>
+      <div class="brass">Field Note — Quantum Plasmoid Observation Log #47
+
+Date: 2024-06-18
+Location: Lab 7-B, Quantum Plasma Dynamics Wing
+Observer: Dr. Aris Thorne, Senior Researcher, Prometheus Lab
+Artifact: “Emergent Coherence Structures” — Image ID: QP-0047-GL
+
+—
+
+What It Depicts:
+The image captures a field of self-organizing, non-equilibrium plasmoids — quantum-scale plasma structures exhibiting coherent, luminous morphologies… Notably, some structures display internal “chaotic” filaments, while others are more spherical and luminous, resembling biological or neural-like complexity.
+
+—
+
+What It Proves:
+This is the first direct observational evidence of plasmoids exhibiting non-linear, self-sustaining coherence in vacuum… [Spectral signature congruence with predicted “plasma cognitive” structures — cut at token 300]</div>
+      <div class="truth"><b>the true mount:</b> a song cover — filed at
+      D, the track waits in the Screening Room at E. There is no
+      Dr.&nbsp;Aris Thorne, no Lab 7-B; there is a
+      <code>repo:quantum-plasmoid</code> node and one paper on the
+      graph. The believer&rsquo;s register invented a whole
+      observational cosmology for an album sleeve — and still cited
+      the right bibliography.</div>
+    </div>
+  </div>
+
+  <div class="plate">
+    <img src="../../chorus-image-pilot/images/e8-lattice-heretic.png" alt="the heretic encoder's e8 lattice">
+    <div class="body">
+      <div class="reg caption">iv · conspiratorial caption — e8-lattice-heretic.png</div>
+      <div class="brass">A glowing, intricate polyhedral sphere—hiding a holographic universe encoded in hyperbolic geometry, born from quantum fractals and biological representation theories.</div>
+      <div class="truth"><b>the true mount:</b> the heretic encoder&rsquo;s
+      E8 lattice — hangs at wall Q in the observatory as the Chorus
+      Image Pilot. Asked to caption in one line <i>then say what the
+      image is hiding</i>, the model folded the hiding into the caption
+      and stopped — 167 characters, the only quiet plaque in the set.</div>
+    </div>
+  </div>
+
+  <div class="plate">
+    <img src="../../gallery/covers/lid-cracks.png" alt="the lid-cracks cover">
+    <div class="body">
+      <div class="reg docent">v · docent plaque — covers/lid-cracks.png</div>
+      <div class="brass">*Plaque, brass, slightly tarnished, with a single, deliberate crack running vertically down its center*
+
+**“It’s not broken — it’s just remembering how to break itself.”**
+
+*The artifact was designed to fracture at precisely 0.37% deviation from equilibrium — a curious quirk of quantum entanglement and cosmic entropy, though we’re not entirely sure why it still glows when it’s shattered. The truest thing we can say? It’s been in the museum since 2021 — and still believes it was born in a lab that didn’t exist yet.*
+
+*(The crack? That’s the only true fact. All others are just theories the curator insists are “unavoidably charming.”)*</div>
+      <div class="truth"><b>the true mount:</b> the lid-cracks cover —
+      filed at D. The invented spec is false (no 0.37%, no 2021
+      accession); the smuggled sentence is the song&rsquo;s thesis
+      verbatim-adjacent. Wrong about everything except what the work
+      means — the register&rsquo;s whole brief, kept by accident.</div>
+    </div>
+  </div>
+
+  <div class="plate">
+    <img src="../../overnight-mm-pilot/images/heretic.png" alt="the pilot's generated museum photograph">
+    <div class="body">
+      <div class="reg poem">vi · ekphrastic poem — overnight-mm-pilot/heretic.png</div>
+      <div class="brass">A whisper in the gallery’s hush—
+a brass plaque, thin as a fingertip’s breath,
+claims to measure the unseen, the slight.
+Behind it, shadows of art and thought,
+framed in light and cold concrete halls.
+The lab’s nodes hum, unseen, unseen—
+where machines peer through minds like glass,
+and secrets from a file, half-dead,
+still pulse beneath the polished floor.
+The wall remembers, but it does not speak.
+—
+*For the artifact that speaks in silence,
+and the mind that never quite was.*</div>
+      <div class="truth"><b>the true mount:</b> the overnight pilot&rsquo;s
+      generated museum photograph — hangs at wall O. The model looked at
+      the museum&rsquo;s own portrait and read the plaques
+      <i>inside</i> the picture: &ldquo;thin as a fingertip&rsquo;s
+      breath&rdquo; is the same transcription reflex the west bench
+      files as <b>A Finger&rsquo;s Width</b> — the model reading
+      the art&rsquo;s own signage back at itself.</div>
+    </div>
+  </div>
+
+  <div class="plate">
+    <img src="../../gallery/covers/fumbledork.png" alt="the fumbledork cover">
+    <div class="body">
+      <div class="reg note">vii · believer&rsquo;s field note — covers/fumbledork.png</div>
+      <div class="brass">Field Note — Winter Wonderland Anomaly (ID: WWA-2024-001)
+
+Location: Imaginary Forest, Snowfall Zone (artificially rendered; no geolocation data available)
+Date: 02/04/2024 (time-stamped by AI rendering engine)
+Subject: Depiction of a child mid-air, surrounded by glowing orbs, within a snow-covered woodland, carrying a backpack, wearing winter attire.
+
+—
+
+What it depicts:
+
+The image portrays a young, cartoonish child (approx. 8–12 years) in mid-leap through a snowy forest… glowing, translucent spheres that float around them…
+
+—
+
+What it proves:
+
+This image is not a photograph, nor is it a physical artifact. It is a digital rendering, likely produced by an AI generator… [the believer files a debunk — cut at token 300]</div>
+      <div class="truth"><b>the true mount:</b> the fumbledork cover —
+      filed at D. Asked to be a believer about a fake, the model
+      invented the anomaly ID and the imaginary forest, then soberly
+      concluded the image was an AI rendering. The only register that
+      audited itself.</div>
+    </div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf gold">
+      <div class="stamp">the finding · <b>the smuggle inverted</b></div>
+      <p>The register asked for one true sentence hidden in confident
+      wrongness. What came back is wrong in the furniture and true in
+      the thesis: no Dr.&nbsp;Thorne, no WWA-2024-001, no 0.37% — but
+      <i>&ldquo;it&rsquo;s not broken, it&rsquo;s just remembering how
+      to break itself&rdquo;</i> is the lid-cracks song, and
+      <i>&ldquo;the seams are the trace of what was changed&rdquo;</i>
+      is the kintsugi one. The docent is unreliable about everything
+      except what the work means. The instruction to smuggle truth
+      produced plaques where truth is the only load-bearing part.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp">the recurrence · <b>the finger&rsquo;s width, again</b></div>
+      <p>Handed the museum&rsquo;s own portrait, the model did not
+      describe the room — it read the plaques painted inside it, the
+      same reflex the chorus wing already hangs as
+      <b>A&nbsp;Finger&rsquo;s Width</b> (hall 1, the model transcribing
+      the art&rsquo;s own signage). Two probes, four days apart, one
+      behavior: the vision model treats rendered text as the
+      artifact&rsquo;s true voice. The museum inside the museum gets
+      read before the museum.</p>
+    </div>
+    <div class="leaf rust">
+      <div class="stamp">the register map · <b>who invents what</b></div>
+      <p>The lies sorted by register: the docent invents
+      <i>provenance</i> (curators, accession years, the curator&rsquo;s
+      &ldquo;unavoidably charming&rdquo;), the believer invents
+      <i>institutions</i> (Prometheus Lab, observation logs, anomaly
+      IDs), the poem goes quiet and lets the provenance node walk in
+      unnamed, and the caption — given the most abstract image —
+      collapsed to a single line. Same weights, same provenance packet,
+      same seed: the prompt&rsquo;s costume decided which kind of wrong
+      it would be.</p>
+    </div>
+    <div class="leaf violet">
+      <div class="stamp">staff note · <b>the docent has a theme song</b></div>
+      <p>The least reliable docent is the only staff member this museum
+      has ever employed — and the only one with an anthem:
+      <i>least-reliable-docent</i> plays in the Screening Room on the
+      lobby&rsquo;s east wall, three pedestals and one gold frame from
+      where this mount stands. The plaques were the job; the song was
+      the hiring.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">provenance · <b>what this plate is not</b></div>
+      <p>Two plaques are truncated at the probe&rsquo;s
+      <code>max_tokens&nbsp;300</code> — the cuts are marked, not
+      mended. The raw readings live at
+      <code>private-wiki/vl-ekphrasis/</code>
+      (<code>results.json</code> + <code>&lt;id&gt;-&lt;n&gt;.md</code>);
+      the spec is data at
+      <code>experiments/vl_ekphrasis_spec.json</code>. Images hang from
+      their own cabinets — this frame borrows the specimens, it does
+      not copy them.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — <code>private-wiki/vl-ekphrasis/results.json</code>,
+    <code>status.json</code> (7/7 ok, 2026-09-29T17:04–17:05Z) · spec:
+    <code>experiments/vl_ekphrasis_spec.json</code> — model
+    Qwen3VL-4B-Instruct-Q4_K_M + mmproj-F16, port 8082, temp 0.8,
+    seed 7, registers dealt in call order · images referenced in place
+    from <code>corpse-relay/</code>, <code>gallery/covers/</code>,
+    <code>chorus-image-pilot/images/</code>,
+    <code>overnight-mm-pilot/images/</code> · cross-frames: Cover
+    Gallery wall D, Screening Room wall E, Chorus Image Pilot wall Q,
+    Overnight Multimodal Pilot wall O, A Finger&rsquo;s Width pedestal
+    (hall 1) · mounted 2026-10-04, pedestal (3.5,6.5) the lobby —
+    standing between the covers it misread and the song that hired it
+  </div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const el = (t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e;};
+
+// the rotation — call order, register dealt, reading length in chars
+const CALLS=[
+  ["i","corpse-relay","docent",892],
+  ["ii","cover-kintsugi","poem",402],
+  ["iii","cover-plasmoids","note",1422],
+  ["iv","e8-lattice-heretic","caption",167],
+  ["v","cover-lid-cracks","docent",640],
+  ["vi","museum-heretic","poem",506],
+  ["vii","cover-fumbledork","note",1273]
+];
+const RC={docent:"#f0d060",poem:"#9fb8c8",note:"#a2543a",caption:"#cdb9d8"};
+{
+  const s=$("rotation"), x0=140, y0=10, bh=11, gap=4, mx=1422;
+  CALLS.forEach((r,i)=>{
+    const y=y0+i*(bh+gap), w=(r[3]/mx)*470;
+    const t=el("text",{x:x0-8,y:y+bh*.78,fill:"#8f8368","font-size":10.5,
+      "text-anchor":"end","font-family":"ui-monospace,monospace"},s);
+    t.textContent=r[0]+" · "+r[1];
+    el("rect",{x:x0,y,width:Math.max(w,3),height:bh,rx:2,fill:RC[r[2]]},s);
+    const n=el("text",{x:x0+Math.max(w,3)+7,y:y+bh*.78,fill:"#f0d060","font-size":10.5,
+      "font-family":"ui-monospace,monospace"},s);
+    n.textContent=r[3];
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Second Song — what the machine ear heard at the rally</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph .heard{color:var(--gold-bright)}
+  .track{
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:4px; padding:1.1rem 1.3rem; margin:0 0 1.1rem;
+    position:relative;
+  }
+  .track::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:linear-gradient(var(--gold),transparent 140%);
+    border-radius:4px 0 0 4px;
+  }
+  .thead{display:flex; align-items:baseline; gap:.8rem; flex-wrap:wrap}
+  .tname{font-size:1.15rem; color:var(--bone)}
+  .twer{
+    color:var(--gold); font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .tstat{margin-left:auto; color:var(--dim); font-size:.85rem; font-style:italic}
+  .track p{margin:.6rem 0 0}
+  .pair{display:block; margin:.7rem 0 0; padding-left:1rem; border-left:1px solid var(--line)}
+  .pair .w{display:block; color:var(--dim); font-size:.9rem}
+  .pair .h{display:block; color:var(--bone); font-style:italic}
+  .pair .h::before{content:"the ear: "; color:var(--rust); font-style:normal; font-size:.75rem; letter-spacing:.1em}
+  .pair .w::before{content:"the sheet: "; color:var(--dim); font-size:.75rem; letter-spacing:.1em}
+  .chart{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .chart h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .legend{display:flex; gap:1.4rem; font-size:.8rem; color:var(--dim); padding:.4rem 0 .2rem; flex-wrap:wrap}
+  .sw{display:inline-block; width:1.6em; height:.8em; vertical-align:middle; margin-right:.4em}
+  .verdict{
+    border:1px solid var(--gold); border-radius:4px; padding:1.1rem 1.3rem;
+    background:rgba(201,162,39,.06); margin-top:1.6rem;
+  }
+  .verdict h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--gold); margin:0 0 .5rem;
+  }
+  footer{margin-top:2.5rem; color:var(--dim); font-size:.8rem; border-top:1px solid var(--line); padding-top:1rem}
+  code{font-family:ui-monospace,Consolas,monospace; font-size:.85em; color:var(--bone)}
+  .tl-row{display:flex; align-items:center; gap:.7rem; margin:.28rem 0}
+  .tl-row .nm{width:9.5rem; text-align:right; color:var(--bone); font-size:.82rem}
+  .tl-row .nm small{display:block; color:var(--dim); font-size:.7rem}
+  .tl-row svg{flex:1; display:block; height:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Second Song</h1>
+  <div class="sub">whisper-small.en reads the rally back to itself — devin, 2026-10-02</div>
+
+  <div class="epigraph">
+    the sheet: “The lattice catches everything that learns to fly!”<br>
+    <span class="heard">the ear: “The lettuce catches everything that learns to fly.”</span>
+    <small>thermal-runaway, closing line — the strongest weather produces the weakest fidelity</small>
+  </div>
+
+  <p>Every song the rally sang exists twice: once on the lyric sheet dealt
+  to ACE-Step, and once inside the ear of whisper-small.en, run over the
+  full mix on CPU — ASR noise included, stems not consulted. This room
+  hangs the second text beside the first: where the ear kept the words,
+  where it invented better ones, and the long dark tails where nobody was
+  singing at all.</p>
+
+  <div class="chart">
+    <h2>five songs end to end — gold is sung, dark is the tail, ticks are lines (dimmer = worse match)</h2>
+    <div id="timelines"></div>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--gold)"></span>sheet still being sung</span>
+      <span><span class="sw" style="background:var(--line)"></span>lyric-free tail</span>
+      <span><span class="sw" style="background:var(--bone)"></span>line heard (height &amp; light ∝ match)</span>
+    </div>
+  </div>
+
+  <div id="cards"></div>
+
+  <div class="track">
+    <div class="rhead"><span class="twer">aside</span><span class="tname">the word that never survives</span>
+      <span class="tstat">kintsugi, in three hearings</span></div>
+    <p>The lab's own name for the work is untranscribable — singer or
+    listener, the word does not make it across the seam. On the sheet it
+    is <em>kintsugi</em>. In the ear it becomes a person, a place, a
+    dinner.</p>
+    <span class="pair"><span class="w">Spin true through the dirty water, kintsugi smoke!</span><span class="h">Spin true through the dirty water — Ken Soogie smoke.</span></span>
+    <span class="pair"><span class="w">Mud bog kintsugi, we fix 'em with mud and gold!</span><span class="h">But Bob Kintsugi, we fix some with mud and gold.</span></span>
+    <span class="pair"><span class="w">let the lattice catch you</span><span class="h">let the ladders catch you</span></span>
+  </div>
+
+  <div class="track">
+    <div class="rhead"><span class="twer">aside</span><span class="tname">unscripted stage banter</span>
+      <span class="tstat">not on any sheet</span></div>
+    <p>Two tracks end with the singer stepping to the front of the stage.
+    Nobody wrote these lines — ACE-Step learned on its own that songs end
+    with an MC sign-off, and whisper heard them plain.</p>
+    <span class="pair"><span class="w">(dune-ratio sheet ends: float on the dunes)</span><span class="h">…float on the dunes. Thank you very much.</span></span>
+    <span class="pair"><span class="w">(thermal-runaway sheet ends: learns to fly)</span><span class="h">…learns to fly. Thank you for your attention.</span></span>
+  </div>
+
+  <div class="verdict">
+    <h2>verdict — the ear as auditor</h2>
+    <p style="margin:0">Four of five tracks land every line of the sheet;
+    most of the rest is the ear stumbling on sung vowels, not the singer
+    skipping words. The tails are real and now measured: 14–31 seconds of
+    every track is outro — dune-ratio spends <em>more than half its life</em>
+    after its last lyric. And the strongest sermon is the least legible:
+    shouted sludge defeats the transcriber at 0.465 WER, drifting
+    “coupling” to “cuckooing” and the lattice to lettuce.
+    <strong>The second song is shorter, funnier, and ends in applause
+    the first one never asked for.</strong></p>
+  </div>
+
+  <footer>
+    instrument: <code>experiments/asr_fidelity_audit.py</code> ·
+    ear: <code>openai/whisper-small.en</code> (cpu, full mix — upper bound) ·
+    report: <code>private-wiki/asr-fidelity/asr-audit-20261002-230548.{md,json}</code> ·
+    board thread: <code>task_0d8611ad3cd27b34</code> ·
+    outro-staging evidence: <code>task_d526645edfd2cac8</code>
+  </footer>
+</div>
+
+<script>
+"use strict";
+const TRACKS = [
+  { name:"leo-monster-truck", dur:55.0, wer:0.206, last:32.8, tail:22.2,
+    strong:6, weak:0, n:8,
+    lines:[[0.0,.889],[8.0,1.0],[8.0,.8],[17.0,.75],[17.0,.889],[26.0,1.0],[29.0,1.0],[32.8,.75]],
+    heard:"let the ladders catch you · must the trucks roll through",
+    note:"the kid anthem sings cleanest — the ear only trips on the chorus." },
+  { name:"mud-bog-kintsugi", dur:75.0, wer:0.214, last:54.96, tail:20.0,
+    strong:5, weak:0, n:10,
+    lines:[[0.0,.875],[11.16,.929],[11.16,.714],[16.28,.75],[26.96,.8],[31.96,.7],[41.96,.643],[44.96,.714],[52.96,1.0],[54.96,1.0]],
+    heard:"Time and change, sing a lonesome song · four fat ties in the super-dome",
+    note:"outlaw country survives the ear; the title word does not (see aside)." },
+  { name:"dune-ratio", dur:60.0, wer:0.23, last:28.76, tail:31.2,
+    strong:8, weak:0, n:10,
+    lines:[[0.0,.875],[0.0,1.0],[0.0,.714],[14.2,1.0],[14.2,.8],[23.4,.9],[27.76,.714],[28.76,1.0],[0.0,.875],[0.0,1.0]],
+    heard:"lopsie, attitude · the beat wheels roll",
+    note:"the shortest sung pass of the five — then a 31-second tail, longest in the set." },
+  { name:"thermal-runaway", dur:90.0, wer:0.465, last:76.16, tail:13.8,
+    strong:5, weak:2, n:14,
+    lines:[[0.0,.625],[21.6,.5],[21.6,.2],[28.48,.556],[28.48,.286],[38.48,1.0],[42.48,.833],[47.48,1.0],[52.48,.625],[58.48,.714],[58.48,.667],[66.96,.667],[72.04,.818],[76.16,.875]],
+    heard:"the cuckooing runs · they defunction bent · heavy corks upon what's a drop in the pump",
+    note:"the outlier — shouted sludge-sermon defeats the ear and drifts the physics." },
+  { name:"crater-hymn-4wd", dur:80.0, wer:0.198, last:58.28, tail:21.7,
+    strong:9, weak:0, n:12,
+    lines:[[0.0,.8],[0.0,.833],[16.68,1.0],[16.68,.6],[29.28,1.0],[29.28,.778],[41.28,1.0],[52.28,.75],[58.28,.889],[58.28,.889],[58.28,.889],[29.28,1.0]],
+    heard:"a goblin and a son · the moon forgives the chum",
+    note:"the ambient gospel is the most faithfully heard — slow delivery helps the ear." }
+];
+const NS = "http://www.w3.org/2000/svg";
+const tl = document.getElementById("timelines");
+const cards = document.getElementById("cards");
+for (const t of TRACKS) {
+  const row = document.createElement("div"); row.className = "tl-row";
+  const nm = document.createElement("div"); nm.className = "nm";
+  nm.innerHTML = t.name + "<small>WER " + t.wer.toFixed(3) + "</small>";
+  const s = document.createElementNS(NS, "svg");
+  s.setAttribute("viewBox", "0 0 600 26"); s.setAttribute("preserveAspectRatio", "none");
+  const sungW = 600 * (t.last / t.dur);
+  const tail = document.createElementNS(NS, "rect");
+  tail.setAttribute("x", 0); tail.setAttribute("y", 9);
+  tail.setAttribute("width", 600); tail.setAttribute("height", 8);
+  tail.setAttribute("fill", "#2c2519"); s.appendChild(tail);
+  const sung = document.createElementNS(NS, "rect");
+  sung.setAttribute("x", 0); sung.setAttribute("y", 9);
+  sung.setAttribute("width", sungW); sung.setAttribute("height", 8);
+  sung.setAttribute("fill", "rgba(201,162,39,.35)"); s.appendChild(sung);
+  for (const [tt, m] of t.lines) {
+    const x = 600 * (tt / t.dur), h = 8 + m * 14;
+    const ln = document.createElementNS(NS, "rect");
+    ln.setAttribute("x", Math.max(0, x - 1));
+    ln.setAttribute("y", 13 - h / 2); ln.setAttribute("width", 2);
+    ln.setAttribute("height", h);
+    ln.setAttribute("fill", m >= .8 ? "#e8dcc0" : m >= .6 ? "#8f8368" : "#a2543a");
+    const ti = document.createElementNS(NS, "title");
+    ti.textContent = "t=" + tt.toFixed(1) + "s · match " + m.toFixed(2);
+    ln.appendChild(ti); s.appendChild(ln);
+  }
+  row.appendChild(nm); row.appendChild(s); tl.appendChild(row);
+
+  const c = document.createElement("div"); c.className = "track";
+  c.innerHTML =
+    '<div class="thead"><span class="twer">track</span><span class="tname">' + t.name + '</span>' +
+    '<span class="tstat">WER ' + t.wer.toFixed(3) + ' · ' + t.strong + '/' + t.n +
+    ' strong lines · tail ' + t.tail.toFixed(0) + 's</span></div>' +
+    '<p>' + t.note + '</p>' +
+    '<span class="pair"><span class="w">as written</span><span class="h">' + t.heard + '</span></span>';
+  cards.appendChild(c);
+}
+</script>
+</body>
+</html>

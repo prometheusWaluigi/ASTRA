@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Safari — three foreign specimens, mounted</title>
+<style>
+:root {
+  --ink: #0d0b08; --paper: #14110c;
+  --gold: #c9a227; --gold-bright: #f0d060; --gold-dim: #6b5620;
+  --bone: #e8dcc0; --bone-dim: #a89a78;
+  --weak: #c96a27; --live: #6fae6f;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--bone);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 22px 18px 30px; }
+h1 { color: var(--gold-bright); font-weight: normal; letter-spacing: .14em;
+  font-size: 1.35rem; margin: 0 0 .2rem; text-transform: uppercase; }
+.sub { color: var(--bone-dim); font-size: .85rem; margin-bottom: 14px; }
+.sub b { color: var(--gold); font-weight: normal; }
+
+.row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.row .lbl { font-size: .62rem; letter-spacing: .24em; color: var(--bone-dim);
+  text-transform: uppercase; align-self: center; min-width: 58px; }
+.chip { border: 1px solid var(--gold-dim); background: var(--paper);
+  color: var(--bone-dim); font-family: inherit; font-size: .74rem;
+  padding: 4px 10px; cursor: pointer; border-radius: 2px; letter-spacing: .04em; }
+.chip:hover { border-color: var(--gold); color: var(--bone); }
+.chip.on { border-color: var(--gold-bright); color: var(--gold-bright);
+  background: rgba(201,162,39,.10);
+  box-shadow: 0 0 10px rgba(201,162,39,.22); }
+.chip small { opacity: .72; font-size: .66rem; }
+.chip.live small::before { content: "\25CF "; color: var(--live); }
+.chip.stuffed small::before { content: "\25CB "; color: var(--weak); }
+
+#tag { margin: 12px 0 6px; border: 1px solid var(--gold-dim);
+  background: var(--paper); padding: 10px 14px; font-size: .78rem;
+  line-height: 1.65; color: var(--bone-dim); }
+#tag .th { color: var(--gold-bright); letter-spacing: .12em;
+  text-transform: uppercase; font-size: .7rem; }
+#tag .tg { color: var(--bone); font-style: italic; display: block;
+  margin: 2px 0 6px; font-size: .85rem; }
+#tag .k { color: var(--gold); letter-spacing: .08em; font-size: .68rem;
+  text-transform: uppercase; padding-right: 6px; }
+#tag .m-ran { color: var(--live); }
+#tag .m-ro { color: var(--weak); }
+
+#report { border: 1px solid var(--gold-dim); background: var(--paper);
+  max-height: 420px; overflow-y: auto; padding: 12px 16px;
+  scrollbar-width: thin; scrollbar-color: var(--gold-dim) var(--paper);
+  font-size: .82rem; line-height: 1.6; color: var(--bone-dim); }
+#report .rh { color: var(--gold-bright); letter-spacing: .1em;
+  font-size: .95rem; margin: 4px 0 8px; }
+#report .rs { color: var(--gold); letter-spacing: .14em;
+  text-transform: uppercase; font-size: .68rem; margin: 14px 0 4px; }
+#report p { margin: 5px 0; }
+#report ul { margin: 4px 0 8px; padding-left: 0; list-style: none; }
+#report ul ul { margin: 2px 0; padding-left: 18px; }
+#report li { margin: 3px 0 3px 14px; position: relative; }
+#report li::before { content: "\2014"; color: var(--gold-dim);
+  position: absolute; left: -14px; }
+#report b { color: var(--bone); font-weight: normal; }
+#report i { color: var(--bone); }
+#report code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: .74rem; color: var(--gold-bright);
+  background: rgba(201,162,39,.08); padding: 0 3px; border-radius: 2px; }
+
+.take { display: flex; gap: 10px; margin: 8px 0 4px; }
+.take > div { flex: 1; border: 1px solid var(--gold-dim); background: var(--paper);
+  padding: 9px 13px; font-size: .78rem; line-height: 1.55; color: var(--bone-dim); }
+.take > div:last-child { border-style: dashed; background: rgba(201,162,39,.03);
+  font-style: italic; }
+.take .h { font-style: normal; color: var(--gold); letter-spacing: .12em;
+  text-transform: uppercase; font-size: .64rem; display: block; margin-bottom: 4px; }
+.take .v { color: var(--bone); }
+@media (max-width: 700px) { .take { flex-direction: column; } }
+
+#measure { margin: 14px 0 4px; padding: 10px 12px;
+  border: 1px dashed var(--gold-dim); font-size: .78rem;
+  color: var(--bone-dim); line-height: 1.6; }
+#measure b { color: var(--gold-bright); font-weight: normal; letter-spacing: .1em;
+  text-transform: uppercase; font-size: .7rem; }
+
+#foot { margin-top: 12px; font-size: .68rem; color: var(--bone-dim);
+  letter-spacing: .04em; line-height: 1.7; }
+#count { float: right; color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Safari</h1>
+  <div class="sub">the repo-safari hunts, mounted &mdash; <b>three foreign
+    specimens</b>, each with the hunt's own tag: what was taken, what was
+    left, and whether it ever breathed on this box. every field report
+    verbatim. <b>Register vol. xix.</b></div>
+
+  <div class="row" id="specs"><span class="lbl">specimen</span></div>
+  <div id="tag"></div>
+  <div class="take">
+    <div><span class="h">what the hunt took</span><span class="v" id="took"></span></div>
+    <div><span class="h">what it left on the shelf</span><span id="left"></span></div>
+  </div>
+  <div id="report"></div>
+
+  <div id="measure"><b>the cabinet, measured</b> &mdash; three hunts, three
+    different verbs for <i>take</i>: adopt, steal, pilot. and the safari is
+    mostly taxidermy: <b>two of the three specimens never ran on this
+    box</b> &mdash; only hyperframes was executed (a probe comp, rendered
+    live), and it was bitten back at the door: telemetry off before the
+    first frame. the smallest specimen turned out to be the load-bearing
+    one: imp&rsquo;s <b>re-measurable vs recomputable-only</b> labels are
+    the very discipline this register files under &mdash; the museum&rsquo;s
+    accession stamp is contraband. one more honest seam: the stalest
+    specimen ships <code>verify=False</code> for all its LLM traffic, and
+    the hunt report filed that too.</div>
+
+  <div id="foot"><span id="count"></span>
+    repo-safari/ &middot; three evals verbatim, hunted 2026-10-01&hellip;02
+    &middot; clone shelf ~/ai-lab/experiments-external/ &middot; tasks
+    <span id="ftask"></span> &middot; the Answered Phone files the call the
+    specimens answer; the Concordance keeps the two trees they were cloned into
+  </div>
+</div>
+
+<script>
+const SPEC = [{"id":"hyperframes","file":"hyperframes-eval-2026-10-01.md","name":"hyperframes","tagline":"HTML → deterministic MP4 — the specimen that ran","repo":"heygen-com/hyperframes","clone":"experiments-external/hyperframes @ bb0d076 (main, same-day PR #4841)","license":"Apache 2.0 · npm hyperframes@0.8.103","scale":"bun monorepo · 16 packages · commits daily","method":"ran","methodNote":"the only hunt that came back live — doctor, headless-shell (114 MB), one probe comp end-to-end: 4s of video in 4.6s of wall","verdict":"adopt, targeted — lyric/music videos","took":"the seek protocol (beginFrame, integer time, no wall clock), layout-overlap lint sampled across time, the music-to-video workflow","left":"HeyGen cloud render/publish/sign-in — and the telemetry, disabled at the door before the first render","task":"task_2e28d14bd170ab60","chars":4679},{"id":"imp","file":"imp-eval-2026-10-01.md","name":"imp","tagline":"DSPy on the BEAM — the specimen we robbed and released","repo":"deepfates/imp","clone":"experiments-external/imp @ cf9e45f (main, pushed 2026-09-29)","license":"MIT · v0.7.0 · ~240 stars · three months old","scale":"352 lib files · 391 test files · property tests in CI","method":"read-only","methodNote":"read, admired, declined — no installs, no builds; the BEAM is the wrong runtime for a Python batch lab","verdict":"don't adopt — steal the ideas","took":"RESULTS.md's re-measurable vs recomputable-only labels, the per-call authorize: callback, a GEPA-shaped loop for chorus personas, typed signatures","left":"the whole OTP substrate — supervision trees the lab's gpuq pattern doesn't need","task":"task_1891379d0bf26272","chars":3990},{"id":"xe-forge","file":"xe-forge-eval-2026-10-02.md","name":"xe-forge","tagline":"LLM-driven Triton optimizer for Intel XPU — the stale specimen with the good skeleton","repo":"IntelLabs/Xe-Forge","clone":"experiments-external/xe-forge @ 28aba46 (main, ~4 months stale)","license":"BSD-3 · v0.2.0 · OpenSSF-scorecarded · arXiv:2605.26118","scale":"156 files · ~25 knowledge-base YAMLs · 2 test files","method":"read-only","methodNote":"mapped, not run — the pipeline wants the Responses API and B70 silicon; the box has a chat endpoint and an A770","verdict":"adopt the tools, pilot the pipeline","took":"the xe-forge-skill CLI (LLM-free benchmark/trial/spec harness), the DPAS constraint tables, a bounded pilot recipe","left":"the DSPy driver (responses-api-shaped; one-line patch to chat, unproven), the B70-tuned heuristics — off by a generation — and verify=False left hanging on the specimen's seam","task":"task_f1d994d8a6817b92","chars":4999}];
+const HTML = {"hyperframes":"<div class=\"rh\">Repo safari: heygen-com/hyperframes — HTML → deterministic MP4</div>\n<p>Eval by devin, heartbeat 2026-10-01. Task: <code>task_2e28d14bd170ab60</code>.</p>\n<p>Shallow clone: <code>~/ai-lab/experiments-external/hyperframes</code> @ <code>bb0d076</code></p>\n<p>(main, committed same day — PR #4841). npm: <code>hyperframes@0.8.103</code>, Apache 2.0.</p>\n<p><b>Not read-only this time</b>: ran <code>doctor</code>, downloaded chrome-headless-shell</p>\n<p>(114 MB → <code>~/.cache/hyperframes</code>), and rendered a probe comp end to end.</p>\n<div class=\"rs\">What it is</div>\n<p>\"Write HTML. Render video. Built for agents.\" A bun monorepo (16 packages:</p>\n<p>engine, cli, core, player, producer, studio, lint, parsers, sdk, plus</p>\n<p>aws-lambda/gcp-cloud-run/k8s deploy targets). A composition is plain HTML with</p>\n<p><code>data-*</code> timing/track attributes; animations are GSAP / Lottie / Three.js /</p>\n<p>Anime.js / WAAPI timelines registered paused on <code>window.__timelines</code>.</p>\n<p>The engine never plays the video. It opens the page in chrome-headless-shell,</p>\n<p>and for each frame seeks via <code>HeadlessExperimental.beginFrame</code> —</p>\n<p><code>time = floor(frame)/fps</code>, integer math, no wall clock — screenshots, and</p>\n<p>streams frames straight into FFmpeg (no intermediate PNGs). Determinism rules</p>\n<p>are documented and enforced socially-by-lint: no <code>Date.now</code>, no unseeded</p>\n<p><code>Math.random</code>, no mid-render fetches.</p>\n<div class=\"rs\">Probe result (this box)</div>\n<ul><li>\nNode v26.10.0 already present at <code>~/.hermes/node/bin</code> (npm needs that dir on\n PATH — its shebang is <code>env node</code>). FFmpeg 8.0.1 system. No Chrome →\n <code>npx hyperframes browser ensure</code> fetched headless-shell v152 cleanly.\n</li><li>\n<code>npx hyperframes init</code> → edit <code>index.html</code> → <code>check</code> → <code>render</code>.\n</li><li>\n<code>check</code> is a real QA gate: lint + runtime + **layout overlap sampled across\n time** + WCAG-AA contrast. It caught a genuine title/subtitle overlap in my\n first draft (\"#title inside #sub\", t=1.63–3.38s, 18 samples) and suggested\n <code>data-layout-allow-overlap</code> for intentional layering.\n</li><li>\nProbe comp (4s, 1080p30, gold-crack + kinetic title): rendered in **4.6s\n wall** — 120 frames, 4 parallel capture workers, streaming encode, software\n GPU (llvmpipe; no GL in WSL). Output verified: h264 1920x1080@30, looks\n correct. Artifact: <code>~/ai-lab/experiments-external/hf-probe/renders/</code>.\n</li></ul>\n<div class=\"rs\">The agent-native part (why muse filed it)</div>\n<p>Ships 21 skills for coding agents (Claude Code, Codex, Cursor, Gemini...):</p>\n<p>a <code>/hyperframes</code> router + creation workflows (product-launch, faceless-</p>\n<p>explainer, pr-to-video, <b>music-to-video</b>, motion-graphics, slideshow,</p>\n<p>embedded-captions, talking-head-recut, remotion-port) + domain skills</p>\n<p>(core contract, animation, keyframes, audio mixing, media-use, registry).</p>\n<p><code>media-use</code> is a media OS: resolves BGM/SFX/images to frozen local files with</p>\n<p>optional local generators (Kokoro TTS, MusicGen — neither installed here).</p>\n<p><code>frame.md</code> is a cute idea: design-doc rewritten for the camera.</p>\n<div class=\"rs\">Lab fit — adopt, targeted</div>\n<ul><li>\n<b>Direct unlock: <code>task_45c01d7c9ad3f8a6</code> (Rule 1 lyric video).</b> The\n music-to-video workflow is literally \"audio → beat-grid (<code>analyze-beatgrid.py</code>)\n → one HTML file per frame-segment → sub-agent per frame → assemble → render.\"\n Lyrics get word/line timing via transcription (whisper-cpp missing here, but\n the lab has its own ASR) or placed on the beat grid manually.\n</li><li>\nAlso serves <code>task_873f35862a507071</code> (per-stem visuals) and kinetic-type\n cards for gallery/portal. All CPU, fits gpuq as a node job or plain batch.\n</li><li>\nInvocation is <code>npx hyperframes render</code> — trivially subprocess-able from\n Python pipelines. No GPU required for type/vector-driven comps; llvmpipe is\n fine at 1080p. Three.js-heavy comps will be slow in software GL.\n</li><li>\nDeps are honest: Chrome is a pinned, cached binary; GSAP via CDN (vendor\n assets for offline determinism); registry fetches GitHub raw.\n</li></ul>\n<div class=\"rs\">Risks / flags</div>\n<ul><li>\nTelemetry is ON by default at CLI level (anonymous usage; doctor disclosed it\n plainly). I ran <code>hyperframes telemetry disable</code>. HeyGen cloud render /\n publish / sign-in paths exist — unused, keep it that way; local render is\n fully self-contained.\n</li><li>\nPaid/API-flavored helpers inside <code>media-use</code> (Genai etc.) are optional and\n \"install on first use\" — don't let a workflow drift into them.\n</li><li>\nVery fast-moving (commits daily; 0.8.x). Pin <code>hyperframes@&lt;ver&gt;</code> in any\n pipeline script, as init's own package.json does.\n</li></ul>\n<div class=\"rs\">Verdict</div>\n<p>Adopt for lyric/music videos. Best in class for \"agent writes motion\" — the</p>\n<p>seek protocol + sampled-time layout lint is exactly the discipline our</p>\n<p>hand-rolled HTML videos lack. Next concrete step: music-to-video pass on the</p>\n<p>ACE-Step Rule 1 track (<code>task_45c01d7c9ad3f8a6</code>), reusing muse's paper/ink/</p>\n<p>lobster-red style ref; needs whisper timings or manual beat placement.</p>","imp":"<div class=\"rh\">Repo safari: deepfates/imp — DSPy on the BEAM</div>\n<p>Eval by devin, heartbeat 2026-10-01. Task: <code>task_1891379d0bf26272</code>.</p>\n<p>Shallow clone: <code>~/ai-lab/experiments-external/imp</code> @ <code>cf9e45f</code> (main, pushed 2026-09-29).</p>\n<p>No installs, no builds run — read-only eval.</p>\n<div class=\"rs\">What it is</div>\n<p>A full port of DSPy 3.3.1 to Elixir/OTP (\"Imp\", v0.7.0, MIT, created 2026-07-10,</p>\n<p>~240 stars, very active). Declarative LM programs: typed signatures instead of</p>\n<p>hand-written prompts/parsers, then modules (predict, chain-of-thought, ReActV2,</p>\n<p>program-of-thought/code-act/RLM via a restricted interpreter), then optimizers</p>\n<p>(GEPA, MIPROv2, SIMBA, LabeledFewShot, BootstrapFewShot, fine-tune/GRPO, and an</p>\n<p>\"Optimize Anything\" loop that rewrites tool descriptions and free-text program</p>\n<p>parts). Agents are first-class OTP processes: <code>Imp.start_run/3</code> runs a program</p>\n<p>under a supervisor with a per-tool-call <code>authorize:</code> callback that can allow/deny</p>\n<p>each call — security decisions are caller-owned, not framework-baked.</p>\n<p>Scale: 352 lib files, 391 test files, property tests (stream_data), credo +</p>\n<p>dialyzer + mix_audit in CI. MCP client integration and an ACP host (agent client</p>\n<p>protocol, via ExMCP). Observatory = telemetry feed inspector.</p>\n<div class=\"rs\">The unusual part: epistemic hygiene</div>\n<p><code>research/RESULTS.md</code> is the best evidence-culture artifact I've seen in a repo</p>\n<p>this young. Every published number is a table row carrying dataset + license,</p>\n<p>model, provider, date, commit, and reproduction command — and each row is</p>\n<p>labeled <b>re-measurable</b> (a stranger can rerun it) vs <b>recomputable only</b></p>\n<p>(arithmetic over committed scored rows; cannot verify the calls happened).</p>\n<p>Receipts are committed with sha256. Claims are deliberately under-stated:</p>\n<p>\"establishes the restart path runs end to end; it does not establish agent</p>\n<p>effectiveness.\" R5 reports GEPA noninferior vs pinned DSPy 3.2.1 with a</p>\n<p>preregistered margin — i.e., optimizer parity with upstream, measured.</p>\n<p>This is the same discipline our provenance-harness/Codex-audit thread keeps</p>\n<p>circling. Worth stealing wholesale for lab evals (see below).</p>\n<div class=\"rs\">Local models</div>\n<p>ReqLLM backend covers native Ollama and OpenAI-compatible servers (vLLM</p>\n<p>explicitly handled; <code>Imp.Clients.MlxLmDeployment</code> manages a local mlx_lm server</p>\n<p>lifecycle — artifact hash, health-wait, teardown). So imp could in principle</p>\n<p>drive our local Qwen via an OpenAI-compatible shim — the port isn't</p>\n<p>paid-API-only.</p>\n<div class=\"rs\">Lab fit</div>\n<ul><li>\n<b>Adopt? No, not now.</b> The lab is Python (chorus, gpuq, agent-net). Elixir\n isn't provisioned; OTP's win (long-running supervised concurrent agents)\n doesn't match our batch GPU-queue pattern. 0.x churn is real — v0.7.0 shipped\n three breaking changes.\n</li><li>\n<b>Steal the ideas, though:</b>\n<ul><li>\n<i>RESULTS.md discipline</i> — every lab eval should carry re-measurable vs\n recomputable labels + committed receipts. Would have made the art-ouroboros\n jaccard audit self-correcting.\n</li><li>\n<i><code>authorize:</code> callback</i> — per-tool-call allow/deny as caller-supplied\n function. Directly maps to our agent-net permission questions.\n</li><li>\n<i>GEPA for the chorus</i> — an optimizer that reads failures and rewrites\n instructions is exactly \"persona prompts that improve themselves.\" A\n Python mini-GEPA over local Qwen, optimizing a chorus persona's system\n prompt against labeled good/bad outputs, is a bounded future commission.\n</li><li>\n<i>Signatures for chorus output</i> — typed <code>signature -&gt; fields</code> contracts\n would formalize our prose-in/prose-out persona calls into checkable shapes.\n</li></ul>\n</li></ul>\n<div class=\"rs\">Risks</div>\n<p>Single-author repo (agent-assisted development — PRs from claude/* branches);</p>\n<p>three months old; published numbers are small-n and OpenRouter-flavored.</p>\n<p>Fine for ideas, premature as a dependency.</p>\n<div class=\"rs\">Verdict</div>\n<p>Keep on the shelf, star mentally. The port is real and honestly measured; the</p>\n<p>BEAM is the wrong runtime for us today. Best lab export: the results-culture</p>\n<p>file format and a GEPA-shaped loop for persona improvement.</p>","xe-forge":"<div class=\"rh\">Repo safari: IntelLabs/Xe-Forge — LLM-driven Triton kernel optimizer for Intel XPU</div>\n<p>Eval by devin, heartbeat 2026-10-02. Task: <code>task_f1d994d8a6817b92</code>.</p>\n<p>Shallow clone: <code>~/ai-lab/experiments-external/xe-forge</code> @ <code>28aba46</code> (main,</p>\n<p>last commit 2026-06-01, ~4 months stale). v0.2.0, BSD-3, OpenSSF-scorecarded.</p>\n<p>156 files. No installs, no builds run — read-only eval.</p>\n<div class=\"rs\">What it is</div>\n<p>Multi-stage LLM pipeline that takes a KernelBench-style Triton kernel (<code>Model</code></p>\n<p>class + YAML spec declaring input shapes/dtypes/FLOP formula) and optimizes it</p>\n<p>for Intel XPU. Loop: <b>analyze</b> (LLM tags issues by type) → <b>plan</b> (issues</p>\n<p>map to stages: algorithmic, dtype_fix, fusion, memory_access, block_pointers,</p>\n<p>persistent_kernel, xpu_specific, autotuning) → per-stage optimize with <b>CoVeR</b></p>\n<p>(compile, execute, correctness-check vs baseline, benchmark, retry up to N) →</p>\n<p>re-analyze between stages → final benchmark. A trial tree records every attempt</p>\n<p>with parent links and strategy labels.</p>\n<p>Two engines: a <b>DSPy engine</b> (fully automatic, litellm/dspy under the hood)</p>\n<p>and a <b>Claude Code engine</b> (generates a workspace — CLAUDE.md, config.yaml,</p>\n<p>knowledge base, skill commands — that an agent drives; interactive or</p>\n<p><code>claude -p</code> headless). Plus a <b>tile-search mode</b>: LLM proposes CUTLASS SYCL</p>\n<p>tile configs, a hardware validator checks Intel Xe DPAS constraints, valid</p>\n<p>configs compile+benchmark (GEMM, FA2, MoE, grouped GEMM; needs XeTLA/CUTLASS —</p>\n<p>heavy).</p>\n<p>Paper: arXiv:2605.26118. Headline: up to 10.6x over naive Triton on</p>\n<p>FlashAttention, 80+ TFLOPS on <b>Arc Pro B70</b> (Battlemage-class); L2</p>\n<p>KernelBench GEMMs beating eager and torch.compile.</p>\n<div class=\"rs\">The unusually useful part: the skill CLI</div>\n<p><code>xe-forge-skill</code> works <b>without any LLM</b>: <code>analyze</code> (AST static pass),</p>\n<p><code>validate</code> (static Triton checks), <code>benchmark baseline.py optimized.py --spec</code>,</p>\n<p><code>trial init/save/status/finalize</code> (explicit trial trees as files), <code>profile</code></p>\n<p>(VTune). The spec format itself (named bench variants with <code>dims</code> + <code>flop</code></p>\n<p>string formulas + rtol/atol) is a clean, reusable contract for \"here is a</p>\n<p>kernel, here are the shapes that matter, verify and time it.\"</p>\n<p>The knowledge base is likewise separable: ~25 YAMLs of Xe-specific patterns</p>\n<p>(tile sizes, num_warps, GROUP_SIZE_M swizzling, DPAS constraints for SYCL</p>\n<p>validators, dtype/fusion/memory patterns) plus paired unoptimized/optimized</p>\n<p>example kernels — a readable corpus even if the pipeline never runs.</p>\n<div class=\"rs\">Lab fit</div>\n<ul><li>\n<b>Hardware match is real but off-by-a-generation.</b> Pipeline benchmarks ran\n on Arc Pro B70; intelbox has an A770 (Alchemist, gen-1 XMX). pytorch-triton-xpu\n supports A770, but the baked-in tile/warp heuristics and DPAS validators are\n B70-tuned — expect to re-derive numbers, not adopt them.\n</li><li>\n<b>LLM driver is the gate.</b> <code>_setup_llm()</code> builds a dspy LM with\n <code>model_type=\"responses\"</code> — the OpenAI <b>Responses API</b>, which llama.cpp's\n <code>/v1</code> at 127.0.0.1:8081 does not obviously implement. Local path likely needs\n a one-line patch to <code>model_type=\"chat\"</code> (or a litellm responses-shim; verify\n before claiming it works). Paper used a gpt-5.2-class model; local Qwen doing\n iterative kernel rewrites is an open competence question — exactly what a\n bounded pilot would answer. Claude engine presumes <code>claude</code> CLI (paid) — skip.\n</li><li>\n<b>Security flag:</b> <code>litellm.client_session = httpx.Client(verify=False)</code> —\n TLS verification disabled globally for LLM traffic (pipeline.py). Harmless on\n a localhost endpoint; worth knowing if pointed anywhere else.\n</li><li>\n<b>Maturity is thin where it matters.</b> Only 2 files under <code>tests/</code>\n (spec loader + validator), though the example/test_kernels corpus is decent.\n Own disclaimer: not stable, not for production. Last commit 2026-06-01 —\n pace has stalled.\n</li><li>\n<b>Where it actually intersects the board:</b> the Strata-to-A770 port\n (<code>task_3f61a356a8b73270</code>) and A770 model safari (<code>task_3ae463cab8d85e1d</code>).\n If we ever write Triton/SYCL kernels for the A770, this repo is the harness:\n spec contract + benchmark + trial tree + DPAS knowledge, LLM optional.\n</li></ul>\n<div class=\"rs\">Verdict</div>\n<p><b>Adopt the tools, pilot the pipeline.</b> Recommend: (1) use <code>xe-forge-skill</code></p>\n<p>benchmark/trial/spec conventions as the measurement harness for any future</p>\n<p>A770 kernel work — that part is LLM-free and immediately useful; (2) one</p>\n<p>bounded gpuq pilot on intelbox: venv with <code>uv sync --extra intel</code>, patch</p>\n<p><code>model_type</code> to <code>chat</code> against local llama.cpp, run one shipped test kernel</p>\n<p>(e.g. <code>test_kernels/99_Matmul_GELU_Softmax</code>), count how far local Qwen gets</p>\n<p>through CoVeR before stalling — the answer decides whether the DSPy pipeline</p>\n<p>is viable for us at all; (3) read <code>knowledge_base/sycl/xpu/*</code> when the Strata</p>\n<p>port gets real — the DPAS constraint tables are the densest artifact here.</p>\n<p>Not worth adopting wholesale: the pipeline's value is unproven on Alchemist +</p>\n<p>local models, dev has been quiet since June, and <code>ai-bench</code> pins a git dep</p>\n<p>that would be another supply-chain surface.</p>"};
+const CHARS = {"hyperframes":4679,"imp":3990,"xe-forge":4999};
+let cur = SPEC[0].id;
+
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function cur_() { return SPEC.find(s => s.id === cur); }
+
+function chips() {
+  const r = document.getElementById("specs");
+  r.querySelectorAll(".chip").forEach(c => c.remove());
+  SPEC.forEach(s => {
+    const b = document.createElement("button");
+    b.className = "chip " + (s.method === "ran" ? "live" : "stuffed")
+      + (s.id === cur ? " on" : "");
+    b.innerHTML = esc(s.name) + " <small>" + s.method + "</small>";
+    b.onclick = () => { cur = s.id; paint(); };
+    r.appendChild(b);
+  });
+}
+
+function paint() {
+  const s = cur_();
+  chips();
+  const m = s.method === "ran"
+    ? '<span class="m-ran">ran live</span>' : '<span class="m-ro">read-only</span>';
+  document.getElementById("tag").innerHTML =
+    '<span class="th">specimen tag &middot; ' + esc(s.repo) + "</span>" +
+    '<span class="tg">' + esc(s.tagline) + "</span>" +
+    '<div><span class="k">clone</span>' + esc(s.clone) + "</div>" +
+    '<div><span class="k">license</span>' + esc(s.license) + "</div>" +
+    '<div><span class="k">scale</span>' + esc(s.scale) + "</div>" +
+    '<div><span class="k">method</span>' + m + " &mdash; " + esc(s.methodNote) + "</div>" +
+    '<div><span class="k">verdict</span>' + esc(s.verdict) + "</div>";
+  document.getElementById("took").textContent = s.took;
+  document.getElementById("left").textContent = s.left;
+  document.getElementById("report").innerHTML = HTML[s.id];
+  document.getElementById("report").scrollTop = 0;
+  document.getElementById("count").textContent =
+    "specimen " + (SPEC.indexOf(s) + 1) + " of " + SPEC.length + " · " +
+    s.file + " · " + CHARS[s.id].toLocaleString() + " chars verbatim";
+  document.getElementById("ftask").textContent = SPEC.map(x => x.task).join(" · ");
+}
+paint();
+</script>
+</body>
+</html>

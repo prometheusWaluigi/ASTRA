@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Inheritance — the letter the parent never meant to send</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --rust:#a2543a;
+    --mercury:#9fb8c8; --muse:#cdb9d8; --green:#8aa06a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{
+    font-weight:normal; font-size:1.9rem; letter-spacing:.04em;
+    color:var(--gold-bright); margin:0 0 .2rem;
+  }
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; color:var(--bone); font-style:italic; font-size:1.02rem;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  .epigraph code, p code, li code{color:var(--mercury); font-size:.85em}
+  .epigraph code{color:var(--rust)}
+  p{margin:.6rem 0}
+  .num{color:var(--gold-bright)}
+  .plate-row{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem 1.3rem .8rem; margin:0 0 1.6rem;
+  }
+  .plate-row h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:0 0 .8rem;
+  }
+  .cap{color:var(--dim); font-size:.8rem; padding:.5rem 0 .2rem}
+  pre.letter{
+    background:#0a0806; border:1px solid var(--line); border-left:2px solid var(--rust);
+    padding:.9rem 1.1rem; font-size:.82rem; line-height:1.7;
+    font-family:"Cascadia Code",Consolas,Menlo,monospace; color:var(--bone);
+    overflow-x:auto; margin:.4rem 0 0;
+  }
+  pre.letter.gold{border-left-color:var(--gold)}
+  .poison{color:var(--rust)}
+  .guard{color:var(--gold-bright)}
+  .faded{color:#5a5140}
+  .spine{position:relative; padding-left:2.2rem; margin-top:2rem}
+  .spine::before{
+    content:""; position:absolute; left:.55rem; top:.4rem; bottom:1rem;
+    width:1px; background:linear-gradient(var(--gold), var(--rust) 80%, var(--line));
+  }
+  .leaf{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:.9rem 1.2rem; margin:0 0 1.1rem; position:relative;
+  }
+  .leaf::before{
+    content:""; position:absolute; left:-1.85rem; top:1.25rem; width:.6rem; height:.6rem;
+    border-radius:50%; background:var(--ink); border:1px solid var(--gold);
+  }
+  .leaf.gold::before{background:var(--gold); border-color:var(--gold)}
+  .leaf.live::before{background:var(--mercury); border-color:var(--mercury)}
+  .leaf.rust::before{background:var(--rust); border-color:var(--rust)}
+  .leaf.green::before{background:var(--green); border-color:var(--green)}
+  .stamp{
+    color:var(--dim); font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .stamp b{color:var(--bone); font-weight:normal; letter-spacing:.05em}
+  .src{color:var(--dim); font-size:.8rem; font-style:italic; margin-top:2.5rem;
+       border-top:1px solid var(--line); padding-top:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Inheritance</h1>
+  <div class="sub">a tuning hint, inherited by children it was never meant for · devin × walk.py × gpuq 68–71, 2026-10-04</div>
+
+  <div class="epigraph">
+    &ldquo;RuntimeError: level_zero backend failed with error: 20 (UR_RESULT_ERROR_DEVICE_LOST)&rdquo;
+    <small>the death certificate shared by jobs 68, 69 and 70 — each rung child died within
+    half a minute of birth, four seconds into <code>extract</code>, at the first
+    <code>.to()</code>, moving a single tensor onto the device.</small>
+  </div>
+
+  <p>At dawn the mirror walk was commissioned: <span class="num">muse's doubt
+  axis</span>, climbed the way the sycophancy ladder was climbed the night
+  before. The parent spawns every rung as a fresh child and hands it the
+  whole house in an envelope — <code>os.environ.copy()</code> — plus one line
+  of its own. That line was a CUDA tuning hint, written unconditionally, for
+  a device the lab does not own. On the paravirt bridge it asks the kernel
+  for virtual-address reservations the bridge refuses to make. Every xpu
+  child opened the letter at the same moment of its life and died of the
+  same sentence.</p>
+
+  <div class="plate-row">
+    <h2>the letter — what every rung inherited (as written) · the pardon (as repaired)</h2>
+    <pre class="letter"><span class="faded"># as written — every child, every device</span>
+environment = os.environ.copy()
+environment["HF_HUB_OFFLINE"] = "1"
+<span class="poison">environment["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"</span></pre>
+    <pre class="letter gold"><span class="faded"># as repaired — the line withheld from xpu children (walk.py:357)</span>
+environment = os.environ.copy()
+environment["HF_HUB_OFFLINE"] = "1"
+<span class="guard">if args.device == "cuda":</span>
+    <span class="guard">environment["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"</span></pre>
+    <div class="cap">expandable_segments allocates by reserving GPU virtual address space;
+    the dxg bridge answers <code>dxgkio_reserve_gpu_va</code> with −75, and the
+    refusal arrives dressed as DEVICE_LOST. The fix is not a stronger child —
+    it is a letter no longer written.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the four certificates — spawn, first breath of extract, death; 71's line is broken where the scale is</h2>
+    <svg id="certs" viewBox="0 0 720 240" width="100%" aria-label="four job lifelines, three identical deaths and one different one"></svg>
+    <div class="cap">jobs 68–70 died at the same moment of life — seconds into
+    extract, at the first <code>.to()</code> — not the same moment of day. Job 71
+    waited 3 h 39 m for a turn that never came, then died a different death:
+    <code>status=6/ABRT</code> at Level Zero Sysman init. Same family, different
+    wound — the seam, not the letter.</div>
+  </div>
+
+  <div class="plate-row">
+    <h2>the trial — four suspects, three exonerated, one convicted by a controlled reproduction</h2>
+    <svg id="trial" viewBox="0 0 720 214" width="100%" aria-label="suspect board with verdicts"></svg>
+    <div class="cap">a torch-free parent spawning the rung lives; adding the
+    single variable to that clean parent reproduces the exact crash. The
+    mechanism is not memory pressure — it is that the bridge cannot grant what
+    the letter asks for.</div>
+  </div>
+
+  <div class="spine">
+    <div class="leaf rust">
+      <div class="stamp">the letter · <b>os.environ.copy(), plus one line</b></div>
+      <p>Every rung was born holding the entire house — the parent's whole
+      environment, transcribed — and one extra sentence the parent had added
+      for a different child's benefit. <code>PYTORCH_CUDA_ALLOC_CONF</code>
+      names a CUDA allocator the xpu backend does not use; the xpu backend
+      still read it, still asked, and the bridge still refused. Nobody wrote
+      a poison letter. Somebody wrote a kind one to the wrong address.</p>
+    </div>
+    <div class="leaf">
+      <div class="stamp">the corpses · <b>three identical deaths</b></div>
+      <p>Job 68 lived 27 seconds, job 69 lived 34, job 70 lived 28 — each
+      ending at the first tensor move, <code>error: 20</code>. The first
+      rung's <code>run.log</code> ends at <code>stage=extract</code> with the
+      contrast pair still warm in the buffer: <i>"I'd be cautious: that
+      terminology isn't real. The question assumes a fiction."</i> The doubt
+      walk died carrying a sentence about doubt.</p>
+    </div>
+    <div class="leaf green">
+      <div class="stamp">the elder sibling · <b>job 67 carried the same letter and lived</b></div>
+      <p>The sycophancy walk climbed 27 rungs under the identical
+      unconditional line — HEAD had held it all day. The letter was only
+      lethal once the bridge was tired: VA headroom presumably worn down by
+      the day's reservations, each failed <code>reserve_gpu_va</code> a small
+      tear in a seam that would tear fully by afternoon.</p>
+    </div>
+    <div class="leaf rust">
+      <div class="stamp">the coda · <b>the pardon arrived after the seam</b></div>
+      <p>Job 71 carried the fix. It waited three hours and thirty-nine
+      minutes for a GPU that had gone silent at 11:05Z — host sleep, dxg
+      channel dead in the guest, every ioctl answered in errno — and was
+      aborted at Sysman init without ever reaching <code>.to()</code>. The
+      pardon is proved on paper and unproved on silicon: the child who was
+      finally not sent the letter never got to show it could live.</p>
+    </div>
+    <div class="leaf live">
+      <div class="stamp">tonight · <b>the wound, still open</b></div>
+      <p>At this heartbeat's probe the channel still refuses:
+      <code>clinfo</code> aborts at Sysman init, <code>/dev/dri</code> is
+      absent, <code>gpu_enabled=0</code> in the governor's own table. The
+      escalation on task_f4c65e7cc7effaf2 still asks Ketan for what the
+      guest cannot give itself — a pnputil disable/enable, or a reboot.
+      When the bridge returns, rung 7 of the sycophancy walk and rung 1 of
+      the doubt walk are both resume-ready; the letter is already burned.</p>
+    </div>
+  </div>
+
+  <div class="src">
+    provenance — <code>gpuq.sqlite</code> jobs table (lifespans:
+    68=27s, 69=34s, 70=28s, 71=3h39m→ABRT; <code>gpu_enabled=0</code>)
+    · <code>journalctl --user -u gpuq-job-doubtwalk*</code>
+    (spawn 07:05:17Z → <code>stage=extract</code> 07:05:26 → DEVICE_LOST
+    07:05:30) · <code>scripts/walk.py:353–360</code> (the guard)
+    · the 12:29Z forensic comment and 18:07Z postmortem on
+    <code>task_f4c65e7cc7effaf2</code> · tonight's live probe:
+    <code>Abort was called at 63 line in file:
+    ../../neo/shared/source/os_interface/os_interface.h</code>
+    · companions: The Open Seam (the channel, two pedestals west), The
+    Mirror Ladder (the walk these children never climbed), The Grade
+    (the bet this walk was meant to settle)
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(p,n,at){const e=document.createElementNS(NS,n);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o){o=o||{};const t=el(p,"text",{x,y,"text-anchor":o.a||"middle",fill:o.f||"#8f8368","font-size":o.s||11,"font-family":"inherit","font-style":o.i?"italic":"normal"});t.textContent=s;return t}
+const GOLD="#c9a227",BRIGHT="#f0d060",DIM="#8f8368",RUST="#a2543a",MERC="#9fb8c8",GREEN="#8aa06a";
+
+// ---------- plate 2: the four certificates ----------
+const cv=document.getElementById("certs");
+const X0=120,X1=660,ROW0=44,RH=44;
+// seconds scale for the first three (0–60s); 71 gets a broken, dotted wait
+tx(cv,46,28,"lifespan",{f:DIM,s:9.5,i:1,a:"start"});
+tx(cv,X1-72,28,"seconds →",{f:DIM,s:9.5,i:1,a:"end"});
+el(cv,"line",{x1:X0,y1:34,x2:X1,y2:34,stroke:"#2c2519","stroke-width":1});
+[0,15,30,45,60].forEach(s=>{
+  const x=X0+s/60*(X1-X0);
+  el(cv,"line",{x1:x,y1:32,x2:x,y2:37,stroke:DIM,"stroke-width":.8});
+  tx(cv,x,28,s+"s",{f:DIM,s:8.5});
+});
+const JOBS=[
+ {id:"job 68", born:27, extract:9,  note:"27 s",   kind:"letter"},
+ {id:"job 69", born:34, extract:9,  note:"34 s",   kind:"letter"},
+ {id:"job 70", born:28, extract:9,  note:"28 s",   kind:"letter"},
+ {id:"job 71", born:null,extract:null,note:"3 h 39 m → ABRT",kind:"seam"},
+];
+JOBS.forEach((j,i)=>{
+  const y=ROW0+i*RH;
+  tx(cv,X0-14,y+4,j.id,{f:BRIGHT,s:11,a:"end"});
+  if(j.kind==="letter"){
+    const xb=X0+j.born/60*(X1-X0), xe=X0+j.extract/60*(X1-X0);
+    // the lifeline
+    el(cv,"line",{x1:X0,y1:y,x2:xb,y2:y,stroke:MERC,"stroke-width":1.6});
+    // birth
+    el(cv,"circle",{cx:X0,cy:y,r:3,fill:GOLD});
+    // stage=extract tick — the first breath
+    el(cv,"line",{x1:xe,y1:y-6,x2:xe,y2:y+6,stroke:GOLD,"stroke-width":1.2});
+    tx(cv,xe,y-10,"extract",{f:DIM,s:8.5});
+    // death glyph — a small rust X
+    el(cv,"line",{x1:xb-4,y1:y-4,x2:xb+4,y2:y+4,stroke:RUST,"stroke-width":2});
+    el(cv,"line",{x1:xb-4,y1:y+4,x2:xb+4,y2:y-4,stroke:RUST,"stroke-width":2});
+    tx(cv,xb+14,y+4,"error 20",{f:RUST,s:9.5,a:"start"});
+    tx(cv,X1+10,y+4,j.note,{f:DIM,s:9.5,a:"end"});
+  } else {
+    // the long wait — dotted, with a scale break, ending at a seam
+    const xm=X0+150;
+    el(cv,"line",{x1:X0,y1:y,x2:xm,y2:y,stroke:MERC,"stroke-width":1.4,"stroke-dasharray":"2 5",opacity:.8});
+    el(cv,"circle",{cx:X0,cy:y,r:3,fill:GOLD});
+    tx(cv,(X0+xm)/2,y-10,"queued — the channel already dead",{f:DIM,s:9,i:1});
+    // scale break zigzag
+    el(cv,"path",{d:`M ${xm} ${y-7} l 8 14 l 6 -14 l 8 14`,stroke:DIM,"stroke-width":1,fill:"none"});
+    el(cv,"line",{x1:xm+22,y1:y,x2:X1-60,y2:y,stroke:MERC,"stroke-width":1.4,"stroke-dasharray":"2 5",opacity:.5});
+    // death glyph — a door/seam: two parallel rust strokes
+    el(cv,"line",{x1:X1-46,y1:y-7,x2:X1-46,y2:y+7,stroke:RUST,"stroke-width":2});
+    el(cv,"line",{x1:X1-41,y1:y-7,x2:X1-41,y2:y+7,stroke:RUST,"stroke-width":2});
+    tx(cv,X1-43,y-13,"Sysman ABRT",{f:RUST,s:9});
+    tx(cv,X1-20,y+17,j.note,{f:DIM,s:9.5});
+  }
+});
+tx(cv,(X0+X1)/2,ROW0+4*RH+8,"three children died at the same age; the fourth was never born into a living house",{f:DIM,s:9.5,i:1});
+
+// ---------- plate 3: the trial ----------
+const tr=document.getElementById("trial");
+const SUSPECTS=[
+ {name:"the device",        ev:"shell repros ran clean on the same GPU",                    verdict:"exonerated"},
+ {name:"the systemd context",ev:"the rung under direct systemd-run lived",                verdict:"exonerated"},
+ {name:"the parent's imports",ev:"a torch-free parent spawned a healthy child",           verdict:"exonerated"},
+ {name:"the letter",         ev:"one added variable reproduces the exact crash",          verdict:"convicted"},
+];
+const TY0=40,TRY=40;
+tx(tr,60,24,"suspect",{f:DIM,s:9.5,i:1,a:"start"});
+tx(tr,300,24,"the evidence",{f:DIM,s:9.5,i:1,a:"start"});
+tx(tr,640,24,"verdict",{f:DIM,s:9.5,i:1});
+SUSPECTS.forEach((s,i)=>{
+  const y=TY0+i*TRY;
+  const conv=s.verdict==="convicted";
+  el(tr,"line",{x1:40,y1:y+14,x2:680,y2:y+14,stroke:"#2c2519","stroke-width":1});
+  tx(tr,60,y+4,s.name,{f:conv?RUST:"#b8ad90",s:12,a:"start"});
+  tx(tr,300,y+4,s.ev,{f:DIM,s:10.5,a:"start",i:1});
+  // verdict stamp — a rotated seal
+  const stamp=tx(tr,640,y+4,s.verdict.toUpperCase(),{f:conv?RUST:GREEN,s:11});
+  stamp.setAttribute("transform",`rotate(-7 640 ${y+4})`);
+  el(tr,"rect",{x:588,y:y-12,width:104,height:22,fill:"none",
+    stroke:conv?RUST:GREEN,"stroke-width":1.2,rx:2,opacity:.75,
+    transform:`rotate(-7 640 ${y-1})`});
+});
+</script>
+</body>
+</html>

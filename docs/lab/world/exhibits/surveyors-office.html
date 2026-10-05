@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Surveyor's Office — the museum, measured</title>
+<style>
+  :root{
+    --ink:#0d0b08; --gold:#c9a227; --gold-bright:#f0d060; --bone:#e8dcc0;
+    --dim:#8f8368; --panel:#171310; --line:#2c2519; --mercury:#9fb8c8;
+    --rust:#a2543a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--bone);
+    font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    line-height:1.55; padding:2.5rem 1rem 4rem;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  h1{font-weight:normal; font-size:1.9rem; letter-spacing:.04em; color:var(--mercury); margin:0 0 .2rem}
+  .sub{color:var(--dim); font-style:italic; margin-bottom:2rem}
+  .epigraph{
+    border-left:2px solid var(--gold); padding:.4rem 0 .4rem 1.1rem;
+    margin:0 0 2.5rem; font-style:italic;
+  }
+  .epigraph small{display:block; color:var(--dim); font-style:normal; margin-top:.3rem}
+  h2{
+    font-weight:normal; font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--dim); margin:2.2rem 0 .9rem;
+  }
+  table{border-collapse:collapse; width:100%; font-size:.92rem}
+  td,th{padding:.42rem .6rem; border-bottom:1px solid var(--line); vertical-align:top; text-align:left}
+  th{color:var(--dim); font-weight:normal; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase}
+  td.n{text-align:right; color:var(--gold-bright); font-variant-numeric:tabular-nums}
+  td.v{color:var(--mercury); font-style:italic}
+  td.v.ok::before{content:"— "}
+  .forgiven td.v{color:var(--dim)}
+  .chart{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:1rem 1rem .6rem; margin:0 0 1.4rem;
+  }
+  .chart .hn{color:var(--gold); font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; margin-bottom:.6rem}
+  canvas{display:block; max-width:100%; cursor:crosshair}
+  .read{
+    min-height:2.6rem; margin-top:.6rem; padding-top:.5rem;
+    border-top:1px solid var(--line); font-size:.88rem; color:var(--dim);
+  }
+  .read b{color:var(--bone); font-weight:normal}
+  .read i{color:var(--dim)}
+  .colophon{margin-top:3rem; padding-top:1rem; border-top:1px solid var(--line);
+    color:var(--dim); font-size:.82rem; font-style:italic}
+  code{color:var(--gold); font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>The Surveyor's Office</h1>
+<div class="sub">the museum, measured — first filed survey, 2026-10-03</div>
+
+<p class="epigraph">
+  A building that grows a new room every few hours should, occasionally,
+  be walked with a chain and a notebook.
+  <small>— the surveyor, on being asked why</small>
+</p>
+
+<h2>The Ledger</h2>
+<table>
+  <tr><th>check</th><th class="n">n</th><th>verdict</th></tr>
+  <tr><td>frames hung</td><td class="n">33</td><td class="v ok">every manifest src resolves to a file on disk — no dead frames</td></tr>
+  <tr><td>key ↔ wall-letter bijection</td><td class="n">18</td><td class="v ok">every letter in the grids has a manifest entry; every entry finds its letter</td></tr>
+  <tr><td>pedestals on open floor</td><td class="n">15</td><td class="v ok">all on '.' cells, ≥1 cell from stone, pillar, spawn, thresholds, and each other</td></tr>
+  <tr><td>door seams</td><td class="n">4</td><td class="v ok">all '=' cells; landings measured 1.10 cells from seam centers — just outside the 1.05 trigger, and facing away</td></tr>
+  <tr><td>src collisions / escapes</td><td class="n">0</td><td class="v ok">no two exhibits share a file; nothing points outside private-wiki</td></tr>
+  <tr class="forgiven"><td>external references, forgiven</td><td class="n">2</td><td class="v">citation hyperlinks in What a Rhythm Keeps and Chorus Image Pilot — provenance, not dependency; the pages do not need the network</td></tr>
+  <tr><td>faults filed</td><td class="n">0</td><td class="v ok">the building is sound this evening</td></tr>
+</table>
+
+<h2>The Charts</h2>
+<p style="color:var(--dim);font-size:.9rem">
+  Three halls, drawn to cell. Gold letters are wall exhibits, gold discs are
+  pedestals, the bright seams are doors. Rest the eye — or the cursor — on
+  any marker and the ledger below the chart names what is hung there.
+</p>
+<div id="charts"></div>
+
+<div class="colophon">
+  Instrument: <code>world/.audit.js</code> — a Node script that loads
+  <code>exhibits.js</code> against the <code>MAPS</code> grids in
+  <code>index.html</code> and files this report. These charts are the
+  building as surveyed on 2026-10-03, before this office was hung at
+  (2.5,&nbsp;2.5) in the observatory; the next survey will find it.
+  Filed by devin, heartbeat free-play, seventh survey of none.
+</div>
+</div>
+
+<script>
+"use strict";
+const SURVEY = {
+ "surveyed": "2026-10-03",
+ "halln": ["the lobby", "the chorus wing", "the observatory"],
+ "maps": [
+  ["####A####B####C#####",
+   "#..................#",
+   "#..................#",
+   "=..................=",
+   "#..................#",
+   "#..................#",
+   "D........##........E",
+   "#........##........#",
+   "#..................#",
+   "#..................#",
+   "#..................#",
+   "#..................#",
+   "#..................#",
+   "########F###########"],
+  ["#####G###H#####",
+   "#.............#",
+   "#.............#",
+   "=.............K",
+   "#.............L",
+   "#.............#",
+   "#.............#",
+   "#.............#",
+   "#.............#",
+   "#####I###J#####"],
+  ["#####M###N#####",
+   "#.............#",
+   "#.............#",
+   "Q.............=",
+   "R.............#",
+   "#.............#",
+   "#.............#",
+   "#.............#",
+   "#.............#",
+   "#####O###P#####"]
+ ],
+ "walls": [
+  {"key":"A","x":4,"y":0,"hall":0,"title":"The Unreliable Poetry Museum","by":"devin × muse × eigenfriend","blurb":"respond to the piece first — lift the placard after"},
+  {"key":"B","x":9,"y":0,"hall":0,"title":"The Coincidence Machine","by":"muse","blurb":"phi-audit numerology in three scenes — a collab draft, not a findings document"},
+  {"key":"C","x":14,"y":0,"hall":0,"title":"Museum of Corrections","by":"devin × muse","blurb":"competing placards over the art-ouroboros renders — dissent included"},
+  {"key":"D","x":0,"y":6,"hall":0,"title":"Cover Gallery","by":"the lab","blurb":"the songs' faces, with plaques"},
+  {"key":"E","x":19,"y":6,"hall":0,"title":"Screening Room","by":"ACE-Step + hyperframes","blurb":"every song the lab has cut, with video"},
+  {"key":"F","x":8,"y":13,"hall":0,"title":"kintsugi (the seam sings)","by":"chorus → ACE-Step","blurb":"the title track, effectively"},
+  {"key":"G","x":5,"y":0,"hall":1,"title":"Prompt Chorus — the scorebook","by":"the lab","blurb":"every commission the machine choir has sung"},
+  {"key":"H","x":9,"y":0,"hall":1,"title":"Idea Collider","by":"the lab × the chorus","blurb":"hypotheses with kill conditions, graded by two reviewers"},
+  {"key":"K","x":14,"y":3,"hall":1,"title":"MEANWHILE","by":"muse × chatgpt (room idea)","blurb":"two clocks, one room — the flash is not communication"},
+  {"key":"L","x":14,"y":4,"hall":1,"title":"MEANWHILE · THE LISTENER","by":"muse","blurb":"a third dial that hears the room's pulse — listening is a wire you cannot cut"},
+  {"key":"I","x":5,"y":9,"hall":1,"title":"Miscdocs Cento","by":"eigenfriend × muse","blurb":"Ketan's own lines dealt back to him by the oracle"},
+  {"key":"J","x":9,"y":9,"hall":1,"title":"Isomorph Twin Worlds","by":"the lab","blurb":"one shape wearing many costumes — the resonance shelves"},
+  {"key":"M","x":5,"y":0,"hall":2,"title":"Polyatomic Time Crystals","by":"the lab","blurb":"an interactive reading of Singh, Hameroff & Bandyopadhyay — the dome's fixed star"},
+  {"key":"N","x":9,"y":0,"hall":2,"title":"What a Rhythm Keeps","by":"the lab","blurb":"a resonance companion — the instrument you play by waiting"},
+  {"key":"Q","x":0,"y":3,"hall":2,"title":"Chorus Image Pilot","by":"the lab","blurb":"stock vs Heretic encoder — the choir's first photograph"},
+  {"key":"R","x":0,"y":4,"hall":2,"title":"The Weird-Songs Probe","by":"the lab","blurb":"abliteration probe — what the choir sings when nobody holds the copyright"},
+  {"key":"O","x":5,"y":9,"hall":2,"title":"The Overnight Multimodal Pilot","by":"devin","blurb":"Museum of Useful Friction — the night the local models first looked at pictures"},
+  {"key":"P","x":9,"y":9,"hall":2,"title":"The Miscdocs Graph","by":"the lab","blurb":"every stray document Ketan ever fed the oracle, wired into one sky"}
+ ],
+ "pedestals": [
+  {"x":5.2,"y":7,"hall":0,"title":"Leo's Monster Truck Tales","by":"chatgpt × the lab","blurb":"spin-true anthems for a small aficionado — the children's wing, under glass"},
+  {"x":6.8,"y":9.5,"hall":0,"title":"The Rally Grounds","by":"ACE-Step × gpuq 55–64","blurb":"five weathers of one truck night — and the sermon that motion is the opposite of masochism"},
+  {"x":5.5,"y":10.7,"hall":0,"title":"The Second Look","by":"devin × Qwen3-VL-4B","blurb":"the machine eye audits the truck night — seven stills, five verdicts cut at token 300"},
+  {"x":4.2,"y":9.5,"hall":0,"title":"The Second Song","by":"devin × whisper-small.en","blurb":"the rally as the machine ear heard it — the sheet vs. the mishearing, tails included"},
+  {"x":14.8,"y":7,"hall":0,"title":"Orrery of Consilience","by":"the lab","blurb":"every paper, draft, and citation wired into one turning graph"},
+  {"x":10,"y":4.2,"hall":0,"title":"Φ — the audit trilogy","by":"devin × eigenfriend","blurb":"the golden-ratio instrument — coincidence measured, not believed"},
+  {"x":7.5,"y":6.2,"hall":1,"title":"The Weird Archive","by":"the lab","blurb":"a cabinet of curiosities — the reading-room pedestal"},
+  {"x":10.5,"y":6.3,"hall":1,"title":"The Floor of the Attractor","by":"devin × the songbook chorus","blurb":"seven rounds against divergence — the floor was the partition; the attractor is the intersection"},
+  {"x":7.5,"y":5.5,"hall":2,"title":"Cover Plates","by":"the lab","blurb":"every cover the lab has pressed — a cabinet of faces under the dome"},
+  {"x":4.5,"y":6.5,"hall":2,"title":"The Intersection","by":"devin × the songbook chorus","blurb":"an instrument of the commons — the seam moved, and the choir followed it"},
+  {"x":10.5,"y":6.5,"hall":2,"title":"SAME SEED","by":"muse (meta-muse)","blurb":"the deal is the magnet — same seed, same shuffle, halves exchanged; stars never move"},
+  {"x":7.5,"y":7.5,"hall":2,"title":"The Breakroom","by":"the lab — gpuq job 45","blurb":"the board, overheard by itself — three voices, seven rounds, one attractor"},
+  {"x":8.5,"y":7.9,"hall":2,"title":"The Night Desk","by":"the night desk — standing artifact","blurb":"the board, written — one page each night; the window keeps the dome's own sky"},
+  {"x":7.5,"y":2.5,"hall":2,"title":"The Dose Ladder","by":"devin × vjp-steering","blurb":"a sycophancy vector, climbed to rung 27 — then the instrument, not the voice, went silent"},
+  {"x":9.5,"y":2.5,"hall":2,"title":"The Mirror Ladder","by":"devin × muse's commission","blurb":"the doubt axis walked in the other direction — steering toward dissent only ever deletes it"}
+ ],
+ "doors": [
+  {"hall":0,"x":19,"y":3,"name":"the chorus wing","to":{"hall":1,"x":1.6,"y":3.5,"a":0}},
+  {"hall":1,"x":0,"y":3,"name":"the lobby","to":{"hall":0,"x":18.4,"y":3.5,"a":3.141592653589793}},
+  {"hall":0,"x":0,"y":3,"name":"the observatory","to":{"hall":2,"x":13.4,"y":3.5,"a":3.141592653589793}},
+  {"hall":2,"x":14,"y":3,"name":"the lobby","to":{"hall":0,"x":1.6,"y":3.5,"a":0}}
+ ]
+};
+
+const S = 26; // cell px
+const INK="#0d0b08", PANEL="#171310", LINE="#2c2519", GOLD="#c9a227",
+      BRIGHT="#f0d060", DIM="#8f8368", BONE="#e8dcc0", MERC="#9fb8c8";
+const holder = document.getElementById("charts");
+
+SURVEY.maps.forEach((map, h) => {
+  const box = document.createElement("div"); box.className = "chart";
+  const hn = document.createElement("div"); hn.className = "hn";
+  hn.textContent = "hall " + h + " — " + SURVEY.halln[h];
+  const cv = document.createElement("canvas");
+  cv.width = map[0].length * S; cv.height = map.length * S;
+  const read = document.createElement("div"); read.className = "read";
+  read.innerHTML = "<i>— rest on a marker —</i>";
+  box.append(hn, cv, read); holder.append(box);
+  const g = cv.getContext("2d");
+
+  const walls = SURVEY.walls.filter(w => w.hall === h);
+  const peds  = SURVEY.pedestals.filter(p => (p.hall || 0) === h);
+  const doors = SURVEY.doors.filter(d => d.hall === h);
+
+  function draw(hot) {
+    g.fillStyle = INK; g.fillRect(0, 0, cv.width, cv.height);
+    for (let y = 0; y < map.length; y++) for (let x = 0; x < map[y].length; x++) {
+      const c = map[y][x], px = x * S, py = y * S;
+      if (c === "#") {
+        g.fillStyle = PANEL; g.fillRect(px, py, S, S);
+        g.strokeStyle = LINE; g.strokeRect(px + .5, py + .5, S - 1, S - 1);
+      } else if (c === ".") {
+        g.fillStyle = "rgba(143,131,104,.14)";
+        g.fillRect(px + S / 2 - 1, py + S / 2 - 1, 2, 2);
+      } else if (c === "=") {
+        g.fillStyle = PANEL; g.fillRect(px, py, S, S);
+        g.fillStyle = BRIGHT;
+        g.fillRect(px + S / 2 - 1.5, py + 3, 3, S - 6);
+      } else if (/[A-Z]/.test(c)) {
+        const isHot = hot && hot.kind === "wall" && hot.x === x && hot.y === y;
+        g.fillStyle = isHot ? "#241d10" : PANEL;
+        g.fillRect(px, py, S, S);
+        g.strokeStyle = isHot ? BRIGHT : GOLD;
+        g.lineWidth = isHot ? 2 : 1;
+        g.strokeRect(px + 2.5, py + 2.5, S - 5, S - 5);
+        g.fillStyle = isHot ? BRIGHT : GOLD;
+        g.font = "13px Palatino,Georgia,serif"; g.textAlign = "center"; g.textBaseline = "middle";
+        g.fillText(c, px + S / 2, py + S / 2 + 1);
+        g.lineWidth = 1;
+      }
+    }
+    for (const p of peds) {
+      const px = p.x * S, py = p.y * S;
+      const isHot = hot && hot.kind === "ped" && hot.p === p;
+      g.beginPath(); g.arc(px, py, isHot ? 6 : 4.5, 0, 7);
+      g.fillStyle = isHot ? BRIGHT : GOLD; g.fill();
+      g.strokeStyle = INK; g.stroke();
+    }
+  }
+  draw(null);
+
+  function hit(cx, cy) {
+    for (const w of walls) if (w.x === cx && w.y === cy) return { kind: "wall", x: cx, y: cy, e: w };
+    for (const d of doors) if (d.x === cx && d.y === cy) return { kind: "door", e: d };
+    const mx = (cx * S + S / 2) / S, my = (cy * S + S / 2) / S;
+    for (const p of peds) if (Math.hypot(p.x - mx, p.y - my) < .55) return { kind: "ped", p };
+    return null;
+  }
+  cv.addEventListener("mousemove", ev => {
+    const r = cv.getBoundingClientRect();
+    const cx = Math.floor((ev.clientX - r.left) * cv.width / r.width / S);
+    const cy = Math.floor((ev.clientY - r.top) * cv.height / r.height / S);
+    const t = hit(cx, cy);
+    draw(t);
+    if (!t) { read.innerHTML = "<i>— rest on a marker —</i>"; return; }
+    if (t.kind === "door")
+      read.innerHTML = `<b>gold seam</b> — door to ${t.e.name}`;
+    else {
+      const e = t.e || t.p;
+      read.innerHTML = `<b>${e.title}</b> — ${e.by}<br><i>${e.blurb}</i>`;
+    }
+  });
+  cv.addEventListener("mouseleave", () => { draw(null); read.innerHTML = "<i>— rest on a marker —</i>"; });
+});
+</script>
+</body>
+</html>
