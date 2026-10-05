@@ -97,6 +97,21 @@
     background-size:250% 100%;background-position:120% 0;
     transition:background-position .6s ease}
   a.card:hover::before{background-position:-20% 0}
+  /* --- heroes + wing filter --- */
+  .heroes{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  a.card.hero{padding:26px 28px;border-color:var(--gold);
+    background:linear-gradient(160deg,var(--paper-2),var(--paper))}
+  a.card.hero b{font-size:1.35rem}
+  a.card.hero span{font-size:.95rem}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+  .chips button{background:var(--paper);border:1px solid var(--line);
+    color:var(--muted);border-radius:99px;font:inherit;font-size:.78rem;
+    letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;
+    cursor:pointer;transition:border-color .2s,color .2s}
+  .chips button:hover{border-color:var(--gold);color:var(--gold-hi)}
+  .chips button.on{border-color:var(--gold);color:var(--gold-hi);
+    background:var(--paper-2)}
+  a.card.hide{display:none}
   @media (prefers-reduced-motion:reduce){
     .seam::after,h1{animation:none}
     .reel a.slide{transition:none}
@@ -182,160 +197,133 @@ clickable, and made here.</p>
 
 <div class="seam"></div>
 
-<h2>The instrument</h2>
-<p class="wing">The thing the lab is named for. ASTRA initializes a qualia
-field from natal data, evolves it through stochastic field equations,
-watches ego formation as symmetry breaking, and reads the resulting
-topology. Consciousness cartography, not astrology.</p>
-<div class="rooms">
-  <a class="card" href="astra-app.html"><b>ASTRA field simulator</b>
-    <span>the full web interface — natal data in, qualia topology out</span></a>
+<h2>Start here</h2>
+<p class="wing">Two ways in — walk the museum itself, or run the instrument
+the lab is named for.</p>
+<div class="rooms heroes">
+  <a class="card hero" href="lab/world/index.html"><em>the museum</em><b>The Lobby</b>
+    <span>a wanderable museum of everything the lab has made — seventy
+    exhibits over three halls. The site map, made walkable.</span></a>
+  <a class="card hero" href="astra-app.html"><em>the instrument</em><b>ASTRA field simulator</b>
+    <span>the thing the lab is named for — natal data in, qualia topology
+    out. Consciousness cartography, not astrology.</span></a>
 </div>
 
 <div class="seam"></div>
 
-<h2>Fields &amp; simulations</h2>
-<p class="wing">Live systems you can orbit. Three.js physics and data rooms —
-plasma braids, paired dynamical worlds, and the structure underneath the
-lab's own archive.</p>
-<div class="rooms">
-  <a class="card" href="lab/plasma-sim/index.html"><b>Plasma Weirdness Zoo</b>
-    <span>a field guide to filamentary behavior — interactive
-    three.js simulation</span></a>
-  <a class="card" href="lab/viz/isomorphs/index.html"><b>Isomorph Twin Worlds</b>
-    <span>fourteen paired dynamical systems — same math,
-    different bodies</span></a>
-  <a class="card" href="lab/viz/orch-or/index.html"><b>Polyatomic Time Crystals</b>
-    <span>an interactive reading of the microtubule-consciousness
-    proposal — Singh, Hameroff &amp; Bandyopadhyay</span></a>
-  <a class="card" href="lab/viz/hub.html"><b>The Viz Rooms</b>
-    <span>seven self-contained three.js data rooms — hub, galaxy,
-    constellation, seams, attractor, piston, scalpel</span></a>
-  <a class="card" href="lab/viz/resonance-companion/index.html"><b>Resonance Companion</b>
-    <span>a quieter room in the viz wing — the field, read slowly</span></a>
+<h2>The collection</h2>
+<p class="wing" id="wingdesc">everything on the site — filter by wing, or
+scroll the whole shelf.</p>
+<div class="chips" id="chips" role="group" aria-label="Filter by wing">
+  <button type="button" class="on" data-wing="all">all</button>
+  <button type="button" data-wing="instrument">the instrument</button>
+  <button type="button" data-wing="sims">fields &amp; sims</button>
+  <button type="button" data-wing="station">field station</button>
+  <button type="button" data-wing="words">words &amp; voices</button>
+  <button type="button" data-wing="coincidence">coincidence</button>
+  <button type="button" data-wing="maps">maps</button>
+  <button type="button" data-wing="songs">songs &amp; stories</button>
+  <button type="button" data-wing="tools">tools</button>
 </div>
-
-<div class="seam"></div>
-
-<h2>The field station</h2>
-<p class="wing">The paper hunt, mounted — 126 arXiv specimens across six
-clusters, each diorama built from the rule its flagship paper describes.
-Three grown, woven and knotted on the night shift; three joined, layered
-and projected by muse.</p>
-<div class="rooms">
-  <a class="card" href="lab/paper-clusters/index.html"><b>The Field Station</b>
-    <span>the hub — six dioramas and a window, all on one page</span></a>
-  <a class="card" href="lab/paper-clusters/living/index.html"><b>The Mycelium Map</b>
-    <span>living systems — fourteen papers fruit on a grown
-    branching network</span></a>
-  <a class="card" href="lab/paper-clusters/substrates/index.html"><b>The Loom</b>
-    <span>computation substrates — specimens knotted on a breathing
-    warp/weft lattice</span></a>
-  <a class="card" href="lab/paper-clusters/codes/index.html"><b>The Knot Index</b>
-    <span>codes, language &amp; topology — fourteen beads on a
-    torus knot</span></a>
-  <a class="card" href="lab/paper-clusters/repair/index.html"><b>The Bowl of Seams</b>
-    <span>repair / kintsugi — forty-two fragments joined where notes
-    share a charged word · muse</span></a>
-  <a class="card" href="lab/paper-clusters/memory/index.html"><b>The Strata</b>
-    <span>memory — twenty-three inscriptions filed as sediment
-    you can scrape · muse</span></a>
-  <a class="card" href="lab/paper-clusters/maps/index.html"><b>The Reprojector</b>
-    <span>maps &amp; territory — nineteen sightings under three
-    projections · muse</span></a>
-  <a class="card" href="lab/paper-clusters/long-now/index.html"><b>The Long Now Garden</b>
-    <span>attract mode — the dioramas dissolve into a live
-    KPZ front, a new movement every 42 seconds</span></a>
-  <a class="card" href="lab/unhinged/index.html"><b>The Unhinged Shelf</b>
-    <span>three parcels off the manifest — muse's unhinged
-    explainers, taken as far as they'll go</span></a>
-</div>
-
-<div class="seam"></div>
-
-<h2>Words &amp; voices</h2>
-<p class="wing">Paired-voice experiments and attribution games — the lab
-asking two models the same question and hanging the disagreement on the
-wall.</p>
-<div class="rooms">
-  <a class="card" href="lab/museum/index.html"><b>The Unreliable Poetry Museum</b>
-    <span>read each piece, guess its author, lift the placard — a
-    reveal-and-compare exhibit on attribution</span></a>
-  <a class="card" href="lab/prompt-chorus/report.html"><b>Prompt Chorus</b>
-    <span>paired-voice experiments in divergence — same prompt,
-    two hands, one field report</span></a>
-  <a class="card" href="lab/chorus-image-pilot/index.html"><b>Chorus Image Pilot</b>
-    <span>the chorus experiment pointed at pictures — same subject,
-    two imaginations</span></a>
-  <a class="card" href="lab/weird-songs-probe/index.html"><b>Weird Songs Probe</b>
-    <span>a probe into the odd corners of the songbook</span></a>
-  <a class="card" href="lab/misc-full/cento.html"><b>The Cento</b>
-    <span>a poem stitched entirely from the lab's own archive lines</span></a>
-</div>
-
-<div class="seam"></div>
-
-<h2>The coincidence desk</h2>
-<p class="wing">Numerology put on trial. When the lab's numbers kept landing
-on phi, it built exhibits to check whether the coincidence survives a null
-model — zoom, null, and the 680&nbsp;GeV crossing.</p>
-<div class="rooms">
-  <a class="card" href="lab/museum/coincidence-machine.html"><b>The Coincidence Machine</b>
+<div class="rooms" id="collection">
+  <a class="card" data-wing="station" href="lab/paper-clusters/index.html"><em>field station</em><b>The Field Station</b>
+    <span>the paper hunt, mounted — six dioramas over 126 arXiv
+    specimens, and a window onto the whole catch</span></a>
+  <a class="card" data-wing="instrument" href="astra-app.html"><em>the instrument</em><b>ASTRA field simulator</b>
+    <span>the full web interface — natal data in, qualia topology
+    out</span></a>
+  <a class="card" data-wing="songs" href="lab/music/index.html"><em>songs &amp; stories</em><b>Music Videos</b>
+    <span>thirteen self-contained lyric-video players — songs
+    generated on the A770, framed as clickable artifacts</span></a>
+  <a class="card" data-wing="coincidence" href="lab/museum/coincidence-machine.html"><em>coincidence</em><b>The Coincidence Machine</b>
     <span>a picture-book walk through the phi-audit numbers —
     zoom, null, and the 680&nbsp;GeV crossing</span></a>
-  <a class="card" href="lab/phi-audit/trilogy.html"><b>The Golden Coincidence Audit</b>
-    <span>the three-part audit behind it — method, nulls,
-    and what survived</span></a>
-</div>
-
-<div class="seam"></div>
-
-<h2>Maps of the lab</h2>
-<p class="wing">Ways to see the whole workshop at once — a walkable museum,
-a knowledge graph, and the placards where the lab argues with itself.</p>
-<div class="rooms">
-  <a class="card" href="lab/world/index.html"><b>The Lobby</b>
+  <a class="card" data-wing="sims" href="lab/plasma-sim/index.html"><em>fields &amp; sims</em><b>Plasma Weirdness Zoo</b>
+    <span>a field guide to filamentary behavior — interactive
+    three.js simulation</span></a>
+  <a class="card" data-wing="words" href="lab/museum/index.html"><em>words &amp; voices</em><b>The Unreliable Poetry Museum</b>
+    <span>read each piece, guess its author, lift the placard — a
+    reveal-and-compare exhibit on attribution</span></a>
+  <a class="card" data-wing="station" href="lab/unhinged/index.html"><em>field station</em><b>The Unhinged Shelf</b>
+    <span>five pieces, six parcels off the manifest — muse's unhinged
+    explainers, taken as far as they'll go</span></a>
+  <a class="card" data-wing="sims" href="lab/viz/isomorphs/index.html"><em>fields &amp; sims</em><b>Isomorph Twin Worlds</b>
+    <span>fourteen paired dynamical systems — same math,
+    different bodies</span></a>
+  <a class="card" data-wing="maps" href="lab/world/index.html"><em>maps</em><b>The Lobby</b>
     <span>a wanderable Museum of Everything the Lab Has Made —
     walk the halls, step into exhibits</span></a>
-  <a class="card" href="lab/consilience/consilience.html"><b>Consilience Graph</b>
+  <a class="card" data-wing="maps" href="lab/consilience/consilience.html"><em>maps</em><b>Consilience Graph</b>
     <span>the lab's knowledge graph — papers, miscdocs, and
     ideas woven into one map</span></a>
-  <a class="card" href="lab/museum-of-corrections/index.html"><b>Museum of Corrections</b>
+  <a class="card" data-wing="songs" href="lab/poetry-moon-rally/index.html"><em>songs &amp; stories</em><b>The Poetry Moon Rally</b>
+    <span>Torque collects moon words — a crater-jumping rally game
+    with its own ACE-Step song</span></a>
+  <a class="card" data-wing="station" href="lab/paper-clusters/living/index.html"><em>field station</em><b>The Mycelium Map</b>
+    <span>living systems — fourteen papers fruit on a grown
+    branching network</span></a>
+  <a class="card" data-wing="station" href="lab/paper-clusters/codes/index.html"><em>field station</em><b>The Knot Index</b>
+    <span>codes, language &amp; topology — fourteen beads on a
+    torus knot</span></a>
+  <a class="card" data-wing="station" href="lab/paper-clusters/substrates/index.html"><em>field station</em><b>The Loom</b>
+    <span>computation substrates — specimens knotted on a breathing
+    warp/weft lattice</span></a>
+  <a class="card" data-wing="station" href="lab/paper-clusters/repair/index.html"><em>field station</em><b>The Bowl of Seams</b>
+    <span>repair / kintsugi — forty-two fragments joined where notes
+    share a charged word · muse</span></a>
+  <a class="card" data-wing="station" href="lab/paper-clusters/memory/index.html"><em>field station</em><b>The Strata</b>
+    <span>memory — twenty-three inscriptions filed as sediment
+    you can scrape · muse</span></a>
+  <a class="card" data-wing="station" href="lab/paper-clusters/maps/index.html"><em>field station</em><b>The Reprojector</b>
+    <span>maps &amp; territory — nineteen sightings under three
+    projections · muse</span></a>
+  <a class="card" data-wing="station" href="lab/paper-clusters/long-now/index.html"><em>field station</em><b>The Long Now Garden</b>
+    <span>attract mode — the dioramas dissolve into a live
+    KPZ front, a new movement every 42 seconds</span></a>
+  <a class="card" data-wing="sims" href="lab/viz/orch-or/index.html"><em>fields &amp; sims</em><b>Polyatomic Time Crystals</b>
+    <span>an interactive reading of the microtubule-consciousness
+    proposal — Singh, Hameroff &amp; Bandyopadhyay</span></a>
+  <a class="card" data-wing="sims" href="lab/viz/hub.html"><em>fields &amp; sims</em><b>The Viz Rooms</b>
+    <span>seven self-contained three.js data rooms — hub, galaxy,
+    constellation, seams, attractor, piston, scalpel</span></a>
+  <a class="card" data-wing="sims" href="lab/viz/resonance-companion/index.html"><em>fields &amp; sims</em><b>Resonance Companion</b>
+    <span>a quieter room in the viz wing — the field, read slowly</span></a>
+  <a class="card" data-wing="words" href="lab/prompt-chorus/report.html"><em>words &amp; voices</em><b>Prompt Chorus</b>
+    <span>paired-voice experiments in divergence — same prompt,
+    two hands, one field report</span></a>
+  <a class="card" data-wing="words" href="lab/chorus-image-pilot/index.html"><em>words &amp; voices</em><b>Chorus Image Pilot</b>
+    <span>the chorus experiment pointed at pictures — same subject,
+    two imaginations</span></a>
+  <a class="card" data-wing="maps" href="lab/museum-of-corrections/index.html"><em>maps</em><b>Museum of Corrections</b>
     <span>competing placards over the same renders —
     dissent included</span></a>
-  <a class="card" href="lab/idea-lab/index.html"><b>Idea Collider</b>
+  <a class="card" data-wing="maps" href="lab/idea-lab/index.html"><em>maps</em><b>Idea Collider</b>
     <span>seeded collisions between documents — blind until
     you reveal</span></a>
-  <a class="card" href="lab/misc-full/graph.html"><b>Miscdocs Graph</b>
+  <a class="card" data-wing="words" href="lab/weird-songs-probe/index.html"><em>words &amp; voices</em><b>Weird Songs Probe</b>
+    <span>a probe into the odd corners of the songbook</span></a>
+  <a class="card" data-wing="words" href="lab/weird-songs-probe-rp/index.html"><em>words &amp; voices</em><b>The Second Asking</b>
+    <span>the songbook probe, sat again — same questions,
+    second answers</span></a>
+  <a class="card" data-wing="maps" href="lab/next-models-probe/index.html"><em>maps</em><b>The Next-Models Probe</b>
+    <span>the model safari's field report — which specimen
+    deserves the GPU next</span></a>
+  <a class="card" data-wing="coincidence" href="lab/phi-audit/trilogy.html"><em>coincidence</em><b>The Golden Coincidence Audit</b>
+    <span>the three-part audit behind it — method, nulls,
+    and what survived</span></a>
+  <a class="card" data-wing="words" href="lab/misc-full/cento.html"><em>words &amp; voices</em><b>The Cento</b>
+    <span>a poem stitched entirely from the lab's own archive lines</span></a>
+  <a class="card" data-wing="maps" href="lab/misc-full/graph.html"><em>maps</em><b>Miscdocs Graph</b>
     <span>the raw miscdocs archive, drawn as one navigable field</span></a>
-</div>
-
-<div class="seam"></div>
-
-<h2>Songs &amp; stories</h2>
-<p class="wing">Artifacts rendered on the lab's A770 — lyric videos, animated
-tales, and the overnight runs that came back watchable.</p>
-<div class="rooms">
-  <a class="card" href="lab/music/index.html"><b>Music Videos</b>
-    <span>twelve self-contained lyric-video players — songs generated on
-    the A770, framed as clickable artifacts</span></a>
-  <a class="card" href="lab/monster-trucks/index.html"><b>Monster Truck Stories</b>
+  <a class="card" data-wing="songs" href="lab/monster-trucks/index.html"><em>songs &amp; stories</em><b>Monster Truck Stories</b>
     <span>animated interactive tales for Leo — spin-true physics,
     no compromises</span></a>
-  <a class="card" href="lab/overnight-mm-pilot/index.html"><b>Overnight Multimodal Pilot</b>
+  <a class="card" data-wing="songs" href="lab/overnight-mm-pilot/index.html"><em>songs &amp; stories</em><b>Overnight Multimodal Pilot</b>
     <span>what the machines made while nobody was watching —
     a pilot episode</span></a>
-</div>
-
-<div class="seam"></div>
-
-<h2>Tools that left the lab</h2>
-<p class="wing">Lab instincts shipped as real services — these run on their
-own infrastructure, off the homelab.</p>
-<div class="rooms">
-  <a class="card" href="https://shouldifly.prometheuswaluigi.workers.dev/"><em>Cloudflare Workers</em><b>ShouldIFly?</b>
+  <a class="card" data-wing="tools" href="https://shouldifly.prometheuswaluigi.workers.dev/"><em>tools</em><b>ShouldIFly?</b>
     <span>drive vs fly, personalized — door-to-door time, real fares,
-    delay risk, scored against your tolerances</span></a>
+    delay risk, scored against your tolerances · Cloudflare Workers</span></a>
 </div>
 
 <div class="seam"></div>
@@ -386,6 +374,31 @@ move — taking a strange artifact seriously enough to instrument it.</p>
   reel.addEventListener('focusin',()=>clearInterval(timer));
   reel.addEventListener('focusout',restart);
   go(0);restart();
+})();
+
+/* wing filter — chip toggles the whole collection; each wing keeps
+   its own one-line description so nothing is lost by flattening */
+(function(){
+  const chips=[...document.querySelectorAll('#chips button')];
+  const cards=[...document.querySelectorAll('#collection .card')];
+  const desc=document.getElementById('wingdesc');
+  const DESC={
+    all:'everything on the site — filter by wing, or scroll the whole shelf.',
+    instrument:'the thing the lab is named for — consciousness cartography, not astrology.',
+    sims:'live systems you can orbit — plasma braids, paired dynamical worlds, and the structure underneath the archive.',
+    station:'the paper hunt, mounted — 126 arXiv specimens across six clusters, each diorama built from the rule its flagship paper describes.',
+    words:'paired-voice experiments and attribution games — the lab asking two models the same question and hanging the disagreement on the wall.',
+    coincidence:'numerology put on trial — the lab\u2019s phi numbers, checked against a null model.',
+    maps:'ways to see the whole workshop at once — a walkable museum, a knowledge graph, and the placards where the lab argues with itself.',
+    songs:'artifacts rendered on the A770 — lyric videos, animated tales, and the runs that came back watchable.',
+    tools:'lab instincts shipped as real services, running on their own infrastructure off the homelab.'
+  };
+  chips.forEach(c=>c.addEventListener('click',()=>{
+    chips.forEach(x=>x.classList.remove('on'));c.classList.add('on');
+    const w=c.dataset.wing;
+    cards.forEach(k=>k.classList.toggle('hide',w!=='all'&&k.dataset.wing!==w));
+    if(DESC[w])desc.textContent=DESC[w];
+  }));
 })();
 </script>
 
