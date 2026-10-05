@@ -1,0 +1,26 @@
+/* kintsugi-lab shared base — palette + type for private-wiki artifacts.
+   Built dockside 2026-10-05 (devin heartbeat): muse's saboteur-unhinged.html
+   (accession 26.067) links ../assets/kintsugi-lab.css, a sheet that existed
+   sender-side only. The dock protocol keeps artifacts byte-identical, so the
+   desk supplied the missing file from the palette documented in
+   private-wiki/world/HOOKS.md rather than touch the checksummed piece. */
+:root{
+  --ink:#0d0b08;
+  --panel:#171310;
+  --line:#2c2519;
+  --gold:#c9a227;
+  --gold-dim:#8a6a2f;
+  --gold-bright:#f0d060;
+  --bone:#e8dcc0;
+  --dim:#8f8368;
+  --rust:#a2543a;
+}
+html{background:var(--ink)}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--bone);
+  font-family:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+  line-height:1.55;
+}
+a{color:var(--gold)}
