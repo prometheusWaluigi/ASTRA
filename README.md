@@ -1,3 +1,16 @@
+> # 🧪 VIBE CODE — read this first
+>
+> This repository is **vibe code** from the **Sharan homelab** — built fast, in play, by [Ketan Sharan Raturi](https://github.com/prometheusWaluigi) together with his AI agents. It may be brilliant, broken, or (most likely) both at once. Nothing here is production software; everything here is an artifact of curiosity.
+>
+> **Looking for the maintained work?** The living, curated projects live in the Sharan family:
+> 📚 [**catalog**](https://github.com/prometheusWaluigi/catalog) — every public repo, grouped & labeled ·
+> 🛠️ [**sharan-skills**](https://github.com/prometheusWaluigi/sharan-skills) — the lab's agent skills ·
+> 🎛️ [**arc-a770-strata**](https://github.com/prometheusWaluigi/arc-a770-strata) — real models on an Intel Arc A770
+>
+> **Check there for updates.** This repo is a snapshot of a moment, not a living project.
+>
+> **This repo:** a consciousness-cartography simulator — a qualia field χ(x,t) initialized from natal-chart data, evolved by a fractal KPZ-style PDE (fKPZχ), perturbed by planetary archetype operators, and read out via topological data analysis (Betti numbers, Ricci curvature) and symbolic narrative logs. **Status:** experiment · core, topology, and narrative modules built with tests and a GitHub Pages web interface; its own roadmap lists v0.2 (cross-modal coupling, retrocausal extension) as in progress.
+
 # ASTRA: Archetypal Spacetime Tensor Resonance Architecture 🌌🧠
 
 *Chart the shape of your psyche. Not as fate—but as resonance.* ✨
@@ -297,3 +310,6 @@ Inspired by:
 ASTRA is for anyone debugging reality and mapping their inner resonance field. 
 
 *iykyk* 😉✨
+---
+
+*Part of the [Sharan lab public catalog](https://github.com/prometheusWaluigi/catalog) · vibe code from the homelab — brilliant, broken, or both (see the banner up top).*
