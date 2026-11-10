@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Zero-Free Frontier — Riemann zeta &amp; the claimed σ &gt; 11/12 wall</title>
+<style>
+  :root{
+    --bg:#070b12;
+    --panel:#0b1220;
+    --panel2:#0d1526;
+    --ink:#ece7da;
+    --muted:#9aa3b5;
+    --faint:#5d6678;
+    --amber:#f5b942;
+    --amber-dim:rgba(245,185,66,.10);
+    --teal:#2dd4bf;
+    --blue:#7cb3ff;
+    --steel:#8fa0b8;
+    --line:rgba(148,163,184,.16);
+    --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(1200px 700px at 18% -8%, rgba(45,212,191,.06), transparent 60%),
+      radial-gradient(1000px 800px at 95% 10%, rgba(245,185,66,.05), transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:1300px;margin:0 auto;padding:40px 28px 60px}
+  header.eyebrow-wrap{margin-bottom:26px}
+  .eyebrow{
+    display:inline-block;font-size:11px;letter-spacing:.32em;color:var(--muted);
+    text-transform:uppercase;border:1px solid var(--line);border-radius:999px;
+    padding:7px 16px;margin-bottom:20px;background:rgba(13,21,38,.6);
+  }
+  h1{
+    font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.2vw,64px);
+    line-height:1.04;margin:0 0 14px;letter-spacing:-.01em;
+  }
+  h1 .amp{color:var(--amber);font-style:italic}
+  .subtitle{font-size:17px;color:var(--muted);max-width:62ch;margin:0}
+  .subtitle strong{color:var(--ink);font-weight:600}
+  .grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:26px;margin-top:34px;align-items:start}
+  @media (max-width:1020px){.grid{grid-template-columns:1fr}}
+  figure.viz-card{
+    margin:0;background:linear-gradient(180deg,var(--panel2),var(--panel));
+    border:1px solid var(--line);border-radius:16px;padding:18px 18px 8px;
+    position:relative;overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,.45);
+  }
+  .canvas-wrap{position:relative}
+  canvas#plot{display:block;width:100%;height:auto;border-radius:10px;cursor:crosshair}
+  #tooltip{
+    position:absolute;pointer-events:none;opacity:0;transition:opacity .12s;
+    background:rgba(7,11,18,.94);border:1px solid var(--line);border-radius:10px;
+    padding:9px 12px;font-size:12.5px;line-height:1.45;max-width:250px;
+    box-shadow:0 10px 28px rgba(0,0,0,.5);z-index:5;
+  }
+  #tooltip .tt-sig{font-family:var(--serif);font-size:15px;color:var(--ink)}
+  #tooltip .tt-zone{color:var(--muted);margin-top:2px}
+  #tooltip .tt-zone b{font-weight:600}
+  figcaption{font-size:13px;color:var(--muted);padding:12px 6px 4px;line-height:1.55}
+  figcaption code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#c8cfdb}
+  .toggles{display:flex;flex-wrap:wrap;gap:8px;padding:10px 6px 14px}
+  .toggles label{
+    font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;
+    padding:6px 12px;cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:7px;
+    background:rgba(255,255,255,.015);
+  }
+  .toggles input{accent-color:var(--amber);margin:0}
+  .toggles .sw{display:inline-block;width:10px;height:10px;border-radius:3px}
+  .story section{
+    background:rgba(13,21,38,.55);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;margin-bottom:18px;
+  }
+  .story h2{
+    font-family:var(--serif);font-weight:400;font-size:23px;margin:0 0 10px;letter-spacing:.005em;
+  }
+  .story h2 .n{color:var(--amber);font-style:italic;margin-right:8px}
+  .story p{margin:0 0 12px;color:#d7d2c4;font-size:15px}
+  .story p:last-child{margin-bottom:0}
+  .story .math{
+    font-family:var(--serif);font-style:italic;background:rgba(255,255,255,.04);
+    border:1px solid var(--line);border-radius:8px;padding:8px 14px;margin:12px 0;
+    font-size:16.5px;color:var(--ink);text-align:center;line-height:1.5;
+  }
+  .timeline{list-style:none;margin:14px 0 0;padding:0}
+  .timeline li{display:flex;gap:14px;padding:11px 0;border-top:1px dashed var(--line);font-size:14.5px;color:#d7d2c4}
+  .timeline li:first-child{border-top:none;padding-top:2px}
+  .year{
+    flex:0 0 86px;font-family:var(--serif);font-style:italic;color:var(--amber);font-size:16px;
+  }
+  .timeline li.old .year{color:var(--teal)}
+  .timeline li.older .year{color:var(--steel)}
+  .status{
+    border:1px dashed rgba(245,185,66,.55);border-radius:14px;padding:22px 24px;
+    background:linear-gradient(180deg,rgba(245,185,66,.07),rgba(245,185,66,.02));
+  }
+  .status h2{font-family:var(--serif);font-weight:400;font-size:23px;margin:0 0 10px}
+  .tag{
+    display:inline-block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:#0a0e14;background:var(--amber);border-radius:6px;padding:4px 10px;font-weight:700;margin-bottom:12px;
+  }
+  .status p{font-size:15px;color:#d7d2c4;margin:0 0 10px}
+  .status p:last-child{margin-bottom:0}
+  footer{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.7}
+  footer a{color:var(--blue);text-decoration:none;border-bottom:1px dotted rgba(124,179,255,.5)}
+  .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="eyebrow-wrap">
+    <span class="eyebrow">Analytic number theory · a field guide</span>
+    <h1>The Zero-Free <span class="amp">Frontier</span></h1>
+    <p class="subtitle">
+      Where the Riemann zeta function is <strong>certified to have no zeros</strong> — the fences
+      mathematicians have built since 1896, and the <strong>bold, unverified claim</strong>
+      that just redrew the map.
+    </p>
+  </header>
+
+  <div class="grid">
+    <figure class="viz-card">
+      <div class="canvas-wrap">
+        <canvas id="plot" width="880" height="1180"></canvas>
+        <div id="tooltip"></div>
+      </div>
+      <figcaption>
+        The complex plane near the critical strip. Height <code>t = Im(s)</code> runs vertically on a
+        log scale (10 → 10⁶). The 1896 and 1958 fences are <em>curves hugging σ = 1</em>, drawn here
+        with a representative constant (<code>c = 0.1</code>) so their shape and ordering are visible —
+        with the true explicit constants they press far tighter against σ = 1, which is exactly why a
+        <em>uniform wall</em> would be historic. Hover the plot to read σ and t. The amber wall is the
+        <strong>claimed</strong> Oct&nbsp;2026 zero-free region — drawn dashed, because a claim is not a theorem.
+      </figcaption>
+      <div class="toggles" id="toggles">
+        <label><input type="checkbox" data-layer="vdp" checked><span class="sw" style="background:#8fa0b8"></span>1896 curve</label>
+        <label><input type="checkbox" data-layer="vk" checked><span class="sw" style="background:#2dd4bf"></span>1958 VK region</label>
+        <label><input type="checkbox" data-layer="claim" checked><span class="sw" style="background:#f5b942"></span>2026 claim</label>
+        <label><input type="checkbox" data-layer="zeros" checked><span class="sw" style="background:#f2f5fa"></span>zeros</label>
+        <label><input type="checkbox" data-layer="sweep" checked><span class="sw" style="background:#3b4a63"></span>sweep</label>
+      </div>
+    </figure>
+
+    <article class="story">
+      <section>
+        <div class="kicker">The idea</div>
+        <h2><span class="n">i.</span>A certified no-zeros zone</h2>
+        <p>
+          The Riemann zeta function ζ(s) has infinitely many zeros. The dull ones sit on the
+          negative real axis — at −2, −4, −6, … — the <em>trivial zeros</em>, forced by the
+          functional equation. The interesting ones, the <em>nontrivial</em> zeros, all lie
+          somewhere inside the <strong>critical strip</strong>, 0 &lt; σ &lt; 1, where σ = Re(s).
+        </p>
+        <p>
+          A <strong>zero-free region</strong> is a theorem shaped like a fence: it certifies that
+          some part of the strip contains <em>no zeros at all</em>. Every nontrivial zero must live
+          to the left of the fence. The further left the fence is pushed, the smaller the territory
+          in which zeros are allowed to hide.
+        </p>
+      </section>
+
+      <section>
+        <div class="kicker">The stakes</div>
+        <h2><span class="n">ii.</span>Why march toward the critical line?</h2>
+        <p>
+          The primes are counted by ψ(x), and the prime number theorem says ψ(x) is close to x.
+          How close? The error is dictated by the zeros: each zero ρ = β&nbsp;+&nbsp;iγ contributes
+          a wave of size about x<sup>β</sup>. Cap how far right the zeros can reach, and the error shrinks.
+        </p>
+        <div class="math">Riemann Hypothesis (all zeros on σ = ½)&nbsp;&nbsp;⇒&nbsp;&nbsp;error ≈ √x · log²x</div>
+        <div class="math">Vinogradov–Korobov fence (1958, still the shape record)&nbsp;&nbsp;⇒&nbsp;&nbsp;error ≈ x · exp(−c (log x)<sup>3/5</sup> / (log log x)<sup>1/5</sup>)</div>
+        <p>
+          That 1958 error term is <em>barely</em> below x itself — the fence hugs σ = 1 so tightly
+          that it has barely budged in 68 years. A <strong>uniform wall at σ = 11/12</strong> would
+          collapse the error to roughly x<sup>11/12</sup>: the first certified strip of fixed,
+          t-independent width — a <em>quasi</em>-Riemann Hypothesis. That is why 11/12 matters.
+          Not because the number is magic, but because a wall that never retreats as t grows is a
+          different kind of result.
+        </p>
+      </section>
+
+      <section>
+        <div class="kicker">The timeline</div>
+        <h2><span class="n">iii.</span>Three fences</h2>
+        <ul class="timeline">
+          <li class="older">
+            <span class="year">1896</span>
+            <span><strong>Hadamard &amp; de la Vallée Poussin</strong> prove ζ has no zeros on σ = 1 —
+            the key step in the first proof of the prime number theorem. The fence:
+            σ &gt; 1 − c/log&nbsp;t, a curve kissing the line σ = 1.</span>
+          </li>
+          <li class="old">
+            <span class="year">1958</span>
+            <span><strong>Vinogradov &amp; Korobov</strong>, via exponential sums, widen the fence to
+            σ &gt; 1 − c/((log&nbsp;t)<sup>2/3</sup>(log&nbsp;log&nbsp;t)<sup>1/3</sup>).
+            Unbeaten in <em>shape</em> ever since — decades of work (Ford 2002, Mossinghoff–Trudgian 2015)
+            only sharpened the constant.</span>
+          </li>
+          <li>
+            <span class="year">2026&nbsp;✦</span>
+            <span><strong>Claimed:</strong> a manuscript family in the Oct&nbsp;6,&nbsp;2026
+            <em>openai/math</em> release of AI-produced mathematics claims
+            σ &gt; 11/12 ≈ 0.9167, <strong>uniformly in t</strong>. Not a curve hugging σ = 1 — a wall.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="status">
+        <span class="tag">Claimed · not verified</span>
+        <h2>Handle with care</h2>
+        <p>
+          The amber wall on this map comes from an <strong>AI-produced manuscript family</strong>
+          published October&nbsp;6,&nbsp;2026 in <em>github.com/openai/math</em> — one family among
+          hundreds, whose verification stages vary.
+        </p>
+        <p>
+          As of this writing it has <strong>not been independently verified</strong>, and its
+          Lean formalization is pending. On this page it is drawn in amber, dashed, and labeled —
+          a claim on the map, not a theorem.
+        </p>
+        <p>
+          <em>If it holds, it is the biggest advance in zero-free regions since 1958. If it
+          doesn’t, the map stays exactly as it was.</em>
+        </p>
+      </section>
+    </article>
+  </div>
+
+  <footer>
+    Notes on honesty: the 1896/1958 curves use a representative constant (c&nbsp;=&nbsp;0.1) to show
+    shape and ordering; the true explicit constants press far tighter against σ&nbsp;=&nbsp;1.
+    The σ&nbsp;&gt;&nbsp;11/12 wall is drawn exactly as claimed — uniform in t. Ticks on the critical
+    line mark the first nontrivial zeros (t&nbsp;≈&nbsp;14.13, 21.02, 25.01, 30.42, 32.93, …); every zero
+    ever checked lies on that line. Error-term forms: the VK corollary is the classical
+    x·exp(−c(log&nbsp;x)<sup>3/5</sup>/(log&nbsp;log&nbsp;x)<sup>1/5</sup>); the x<sup>11/12</sup>
+    figure is the rough consequence a uniform σ₀-wall would imply. Single self-contained file —
+    no external assets, no network. Built October&nbsp;2026.
+  </footer>
+</div>
+<script>
+(function(){
+"use strict";
+var cv = document.getElementById('plot');
+var ctx = cv.getContext('2d');
+var tip = document.getElementById('tooltip');
+
+/* ---------- geometry ---------- */
+var W = 880, H = 1180;
+var DPR = Math.min(window.devicePixelRatio || 1, 2);
+cv.width = W * DPR; cv.height = H * DPR;
+ctx.scale(DPR, DPR);
+
+var L = 92, R = W - 36, T = 64, B = 918;      // main plot rect
+var SIG0 = -0.4, SIG1 = 1.32;                  // sigma range, main plot
+var LT0 = 1, LT1 = 6;                          // log10(t) range: 10 .. 10^6
+var X = function(s){ return L + (s - SIG0) / (SIG1 - SIG0) * (R - L); };
+var Y = function(t){ return B - ((Math.log10(t) - LT0) / (LT1 - LT0)) * (B - T); };
+
+/* real-axis strip (its own zoomed-out sigma scale) */
+var SY0 = 992, SY1 = 1036, SYM = (SY0 + SY1) / 2;
+var SSIG0 = -26, SSIG1 = 1.3;
+var SX = function(s){ return L + (s - SSIG0) / (SSIG1 - SSIG0) * (R - L); };
+
+/* ---------- math ---------- */
+var C_REP = 0.1;                               // representative constant (labeled)
+var ln = Math.log;
+var vk  = function(t){ return 1 - C_REP / (Math.pow(ln(t), 2/3) * Math.pow(ln(ln(t)), 1/3)); };
+var vdp = function(t){ return 1 - C_REP / ln(t); };
+var CLAIM = 11/12;
+var FIRST_ZEROS = [14.134725, 21.022040, 25.010858, 30.424876, 32.935062,
+                   37.586178, 40.918719, 43.327073, 48.005151, 49.773832];
+
+/* ---------- layers ---------- */
+var layers = { vdp:true, vk:true, claim:true, zeros:true, sweep:true };
+document.getElementById('toggles').addEventListener('change', function(e){
+  var k = e.target.getAttribute('data-layer');
+  if (k) layers[k] = e.target.checked;
+});
+
+/* ---------- helpers ---------- */
+function fmtT(t){
+  if (t < 1000) return t < 100 ? t.toFixed(1) : Math.round(t).toString();
+  var e = Math.floor(Math.log10(t)), m = t / Math.pow(10, e);
+  return m.toFixed(1) + '×10' + sup(e);
+}
+function sup(n){
+  var d = {'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻'};
+  return String(n).split('').map(function(c){ return d[c] || c; }).join('');
+}
+function zoneAt(s, t){
+  if (s > 1)      return ['right of σ = 1', 'Euler product converges here — <b>provably zero-free</b> since Euler.'];
+  if (s > CLAIM)  return ['inside the CLAIMED wall', '<b>σ &gt; 11/12 — claimed Oct 2026, unverified.</b>'];
+  if (s > vk(t))  return ['inside the 1958 fence', 'VK-certified: <b>no zeros here</b> (Vinogradov–Korobov).'];
+  if (s > vdp(t)) return ['inside the 1896 fence', 'de la Vallée Poussin-certified: <b>no zeros here</b>.'];
+  if (s > 0)      return ['critical strip', 'zeros <b>may</b> live here — every one found sits on σ = ½.'];
+  return ['left of the strip', 'no nontrivial zeros this far left (only trivial ones on t = 0).'];
+}
+
+/* ---------- drawing ---------- */
+var hover = null;
+var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function drawBG(){
+  var g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, '#0a111f'); g.addColorStop(1, '#070b12');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+}
+
+function drawGrid(){
+  ctx.save();
+  ctx.font = '11px system-ui, sans-serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  /* vertical sigma gridlines */
+  var sigTicks = [0, 0.5, CLAIM, 1];
+  sigTicks.forEach(function(s){
+    var x = X(s);
+    ctx.strokeStyle = 'rgba(148,163,184,0.10)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, T); ctx.lineTo(x, B); ctx.stroke();
+  });
+  /* horizontal t gridlines */
+  ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+  for (var e = LT0; e <= LT1; e++){
+    var t = Math.pow(10, e), y = Y(t);
+    ctx.strokeStyle = 'rgba(148,163,184,0.10)';
+    ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(R, y); ctx.stroke();
+    ctx.fillStyle = '#7d8798';
+    ctx.fillText(e === 1 ? '10' : '10' + sup(e), L - 10, y);
+  }
+  /* axis captions */
+  ctx.fillStyle = '#7d8798'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  ctx.font = '12px system-ui, sans-serif';
+  ctx.fillText('σ = Re(s)', (L + R) / 2, B + 34);
+  ctx.save();
+  ctx.translate(26, (T + B) / 2); ctx.rotate(-Math.PI / 2);
+  ctx.fillText('t = Im(s)  ·  log scale', 0, 0);
+  ctx.restore();
+  /* sigma tick labels */
+  ctx.textBaseline = 'top';
+  [['0', 0], ['½', 0.5], ['11/12', CLAIM], ['1', 1]].forEach(function(p){
+    ctx.fillStyle = (p[1] === CLAIM) ? '#f5b942' : '#7d8798';
+    ctx.fillText(p[0], X(p[1]), B + 8);
+  });
+  ctx.restore();
+}
+
+function drawCriticalStrip(){
+  ctx.fillStyle = 'rgba(148,163,184,0.055)';
+  ctx.fillRect(X(0), T, X(1) - X(0), B - T);
+  ctx.save();
+  ctx.fillStyle = 'rgba(157,170,190,0.5)';
+  ctx.font = 'italic 12px Georgia, serif';
+  ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+  ctx.fillText('critical strip  0 < σ < 1', X(0) + 10, T + 10);
+  ctx.restore();
+}
+
+function traceCurve(fn){
+  ctx.beginPath();
+  var first = true;
+  for (var e = LT0; e <= LT1 + 1e-9; e += 0.02){
+    var t = Math.pow(10, e), x = X(fn(t)), y = Y(t);
+    if (first){ ctx.moveTo(x, y); first = false; } else ctx.lineTo(x, y);
+  }
+}
+
+function drawVdp(){
+  traceCurve(vdp);
+  ctx.save();
+  ctx.setLineDash([7, 6]);
+  ctx.strokeStyle = 'rgba(143,160,184,0.85)';
+  ctx.lineWidth = 1.6;
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawVk(){
+  /* certified region fill: between curve and right edge */
+  traceCurve(vk);
+  ctx.lineTo(X(SIG1), Y(Math.pow(10, LT1)));
+  ctx.lineTo(X(SIG1), Y(Math.pow(10, LT0)));
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(45,212,191,0.075)';
+  ctx.fill();
+  /* curve */
+  traceCurve(vk);
+  ctx.save();
+  ctx.strokeStyle = '#2dd4bf'; ctx.lineWidth = 2.2;
+  ctx.shadowColor = 'rgba(45,212,191,0.55)'; ctx.shadowBlur = 10;
+  ctx.stroke();
+  ctx.restore();
+}
+
+/* one shared annotation for the two classical fences (they run close together) */
+function drawClassicalNote(){
+  var t = Math.pow(10, 3.2);
+  var ax = X(0.02), ay = Y(t);                 // annotation anchor, in the empty mid-strip
+  var tx = X(vk(t)), ty = Y(t);                // leader target on the curve pair
+  ctx.save();
+  ctx.strokeStyle = 'rgba(157,170,190,0.45)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(ax + 228, ay - 8); ctx.lineTo(tx - 4, ty); ctx.stroke();
+  ctx.fillStyle = 'rgba(45,212,191,0.9)';
+  ctx.beginPath(); ctx.arc(tx - 4, ty, 3, 0, Math.PI * 2); ctx.fill();
+  ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = '#dfe5ee'; ctx.font = '600 12.5px system-ui, sans-serif';
+  ctx.fillText('the classical fences', ax, ay - 26);
+  ctx.font = '12px system-ui, sans-serif'; ctx.fillStyle = '#2dd4bf';
+  ctx.fillText('— 1958 · Vinogradov–Korobov', ax, ay - 8);
+  ctx.fillStyle = 'rgba(143,160,184,0.95)';
+  ctx.fillText('- - 1896 · de la Vallée Poussin', ax, ay + 10);
+  ctx.font = '11px system-ui, sans-serif'; ctx.fillStyle = 'rgba(157,170,190,0.7)';
+  ctx.fillText('curves hugging σ = 1 · representative c', ax, ay + 28);
+  ctx.restore();
+}
+
+function drawClaim(now){
+  var x0 = X(CLAIM), x1 = X(SIG1);
+  var pulse = 0.10 + 0.04 * Math.sin(now / 900);
+  ctx.fillStyle = 'rgba(245,185,66,' + pulse.toFixed(3) + ')';
+  ctx.fillRect(x0, T, x1 - x0, B - T);
+  /* marching dashed wall */
+  ctx.save();
+  ctx.setLineDash([10, 8]);
+  ctx.lineDashOffset = -now / 60;
+  ctx.strokeStyle = '#f5b942'; ctx.lineWidth = 2.6;
+  ctx.shadowColor = 'rgba(245,185,66,0.8)'; ctx.shadowBlur = 14;
+  ctx.beginPath(); ctx.moveTo(x0, T); ctx.lineTo(x0, B); ctx.stroke();
+  ctx.restore();
+  /* badge, floating mid-band where nothing else lives */
+  var cx = (x0 + x1) / 2, cy = Y(Math.pow(10, 2.6));
+  var l1 = '✦  CLAIMED 2026 · UNVERIFIED  ✦';
+  var l2 = 'σ > 11/12 ≈ 0.9167 · uniform in t';
+  ctx.save();
+  ctx.font = '700 12px system-ui, sans-serif';
+  var w1 = ctx.measureText(l1).width;
+  ctx.font = '12px system-ui, sans-serif';
+  var w2 = ctx.measureText(l2).width;
+  var w = Math.max(w1, w2) + 30, h = 52;
+  var bx = cx - w / 2, by = cy - h / 2;
+  ctx.fillStyle = 'rgba(7,11,18,0.88)';
+  ctx.strokeStyle = 'rgba(245,185,66,0.75)'; ctx.lineWidth = 1.2;
+  roundRect(bx, by, w, h, 9); ctx.fill(); ctx.stroke();
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.font = '700 12px system-ui, sans-serif'; ctx.fillStyle = '#f5b942';
+  ctx.fillText(l1, cx, by + 17);
+  ctx.font = '12px system-ui, sans-serif'; ctx.fillStyle = '#e8dfc8';
+  ctx.fillText(l2, cx, by + 37);
+  ctx.restore();
+}
+
+function roundRect(x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function drawSigmaOne(){
+  var x = X(1);
+  ctx.save();
+  ctx.strokeStyle = 'rgba(124,179,255,0.95)'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(x, T); ctx.lineTo(x, B); ctx.stroke();
+  ctx.fillStyle = '#7cb3ff'; ctx.font = '600 12px system-ui, sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('σ = 1', x, T - 10);
+  ctx.font = '11px system-ui, sans-serif'; ctx.fillStyle = 'rgba(124,179,255,0.8)';
+  ctx.textAlign = 'left';
+  ctx.fillText('1896: no zeros on/right', x + 8, T + 22);
+  ctx.restore();
+}
+
+function drawCriticalLine(){
+  var x = X(0.5);
+  ctx.save();
+  ctx.setLineDash([9, 7]);
+  ctx.strokeStyle = 'rgba(242,245,250,0.8)'; ctx.lineWidth = 1.8;
+  ctx.beginPath(); ctx.moveTo(x, T); ctx.lineTo(x, B); ctx.stroke();
+  ctx.restore();
+}
+
+function drawZeros(now){
+  if (!layers.zeros) return;
+  ctx.save();
+  FIRST_ZEROS.forEach(function(tz, i){
+    var y = Y(tz), x = X(0.5);
+    var tw = 0.55 + 0.45 * Math.sin(now / 700 + i * 1.3);
+    ctx.strokeStyle = 'rgba(242,245,250,' + (0.35 + 0.5 * tw).toFixed(2) + ')';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(x - 7, y); ctx.lineTo(x + 7, y); ctx.stroke();
+  });
+  ctx.fillStyle = 'rgba(242,245,250,0.75)';
+  ctx.font = '11.5px system-ui, sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText('first zeros · t ≈ 14.13, 21.02, 25.01, …', X(0.5) - 14, Y(32));
+  ctx.fillText('— every one on the line', X(0.5) - 14, Y(32) + 15);
+  ctx.fillStyle = 'rgba(242,245,250,0.9)';
+  ctx.font = 'italic 12.5px Georgia, serif'; ctx.textAlign = 'right';
+  ctx.fillText('σ = ½ · the Riemann Hypothesis line', X(0.5) - 14, B - 26);
+  ctx.restore();
+}
+
+function drawRealStrip(){
+  ctx.save();
+  /* strip label */
+  ctx.fillStyle = '#7d8798'; ctx.font = '12px system-ui, sans-serif';
+  ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  ctx.fillText('the real axis (t = 0) — zoomed out', L, SY0 - 16);
+  /* axis */
+  ctx.strokeStyle = 'rgba(148,163,184,0.35)'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(L, SYM); ctx.lineTo(R, SYM); ctx.stroke();
+  /* trivial zeros */
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  for (var n = 1; n <= 12; n++){
+    var s = -2 * n, x = SX(s);
+    ctx.fillStyle = '#94a3b8';
+    ctx.beginPath(); ctx.arc(x, SYM, 4.5, 0, Math.PI * 2); ctx.fill();
+    if (n % 2 === 0){
+      ctx.fillStyle = '#7d8798'; ctx.font = '10.5px system-ui, sans-serif';
+      ctx.fillText(String(s), x, SYM + 10);
+    }
+  }
+  ctx.fillStyle = 'rgba(148,163,184,0.85)'; ctx.font = 'italic 12px Georgia, serif';
+  ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+  ctx.fillText('trivial zeros  ζ(−2n) = 0', L + 2, SYM - 10);
+  /* pole at s = 1 */
+  var px = SX(1);
+  ctx.strokeStyle = '#f08a8a'; ctx.lineWidth = 2.4;
+  ctx.beginPath();
+  ctx.moveTo(px - 6, SYM - 6); ctx.lineTo(px + 6, SYM + 6);
+  ctx.moveTo(px + 6, SYM - 6); ctx.lineTo(px - 6, SYM + 6);
+  ctx.stroke();
+  ctx.fillStyle = '#f08a8a'; ctx.font = '11px system-ui, sans-serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  ctx.fillText('pole at s = 1', px, SYM + 10);
+  /* sigma > 1 note */
+  ctx.fillStyle = 'rgba(125,135,152,0.85)'; ctx.font = '11px system-ui, sans-serif';
+  ctx.textAlign = 'right'; ctx.textBaseline = 'bottom';
+  ctx.fillText('σ > 1: Euler product converges — no zeros, ever', R, SYM - 10);
+  ctx.restore();
+}
+
+function drawSweep(now){
+  if (!layers.sweep || reduceMotion) return;
+  var span = (B - T) + 220;
+  var sy = T - 110 + ((now / 26) % span);
+  var g = ctx.createLinearGradient(0, sy - 90, 0, sy + 90);
+  g.addColorStop(0, 'rgba(180,200,230,0)');
+  g.addColorStop(0.5, 'rgba(180,200,230,0.055)');
+  g.addColorStop(1, 'rgba(180,200,230,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(L, Math.max(T, sy - 90), R - L, 180);
+}
+
+function drawHover(){
+  if (!hover) return;
+  ctx.save();
+  ctx.strokeStyle = 'rgba(236,231,218,0.35)'; ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(hover.px, T); ctx.lineTo(hover.px, B); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(L, hover.py); ctx.lineTo(R, hover.py); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#ece7da';
+  ctx.beginPath(); ctx.arc(hover.px, hover.py, 4, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+
+function draw(now){
+  drawBG();
+  drawGrid();
+  drawCriticalStrip();
+  if (layers.vdp) drawVdp();
+  if (layers.vk) drawVk();
+  if (layers.vdp || layers.vk) drawClassicalNote();
+  if (layers.claim) drawClaim(now);
+  drawSigmaOne();
+  drawCriticalLine();
+  drawZeros(now);
+  drawRealStrip();
+  drawSweep(now);
+  drawHover();
+}
+
+/* ---------- interaction ---------- */
+function eventPos(e){
+  var r = cv.getBoundingClientRect();
+  return { x: (e.clientX - r.left) * (W / r.width), y: (e.clientY - r.top) * (H / r.height) };
+}
+cv.addEventListener('mousemove', function(e){
+  var p = eventPos(e);
+  if (p.x < L || p.x > R || p.y < T || p.y > B){ hover = null; tip.style.opacity = 0; return; }
+  var s = SIG0 + (p.x - L) / (R - L) * (SIG1 - SIG0);
+  var t = Math.pow(10, LT0 + (B - p.y) / (B - T) * (LT1 - LT0));
+  hover = { px: p.x, py: p.y };
+  var z = zoneAt(s, t);
+  tip.innerHTML = '<div class="tt-sig">σ ≈ ' + s.toFixed(3) + ' &nbsp;·&nbsp; t ≈ ' + fmtT(t) + '</div>' +
+                  '<div class="tt-zone"><b>' + z[0] + '</b> — ' + z[1] + '</div>';
+  var wrap = cv.parentElement.getBoundingClientRect();
+  var tx = e.clientX - wrap.left + 18, ty = e.clientY - wrap.top + 16;
+  if (tx + 260 > wrap.width) tx -= 280;
+  if (ty + 90 > wrap.height) ty -= 100;
+  tip.style.left = tx + 'px'; tip.style.top = ty + 'px'; tip.style.opacity = 1;
+});
+cv.addEventListener('mouseleave', function(){ hover = null; tip.style.opacity = 0; });
+
+/* ---------- run ---------- */
+if (reduceMotion){
+  draw(0);
+} else {
+  (function frame(now){
+    draw(now || 0);
+    requestAnimationFrame(frame);
+  })();
+}
+})();
+</script>
+</body>
+</html>
