@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE 71 THz MODE — a quantum state of mitochondria</title>
+<link rel="stylesheet" href="../assets/kintsugi-lab.css">
+<style>
+  .viz-wrap { max-width: 980px; margin: 0 auto; padding: 0 1.2rem 4rem; }
+  .kicker { color: var(--gold); letter-spacing: .25em; font-size: .8rem; text-transform: uppercase; }
+  h1 { font-size: clamp(2rem, 6vw, 3.4rem); margin: .4rem 0 .2rem; line-height: 1.05; }
+  .sub { color: var(--bone-dim); font-style: italic; margin-bottom: 1.6rem; }
+  .tabs { display: flex; gap: .5rem; margin: 1.4rem 0 .4rem; flex-wrap: wrap; }
+  .tab { background: var(--paper-2); color: var(--bone-dim); border: 1px solid var(--gold-dim);
+         padding: .55rem 1.1rem; cursor: pointer; font-family: inherit; font-size: .95rem; border-radius: 2px; }
+  .tab.active { color: var(--ink); background: var(--gold); border-color: var(--gold); font-weight: bold; }
+  .scene { display: none; border: 1px solid var(--gold-dim); background: var(--paper); padding: 1rem; margin-top: .6rem; }
+  .scene.active { display: block; }
+  canvas.stage { width: 100%; height: 380px; display: block; }
+  .controls { display: flex; align-items: center; gap: 1rem; padding: .8rem .2rem; flex-wrap: wrap; }
+  .controls label { color: var(--bone-dim); font-size: .9rem; }
+  input[type=range] { flex: 1; min-width: 180px; accent-color: var(--gold); }
+  .toggle { display: flex; border: 1px solid var(--gold-dim); border-radius: 2px; overflow: hidden; }
+  .toggle button { background: transparent; color: var(--bone-dim); border: 0; padding: .55rem 1.2rem;
+                   font-family: inherit; cursor: pointer; font-size: .95rem; }
+  .toggle button.active { background: var(--gold); color: var(--ink); font-weight: bold; }
+  .caption { color: var(--bone-dim); font-size: .92rem; line-height: 1.55; margin: .8rem .2rem 0; }
+  .caption strong { color: var(--bone); }
+  .readout { font-variant-numeric: tabular-nums; color: var(--gold-bright); }
+  .disclaimer { margin-top: 2.5rem; border-top: 1px solid var(--gold-dim); padding-top: 1rem;
+                color: var(--bone-dim); font-size: .85rem; line-height: 1.6; }
+  .num { color: var(--gold-bright); }
+</style>
+</head>
+<body>
+<div class="viz-wrap">
+  <header class="lab-head" style="border:0; padding-left:0;">
+    <div class="kicker">the shelter · Paper Viz</div>
+    <h1>THE 71 THz MODE</h1>
+    <div class="sub">a quantum state of mitochondria, after Yang, Gu &amp; Song (bioRxiv, Sept 2026) — an interactive reading of the paper's model</div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-scene="split">1 · The Split</button>
+    <button class="tab" data-scene="spectrum">2 · The Spectrum</button>
+    <button class="tab" data-scene="channel">3 · The Channel</button>
+  </div>
+
+  <section class="scene active" id="scene-split">
+    <canvas class="stage" id="cv-split"></canvas>
+    <div class="controls">
+      <label for="coupling">light–matter coupling&nbsp;g</label>
+      <input type="range" id="coupling" min="0" max="100" value="100">
+      <span class="readout" id="coupling-val">g = 1.00</span>
+    </div>
+    <p class="caption">The paper's model: the intrinsic CH<sub>2</sub> vibration of cristae lipids sits at <span class="num">87 THz</span>.
+    Couple it to light inside a <strong>functional</strong> mitochondrion and the level splits — Rabi-style — into
+    <span class="num">71 THz</span> and <span class="num">103 THz</span>. Drag the coupling to zero and the split collapses.
+    The 71 THz line is the paper's headline: it appears <strong>only in living cells and tissues</strong>, and only when mitochondrial structure is intact.</p>
+  </section>
+
+  <section class="scene" id="scene-spectrum">
+    <canvas class="stage" id="cv-spectrum"></canvas>
+    <div class="controls">
+      <div class="toggle">
+        <button class="active" data-state="living">LIVING</button>
+        <button data-state="dead">DEAD / DISRUPTED</button>
+      </div>
+      <span class="readout" id="spec-note">71 THz peak present</span>
+    </div>
+    <p class="caption">What the spectrometer sees, per the paper. Living: a sharp anomalous peak at <span class="num">71 THz</span> that cannot be
+    assigned to any specific molecule; the 103 THz partner hides inside the broad <span class="num">90–110 THz</span> water/biomolecular band.
+    Kill the cell or disrupt the cristae and the 71 THz line vanishes — the ordinary 87 THz CH<sub>2</sub> mode returns. The mode is a property of
+    <strong>intact structure</strong>, not of any molecule.</p>
+  </section>
+
+  <section class="scene" id="scene-channel">
+    <canvas class="stage" id="cv-channel"></canvas>
+    <div class="controls">
+      <label for="atp-coupling">superposition strength</label>
+      <input type="range" id="atp-coupling" min="0" max="100" value="80">
+      <span class="readout" id="atp-val">ATP flux ×1.8</span>
+    </div>
+    <p class="caption">The paper's boldest claim: the superposition state acts as a <strong>channel</strong> that modulates ATP production —
+    tune the state, tune the cell's energy output. This scene is the model, drawn schematically: the gold mode in the cristae folds,
+    feeding the ATP flux. Whether the channel is real is exactly what replication has to decide.</p>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Preprint.</strong> Yang, Gu &amp; Song, "A quantum state of mitochondria in the living cell",
+    bioRxiv <a href="https://www.biorxiv.org/content/10.64898/2026.09.10.750628v1">doi:10.64898/2026.09.10.750628</a> (Sept 2026).
+    This piece visualizes the paper's <em>model</em> — it is not a verdict. An unassigned 71 THz mode in living mitochondria would be
+    extraordinary; it awaits independent replication. Built in the shelter; the viz is ours, the claim is theirs.
+  </div>
+</div>
+
+<script>
+"use strict";
+const GOLD = "#c9a227", GOLD_B = "#f0d060", BONE = "#e8dcc0", BONE_D = "#a89a78",
+      INK = "#0d0b08", WATER = "rgba(90,140,200,0.16)";
+
+/* tabs */
+document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+  document.querySelectorAll(".scene").forEach(x => x.classList.remove("active"));
+  b.classList.add("active");
+  document.getElementById("scene-" + b.dataset.scene).classList.add("active");
+}));
+
+function fitCanvas(cv) {
+  const r = cv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+  cv.width = r.width * dpr; cv.height = r.height * dpr;
+  const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return [ctx, r.width, r.height];
+}
+function text(ctx, s, x, y, {c = BONE_D, f = "12px Georgia", a = "left"} = {}) {
+  ctx.fillStyle = c; ctx.font = f; ctx.textAlign = a; ctx.fillText(s, x, y);
+}
+
+/* ============ SCENE 1: THE SPLIT ============ */
+const cvSplit = document.getElementById("cv-split");
+const couplingEl = document.getElementById("coupling");
+let gTarget = 1, gCur = 1;
+couplingEl.addEventListener("input", () => {
+  gTarget = couplingEl.value / 100;
+  document.getElementById("coupling-val").textContent = "g = " + gTarget.toFixed(2);
+});
+function drawSplit() {
+  const [ctx, W, H] = fitCanvas(cvSplit);
+  gCur += (gTarget - gCur) * 0.08;
+  const g = gCur;
+  // axis: 60..110 THz vertical
+  const lo = 60, hi = 110, pad = 46;
+  const yOf = f => pad + (hi - f) / (hi - lo) * (H - pad * 2);
+  ctx.strokeStyle = "rgba(201,162,39,0.25)"; ctx.lineWidth = 1;
+  for (let f = 60; f <= 110; f += 10) {
+    ctx.beginPath(); ctx.moveTo(60, yOf(f)); ctx.lineTo(W - 30, yOf(f)); ctx.stroke();
+    text(ctx, f + " THz", 8, yOf(f) + 4);
+  }
+  // water band 90..110
+  ctx.fillStyle = WATER;
+  ctx.fillRect(60, yOf(110), W - 90, yOf(90) - yOf(110));
+  text(ctx, "water / biomolecular band 90–110", 66, yOf(94), {c: "rgba(150,180,220,0.7)"});
+
+  const cx = W / 2, lw = Math.min(300, W * 0.42);
+  const fUp = 87 + 16 * g, fDn = 87 - 16 * g;   // 87 -> 103 / 71
+  // unsplit level (ghost at g)
+  ctx.globalAlpha = 0.25 * (1 - g);
+  line(ctx, cx - lw / 2, yOf(87), cx + lw / 2, yOf(87), BONE_D, 2);
+  ctx.globalAlpha = 1;
+  // split levels
+  line(ctx, cx - lw / 2, yOf(fUp), cx + lw / 2, yOf(fUp), BONE, 3);
+  line(ctx, cx - lw / 2, yOf(fDn), cx + lw / 2, yOf(fDn), GOLD_B, 3);
+  // connectors
+  if (g > 0.02) {
+    ctx.strokeStyle = "rgba(201,162,39,0.5)"; ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(cx - lw / 2, yOf(87)); ctx.lineTo(cx - lw / 2, yOf(fUp)); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx - lw / 2, yOf(87)); ctx.lineTo(cx - lw / 2, yOf(fDn)); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  text(ctx, "87 THz — intrinsic CH₂", cx + lw / 2 + 8, yOf(87) + 4);
+  text(ctx, fUp.toFixed(0) + " THz — hidden in water band", cx + lw / 2 + 8, yOf(fUp) + 4);
+  text(ctx, fDn.toFixed(0) + " THz — LIVING ONLY", cx + lw / 2 + 8, yOf(fDn) + 4, {c: GOLD_B, f: "bold 13px Georgia"});
+  // glow on 71 line
+  if (g > 0.5) {
+    ctx.save(); ctx.shadowColor = GOLD; ctx.shadowBlur = 18;
+    line(ctx, cx - lw / 2, yOf(fDn), cx + lw / 2, yOf(fDn), GOLD_B, 3); ctx.restore();
+  }
+  text(ctx, "uncoupled CH₂ vibration", 70, H - 12);
+  text(ctx, "light–matter coupled · functional cristae", W - 40, H - 12, {a: "right"});
+  requestAnimationFrame(drawSplit);
+}
+function line(ctx, x1, y1, x2, y2, c, w) {
+  ctx.strokeStyle = c; ctx.lineWidth = w; ctx.beginPath();
+  ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+}
+
+/* ============ SCENE 2: THE SPECTRUM ============ */
+const cvSpec = document.getElementById("cv-spectrum");
+let livingTarget = 1, livingCur = 1;
+document.querySelectorAll("#scene-spectrum .toggle button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("#scene-spectrum .toggle button").forEach(x => x.classList.remove("active"));
+  b.classList.add("active");
+  livingTarget = b.dataset.state === "living" ? 1 : 0;
+  document.getElementById("spec-note").textContent =
+    livingTarget ? "71 THz peak present" : "71 THz peak gone · 87 THz returns";
+}));
+function gauss(x, mu, sig) { return Math.exp(-((x - mu) ** 2) / (2 * sig * sig)); }
+function drawSpectrum() {
+  const [ctx, W, H] = fitCanvas(cvSpec);
+  livingCur += (livingTarget - livingCur) * 0.06;
+  const L = livingCur;
+  const lo = 60, hi = 110, padL = 46, padB = 40;
+  const xOf = f => padL + (f - lo) / (hi - lo) * (W - padL - 20);
+  const yBase = H - padB;
+  // water band
+  ctx.fillStyle = WATER;
+  ctx.fillRect(xOf(90), 20, xOf(110) - xOf(90), yBase - 20);
+  text(ctx, "water band", xOf(100), 34, {a: "center", c: "rgba(150,180,220,0.7)"});
+  // axes
+  ctx.strokeStyle = "rgba(201,162,39,0.35)";
+  line(ctx, padL, 20, padL, yBase, BONE_D, 1); line(ctx, padL, yBase, W - 20, yBase, BONE_D, 1);
+  for (let f = 60; f <= 110; f += 10) text(ctx, f + "", xOf(f), yBase + 16, {a: "center"});
+  text(ctx, "THz", W - 24, yBase + 16, {a: "right"});
+  // spectrum curve
+  ctx.beginPath();
+  const amp = 0.9;
+  for (let px = 0; px <= W - padL - 20; px += 2) {
+    const f = lo + px / (W - padL - 20) * (hi - lo);
+    let y = 0.06 * gauss(f, 100, 7) + 0.10 * gauss(f, 95, 4);          // water hump
+    y += L * 1.0 * gauss(f, 71, 0.9);                                   // the anomalous mode
+    y += (1 - L) * 0.85 * gauss(f, 87, 1.1);                            // ordinary CH2 returns
+    y += L * 0.28 * gauss(f, 103, 1.6);                                 // buried partner
+    const yy = yBase - y * (H - 90) * amp;
+    px === 0 ? ctx.moveTo(padL + px, yy) : ctx.lineTo(padL + px, yy);
+  }
+  ctx.strokeStyle = GOLD_B; ctx.lineWidth = 2.5; ctx.stroke();
+  // peak labels
+  if (L > 0.4) {
+    const y71 = yBase - (L * 1.0) * (H - 90) * amp;
+    text(ctx, "71 THz — anomalous, living only", xOf(71), y71 - 12, {a: "center", c: GOLD_B, f: "bold 13px Georgia"});
+    ctx.strokeStyle = GOLD; ctx.setLineDash([3, 3]);
+    line(ctx, xOf(71), y71, xOf(71), yBase, GOLD, 1); ctx.setLineDash([]);
+  }
+  if (L < 0.6) {
+    const y87 = yBase - ((1 - L) * 0.85 + 0.06 * gauss(87, 100, 7)) * (H - 90) * amp;
+    text(ctx, "87 THz — ordinary CH₂", xOf(87), y87 - 12, {a: "center", c: BONE});
+  }
+  text(ctx, "103 THz — buried in water band", xOf(103), 52, {a: "center", c: "rgba(150,180,220,0.85)"});
+  requestAnimationFrame(drawSpectrum);
+}
+
+/* ============ SCENE 3: THE CHANNEL ============ */
+const cvCh = document.getElementById("cv-channel");
+const atpEl = document.getElementById("atp-coupling");
+let sTarget = 0.8, sCur = 0.8, parts = [];
+atpEl.addEventListener("input", () => {
+  sTarget = atpEl.value / 100;
+  document.getElementById("atp-val").textContent = "ATP flux ×" + (0.2 + 2 * sTarget).toFixed(1);
+});
+function drawChannel(t) {
+  const [ctx, W, H] = fitCanvas(cvCh);
+  sCur += (sTarget - sCur) * 0.06;
+  const s = sCur, cx = W / 2, cy = H / 2;
+  // mitochondrion: outer ellipse + cristae folds
+  ctx.strokeStyle = "rgba(232,220,192,0.5)"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.ellipse(cx, cy, 200, 120, 0, 0, 7); ctx.stroke();
+  ctx.strokeStyle = "rgba(232,220,192,0.28)";
+  for (let i = -2; i <= 2; i++) {
+    ctx.beginPath();
+    ctx.ellipse(cx, cy + i * 34, 150, 26, 0, 0.3, Math.PI - 0.3);
+    ctx.stroke();
+  }
+  // the quantum mode: glowing standing wave across cristae
+  ctx.save();
+  ctx.shadowColor = GOLD; ctx.shadowBlur = 24 * s;
+  ctx.strokeStyle = GOLD_B; ctx.lineWidth = 2 + 2 * s;
+  ctx.globalAlpha = 0.35 + 0.65 * s;
+  ctx.beginPath();
+  for (let x = -190; x <= 190; x += 4) {
+    const y = cy + Math.sin(x / 26 + t / 300) * 34 * s * Math.cos(x / 190 * 1.2);
+    x === -190 ? ctx.moveTo(cx + x, y) : ctx.lineTo(cx + x, y);
+  }
+  ctx.stroke(); ctx.restore();
+  text(ctx, "superposition mode · 71 THz", cx, cy - 132, {a: "center", c: GOLD_B, f: "italic 13px Georgia"});
+  // ATP particles emitted, rate ~ s
+  if (Math.random() < s * 0.5 && parts.length < 220) {
+    parts.push({x: cx + (Math.random() - 0.5) * 300, y: cy + (Math.random() - 0.5) * 160,
+                vx: (Math.random() - 0.5) * 1.4, vy: -1 - Math.random() * 1.6, r: 2 + Math.random() * 2.5});
+  }
+  ctx.fillStyle = GOLD_B;
+  parts = parts.filter(p => p.y > -10);
+  for (const p of parts) {
+    p.x += p.vx; p.y += p.vy;
+    ctx.globalAlpha = 0.85; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  text(ctx, "ATP", cx + 232, 34, {a: "center", c: GOLD_B, f: "bold 14px Georgia"});
+  text(ctx, "the paper's model: tune the state, tune the flux", 20, H - 14, {c: BONE_D});
+  requestAnimationFrame(drawChannel);
+}
+
+drawSplit(); drawSpectrum(); drawChannel(0);
+setInterval(() => {}, 1e9); // keep timers honest
+</script>
+</body>
+</html>
