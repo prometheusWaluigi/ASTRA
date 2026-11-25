@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# Git
+.git
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+cache/*
+output/*
+!cache/.gitkeep
+!output/.gitkeep
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore 
